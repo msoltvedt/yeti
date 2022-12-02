@@ -1,0 +1,208 @@
+/************************************** yeti.less ***
+ *
+ * This is the main index stylesheet for Yeti.
+ *
+****************************************************/
+/************************************** Variables and Mixins ***/
+/************************************** variables-and-mixins.less ***
+ *
+ * Yeti-wide variables and mixins index (this file should be imports only)
+ *
+****************************************************/
+/************************************** Imports ***/
+/************************************** variables.less ***
+ *
+ * Yeti-wide variable declarations
+ *
+****************************************************/
+/************************************** Base Unit ***/
+/************************************** Grid ***/
+/************************************** mixins.less ***
+ *
+ * Yeti-wide mixins
+ *
+****************************************************/
+/************************************** Some Mixins ***/
+/************************************** Another Group of Mixins ***/
+/************************************** CSS Reset ***/
+/************************************** Defaults ***/
+/************************************** Globals ***/
+/************************************** Components ***/
+/************************************** components.less ***
+ *
+ * Components are screen elements you can see and interact with
+ * 
+ * This file should be imports only.
+ *
+****************************************************/
+/************************************** Imports ***/
+/************************************** grid.css ***
+ *
+ * Styles for Grid
+ *
+****************************************************/
+/************************************** Wrapper ***/
+.yeti-grid {
+  display: grid;
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+  gap: 1rem 1.5rem;
+  margin: 0 1rem;
+}
+/************************************** Rows and Columns ***/
+/*** Rows ***/
+.yeti-grid-row-2 {
+  grid-row: span 2;
+}
+.yeti-grid-row-3 {
+  grid-row: span 3;
+}
+/*** Columns ***/
+.yeti-grid-column-all,
+.yeti-grid-column-16 {
+  grid-column-end: span 16;
+}
+.yeti-grid-column-15 {
+  grid-column-end: span 15;
+}
+.yeti-grid-column-14 {
+  grid-column-end: span 14;
+}
+.yeti-grid-column-13 {
+  grid-column-end: span 13;
+}
+.yeti-grid-column-12 {
+  grid-column-end: span 12;
+}
+.yeti-grid-column-11 {
+  grid-column-end: span 11;
+}
+.yeti-grid-column-10 {
+  grid-column-end: span 10;
+}
+.yeti-grid-column-9 {
+  grid-column-end: span 9;
+}
+.yeti-grid-column-8 {
+  grid-column-end: span 8;
+}
+.yeti-grid-column-7 {
+  grid-column-end: span 7;
+}
+.yeti-grid-column-6 {
+  grid-column-end: span 6;
+}
+.yeti-grid-column-5 {
+  grid-column-end: span 5;
+}
+.yeti-grid-column-4 {
+  grid-column-end: span 4;
+}
+.yeti-grid-column-3 {
+  grid-column-end: span 3;
+}
+.yeti-grid-column-2 {
+  grid-column-end: span 2;
+}
+.yeti-grid-column-1 {
+  grid-column-end: span 1;
+}
+.yeti-grid-gapless [class^="grid-column"] {
+  padding-left: 0;
+  padding-right: 0;
+}
+.yeti-grid-column-gutterless {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+.yeti-grid-start_row {
+  grid-column-start: 1;
+}
+/************************************** Miscellaneous Grid Stuff ***/
+.yeti-grid-gutterless {
+  margin: 0;
+}
+.yeti-grid-gapless {
+  gap: 0;
+}
+.yeti-grid-mimic_all {
+  display: block;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+/************************************** list.less ***
+ *
+ * Styles for List
+ *
+****************************************************/
+/************************************** Outside ***/
+.yeti-list-bulleted {
+  list-style: square inside;
+}
+.yeti-list-bulleted ::marker {
+  margin-left: 0;
+  margin-right: 0.75rem;
+}
+.yeti-list {
+  list-style: none outside;
+  line-height: 1.5;
+}
+.yeti-list li:not(:last-child) {
+  margin-bottom: 0.25rem;
+}
+/************************************** Utilities ***/
+/************************************** utilities.less ***
+ *
+ * Utility classes are things that can modify (almost) any component
+ * like margins, colors, etc.
+ * 
+ * This file should be imports only.
+ *
+****************************************************/
+/************************************** Imports ***/
+/************************************** colors.less ***
+ *
+ * Utilities > Colors
+ *
+****************************************************/
+/************************************** Background ***/
+.yeti-color-background-white {
+  background-color: white !important;
+}
+.yeti-color-background-red {
+  background-color: red !important;
+}
+.yeti-color-background-blue {
+  background-color: blue !important;
+}
+.yeti-color-background-black {
+  background-color: black !important;
+}
+.yeti-color-background-green {
+  background-color: green !important;
+}
+/************************************** Foreground ***/
+.yeti-color-foreground-white {
+  color: white !important;
+}
+.yeti-color-foreground-red {
+  color: red !important;
+}
+.yeti-color-foreground-blue {
+  color: blue !important;
+}
+.yeti-color-foreground-black {
+  color: black !important;
+}
+/************************************** margin-and-padding.less ***
+ *
+ * Utilities > Margins and Padding
+ *
+****************************************************/
+/************************************** Margins ***/
+/*** All Sides ***/
+/************************************** Padding ***/
+/*** All Sides ***/
+.yeti-padding-4 {
+  padding: 1rem !important;
+}
+/************************************** Debugging ***/

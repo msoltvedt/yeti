@@ -2,7 +2,7 @@ dist/
 www/
 loader/
 
-*.css
+src/**/*.css
 
 *~
 *.sw[mnpcod]
