@@ -46,6 +46,8 @@ task('startup', series(
     watcher
 ));
 
+task(updateGithubPages);
+
 
 /************* Function Definitions */
 
@@ -110,4 +112,9 @@ function publishDocsJS(cb) {
 
 function cleanWWWJS(cb) {
     return deleteAsync( ['www/docs/**/*.js', 'www/docs/**/*.mjs'] );
+}
+
+function updateGithubPages(cb) {
+    return gulp.src('www/**/*')
+        .pipe(gulp.dest('docs/'));
 }
