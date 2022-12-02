@@ -1,0 +1,25 @@
+/************************************** list.less ***
+ *
+ * Styles for List
+ *
+****************************************************/
+
+
+/************************************** Outside ***/
+.yeti-list-bulleted {
+    list-style: square inside;
+}
+
+.yeti-list-bulleted ::marker {
+    margin-left: 0;
+    margin-right: @u * 3;
+}
+
+.yeti-list {
+    list-style: none outside;
+    line-height: 1.5;
+}
+
+.yeti-list li:not(:last-child) {
+    margin-bottom: @u;
+}

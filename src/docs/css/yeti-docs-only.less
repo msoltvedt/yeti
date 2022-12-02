@@ -1,0 +1,35 @@
+/************************************** yeti-docs-only.less ***
+ * 
+ * This is only applicable to Yeti docs. Do not use this in
+ * the app.
+ *
+****************************************************/
+
+
+/************************************** Imports ***/
+@import (inline) url('a11y-dark.min.css');
+
+
+/************************************** Variables ***/
+@import url('../../css/variables-and-mixins/variables-and-mixins'); // Import Yeti's variables and mixins
+@wrapper-gutter: @u * 8;
+
+
+/************************************** Page Wrapper ***/
+.ydoc-wrapper {
+    margin: @wrapper-gutter;
+    padding-bottom: @wrapper-gutter;
+}
+
+
+/************************************** Code Samples ***/
+.ydoc-code_sample + * {
+    margin-top: @u * 12;
+}
+
+.ydoc-code_sample-pre {
+    position: unset;
+    width: 100%;
+    padding: unset;
+    margin-top: @u * 8;
+}
