@@ -7,11 +7,13 @@ export const config: Config = {
       type: 'dist',
       esmLoaderPath: '../loader',
     },
-    {
+    /*{
       type: 'dist-custom-elements',
-    },
+    },*/
     {
       type: 'www',
+      buildDir: 'examples/yeti',
+      empty: false,
       serviceWorker: null, // disable service workers
     },
   ]

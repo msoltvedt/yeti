@@ -26,27 +26,35 @@ task('updateFromOrchestrator', series(cleanOrchestratorCSS, copyFromOrchestrator
 task('updateFromOrchestrator').description = 'Clean up and update Yeti\'s copy of Orchestrator\'s CSS';
 
 task('default', watcher);
+task('default').description = 'The default task is watcher'
 task('watch', watcher);
+task('watch').description = 'Watches for any changes to the non-JS source code, updates any necessary files, and publishes them to the www directory'
 
-task('cleanWWW', parallel(cleanWWWCSS, cleanWWWHTML, cleanWWWJS));
+task(cleanWWW);
+cleanWWW.description = 'Remove all Yeti stuff from WWW directory (leaving Stencil stuff)';
 
-task('css', series(yetiCSS, docsOnlyCSS, mainCSS));
+task(cleanDocs);
+cleanDocs.description = 'Remove everything from the GitHub Pages (/docs) directory';
+
+task('css', series(yetiCSS, examplesOnlyCSS, mainCSS)); // Note: the order is important, since mainCSS is expecting a file yetiCSS generates
 
 task('html', publishHTML);
 
-task('docsJS', publishDocsJS);
+task('examplesJS', publishExamplesJS);
 
 task('startup', series(
     task('updateFromOrchestrator'),
     task('cleanWWW'),
     task('css'),
     task('html'),
-    task('docsJS'),
+    task('examplesJS'),
     publishHTML,
     watcher
 ));
+task('startup').description = 'Cleans, sets up, and otherwise initilizes www directory; starts watcher';
 
 task(updateGithubPages);
+updateGithubPages.description = 'Updates the /docs folder in preparation for updating the GitHub Pages site';
 
 
 /************* Function Definitions */
@@ -60,14 +68,14 @@ function copyFromOrchestrator() {
         .pipe( dest(settings.yetiCopyOfOrchestratorCSSDirectory) );
 }
 
-function pasteYetiToOrchestrator() {
+function pasteToOrchestrator() {
     /* TODO */
 }
 
 function watcher(cb) {
-    watch(['src/css/**/*.less', 'src/docs/css/yeti-docs-only.less'], series(/*cleanWWWCSS,*/ yetiCSS, docsOnlyCSS, mainCSS));
+    watch(['src/css/**/*.less', 'src/examples/css/yeti-examples-only.less'], series(/*cleanWWWCSS,*/ yetiCSS, examplesOnlyCSS, mainCSS));
     watch('src/**/*.html', series(/*cleanWWWHTML,*/ publishHTML));
-    watch(['src/docs/**/*.js', 'src/docs/**/*.mjs'], series(/*cleanWWWJS,*/ publishDocsJS))
+    watch(['src/examples/**/*.js', 'src/examples/**/*.mjs'], series(/*cleanWWWJS,*/ publishExamplesJS))
     cb();
 }
 
@@ -75,25 +83,30 @@ function yetiCSS(cb) {
     return gulp.src('src/css/yeti.less')
     .pipe(less())
     .pipe(gulp.dest('src/css/'))
-    .pipe(gulp.dest('www/css/'));
+    .pipe(gulp.dest('src/examples/css/'))
+    .pipe(gulp.dest('www/examples/css/'));
 }
 
-function docsOnlyCSS(cb) {
-    return gulp.src('src/docs/css/yeti-docs-only.less')
+function examplesOnlyCSS(cb) {
+    return gulp.src('src/examples/css/yeti-examples-only.less')
     .pipe(less())
-    .pipe(gulp.dest('src/docs/css/'))
-    .pipe(gulp.dest('www/docs/css/'));
+    .pipe(gulp.dest('src/examples/css/'))
+    .pipe(gulp.dest('www/examples/css/'));
 }
 
 function mainCSS(cb) {
     return gulp.src('src/css/main.less')
     .pipe(less())
-    .pipe(gulp.dest('src/css/'))
-    .pipe(gulp.dest('www/css/'));
+    .pipe(gulp.dest('src/examples/css/'))
+    .pipe(gulp.dest('www/examples/css/'));
 }
 
-function cleanWWWCSS(cb) {
-    return deleteAsync( ['www/**/*.css'] );
+function cleanWWW(cb) {
+    return deleteAsync( ['www/**/*', '!www/'] );
+}
+
+function cleanDocs(cb) {
+    return deleteAsync( ['docs/**/*', '!docs/'] );
 }
 
 function publishHTML(cb) {
@@ -101,20 +114,12 @@ function publishHTML(cb) {
         .pipe(gulp.dest('www/'));
 }
 
-function cleanWWWHTML(cb) {
-    return deleteAsync( ['www/**/*.html'] );
-}
-
-function publishDocsJS(cb) {
-    return gulp.src(['src/docs/**/*.js', 'src/docs/**/*.mjs'])
-        .pipe(gulp.dest('www/docs/'));
-} 
-
-function cleanWWWJS(cb) {
-    return deleteAsync( ['www/docs/**/*.js', 'www/docs/**/*.mjs'] );
+function publishExamplesJS(cb) {
+    return gulp.src(['src/examples/**/*.js', 'src/examples/**/*.mjs'])
+        .pipe(gulp.dest('www/examples/'));
 }
 
 function updateGithubPages(cb) {
-    return gulp.src('www/**/*')
+    return gulp.src( ['www/examples/**/*'] )
         .pipe(gulp.dest('docs/'));
 }

@@ -1,25 +1,45 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    
     <title>Yeti Design System</title>
 
-    <script type="module" src="./build/yeti.esm.js"></script>
-    <script nomodule src="./build/yeti.js"></script>
-
     <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./docs/css/yeti-docs-only.css">
-    
+    <link rel="stylesheet" href="./css/yeti-examples-only.css">
+
   </head>
   <body>
     
-    <a href="docs/index.html">Table of Contents</a>
-    <yeti-input required="true"></yeti-input>
+    <div class="ydoc-wrapper">
 
-    <script>
-      window.location='./docs/index.html';
-    </script>
+      <div role="main">
+
+        <h1 class="margin-top-none">Yeti Patterns and Components</h1>
+
+        <h2 class="margin-bottom-1">Overview</h2>
+
+        <ul class="yeti-list margin-bottom-6">
+          <li>Glossary (TBD)</li>
+          <li>Naming Conventions (TBD)</li>
+        </ul>
+
+
+        <h2 class="margin-bottom-1">Patterns and Components</h2>
+
+        <ul class="yeti-list">
+            <li><a href="grid.html">Grid</a></li>
+        </ul>
+
+      </div>
+
+    </div><!-- /wrapper -->
+
+    <script type="module" src="./yeti/yeti.esm.js"></script>
+
+    <script type="module" src="./js/docs-scripts.mjs"></script>
     
   </body>
 </html>

@@ -2517,9 +2517,9 @@ body {
   font-size: 20px;
   font-family: 'IBM Plex Sans', sans-serif;
 }
-main {
+/*main {
   flex: 1 auto;
-}
+*/
 .new-opportunity-page {
   display: flex;
   flex-direction: column;
@@ -4166,13 +4166,13 @@ bx-table-row {
 .related-contacts-table-count {
     float: right;
 }
-main,
+
 body,
 html {
   width: 100%;
   height: 100%;
 }
-main {
+.main {
   display: flex;
   justify-content: center;
   align-items: flex-start;

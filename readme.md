@@ -4,7 +4,7 @@
 
 Yeti is a design pattern and component library. Its components are based on StencilJS.
 
-# Stencil
+## Stencil
 
 Stencil is a compiler for building fast web apps using Web Components.
 
