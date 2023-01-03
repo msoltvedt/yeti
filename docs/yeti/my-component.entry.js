@@ -1,8 +1,5 @@
-import { r as registerInstance, h } from './index-258cb736.js';
-
-function format(first, middle, last) {
-  return (first || '') + (middle ? ` ${middle}` : '') + (last ? ` ${last}` : '');
-}
+import { r as registerInstance, h } from './index-81980a1b.js';
+import { f as format } from './utils-59fc38b7.js';
 
 const myComponentCss = ":host{display:block}";
 

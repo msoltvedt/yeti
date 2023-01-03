@@ -39,6 +39,9 @@ pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5p
   padding-bottom: 2rem;
 }
 /************************************** Code Samples ***/
+.ydoc-code_sample {
+  line-height: 1.5;
+}
 .ydoc-code_sample + * {
   margin-top: 3rem;
 }

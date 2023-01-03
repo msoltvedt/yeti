@@ -1,4 +1,5 @@
-import { Component, Prop, h, State } from '@stencil/core';
+import { Component, Prop, h, State, Event, EventEmitter, Listen, Watch, Element } from '@stencil/core';
+import { utils } from '../../utils/utils';
 
 @Component({
   tag: 'yeti-input',
@@ -6,49 +7,68 @@ import { Component, Prop, h, State } from '@stencil/core';
 })
 export class YetiInput {
 
-  @Prop() htmlId: string = 'id1';
-  
-  @Prop() label: string;
+  @Element() el: HTMLElement;
 
-  @Prop() inputTip: string;
+  @Listen('keyup')
+  handleKeyUp(ev) {
+    this.isTouched = true;
+    this.inputValue = ev.target.value;
+    this.readyToVerifyFast.emit(ev);
+  }
 
-  @Prop() required: boolean = false;
+  @Event() readyToVerifySlow: EventEmitter<CustomEvent>;
 
-  @Prop({mutable: true}) value: string = '';
+  @Event() readyToVerifyFast: EventEmitter<CustomEvent>;
 
-  @State() isDirty: boolean = false;
+  @Event() inputValueChanged: EventEmitter<CustomEvent>;
 
-  handleFieldFocus(e) {
-    e.target.classList.add('focused');
-  };
+  @Prop() inputClass: string = '';
 
-  handleFieldBlur(e) {
-    this.isDirty = true;
-    e.target.classList.remove('focused');
-    this.value = e.target.value;
+  @Prop() inputId: string = utils.generateUniqueId();
+
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) isValid: boolean = true;
+
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) inputValue: string = '';
+
+  @Watch('inputValue')
+  handleValueChange(ev: CustomEvent) {
+    this.inputValueChanged.emit(ev);
+  }
+
+  @State() isTouched: boolean = false;
+
+  handleFieldBlur(ev) {
+    this.isTouched = true;
+    this.inputValue = ev.target.value;
+    this.readyToVerifySlow.emit(ev);
   }
 
   render() {
+
+    let cssClasses = 'yeti-input';
+
+    if (this.inputClass != '') {
+      cssClasses += ' ' + this.inputClass;
+    }
+
+    if (this.isValid == false) {
+      cssClasses += ' yeti-input__error';
+    }
+
     return (
-      <div class="wrapper">
-
-        <label htmlFor={this.htmlId} class="label">{this.label}{this.required ? ' (required)' : null}</label>
-
-        <input type="text" class="field" id={this.htmlId} value={this.value} onFocus={(e) => this.handleFieldFocus(e)} onBlur={(e) => this.handleFieldBlur(e)} />
-
-        {
-          (this.isDirty && this.required && !this.value)
-          ? <span class="error">Please enter a value.</span>
-          : null
-        }
-        
-        {
-          this.inputTip 
-          ? <span class="input_tip">{this.inputTip}</span> 
-          : null
-        }
-        
-      </div>
+      <input 
+        type="text" 
+        class={cssClasses} 
+        id={this.inputId} 
+        value={this.inputValue}
+        onBlur={(ev) => this.handleFieldBlur(ev)}
+      />
     );
   }
 

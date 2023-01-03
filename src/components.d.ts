@@ -20,13 +20,33 @@ export namespace Components {
          */
         "middle": string;
     }
-    interface YetiInput {
+    interface YetiField {
+        "errorMessage": string;
+        "inputId": string;
+        "inputValue": string;
+        "isValid": boolean;
+        "label": string;
+        "required": boolean;
+        "tip": string;
+        "value": string;
+    }
+    interface YetiFormField {
         "htmlId": string;
         "inputTip": string;
         "label": string;
         "required": boolean;
         "value": string;
     }
+    interface YetiInput {
+        "inputClass": string;
+        "inputId": string;
+        "inputValue": string;
+        "isValid": boolean;
+    }
+}
+export interface YetiInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLYetiInputElement;
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -34,6 +54,18 @@ declare global {
     var HTMLMyComponentElement: {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
+    };
+    interface HTMLYetiFieldElement extends Components.YetiField, HTMLStencilElement {
+    }
+    var HTMLYetiFieldElement: {
+        prototype: HTMLYetiFieldElement;
+        new (): HTMLYetiFieldElement;
+    };
+    interface HTMLYetiFormFieldElement extends Components.YetiFormField, HTMLStencilElement {
+    }
+    var HTMLYetiFormFieldElement: {
+        prototype: HTMLYetiFormFieldElement;
+        new (): HTMLYetiFormFieldElement;
     };
     interface HTMLYetiInputElement extends Components.YetiInput, HTMLStencilElement {
     }
@@ -43,6 +75,8 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "yeti-field": HTMLYetiFieldElement;
+        "yeti-form-field": HTMLYetiFormFieldElement;
         "yeti-input": HTMLYetiInputElement;
     }
 }
@@ -61,15 +95,36 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
-    interface YetiInput {
+    interface YetiField {
+        "errorMessage"?: string;
+        "inputId"?: string;
+        "inputValue"?: string;
+        "isValid"?: boolean;
+        "label": string;
+        "required"?: boolean;
+        "tip"?: string;
+        "value"?: string;
+    }
+    interface YetiFormField {
         "htmlId"?: string;
         "inputTip"?: string;
         "label"?: string;
         "required"?: boolean;
         "value"?: string;
     }
+    interface YetiInput {
+        "inputClass"?: string;
+        "inputId"?: string;
+        "inputValue"?: string;
+        "isValid"?: boolean;
+        "onInputValueChanged"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
+        "onReadyToVerifyFast"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
+        "onReadyToVerifySlow"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "yeti-field": YetiField;
+        "yeti-form-field": YetiFormField;
         "yeti-input": YetiInput;
     }
 }
@@ -78,6 +133,8 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "yeti-field": LocalJSX.YetiField & JSXBase.HTMLAttributes<HTMLYetiFieldElement>;
+            "yeti-form-field": LocalJSX.YetiFormField & JSXBase.HTMLAttributes<HTMLYetiFormFieldElement>;
             "yeti-input": LocalJSX.YetiInput & JSXBase.HTMLAttributes<HTMLYetiInputElement>;
         }
     }

@@ -1,4 +1,4 @@
-import { B as BUILD, c as consoleDevInfo, p as plt, w as win, H, d as doc, N as NAMESPACE, a as promiseResolve, b as bootstrapLazy } from './index-258cb736.js';
+import { B as BUILD, c as consoleDevInfo, p as plt, w as win, H, d as doc, N as NAMESPACE, a as promiseResolve, b as bootstrapLazy } from './index-81980a1b.js';
 import { g as globalScripts } from './app-globals-0f993ce5.js';
 
 /*
@@ -125,5 +125,5 @@ const patchCloneNodeFix = (HTMLElementPrototype) => {
 
 patchBrowser().then(options => {
   globalScripts();
-  return bootstrapLazy([["my-component",[[1,"my-component",{"first":[1],"middle":[1],"last":[1]}]]],["yeti-input",[[0,"yeti-input",{"htmlId":[1,"html-id"],"label":[1],"inputTip":[1,"input-tip"],"required":[4],"value":[1025],"isDirty":[32]}]]]], options);
+  return bootstrapLazy([["yeti-field",[[0,"yeti-field",{"inputId":[1,"input-id"],"label":[1],"tip":[1],"required":[4],"errorMessage":[1,"error-message"],"value":[1025],"isValid":[1540,"is-valid"],"inputValue":[1537,"input-value"],"isDirty":[32]},[[0,"inputValueChanged","handleInputValueChanged"]]]]],["my-component",[[1,"my-component",{"first":[1],"middle":[1],"last":[1]}]]],["yeti-form-field",[[0,"yeti-form-field",{"htmlId":[1,"html-id"],"label":[1],"inputTip":[1,"input-tip"],"required":[4],"value":[1025],"isDirty":[32]}]]],["yeti-input",[[0,"yeti-input",{"inputClass":[1,"input-class"],"inputId":[1,"input-id"],"isValid":[1540,"is-valid"],"inputValue":[1537,"input-value"],"isTouched":[32]},[[0,"keyup","handleKeyUp"]]]]]], options);
 });

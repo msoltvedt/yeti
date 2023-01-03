@@ -1,0 +1,66 @@
+/************************************** form.less ***
+ *
+ * Styles for Form
+ *
+****************************************************/
+
+
+/************************************** Form (top-level) ***/
+.yeti-form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/************************************** Label ***/
+.yeti-form-label {
+    font-size: 0.875rem;
+    line-height: 1rem;
+    display: inline-block;
+    color: #525252;
+    line-height: 1rem;
+    vertical-align: baseline;
+    font-weight: bold;
+    color: #525252;
+    letter-spacing: 0.02rem;
+}
+
+
+/************************************** Tip ***/
+.yeti-form-tip {
+    font-size: .75rem;
+    line-height: 1rem;
+    letter-spacing: 0.02rem;
+    width: 100%;
+    color: #525252;
+}
+
+
+/************************************** Field ***/
+.yeti-form-field:not(.yeti-form-field-inline) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem; // 4px to match Carbon (note: Carbon labels use 5px bottom margin)
+}
+
+.yeti-form-field-inline {
+    display: grid;
+    gap: 0.25rem 1rem;
+    grid-template-columns: minmax(min-content, max-content) 1fr;
+    grid-template-rows: minmax(min-content, max-content) 1fr;
+}
+
+.yeti-form-field:has(.yeti-input__error) .yeti-form-tip {
+    color: #da1e28;
+}
+
+.yeti-form-field-inline .yeti-form-label {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    align-self: center;
+}
+
+.yeti-form-field-inline .yeti-form-tip {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}

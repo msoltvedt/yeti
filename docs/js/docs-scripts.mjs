@@ -33,6 +33,9 @@ import hljs from 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/es/
         demo.insertAdjacentElement('beforeend', preElement);
 
         // Turn Highlight.js loose
+        hljs.configure({
+            ignoreUnescapedHTML: true
+        })
         hljs.highlightAll();
     }
 
