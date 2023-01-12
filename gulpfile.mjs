@@ -11,6 +11,7 @@ import path from 'node:path';
 
 const settings = {
     orchestratorCSSDirectory: "../orchestrator/OrchestratorUI/src/main/webapp/css/",
+    orchestratorJSDirectory: "../orchestrator/OrchestratorUI/src/main/webapp/js/yeti/",
     carbonCSS: "../orchestrator/OrchestratorUI/src/main/webapp/lib/carbon.10.56.0/carbon-components.min.css",
     yetiCopyOfOrchestratorCSSDirectory: "src/css/old/",
     yetiCSSDirectory: "src/css/"
@@ -20,10 +21,13 @@ const settings = {
 /************* Tasks */
 
 task(cleanOrchestratorCSS);
-cleanOrchestratorCSS.description = 'Clean the directory containing the copies of Orchestrator\'s CSS';
+cleanOrchestratorCSS.description = 'Clean the directory containing Yeti\'s copies of Orchestrator\'s CSS';
 
 task('updateFromOrchestrator', series(cleanOrchestratorCSS, copyFromOrchestrator));
 task('updateFromOrchestrator').description = 'Clean up and update Yeti\'s copy of Orchestrator\'s CSS';
+
+task('updateToOrchestrator', series(pasteCSSToOrchestrator, pasteJSToOrchestrator));
+task('updateToOrchestrator').description = 'Update Orchestrator\'s copy of Yeti\'s JS and CSS';
 
 task('default', watcher);
 task('default').description = 'The default task is watcher'
@@ -68,8 +72,14 @@ function copyFromOrchestrator() {
         .pipe( dest(settings.yetiCopyOfOrchestratorCSSDirectory) );
 }
 
-function pasteToOrchestrator() {
-    /* TODO */
+function pasteCSSToOrchestrator() {
+    return src(`src/css/yeti.css`)
+        .pipe( dest(settings.orchestratorCSSDirectory) );
+}
+
+function pasteJSToOrchestrator() {
+    return src(`dist/yeti/**/*`)
+        .pipe( dest(settings.orchestratorJSDirectory) );
 }
 
 function watcher(cb) {

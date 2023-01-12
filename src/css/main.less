@@ -1,43 +1,72 @@
-/************************************** main.less ***
- *
- * This is the main index stylesheet for the suite. It
- * should be used only for imports. Eventually, once
- * we eliminate/replace everything in /old we can just
- * replace this with yeti.css directly.
- *
-****************************************************/
+/************************************** main.less **************************************
+
+ This is the main index stylesheet for the suite. It should be used only for imports.
+
+ This file is a rough (but not exact!) copy of Orchestrator's main.css. (A recent copy
+ of its header follows.)
+ 
+ Eventually, once we eliminate/replace everything in /old we can just replace this with 
+ yeti.css directly. 
+
+************************************** main.less **************************************/
+
+/************************************** main.css **************************************/
+/*
+    main.css is the main index for all css. It uses CSS layers to establish a clear
+    hierarchy in the cascade (last one wins):
+
+    1. reset.css
+    2. Carbon*
+    3. legacy:
+        a. base-styles.css
+        b. nav-styles.css
+        c. legacy.css
+    4. yeti.css*
+    5. overrides.css
+
+    * Do not modify Carbon or yeti.css directly, as your changes will be overridden.
+
+*/    
+/************************************** main.css **************************************/
+
+
+
+/************************************** Layers ***/
+@layer reset, carbon, legacy, yeti, overrides;
+
+
+
+/************************************** Reset ***/
+@layer reset {
+    @import (inline) url('./old/reset.css');
+}
+
 
 
 /************************************** Carbon ***/
-@import (inline) url('./old/carbon-components.min.css');
+@layer carbon {
+    @import (inline) url('./old/carbon-components.min.css');
+}
 
 
-/************************************** Orchestrator stylesheets ***/
-@import (inline) url('./old/base-styles.css');
-@import (inline) url('./old/nav-styles.css');
-@import (inline) url('./old/account-form-styles.css');
-@import (inline) url('./old/account-list.css');
-@import (inline) url('./old/account-view-style.css');
-@import (inline) url('./old/accountAddContact.css');
-@import (inline) url('./old/address-form-i.css');
-@import (inline) url('./old/component-library-styles.css');
-@import (inline) url('./old/contact-list.css');
-@import (inline) url('./old/contact-view.css');
-@import (inline) url('./old/contactForm.css');
-@import (inline) url('./old/material-specs.css');
-@import (inline) url('./old/new-line-item-styles.css');
-@import (inline) url('./old/new-opportunity-styles.css');
-@import (inline) url('./old/opportunities-list-styles.css');
-@import (inline) url('./old/opportunity-detail-edit-styles.css');
-@import (inline) url('./old/opportunity-detail-line-item-styles.css');
-@import (inline) url('./old/opportunity-detail-notes-styles.css');
-@import (inline) url('./old/opportunity-edit-note-styles.css');
-@import (inline) url('./old/opportunity-notes.css');
-@import (inline) url('./old/progress-styles.css');
-@import (inline) url('./old/quote-styles.css');
-@import (inline) url('./old/related-contacts-styles.css');
-@import (inline) url('./old/signin-styles.css');
+
+/************************************** Legacy ***/
+@layer legacy {
+    @import (inline) url('./old/base-styles.css');
+    @import (inline) url('./old/nav-styles.css');
+    @import (inline) url('./old/legacy.css');
+}
+
 
 
 /************************************** Yeti ***/
-@import (inline) url('./yeti.css');
+@layer yeti {
+    @import (inline) url('yeti.css');
+}
+
+
+
+/************************************** Overrides ***/
+@layer overrides {
+    @import (inline) url('./old/overrides.css');
+}

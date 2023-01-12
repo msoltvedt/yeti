@@ -5,25 +5,41 @@
 ****************************************************/
 
 
+
+/************************************** Layers ***/
+@layer reset, defaults, globals, components, utilities, overrides, debugging;
+
+
+
 /************************************** Variables and Mixins ***/
 @import url('./variables-and-mixins/variables-and-mixins');
+
 
 
 /************************************** CSS Reset ***/
 
 
+
 /************************************** Defaults ***/
+
 
 
 /************************************** Globals ***/
 
 
+
 /************************************** Components ***/
-@import url('./components/components');
+@layer components {
+    @import url('./components/components');
+}
+
 
 
 /************************************** Utilities ***/
-@import url('./utilities/utilities');
+@layer utilities {
+    @import url('./utilities/utilities');
+}
+
 
 
 /************************************** Debugging ***/
