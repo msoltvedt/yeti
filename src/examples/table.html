@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+
+    <title>Yeti Design System - Table Pattern</title>
+
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/yeti-examples-only.css">
+
+  </head>
+  <body>
+
+    <div class="ydoc-wrapper">
+
+      <div role="main">
+    
+        <h1 class="margin-top-none">Table</h1>
+
+        <yeti-page-contents></yeti-page-contents>
+
+        <h2 class="margin-bottom-3">Code Samples</h2>
+
+        <h3 class="margin-bottom-2">Default</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+    
+<table class="yeti-table">
+
+    <thead class="yeti-table-head">
+
+        <tr class="yeti-table-head-row">
+            <th class="yeti-table-heading">Column A</th>
+            <th class="yeti-table-heading">Column B</th>
+            <th class="yeti-table-heading">Column C</th>
+            <th class="yeti-table-heading">Column D</th>
+        </tr>
+
+    </thead>
+
+
+    <tbody class="yeti-table-body">
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A1</td>
+            <td class="yeti-table-cell">B1</td>
+            <td class="yeti-table-cell">C1</td>
+            <td class="yeti-table-cell">D1</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A2</td>
+            <td class="yeti-table-cell">B2</td>
+            <td class="yeti-table-cell">C2</td>
+            <td class="yeti-table-cell">D2</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A3</td>
+            <td class="yeti-table-cell">B3</td>
+            <td class="yeti-table-cell">C3</td>
+            <td class="yeti-table-cell">D3</td>
+        </tr class="yeti-table-body-row">
+
+    </tbody>
+
+</table>
+
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-2">Content Alignment</h3>
+
+        <h4 class="margin-bottom-2">Numeric Values</h4>
+
+        <p class="margin-bottom-2">
+            Table cell values default to alpha-numeric (left-aligned). Numeric values should be right-aligned as shown in column C below.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+    
+<table class="yeti-table">
+
+    <thead class="yeti-table-head">
+
+        <tr class="yeti-table-head-row">
+            <th class="yeti-table-heading">Column A</th>
+            <th class="yeti-table-heading">Column B</th>
+            <th class="yeti-table-heading yeti-table-numeric">Nice Numbers</th>
+            <th class="yeti-table-heading">Column D</th>
+        </tr>
+
+    </thead>
+
+
+    <tbody class="yeti-table-body">
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A1</td>
+            <td class="yeti-table-cell">B1</td>
+            <td class="yeti-table-cell yeti-table-numeric">22</td>
+            <td class="yeti-table-cell">D1</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A2</td>
+            <td class="yeti-table-cell">B2</td>
+            <td class="yeti-table-cell yeti-table-numeric">24</td>
+            <td class="yeti-table-cell">D2</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A3</td>
+            <td class="yeti-table-cell">B3</td>
+            <td class="yeti-table-cell yeti-table-numeric">12</td>
+            <td class="yeti-table-cell">D3</td>
+        </tr class="yeti-table-body-row">
+
+    </tbody>
+
+</table>
+
+        </div><!-- /code_sample -->
+
+
+
+        <h4 class="margin-bottom-2">Control Cells</h4>
+
+        <p class="margin-bottom-2">
+            Controls should be centered.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+    
+<table class="yeti-table">
+
+    <thead class="yeti-table-head">
+
+        <tr class="yeti-table-head-row">
+            <th class="yeti-table-heading yeti-table-control">Controls</th>
+            <th class="yeti-table-heading">Column A</th>
+            <th class="yeti-table-heading">Column B</th>
+            <th class="yeti-table-heading">Column C</th>
+        </tr>
+
+    </thead>
+
+
+    <tbody class="yeti-table-body">
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell yeti-table-control">[control]</td>
+            <td class="yeti-table-cell">A1</td>
+            <td class="yeti-table-cell">B1</td>
+            <td class="yeti-table-cell">C1</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell yeti-table-control">[control]</td>
+            <td class="yeti-table-cell">A2</td>
+            <td class="yeti-table-cell">B2</td>
+            <td class="yeti-table-cell">C2</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell yeti-table-control">[control]</td>
+            <td class="yeti-table-cell">A3</td>
+            <td class="yeti-table-cell">B3</td>
+            <td class="yeti-table-cell">C3</td>
+        </tr class="yeti-table-body-row">
+
+    </tbody>
+
+</table>
+
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-2">Scrollable</h3>
+
+        <p class="margin-bottom-2">
+            Tables default to 100% width, but sometimes their content will push them beyond the horizontal limits of their container. One option in this case is to use the scrollable wrapper.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+ 
+<div class="yeti-table__scrollable">
+
+    <table class="yeti-table">
+
+        <thead class="yeti-table-head">
+
+            <tr class="yeti-table-head-row">
+                <th class="yeti-table-heading">Column A</th>
+                <th class="yeti-table-heading">Column B</th>
+                <th class="yeti-table-heading">Column C</th>
+                <th class="yeti-table-heading">Column D</th>
+            </tr>
+
+        </thead>
+
+
+        <tbody class="yeti-table-body">
+
+            <tr class="yeti-table-body-row">
+                <td class="yeti-table-cell">supercalifragilisticexpialidocious</td>
+                <td class="yeti-table-cell">supercalifragilisticexpialidocious</td>
+                <td class="yeti-table-cell">supercalifragilisticexpialidocious</td>
+                <td class="yeti-table-cell">supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious</td>
+            </tr>
+
+            <tr class="yeti-table-body-row">
+                <td class="yeti-table-cell">A2</td>
+                <td class="yeti-table-cell">B2</td>
+                <td class="yeti-table-cell">C2</td>
+                <td class="yeti-table-cell">D2</td>
+            </tr>
+
+            <tr class="yeti-table-body-row">
+                <td class="yeti-table-cell">A3</td>
+                <td class="yeti-table-cell">B3</td>
+                <td class="yeti-table-cell">C3</td>
+                <td class="yeti-table-cell">D3</td>
+            </tr class="yeti-table-body-row">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-2">Fixed</h3>
+
+        <p class="margin-bottom-2">
+            The fixed layout allows you to define fixed widths on columns (the default is equal widths). This also means the table will not expand beyond 100%, and cell content that doesn't fit will be truncated.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<table class="yeti-table yeti-table__fixed">
+
+    <thead class="yeti-table-head">
+
+        <tr class="yeti-table-head-row">
+            <th class="yeti-table-heading">Column A</th>
+            <th class="yeti-table-heading">Column B</th>
+            <th class="yeti-table-heading">Column C</th>
+            <th class="yeti-table-heading">Column D</th>
+        </tr>
+
+    </thead>
+
+
+    <tbody class="yeti-table-body">
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">supercalifragilisticexpialidocious</td>
+            <td class="yeti-table-cell">demonstrate wrapping behavior demonstrate wrapping behavior demonstrate wrapping behavior demonstrate wrapping behavior demonstrate wrapping behavior demonstrate wrapping behavior</td>
+            <td class="yeti-table-cell">supercalifragilisticexpialidocious</td>
+            <td class="yeti-table-cell">supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A2</td>
+            <td class="yeti-table-cell">B2</td>
+            <td class="yeti-table-cell">C2</td>
+            <td class="yeti-table-cell">D2</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A3</td>
+            <td class="yeti-table-cell">B3</td>
+            <td class="yeti-table-cell">C3</td>
+            <td class="yeti-table-cell">D3</td>
+        </tr class="yeti-table-body-row">
+
+    </tbody>
+
+</table>
+
+        </div><!-- /code_sample -->
+
+
+
+        <h4 class="margin-bottom-2">Fixed</h4>
+
+        <p class="margin-bottom-2">
+            The columns will default to equal widths, but you can set them to match the <a href="grid.html">Grid pattern</a>. Note that the grid is 16 columns, so make sure you specify the width of each column (you only need to specify it on the first row) and that they add up to 16.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<table class="yeti-table yeti-table__fixed">
+
+    <thead class="yeti-table-head">
+
+        <tr class="yeti-table-head-row">
+            <th class="yeti-table-heading yeti-table-grid-2">Column A (2/16)</th>
+            <th class="yeti-table-heading yeti-table-grid-3">Column B (3/16)</th>
+            <th class="yeti-table-heading yeti-table-grid-6">Column C (6/16)</th>
+            <th class="yeti-table-heading yeti-table-grid-5">Column D (5/16)</th>
+        </tr>
+
+    </thead>
+
+
+    <tbody class="yeti-table-body">
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">supercalifragilisticexpialidocious</td>
+            <td class="yeti-table-cell">demonstrate wrapping behavior demonstrate wrapping behavior demonstrate wrapping behavior demonstrate wrapping behavior demonstrate wrapping behavior demonstrate wrapping behavior</td>
+            <td class="yeti-table-cell">supercalifragilisticexpialidocious</td>
+            <td class="yeti-table-cell">supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A2</td>
+            <td class="yeti-table-cell">B2</td>
+            <td class="yeti-table-cell">C2</td>
+            <td class="yeti-table-cell">D2</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A3</td>
+            <td class="yeti-table-cell">B3</td>
+            <td class="yeti-table-cell">C3</td>
+            <td class="yeti-table-cell">D3</td>
+        </tr class="yeti-table-body-row">
+
+    </tbody>
+
+</table>
+
+        </div><!-- /code_sample -->
+
+
+
+        <h2 class="margin-bottom-3">Technical Notes</h2>
+
+        <ul class="yeti-list-bulleted">
+          <li>Tables default to 100% width and browser-default column widths.</li>
+        </ul>
+
+      </div><!-- /main -->
+    
+    </div><!-- /wrapper -->
+
+    <script type="module" src="./yeti/yeti.esm.js"></script>
+
+    <script type="module" src="./js/docs-scripts.mjs"></script>
+    
+  </body>
+</html>

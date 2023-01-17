@@ -1,0 +1,125 @@
+/************************************** table.css ***************************************
+
+Styles for Table
+
+*************************************** table.css **************************************/
+
+
+
+/************************************** Basic Table Styles ***/
+.yeti-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.yeti-table-heading:not(.yeti-table-numeric, .yeti-table-control),
+.yeti-table-cell:not(.yeti-table-numeric, .yeti-table-control) {
+    text-align: left;
+}
+
+/*** Styles Common to Both Headings and Cells ***/
+.yeti-table-heading,
+.yeti-table-cell {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+.yeti-table-heading:first-of-type,
+.yeti-table-cell:first-of-type {
+    padding-left: 1rem;
+}
+.yeti-table-heading:last-of-type,
+.yeti-table-cell:last-of-type {
+    padding-right: 1rem;
+}
+
+
+/*** Headings ***/
+.yeti-table-head {
+    background-color: #e0e0e0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.01rem;
+    line-height: 1.42857;
+}
+
+.yeti-table-head-row {
+    height: 3rem;
+}
+
+.yeti-table-heading {
+    vertical-align: middle;
+}
+
+
+/*** Body Cells ***/
+.yeti-table-body {
+    background-color: #f4f4f4;
+}
+
+.yeti-table-body-row {
+    color: #525252;
+    border-top: 1px solid #f4f4f4;
+    border-bottom: 1px solid #e0e0e0;
+}
+.yeti-table-body-row:hover {
+    background-color: #e5e5e5;
+    border-bottom-color: #e5e5e5;
+    border-top-color: #e5e5e5;
+    color: #161616;
+}
+
+.yeti-table-cell {
+    padding-bottom: 0.8125rem;
+    padding-top: 0.8125rem;
+    height: 3rem;
+    vertical-align: middle;
+}
+
+
+
+/************************************** Alpha (default) and Numeric ***/
+.yeti-table-numeric {
+    text-align: right;
+}
+
+.yeti-table-control {
+    text-align: center;
+}
+
+
+
+/************************************** Scrollable ***/
+.yeti-table__scrollable {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+
+/************************************** Fixed Columns ***/
+.yeti-table__fixed {
+    table-layout: fixed;
+}
+
+.yeti-table__fixed .yeti-table-cell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.yeti-table__fixed .yeti-table-grid-16 { width: calc(100% / 16 * 16); }
+.yeti-table__fixed .yeti-table-grid-15 { width: calc(100% / 16 * 15); }
+.yeti-table__fixed .yeti-table-grid-14 { width: calc(100% / 16 * 14); }
+.yeti-table__fixed .yeti-table-grid-13 { width: calc(100% / 16 * 13); }
+.yeti-table__fixed .yeti-table-grid-12 { width: calc(100% / 16 * 12); }
+.yeti-table__fixed .yeti-table-grid-11 { width: calc(100% / 16 * 11); }
+.yeti-table__fixed .yeti-table-grid-10 { width: calc(100% / 16 * 10); }
+.yeti-table__fixed .yeti-table-grid-9  { width: calc(100% / 16 * 9); }
+.yeti-table__fixed .yeti-table-grid-8  { width: calc(100% / 16 * 8); }
+.yeti-table__fixed .yeti-table-grid-7  { width: calc(100% / 16 * 7); }
+.yeti-table__fixed .yeti-table-grid-6  { width: calc(100% / 16 * 6); }
+.yeti-table__fixed .yeti-table-grid-5  { width: calc(100% / 16 * 5); }
+.yeti-table__fixed .yeti-table-grid-4  { width: calc(100% / 16 * 4); }
+.yeti-table__fixed .yeti-table-grid-3  { width: calc(100% / 16 * 3); }
+.yeti-table__fixed .yeti-table-grid-2  { width: calc(100% / 16 * 2); }
+.yeti-table__fixed .yeti-table-grid-1  { width: calc(100% / 16 * 1); }
