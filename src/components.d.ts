@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { YetiTableContents } from "./utils/utils";
 export namespace Components {
     interface MyComponent {
         /**
@@ -36,6 +37,12 @@ export namespace Components {
         "inputValue": string;
         "isValid": boolean;
     }
+    interface YetiTable {
+        "contents": YetiTableContents;
+        "isValid": boolean;
+        "tableClass": string;
+        "tableId": string;
+    }
 }
 export interface YetiInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -60,10 +67,17 @@ declare global {
         prototype: HTMLYetiInputElement;
         new (): HTMLYetiInputElement;
     };
+    interface HTMLYetiTableElement extends Components.YetiTable, HTMLStencilElement {
+    }
+    var HTMLYetiTableElement: {
+        prototype: HTMLYetiTableElement;
+        new (): HTMLYetiTableElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
         "yeti-field": HTMLYetiFieldElement;
         "yeti-input": HTMLYetiInputElement;
+        "yeti-table": HTMLYetiTableElement;
     }
 }
 declare namespace LocalJSX {
@@ -100,10 +114,17 @@ declare namespace LocalJSX {
         "onReadyToVerifyFast"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
         "onReadyToVerifySlow"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
     }
+    interface YetiTable {
+        "contents"?: YetiTableContents;
+        "isValid"?: boolean;
+        "tableClass"?: string;
+        "tableId"?: string;
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
         "yeti-field": YetiField;
         "yeti-input": YetiInput;
+        "yeti-table": YetiTable;
     }
 }
 export { LocalJSX as JSX };
@@ -113,6 +134,7 @@ declare module "@stencil/core" {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "yeti-field": LocalJSX.YetiField & JSXBase.HTMLAttributes<HTMLYetiFieldElement>;
             "yeti-input": LocalJSX.YetiInput & JSXBase.HTMLAttributes<HTMLYetiInputElement>;
+            "yeti-table": LocalJSX.YetiTable & JSXBase.HTMLAttributes<HTMLYetiTableElement>;
         }
     }
 }

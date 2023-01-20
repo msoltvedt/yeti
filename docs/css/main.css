@@ -4667,6 +4667,10 @@ Styles for Table
     height: 3rem;
     vertical-align: middle;
   }
+  /************************************** Row and Cell States ***/
+  .yeti-table-body-row__selected {
+    background-color: #fdf3dd;
+  }
   /************************************** Alpha (default) and Numeric ***/
   .yeti-table-numeric {
     text-align: right;

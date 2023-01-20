@@ -1,0 +1,1 @@
+function n(n,t,r){return(n||"")+(t?` ${t}`:"")+(r?` ${r}`:"")}const t={generateUniqueId:function(){return++r,"id"+r},isValidJSON:function(n){n=JSON.stringify(n);try{JSON.parse(n)}catch(n){return!1}return!0}};let r=0;export{n as f,t as u}
