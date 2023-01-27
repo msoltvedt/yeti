@@ -41,7 +41,7 @@ const YetiField = class {
   }
   render() {
     this.validateLabel(this.label);
-    return (h("div", { class: "yeti-form-field" }, h("label", { htmlFor: this.inputId, class: "yeti-form-label" }, this.label, this.required ? ' (required)' : null), h("yeti-input", { "input-id": this.inputId, "input-class": !this.isValid ? 'yeti-input__error' : null, "input-value": this.inputValue }), this.tip || !this.isValid
+    return (h("div", { class: "yeti-form-field" }, h("label", { htmlFor: this.inputId, class: "yeti-form-label" }, this.label, this.required ? ' (required)' : null), h("yeti-input", { "input-id": this.inputId, "input-class": !this.isValid ? 'yeti-input__error' : null, "input-value": this.inputValue, required: this.required, "is-valid": this.isValid }), this.tip || !this.isValid
       ? h("span", { class: "yeti-form-tip" }, !this.isValid
         ? this.errorMessage
         :

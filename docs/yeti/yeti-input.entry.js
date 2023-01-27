@@ -9,7 +9,8 @@ const YetiInput = class {
     this.inputValueChanged = createEvent(this, "inputValueChanged", 7);
     this.inputClass = '';
     this.inputId = utils.generateUniqueId();
-    this.isValid = true;
+    this.required = false;
+    this.isValid = undefined;
     this.inputValue = '';
     this.isTouched = false;
   }
@@ -34,7 +35,7 @@ const YetiInput = class {
     if (this.isValid == false) {
       cssClasses += ' yeti-input__error';
     }
-    return (h("input", { type: "text", class: cssClasses, id: this.inputId, value: this.inputValue, onBlur: (ev) => this.handleFieldBlur(ev) }));
+    return (h("input", { type: "text", class: cssClasses, id: this.inputId, value: this.inputValue, onBlur: (ev) => this.handleFieldBlur(ev), "aria-invalid": !this.isValid }));
   }
   get el() { return getElement(this); }
   static get watchers() { return {

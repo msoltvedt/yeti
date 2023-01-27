@@ -72,7 +72,13 @@ export class YetiField {
 
         {/* <input type="text" class="yeti-input" id={this.inputId} value={this.value} onFocus={(e) => this.handleFieldFocus(e)} onBlur={(e) => this.handleFieldBlur(e)} /> */}
 
-        <yeti-input input-id={this.inputId} input-class={!this.isValid ? 'yeti-input__error' : null} input-value={this.inputValue}></yeti-input>
+        <yeti-input 
+          input-id={this.inputId} 
+          input-class={!this.isValid ? 'yeti-input__error' : null} 
+          input-value={this.inputValue} 
+          required={this.required}
+          is-valid={this.isValid}
+        ></yeti-input>
         
         {
           this.tip || !this.isValid

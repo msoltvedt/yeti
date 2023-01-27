@@ -26,10 +26,12 @@ export class YetiInput {
 
   @Prop() inputId: string = utils.generateUniqueId();
 
+  @Prop() required: boolean = false;
+
   @Prop({
     mutable: true,
     reflect: true
-  }) isValid: boolean = true;
+  }) isValid: boolean;
 
   @Prop({
     mutable: true,
@@ -68,6 +70,7 @@ export class YetiInput {
         id={this.inputId} 
         value={this.inputValue}
         onBlur={(ev) => this.handleFieldBlur(ev)}
+        aria-invalid={!this.isValid}
       />
     );
   }

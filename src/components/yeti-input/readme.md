@@ -12,7 +12,8 @@
 | `inputClass` | `input-class` |             | `string`  | `''`                       |
 | `inputId`    | `input-id`    |             | `string`  | `utils.generateUniqueId()` |
 | `inputValue` | `input-value` |             | `string`  | `''`                       |
-| `isValid`    | `is-valid`    |             | `boolean` | `true`                     |
+| `isValid`    | `is-valid`    |             | `boolean` | `undefined`                |
+| `required`   | `required`    |             | `boolean` | `false`                    |
 
 
 ## Events

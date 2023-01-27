@@ -36,6 +36,7 @@ export namespace Components {
         "inputId": string;
         "inputValue": string;
         "isValid": boolean;
+        "required": boolean;
     }
     interface YetiTable {
         "contents": YetiTableContents;
@@ -142,6 +143,7 @@ declare namespace LocalJSX {
         "onInputValueChanged"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
         "onReadyToVerifyFast"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
         "onReadyToVerifySlow"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
+        "required"?: boolean;
     }
     interface YetiTable {
         "contents"?: YetiTableContents;
