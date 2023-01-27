@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/yeti-examples-only.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   </head>
   <body>
@@ -22,6 +23,8 @@
         <yeti-page-contents></yeti-page-contents>
 
         <h2 class="margin-bottom-3">Code Samples</h2>
+
+
 
         <h3 class="margin-bottom-2">Default</h3>
 
@@ -345,7 +348,7 @@
 
 
 
-        <h4 class="margin-bottom-2">Fixed</h4>
+        <h4 class="margin-bottom-2">Grid Alignment</h4>
 
         <p class="margin-bottom-2">
             The columns will default to equal widths, but you can set them to match the <a href="grid.html">Grid pattern</a>. Note that the grid is 16 columns, so make sure you specify the width of each column (you only need to specify it on the first row) and that they add up to 16.
@@ -389,6 +392,171 @@
             <td class="yeti-table-cell">B3</td>
             <td class="yeti-table-cell">C3</td>
             <td class="yeti-table-cell">D3</td>
+        </tr>
+
+    </tbody>
+
+</table>
+
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-2">Pagination</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<!-- Note this bar can contain more than just pagination -->
+<div class="yeti-table-actions">
+
+    <!-- Pagination -->
+    <nav class="yeti-table-pagination" aria-label="Table Pagination">
+
+        <!-- Items per page -->
+        <div class="yeti-table-pagination-items_per_page">
+
+            <label for="demo-items_per_page" class="yeti-table-pagination-items_per_page-label">Items per page:</label>
+
+            <select id="demo-items_per_page" class="yeti-select yeti-table-pagination-items_per_page-select">
+                <option value="10" class="yeti-table-pagination-items_per_page-select-option">10</option>
+                <option value="20" class="yeti-table-pagination-items_per_page-select-option">20</option>
+                <option value="30" class="yeti-table-pagination-items_per_page-select-option">30</option>
+                <option value="40" class="yeti-table-pagination-items_per_page-select-option">40</option>
+                <option value="50" class="yeti-table-pagination-items_per_page-select-option">50</option>
+            </select>
+
+            <span class="yeti-table-pagination-items_per_page-count">1-10 of 103 items</span>
+
+        </div>
+
+
+        <!-- Pages -->
+        <div class="yeti-table-pagination-pages">
+
+            <label for="demo-pages" class="yeti-a11y-hidden">Page number, of 11 pages</label>
+
+            <select id="demo-pages" class="yeti-select yeti-table-pagination-pages-select">
+                <option value="1" class="yeti-table-pagination-pages-select-page">1</option>
+                <option value="2" class="yeti-table-pagination-pages-select-page">2</option>
+                <option value="3" class="yeti-table-pagination-pages-select-page">3</option>
+                <option value="4" class="yeti-table-pagination-pages-select-page">4</option>
+                <option value="5" class="yeti-table-pagination-pages-select-page">5</option>
+                <option value="6" class="yeti-table-pagination-pages-select-page">6</option>
+                <option value="7" class="yeti-table-pagination-pages-select-page">7</option>
+                <option value="8" class="yeti-table-pagination-pages-select-page">8</option>
+                <option value="9" class="yeti-table-pagination-pages-select-page">9</option>
+                <option value="10" class="yeti-table-pagination-pages-select-page">10</option>
+                <option value="11" class="yeti-table-pagination-pages-select-page">11</option>
+            </select>
+
+            <span class="yeti-table-pagination-pages-of_pages" aria-hidden="true">of 11 pages</span>
+
+            <ul class="yeti-table-pagination-pages-buttons">
+                <li class="yeti-table-pagination-pages-buttons-action">
+                    <button class="yeti-table-pagination-pages-buttons-button" disabled>
+                        <span class="material-icons" aria-hidden="true">arrow_left</span>
+                        <span class="yeti-a11y-hidden">Previous page</span>
+                    </button>
+                </li>
+                <li class="yeti-table-pagination-pages-buttons-action">
+                    <button class="yeti-table-pagination-pages-buttons-button">
+                        <span class="material-icons" aria-hidden="true">arrow_right</span>
+                        <span class="yeti-a11y-hidden">Next page</span>
+                    </button>
+                </li>
+            </ul>
+
+        </div>
+        
+    </nav>
+
+</div>
+
+<table class="yeti-table">
+
+    <thead class="yeti-table-head">
+
+        <tr class="yeti-table-head-row">
+            <th class="yeti-table-heading">Column A</th>
+            <th class="yeti-table-heading">Column B</th>
+            <th class="yeti-table-heading">Column C</th>
+            <th class="yeti-table-heading">Column D</th>
+        </tr>
+
+    </thead>
+
+
+    <tbody class="yeti-table-body">
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A1</td>
+            <td class="yeti-table-cell">B1</td>
+            <td class="yeti-table-cell">C1</td>
+            <td class="yeti-table-cell">D1</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A2</td>
+            <td class="yeti-table-cell">B2</td>
+            <td class="yeti-table-cell">C2</td>
+            <td class="yeti-table-cell">D2</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A3</td>
+            <td class="yeti-table-cell">B3</td>
+            <td class="yeti-table-cell">C3</td>
+            <td class="yeti-table-cell">D3</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A4</td>
+            <td class="yeti-table-cell">B4</td>
+            <td class="yeti-table-cell">C4</td>
+            <td class="yeti-table-cell">D4</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A5</td>
+            <td class="yeti-table-cell">B5</td>
+            <td class="yeti-table-cell">C5</td>
+            <td class="yeti-table-cell">D5</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A6</td>
+            <td class="yeti-table-cell">B6</td>
+            <td class="yeti-table-cell">C6</td>
+            <td class="yeti-table-cell">D6</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A7</td>
+            <td class="yeti-table-cell">B7</td>
+            <td class="yeti-table-cell">C7</td>
+            <td class="yeti-table-cell">D7</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A8</td>
+            <td class="yeti-table-cell">B8</td>
+            <td class="yeti-table-cell">C8</td>
+            <td class="yeti-table-cell">D8</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A9</td>
+            <td class="yeti-table-cell">B9</td>
+            <td class="yeti-table-cell">C9</td>
+            <td class="yeti-table-cell">D9</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A10</td>
+            <td class="yeti-table-cell">B10</td>
+            <td class="yeti-table-cell">C10</td>
+            <td class="yeti-table-cell">D10</td>
         </tr>
 
     </tbody>

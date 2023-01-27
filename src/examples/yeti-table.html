@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/yeti-examples-only.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
         .test {
@@ -28,6 +29,7 @@
         <yeti-page-contents></yeti-page-contents>
 
         <h2 class="margin-bottom-3">Code Samples</h2>
+        
 
 
         <h3 class="margin-bottom-2">Default</h3>
@@ -39,11 +41,11 @@
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
     
-<yeti-table></yeti-table>
+<yeti-table id="vanillaTable"></yeti-table>
 
 <script type="module">
-    const table1 = document.querySelector('yeti-table');
-    table1.contents = {
+    const vanillaTable = document.getElementById('vanillaTable');
+    vanillaTable.contents = {
         "head": {
             "rows": [
                 {
@@ -95,7 +97,6 @@
                             "value": "Cell 2-1"
                         },
                         {
-                            "id": "twenty-two",
                             "value": "Cell 2-2"
                         },
                         {
@@ -103,7 +104,7 @@
                         },
                         {
                             "cssClass": "yeti-table-numeric",
-                            "value": "24"
+                            "value": "42"
                         }
                     ]
                 }
@@ -113,6 +114,380 @@
 </script>
 
         </div><!-- /code_sample -->
+        
+
+
+        <h3 class="margin-bottom-2">Pagination</h3>
+
+        <p class="margin-bottom-2">
+            Add pagination to your table as shown below. The <code>yeti-table-pagination-option</code>s shown below are optional.
+        </p>
+
+        <script type="module">
+            const paginationTable = document.getElementById('paginationTable');
+            paginationTable.contents = {
+                "head": {
+                    "rows": [
+                        {
+                            "cells": [
+                                {
+                                    "isHeading": "true",
+                                    "value": "Heading 1"
+                                },
+                                {
+                                    "isHeading": "true",
+                                    "value": "Heading 2"
+                                },
+                                {
+                                    "isHeading": "true",
+                                    "value": "Heading 3"
+                                },
+                                {
+                                    "isHeading": "true",
+                                    "cssClass": "yeti-table-numeric",
+                                    "value": "A Number"
+                                }
+                            ]
+                        }
+                    ]
+                },
+        
+                "body": {
+                    "rows": [
+                        {
+                            "cells": [
+                                {
+                                    "value": "Cell 1-1"
+                                },
+                                {
+                                    "value": "Cell 1-2"
+                                },
+                                {
+                                    "value": "Cell 1-3"
+                                },
+                                {
+                                    "cssClass": "yeti-table-numeric",
+                                    "value": "22"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Cell 2-1"
+                                },
+                                {
+                                    "id": "twenty-two",
+                                    "value": "Cell 2-2"
+                                },
+                                {
+                                    "value": "Cell 2-3"
+                                },
+                                {
+                                    "cssClass": "yeti-table-numeric",
+                                    "value": "24"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Cell 3-1"
+                                },
+                                {
+                                    "value": "Cell 3-2"
+                                },
+                                {
+                                    "value": "Cell 3-3"
+                                },
+                                {
+                                    "cssClass": "yeti-table-numeric",
+                                    "value": "17"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Cell 4-1"
+                                },
+                                {
+                                    "value": "Cell 4-2"
+                                },
+                                {
+                                    "value": "Cell 4-3"
+                                },
+                                {
+                                    "cssClass": "yeti-table-numeric",
+                                    "value": "17"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Cell 5-1"
+                                },
+                                {
+                                    "value": "Cell 5-2"
+                                },
+                                {
+                                    "value": "Cell 5-3"
+                                },
+                                {
+                                    "cssClass": "yeti-table-numeric",
+                                    "value": "32"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Cell 6-1"
+                                },
+                                {
+                                    "value": "Cell 6-2"
+                                },
+                                {
+                                    "value": "Cell 6-3"
+                                },
+                                {
+                                    "cssClass": "yeti-table-numeric",
+                                    "value": "19"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Cell 7-1"
+                                },
+                                {
+                                    "value": "Cell 7-2"
+                                },
+                                {
+                                    "value": "Cell 7-3"
+                                },
+                                {
+                                    "cssClass": "yeti-table-numeric",
+                                    "value": "18"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Cell 8-1"
+                                },
+                                {
+                                    "value": "Cell 8-2"
+                                },
+                                {
+                                    "value": "Cell 8-3"
+                                },
+                                {
+                                    "cssClass": "yeti-table-numeric",
+                                    "value": "20"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Cell 9-1"
+                                },
+                                {
+                                    "value": "Cell 9-2"
+                                },
+                                {
+                                    "value": "Cell 9-3"
+                                },
+                                {
+                                    "cssClass": "yeti-table-numeric",
+                                    "value": "12"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Cell 10-1"
+                                },
+                                {
+                                    "value": "Cell 10-2"
+                                },
+                                {
+                                    "value": "Cell 10-3"
+                                },
+                                {
+                                    "cssClass": "yeti-table-numeric",
+                                    "value": "13"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Cell 11-1"
+                                },
+                                {
+                                    "value": "Cell 11-2"
+                                },
+                                {
+                                    "value": "Cell 11-3"
+                                },
+                                {
+                                    "cssClass": "yeti-table-numeric",
+                                    "value": "8"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Cell 12-1"
+                                },
+                                {
+                                    "value": "Cell 12-2"
+                                },
+                                {
+                                    "value": "Cell 12-3"
+                                },
+                                {
+                                    "cssClass": "yeti-table-numeric",
+                                    "value": "11"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Cell 13-1"
+                                },
+                                {
+                                    "value": "Cell 13-2"
+                                },
+                                {
+                                    "value": "Cell 13-3"
+                                },
+                                {
+                                    "cssClass": "yeti-table-numeric",
+                                    "value": "2"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Cell 14-1"
+                                },
+                                {
+                                    "value": "Cell 14-2"
+                                },
+                                {
+                                    "value": "Cell 14-3"
+                                },
+                                {
+                                    "cssClass": "yeti-table-numeric",
+                                    "value": "9"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Cell 15-1"
+                                },
+                                {
+                                    "value": "Cell 15-2"
+                                },
+                                {
+                                    "value": "Cell 15-3"
+                                },
+                                {
+                                    "cssClass": "yeti-table-numeric",
+                                    "value": "7"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Cell 16-1"
+                                },
+                                {
+                                    "value": "Cell 16-2"
+                                },
+                                {
+                                    "value": "Cell 16-3"
+                                },
+                                {
+                                    "cssClass": "yeti-table-numeric",
+                                    "value": "4"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Cell 17-1"
+                                },
+                                {
+                                    "value": "Cell 17-2"
+                                },
+                                {
+                                    "value": "Cell 17-3"
+                                },
+                                {
+                                    "cssClass": "yeti-table-numeric",
+                                    "value": "6"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Cell 18-1"
+                                },
+                                {
+                                    "value": "Cell 18-2"
+                                },
+                                {
+                                    "value": "Cell 18-3"
+                                },
+                                {
+                                    "cssClass": "yeti-table-numeric",
+                                    "value": "3"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            };
+        </script>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+    
+<yeti-table id="paginationTable">
+
+    <yeti-table-actions>
+
+        <yeti-table-pagination>
+            <yeti-table-pagination-option>5</yeti-table-pagination-option>
+            <yeti-table-pagination-option>10</yeti-table-pagination-option>
+            <yeti-table-pagination-option>15</yeti-table-pagination-option>
+            <yeti-table-pagination-option>I'm ignored.</yeti-table-pagination-option>
+            <yeti-table-pagination-option>20</yeti-table-pagination-option>
+            <yeti-table-pagination-option all>Any value here is also ignored.</yeti-table-pagination-option>
+        </yeti-table-pagination>
+
+    </yeti-table-actions>
+
+</yeti-table>
+
+        </div><!-- /code_sample -->
+
 
 
         <h3 class="margin-bottom-2" id="yetiTableContents"><code>YetiTableContents</code> Interface</h3>
@@ -121,12 +496,10 @@
             The Yeti Table component expects you to provide data via the contents attribute. That data should match the following format:
         </p>
 
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-    
-<script type="module">
-
+<pre style="padding: unset; position: unset; width: unset;">
+<code class="language-typescript">
 /******************************************** A TypeScripty/pseudo-code interface definition ********************************************/
+
 YetiTableContents = {
 
     head? : {
@@ -164,9 +537,14 @@ YetiTableCell = {
     id?: string,
     value: string
 }
+</code>
+</pre>
 
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
 
-
+    
+<script type="module">
 /******************************************** A simple example ********************************************/
 
 const exampleData = {
@@ -184,7 +562,7 @@ const exampleData = {
                     },
                     {
                         "isHeading": "true",
-                        "cssClass": "yeti-table-numeric", //. cssClass (string) an optional property on head, body, foot, row, and cell.
+                        "cssClass": "yeti-table-numeric", //. cssClass (string) is an optional property on head, body, foot, row, and cell.
                         "value": "A Number"
                     }
                 ]

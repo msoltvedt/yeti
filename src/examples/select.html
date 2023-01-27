@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
 
-    <title>Yeti Design System - Input Pattern</title>
+    <title>Yeti Design System - Select Pattern</title>
 
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/yeti-examples-only.css">
@@ -18,39 +18,33 @@
 
       <div role="main">
     
-        <h1 class="margin-top-none">Input</h1>
+        <h1 class="margin-top-none">Select</h1>
 
         <yeti-page-contents></yeti-page-contents>
 
         <h2 class="margin-bottom-3">Code Samples</h2>
 
-        <h3 class="margin-bottom-2">Text</h3>
-
-        <h4 class="margin-bottom-2">Default</h4>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-    
-<input type="text" class="yeti-input">
-
-        </div><!-- /code_sample -->
 
 
-        <h4 class="margin-bottom-2">Error</h4>
+        <h3 class="margin-bottom-2">Default</h3>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-    
-<input type="text" class="yeti-input yeti-input__error">
+
+<select class="yeti-select">
+    <option class="yeti-select-option" value="default">Choose an option</option>
+    <option class="yeti-select-option" value="2">2</option>
+    <option class="yeti-select-option" value="3">3</option>
+</select>
 
         </div><!-- /code_sample -->
+
 
 
         <h2 class="margin-bottom-3">Technical Notes</h2>
 
         <ul class="yeti-list-bulleted">
-          <li>Only the input types above are supported.</li>
-          <li>Only use this for input fields similar to text (i.e. phone, search, etc.). There will be separate patterns for things like radios and checkboxes.</li>
+          <li>Note that the browser default down-arrow has been replaced with a custom one.</li>
         </ul>
 
       </div><!-- /main -->

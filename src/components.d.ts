@@ -43,10 +43,25 @@ export namespace Components {
         "tableClass": string;
         "tableId": string;
     }
+    interface YetiTableActions {
+        "cssClass": string;
+        "htmlId": string;
+    }
+    interface YetiTablePagination {
+        "cssClass": string;
+        "endIndex": number;
+        "htmlId": string;
+        "records": number;
+        "startIndex": number;
+    }
 }
 export interface YetiInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLYetiInputElement;
+}
+export interface YetiTablePaginationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLYetiTablePaginationElement;
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -73,11 +88,25 @@ declare global {
         prototype: HTMLYetiTableElement;
         new (): HTMLYetiTableElement;
     };
+    interface HTMLYetiTableActionsElement extends Components.YetiTableActions, HTMLStencilElement {
+    }
+    var HTMLYetiTableActionsElement: {
+        prototype: HTMLYetiTableActionsElement;
+        new (): HTMLYetiTableActionsElement;
+    };
+    interface HTMLYetiTablePaginationElement extends Components.YetiTablePagination, HTMLStencilElement {
+    }
+    var HTMLYetiTablePaginationElement: {
+        prototype: HTMLYetiTablePaginationElement;
+        new (): HTMLYetiTablePaginationElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
         "yeti-field": HTMLYetiFieldElement;
         "yeti-input": HTMLYetiInputElement;
         "yeti-table": HTMLYetiTableElement;
+        "yeti-table-actions": HTMLYetiTableActionsElement;
+        "yeti-table-pagination": HTMLYetiTablePaginationElement;
     }
 }
 declare namespace LocalJSX {
@@ -120,11 +149,25 @@ declare namespace LocalJSX {
         "tableClass"?: string;
         "tableId"?: string;
     }
+    interface YetiTableActions {
+        "cssClass"?: string;
+        "htmlId"?: string;
+    }
+    interface YetiTablePagination {
+        "cssClass"?: string;
+        "endIndex"?: number;
+        "htmlId"?: string;
+        "onPaginationUpdated"?: (event: YetiTablePaginationCustomEvent<CustomEvent>) => void;
+        "records"?: number;
+        "startIndex"?: number;
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
         "yeti-field": YetiField;
         "yeti-input": YetiInput;
         "yeti-table": YetiTable;
+        "yeti-table-actions": YetiTableActions;
+        "yeti-table-pagination": YetiTablePagination;
     }
 }
 export { LocalJSX as JSX };
@@ -135,6 +178,8 @@ declare module "@stencil/core" {
             "yeti-field": LocalJSX.YetiField & JSXBase.HTMLAttributes<HTMLYetiFieldElement>;
             "yeti-input": LocalJSX.YetiInput & JSXBase.HTMLAttributes<HTMLYetiInputElement>;
             "yeti-table": LocalJSX.YetiTable & JSXBase.HTMLAttributes<HTMLYetiTableElement>;
+            "yeti-table-actions": LocalJSX.YetiTableActions & JSXBase.HTMLAttributes<HTMLYetiTableActionsElement>;
+            "yeti-table-pagination": LocalJSX.YetiTablePagination & JSXBase.HTMLAttributes<HTMLYetiTablePaginationElement>;
         }
     }
 }

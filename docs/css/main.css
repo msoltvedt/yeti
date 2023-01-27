@@ -1069,9 +1069,36 @@ text-align:center;
 .fail-icon{
   color:#DA1E27;
   font-size:20px !important;
+  text-align:center;ß
+
+}
+
+.flag-icon{
+  
+  font-size:14px !important;
   text-align:center;
 
 }
+
+.flag-icon-red{
+  color:#DA1E27;
+  font-size:14px !important;
+  text-align:center;
+
+}
+
+.flag-icon-circle{
+  color:#DA1E27;
+  font-size:20px !important;
+  text-align:center;
+
+}
+
+.material-icons.flag-icon-circle {
+  font-variation-settings:
+  'FILL' 0;
+}
+
 
 .info-icon{
   color:blue;
@@ -1095,7 +1122,16 @@ text-align:center;
 
 }
 
+/************************************** Suspended Opportunity ***/
 
+.suspended-opportunity{
+  border: 1px solid #DA1E27;
+  background-color:#FFF1F1;
+  padding:0.6rem;
+  margin-bottom:1rem;
+  width:15rem;
+  font-weight:bold;
+}
 
 
 /************************************** Batch Summary ***/
@@ -1390,6 +1426,12 @@ text-align:center;
 .float_and_clear-right::after {
   content: '';
   clear: both;
+}
+
+/***align*****/
+
+.vertical-align{
+  vertical-align: middle;
 }
 
 /*** Wrappers ***/
@@ -1694,6 +1736,18 @@ yeti-nav-container{
   width: 1rem;
   height: 1rem;
   margin: 0;
+}
+
+
+/**** Progress Bar *****/
+.progress-material-icon {
+  height: 14px;
+  margin: 8px 0px 0px 11px;
+}
+
+/*********BG Color*****/
+.bkgrd-white{
+  background-color:#FFFFFF;
 }
   header {
     min-height: 60px;
@@ -4134,6 +4188,14 @@ bx-pagination {
     background-color: #f3f3f3;
 }
 
+.xps-progress-suspended {
+    width: 200px;
+    height: 40px;
+    border-top: solid 6px #DA1E27;
+    border-right: solid 1px gray;
+    background-color: #FFF1F1;
+}
+
 .xps-progress-right-side {
     width: 868px;
     border-top: solid 6px #7b7b7b;
@@ -4603,6 +4665,51 @@ This file should be imports only.
   .yeti-list li:not(:last-child) {
     margin-bottom: 0.25rem;
   }
+  /************************************** select.less ***************************************
+
+Styles for Select
+
+*************************************** select.less **************************************/
+  /************************************** Basic Select Styles ***/
+  .yeti-select {
+    -webkit-appearance: none;
+    background-color: #f4f4f4;
+    border: none;
+    border-bottom: 1px solid #8d8d8d;
+    border-radius: 0;
+    color: #161616;
+    cursor: pointer;
+    display: block;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 400;
+    height: 2.5rem;
+    letter-spacing: 0.16px;
+    line-height: 1.28572;
+    opacity: 1;
+    outline: 2px solid #0000;
+    outline-offset: -2px;
+    padding: 0 3rem 0 1rem;
+    transition: outline 70ms cubic-bezier(0.2, 0, 0.38, 0.9);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg preserveAspectRatio='xMidYMid meet' xmlns='http://www.w3.org/2000/svg' fill='%23161616' width='16' height='16' viewBox='0 0 16 16' %3E%3Cpath d='M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z'%3E%3C/path%3E%3C/svg%3E");
+    background-position: right 1rem center;
+    background-repeat: no-repeat;
+    background-size: 1em 1em;
+    width: 100%;
+  }
+  .yeti-select:focus {
+    color: #161616;
+    outline: 2px solid #0f62fe;
+    outline-offset: -2px;
+  }
+  .yeti-select:hover {
+    background-color: #e8e8e8;
+  }
+  .yeti-select-option {
+    background-color: #e8e8e8;
+    color: #161616;
+  }
   /************************************** table.css ***************************************
 
 Styles for Table
@@ -4739,6 +4846,90 @@ Styles for Table
   .yeti-table__fixed .yeti-table-grid-1 {
     width: calc(100% / 16 * 1);
   }
+  /************************************** Table Actions ***/
+  .yeti-table-actions {
+    min-height: 2.5rem;
+    background-color: #f4f4f4;
+    border-top: 1px solid #e0e0e0;
+  }
+  /************************************** Pagination ***/
+  .yeti-table-pagination {
+    min-height: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  /*** Items Per Page ***/
+  .yeti-table-pagination-items_per_page {
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+  }
+  .yeti-table-pagination-items_per_page-label {
+    font-size: revert;
+    color: revert;
+    margin-right: 0.0625rem;
+  }
+  .yeti-table-pagination-items_per_page-select,
+  .yeti-table-pagination-pages-select {
+    min-height: 100%;
+    background-color: #f4f4f4;
+    border: 0;
+    padding-right: 2.25rem;
+    width: auto;
+  }
+  .yeti-table-pagination-items_per_page-select,
+  .yeti-table-pagination-items_per_page-select-option {
+    text-transform: capitalize;
+  }
+  .yeti-table-pagination-items_per_page-count {
+    border-left: 1px solid #e0e0e0;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    line-height: 1.28572;
+    vertical-align: middle;
+  }
+  /*** __ of Pages ***/
+  .yeti-table-pagination-pages {
+    display: flex;
+    align-items: center;
+    border-left: 1px solid #e0e0e0;
+  }
+  .yeti-table-pagination-pages-of_pages {
+    margin-left: 0.0625rem;
+    margin-right: 1rem;
+    line-height: 1.28572;
+    vertical-align: middle;
+  }
+  .yeti-table-pagination-pages-buttons {
+    display: flex;
+    min-height: 100%;
+    padding-left: 1px;
+    background-color: #e0e0e0;
+    gap: 1px;
+  }
+  .yeti-table-pagination-pages-buttons-button {
+    background-color: #f4f4f4;
+    height: 100%;
+    border: 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 2.5rem;
+    color: #161616;
+  }
+  .yeti-table-pagination-pages-buttons-button:hover:not(:disabled) {
+    background-color: #e8e8e8;
+  }
+  .yeti-table-pagination-pages-buttons-button:focus {
+    outline: 2px solid #0f62fe;
+    outline-offset: -2px;
+  }
+  .yeti-table-pagination-pages-buttons-button:disabled {
+    cursor: not-allowed;
+    color: #16161640;
+  }
 }
 /************************************** Utilities ***/
 @layer utilities {
@@ -4835,6 +5026,23 @@ Styles for Table
   }
   .yeti-width-40 {
     width: 10rem !important;
+  }
+  /************************************** a11y.less **************************************
+
+ This file contains accessibility (a11y) related classes that can be used anywhere.
+
+************************************** a11y.less **************************************/
+  /************************************** Visibility ***/
+  .yeti-a11y-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 }
 /************************************** Debugging ***/

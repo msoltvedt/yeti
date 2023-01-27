@@ -130,3 +130,104 @@ Styles for Table
 .yeti-table__fixed .yeti-table-grid-3  { width: calc(100% / 16 * 3); }
 .yeti-table__fixed .yeti-table-grid-2  { width: calc(100% / 16 * 2); }
 .yeti-table__fixed .yeti-table-grid-1  { width: calc(100% / 16 * 1); }
+
+
+
+/************************************** Table Actions ***/
+.yeti-table-actions {
+    min-height: 2.5rem;
+    background-color: #f4f4f4;
+    border-top: 1px solid #e0e0e0;
+}
+
+
+
+/************************************** Pagination ***/
+.yeti-table-pagination {
+    min-height: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/*** Items Per Page ***/
+.yeti-table-pagination-items_per_page {
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.yeti-table-pagination-items_per_page-label {
+    font-size: revert;
+    color: revert;
+    margin-right: 0.0625rem;
+}
+
+.yeti-table-pagination-items_per_page-select,
+.yeti-table-pagination-pages-select {
+    min-height: 100%;
+    background-color: #f4f4f4;
+    border: 0;
+    padding-right: 2.25rem;
+    width: auto;
+}
+
+.yeti-table-pagination-items_per_page-select,
+.yeti-table-pagination-items_per_page-select-option {
+    text-transform: capitalize;
+}
+
+.yeti-table-pagination-items_per_page-count {
+    border-left: 1px solid #e0e0e0;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    line-height: 1.28572; // To match adjacent select
+    vertical-align: middle;
+}
+
+
+/*** __ of Pages ***/
+.yeti-table-pagination-pages {
+    display: flex;
+    align-items: center;
+    border-left: 1px solid #e0e0e0;
+}
+
+.yeti-table-pagination-pages-of_pages {
+    margin-left: 0.0625rem;
+    margin-right: 1rem;
+    line-height: 1.28572; // To match adjacent select
+    vertical-align: middle;
+}
+
+.yeti-table-pagination-pages-buttons {
+    display: flex;
+    min-height: 100%;
+    padding-left: 1px;
+    background-color: #e0e0e0;
+    gap: 1px;
+}
+
+.yeti-table-pagination-pages-buttons-button {
+    background-color: #f4f4f4;
+    height: 100%;
+    border: 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 2.5rem;
+    color: #161616;
+}
+.yeti-table-pagination-pages-buttons-button:hover:not(:disabled) {
+    background-color: #e8e8e8;
+}
+.yeti-table-pagination-pages-buttons-button:focus {
+    outline: 2px solid #0f62fe;
+    outline-offset: -2px;
+}
+.yeti-table-pagination-pages-buttons-button:disabled {
+    cursor: not-allowed;
+    color: #16161640;
+}
