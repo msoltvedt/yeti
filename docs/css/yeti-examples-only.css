@@ -32,7 +32,11 @@ pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5p
  *
 ****************************************************/
 /************************************** Some Mixins ***/
-/************************************** Another Group of Mixins ***/
+/************************************** Recurring Treatments ***/
+.yeti-mixin-focus-default {
+  outline: 2px solid #0f62fe;
+  outline-offset: -2px;
+}
 /************************************** Page Wrapper ***/
 .ydoc-wrapper {
   margin: 2rem;

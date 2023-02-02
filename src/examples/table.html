@@ -9,7 +9,6 @@
 
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/yeti-examples-only.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   </head>
   <body>
@@ -239,13 +238,13 @@
         <h3 class="margin-bottom-2">Scrollable</h3>
 
         <p class="margin-bottom-2">
-            Tables default to 100% width, but sometimes their content will push them beyond the horizontal limits of their container. One option in this case is to use the scrollable wrapper.
+            Tables default to 100% width, but sometimes their content will push them beyond the horizontal limits of their container. One option in this case is to use the scrollable wrapper. Note that a tabindex of 0 is necessary for keyboard users.
         </p>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
  
-<div class="yeti-table__scrollable">
+<div class="yeti-table__scrollable" tabindex="0">
 
     <table class="yeti-table">
 
@@ -557,6 +556,115 @@
             <td class="yeti-table-cell">B10</td>
             <td class="yeti-table-cell">C10</td>
             <td class="yeti-table-cell">D10</td>
+        </tr>
+
+    </tbody>
+
+</table>
+
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-2">Sorting</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+    
+<table class="yeti-table">
+
+    <thead class="yeti-table-head">
+
+        <tr class="yeti-table-head-row">
+
+            <th class="yeti-table-heading yeti-table-sortable">
+
+                <div class="yeti-table-heading-compound">
+
+                    <button class="yeti-table-heading-button">
+
+                        <div class="yeti-table-heading-button-label">Column A</div>
+
+                        <span class="yeti-table-heading-button-icon">
+                            <span class="yeti-a11y-hidden">Sorted ascending</span>
+                            <span class="material-icons" aria-hidden="true" title="Sorted ascending">expand_less</span>
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </th>
+
+
+            <th class="yeti-table-heading yeti-table-sortable">
+
+                <div class="yeti-table-heading-compound">
+
+                    <button class="yeti-table-heading-button">
+
+                        <div class="yeti-table-heading-button-label">Column B</div>
+
+                        <span class="yeti-table-heading-button-icon">
+                            <span class="yeti-a11y-hidden">Sortable</span>
+                            <span class="material-icons" aria-hidden="true" title="Sortable">unfold_more</span>
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </th>
+
+
+            <th class="yeti-table-heading yeti-table-numeric yeti-table-sortable">
+
+                <div class="yeti-table-heading-compound">
+
+                    <button class="yeti-table-heading-button">
+
+                        <div class="yeti-table-heading-button-label">Column C</div>
+
+                        <span class="yeti-table-heading-button-icon">
+                            <span class="yeti-a11y-hidden">Sortable</span>
+                            <span class="material-icons" aria-hidden="true" title="Sortable">unfold_more</span>
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </th>
+
+
+            <th class="yeti-table-heading">Unsortable Column</th>
+
+        </tr>
+
+    </thead>
+
+
+    <tbody class="yeti-table-body">
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A1</td>
+            <td class="yeti-table-cell">B1</td>
+            <td class="yeti-table-cell yeti-table-numeric">22</td>
+            <td class="yeti-table-cell">D1</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A2</td>
+            <td class="yeti-table-cell">B2</td>
+            <td class="yeti-table-cell yeti-table-numeric">23</td>
+            <td class="yeti-table-cell">D2</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A3</td>
+            <td class="yeti-table-cell">B3</td>
+            <td class="yeti-table-cell yeti-table-numeric">24</td>
+            <td class="yeti-table-cell">D3</td>
         </tr>
 
     </tbody>

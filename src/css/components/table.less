@@ -11,6 +11,7 @@ Styles for Table
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
+    height: 100%; /* Tables are still weird. Needed to make yeti-table-heading-compound fill full cell height. */
 }
 
 .yeti-table-heading:not(.yeti-table-numeric, .yeti-table-control),
@@ -18,18 +19,30 @@ Styles for Table
     text-align: left;
 }
 
+
 /*** Styles Common to Both Headings and Cells ***/
-.yeti-table-heading,
+/*
+    Note: these look more daunting than they are. Basically, we want the padding
+    to look the same, regardless of how complicated the th's child tree is, so 
+    these just set it on the inner-most applicable element.
+*/
+.yeti-table-heading:not(:has(.yeti-table-heading-compound)),
+.yeti-table-heading-compound:not(:has(.yeti-table-heading-button)),
+.yeti-table-heading-compound .yeti-table-heading-button,
 .yeti-table-cell {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
 }
-.yeti-table-heading:first-of-type,
-.yeti-table-cell:first-of-type {
+.yeti-table-heading:first-child:not(:has(.yeti-table-heading-compound)),
+.yeti-table-heading:first-child .yeti-table-heading-compound:not(:has(.yeti-table-heading-button)),
+.yeti-table-heading:first-child .yeti-table-heading-button,
+.yeti-table-cell:first-child {
     padding-left: 1rem;
 }
-.yeti-table-heading:last-of-type,
-.yeti-table-cell:last-of-type {
+.yeti-table-heading:last-child:not(:has(.yeti-table-heading-compound)),
+.yeti-table-heading:last-child .yeti-table-heading-compound:not(:has(.yeti-table-heading-button)),
+.yeti-table-heading:last-child .yeti-table-heading-button,
+.yeti-table-cell:last-child {
     padding-right: 1rem;
 }
 
@@ -100,6 +113,9 @@ Styles for Table
 .yeti-table__scrollable {
     width: 100%;
     overflow-x: auto;
+}
+.yeti-table__scrollable:focus {
+    .yeti-mixin-focus-default();
 }
 
 
@@ -230,4 +246,61 @@ Styles for Table
 .yeti-table-pagination-pages-buttons-button:disabled {
     cursor: not-allowed;
     color: #16161640;
+}
+
+
+
+/************************************** Sorting ***/
+.yeti-table-heading-compound {
+    display: flex;
+    height: 100%;
+}
+
+.yeti-table-heading-button {
+    flex: 1 0 min-content;
+    display: flex;
+    align-items: center;
+    color: unset;
+    text-decoration: none;
+    
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    background-color: #e0e0e0;
+    border: 0;
+    box-sizing: border-box;
+    color: #161616;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 100%;
+    font: inherit;
+    line-height: 1;
+    margin: 0;
+    min-height: 100%;
+    transition: background-color 70ms cubic-bezier(0,0,.38,.9),outline 70ms cubic-bezier(0,0,.38,.9);
+    vertical-align: initial;
+    width: 100%
+
+}
+.yeti-table-heading-button:focus {
+    .yeti-mixin-focus-default();
+}
+:not(.yeti-table-numeric) .yeti-table-heading-button {
+    justify-content: space-between;
+}
+.yeti-table-numeric .yeti-table-heading-button {
+    justify-content: flex-end;
+}
+.yeti-table-heading-button:is(:hover, :focus) {
+    background-color: #d1d1d1;
+}
+
+.yeti-table-heading-button .yeti-table-heading-label {
+    flex: 1 0 min-content;
+}
+
+.yeti-table-heading-button .material-icons {
+    display: flex;
+    justify-content: center;
+    margin-right: -0.4375rem; /* Set the icon flush with the edge of the content box, just like normal content. */
 }

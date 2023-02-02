@@ -11,6 +11,53 @@ export const utils = {
   },
 
 
+  isConvertibleToDate: function(possibleDate: string) {
+    const re = /(\b[0-9]{1,4}(\/|\-)[0-9]{1,2}(\/|\-)[0-9]{2,4}\b)|((\w{3})\s\d)/g;
+    if (possibleDate.search(re) > -1) {
+      let dateObject = new Date(possibleDate);
+      if (dateObject.toString() == "Invalid Date") {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  },
+
+
+
+  isConvertibleToNumber: function(possibleNumber: string) {
+    let castedPossibility = this.castToNumber(possibleNumber.toString());
+    if (Number.isNaN(castedPossibility)) {
+      return false;
+    } else {
+      return true;
+    }
+  },
+
+
+
+  getStringifiedType: function(dunno: string) {
+    if (utils.isConvertibleToDate(dunno)) {
+      return "date";
+    } else {
+      if (utils.isConvertibleToNumber( dunno )) {
+        return "number";
+      } else {
+        return "string";
+      }
+    }
+  },
+
+
+
+  castToNumber: function(someString: string) {
+    return parseFloat( someString.replace(/,/g, '') );
+  },
+
+
+
   isValidJSON: function(candidate: object | string) {
 
     candidate = JSON.stringify(candidate);
@@ -50,14 +97,17 @@ export interface YetiTableRow {
   cssClass?: string,
   isExpandable?: boolean,
   id?: string,
-  cells: YetiTableCell[]
+  cells: YetiTableCell[],
+  rowIndex?: number
 }
 
 export interface YetiTableCell {
   cssClass?: string,
   isHeading?: boolean,
+  sortDirection?: string, // "ascending" | "descending" | "unsorted"
   id?: string,
-  value: string
+  value: string,
+  columnIndex?: number
 }
 
 let uniqueId = 0;

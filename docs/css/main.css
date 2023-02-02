@@ -1128,7 +1128,7 @@ text-align:center;
   border: 1px solid #DA1E27;
   background-color:#FFF1F1;
   padding:0.6rem;
-  margin-bottom:1.0625rem;
+  margin-bottom:1.438rem;
   width:15rem;
   font-weight:bold;
 }
@@ -3467,13 +3467,15 @@ bx-pagination {
     background-color: #c6c6c6;
 }
 
+/* Removed for IN1233
 .xodl .bx--checkbox-label::before {
     background-color: #c6c6c6;
-}
+} */
 
+/* Removed for IN1245
 .xodl-quote-column .bx--checkbox-label::before {
     background-color: #f3f3f3;
-}
+} */
 
 .xodl .bx--checkbox:disabled+.bx--checkbox-label {
     color: #525252;
@@ -3528,9 +3530,11 @@ bx-pagination {
     color: #161616;
 }
 
+/* Removed for IN1233
+
 .xodl-specifications-checkbox-container--edit .bx--checkbox-label::before {
     background-color: transparent;
-}
+} */
 
 
 
@@ -4448,10 +4452,43 @@ html {
  *
 ****************************************************/
 /************************************** Some Mixins ***/
-/************************************** Another Group of Mixins ***/
+/************************************** Recurring Treatments ***/
+.yeti-mixin-focus-default {
+  outline: 2px solid #0f62fe;
+  outline-offset: -2px;
+}
 /************************************** CSS Reset ***/
 /************************************** Defaults ***/
 /************************************** Globals ***/
+@layer components {
+  /************************************** globals.less **************************************
+
+ Styles that could apply to any (or no) components.
+
+************************************** globals.less **************************************/
+  /************************************** Material Icons ***/
+  @font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v139/flUhRq6tzZclQEJ-Vdg-IuiaDsNZ.ttf) format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+}
+
+}
 /************************************** Components ***/
 @layer components {
   /************************************** components.less ***************************************
@@ -4720,23 +4757,36 @@ Styles for Table
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
+    height: 100%;
+    /* Tables are still weird. Needed to make yeti-table-heading-compound fill full cell height. */
   }
   .yeti-table-heading:not(.yeti-table-numeric, .yeti-table-control),
   .yeti-table-cell:not(.yeti-table-numeric, .yeti-table-control) {
     text-align: left;
   }
   /*** Styles Common to Both Headings and Cells ***/
-  .yeti-table-heading,
+  /*
+    Note: these look more daunting than they are. Basically, we want the padding
+    to look the same, regardless of how complicated the th's child tree is, so 
+    these just set it on the inner-most applicable element.
+*/
+  .yeti-table-heading:not(:has(.yeti-table-heading-compound)),
+  .yeti-table-heading-compound:not(:has(.yeti-table-heading-button)),
+  .yeti-table-heading-compound .yeti-table-heading-button,
   .yeti-table-cell {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
   }
-  .yeti-table-heading:first-of-type,
-  .yeti-table-cell:first-of-type {
+  .yeti-table-heading:first-child:not(:has(.yeti-table-heading-compound)),
+  .yeti-table-heading:first-child .yeti-table-heading-compound:not(:has(.yeti-table-heading-button)),
+  .yeti-table-heading:first-child .yeti-table-heading-button,
+  .yeti-table-cell:first-child {
     padding-left: 1rem;
   }
-  .yeti-table-heading:last-of-type,
-  .yeti-table-cell:last-of-type {
+  .yeti-table-heading:last-child:not(:has(.yeti-table-heading-compound)),
+  .yeti-table-heading:last-child .yeti-table-heading-compound:not(:has(.yeti-table-heading-button)),
+  .yeti-table-heading:last-child .yeti-table-heading-button,
+  .yeti-table-cell:last-child {
     padding-right: 1rem;
   }
   /*** Headings ***/
@@ -4789,6 +4839,10 @@ Styles for Table
   .yeti-table__scrollable {
     width: 100%;
     overflow-x: auto;
+  }
+  .yeti-table__scrollable:focus {
+    outline: 2px solid #0f62fe;
+    outline-offset: -2px;
   }
   /************************************** Fixed Columns ***/
   .yeti-table__fixed {
@@ -4929,6 +4983,57 @@ Styles for Table
   .yeti-table-pagination-pages-buttons-button:disabled {
     cursor: not-allowed;
     color: #16161640;
+  }
+  /************************************** Sorting ***/
+  .yeti-table-heading-compound {
+    display: flex;
+    height: 100%;
+  }
+  .yeti-table-heading-button {
+    flex: 1 0 min-content;
+    display: flex;
+    align-items: center;
+    color: unset;
+    text-decoration: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    background-color: #e0e0e0;
+    border: 0;
+    box-sizing: border-box;
+    color: #161616;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 100%;
+    font: inherit;
+    line-height: 1;
+    margin: 0;
+    min-height: 100%;
+    transition: background-color 70ms cubic-bezier(0, 0, 0.38, 0.9), outline 70ms cubic-bezier(0, 0, 0.38, 0.9);
+    vertical-align: initial;
+    width: 100%;
+  }
+  .yeti-table-heading-button:focus {
+    outline: 2px solid #0f62fe;
+    outline-offset: -2px;
+  }
+  :not(.yeti-table-numeric) .yeti-table-heading-button {
+    justify-content: space-between;
+  }
+  .yeti-table-numeric .yeti-table-heading-button {
+    justify-content: flex-end;
+  }
+  .yeti-table-heading-button:is(:hover, :focus) {
+    background-color: #d1d1d1;
+  }
+  .yeti-table-heading-button .yeti-table-heading-label {
+    flex: 1 0 min-content;
+  }
+  .yeti-table-heading-button .material-icons {
+    display: flex;
+    justify-content: center;
+    margin-right: -0.4375rem;
+    /* Set the icon flush with the edge of the content box, just like normal content. */
   }
 }
 /************************************** Utilities ***/
