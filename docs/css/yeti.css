@@ -88,7 +88,7 @@ This file should be imports only.
     display: inline-block;
     line-height: 1rem;
     vertical-align: baseline;
-    font-weight: bold;
+    font-weight: 400;
     color: #525252;
     letter-spacing: 0.02rem;
   }

@@ -12,6 +12,7 @@
 | `describedBy` | `described-by` |             | `string`  | `""`                       |
 | `inputClass`  | `input-class`  |             | `string`  | `''`                       |
 | `inputId`     | `input-id`     |             | `string`  | `utils.generateUniqueId()` |
+| `inputName`   | `input-name`   |             | `string`  | `this.inputId`             |
 | `isValid`     | `is-valid`     |             | `boolean` | `undefined`                |
 | `required`    | `required`     |             | `boolean` | `false`                    |
 | `value`       | `value`        |             | `string`  | `''`                       |

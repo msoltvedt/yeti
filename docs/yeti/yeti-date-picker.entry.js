@@ -8,6 +8,7 @@ const YetiDatePicker = class {
     this.keepFocusOnButton = false;
     this.inputClass = '';
     this.inputId = utils.generateUniqueId();
+    this.inputName = this.inputId;
     this.required = false;
     this.isValid = undefined;
     this.value = '';
@@ -264,7 +265,7 @@ const YetiDatePicker = class {
     if (this.isValid == false) {
       cssClasses += ' yeti-input__error';
     }
-    return (h("div", { class: "yeti-date" }, h("input", Object.assign({ type: "text", class: cssClasses, id: this.inputId, value: this.value, onBlur: (ev) => this.handleFieldBlur(ev), "aria-invalid": !this.isValid, placeholder: "mm/dd/yyyy" }, ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {}))), h("button", { class: "yeti-date-button", "aria-label": this.getIconButtonLabel(), onClick: () => { this.handleIconClick(); } }, h("span", { class: "material-icons yeti-date-button-icon", "aria-hidden": "true" }, "calendar_today")), h("div", { class: (this.isPickerVisible) ? "yeti-date-picker yeti-date-picker__visible" : "yeti-date-picker" }, h("div", { class: "yeti-date-picker-header" }, h("h2", { class: "yeti-date-picker-heading", "aria-live": "polite", id: "heading" }, utils.getMonthName(this.cursorDate), " ", this.cursorDate.getFullYear()), h("ul", { class: "yeti-date-picker-actions" }, h("li", { class: "yeti-date-picker-action" }, h("button", { class: "yeti-date-picker-action-button yeti-date-picker-action-button-first", onClick: () => {
+    return (h("div", { class: "yeti-date" }, h("input", Object.assign({ type: "text", class: cssClasses, id: this.inputId, name: this.inputName, value: this.value, onBlur: (ev) => this.handleFieldBlur(ev), "aria-invalid": !this.isValid, placeholder: "mm/dd/yyyy" }, ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {}))), h("button", { class: "yeti-date-button", "aria-label": this.getIconButtonLabel(), onClick: () => { this.handleIconClick(); } }, h("span", { class: "material-icons yeti-date-button-icon", "aria-hidden": "true" }, "calendar_today")), h("div", { class: (this.isPickerVisible) ? "yeti-date-picker yeti-date-picker__visible" : "yeti-date-picker" }, h("div", { class: "yeti-date-picker-header" }, h("h2", { class: "yeti-date-picker-heading", "aria-live": "polite", id: "heading" }, utils.getMonthName(this.cursorDate), " ", this.cursorDate.getFullYear()), h("ul", { class: "yeti-date-picker-actions" }, h("li", { class: "yeti-date-picker-action" }, h("button", { class: "yeti-date-picker-action-button yeti-date-picker-action-button-first", onClick: () => {
         this.cursorDatePreviousYear();
       } }, h("span", { class: "yeti-a11y-hidden" }, "Previous year"), h("span", { class: "material-icons", "aria-hidden": "true", title: "Previous year" }, "keyboard_double_arrow_left"))), h("li", { class: "yeti-date-picker-action" }, h("button", { class: "yeti-date-picker-action-button", onClick: () => {
         this.cursorDatePreviousMonth();

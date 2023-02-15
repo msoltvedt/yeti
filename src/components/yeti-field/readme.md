@@ -13,6 +13,7 @@
 | `defaultValue`       | `default-value` |             | `string`  | `''`                                  |
 | `errorMessage`       | `error-message` |             | `string`  | `'Error: please correct this field.'` |
 | `inputId`            | `input-id`      |             | `string`  | `utils.generateUniqueId()`            |
+| `inputName`          | `input-name`    |             | `string`  | `this.inputId`                        |
 | `isValid`            | `is-valid`      |             | `boolean` | `true`                                |
 | `label` _(required)_ | `label`         |             | `string`  | `undefined`                           |
 | `required`           | `required`      |             | `boolean` | `false`                               |

@@ -9,6 +9,8 @@ export class YetiField {
 
   @Prop() inputId: string = utils.generateUniqueId();
 
+  @Prop() inputName: string = this.inputId;
+
   @Prop() type: string = "text";
   
   @Prop() label!: string;
@@ -96,6 +98,7 @@ export class YetiField {
 
             <yeti-date-picker
               input-id={this.inputId}
+              input-name={this.inputName}
               value={this.defaultValue}
               required={this.required}
               is-valid={this.isValid}

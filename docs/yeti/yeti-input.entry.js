@@ -8,6 +8,7 @@ const YetiInput = class {
     this.readyToVerifyFast = createEvent(this, "readyToVerifyFast", 7);
     this.inputClass = '';
     this.inputId = utils.generateUniqueId();
+    this.inputName = this.inputId;
     this.required = false;
     this.isValid = undefined;
     this.value = '';
@@ -32,7 +33,7 @@ const YetiInput = class {
     if (this.isValid == false) {
       cssClasses += ' yeti-input__error';
     }
-    return (h("input", Object.assign({ type: "text", class: cssClasses, id: this.inputId, value: this.value, onBlur: (ev) => this.handleFieldBlur(ev), "aria-invalid": !this.isValid }, ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {}))));
+    return (h("input", Object.assign({ type: "text", class: cssClasses, id: this.inputId, name: this.inputName, value: this.value, onBlur: (ev) => this.handleFieldBlur(ev), "aria-invalid": !this.isValid }, ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {}))));
   }
   get el() { return getElement(this); }
 };

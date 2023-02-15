@@ -6,6 +6,7 @@ const YetiField = class {
     registerInstance(this, hostRef);
     this.tipId = utils.generateUniqueId();
     this.inputId = utils.generateUniqueId();
+    this.inputName = this.inputId;
     this.type = "text";
     this.label = undefined;
     this.tip = undefined;
@@ -51,7 +52,7 @@ const YetiField = class {
   render() {
     this.validateLabel(this.label);
     return (h("div", { class: "yeti-form-field" }, h("label", { htmlFor: this.inputId, class: "yeti-form-label" }, this.label, this.required ? ' (required)' : null), (this.type == "date") ?
-      h("yeti-date-picker", { "input-id": this.inputId, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": this.tipId })
+      h("yeti-date-picker", { "input-id": this.inputId, "input-name": this.inputName, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": this.tipId })
       :
         h("yeti-input", { "input-id": this.inputId, "input-class": !this.isValid ? 'yeti-input__error' : null, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": this.tipId }), h("span", { class: "yeti-form-tip", "aria-live": "polite", id: this.tipId }, !this.isValid
       ? this.errorMessage

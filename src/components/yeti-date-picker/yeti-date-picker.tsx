@@ -15,6 +15,8 @@ export class YetiDatePicker {
 
   @Prop() inputId: string = utils.generateUniqueId();
 
+  @Prop() inputName: string = this.inputId;
+
   @Prop() required: boolean = false;
 
   @Prop({
@@ -418,7 +420,8 @@ export class YetiDatePicker {
             <input 
                 type="text" 
                 class={cssClasses} 
-                id={this.inputId} 
+                id={this.inputId}
+                name={this.inputName}
                 value={this.value}
                 onBlur={(ev) => this.handleFieldBlur(ev)}
                 aria-invalid={!this.isValid}

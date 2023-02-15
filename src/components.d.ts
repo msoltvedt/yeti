@@ -25,6 +25,7 @@ export namespace Components {
         "describedBy": string;
         "inputClass": string;
         "inputId": string;
+        "inputName": string;
         "isValid": boolean;
         "required": boolean;
         "value": string;
@@ -34,6 +35,7 @@ export namespace Components {
         "defaultValue": string;
         "errorMessage": string;
         "inputId": string;
+        "inputName": string;
         "isValid": boolean;
         "label": string;
         "required": boolean;
@@ -44,6 +46,7 @@ export namespace Components {
         "describedBy": string;
         "inputClass": string;
         "inputId": string;
+        "inputName": string;
         "isValid": boolean;
         "required": boolean;
         "value": string;
@@ -150,6 +153,7 @@ declare namespace LocalJSX {
         "describedBy"?: string;
         "inputClass"?: string;
         "inputId"?: string;
+        "inputName"?: string;
         "isValid"?: boolean;
         "onReadyToVerifySlow"?: (event: YetiDatePickerCustomEvent<CustomEvent>) => void;
         "required"?: boolean;
@@ -160,6 +164,7 @@ declare namespace LocalJSX {
         "defaultValue"?: string;
         "errorMessage"?: string;
         "inputId"?: string;
+        "inputName"?: string;
         "isValid"?: boolean;
         "label": string;
         "required"?: boolean;
@@ -170,6 +175,7 @@ declare namespace LocalJSX {
         "describedBy"?: string;
         "inputClass"?: string;
         "inputId"?: string;
+        "inputName"?: string;
         "isValid"?: boolean;
         "onReadyToVerifyFast"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
         "onReadyToVerifySlow"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
