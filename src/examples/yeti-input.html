@@ -72,7 +72,7 @@
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
 
-<yeti-input input-value="my life story"></yeti-input>
+<yeti-input value="my life story"></yeti-input>
 
         </div><!-- /code_sample -->
 
@@ -110,7 +110,7 @@
 
     inputElementSlow.addEventListener('readyToVerifySlow', (ev) => {
         let input = ev.target;
-        let value = input.inputValue;
+        let value = input.value;
         if (!value) {
             input.setAttribute('is-valid', false);
         } else {
@@ -139,7 +139,7 @@
 
     inputElementFast.addEventListener('readyToVerifyFast', (ev) => {
         let input = ev.target;
-        let value = input.inputValue;
+        let value = input.value;
         if (value == '') {
             input.setAttribute('is-valid', false);
         } else {

@@ -8,6 +8,8 @@ import { utils } from '../../utils/utils';
 export class YetiField {
 
   @Prop() inputId: string = utils.generateUniqueId();
+
+  @Prop() type: string = "text";
   
   @Prop() label!: string;
   @Watch('label')
@@ -23,43 +25,62 @@ export class YetiField {
 
   @Prop() required: boolean = false;
 
-  @Prop() errorMessage: string = 'Error: please correct this field.'
-
-  @Prop({mutable: true}) value: string = '';
+  @Prop({mutable: true}) errorMessage: string = 'Error: please correct this field.'
 
   @Prop({
     mutable: true,
     reflect: true
   }) isValid: boolean = true;
 
-  @Prop({
-    mutable: true,
-    reflect: true
-  }) inputValue: string = '';
+  @Prop() defaultValue: string = '';
+
+  @Prop() autovalidate: boolean = true;
 
   @State() isDirty: boolean = false;
+  
+  @Listen('readyToVerifySlow', { capture: true })
+  handleReadyToVerifySlow(ev) {
 
-  @Listen('inputValueChanged')
-  handleInputValueChanged(ev: CustomEvent) {
-    let yetiInput = ev.target as HTMLInputElement;
-    let actualInput = yetiInput.querySelector('input');
-    this.inputValue = actualInput.value;
+    let childControl = ev.target;
+
+    if (this.autovalidate == false) {
+      return;
+    }
+
+    if (this.required) {
+
+      // Autoverification is on, this field is required, and the child component just notified us that it's ready for verification.
+
+      // First, regardless of whether it's an input or date-picker, it can't be empty.
+      if (childControl.value == "") {
+
+        this.errorMessage = `${this.label} field is required.`
+        this.isValid = false;
+        return;
+
+      }
+      
+    } else if (childControl.nodeName.toLowerCase() == "yeti-date-picker") {
+
+      // Second, if it's a non-empty date-picker, see if it's a valid date.
+
+      if (!childControl.isValid) {
+
+        // The date-picker already validates itself. We just need to check its status.
+        this.errorMessage = 'Enter the date in mm/dd/yyyy format.'
+        this.isValid = false;
+        return;
+
+      }
+    }
+
+    this.isValid = true;
+
   }
 
-  handleFieldFocus(e) {
-    e.target.classList.add('focused');
-  };
+  tipId = utils.generateUniqueId();
 
-  handleFieldBlur(e) {
-    this.isDirty = true;
-    e.target.classList.remove('focused');
-    this.value = e.target.value;
-  }
 
-  handleInputChange(e: Event) {
-    alert('Input changed!');
-    this.inputValue = (e.target as HTMLInputElement).value;
-  }
 
   render() {
 
@@ -70,19 +91,30 @@ export class YetiField {
 
         <label htmlFor={this.inputId} class="yeti-form-label">{this.label}{this.required ? ' (required)' : null}</label>
 
-        {/* <input type="text" class="yeti-input" id={this.inputId} value={this.value} onFocus={(e) => this.handleFieldFocus(e)} onBlur={(e) => this.handleFieldBlur(e)} /> */}
+        { 
+          (this.type == "date") ?
 
-        <yeti-input 
-          input-id={this.inputId} 
-          input-class={!this.isValid ? 'yeti-input__error' : null} 
-          input-value={this.inputValue} 
-          required={this.required}
-          is-valid={this.isValid}
-        ></yeti-input>
+            <yeti-date-picker
+              input-id={this.inputId}
+              value={this.defaultValue}
+              required={this.required}
+              is-valid={this.isValid}
+              described-by={this.tipId}
+            ></yeti-date-picker>
+
+          :
         
-        {
-          this.tip || !this.isValid
-          ? <span class="yeti-form-tip">{
+            <yeti-input 
+              input-id={this.inputId} 
+              input-class={!this.isValid ? 'yeti-input__error' : null} 
+              value={this.defaultValue} 
+              required={this.required}
+              is-valid={this.isValid}
+              described-by={this.tipId}
+            ></yeti-input>
+        }
+        
+        <span class="yeti-form-tip" aria-live="polite" id={this.tipId}>{
 
               !this.isValid
               ? this.errorMessage
@@ -91,9 +123,7 @@ export class YetiField {
                 ? this.tip
                 : null
 
-            }</span> 
-          : null
-        }
+        }</span>
         
       </div>
     );

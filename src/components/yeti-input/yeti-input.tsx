@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Event, EventEmitter, Listen, Watch, Element } from '@stencil/core';
+import { Component, Prop, h, State, Event, EventEmitter, Listen, Element } from '@stencil/core';
 import { utils } from '../../utils/utils';
 
 @Component({
@@ -12,15 +12,13 @@ export class YetiInput {
   @Listen('keyup')
   handleKeyUp(ev) {
     this.isTouched = true;
-    this.inputValue = ev.target.value;
+    this.value = ev.target.value;
     this.readyToVerifyFast.emit(ev);
   }
 
-  @Event() readyToVerifySlow: EventEmitter<CustomEvent>;
+  @Event({ bubbles: true }) readyToVerifySlow: EventEmitter<CustomEvent>;
 
-  @Event() readyToVerifyFast: EventEmitter<CustomEvent>;
-
-  @Event() inputValueChanged: EventEmitter<CustomEvent>;
+  @Event({ bubbles: true }) readyToVerifyFast: EventEmitter<CustomEvent>;
 
   @Prop() inputClass: string = '';
 
@@ -36,18 +34,15 @@ export class YetiInput {
   @Prop({
     mutable: true,
     reflect: true
-  }) inputValue: string = '';
+  }) value: string = '';
 
-  @Watch('inputValue')
-  handleValueChange(ev: CustomEvent) {
-    this.inputValueChanged.emit(ev);
-  }
+  @Prop() describedBy: string = "";
 
   @State() isTouched: boolean = false;
 
   handleFieldBlur(ev) {
     this.isTouched = true;
-    this.inputValue = ev.target.value;
+    this.value = ev.target.value;
     this.readyToVerifySlow.emit(ev);
   }
 
@@ -68,9 +63,10 @@ export class YetiInput {
         type="text" 
         class={cssClasses} 
         id={this.inputId} 
-        value={this.inputValue}
+        value={this.value}
         onBlur={(ev) => this.handleFieldBlur(ev)}
         aria-invalid={!this.isValid}
+        {...((this.describedBy != "") ? {"aria-describedby": this.describedBy} : {})}
       />
     );
   }
