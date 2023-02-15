@@ -1,17 +1,19 @@
-import { r as registerInstance, h } from './index-9ea89afc.js';
-import { u as utils } from './utils-ed9b126a.js';
+import { r as registerInstance, h } from './index-77339656.js';
+import { u as utils } from './utils-a407a515.js';
 
 const YetiField = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
+    this.tipId = utils.generateUniqueId();
     this.inputId = utils.generateUniqueId();
+    this.type = "text";
     this.label = undefined;
     this.tip = undefined;
     this.required = false;
     this.errorMessage = 'Error: please correct this field.';
-    this.value = '';
     this.isValid = true;
-    this.inputValue = '';
+    this.defaultValue = '';
+    this.autovalidate = true;
     this.isDirty = false;
   }
   validateLabel(newValue) {
@@ -21,34 +23,42 @@ const YetiField = class {
       throw new Error('yeti-field must have a non-empty label attribute');
     }
   }
-  handleInputValueChanged(ev) {
-    let yetiInput = ev.target;
-    let actualInput = yetiInput.querySelector('input');
-    this.inputValue = actualInput.value;
-  }
-  handleFieldFocus(e) {
-    e.target.classList.add('focused');
-  }
-  ;
-  handleFieldBlur(e) {
-    this.isDirty = true;
-    e.target.classList.remove('focused');
-    this.value = e.target.value;
-  }
-  handleInputChange(e) {
-    alert('Input changed!');
-    this.inputValue = e.target.value;
+  handleReadyToVerifySlow(ev) {
+    let childControl = ev.target;
+    if (this.autovalidate == false) {
+      return;
+    }
+    if (this.required) {
+      // Autoverification is on, this field is required, and the child component just notified us that it's ready for verification.
+      // First, regardless of whether it's an input or date-picker, it can't be empty.
+      if (childControl.value == "") {
+        this.errorMessage = `${this.label} field is required.`;
+        this.isValid = false;
+        return;
+      }
+    }
+    else if (childControl.nodeName.toLowerCase() == "yeti-date-picker") {
+      // Second, if it's a non-empty date-picker, see if it's a valid date.
+      if (!childControl.isValid) {
+        // The date-picker already validates itself. We just need to check its status.
+        this.errorMessage = 'Enter the date in mm/dd/yyyy format.';
+        this.isValid = false;
+        return;
+      }
+    }
+    this.isValid = true;
   }
   render() {
     this.validateLabel(this.label);
-    return (h("div", { class: "yeti-form-field" }, h("label", { htmlFor: this.inputId, class: "yeti-form-label" }, this.label, this.required ? ' (required)' : null), h("yeti-input", { "input-id": this.inputId, "input-class": !this.isValid ? 'yeti-input__error' : null, "input-value": this.inputValue, required: this.required, "is-valid": this.isValid }), this.tip || !this.isValid
-      ? h("span", { class: "yeti-form-tip" }, !this.isValid
-        ? this.errorMessage
-        :
-          this.tip
-            ? this.tip
-            : null)
-      : null));
+    return (h("div", { class: "yeti-form-field" }, h("label", { htmlFor: this.inputId, class: "yeti-form-label" }, this.label, this.required ? ' (required)' : null), (this.type == "date") ?
+      h("yeti-date-picker", { "input-id": this.inputId, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": this.tipId })
+      :
+        h("yeti-input", { "input-id": this.inputId, "input-class": !this.isValid ? 'yeti-input__error' : null, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": this.tipId }), h("span", { class: "yeti-form-tip", "aria-live": "polite", id: this.tipId }, !this.isValid
+      ? this.errorMessage
+      :
+        this.tip
+          ? this.tip
+          : null)));
   }
   static get watchers() { return {
     "label": ["validateLabel"]

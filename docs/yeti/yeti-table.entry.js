@@ -1,5 +1,5 @@
-import { r as registerInstance, h, g as getElement } from './index-9ea89afc.js';
-import { u as utils } from './utils-ed9b126a.js';
+import { r as registerInstance, h, g as getElement } from './index-77339656.js';
+import { u as utils } from './utils-a407a515.js';
 
 const YetiTable = class {
   constructor(hostRef) {

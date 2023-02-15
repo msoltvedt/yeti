@@ -1,4 +1,4 @@
-# yeti-input
+# yeti-date-picker
 
 
 
@@ -21,7 +21,6 @@
 
 | Event               | Description | Type                            |
 | ------------------- | ----------- | ------------------------------- |
-| `readyToVerifyFast` |             | `CustomEvent<CustomEvent<any>>` |
 | `readyToVerifySlow` |             | `CustomEvent<CustomEvent<any>>` |
 
 
@@ -34,8 +33,8 @@
 ### Graph
 ```mermaid
 graph TD;
-  yeti-field --> yeti-input
-  style yeti-input fill:#f9f,stroke:#333,stroke-width:4px
+  yeti-field --> yeti-date-picker
+  style yeti-date-picker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
