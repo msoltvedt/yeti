@@ -8,6 +8,7 @@ const YetiField = class {
     this.inputId = utils.generateUniqueId();
     this.inputName = this.inputId;
     this.type = "text";
+    this.fieldClass = "";
     this.label = undefined;
     this.tip = undefined;
     this.required = false;
@@ -50,8 +51,12 @@ const YetiField = class {
     this.isValid = true;
   }
   render() {
+    let cssClass = "yeti-form-field";
     this.validateLabel(this.label);
-    return (h("div", { class: "yeti-form-field" }, h("label", { htmlFor: this.inputId, class: "yeti-form-label" }, this.label, this.required ? ' (required)' : null), (this.type == "date") ?
+    if (this.fieldClass != "") {
+      cssClass = "yeti-form-field " + this.fieldClass;
+    }
+    return (h("div", { class: cssClass }, h("label", { htmlFor: this.inputId, class: "yeti-form-label" }, this.label, this.required ? ' (required)' : null), (this.type == "date") ?
       h("yeti-date-picker", { "input-id": this.inputId, "input-name": this.inputName, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": this.tipId })
       :
         h("yeti-input", { "input-id": this.inputId, "input-class": !this.isValid ? 'yeti-input__error' : null, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": this.tipId }), h("span", { class: "yeti-form-tip", "aria-live": "polite", id: this.tipId }, !this.isValid

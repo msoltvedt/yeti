@@ -12,6 +12,7 @@
 | `autovalidate`       | `autovalidate`  |             | `boolean` | `true`                                |
 | `defaultValue`       | `default-value` |             | `string`  | `''`                                  |
 | `errorMessage`       | `error-message` |             | `string`  | `'Error: please correct this field.'` |
+| `fieldClass`         | `field-class`   |             | `string`  | `""`                                  |
 | `inputId`            | `input-id`      |             | `string`  | `utils.generateUniqueId()`            |
 | `inputName`          | `input-name`    |             | `string`  | `this.inputId`                        |
 | `isValid`            | `is-valid`      |             | `boolean` | `true`                                |

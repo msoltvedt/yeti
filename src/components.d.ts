@@ -34,6 +34,7 @@ export namespace Components {
         "autovalidate": boolean;
         "defaultValue": string;
         "errorMessage": string;
+        "fieldClass": string;
         "inputId": string;
         "inputName": string;
         "isValid": boolean;
@@ -163,6 +164,7 @@ declare namespace LocalJSX {
         "autovalidate"?: boolean;
         "defaultValue"?: string;
         "errorMessage"?: string;
+        "fieldClass"?: string;
         "inputId"?: string;
         "inputName"?: string;
         "isValid"?: boolean;

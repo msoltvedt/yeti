@@ -12,6 +12,8 @@ export class YetiField {
   @Prop() inputName: string = this.inputId;
 
   @Prop() type: string = "text";
+
+  @Prop() fieldClass: string = "";
   
   @Prop() label!: string;
   @Watch('label')
@@ -86,10 +88,16 @@ export class YetiField {
 
   render() {
 
+    let cssClass = "yeti-form-field";
+
     this.validateLabel(this.label);
 
+    if (this.fieldClass != "") {
+      cssClass ="yeti-form-field " + this.fieldClass;
+    }
+
     return (
-      <div class="yeti-form-field">
+      <div class={cssClass}>
 
         <label htmlFor={this.inputId} class="yeti-form-label">{this.label}{this.required ? ' (required)' : null}</label>
 
