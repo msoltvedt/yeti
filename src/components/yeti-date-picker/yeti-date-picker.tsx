@@ -120,8 +120,10 @@ export class YetiDatePicker {
 
 
 
-  handleIconClick() {
+  handleIconClick(ev) {
     this.isPickerVisible = !this.isPickerVisible;
+    ev.preventDefault();
+    ev.stopPropagation();
   }
 
 
@@ -431,7 +433,7 @@ export class YetiDatePicker {
                 {...((this.describedBy != "") ? {"aria-describedby": this.describedBy} : {})}
             />
 
-            <button class="yeti-date-button" aria-label={this.getIconButtonLabel()} onClick={() => { this.handleIconClick(); }}>
+            <button class="yeti-date-button" aria-label={this.getIconButtonLabel()} onClick={(ev) => { this.handleIconClick(ev); }}>
                 <span class="material-icons yeti-date-button-icon" aria-hidden="true">calendar_today</span>
             </button>
 
