@@ -430,6 +430,7 @@ export class YetiDatePicker {
                 onBlur={(ev) => this.handleFieldBlur(ev)}
                 aria-invalid={!this.isValid}
                 placeholder="mm/dd/yyyy"
+                autocomplete="off"
                 {...((this.describedBy != "") ? {"aria-describedby": this.describedBy} : {})}
             />
 
