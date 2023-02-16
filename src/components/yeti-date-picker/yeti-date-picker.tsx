@@ -73,9 +73,11 @@ export class YetiDatePicker {
     target: "body"
   })
   handleDefocusingClick() {
-    this.isPickerVisible = false;
-    this.isTouched = true;
-    this.watchInputValue();
+    if (this.isPickerVisible) {
+        this.isPickerVisible = false;
+        this.isTouched = true;
+        this.watchInputValue();
+    }
   }
 
   @Listen("keydown")

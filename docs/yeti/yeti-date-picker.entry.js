@@ -41,9 +41,11 @@ const YetiDatePicker = class {
     ev.stopPropagation();
   }
   handleDefocusingClick() {
-    this.isPickerVisible = false;
-    this.isTouched = true;
-    this.watchInputValue();
+    if (this.isPickerVisible) {
+      this.isPickerVisible = false;
+      this.isTouched = true;
+      this.watchInputValue();
+    }
   }
   listenForTabOut(ev) {
     if (ev.key == "Tab" &&
