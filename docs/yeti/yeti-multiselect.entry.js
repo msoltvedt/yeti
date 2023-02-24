@@ -53,6 +53,10 @@ const YetiMultiselect = class {
           this.iLoveJSX = !this.iLoveJSX;
           ev.preventDefault();
         }
+        else if (ev.altKey) {
+          this.openFlyout();
+          ev.preventDefault();
+        }
         break;
       }
       // Handle arrow navigation
@@ -60,6 +64,10 @@ const YetiMultiselect = class {
         if (this.isOpen) {
           this.cursorPosition = (this.cursorPosition - 1 + this.options.length) % this.options.length;
           this.iLoveJSX = !this.iLoveJSX;
+          ev.preventDefault();
+        }
+        else if (ev.altKey) {
+          this.openFlyout();
           ev.preventDefault();
         }
         break;

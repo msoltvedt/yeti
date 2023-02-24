@@ -101,6 +101,11 @@ export class YetiMultiselect {
           this.cursorPosition = (this.cursorPosition + 1) % this.options.length;
           this.iLoveJSX = !this.iLoveJSX;
           ev.preventDefault();
+        } else if (ev.altKey) {
+
+          this.openFlyout();
+          ev.preventDefault();
+
         }
 
         break;
@@ -114,6 +119,11 @@ export class YetiMultiselect {
           this.cursorPosition = (this.cursorPosition - 1 + this.options.length) % this.options.length;
           this.iLoveJSX = !this.iLoveJSX;
           ev.preventDefault();
+        } else if (ev.altKey) {
+
+          this.openFlyout();
+          ev.preventDefault();
+
         }
 
         break;
