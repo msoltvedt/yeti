@@ -52,6 +52,18 @@ export namespace Components {
         "required": boolean;
         "value": string;
     }
+    interface YetiMultiselect {
+        "actualId": string;
+        "cssClass": string;
+        "describedBy": string;
+        "htmlId": string;
+        "htmlName": string;
+        "isValid": boolean;
+        "placeholder": string;
+        "required": boolean;
+        "showClear": boolean;
+        "value": string;
+    }
     interface YetiTable {
         "contents": YetiTableContents;
         "isValid": boolean;
@@ -77,6 +89,10 @@ export interface YetiDatePickerCustomEvent<T> extends CustomEvent<T> {
 export interface YetiInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLYetiInputElement;
+}
+export interface YetiMultiselectCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLYetiMultiselectElement;
 }
 export interface YetiTablePaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -107,6 +123,12 @@ declare global {
         prototype: HTMLYetiInputElement;
         new (): HTMLYetiInputElement;
     };
+    interface HTMLYetiMultiselectElement extends Components.YetiMultiselect, HTMLStencilElement {
+    }
+    var HTMLYetiMultiselectElement: {
+        prototype: HTMLYetiMultiselectElement;
+        new (): HTMLYetiMultiselectElement;
+    };
     interface HTMLYetiTableElement extends Components.YetiTable, HTMLStencilElement {
     }
     var HTMLYetiTableElement: {
@@ -130,6 +152,7 @@ declare global {
         "yeti-date-picker": HTMLYetiDatePickerElement;
         "yeti-field": HTMLYetiFieldElement;
         "yeti-input": HTMLYetiInputElement;
+        "yeti-multiselect": HTMLYetiMultiselectElement;
         "yeti-table": HTMLYetiTableElement;
         "yeti-table-actions": HTMLYetiTableActionsElement;
         "yeti-table-pagination": HTMLYetiTablePaginationElement;
@@ -184,6 +207,19 @@ declare namespace LocalJSX {
         "required"?: boolean;
         "value"?: string;
     }
+    interface YetiMultiselect {
+        "actualId"?: string;
+        "cssClass"?: string;
+        "describedBy"?: string;
+        "htmlId"?: string;
+        "htmlName"?: string;
+        "isValid"?: boolean;
+        "onReadyToVerifySlow"?: (event: YetiMultiselectCustomEvent<CustomEvent>) => void;
+        "placeholder"?: string;
+        "required"?: boolean;
+        "showClear"?: boolean;
+        "value"?: string;
+    }
     interface YetiTable {
         "contents"?: YetiTableContents;
         "isValid"?: boolean;
@@ -207,6 +243,7 @@ declare namespace LocalJSX {
         "yeti-date-picker": YetiDatePicker;
         "yeti-field": YetiField;
         "yeti-input": YetiInput;
+        "yeti-multiselect": YetiMultiselect;
         "yeti-table": YetiTable;
         "yeti-table-actions": YetiTableActions;
         "yeti-table-pagination": YetiTablePagination;
@@ -220,6 +257,7 @@ declare module "@stencil/core" {
             "yeti-date-picker": LocalJSX.YetiDatePicker & JSXBase.HTMLAttributes<HTMLYetiDatePickerElement>;
             "yeti-field": LocalJSX.YetiField & JSXBase.HTMLAttributes<HTMLYetiFieldElement>;
             "yeti-input": LocalJSX.YetiInput & JSXBase.HTMLAttributes<HTMLYetiInputElement>;
+            "yeti-multiselect": LocalJSX.YetiMultiselect & JSXBase.HTMLAttributes<HTMLYetiMultiselectElement>;
             "yeti-table": LocalJSX.YetiTable & JSXBase.HTMLAttributes<HTMLYetiTableElement>;
             "yeti-table-actions": LocalJSX.YetiTableActions & JSXBase.HTMLAttributes<HTMLYetiTableActionsElement>;
             "yeti-table-pagination": LocalJSX.YetiTablePagination & JSXBase.HTMLAttributes<HTMLYetiTablePaginationElement>;

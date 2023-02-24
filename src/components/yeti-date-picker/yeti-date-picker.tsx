@@ -60,24 +60,26 @@ export class YetiDatePicker {
 
   @State() isPickerVisible: boolean = false;
 
+  @State() pickerJustOpened: boolean = false;
+
   @Listen("click")
   clickHandler(ev: Event) {
     let target = ev.target as Element;
     if (target.classList.contains('yeti-input')) {
         this.isPickerVisible = false;
     }
-    ev.stopPropagation();
   }
 
   @Listen("click", {
     target: "body"
   })
   handleDefocusingClick() {
-    if (this.isPickerVisible) {
+    if (this.isPickerVisible && !this.pickerJustOpened) {
         this.isPickerVisible = false;
         this.isTouched = true;
         this.watchInputValue();
     }
+    this.pickerJustOpened = false;
   }
 
   @Listen("keydown")
@@ -122,8 +124,8 @@ export class YetiDatePicker {
 
   handleIconClick(ev) {
     this.isPickerVisible = !this.isPickerVisible;
+    this.pickerJustOpened = true;
     ev.preventDefault();
-    ev.stopPropagation();
   }
 
 
@@ -447,8 +449,9 @@ export class YetiDatePicker {
                     <ul class="yeti-date-picker-actions">
 
                         <li class="yeti-date-picker-action">
-                            <button class="yeti-date-picker-action-button yeti-date-picker-action-button-first" onClick={() => {
+                            <button class="yeti-date-picker-action-button yeti-date-picker-action-button-first" onClick={(ev) => {
                                 this.cursorDatePreviousYear();
+                                ev.preventDefault();
                             }}>
                                 <span class="yeti-a11y-hidden">Previous year</span>
                                 <span class="material-icons" aria-hidden="true" title="Previous year">keyboard_double_arrow_left</span>
@@ -456,8 +459,9 @@ export class YetiDatePicker {
                         </li>
 
                         <li class="yeti-date-picker-action">
-                            <button class="yeti-date-picker-action-button" onClick={() => {
+                            <button class="yeti-date-picker-action-button" onClick={(ev) => {
                                 this.cursorDatePreviousMonth();
+                                ev.preventDefault();
                             }}>
                                 <span class="yeti-a11y-hidden">Previous month</span>
                                 <span class="material-icons" aria-hidden="true" title="Previous month">keyboard_arrow_left</span>
@@ -465,8 +469,9 @@ export class YetiDatePicker {
                         </li>
 
                         <li class="yeti-date-picker-action">
-                            <button class="yeti-date-picker-action-button" onClick={() => {
+                            <button class="yeti-date-picker-action-button" onClick={(ev) => {
                                 this.cursorDateNextMonth();
+                                ev.preventDefault();
                             }}>
                                 <span class="yeti-a11y-hidden">Next month</span>
                                 <span class="material-icons" aria-hidden="true" title="Next month">keyboard_arrow_right</span>
@@ -474,8 +479,9 @@ export class YetiDatePicker {
                         </li>
 
                         <li class="yeti-date-picker-action">
-                            <button class="yeti-date-picker-action-button" onClick={() => {
+                            <button class="yeti-date-picker-action-button" onClick={(ev) => {
                                 this.cursorDateNextYear();
+                                ev.preventDefault();
                             }}>
                                 <span class="yeti-a11y-hidden">Next year</span>
                                 <span class="material-icons" aria-hidden="true" title="Next year">keyboard_double_arrow_right</span>

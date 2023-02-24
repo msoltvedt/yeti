@@ -37,6 +37,16 @@ pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5p
   outline: 2px solid #0f62fe;
   outline-offset: -2px;
 }
+.yeti-mixin-button-vanilla {
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  background-color: #e0e0e0;
+  border: 0;
+  box-sizing: border-box;
+  color: #161616;
+  cursor: pointer;
+}
 /************************************** Page Wrapper ***/
 .ydoc-wrapper {
   margin: 2rem;

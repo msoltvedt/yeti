@@ -118,4 +118,9 @@ export interface YetiTableCell {
   columnIndex?: number
 }
 
+export interface YetiMultiselectOption {
+  selected: boolean,
+  label: string
+}
+
 let uniqueId = 0;

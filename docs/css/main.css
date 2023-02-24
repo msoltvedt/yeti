@@ -4457,6 +4457,16 @@ html {
   outline: 2px solid #0f62fe;
   outline-offset: -2px;
 }
+.yeti-mixin-button-vanilla {
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  background-color: #e0e0e0;
+  border: 0;
+  box-sizing: border-box;
+  color: #161616;
+  cursor: pointer;
+}
 /************************************** CSS Reset ***/
 /************************************** Defaults ***/
 /************************************** Globals ***/
@@ -4717,6 +4727,7 @@ A control that helps the user choose a date.
     flex: 0 0 auto;
     background-color: #f4f4f4;
     border-bottom: 1px solid #8d8d8d;
+    cursor: pointer;
   }
   .yeti-date-button:hover {
     background-color: #e8e8e8;
@@ -4787,6 +4798,7 @@ A control that helps the user choose a date.
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
   }
   .yeti-date-picker-action-button:is(:hover, :focus) {
     background-color: #e8e8e8;
@@ -4873,6 +4885,165 @@ A control that helps the user choose a date.
   .yeti-list li:not(:last-child) {
     margin-bottom: 0.25rem;
   }
+  /************************************** multiselect.less ***************************************
+
+Styles for Multiselect
+Leeloo Dallas multipass
+
+*************************************** multiselect.less **************************************/
+  /************************************** Wrapper ***/
+  .yeti-multiselect-wrapper {
+    position: relative;
+  }
+  /************************************** Facade Styles ***/
+  .yeti-multiselect {
+    -webkit-appearance: none;
+    background-color: #f4f4f4;
+    border: none;
+    border-bottom: 1px solid #8d8d8d;
+    border-radius: 0;
+    color: #161616;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 400;
+    height: 2.5rem;
+    letter-spacing: 0.16px;
+    line-height: 1.28572;
+    opacity: 1;
+    outline: 2px solid #0000;
+    outline-offset: -2px;
+    padding: 0 2rem 0 1rem;
+    transition: outline 70ms cubic-bezier(0.2, 0, 0.38, 0.9);
+    gap: 0.125rem;
+    justify-content: flex-start;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg preserveAspectRatio='xMidYMid meet' xmlns='http://www.w3.org/2000/svg' fill='%23161616' width='16' height='16' viewBox='0 0 16 16' %3E%3Cpath d='M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z'%3E%3C/path%3E%3C/svg%3E");
+    background-position: right 1rem center;
+    background-repeat: no-repeat;
+    background-size: 1em 1em;
+    width: 100%;
+  }
+  .yeti-multiselect:focus {
+    color: #161616;
+    outline: 2px solid #0f62fe;
+    outline-offset: -2px;
+  }
+  .yeti-multiselect:hover {
+    background-color: #e8e8e8;
+  }
+  yeti-multiselect-option {
+    display: none;
+  }
+  /*** Placeholder ***/
+  .yeti-multiselect-placeholder {
+    white-space: nowrap;
+    flex: 0 1 fit-content;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  /*** Puck ***/
+  .yeti-multiselect-puck {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    background-color: #e0e0e0;
+    border: 0;
+    box-sizing: border-box;
+    color: #161616;
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background-color: transparent;
+    color: #393939;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+  }
+  .yeti-multiselect-puck:hover {
+    color: #474747;
+  }
+  .yeti-multiselect-puck:focus {
+    outline: 2px solid #0f62fe;
+    outline-offset: -2px;
+    outline-offset: 0px;
+  }
+  .yeti-multiselect-puck-icon {
+    font-size: 1.25rem;
+  }
+  /************************************** Flyout (Options) ***/
+  .yeti-multiselect-flyout {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    transition: max-height 0.11s cubic-bezier(0.2, 0, 0.38, 0.9);
+    overflow: hidden;
+    max-height: 0;
+  }
+  .yeti-multiselect-flyout__open {
+    max-height: min(25rem, 60vh);
+    max-height: calc(60vh - 2.5rem);
+    box-shadow: 0 2px 6px #0000004d;
+  }
+  .yeti-multiselect-options {
+    display: flex;
+    flex-direction: column;
+    list-style: outside none;
+    background-color: #f4f4f4;
+    max-height: min(25rem, 60vh);
+    /* The reason I repeat this here is that we can't smoothly animate something with overflow auto */
+    max-height: calc(60vh - 2.5rem);
+    overflow-y: auto;
+  }
+  .yeti-multiselect-option {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #e0e0e0;
+    border: 0;
+    box-sizing: border-box;
+    color: #161616;
+    cursor: pointer;
+    display: flex;
+    background: none;
+    padding: 0 1rem;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    height: 2.5rem;
+    gap: 0.25rem;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .yeti-multiselect-option:hover,
+  .yeti-multiselect-option__hover {
+    background-color: #e8e8e8;
+  }
+  .yeti-multiselect-option-checkbox {
+    height: 1.5rem;
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.1rem;
+  }
+  .yeti-multiselect-option-label {
+    flex: 1 1 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    white-space: nowrap;
+  }
+  /************************************** Actual ***/
+  .yeti-multiselect-actual {
+    position: absolute;
+    right: 100px;
+    bottom: calc(100% + 20px);
+    width: 10rem;
+    height: 10rem;
+  }
   /************************************** select.less ***************************************
 
 Styles for Select
@@ -4944,6 +5115,7 @@ Styles for Table
   .yeti-table-heading:not(:has(.yeti-table-heading-compound)),
   .yeti-table-heading-compound:not(:has(.yeti-table-heading-button)),
   .yeti-table-heading-compound .yeti-table-heading-button,
+  .yeti-table-heading-filter,
   .yeti-table-cell {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
@@ -4951,12 +5123,14 @@ Styles for Table
   .yeti-table-heading:first-child:not(:has(.yeti-table-heading-compound)),
   .yeti-table-heading:first-child .yeti-table-heading-compound:not(:has(.yeti-table-heading-button)),
   .yeti-table-heading:first-child .yeti-table-heading-button,
+  .yeti-table-heading:first-child .yeti-table-heading-filter,
   .yeti-table-cell:first-child {
     padding-left: 1rem;
   }
   .yeti-table-heading:last-child:not(:has(.yeti-table-heading-compound)),
   .yeti-table-heading:last-child .yeti-table-heading-compound:not(:has(.yeti-table-heading-button)),
   .yeti-table-heading:last-child .yeti-table-heading-button,
+  .yeti-table-heading:last-child .yeti-table-heading-filter,
   .yeti-table-cell:last-child {
     padding-right: 1rem;
   }
@@ -4971,8 +5145,16 @@ Styles for Table
   .yeti-table-head-row {
     height: 3rem;
   }
-  .yeti-table-heading {
-    vertical-align: middle;
+  .yeti-table-heading:not(:has(.yeti-table-heading-compound)) {
+    vertical-align: top;
+    padding-top: 0.875rem;
+    padding-bottom: 0.875rem;
+  }
+  .yeti-table-heading-compound {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
   }
   /*** Body Cells ***/
   .yeti-table-body {
@@ -5156,12 +5338,8 @@ Styles for Table
     color: #16161640;
   }
   /************************************** Sorting ***/
-  .yeti-table-heading-compound {
-    display: flex;
-    height: 100%;
-  }
   .yeti-table-heading-button {
-    flex: 1 0 min-content;
+    flex: 0 0 3rem;
     display: flex;
     align-items: center;
     color: unset;
@@ -5179,7 +5357,7 @@ Styles for Table
     font: inherit;
     line-height: 1;
     margin: 0;
-    min-height: 100%;
+    height: 3rem;
     transition: background-color 70ms cubic-bezier(0, 0, 0.38, 0.9), outline 70ms cubic-bezier(0, 0, 0.38, 0.9);
     vertical-align: initial;
     width: 100%;
@@ -5187,9 +5365,6 @@ Styles for Table
   .yeti-table-heading-button:focus {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
-  }
-  :not(.yeti-table-numeric) .yeti-table-heading-button {
-    justify-content: space-between;
   }
   .yeti-table-numeric .yeti-table-heading-button {
     justify-content: flex-end;
@@ -5205,6 +5380,19 @@ Styles for Table
     justify-content: center;
     margin-right: -0.4375rem;
     /* Set the icon flush with the edge of the content box, just like normal content. */
+  }
+  /************************************** Filtering ***/
+  .yeti-table-head-row:has(.yeti-table-heading-filter) {
+    height: 6rem;
+  }
+  .yeti-table-heading-filter {
+    display: flex;
+    align-items: center;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+  .yeti-table-numeric .yeti-table-heading-filter {
+    justify-content: flex-end;
   }
 }
 /************************************** Utilities ***/

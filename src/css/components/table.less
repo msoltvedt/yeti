@@ -29,6 +29,7 @@ Styles for Table
 .yeti-table-heading:not(:has(.yeti-table-heading-compound)),
 .yeti-table-heading-compound:not(:has(.yeti-table-heading-button)),
 .yeti-table-heading-compound .yeti-table-heading-button,
+.yeti-table-heading-filter,
 .yeti-table-cell {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
@@ -36,12 +37,14 @@ Styles for Table
 .yeti-table-heading:first-child:not(:has(.yeti-table-heading-compound)),
 .yeti-table-heading:first-child .yeti-table-heading-compound:not(:has(.yeti-table-heading-button)),
 .yeti-table-heading:first-child .yeti-table-heading-button,
+.yeti-table-heading:first-child .yeti-table-heading-filter,
 .yeti-table-cell:first-child {
     padding-left: 1rem;
 }
 .yeti-table-heading:last-child:not(:has(.yeti-table-heading-compound)),
 .yeti-table-heading:last-child .yeti-table-heading-compound:not(:has(.yeti-table-heading-button)),
 .yeti-table-heading:last-child .yeti-table-heading-button,
+.yeti-table-heading:last-child .yeti-table-heading-filter,
 .yeti-table-cell:last-child {
     padding-right: 1rem;
 }
@@ -60,8 +63,17 @@ Styles for Table
     height: 3rem;
 }
 
-.yeti-table-heading {
-    vertical-align: middle;
+.yeti-table-heading:not(:has(.yeti-table-heading-compound)) {
+    vertical-align: top;
+    padding-top: 0.875rem;
+    padding-bottom: 0.875rem;
+}
+
+.yeti-table-heading-compound {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
 }
 
 
@@ -251,13 +263,8 @@ Styles for Table
 
 
 /************************************** Sorting ***/
-.yeti-table-heading-compound {
-    display: flex;
-    height: 100%;
-}
-
 .yeti-table-heading-button {
-    flex: 1 0 min-content;
+    flex: 0 0 3rem;
     display: flex;
     align-items: center;
     color: unset;
@@ -276,7 +283,7 @@ Styles for Table
     font: inherit;
     line-height: 1;
     margin: 0;
-    min-height: 100%;
+    height: 3rem;
     transition: background-color 70ms cubic-bezier(0,0,.38,.9),outline 70ms cubic-bezier(0,0,.38,.9);
     vertical-align: initial;
     width: 100%
@@ -284,9 +291,6 @@ Styles for Table
 }
 .yeti-table-heading-button:focus {
     .yeti-mixin-focus-default();
-}
-:not(.yeti-table-numeric) .yeti-table-heading-button {
-    justify-content: space-between;
 }
 .yeti-table-numeric .yeti-table-heading-button {
     justify-content: flex-end;
@@ -303,4 +307,20 @@ Styles for Table
     display: flex;
     justify-content: center;
     margin-right: -0.4375rem; /* Set the icon flush with the edge of the content box, just like normal content. */
+}
+
+
+
+/************************************** Filtering ***/
+.yeti-table-head-row:has(.yeti-table-heading-filter) {
+    height: 6rem;
+}
+.yeti-table-heading-filter {
+    display: flex;
+    align-items: center;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+.yeti-table-numeric .yeti-table-heading-filter {
+    justify-content: flex-end;
 }

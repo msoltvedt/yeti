@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+
+    <title>Yeti Design System - Multiselect Component</title>
+
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/yeti-examples-only.css">
+
+  </head>
+  <body>
+
+    <div class="ydoc-wrapper">
+
+      <div role="main">
+    
+        <h1 class="margin-top-none">Multiselect Component</h1>
+
+        <yeti-page-contents></yeti-page-contents>
+
+        <h2 class="margin-bottom-3">Code Samples</h2>
+
+
+        <h3 class="margin-bottom-2">Default</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-multiselect>
+  <yeti-multiselect-option selected>Pepperoni</yeti-multiselect-option>
+  <yeti-multiselect-option>Extra Cheese</yeti-multiselect-option>
+  <yeti-multiselect-option selected>Sausage</yeti-multiselect-option>
+  <yeti-multiselect-option>Hamburger</yeti-multiselect-option>
+  <yeti-multiselect-option>Olives</yeti-multiselect-option>
+</yeti-multiselect>
+
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-2">With Label</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<label for="toppings" class="yeti-form-label">Toppings</label>
+<yeti-multiselect html-id="toppings">
+  <yeti-multiselect-option selected>Pepperoni</yeti-multiselect-option>
+  <yeti-multiselect-option>Extra Cheese</yeti-multiselect-option>
+  <yeti-multiselect-option selected>Sausage</yeti-multiselect-option>
+  <yeti-multiselect-option>Hamburger</yeti-multiselect-option>
+  <yeti-multiselect-option>Olives</yeti-multiselect-option>
+</yeti-multiselect>
+
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-2">With Custom Placeholder Text</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-multiselect placeholder="Choose toppings">
+  <yeti-multiselect-option>Pepperoni</yeti-multiselect-option>
+  <yeti-multiselect-option>Extra Cheese</yeti-multiselect-option>
+  <yeti-multiselect-option>Sausage</yeti-multiselect-option>
+  <yeti-multiselect-option>Hamburger</yeti-multiselect-option>
+  <yeti-multiselect-option>Olives</yeti-multiselect-option>
+</yeti-multiselect>
+
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-2">Without Clear-all Puck</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-multiselect show-clear="false">
+  <yeti-multiselect-option selected>Pepperoni</yeti-multiselect-option>
+  <yeti-multiselect-option>Extra Cheese</yeti-multiselect-option>
+  <yeti-multiselect-option selected>Sausage</yeti-multiselect-option>
+  <yeti-multiselect-option>Hamburger</yeti-multiselect-option>
+  <yeti-multiselect-option>Olives</yeti-multiselect-option>
+</yeti-multiselect>
+
+        </div><!-- /code_sample -->
+
+
+
+        <h2 class="margin-bottom-3">Technical Notes</h2>
+
+        <ul class="yeti-list-bulleted">
+          <li>For standard (pick one option) selects, use the <a href="select.html">Select pattern</a>.</li>
+          <li>The implementation of this uses a hidden standard HTML select element, and that is what screenreader users will interact with.</li>
+        </ul>
+
+      </div><!-- /main -->
+    
+    </div><!-- /wrapper -->
+
+    <script type="module" src="./yeti/yeti.esm.js"></script>
+
+    <script type="module" src="./js/docs-scripts.mjs"></script>
+    
+  </body>
+</html>
