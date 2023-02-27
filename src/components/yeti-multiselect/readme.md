@@ -15,6 +15,7 @@
 | `htmlId`      | `html-id`      |             | `string`  | `utils.generateUniqueId()` |
 | `htmlName`    | `html-name`    |             | `string`  | `this.htmlId`              |
 | `isValid`     | `is-valid`     |             | `boolean` | `undefined`                |
+| `labelledBy`  | `labelled-by`  |             | `string`  | `""`                       |
 | `placeholder` | `placeholder`  |             | `string`  | `"-Select-"`               |
 | `required`    | `required`     |             | `boolean` | `false`                    |
 | `showClear`   | `show-clear`   |             | `boolean` | `true`                     |
@@ -25,8 +26,22 @@
 
 | Event               | Description | Type                            |
 | ------------------- | ----------- | ------------------------------- |
+| `readyToVerifyFast` |             | `CustomEvent<CustomEvent<any>>` |
 | `readyToVerifySlow` |             | `CustomEvent<CustomEvent<any>>` |
 
+
+## Dependencies
+
+### Used by
+
+ - [yeti-table](../yeti-table)
+
+### Graph
+```mermaid
+graph TD;
+  yeti-table --> yeti-multiselect
+  style yeti-multiselect fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

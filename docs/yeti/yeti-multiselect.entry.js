@@ -5,6 +5,7 @@ const YetiMultiselect = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.readyToVerifySlow = createEvent(this, "readyToVerifySlow", 7);
+    this.readyToVerifyFast = createEvent(this, "readyToVerifyFast", 7);
     this.cssClass = '';
     this.htmlId = utils.generateUniqueId();
     this.actualId = utils.generateUniqueId();
@@ -12,6 +13,7 @@ const YetiMultiselect = class {
     this.required = false;
     this.isValid = undefined;
     this.value = '';
+    this.labelledBy = "";
     this.describedBy = "";
     this.placeholder = "-Select-";
     this.showClear = true;
@@ -23,7 +25,7 @@ const YetiMultiselect = class {
     this.cursorPosition = -1;
   }
   handleDefocusingClick() {
-    if (this.el.querySelectorAll(":focus").length == 0) {
+    if (this.el.querySelectorAll(":focus").length == 0 && this.isOpen) {
       this.closeFlyout();
     }
   }
@@ -112,6 +114,8 @@ const YetiMultiselect = class {
   closeFlyout() {
     this.isOpen = false;
     this.cursorPosition = -1;
+    this.isTouched = true;
+    this.readyToVerifySlow.emit();
   }
   toggleFlyout() {
     if (this.isOpen) {
@@ -123,7 +127,6 @@ const YetiMultiselect = class {
   }
   handleFieldBlur(ev) {
     this.isTouched = true;
-    this.value = ev.target.value;
     this.readyToVerifySlow.emit(ev);
   }
   parseOptionElements(options) {
@@ -172,16 +175,28 @@ const YetiMultiselect = class {
   }
   handleOptionClick(i) {
     // i = options index
+    let newValue = [];
     this.numSelections = (this.options[i].selected) ? --this.numSelections : ++this.numSelections;
     this.options[i].selected = !this.options[i].selected;
+    for (let j = 0; j < this.options.length; j++) {
+      if (this.options[j].selected) {
+        newValue.push(this.options[j].label);
+      }
+    }
+    this.value = newValue.toString();
     this.iLoveJSX = !this.iLoveJSX; // Trigger re-render
+    this.readyToVerifyFast.emit();
   }
   handleClearSelections(ev) {
+    let fieldElement = this.el.querySelector(".yeti-multiselect");
     for (let i = 0; i < this.options.length; i++) {
       this.options[i].selected = false;
     }
+    this.value = "";
     this.numSelections = 0;
+    fieldElement.focus();
     ev.stopPropagation();
+    this.readyToVerifyFast.emit();
   }
   handleActualFocus() {
     let facade = this.el.querySelector(".yeti-multiselect");
@@ -217,9 +232,11 @@ const YetiMultiselect = class {
     }
     flyoutClass += (this.isOpen) ? " yeti-multiselect-flyout__open" : "";
     return ([
-      h("div", { class: "yeti-multiselect-wrapper" }, h("select", Object.assign({ tabIndex: -1, class: "yeti-multiselect-actual yeti-a11y-hidden", multiple: true, id: this.htmlId, name: this.htmlName, onFocus: () => { this.handleActualFocus(); } }, ((!this.isValid) ? { "aria-invalid": true } : {}), ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {})), this.renderActualOptions()), h("div", { tabIndex: 0, class: cssClasses, onClick: () => {
+      h("div", { class: "yeti-multiselect-wrapper" }, h("select", Object.assign({ tabIndex: -1, class: "yeti-multiselect-actual yeti-a11y-hidden", multiple: true, id: this.htmlId, name: this.htmlName, onFocus: () => { this.handleActualFocus(); } }, ((!this.isValid) ? { "aria-invalid": true } : {}), ((this.labelledBy != "") ? { "aria-labelledby": this.labelledBy } : {}), ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {})), this.renderActualOptions()), h("div", { tabIndex: 0, class: cssClasses, onClick: () => {
           this.isOpen = !this.isOpen;
-        }, "aria-hidden": "true" }, h("span", { class: "yeti-multiselect-placeholder", title: this.getPlaceholderDisplay() }, this.getPlaceholderDisplay()), (this.showClear) ?
+        }, onFocus: () => {
+          this.isTouched = true;
+        }, "aria-hidden": "true" }, h("span", { class: "yeti-multiselect-placeholder", title: this.getPlaceholderDisplay() }, this.getPlaceholderDisplay()), (this.showClear && this.numSelections > 0) ?
         (h("button", { class: "yeti-multiselect-puck", title: "Clear all selections", onClick: (ev) => { this.handleClearSelections(ev); ev.preventDefault(); } }, h("span", { class: "material-icons yeti-multiselect-puck-icon", "aria-hidden": "true" }, "cancel")))
         :
           ""), h("div", { class: flyoutClass, "aria-hidden": "true" }, h("ul", { class: "yeti-multiselect-options" }, this.options.map((option, i) => {

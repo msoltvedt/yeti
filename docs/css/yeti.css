@@ -276,13 +276,15 @@ A control that helps the user choose a date.
   }
   .yeti-date {
     position: relative;
-    width: 18rem;
+    width: clamp(4rem, 100%, 18rem);
     display: inline-flex;
     align-items: center;
   }
   /************************************** Field and Icon ***/
   .yeti-date-field {
-    padding: 0 3rem 0 1rem;
+    padding: 0 0 0 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .yeti-date-field::placeholder {
     color: #161616;
@@ -465,6 +467,9 @@ Leeloo Dallas multipass
 
 *************************************** multiselect.less **************************************/
   /************************************** Wrapper ***/
+  yeti-multiselect {
+    width: 100%;
+  }
   .yeti-multiselect-wrapper {
     position: relative;
   }
@@ -641,7 +646,7 @@ Styles for Select
     opacity: 1;
     outline: 2px solid #0000;
     outline-offset: -2px;
-    padding: 0 3rem 0 1rem;
+    padding: 0 2rem 0 1rem;
     transition: outline 70ms cubic-bezier(0.2, 0, 0.38, 0.9);
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg preserveAspectRatio='xMidYMid meet' xmlns='http://www.w3.org/2000/svg' fill='%23161616' width='16' height='16' viewBox='0 0 16 16' %3E%3Cpath d='M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z'%3E%3C/path%3E%3C/svg%3E");
@@ -649,6 +654,8 @@ Styles for Select
     background-repeat: no-repeat;
     background-size: 1em 1em;
     width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .yeti-select:focus {
     color: #161616;
@@ -686,23 +693,23 @@ Styles for Table
     these just set it on the inner-most applicable element.
 */
   .yeti-table-heading:not(:has(.yeti-table-heading-compound)),
-  .yeti-table-heading-compound:not(:has(.yeti-table-heading-button)),
   .yeti-table-heading-compound .yeti-table-heading-button,
+  .yeti-table-heading-compound-actual,
   .yeti-table-heading-filter,
   .yeti-table-cell {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
   }
   .yeti-table-heading:first-child:not(:has(.yeti-table-heading-compound)),
-  .yeti-table-heading:first-child .yeti-table-heading-compound:not(:has(.yeti-table-heading-button)),
   .yeti-table-heading:first-child .yeti-table-heading-button,
+  .yeti-table-heading:first-child .yeti-table-heading-compound-actual,
   .yeti-table-heading:first-child .yeti-table-heading-filter,
   .yeti-table-cell:first-child {
     padding-left: 1rem;
   }
   .yeti-table-heading:last-child:not(:has(.yeti-table-heading-compound)),
-  .yeti-table-heading:last-child .yeti-table-heading-compound:not(:has(.yeti-table-heading-button)),
   .yeti-table-heading:last-child .yeti-table-heading-button,
+  .yeti-table-heading:last-child .yeti-table-heading-compound-actual,
   .yeti-table-heading:last-child .yeti-table-heading-filter,
   .yeti-table-cell:last-child {
     padding-right: 1rem;
@@ -719,9 +726,12 @@ Styles for Table
     height: 3rem;
   }
   .yeti-table-heading:not(:has(.yeti-table-heading-compound)) {
-    vertical-align: top;
+    vertical-align: bottom;
     padding-top: 0.875rem;
     padding-bottom: 0.875rem;
+  }
+  .yeti-table-heading {
+    vertical-align: bottom;
   }
   .yeti-table-heading-compound {
     display: flex;
@@ -911,12 +921,17 @@ Styles for Table
     color: #16161640;
   }
   /************************************** Sorting ***/
-  .yeti-table-heading-button {
-    flex: 0 0 3rem;
+  .yeti-table-heading-button,
+  .yeti-table-heading-compound-actual {
+    flex: 1 0 auto;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+  }
+  .yeti-table-heading-button {
+    min-height: 3rem;
     color: unset;
     text-decoration: none;
+    text-align: left;
     -webkit-appearance: none;
     appearance: none;
     background: none;
@@ -928,9 +943,7 @@ Styles for Table
     font-family: inherit;
     font-size: 100%;
     font: inherit;
-    line-height: 1;
     margin: 0;
-    height: 3rem;
     transition: background-color 70ms cubic-bezier(0, 0, 0.38, 0.9), outline 70ms cubic-bezier(0, 0, 0.38, 0.9);
     vertical-align: initial;
     width: 100%;
@@ -945,8 +958,14 @@ Styles for Table
   .yeti-table-heading-button:is(:hover, :focus) {
     background-color: #d1d1d1;
   }
-  .yeti-table-heading-button .yeti-table-heading-label {
-    flex: 1 0 min-content;
+  .yeti-table-heading-button-label {
+    padding-top: 0.25rem;
+    padding-bottom: 0.125rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .yeti-table-heading-compound:not(:has(.yeti-table-heading-filter)) .yeti-table-heading-button {
+    padding-bottom: 0.75rem;
   }
   .yeti-table-heading-button .material-icons {
     display: flex;
@@ -955,17 +974,21 @@ Styles for Table
     /* Set the icon flush with the edge of the content box, just like normal content. */
   }
   /************************************** Filtering ***/
-  .yeti-table-head-row:has(.yeti-table-heading-filter) {
-    height: 6rem;
-  }
   .yeti-table-heading-filter {
     display: flex;
     align-items: center;
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
+    text-overflow: ellipsis;
   }
   .yeti-table-numeric .yeti-table-heading-filter {
     justify-content: flex-end;
+  }
+  .yeti-table-heading-compound-actual {
+    padding-top: 0.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 2.5rem;
   }
 }
 /************************************** Utilities ***/

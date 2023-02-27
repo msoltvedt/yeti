@@ -27,23 +27,23 @@ Styles for Table
     these just set it on the inner-most applicable element.
 */
 .yeti-table-heading:not(:has(.yeti-table-heading-compound)),
-.yeti-table-heading-compound:not(:has(.yeti-table-heading-button)),
 .yeti-table-heading-compound .yeti-table-heading-button,
+.yeti-table-heading-compound-actual,
 .yeti-table-heading-filter,
 .yeti-table-cell {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
 }
 .yeti-table-heading:first-child:not(:has(.yeti-table-heading-compound)),
-.yeti-table-heading:first-child .yeti-table-heading-compound:not(:has(.yeti-table-heading-button)),
 .yeti-table-heading:first-child .yeti-table-heading-button,
+.yeti-table-heading:first-child .yeti-table-heading-compound-actual,
 .yeti-table-heading:first-child .yeti-table-heading-filter,
 .yeti-table-cell:first-child {
     padding-left: 1rem;
 }
 .yeti-table-heading:last-child:not(:has(.yeti-table-heading-compound)),
-.yeti-table-heading:last-child .yeti-table-heading-compound:not(:has(.yeti-table-heading-button)),
 .yeti-table-heading:last-child .yeti-table-heading-button,
+.yeti-table-heading:last-child .yeti-table-heading-compound-actual,
 .yeti-table-heading:last-child .yeti-table-heading-filter,
 .yeti-table-cell:last-child {
     padding-right: 1rem;
@@ -64,9 +64,13 @@ Styles for Table
 }
 
 .yeti-table-heading:not(:has(.yeti-table-heading-compound)) {
-    vertical-align: top;
+    vertical-align: bottom;
     padding-top: 0.875rem;
     padding-bottom: 0.875rem;
+}
+
+.yeti-table-heading {
+    vertical-align: bottom;
 }
 
 .yeti-table-heading-compound {
@@ -263,13 +267,18 @@ Styles for Table
 
 
 /************************************** Sorting ***/
-.yeti-table-heading-button {
-    flex: 0 0 3rem;
+.yeti-table-heading-button,
+.yeti-table-heading-compound-actual {
+    flex: 1 0 auto;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+}
+
+.yeti-table-heading-button {
+    min-height: 3rem;
     color: unset;
     text-decoration: none;
-    
+    text-align: left;
     -webkit-appearance: none;
     appearance: none;
     background: none;
@@ -281,13 +290,10 @@ Styles for Table
     font-family: inherit;
     font-size: 100%;
     font: inherit;
-    line-height: 1;
     margin: 0;
-    height: 3rem;
     transition: background-color 70ms cubic-bezier(0,0,.38,.9),outline 70ms cubic-bezier(0,0,.38,.9);
     vertical-align: initial;
     width: 100%
-
 }
 .yeti-table-heading-button:focus {
     .yeti-mixin-focus-default();
@@ -299,8 +305,15 @@ Styles for Table
     background-color: #d1d1d1;
 }
 
-.yeti-table-heading-button .yeti-table-heading-label {
-    flex: 1 0 min-content;
+.yeti-table-heading-button-label {
+    padding-top: 0.25rem;
+    padding-bottom: 0.125rem; // label is 20px, icon is 24px, we want single-line labels to be vertically centered with icon
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.yeti-table-heading-compound:not(:has(.yeti-table-heading-filter)) .yeti-table-heading-button {
+    padding-bottom: 0.75rem;
 }
 
 .yeti-table-heading-button .material-icons {
@@ -313,14 +326,22 @@ Styles for Table
 
 /************************************** Filtering ***/
 .yeti-table-head-row:has(.yeti-table-heading-filter) {
-    height: 6rem;
+    //height: 6rem;
 }
 .yeti-table-heading-filter {
     display: flex;
     align-items: center;
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
+    text-overflow: ellipsis;
 }
 .yeti-table-numeric .yeti-table-heading-filter {
     justify-content: flex-end;
+}
+
+.yeti-table-heading-compound-actual {
+    padding-top: 0.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 2.5rem;
 }

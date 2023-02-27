@@ -11,6 +11,8 @@ export class YetiMultiselect {
 
   @Event({ bubbles: true }) readyToVerifySlow: EventEmitter<CustomEvent>;
 
+  @Event({ bubbles: true }) readyToVerifyFast: EventEmitter<CustomEvent>;
+
   @Prop() cssClass: string = '';
 
   @Prop() htmlId: string = utils.generateUniqueId();
@@ -31,6 +33,8 @@ export class YetiMultiselect {
     reflect: true
   }) value: string = '';
 
+  @Prop() labelledBy: string = "";
+
   @Prop() describedBy: string = "";
 
   @Prop() placeholder: string = "-Select-";
@@ -49,15 +53,13 @@ export class YetiMultiselect {
 
   @State() cursorPosition: number = -1;
 
-  actual: HTMLSelectElement;
-
 
 
   @Listen("click", {
     target: "body"
   })
   handleDefocusingClick() {
-    if (this.el.querySelectorAll(":focus").length == 0) {
+    if (this.el.querySelectorAll(":focus").length == 0 && this.isOpen) {
       this.closeFlyout();
     }
   }
@@ -184,6 +186,8 @@ export class YetiMultiselect {
   closeFlyout() {
     this.isOpen = false;
     this.cursorPosition = -1;
+    this.isTouched = true;
+    this.readyToVerifySlow.emit();
   }
 
 
@@ -200,7 +204,6 @@ export class YetiMultiselect {
 
   handleFieldBlur(ev) {
     this.isTouched = true;
-    this.value = ev.target.value;
     this.readyToVerifySlow.emit(ev);
   }
 
@@ -268,6 +271,7 @@ export class YetiMultiselect {
       let optionActual = <option value={this.options[i].label} selected={this.options[i].selected}>{this.options[i].label}</option>;
       optionsActual.push(optionActual);
     }
+
     return optionsActual;
   }
 
@@ -275,19 +279,31 @@ export class YetiMultiselect {
 
   handleOptionClick(i: number) {
     // i = options index
+    let newValue = [];
     this.numSelections = (this.options[i].selected) ? --this.numSelections : ++this.numSelections;
     this.options[i].selected = !this.options[i].selected;
+    for (let j = 0; j < this.options.length; j++) {
+      if (this.options[j].selected) {
+        newValue.push(this.options[j].label);
+      }
+    }
+    this.value = newValue.toString();
     this.iLoveJSX = !this.iLoveJSX; // Trigger re-render
+    this.readyToVerifyFast.emit();
   }
 
 
 
   handleClearSelections(ev: Event) {
+    let fieldElement = this.el.querySelector(".yeti-multiselect") as HTMLElement;
     for (let i=0; i<this.options.length; i++) {
       this.options[i].selected = false;
     }
+    this.value = "";
     this.numSelections = 0;
+    fieldElement.focus();
     ev.stopPropagation();
+    this.readyToVerifyFast.emit();
   }
 
 
@@ -353,6 +369,7 @@ export class YetiMultiselect {
           name={this.htmlName}
           onFocus={() => {this.handleActualFocus()}}
           {...((!this.isValid) ? {"aria-invalid": true} : {})}
+          {...((this.labelledBy != "") ? {"aria-labelledby": this.labelledBy} : {})}
           {...((this.describedBy != "") ? {"aria-describedby": this.describedBy} : {})}
         >
           
@@ -366,12 +383,15 @@ export class YetiMultiselect {
           onClick={() => {
             this.isOpen = !this.isOpen;
           }}
+          onFocus={() => {
+            this.isTouched = true;
+          }}
           aria-hidden="true"
         >
 
           <span class="yeti-multiselect-placeholder" title={this.getPlaceholderDisplay()}>{this.getPlaceholderDisplay()}</span>
 
-          { (this.showClear) ? 
+          { (this.showClear && this.numSelections > 0) ? 
 
             (<button class="yeti-multiselect-puck" title="Clear all selections" onClick={ (ev) => { this.handleClearSelections(ev); ev.preventDefault() }}>
               <span class="material-icons yeti-multiselect-puck-icon" aria-hidden="true">cancel</span>

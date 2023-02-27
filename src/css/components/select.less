@@ -26,7 +26,7 @@ Styles for Select
     opacity: 1;
     outline: 2px solid #0000;
     outline-offset: -2px;
-    padding: 0 3rem 0 1rem;
+    padding: 0 2rem 0 1rem;
     transition: outline 70ms cubic-bezier(.2,0,.38,.9);
 
     appearance: none;
@@ -35,6 +35,8 @@ Styles for Select
     background-repeat: no-repeat;
     background-size: 1em 1em;
     width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .yeti-select:focus {

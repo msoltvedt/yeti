@@ -13,7 +13,7 @@ yeti-date-picker {
 }
 .yeti-date {
     position: relative;
-    width: 18rem;
+    width: clamp(4rem, 100%, 18rem);
     display: inline-flex;
     align-items: center;
 }
@@ -22,7 +22,9 @@ yeti-date-picker {
 
 /************************************** Field and Icon ***/
 .yeti-date-field {
-    padding: 0 3rem 0 1rem;
+    padding: 0 0 0 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .yeti-date-field::placeholder {
     color: #161616;

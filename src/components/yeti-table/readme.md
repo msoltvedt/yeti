@@ -15,6 +15,21 @@
 | `tableId`    | `table-id`    |             | `string`            | `utils.generateUniqueId()`                                                                                                                                                                                                                                                                                                         |
 
 
+## Dependencies
+
+### Depends on
+
+- [yeti-date-picker](../yeti-date-picker)
+- [yeti-multiselect](../yeti-multiselect)
+
+### Graph
+```mermaid
+graph TD;
+  yeti-table --> yeti-date-picker
+  yeti-table --> yeti-multiselect
+  style yeti-table fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

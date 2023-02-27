@@ -29,6 +29,8 @@ export class YetiDatePicker {
     reflect: true
   }) value: string = '';
 
+  @Prop() labelledBy: string = "";
+
   @Prop() describedBy: string = "";
 
   @Watch('value')
@@ -123,6 +125,7 @@ export class YetiDatePicker {
 
 
   handleIconClick(ev) {
+    this.isTouched = true;
     this.isPickerVisible = !this.isPickerVisible;
     this.pickerJustOpened = true;
     ev.preventDefault();
@@ -152,6 +155,7 @@ export class YetiDatePicker {
 
         case "ArrowLeft": {
 
+            ev.preventDefault();
             this.cursorDate.setDate( this.cursorDate.getDate() - 1 );
             this.iLoveJSX = !this.iLoveJSX;
             break;
@@ -160,6 +164,7 @@ export class YetiDatePicker {
 
         case "ArrowRight": {
 
+            ev.preventDefault();
             this.cursorDate.setDate( this.cursorDate.getDate() + 1 );
             this.iLoveJSX = !this.iLoveJSX;
             break;
@@ -168,6 +173,7 @@ export class YetiDatePicker {
 
         case "ArrowUp": {
 
+            ev.preventDefault();
             this.cursorDate.setDate( this.cursorDate.getDate() - 7 );
             this.iLoveJSX = !this.iLoveJSX;
             break;
@@ -176,6 +182,7 @@ export class YetiDatePicker {
 
         case "ArrowDown": {
 
+            ev.preventDefault();
             this.cursorDate.setDate( this.cursorDate.getDate() + 7 );
             this.iLoveJSX = !this.iLoveJSX;
             break;
@@ -433,6 +440,7 @@ export class YetiDatePicker {
                 aria-invalid={!this.isValid}
                 placeholder="mm/dd/yyyy"
                 autocomplete="off"
+                {...((this.labelledBy != "") ? {"aria-labelledBy": this.labelledBy} : {})}
                 {...((this.describedBy != "") ? {"aria-describedby": this.describedBy} : {})}
             />
 
@@ -452,6 +460,7 @@ export class YetiDatePicker {
                             <button class="yeti-date-picker-action-button yeti-date-picker-action-button-first" onClick={(ev) => {
                                 this.cursorDatePreviousYear();
                                 ev.preventDefault();
+                                ev.stopPropagation();
                             }}>
                                 <span class="yeti-a11y-hidden">Previous year</span>
                                 <span class="material-icons" aria-hidden="true" title="Previous year">keyboard_double_arrow_left</span>
@@ -462,6 +471,7 @@ export class YetiDatePicker {
                             <button class="yeti-date-picker-action-button" onClick={(ev) => {
                                 this.cursorDatePreviousMonth();
                                 ev.preventDefault();
+                                ev.stopPropagation();
                             }}>
                                 <span class="yeti-a11y-hidden">Previous month</span>
                                 <span class="material-icons" aria-hidden="true" title="Previous month">keyboard_arrow_left</span>
@@ -472,6 +482,7 @@ export class YetiDatePicker {
                             <button class="yeti-date-picker-action-button" onClick={(ev) => {
                                 this.cursorDateNextMonth();
                                 ev.preventDefault();
+                                ev.stopPropagation();
                             }}>
                                 <span class="yeti-a11y-hidden">Next month</span>
                                 <span class="material-icons" aria-hidden="true" title="Next month">keyboard_arrow_right</span>
@@ -482,6 +493,7 @@ export class YetiDatePicker {
                             <button class="yeti-date-picker-action-button" onClick={(ev) => {
                                 this.cursorDateNextYear();
                                 ev.preventDefault();
+                                ev.stopPropagation();
                             }}>
                                 <span class="yeti-a11y-hidden">Next year</span>
                                 <span class="material-icons" aria-hidden="true" title="Next year">keyboard_double_arrow_right</span>
@@ -494,7 +506,7 @@ export class YetiDatePicker {
 
 
                 <table class="yeti-date-calendar" role="grid" aria-labelledby="heading"
-                onKeyUp={(ev) => { this.handleCalendarKeydown(ev) }}>
+                onKeyDown={(ev) => { this.handleCalendarKeydown(ev) }}>
 
                     <thead>
                         <tr>

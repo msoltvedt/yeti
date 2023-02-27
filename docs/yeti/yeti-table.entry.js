@@ -47,9 +47,19 @@ const YetiTable = class {
   handlePaginationUpdate() {
     this.iLoveJSX = !this.iLoveJSX; // this.render() doesn't work, and there's no this.forceUpdate() in Stencil
   }
-  componentWillLoad() {
-    this.watchContentsHandler(this.contents);
-    this.setHeadingColumnIndices();
+  handleReadyToVerify(ev) {
+    let targetGeneric = ev.target;
+    let columnIndex = parseInt(targetGeneric.getAttribute("data-column"));
+    switch (targetGeneric.nodeName.toLowerCase()) {
+      case "yeti-date-picker":
+        let picker = ev.target;
+        this.handleDateFilterChange(picker, columnIndex);
+        return;
+      case "yeti-multiselect":
+        let multiselect = ev.target;
+        this.handleMultiselectFilterChange(multiselect, columnIndex);
+        return;
+    }
   }
   isValidTableData(data) {
     // Verify that the supplied data is in the correct format.
@@ -67,19 +77,37 @@ const YetiTable = class {
   setHeadingColumnIndices() {
     this.contents.head.rows.forEach((row, rowIndex) => {
       row.rowIndex = rowIndex;
-      row.cells.forEach((cell, cellIindex) => {
-        cell.columnIndex = cellIindex;
+      row.cells.forEach((cell, cellIndex) => {
+        cell.columnIndex = cellIndex;
+      });
+    });
+  }
+  setBodyColumnIndices() {
+    this.contents.body.rows.forEach((row, rowIndex) => {
+      row.rowIndex = rowIndex;
+      row.cells.forEach((cell, cellIndex) => {
+        cell.columnIndex = cellIndex;
       });
     });
   }
   setSortableOnCellsOtherThanTheOneWithThisIndex(columnIndex) {
-    let cells = this.contents.head.rows[0].cells;
-    for (let i = 0, cell = cells[0]; i < cells.length; i++, cell = cells[i]) {
-      cell.sortDirection = (cell.columnIndex == columnIndex) ? cell.sortDirection : "unsorted";
+    let ths = this.contents.head.rows[0].cells;
+    for (let i = 0, th = ths[0]; i < ths.length; i++, th = ths[i]) {
+      if (th.sortDirection) {
+        th.sortDirection = (th.columnIndex == columnIndex) ? th.sortDirection : "unsorted";
+      }
     }
   }
+  setDefaultFilterValues() {
+    this.contents.head.rows.forEach((row) => {
+      row.cells.forEach((cell) => {
+        if (cell.filtering && !cell.filtering.value) {
+          cell.filtering.value = "";
+        }
+      });
+    });
+  }
   handleSort(cell) {
-    //let directionToSortIsAscending: boolean = (cell.sortDirection != "ascending") ? true : false;
     this.contents.body.rows.sort((a, b) => {
       // Get values to sort on.
       let aValue = a.cells[cell.columnIndex].value;
@@ -137,14 +165,113 @@ const YetiTable = class {
     this.setSortableOnCellsOtherThanTheOneWithThisIndex(cell.columnIndex);
     this.iLoveJSX = !this.iLoveJSX; // this.render() doesn't work, and there's no this.forceUpdate() in Stencil
   }
+  handleTextFilterChange(input, columnIndex) {
+    this.contents.head.rows[0].cells[columnIndex].filtering.value = input.value;
+    this.iLoveJSX = !this.iLoveJSX;
+  }
+  handleSelectFilterChange(select, columnIndex) {
+    this.contents.head.rows[0].cells[columnIndex].filtering.value = (select.selectedIndex == 0) ? "" : select.value;
+    this.iLoveJSX = !this.iLoveJSX;
+  }
+  handleDateFilterChange(picker, columnIndex) {
+    this.contents.head.rows[0].cells[columnIndex].filtering.value = picker.value;
+    this.iLoveJSX = !this.iLoveJSX;
+  }
+  handleMultiselectFilterChange(multiselect, columnIndex) {
+    this.contents.head.rows[0].cells[columnIndex].filtering.value = multiselect.value;
+    this.iLoveJSX = !this.iLoveJSX;
+  }
+  doesRowPassFiltering(row) {
+    // Checks to see if this row should be filtered out or if it's safe to show. Returns true or false.
+    // Check to see if each cell in the row passes filtering.
+    for (let i = 0; i < row.cells.length; i++) {
+      if (!this.doesCellPassFiltering(row.cells[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+  doesCellPassFiltering(cell) {
+    // Checks to see if this cell matches its heading's filters (if they exist).
+    let th = this.contents.head.rows[0].cells[cell.columnIndex];
+    // First see if filtering is even a thing for this column. If it isn't, we're good.
+    if (th.filtering && th.filtering.isFilterable) {
+      let filterValue = th.filtering.value;
+      // It depends on what type of filter (text, select, date, or multiselect) it is.
+      switch (th.filtering.type) {
+        case "text": {
+          if (cell.value.indexOf(filterValue) >= 0) {
+            return true;
+          }
+          else {
+            return false;
+          }
+        }
+        case "select": {
+          if (cell.value.indexOf(filterValue) >= 0 || filterValue == "") {
+            return true;
+          }
+          else {
+            return false;
+          }
+        }
+        case "date": {
+          if (filterValue == "") {
+            return true;
+          }
+          else if (new Date(filterValue).getTime() == new Date(cell.value).getTime()) {
+            return true;
+          }
+          else {
+            return false;
+          }
+        }
+        case "multiselect": {
+          // First, see if there are no values selected at all, in which case we pass.
+          if (filterValue == "") {
+            return true;
+            // Second, see if the cell's value is in the array.
+          }
+          else {
+            let filterValuesArray = filterValue.split(",");
+            return filterValuesArray.includes(cell.value);
+          }
+        }
+        default:
+          console.error("Error in table data: unexpected filtering type supplied.");
+          return false;
+      }
+      // There's no filtering, so it passes by default.
+    }
+    else {
+      return true;
+    }
+  }
   renderCell(cell) {
     let css = (cell.cssClass && cell.cssClass != '') ? ' ' + cell.cssClass : '';
     cell.id = (cell.id) ? cell.id : utils.generateUniqueId();
     if (cell.isHeading) {
+      return this.renderTableHeading(cell);
+    }
+    else {
+      return h("td", { class: 'yeti-table-cell' + css, key: cell.id }, cell.value);
+    }
+  }
+  renderTableHeading(cell) {
+    let css = (cell.cssClass && cell.cssClass != '') ? ' ' + cell.cssClass : '';
+    // First double-check it's a th
+    if (!cell.isHeading) {
+      console.error("Error rendering table cell: expected th, got td.");
+      return;
+      // It's a th
+    }
+    else {
+      let headingLabelId = utils.generateUniqueId();
       // It's a th, see if it's sortable or not.
       if (cell.sortDirection) {
         // It's a sortable column heading.
         let sortableHeading;
+        let filter = "";
         let a11yText;
         let iconKey;
         cell.sortDirection = cell.sortDirection.toLowerCase();
@@ -161,18 +288,70 @@ const YetiTable = class {
             a11yText = "Sortable";
             iconKey = "unfold_more";
         }
+        // See if it's sortable and filterable
+        if (cell.filtering && cell.filtering.isFilterable) {
+          filter =
+            h("div", { class: "yeti-table-heading-filter" }, this.renderTableHeadingFilter(cell, headingLabelId));
+        }
         sortableHeading =
-          h("th", { class: "yeti-table-heading yeti-table-sortable" }, h("div", { class: "yeti-table-heading-compound" }, h("button", { class: "yeti-table-heading-button", onClick: () => { this.handleSort(cell); } }, h("div", { class: "yeti-table-heading-button-label" }, cell.value), h("span", { class: "yeti-table-heading-button-icon" }, h("span", { class: "yeti-a11y-hidden" }, a11yText), h("span", { class: "material-icons", "aria-hidden": "true", title: a11yText }, iconKey)))));
+          h("th", { class: `yeti-table-heading ${css}` }, h("div", { class: "yeti-table-heading-compound" }, h("button", { class: "yeti-table-heading-button", onClick: () => { this.handleSort(cell); } }, h("div", { class: "yeti-table-heading-button-label", id: headingLabelId }, cell.value), h("span", { class: "yeti-table-heading-button-icon" }, h("span", { class: "yeti-a11y-hidden" }, a11yText), h("span", { class: "material-icons", "aria-hidden": "true", title: a11yText }, iconKey))), filter ? filter : ""));
         return sortableHeading;
+        // See if it's filterable but not sortable.
+      }
+      else if (cell.filtering && cell.filtering.isFilterable) {
+        return h("th", { class: 'yeti-table-heading' + css, key: cell.id }, h("div", { class: "yeti-table-heading-compound" }, h("div", { class: "yeti-table-heading-compound-actual", id: headingLabelId }, cell.value), h("div", { class: "yeti-table-heading-filter" }, this.renderTableHeadingFilter(cell, headingLabelId))));
+        // It must be a simple column heading.
       }
       else {
         // It's a simple column heading.
         return h("th", { class: 'yeti-table-heading' + css, key: cell.id }, cell.value);
       }
     }
-    else {
-      // It's a td.
-      return h("td", { class: 'yeti-table-cell' + css, key: cell.id }, cell.value);
+  }
+  renderTableHeadingFilter(cell, headingLabelId) {
+    // Returns the JSX for the appropriate filter object (text, select, date picker, or multiselect)
+    switch (cell.filtering.type) {
+      case "text":
+        return h("input", { type: "text", value: this.contents.head.rows[0].cells[cell.columnIndex].filtering.value, class: "yeti-input yeti-table-heading-filter-input", onKeyUp: (ev) => {
+            let that = ev.target;
+            this.handleTextFilterChange(that, cell.columnIndex);
+          }, "aria-labelledby": headingLabelId });
+      case "select":
+        let selectOptions = [];
+        // See if the multiselect options are supplied (they must be)
+        if (cell.filtering.options && cell.filtering.options.length > 0) {
+          for (let i = 0; i < cell.filtering.options.length; i++) {
+            selectOptions.push(h("option", null, cell.filtering.options[i]));
+          }
+          // Contents doesn't have options specified, but they're required. Error out.
+        }
+        else {
+          console.error("Error in table select filter: no options supplied.");
+          return false;
+        }
+        return h("select", { class: "yeti-select yeti-table-heading-filter-input", onChange: (ev) => {
+            let that = ev.target;
+            this.handleSelectFilterChange(that, cell.columnIndex);
+          }, "aria-labelledby": headingLabelId }, h("option", null, "-Any-"), selectOptions);
+      case "date":
+        return h("yeti-date-picker", { "data-column": cell.columnIndex, "labelled-by": headingLabelId });
+      case "multiselect":
+        let multiselectOptions = [];
+        // See if the multiselect options are supplied (they must be)
+        if (cell.filtering.options && cell.filtering.options.length > 0) {
+          for (let i = 0; i < cell.filtering.options.length; i++) {
+            multiselectOptions.push(h("yeti-multiselect-option", null, cell.filtering.options[i]));
+          }
+          // Contents doesn't have options specified, but they're required. Error out.
+        }
+        else {
+          console.error("Error in table multiselect filter: no options supplied.");
+          return false;
+        }
+        return h("yeti-multiselect", { placeholder: "-Any-", "data-column": cell.columnIndex, "labelled-by": headingLabelId }, multiselectOptions);
+      default:
+        console.error("Error rendering table filter: unexpected filtering type requested:", cell.filtering.type);
+        return "";
     }
   }
   renderRow(row) {
@@ -184,12 +363,27 @@ const YetiTable = class {
   }
   renderRows(rowStartIndex = 0, rowEndIndex = this.contents.body.rows.length - 1) {
     let tbodyContents = [];
+    let rowsThatPassFiltering = 0;
     for (let i = rowStartIndex; i <= rowEndIndex; i++) {
       const row = this.contents.body.rows[i];
-      row.id = (row.id) ? row.id : utils.generateUniqueId();
-      tbodyContents.push(h("tr", { class: "yeti-table-body-row", key: row.id }, this.renderRow(row)));
+      if (this.doesRowPassFiltering(row)) {
+        ++rowsThatPassFiltering;
+        row.id = (row.id) ? row.id : utils.generateUniqueId();
+        tbodyContents.push(h("tr", { class: "yeti-table-body-row", key: row.id }, this.renderRow(row)));
+      }
     }
-    return tbodyContents;
+    // If there's still at least one row to render...
+    if (rowsThatPassFiltering > 0) {
+      return tbodyContents;
+    }
+    // Otherwise, render a placeholder row.
+    return h("tr", { class: "yeti-table-body-row" }, h("td", { class: "yeti-table-cell", colSpan: this.contents.head.rows[0].cells.length }, "No matches"));
+  }
+  componentWillLoad() {
+    this.watchContentsHandler(this.contents);
+    this.setHeadingColumnIndices();
+    this.setBodyColumnIndices();
+    this.setDefaultFilterValues();
   }
   render() {
     let cssClass = 'yeti-table';

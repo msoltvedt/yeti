@@ -115,7 +115,15 @@ export interface YetiTableCell {
   sortDirection?: string, // "ascending" | "descending" | "unsorted"
   id?: string,
   value: string,
-  columnIndex?: number
+  columnIndex?: number,
+  filtering?: YetiTableFilterObject
+}
+
+export interface YetiTableFilterObject {
+  isFilterable: boolean,
+  type?: string // "text" | "date" | "select" | "multiselect"
+  options?: string[],
+  value?: string
 }
 
 export interface YetiMultiselectOption {

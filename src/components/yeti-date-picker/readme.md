@@ -14,6 +14,7 @@
 | `inputId`     | `input-id`     |             | `string`  | `utils.generateUniqueId()` |
 | `inputName`   | `input-name`   |             | `string`  | `this.inputId`             |
 | `isValid`     | `is-valid`     |             | `boolean` | `undefined`                |
+| `labelledBy`  | `labelled-by`  |             | `string`  | `""`                       |
 | `required`    | `required`     |             | `boolean` | `false`                    |
 | `value`       | `value`        |             | `string`  | `''`                       |
 
@@ -30,11 +31,13 @@
 ### Used by
 
  - [yeti-field](../yeti-field)
+ - [yeti-table](../yeti-table)
 
 ### Graph
 ```mermaid
 graph TD;
   yeti-field --> yeti-date-picker
+  yeti-table --> yeti-date-picker
   style yeti-date-picker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
