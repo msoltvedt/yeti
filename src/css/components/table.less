@@ -325,9 +325,6 @@ Styles for Table
 
 
 /************************************** Filtering ***/
-.yeti-table-head-row:has(.yeti-table-heading-filter) {
-    //height: 6rem;
-}
 .yeti-table-heading-filter {
     display: flex;
     align-items: center;
@@ -337,6 +334,10 @@ Styles for Table
 }
 .yeti-table-numeric .yeti-table-heading-filter {
     justify-content: flex-end;
+}
+
+.yeti-table-heading-filter > * {
+    flex: 1 1 auto;
 }
 
 .yeti-table-heading-compound-actual {

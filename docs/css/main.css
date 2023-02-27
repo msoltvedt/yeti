@@ -5411,6 +5411,9 @@ Styles for Table
   .yeti-table-numeric .yeti-table-heading-filter {
     justify-content: flex-end;
   }
+  .yeti-table-heading-filter > * {
+    flex: 1 1 auto;
+  }
   .yeti-table-heading-compound-actual {
     padding-top: 0.25rem;
     overflow: hidden;
