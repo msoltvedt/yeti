@@ -57,8 +57,11 @@ task('startup', series(
 ));
 task('startup').description = 'Cleans, sets up, and otherwise initilizes www directory; starts watcher';
 
-task(updateGithubPages);
-updateGithubPages.description = 'Updates the /docs folder in preparation for updating the GitHub Pages site';
+task('updateGitHubPages', series(
+    task('cleanDocs'),
+    pushToDocs
+));
+task('updateGitHubPages').description = 'Updates the /docs folder in preparation for updating the GitHub Pages site';
 
 
 /************* Function Definitions */
@@ -129,7 +132,7 @@ function publishExamplesJS(cb) {
         .pipe(gulp.dest('www/examples/'));
 }
 
-function updateGithubPages(cb) {
+function pushToDocs(cb) {
     return gulp.src( ['www/examples/**/*'] )
         .pipe(gulp.dest('docs/'));
 }
