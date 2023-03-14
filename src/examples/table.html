@@ -25,210 +25,6 @@
 
 
 
-        <h3 class="margin-bottom-2">Filterable</h3>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-    
-<table class="yeti-table yeti-table__fixed">
-
-    <thead class="yeti-table-head">
-
-        <tr class="yeti-table-head-row">
-
-            <th class="yeti-table-heading">
-
-                <div class="yeti-table-heading-compound">
-
-                    <button class="yeti-table-heading-button">
-
-                        <div class="yeti-table-heading-button-label">Text Filter Table Heading That Is Long Enough That It Wraps</div>
-
-                        <span class="yeti-table-heading-button-icon">
-                            <span class="yeti-a11y-hidden">Sorted ascending</span>
-                            <span class="material-icons" aria-hidden="true" title="Sorted ascending">expand_less</span>
-                        </span>
-
-                    </button>
-
-
-                    <div class="yeti-table-heading-filter">
-                        <input type="text" class="yeti-input yeti-table-heading-filter-input">
-                    </div>
-
-                </div>
-
-            </th>
-
-
-            <th class="yeti-table-heading">
-
-                <div class="yeti-table-heading-compound">
-
-                    <button class="yeti-table-heading-button">
-
-                        <div class="yeti-table-heading-button-label">Select Filter</div>
-
-                        <span class="yeti-table-heading-button-icon">
-                            <span class="yeti-a11y-hidden">Sortable</span>
-                            <span class="material-icons" aria-hidden="true" title="Sortable">unfold_more</span>
-                        </span>
-
-                    </button>
-
-
-                    <div class="yeti-table-heading-filter">
-                        <select class="yeti-select yeti-table-heading-filter-input">
-                            <option>B1</option>
-                            <option>B2</option>
-                            <option>B3</option>
-                        </select>
-                    </div>
-
-                </div>
-
-            </th>
-
-
-            <th class="yeti-table-heading">
-
-                <div class="yeti-table-heading-compound">
-
-                    <button class="yeti-table-heading-button">
-
-                        <div class="yeti-table-heading-button-label">Date Filter</div>
-
-                        <span class="yeti-table-heading-button-icon">
-                            <span class="yeti-a11y-hidden">Sortable</span>
-                            <span class="material-icons" aria-hidden="true" title="Sortable">unfold_more</span>
-                        </span>
-
-                    </button>
-
-
-                    <div class="yeti-table-heading-filter">
-                        <div class="yeti-date">
-                            <input type="text" class="yeti-input yeti-date-field" id="yid1" name="yid1" placeholder="mm/dd/yyyy" autocomplete="off"><button class="yeti-date-button" aria-label="Choose date"><span class="material-icons yeti-date-button-icon" aria-hidden="true">calendar_today</span></button>
-                        </div>
-                    </div>
-
-                </div>
-
-            </th>
-
-
-            <th class="yeti-table-heading">
-
-                <div class="yeti-table-heading-compound">
-
-                    <button class="yeti-table-heading-button">
-
-                        <div class="yeti-table-heading-button-label">Multiselect Filter</div>
-
-                        <span class="yeti-table-heading-button-icon">
-                            <span class="yeti-a11y-hidden">Sortable</span>
-                            <span class="material-icons" aria-hidden="true" title="Sortable">unfold_more</span>
-                        </span>
-
-                    </button>
-
-
-                    <div class="yeti-table-heading-filter">
-                        <yeti-multiselect placeholder="-Any-">
-                            <yeti-multiselect-option>D1</yeti-multiselect-option>
-                        </yeti-multiselect>
-                    </div>
-
-                </div>
-
-            </th>
-
-
-            <th class="yeti-table-heading">
-
-                <div class="yeti-table-heading-compound">
-
-                    <div class="yeti-table-heading-compound-actual">Filterable but Unsortable</div>
-
-
-                    <div class="yeti-table-heading-filter">
-                        <yeti-multiselect placeholder="-Any-">
-                            <yeti-multiselect-option>D1</yeti-multiselect-option>
-                        </yeti-multiselect>
-                    </div>
-
-                </div>
-
-            </th>
-
-
-            <th class="yeti-table-heading">
-
-                <div class="yeti-table-heading-compound">
-
-                    <button class="yeti-table-heading-button">
-
-                        <div class="yeti-table-heading-button-label">Sortable but Unfilterable</div>
-
-                        <span class="yeti-table-heading-button-icon">
-                            <span class="yeti-a11y-hidden">Sortable</span>
-                            <span class="material-icons" aria-hidden="true" title="Sortable">unfold_more</span>
-                        </span>
-
-                    </button>
-
-                </div>
-
-            </th>
-
-
-            <th class="yeti-table-heading">Unsortable and Unfilterable</th>
-
-        </tr>
-
-    </thead>
-
-
-    <tbody class="yeti-table-body">
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A1</td>
-            <td class="yeti-table-cell">B1</td>
-            <td class="yeti-table-cell">11/01/2022</td>
-            <td class="yeti-table-cell">D1</td>
-            <td class="yeti-table-cell">E1</td>
-            <td class="yeti-table-cell">F1</td>
-            <td class="yeti-table-cell">G1</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A2</td>
-            <td class="yeti-table-cell">B2</td>
-            <td class="yeti-table-cell">02/24/2023</td>
-            <td class="yeti-table-cell">D2</td>
-            <td class="yeti-table-cell">E2</td>
-            <td class="yeti-table-cell">F2</td>
-            <td class="yeti-table-cell">G2</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A3</td>
-            <td class="yeti-table-cell">B3</td>
-            <td class="yeti-table-cell">03/06/2023</td>
-            <td class="yeti-table-cell">D3</td>
-            <td class="yeti-table-cell">E3</td>
-            <td class="yeti-table-cell">F3</td>
-            <td class="yeti-table-cell">G3</td>
-        </tr>
-
-    </tbody>
-
-</table>
-
-        </div><!-- /code_sample -->
-
-
-
         <h3 class="margin-bottom-2">Default</h3>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
@@ -266,6 +62,44 @@
 
         <tr class="yeti-table-body-row">
             <td class="yeti-table-cell">A3</td>
+            <td class="yeti-table-cell">B3</td>
+            <td class="yeti-table-cell">C3</td>
+            <td class="yeti-table-cell">D3</td>
+        </tr>
+
+    </tbody>
+
+</table>
+
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-2">With Row Headings</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+    
+<table class="yeti-table">
+
+    <tbody class="yeti-table-body">
+
+        <tr class="yeti-table-body-row">
+            <th class="yeti-table-heading" scope="row">A1</th>
+            <td class="yeti-table-cell">B1</td>
+            <td class="yeti-table-cell">C1</td>
+            <td class="yeti-table-cell">D1</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <th class="yeti-table-heading" scope="row">A2</th>
+            <td class="yeti-table-cell">B2</td>
+            <td class="yeti-table-cell">C2</td>
+            <td class="yeti-table-cell">D2</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <th class="yeti-table-heading" scope="row">A3</th>
             <td class="yeti-table-cell">B3</td>
             <td class="yeti-table-cell">C3</td>
             <td class="yeti-table-cell">D3</td>
@@ -869,6 +703,210 @@
             <td class="yeti-table-cell">B3</td>
             <td class="yeti-table-cell yeti-table-numeric">24</td>
             <td class="yeti-table-cell">D3</td>
+        </tr>
+
+    </tbody>
+
+</table>
+
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-2">Filterable</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+    
+<table class="yeti-table yeti-table__fixed">
+
+    <thead class="yeti-table-head">
+
+        <tr class="yeti-table-head-row">
+
+            <th class="yeti-table-heading">
+
+                <div class="yeti-table-heading-compound">
+
+                    <button class="yeti-table-heading-button">
+
+                        <div class="yeti-table-heading-button-label">Text Filter Table Heading That Is Long Enough That It Wraps</div>
+
+                        <span class="yeti-table-heading-button-icon">
+                            <span class="yeti-a11y-hidden">Sorted ascending</span>
+                            <span class="material-icons" aria-hidden="true" title="Sorted ascending">expand_less</span>
+                        </span>
+
+                    </button>
+
+
+                    <div class="yeti-table-heading-filter">
+                        <input type="text" class="yeti-input yeti-table-heading-filter-input">
+                    </div>
+
+                </div>
+
+            </th>
+
+
+            <th class="yeti-table-heading">
+
+                <div class="yeti-table-heading-compound">
+
+                    <button class="yeti-table-heading-button">
+
+                        <div class="yeti-table-heading-button-label">Select Filter</div>
+
+                        <span class="yeti-table-heading-button-icon">
+                            <span class="yeti-a11y-hidden">Sortable</span>
+                            <span class="material-icons" aria-hidden="true" title="Sortable">unfold_more</span>
+                        </span>
+
+                    </button>
+
+
+                    <div class="yeti-table-heading-filter">
+                        <select class="yeti-select yeti-table-heading-filter-input">
+                            <option>B1</option>
+                            <option>B2</option>
+                            <option>B3</option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </th>
+
+
+            <th class="yeti-table-heading">
+
+                <div class="yeti-table-heading-compound">
+
+                    <button class="yeti-table-heading-button">
+
+                        <div class="yeti-table-heading-button-label">Date Filter</div>
+
+                        <span class="yeti-table-heading-button-icon">
+                            <span class="yeti-a11y-hidden">Sortable</span>
+                            <span class="material-icons" aria-hidden="true" title="Sortable">unfold_more</span>
+                        </span>
+
+                    </button>
+
+
+                    <div class="yeti-table-heading-filter">
+                        <div class="yeti-date">
+                            <input type="text" class="yeti-input yeti-date-field" id="yid0" name="yid0" placeholder="mm/dd/yyyy" autocomplete="off"><button class="yeti-date-button" aria-label="Choose date"><span class="material-icons yeti-date-button-icon" aria-hidden="true">calendar_today</span></button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </th>
+
+
+            <th class="yeti-table-heading">
+
+                <div class="yeti-table-heading-compound">
+
+                    <button class="yeti-table-heading-button">
+
+                        <div class="yeti-table-heading-button-label">Multiselect Filter</div>
+
+                        <span class="yeti-table-heading-button-icon">
+                            <span class="yeti-a11y-hidden">Sortable</span>
+                            <span class="material-icons" aria-hidden="true" title="Sortable">unfold_more</span>
+                        </span>
+
+                    </button>
+
+
+                    <div class="yeti-table-heading-filter">
+                        <yeti-multiselect placeholder="-Any-">
+                            <yeti-multiselect-option>D1</yeti-multiselect-option>
+                        </yeti-multiselect>
+                    </div>
+
+                </div>
+
+            </th>
+
+
+            <th class="yeti-table-heading">
+
+                <div class="yeti-table-heading-compound">
+
+                    <div class="yeti-table-heading-compound-actual">Filterable but Unsortable</div>
+
+
+                    <div class="yeti-table-heading-filter">
+                        <yeti-multiselect placeholder="-Any-">
+                            <yeti-multiselect-option>D1</yeti-multiselect-option>
+                        </yeti-multiselect>
+                    </div>
+
+                </div>
+
+            </th>
+
+
+            <th class="yeti-table-heading">
+
+                <div class="yeti-table-heading-compound">
+
+                    <button class="yeti-table-heading-button">
+
+                        <div class="yeti-table-heading-button-label">Sortable but Unfilterable</div>
+
+                        <span class="yeti-table-heading-button-icon">
+                            <span class="yeti-a11y-hidden">Sortable</span>
+                            <span class="material-icons" aria-hidden="true" title="Sortable">unfold_more</span>
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </th>
+
+
+            <th class="yeti-table-heading">Unsortable and Unfilterable</th>
+
+        </tr>
+
+    </thead>
+
+
+    <tbody class="yeti-table-body">
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A1</td>
+            <td class="yeti-table-cell">B1</td>
+            <td class="yeti-table-cell">11/01/2022</td>
+            <td class="yeti-table-cell">D1</td>
+            <td class="yeti-table-cell">E1</td>
+            <td class="yeti-table-cell">F1</td>
+            <td class="yeti-table-cell">G1</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A2</td>
+            <td class="yeti-table-cell">B2</td>
+            <td class="yeti-table-cell">02/24/2023</td>
+            <td class="yeti-table-cell">D2</td>
+            <td class="yeti-table-cell">E2</td>
+            <td class="yeti-table-cell">F2</td>
+            <td class="yeti-table-cell">G2</td>
+        </tr>
+
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">A3</td>
+            <td class="yeti-table-cell">B3</td>
+            <td class="yeti-table-cell">03/06/2023</td>
+            <td class="yeti-table-cell">D3</td>
+            <td class="yeti-table-cell">E3</td>
+            <td class="yeti-table-cell">F3</td>
+            <td class="yeti-table-cell">G3</td>
         </tr>
 
     </tbody>

@@ -116,19 +116,33 @@ export interface YetiTableCell {
   id?: string,
   value: string,
   columnIndex?: number,
-  filtering?: YetiTableFilterObject
+  rowIndex?: number,
+  filtering?: YetiTableFilterObject,
+  rowActions?: YetiTableRowAction[],
+  scope?: string // "col" (default) | "row"
 }
 
 export interface YetiTableFilterObject {
   isFilterable: boolean,
+  isClearCell: boolean,
   type?: string // "text" | "date" | "select" | "multiselect"
   options?: string[],
   value?: string
 }
 
+export interface YetiTableRowAction {
+  label: string,
+  href?: string
+}
+
 export interface YetiMultiselectOption {
   selected: boolean,
   label: string
+}
+
+export interface YetiMenuButtonOption {
+  label: string,
+  href?: string
 }
 
 let uniqueId = 0;

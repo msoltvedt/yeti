@@ -53,6 +53,18 @@ export namespace Components {
         "required": boolean;
         "value": string;
     }
+    interface YetiMenuButton {
+        "buttonCSS": string;
+        "buttonId": string;
+        "describedBy": string;
+        "labelledBy": string;
+        "menuAlignment": string;
+        "menuCSS": string;
+        "menuId": string;
+        "tooltipText": string;
+        "value": string;
+        "wrapperCSS": string;
+    }
     interface YetiMultiselect {
         "actualId": string;
         "cssClass": string;
@@ -83,6 +95,14 @@ export namespace Components {
         "records": number;
         "startIndex": number;
     }
+    interface YetiTooltip {
+        "position": string;
+        "slotId": string;
+        "text": string;
+        "tipId": string;
+        "tooltipCSS": string;
+        "wrapperCSS": string;
+    }
 }
 export interface YetiDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -92,9 +112,17 @@ export interface YetiInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLYetiInputElement;
 }
+export interface YetiMenuButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLYetiMenuButtonElement;
+}
 export interface YetiMultiselectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLYetiMultiselectElement;
+}
+export interface YetiTableCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLYetiTableElement;
 }
 export interface YetiTablePaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -125,6 +153,12 @@ declare global {
         prototype: HTMLYetiInputElement;
         new (): HTMLYetiInputElement;
     };
+    interface HTMLYetiMenuButtonElement extends Components.YetiMenuButton, HTMLStencilElement {
+    }
+    var HTMLYetiMenuButtonElement: {
+        prototype: HTMLYetiMenuButtonElement;
+        new (): HTMLYetiMenuButtonElement;
+    };
     interface HTMLYetiMultiselectElement extends Components.YetiMultiselect, HTMLStencilElement {
     }
     var HTMLYetiMultiselectElement: {
@@ -149,15 +183,23 @@ declare global {
         prototype: HTMLYetiTablePaginationElement;
         new (): HTMLYetiTablePaginationElement;
     };
+    interface HTMLYetiTooltipElement extends Components.YetiTooltip, HTMLStencilElement {
+    }
+    var HTMLYetiTooltipElement: {
+        prototype: HTMLYetiTooltipElement;
+        new (): HTMLYetiTooltipElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
         "yeti-date-picker": HTMLYetiDatePickerElement;
         "yeti-field": HTMLYetiFieldElement;
         "yeti-input": HTMLYetiInputElement;
+        "yeti-menu-button": HTMLYetiMenuButtonElement;
         "yeti-multiselect": HTMLYetiMultiselectElement;
         "yeti-table": HTMLYetiTableElement;
         "yeti-table-actions": HTMLYetiTableActionsElement;
         "yeti-table-pagination": HTMLYetiTablePaginationElement;
+        "yeti-tooltip": HTMLYetiTooltipElement;
     }
 }
 declare namespace LocalJSX {
@@ -210,6 +252,19 @@ declare namespace LocalJSX {
         "required"?: boolean;
         "value"?: string;
     }
+    interface YetiMenuButton {
+        "buttonCSS"?: string;
+        "buttonId"?: string;
+        "describedBy"?: string;
+        "labelledBy"?: string;
+        "menuAlignment"?: string;
+        "menuCSS"?: string;
+        "menuId"?: string;
+        "onMenuButtonChange"?: (event: YetiMenuButtonCustomEvent<any>) => void;
+        "tooltipText"?: string;
+        "value"?: string;
+        "wrapperCSS"?: string;
+    }
     interface YetiMultiselect {
         "actualId"?: string;
         "cssClass"?: string;
@@ -228,6 +283,7 @@ declare namespace LocalJSX {
     interface YetiTable {
         "contents"?: YetiTableContents;
         "isValid"?: boolean;
+        "onRowActionClick"?: (event: YetiTableCustomEvent<any>) => void;
         "tableClass"?: string;
         "tableId"?: string;
     }
@@ -243,15 +299,25 @@ declare namespace LocalJSX {
         "records"?: number;
         "startIndex"?: number;
     }
+    interface YetiTooltip {
+        "position"?: string;
+        "slotId"?: string;
+        "text"?: string;
+        "tipId"?: string;
+        "tooltipCSS"?: string;
+        "wrapperCSS"?: string;
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
         "yeti-date-picker": YetiDatePicker;
         "yeti-field": YetiField;
         "yeti-input": YetiInput;
+        "yeti-menu-button": YetiMenuButton;
         "yeti-multiselect": YetiMultiselect;
         "yeti-table": YetiTable;
         "yeti-table-actions": YetiTableActions;
         "yeti-table-pagination": YetiTablePagination;
+        "yeti-tooltip": YetiTooltip;
     }
 }
 export { LocalJSX as JSX };
@@ -262,10 +328,12 @@ declare module "@stencil/core" {
             "yeti-date-picker": LocalJSX.YetiDatePicker & JSXBase.HTMLAttributes<HTMLYetiDatePickerElement>;
             "yeti-field": LocalJSX.YetiField & JSXBase.HTMLAttributes<HTMLYetiFieldElement>;
             "yeti-input": LocalJSX.YetiInput & JSXBase.HTMLAttributes<HTMLYetiInputElement>;
+            "yeti-menu-button": LocalJSX.YetiMenuButton & JSXBase.HTMLAttributes<HTMLYetiMenuButtonElement>;
             "yeti-multiselect": LocalJSX.YetiMultiselect & JSXBase.HTMLAttributes<HTMLYetiMultiselectElement>;
             "yeti-table": LocalJSX.YetiTable & JSXBase.HTMLAttributes<HTMLYetiTableElement>;
             "yeti-table-actions": LocalJSX.YetiTableActions & JSXBase.HTMLAttributes<HTMLYetiTableActionsElement>;
             "yeti-table-pagination": LocalJSX.YetiTablePagination & JSXBase.HTMLAttributes<HTMLYetiTablePaginationElement>;
+            "yeti-tooltip": LocalJSX.YetiTooltip & JSXBase.HTMLAttributes<HTMLYetiTooltipElement>;
         }
     }
 }

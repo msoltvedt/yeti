@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Watch, Element, Listen } from '@stencil/core';
+import { Component, Prop, h, State, Watch, Element, Event, EventEmitter, Listen } from '@stencil/core';
 import { utils, YetiTableContents, YetiTableRow, YetiTableCell } from '../../utils/utils';
 import { YetiDatePicker } from '../yeti-date-picker/yeti-date-picker';
 import { YetiMultiselect } from '../yeti-multiselect/yeti-multiselect';
@@ -11,6 +11,8 @@ import { YetiMultiselect } from '../yeti-multiselect/yeti-multiselect';
 export class YetiTable {
 
   @Element() el: HTMLElement;
+
+  @Event({ bubbles: true }) rowActionClick: EventEmitter;
 
   @Prop() tableClass: string = '';
 
@@ -72,8 +74,10 @@ export class YetiTable {
   @Listen('readyToVerifySlow')
   @Listen('readyToVerifyFast')
   handleReadyToVerify(ev) {
+
     let targetGeneric = ev.target as HTMLElement;
     let columnIndex = parseInt(targetGeneric.getAttribute("data-column"));
+
     switch (targetGeneric.nodeName.toLowerCase()) {
 
       case "yeti-date-picker":
@@ -88,6 +92,20 @@ export class YetiTable {
         this.handleMultiselectFilterChange(multiselect, columnIndex);
         return;
     }
+  }
+
+  @Listen('menuButtonChange')
+  handleMenuButtonChange(ev) {
+
+    let menuButton = ev.target;
+    let newValue = ev.detail.newValue;
+    let rowIndex = menuButton.getAttribute("data-row-index");
+
+    this.rowActionClick.emit({
+      "rowIndex": rowIndex,
+      "actionLabel": newValue
+    });
+    
   }
 
 
@@ -112,6 +130,12 @@ export class YetiTable {
 
 
   setHeadingColumnIndices() {
+    
+    // First check if there even is a head.
+    if (!this.contents.head || !this.contents.head.rows || !(this.contents.head.rows.length > 0)) {
+      return;
+    }
+
     this.contents.head.rows.forEach((row, rowIndex) => {
       row.rowIndex = rowIndex;
 
@@ -129,6 +153,7 @@ export class YetiTable {
 
       row.cells.forEach((cell, cellIndex) => {
         cell.columnIndex = cellIndex;
+        cell.rowIndex = rowIndex;
       })
     })
   }
@@ -153,9 +178,13 @@ export class YetiTable {
 
 
   setDefaultFilterValues() {
+    if (!this.contents.head || !this.contents.head.rows || !(this.contents.head.rows.length > 0)) {
+      return;
+    }
+
     this.contents.head.rows.forEach((row) => {
       row.cells.forEach((cell) => {
-        if (cell.filtering && !cell.filtering.value) {
+        if (cell.filtering) {
           cell.filtering.value = "";
         }
       })
@@ -268,6 +297,13 @@ export class YetiTable {
 
 
 
+  handleClearAllFilters() {
+    this.setDefaultFilterValues();
+    this.iLoveJSX = !this.iLoveJSX;
+  }
+
+
+
   doesRowPassFiltering(row: YetiTableRow) {
     // Checks to see if this row should be filtered out or if it's safe to show. Returns true or false.
 
@@ -285,6 +321,12 @@ export class YetiTable {
 
   doesCellPassFiltering(cell: YetiTableCell) {
     // Checks to see if this cell matches its heading's filters (if they exist).
+
+    // Row heading only tables can't have filtering, so pass them.
+    if (!this.contents.head || !this.contents.head.rows || !(this.contents.head.rows.length > 0)) {
+      return true;
+    }
+
     let th = this.contents.head.rows[0].cells[cell.columnIndex];
 
     // First see if filtering is even a thing for this column. If it isn't, we're good.
@@ -358,20 +400,109 @@ export class YetiTable {
 
   renderCell(cell: YetiTableCell) {
 
-    let css = (cell.cssClass && cell.cssClass != '') ? ' ' + cell.cssClass : '';
-
     cell.id = (cell.id) ? cell.id : utils.generateUniqueId();
 
+    // See if it's a filter clear cell
+    if (cell.filtering && cell.filtering.isClearCell) {
+
+      return this.renderFilterClearCell(cell);
+    }
+
+    // See if it's a row actions cell
+    if (cell.rowActions) {
+
+      return this.renderRowActionsCell(cell);
+
+    }
+
+    // See if it's a th
     if (cell.isHeading) {
 
       return this.renderTableHeading(cell);
 
+    // It must be a td
     } else {
+
+      let css = (cell.cssClass && cell.cssClass != '') ? ' ' + cell.cssClass : '';
 
       return <td class={'yeti-table-cell' + css} key={cell.id}>{cell.value}</td>
 
     }
 
+  }
+
+
+
+  renderRowActionsCell(cell: YetiTableCell) {
+
+    let css = (cell.cssClass && cell.cssClass != "") ? 
+      "yeti-table-cell yeti-table-control yeti-table-cell-row_actions" + cell.cssClass : 
+      "yeti-table-cell yeti-table-control yeti-table-cell-row_actions";
+
+    let control;
+
+    // Handle the case where there are no actions for this row.
+    if (cell.rowActions.length <= 0) {
+      return <td class={css} key={cell.id}></td>
+    }
+
+    // Otherwise there are actions for this row.
+    else {
+      let actions = [];
+
+      for (let i = 0; i < cell.rowActions.length; i++) {
+
+        let action;
+
+        if (cell.rowActions[i].href) {
+          action = <yeti-menu-button-option href={cell.rowActions[i].href}>{cell.rowActions[i].label}</yeti-menu-button-option>
+        } else {
+          action = <yeti-menu-button-option>{cell.rowActions[i].label}</yeti-menu-button-option>
+        }
+
+        actions.push(action);
+      }
+
+      control = <yeti-menu-button menu-alignment="right" data-row-index={cell.rowIndex} tooltipText="Row actions">{actions}</yeti-menu-button>
+
+      return <td class={css} key={cell.id}>{control}</td>
+      
+    }
+  }
+
+
+
+  renderFilterClearCell(cell: YetiTableCell) {
+
+    let css = (cell.cssClass && cell.cssClass != "") ? 
+      " " + cell.cssClass : 
+      "";
+
+    let control = <yeti-tooltip text="Clear filters">
+      <button 
+        class="yeti-table-filter-clear-button" 
+        onClick={() => { this.handleClearAllFilters(); }} 
+        aria-label="Clear all filters">
+        
+        <span class="material-icons" aria-hidden="true">cancel</span>
+        
+      </button>
+    </yeti-tooltip>
+
+    let atLeastOneFilterActive = false;
+
+    if (this.contents.head && this.contents.head.rows && this.contents.head.rows.length > 0) {
+      for (let i = 0; i < this.contents.head.rows[0].cells.length; i++) {
+        let cell = this.contents.head.rows[0].cells[i] as YetiTableCell;
+        if (cell.filtering && cell.filtering.value && cell.filtering.value != "") {
+          atLeastOneFilterActive = true;
+          break;
+        }
+      }
+    }
+
+    return <td class={`yeti-table-heading yeti-table-cell-clear ${css}`} key={cell.id}>{(atLeastOneFilterActive) ? control : ""}</td>
+      
   }
 
 
@@ -434,7 +565,7 @@ export class YetiTable {
         }
 
         sortableHeading =
-          <th class={`yeti-table-heading ${css}`}>
+          <th class={`yeti-table-heading ${css}`} scope={(cell.scope && cell.scope == "row") ? "row" : "col"}>
 
             <div class="yeti-table-heading-compound">
 
@@ -460,7 +591,7 @@ export class YetiTable {
       // See if it's filterable but not sortable.
       } else if (cell.filtering && cell.filtering.isFilterable) {
 
-        return <th class={'yeti-table-heading' + css} key={cell.id}>
+        return <th class={'yeti-table-heading' + css} key={cell.id} scope={(cell.scope && cell.scope == "row") ? "row" : "col"}>
 
           <div class="yeti-table-heading-compound">
 
@@ -481,7 +612,7 @@ export class YetiTable {
       } else {
 
         // It's a simple column heading.
-        return <th class={'yeti-table-heading' + css} key={cell.id}>{cell.value}</th>
+        return <th class={'yeti-table-heading' + css} key={cell.id} scope={(cell.scope && cell.scope == "row") ? "row" : "col"}>{cell.value}</th>
 
       }
 
@@ -492,13 +623,14 @@ export class YetiTable {
   
   renderTableHeadingFilter(cell: YetiTableCell, headingLabelId: string) {
     // Returns the JSX for the appropriate filter object (text, select, date picker, or multiselect)
+
     switch (cell.filtering.type) {
 
       case "text":
 
         return <input 
           type="text" 
-          value={this.contents.head.rows[0].cells[cell.columnIndex].filtering.value} 
+          value={cell.filtering.value} 
           class="yeti-input yeti-table-heading-filter-input" 
           onKeyUp={(ev) => {
             let that = ev.target as HTMLInputElement;
@@ -515,8 +647,16 @@ export class YetiTable {
         if (cell.filtering.options && cell.filtering.options.length > 0) {
 
           for (let i = 0; i < cell.filtering.options.length; i++) {
+
+            // Set selected state based on the filtering value
+            // First handle the case where the filtering value is empty (default).
+            let selected = (i == 0 && cell.filtering.value == "") ? true : false;
+
+            // Second handle the case where the filtering value matches this label.
+            selected = (cell.filtering.options[i] == cell.filtering.value) ? true : false;
+
             selectOptions.push(
-              <option>{cell.filtering.options[i]}</option>
+              <option selected={selected}>{cell.filtering.options[i]}</option>
             )
           }
 
@@ -542,7 +682,7 @@ export class YetiTable {
 
       case "date":
 
-        return <yeti-date-picker data-column={cell.columnIndex} labelled-by={headingLabelId}></yeti-date-picker>;
+        return <yeti-date-picker key={utils.generateUniqueId()} data-column={cell.columnIndex} labelled-by={headingLabelId} value={cell.filtering.value}></yeti-date-picker>;
 
 
       case "multiselect":
@@ -567,10 +707,11 @@ export class YetiTable {
         }
 
         return <yeti-multiselect 
-          placeholder="-Any-" 
-          data-column={cell.columnIndex}
-          labelled-by={headingLabelId}>
-              {multiselectOptions}
+            placeholder="-Any-" 
+            data-column={cell.columnIndex}
+            labelled-by={headingLabelId}
+            value={cell.filtering.value}>
+                {multiselectOptions}
           </yeti-multiselect>
 
 
@@ -670,6 +811,7 @@ export class YetiTable {
       
       <table class={cssClass}>
 
+        {( this.contents.head && this.contents.head.rows && this.contents.head.rows.length > 0) ?
         <thead class="yeti-table-head">
 
           <tr class="yeti-table-head-row">
@@ -683,6 +825,8 @@ export class YetiTable {
           </tr>
 
         </thead>
+
+        : ''}
 
 
         <tbody class="yeti-table-body">

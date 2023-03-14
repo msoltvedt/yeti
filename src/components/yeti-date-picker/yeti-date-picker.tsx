@@ -52,8 +52,6 @@ export class YetiDatePicker {
 
   }
 
-
-
   @State() isTouched: boolean = false;
 
   @State() cursorDate: Date = new Date(); // Defaults to today, but we'll set it to selected if possible
@@ -104,9 +102,10 @@ export class YetiDatePicker {
         this.isTouched = true;
     } else if (ev.key == "Tab" &&
                ev.target.classList.contains('yeti-date-button') &&
-               !this.isPickerVisible) {
+               !this.isPickerVisible &&
+               !ev.shiftKey) {
         
-        // User tabbed from the icon while the picker was closed, which moves focus out of the component entirely.
+        // User normal-tabbed from the icon while the picker was closed, which moves focus out of the component entirely.
         this.isTouched = true;
         this.watchInputValue();
     }
@@ -114,6 +113,7 @@ export class YetiDatePicker {
 
   keepFocusOnButton: boolean = false;
 
+  pickerHeading: string = utils.generateUniqueId();
 
 
   handleFieldBlur(ev) {
@@ -402,14 +402,26 @@ export class YetiDatePicker {
     if (this.isPickerVisible) {
 
         let td = this.el.querySelector('.yeti-date-calendar-day[tabindex="0"]') as HTMLElement;
+        let picker = this.el.querySelector('.yeti-date-picker') as HTMLElement;
+
         if (td && !this.keepFocusOnButton) {
+            td.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest"
+            })
             td.focus();
         }
 
         if (this.keepFocusOnButton) {
             this.keepFocusOnButton = false;
         }
+
+        picker.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
     }
+    
   }
 
 
@@ -452,7 +464,7 @@ export class YetiDatePicker {
 
                 <div class="yeti-date-picker-header">
 
-                    <h2 class="yeti-date-picker-heading" aria-live="polite" id="heading">{utils.getMonthName(this.cursorDate)} {this.cursorDate.getFullYear()}</h2>
+                    <h2 class="yeti-date-picker-heading" aria-live="polite" id={this.pickerHeading}>{utils.getMonthName(this.cursorDate)} {this.cursorDate.getFullYear()}</h2>
 
                     <ul class="yeti-date-picker-actions">
 
@@ -505,7 +517,7 @@ export class YetiDatePicker {
                 </div>
 
 
-                <table class="yeti-date-calendar" role="grid" aria-labelledby="heading"
+                <table class="yeti-date-calendar" role="grid" aria-labelledby={this.pickerHeading}
                 onKeyDown={(ev) => { this.handleCalendarKeydown(ev) }}>
 
                     <thead>

@@ -110,6 +110,240 @@
         
 
 
+        <h3 class="margin-bottom-2">With Row Headings</h3>
+
+        <p class="margin-bottom-2">
+            Provide the table data by setting the <code>contents</code> attribute with JSON matching the <a href="#yetiTableContents"><code>YetiTableContents</code> interface</a>.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+    
+<yeti-table id="rowHeadingsTable"></yeti-table>
+
+<script type="module">
+    const rowHeadingsTable = document.getElementById('rowHeadingsTable');
+    rowHeadingsTable.contents = {
+        /*"head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Heading 1"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Heading 2"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Heading 3"
+                        },
+                        {
+                            "isHeading": "true",
+                            "cssClass": "yeti-table-numeric",
+                            "value": "A Number"
+                        }
+                    ]
+                }
+            ]
+        },*/
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "Cell 1",
+                            "isHeading": true,
+                            "scope": "row"
+                        },
+                        {
+                            "value": "Cell 2"
+                        },
+                        {
+                            "value": "Cell 3"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "22"
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Cell 2-1",
+                            "isHeading": true,
+                            "scope": "row"
+                        },
+                        {
+                            "value": "Cell 2-2"
+                        },
+                        {
+                            "value": "Cell 2-3"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "42"
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+</script>
+
+        </div><!-- /code_sample -->
+        
+
+
+        <h3 class="margin-bottom-2">Row Actions</h3>
+
+        <p class="margin-bottom-2">
+            Row actions are a special kind of table body cell as shown below. A <code>rowActionClick</code> event is fired when the user selects an action, and the <code>event.detail</code> provides the <code>rowIndex</code> and <code>actionValue</code>.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+    
+<yeti-table id="rowActionsTable"></yeti-table>
+
+<script type="module">
+    const rowActionsTable = document.getElementById('rowActionsTable');
+    rowActionsTable.contents = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Heading 1"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Heading 2"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Heading 3"
+                        },
+                        {
+                            "isHeading": "true",
+                            "cssClass": "yeti-table-numeric",
+                            "value": "A Number"
+                        },
+                        {
+                            "value": ""
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "Cell 1"
+                        },
+                        {
+                            "value": "Cell 2"
+                        },
+                        {
+                            "value": "Cell 3"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "22"
+                        },
+                        {
+                            "rowActions": [
+                                {
+                                    "label": "Go to CD",
+                                    "href": "http://creeksidedigital.com/"
+                                },
+                                {
+                                    "label": "Edit"
+                                },
+                                {
+                                    "label": "Go to LOC",
+                                    "href": "https://www.loc.gov/"
+                                },
+                                {
+                                    "label": "Delete"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Cell 2-1"
+                        },
+                        {
+                            "value": "Cell 2-2"
+                        },
+                        {
+                            "value": "Cell 2-3"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "42"
+                        },
+                        {
+                            "rowActions": [
+                                {
+                                    "label": "Go to CD",
+                                    "href": "http://creeksidedigital.com/"
+                                },
+                                {
+                                    "label": "Export"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Cell 3-1"
+                        },
+                        {
+                            "value": "Cell 3-2"
+                        },
+                        {
+                            "value": "Cell 3-3"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "64"
+                        },
+                        {
+                            "rowActions": []
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+
+    
+
+    rowActionsTable.addEventListener('rowActionClick', (ev) => {
+        alert(`${ev.detail.actionLabel} row ${ev.detail.rowIndex}.`);
+        console.log(ev.target.contents.body.rows[ev.detail.rowIndex]);
+    });
+
+</script>
+
+        </div><!-- /code_sample -->
+        
+
+
         <h3 class="margin-bottom-2">Pagination</h3>
 
         <p class="margin-bottom-2">
@@ -711,6 +945,7 @@
 </script>
 
         </div><!-- /code_sample -->
+        
 
 
         <h3 class="margin-bottom-2">Complex</h3>
@@ -753,7 +988,6 @@
                         {
                             "isHeading": "true",
                             "value": "Date Filter and Sortable",
-                            "cssClass": "yeti-table-grid-1",
                             "sortDirection": "unsorted",
                             "filtering": {
                                 "isFilterable": true,
@@ -789,8 +1023,10 @@
                             }
                         },
                         {
-                            "isHeading": "true",
-                            "value": "Unsortable and Unfilterable"
+                            "filtering": {
+                                "isClearCell": true
+                            },
+                            "value": ""
                         }
                     ]
                 }
@@ -821,7 +1057,7 @@
                             "value": "Thin"
                         },
                         {
-                            "value": "Bake well"
+                            "value": ""
                         }
                     ]
                 },
@@ -847,7 +1083,7 @@
                             "value": "Pan"
                         },
                         {
-                            "value": "Ireland only"
+                            "value": ""
                         }
                     ]
                 },
@@ -873,7 +1109,7 @@
                             "value": "Hand-tossed"
                         },
                         {
-                            "value": "Cut square"
+                            "value": ""
                         }
                     ]
                 }

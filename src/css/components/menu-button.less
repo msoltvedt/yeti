@@ -1,0 +1,139 @@
+/************************************** menu-button.less ***************************************
+
+Styles for Menu Button
+
+*************************************** menu-button.less **************************************/
+
+
+
+/************************************** Wrapper ***/
+.yeti-menu_button {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+}
+
+.yeti-menu_button__open::after {
+    /* Shiv to cover up the drop-shadow that shouldn't be shown between the button and the menu */
+    content: '';
+    width: 100%;
+    height: 0.25rem;
+    background-color: #f4f4f4;
+    z-index: 3;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.yeti-menu_button__open:has(.yeti-menu_button-button:hover)::after {
+    background-color: #e8e8e8;
+}
+.yeti-menu_button__open:has(.yeti-menu_button-button:focus)::after {
+    background-color: #0f62fe;
+    height: 0.125rem;
+}
+
+
+
+/************************************** Button ***/
+.yeti-menu_button-button {
+    .yeti-mixin-button-vanilla();
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    line-height: 1.28572;
+    padding: 0.5rem;
+    outline: 2px solid #0000;
+    outline-offset: -2px;
+    background: none;
+}
+
+.yeti-menu_button__open .yeti-menu_button-button,
+.yeti-menu_button-button:hover {
+    background-color: #8d8d8d1f;
+}
+
+.yeti-menu_button__open .yeti-menu_button-button {
+    background-color: #f4f4f4;
+    box-shadow: 0 2px 6px #0000004d;
+}
+
+
+
+/************************************** Menu ***/
+.yeti-menu_button-menu {
+    position: absolute;
+    top: 100%;
+    z-index: 2;
+    background-color: #f4f4f4;
+    box-shadow: 0 2px 6px #0000004d;
+    left: 0;
+    list-style: none;
+    position: absolute;
+    top: 100%;
+    width: 10rem;
+}
+.yeti-menu_button__open .yeti-menu_button-menu {
+    display: block;
+}
+.yeti-menu_button:not(.yeti-menu_button__open) .yeti-menu_button-menu {
+    display: none;
+}
+
+.yeti-menu_button-right_aligned .yeti-menu_button-menu {
+    left: unset;
+    right: 0;
+}
+
+
+
+/************************************** Menu Items ***/
+.yeti-menu_button-menu-item {
+    //align-items: center;
+    background-color: #0000;
+    //display: flex;
+    display: block;
+    height: 2.5rem;
+    padding: 0;
+    transition: background-color .11s cubic-bezier(0,0,.38,.9);
+    width: 100%;
+}
+
+.yeti-menu_button-menu-item-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.yeti-menu_button-menu-item-button {
+    .yeti-mixin-button-vanilla();
+    background-color: transparent;
+    text-align: left;
+}
+
+.yeti-menu_button-menu-item-button,
+.yeti-menu_button-menu-item-link {
+    min-width: 0;
+    width: 100%;
+    height: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0.6875rem 1rem;
+    display: block;
+    font-size: 0.875rem;
+    line-height: 1.28572;
+}
+
+.yeti-menu_button-button:hover,
+.yeti-menu_button-menu-item:hover {
+    background-color: #e5e5e5;
+}
+
+.yeti-menu_button-button:focus,
+.yeti-menu_button-menu-item-link:focus,
+.yeti-menu_button-menu-item-button:focus {
+    outline: 2px solid #0f62fe;
+    outline-offset: -2px;
+}

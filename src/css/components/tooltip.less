@@ -1,0 +1,126 @@
+/************************************** tooltip.less ***************************************
+
+Styles for Tooltip
+
+*************************************** tooltip.less **************************************/
+
+
+
+/************************************** Wrapper ***/
+.yeti-tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+
+
+/************************************** Slotted Content */
+.yeti-tooltip-slot {
+    display: inline-block;
+}
+
+
+
+/************************************** Actual ***/
+.yeti-tooltip {
+    min-width: min-content;
+    max-width: 18rem;
+    width: max-content;
+
+    min-height: min-content;
+    max-height: 7rem;
+    height: max-content;
+
+    background-color: #393939;
+    color: white;
+    position: absolute;
+    display: block;
+    padding: 1rem;
+
+    font-size: .875rem;
+    font-weight: 400;
+    letter-spacing: 0.01rem;
+    line-height: 1.42857;
+}
+
+.yeti-tooltip-wrapper:not(:is(:focus-within, *:hover)) .yeti-tooltip {
+    .yeti-a11y-hidden();
+}
+
+
+/*** Content ***/
+.yeti-tooltip-content {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
+
+
+/*** Caret ***/
+.yeti-tooltip::after {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #393939;
+    display: block;
+    position: absolute;
+}
+
+
+
+/************************************** Positioning */
+
+/*** Above or Below ***/
+.yeti-tooltip:not(.yeti-tooltip-left, .yeti-tooltip-right) {
+    left: 50%;
+    translate: -50%;
+}
+.yeti-tooltip:not(.yeti-tooltip-left, .yeti-tooltip-right)::after {
+    left: 50%;
+}
+
+/* Above */
+.yeti-tooltip:not(.yeti-tooltip-left, .yeti-tooltip-right, .yeti-tooltip-below) {
+    bottom: calc(100% + 0.5rem);
+}
+.yeti-tooltip:not(.yeti-tooltip-left, .yeti-tooltip-right, .yeti-tooltip-below)::after {
+    top: 100%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* Below */
+.yeti-tooltip-below {
+    top: calc(100% + 0.5rem);
+}
+.yeti-tooltip-below::after {
+    bottom: 100%;
+    transform: translate(-50%, 50%) rotate(45deg);
+}
+
+/*** Left or Right ***/
+.yeti-tooltip:is(.yeti-tooltip-left, .yeti-tooltip-right) {
+    top: 50%;
+    translate: 0 -50%;
+}
+.yeti-tooltip:is(.yeti-tooltip-left, .yeti-tooltip-right)::after {
+    top: 50%;
+}
+
+/* Left */
+.yeti-tooltip-left {
+    right: calc(100% + 0.5rem);
+}
+.yeti-tooltip-left::after {
+    left: 100%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* Right */
+.yeti-tooltip-right {
+    left: calc(100% + 0.5rem);
+}
+.yeti-tooltip-right::after {
+    right: 100%;
+    transform: translate(50%, -50%) rotate(45deg);
+}

@@ -54,7 +54,6 @@ Styles for Table
 .yeti-table-head {
     background-color: #e0e0e0;
     font-size: 0.875rem;
-    font-weight: 600;
     letter-spacing: 0.01rem;
     line-height: 1.42857;
 }
@@ -63,13 +62,17 @@ Styles for Table
     height: 3rem;
 }
 
+.yeti-table-heading {
+    font-weight: 600;
+}
+
 .yeti-table-heading:not(:has(.yeti-table-heading-compound)) {
     vertical-align: bottom;
     padding-top: 0.875rem;
     padding-bottom: 0.875rem;
 }
 
-.yeti-table-heading {
+:not(.yeti-table-body) .yeti-table-heading {
     vertical-align: bottom;
 }
 
@@ -102,6 +105,10 @@ Styles for Table
     padding-bottom: 0.8125rem;
     padding-top: 0.8125rem;
     height: 3rem;
+}
+
+.yeti-table-body .yeti-table-heading,
+.yeti-table-cell {
     vertical-align: middle;
 }
 
@@ -345,4 +352,38 @@ Styles for Table
     overflow: hidden;
     text-overflow: ellipsis;
     min-height: 2.5rem;
+}
+
+.yeti-table-cell-clear,
+.yeti-table-heading.yeti-table-cell-clear {
+    padding-bottom: 0.25rem;
+    padding-top: 0.25rem;
+}
+
+.yeti-table-filter-clear-button {
+    .yeti-mixin-button-vanilla();
+    border: 0;
+    background: 0;
+    padding: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+}
+
+.yeti-table-filter-clear-button:focus {
+    .yeti-mixin-focus-default();
+}
+
+.yeti-table-filter-clear-button:hover {
+    background-color: #d1d1d1;
+}
+
+
+
+/************************************** Row Actions ***/
+.yeti-table-cell-row_actions {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
 }
