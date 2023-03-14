@@ -1,4 +1,4 @@
-import { r as registerInstance, e as createEvent, h, g as getElement } from './index-77339656.js';
+import { r as registerInstance, e as createEvent, h, g as getElement } from './index-63c9e11c.js';
 import { u as utils } from './utils-a407a515.js';
 
 const YetiDatePicker = class {
@@ -6,6 +6,7 @@ const YetiDatePicker = class {
     registerInstance(this, hostRef);
     this.readyToVerifySlow = createEvent(this, "readyToVerifySlow", 7);
     this.keepFocusOnButton = false;
+    this.pickerHeading = utils.generateUniqueId();
     this.inputClass = '';
     this.inputId = utils.generateUniqueId();
     this.inputName = this.inputId;
@@ -67,8 +68,9 @@ const YetiDatePicker = class {
     }
     else if (ev.key == "Tab" &&
       ev.target.classList.contains('yeti-date-button') &&
-      !this.isPickerVisible) {
-      // User tabbed from the icon while the picker was closed, which moves focus out of the component entirely.
+      !this.isPickerVisible &&
+      !ev.shiftKey) {
+      // User normal-tabbed from the icon while the picker was closed, which moves focus out of the component entirely.
       this.isTouched = true;
       this.watchInputValue();
     }
@@ -260,12 +262,21 @@ const YetiDatePicker = class {
     // Set the focus on either the selected date or today's date, in that order of preference.
     if (this.isPickerVisible) {
       let td = this.el.querySelector('.yeti-date-calendar-day[tabindex="0"]');
+      let picker = this.el.querySelector('.yeti-date-picker');
       if (td && !this.keepFocusOnButton) {
+        td.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest"
+        });
         td.focus();
       }
       if (this.keepFocusOnButton) {
         this.keepFocusOnButton = false;
       }
+      picker.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
     }
   }
   render() {
@@ -276,7 +287,7 @@ const YetiDatePicker = class {
     if (this.isValid == false) {
       cssClasses += ' yeti-input__error';
     }
-    return (h("div", { class: "yeti-date" }, h("input", Object.assign({ type: "text", class: cssClasses, id: this.inputId, name: this.inputName, value: this.value, onBlur: (ev) => this.handleFieldBlur(ev), "aria-invalid": !this.isValid, placeholder: "mm/dd/yyyy", autocomplete: "off" }, ((this.labelledBy != "") ? { "aria-labelledBy": this.labelledBy } : {}), ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {}))), h("button", { class: "yeti-date-button", "aria-label": this.getIconButtonLabel(), onClick: (ev) => { this.handleIconClick(ev); } }, h("span", { class: "material-icons yeti-date-button-icon", "aria-hidden": "true" }, "calendar_today")), h("div", { class: (this.isPickerVisible) ? "yeti-date-picker yeti-date-picker__visible" : "yeti-date-picker" }, h("div", { class: "yeti-date-picker-header" }, h("h2", { class: "yeti-date-picker-heading", "aria-live": "polite", id: "heading" }, utils.getMonthName(this.cursorDate), " ", this.cursorDate.getFullYear()), h("ul", { class: "yeti-date-picker-actions" }, h("li", { class: "yeti-date-picker-action" }, h("button", { class: "yeti-date-picker-action-button yeti-date-picker-action-button-first", onClick: (ev) => {
+    return (h("div", { class: "yeti-date" }, h("input", Object.assign({ type: "text", class: cssClasses, id: this.inputId, name: this.inputName, value: this.value, onBlur: (ev) => this.handleFieldBlur(ev), "aria-invalid": !this.isValid, placeholder: "mm/dd/yyyy", autocomplete: "off" }, ((this.labelledBy != "") ? { "aria-labelledBy": this.labelledBy } : {}), ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {}))), h("button", { class: "yeti-date-button", "aria-label": this.getIconButtonLabel(), onClick: (ev) => { this.handleIconClick(ev); } }, h("span", { class: "material-icons yeti-date-button-icon", "aria-hidden": "true" }, "calendar_today")), h("div", { class: (this.isPickerVisible) ? "yeti-date-picker yeti-date-picker__visible" : "yeti-date-picker" }, h("div", { class: "yeti-date-picker-header" }, h("h2", { class: "yeti-date-picker-heading", "aria-live": "polite", id: this.pickerHeading }, utils.getMonthName(this.cursorDate), " ", this.cursorDate.getFullYear()), h("ul", { class: "yeti-date-picker-actions" }, h("li", { class: "yeti-date-picker-action" }, h("button", { class: "yeti-date-picker-action-button yeti-date-picker-action-button-first", onClick: (ev) => {
         this.cursorDatePreviousYear();
         ev.preventDefault();
         ev.stopPropagation();
@@ -292,7 +303,7 @@ const YetiDatePicker = class {
         this.cursorDateNextYear();
         ev.preventDefault();
         ev.stopPropagation();
-      } }, h("span", { class: "yeti-a11y-hidden" }, "Next year"), h("span", { class: "material-icons", "aria-hidden": "true", title: "Next year" }, "keyboard_double_arrow_right"))))), h("table", { class: "yeti-date-calendar", role: "grid", "aria-labelledby": "heading", onKeyDown: (ev) => { this.handleCalendarKeydown(ev); } }, h("thead", null, h("tr", null, h("th", { class: "yeti-date-calendar-heading", abbr: "Sunday" }, "Su"), h("th", { class: "yeti-date-calendar-heading", abbr: "Monday" }, "Mo"), h("th", { class: "yeti-date-calendar-heading", abbr: "Tuesday" }, "Tu"), h("th", { class: "yeti-date-calendar-heading", abbr: "Wednesday" }, "We"), h("th", { class: "yeti-date-calendar-heading", abbr: "Thursday" }, "Th"), h("th", { class: "yeti-date-calendar-heading", abbr: "Friday" }, "Fr"), h("th", { class: "yeti-date-calendar-heading", abbr: "Saturday" }, "Sa"))), this.renderMonthTBody(this.cursorDate)))));
+      } }, h("span", { class: "yeti-a11y-hidden" }, "Next year"), h("span", { class: "material-icons", "aria-hidden": "true", title: "Next year" }, "keyboard_double_arrow_right"))))), h("table", { class: "yeti-date-calendar", role: "grid", "aria-labelledby": this.pickerHeading, onKeyDown: (ev) => { this.handleCalendarKeydown(ev); } }, h("thead", null, h("tr", null, h("th", { class: "yeti-date-calendar-heading", abbr: "Sunday" }, "Su"), h("th", { class: "yeti-date-calendar-heading", abbr: "Monday" }, "Mo"), h("th", { class: "yeti-date-calendar-heading", abbr: "Tuesday" }, "Tu"), h("th", { class: "yeti-date-calendar-heading", abbr: "Wednesday" }, "We"), h("th", { class: "yeti-date-calendar-heading", abbr: "Thursday" }, "Th"), h("th", { class: "yeti-date-calendar-heading", abbr: "Friday" }, "Fr"), h("th", { class: "yeti-date-calendar-heading", abbr: "Saturday" }, "Sa"))), this.renderMonthTBody(this.cursorDate)))));
   }
   get el() { return getElement(this); }
   static get watchers() { return {

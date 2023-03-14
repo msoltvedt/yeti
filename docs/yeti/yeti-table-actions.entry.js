@@ -1,4 +1,4 @@
-import { r as registerInstance, h, g as getElement } from './index-77339656.js';
+import { r as registerInstance, h, g as getElement } from './index-63c9e11c.js';
 import { u as utils } from './utils-a407a515.js';
 
 const YetiTableActions = class {

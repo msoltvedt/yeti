@@ -1,4 +1,4 @@
-import { r as registerInstance, e as createEvent, h, g as getElement } from './index-77339656.js';
+import { r as registerInstance, e as createEvent, h, g as getElement } from './index-63c9e11c.js';
 import { u as utils } from './utils-a407a515.js';
 
 const YetiMultiselect = class {
@@ -134,7 +134,6 @@ const YetiMultiselect = class {
       let option = options.item(i);
       // First, confirm this element is indeed a yeti-table-pagination-option element.
       if (option.tagName.toLowerCase() == 'yeti-multiselect-option') {
-        // Check to see if it has an all attribute, and push the string "All" if it does.
         this.options.push({
           selected: option.hasAttribute("selected"),
           label: option.innerHTML
@@ -211,11 +210,27 @@ const YetiMultiselect = class {
       this.parseOptionElements(optionElements);
     }
   }
+  componentWillRender() {
+    if (this.value == "") {
+      for (let i = 0; i < this.options.length; i++) {
+        this.options[i].selected = false;
+      }
+      this.value = "";
+      this.numSelections = 0;
+    }
+  }
   componentDidRender() {
     // If the cursor is over an option, make sure it's visible.
-    let cursorOption = this.el.querySelector(".yeti-multiselect-option__hover");
+    /*let cursorOption = this.el.querySelector(".yeti-multiselect-option__hover");
     if (cursorOption != null) {
       cursorOption.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
+    }*/
+    if (this.isOpen) {
+      let flyout = this.el.querySelector(".yeti-multiselect-flyout");
+      flyout.scrollIntoView({
         behavior: "smooth",
         block: "nearest"
       });
@@ -228,7 +243,7 @@ const YetiMultiselect = class {
       cssClasses += ' ' + this.cssClass;
     }
     if (this.isValid == false) {
-      cssClasses += ' yeti-input__error';
+      cssClasses += ' yeti-multiselect__error';
     }
     flyoutClass += (this.isOpen) ? " yeti-multiselect-flyout__open" : "";
     return ([
