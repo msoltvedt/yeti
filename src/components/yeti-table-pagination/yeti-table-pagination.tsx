@@ -1,4 +1,4 @@
-import { Component, Prop, h, Element, State, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, h, Element, State, Watch, Event, EventEmitter } from '@stencil/core';
 import { utils } from '../../utils/utils';
 
 @Component({
@@ -7,7 +7,7 @@ import { utils } from '../../utils/utils';
 })
 export class YetiTablePagination {
 
-  @Event() paginationUpdated: EventEmitter<CustomEvent>;
+  @Event() paginationUpdated: EventEmitter;
 
   @Element() el: HTMLElement;
 
@@ -17,23 +17,40 @@ export class YetiTablePagination {
 
   @Prop() records: number = 0;
 
-  @Prop({
-    reflect: true,
-    mutable: true
-  }) startIndex: number = 1;
+  @Watch('records')
+  watchRecordsHandler() {
+    this.updatePages();
+    this.updateIndices();
+  }
 
   @Prop({
     reflect: true,
     mutable: true
-  }) endIndex: number = 2;
+  }) startIndex: number = 0;
+
+  @Prop({
+    reflect: true,
+    mutable: true
+  }) recordsDisplayed: number = 0;
+
+  @Watch('recordsDisplayed')
+  watchRecordsDisplayed() {
+    this.paginationUpdated.emit({
+      "currentPage": this.selectedPage-1,
+      "recordsDisplayed": this.recordsDisplayed
+    });
+  }
 
   @State() itemsPerPageOptions: (number | string)[] = [10, 25, 50, 100, "All"];
 
   @State() selectedItemsPerPageOptionIndex: number = 0;
 
-  @State() selectedPage: number = 1;
+  @Prop({
+    reflect: true,
+    mutable: true
+  }) selectedPage: number = 1;
 
-  @State() pages: number = 3;
+  @State() pages: number = 1;
 
 
 
@@ -100,26 +117,26 @@ export class YetiTablePagination {
     // First set start index
     if (itemsPerPage == "All" || itemsPerPage > this.records) {
 
-      this.startIndex = 1;
+      this.startIndex = 0;
 
     } else {
 
-      this.startIndex = ((this.selectedPage - 1) * (itemsPerPage as number)) + 1
+      this.startIndex = ((this.selectedPage - 1) * (itemsPerPage as number));
 
     }
 
     // Second set end index
-
     if (itemsPerPage == "All" || itemsPerPage > this.records) {
 
-      this.endIndex = this.records;
+      this.recordsDisplayed = this.records;
 
     } else {
       
-      this.endIndex = Math.min(
-        (this.startIndex + (itemsPerPage as number) - 1),
-        this.records
-      );
+      this.recordsDisplayed = Math.min(
+        (this.records - this.startIndex),
+        (itemsPerPage as number)
+      )
+
     }
 
   }
@@ -140,6 +157,11 @@ export class YetiTablePagination {
     this.selectedPage = 1;
     this.updatePages();
     this.updateIndices();
+    e.preventDefault();
+    this.paginationUpdated.emit({
+      "currentPage": this.selectedPage-1,
+      "recordsDisplayed": this.recordsDisplayed
+    });
   }
 
 
@@ -147,20 +169,36 @@ export class YetiTablePagination {
   handlePageSelectChange(e: Event) {
     let select = e.target as HTMLSelectElement;
     this.selectedPage = parseInt(select.value);
+    this.updateIndices();
+    e.preventDefault();
+    this.paginationUpdated.emit({
+      "currentPage": this.selectedPage-1,
+      "recordsDisplayed": this.recordsDisplayed
+    });
   }
 
 
 
-  handlePreviousPageButtonClick() {
+  handlePreviousPageButtonClick(ev) {
     this.selectedPage = Math.max(1, this.selectedPage - 1);
     this.updateIndices();
+    ev.preventDefault();
+    this.paginationUpdated.emit({
+      "currentPage": this.selectedPage-1,
+      "recordsDisplayed": this.recordsDisplayed
+    });
   }
 
 
 
-  handleNextPageButtonClick() {
+  handleNextPageButtonClick(ev) {
     this.selectedPage = Math.min(this.pages, this.selectedPage + 1);
     this.updateIndices();
+    ev.preventDefault();
+    this.paginationUpdated.emit({
+      "currentPage": this.selectedPage-1,
+      "recordsDisplayed": this.recordsDisplayed
+    });
   }
 
 
@@ -175,11 +213,6 @@ export class YetiTablePagination {
 
     }
 
-    // Initialize pages
-    this.updatePages();
-
-    // Initialize start and end indices
-    this.updateIndices();
   }
 
 
@@ -188,11 +221,11 @@ export class YetiTablePagination {
 
     let cssClasses = 'yeti-table-pagination';
 
+    //console.warn('Pagination render()', this.el);
+
     if (this.cssClass != '') {
       cssClasses += ' ' + this.cssClass;
     }
-
-    this.paginationUpdated.emit();
 
     return (
       
@@ -215,9 +248,9 @@ export class YetiTablePagination {
 
             <span class="yeti-table-pagination-items_per_page-count">
               { 
-                this.getItemsPerPageOption() == "All" ? 
+                this.getItemsPerPageOption() == "All" || this.records == 0 ? 
                   "" 
-                  : this.startIndex + ' to ' + this.endIndex + ' of '
+                  : (this.startIndex + 1) + ' to ' + (this.startIndex + this.recordsDisplayed) /*(this.endIndex + 1)*/ + ' of '
               }
               {this.records} item{ this.records == 1 ? '' : 's'}
             </span>
@@ -226,60 +259,71 @@ export class YetiTablePagination {
 
 
         {/* Pages */}
-        <div class="yeti-table-pagination-pages">
+        {
+          (this.records > 0) ?
+          <div class="yeti-table-pagination-pages">
 
-            <label htmlFor="demo-pages" class="yeti-a11y-hidden">Page number, of {this.pages} page{this.pages == 1 ? '' : 's'}</label>
+              <label htmlFor="demo-pages" class="yeti-a11y-hidden">Page number, of {this.pages} page{this.pages == 1 ? '' : 's'}</label>
 
-            <select id="demo-pages" class="yeti-select yeti-table-pagination-pages-select" onChange={(e) => {
-              this.handlePageSelectChange(e);
-            }}>
-                {(() => {
-                  let options = [];
-                  for (let i=1; i <= this.pages; i++) {
-                    options.push(<option value={i} class="yeti-table-pagination-pages-select-page"  {...((i == this.selectedPage) && { selected: true })}>{i}</option>);
-                  }
-                  return options;
-                })()}
-            </select>
+              <select id="demo-pages" class="yeti-select yeti-table-pagination-pages-select" onChange={(e) => {
+                this.handlePageSelectChange(e);
+              }}>
+                  {(() => {
+                    let options = [];
+                    for (let i=1; i <= this.pages; i++) {
+                      options.push(<option value={i} class="yeti-table-pagination-pages-select-page"  {...((i == this.selectedPage) && { selected: true })}>{i}</option>);
+                    }
+                    return options;
+                  })()}
+              </select>
 
-            <span class="yeti-table-pagination-pages-of_pages" aria-hidden="true">of {this.pages} page{this.pages == 1 ? '' : 's'}</span>
+              <span class="yeti-table-pagination-pages-of_pages" aria-hidden="true">of {this.pages} page{this.pages == 1 ? '' : 's'}</span>
 
-            <ul class="yeti-table-pagination-pages-buttons">
+              <ul class="yeti-table-pagination-pages-buttons">
 
-                <li class="yeti-table-pagination-pages-buttons-action">
+                  <li class="yeti-table-pagination-pages-buttons-action">
 
-                    <button 
-                      class="yeti-table-pagination-pages-buttons-button"
-                      onClick={() => {this.handlePreviousPageButtonClick()}}
-                      {...((this.selectedPage == 1) && { disabled: true })}
-                    >
+                      <button 
+                        class="yeti-table-pagination-pages-buttons-button"
+                        onClick={(ev) => {this.handlePreviousPageButtonClick(ev)}}
+                        {...((this.selectedPage == 1) && { disabled: true })}
+                      >
 
-                        <span class="material-icons" aria-hidden="true">arrow_left</span>
-                        <span class="yeti-a11y-hidden">Previous page</span>
+                          <span class="material-icons" aria-hidden="true">arrow_left</span>
+                          <span class="yeti-a11y-hidden">Previous page</span>
 
-                    </button>
+                      </button>
 
-                </li>
+                  </li>
 
-                <li class="yeti-table-pagination-pages-buttons-action">
-                  
-                    <button 
-                      class="yeti-table-pagination-pages-buttons-button"
-                      onClick={() => {this.handleNextPageButtonClick()}}
-                      {...((this.selectedPage == this.pages) && { disabled: true })}
-                    >
-                        <span class="material-icons" aria-hidden="true">arrow_right</span>
-                        <span class="yeti-a11y-hidden">Next page</span>
-                    </button>
+                  <li class="yeti-table-pagination-pages-buttons-action">
+                    
+                      <button 
+                        class="yeti-table-pagination-pages-buttons-button"
+                        onClick={(ev) => {this.handleNextPageButtonClick(ev)}}
+                        {...((this.selectedPage == this.pages) && { disabled: true })}
+                      >
+                          <span class="material-icons" aria-hidden="true">arrow_right</span>
+                          <span class="yeti-a11y-hidden">Next page</span>
+                      </button>
 
-                </li>
+                  </li>
 
-            </ul>
+              </ul>
 
-        </div>
+          </div>
+          :
+          ""
+        }
         
     </nav>
     );
+  }
+
+
+  componentDidRender() {
+    //console.warn("Pagination did render.", this.el)
+    
   }
 
 }

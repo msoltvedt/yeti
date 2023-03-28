@@ -121,7 +121,10 @@ yeti-multiselect-option {
 .yeti-multiselect-flyout {
     position: absolute;
     z-index: 2;
-    width: 100%;
+    //width: 100%;
+    min-width: 100%;
+    width: fit-content;
+    max-width: 16rem;
     //transition: max-height .11s cubic-bezier(.2,0,.38,.9);
     overflow: hidden;
     max-height: 0;
@@ -130,6 +133,10 @@ yeti-multiselect-option {
     max-height: min(25rem, 60vh);
     max-height: calc(60vh - 2.5rem);
     box-shadow: 0 2px 6px #0000004d;
+}
+
+.yeti-multiselect-flyout-align-right {
+    right: 0;
 }
 
 .yeti-multiselect-options {

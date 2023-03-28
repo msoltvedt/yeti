@@ -7,20 +7,21 @@
 
 ## Properties
 
-| Property     | Attribute     | Description | Type     | Default                    |
-| ------------ | ------------- | ----------- | -------- | -------------------------- |
-| `cssClass`   | `css-class`   |             | `string` | `''`                       |
-| `endIndex`   | `end-index`   |             | `number` | `2`                        |
-| `htmlId`     | `html-id`     |             | `string` | `utils.generateUniqueId()` |
-| `records`    | `records`     |             | `number` | `0`                        |
-| `startIndex` | `start-index` |             | `number` | `1`                        |
+| Property           | Attribute           | Description | Type     | Default                    |
+| ------------------ | ------------------- | ----------- | -------- | -------------------------- |
+| `cssClass`         | `css-class`         |             | `string` | `''`                       |
+| `htmlId`           | `html-id`           |             | `string` | `utils.generateUniqueId()` |
+| `records`          | `records`           |             | `number` | `0`                        |
+| `recordsDisplayed` | `records-displayed` |             | `number` | `0`                        |
+| `selectedPage`     | `selected-page`     |             | `number` | `1`                        |
+| `startIndex`       | `start-index`       |             | `number` | `0`                        |
 
 
 ## Events
 
-| Event               | Description | Type                            |
-| ------------------- | ----------- | ------------------------------- |
-| `paginationUpdated` |             | `CustomEvent<CustomEvent<any>>` |
+| Event               | Description | Type               |
+| ------------------- | ----------- | ------------------ |
+| `paginationUpdated` |             | `CustomEvent<any>` |
 
 
 ----------------------------------------------

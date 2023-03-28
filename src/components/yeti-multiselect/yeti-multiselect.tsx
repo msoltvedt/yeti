@@ -23,6 +23,8 @@ export class YetiMultiselect {
 
   @Prop() required: boolean = false;
 
+  @Prop() menuAlignment: string = "";
+
   @Prop({
     mutable: true,
     reflect: true
@@ -377,6 +379,10 @@ export class YetiMultiselect {
 
     flyoutClass += (this.isOpen) ? " yeti-multiselect-flyout__open" : "";
 
+    if (this.menuAlignment == "right") {
+      flyoutClass += ' yeti-multiselect-flyout-align-right'
+    }
+
     return ([
       <div class="yeti-multiselect-wrapper">
 
@@ -436,7 +442,7 @@ export class YetiMultiselect {
                 let optionClass = (this.cursorPosition == i) ? "yeti-multiselect-option yeti-multiselect-option__hover" : "yeti-multiselect-option";
               
                 return (
-                  <li key={i}>
+                  <li key={utils.generateUniqueId()}>
                     <button class={optionClass} tabIndex={-1} onClick={(ev) => { this.handleOptionClick(i); ev.preventDefault(); }}>
                       <span class="yeti-multiselect-option-checkbox">
                         <span class="material-icons">{(option.selected) ? "check_box" : "check_box_outline_blank"}</span>

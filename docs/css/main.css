@@ -5738,32 +5738,32 @@ Styles for Tooltip
  *
 ****************************************************/
   /************************************** Background ***/
-  .yeti-color-background-white {
+  .yeti-color-bg-white {
     background-color: white !important;
   }
-  .yeti-color-background-red {
+  .yeti-color-bg-red {
     background-color: red !important;
   }
-  .yeti-color-background-blue {
+  .yeti-color-bg-blue {
     background-color: blue !important;
   }
-  .yeti-color-background-black {
+  .yeti-color-bg-black {
     background-color: black !important;
   }
-  .yeti-color-background-green {
+  .yeti-color-bg-green {
     background-color: green !important;
   }
   /************************************** Foreground ***/
-  .yeti-color-foreground-white {
+  .yeti-color-white {
     color: white !important;
   }
-  .yeti-color-foreground-red {
+  .yeti-color-red {
     color: red !important;
   }
-  .yeti-color-foreground-blue {
+  .yeti-color-blue {
     color: blue !important;
   }
-  .yeti-color-foreground-black {
+  .yeti-color-black {
     color: black !important;
   }
   /************************************** margin-and-padding.less ***

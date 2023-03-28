@@ -89,6 +89,10 @@ function watcher(cb) {
     watch(['src/css/**/*.less', 'src/examples/css/yeti-examples-only.less'], series(/*cleanWWWCSS,*/ yetiCSS, examplesOnlyCSS, mainCSS));
     watch('src/**/*.html', series(/*cleanWWWHTML,*/ publishHTML));
     watch(['src/examples/**/*.js', 'src/examples/**/*.mjs'], series(/*cleanWWWJS,*/ publishExamplesJS))
+
+    // Optionally update Orchestrator with dev mode on as well.
+    watch(`dist/yeti/**/*`, pasteJSToOrchestrator);
+    watch(`src/css/yeti.css`, pasteCSSToOrchestrator);
     cb();
 }
 

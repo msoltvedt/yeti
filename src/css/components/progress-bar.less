@@ -1,0 +1,100 @@
+/************************************** progress_bar.less ***************************************
+
+Styles for Progress Bar
+
+*************************************** progress_bar.less **************************************/
+
+
+
+/************************************** Variables ***/
+@progress_bar-color-complete: #24a148;
+@progress_bar-color-error: #da1e28;
+
+
+
+/************************************** Wrapper ***/
+.yeti-progress_bar {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.yeti-progress_bar:focus,
+.yeti-progress_bar:focus-within {
+    .yeti-mixin-focus-default();
+    outline-offset: 2px;
+}
+
+
+
+/************************************** Header (label + state icon) ***/
+.yeti-progress_bar-header {
+    color: #161616;
+    display: flex;
+    font-size: .875rem;
+    font-weight: 400;
+    justify-content: space-between;
+    letter-spacing: .16px;
+    line-height: 1.28572;
+    margin-bottom: 0.5rem;
+    min-width: 3rem;
+}
+
+.yeti-progress_bar-label:focus {
+    outline: none; // Will be covered by the wrapper.
+}
+
+.yeti-progress_bar-state-icon {
+    font-size: 1rem;
+}
+
+.yeti-progress_bar__complete .yeti-progress_bar-state-icon {
+    color: @progress_bar-color-complete;
+}
+
+.yeti-progress_bar__error .yeti-progress_bar-state-icon {
+    color: @progress_bar-color-error;
+}
+
+
+
+/************************************** Bar ***/
+.yeti-progress_bar-bar {
+    background-color: #f4f4f4;
+    //border: 1px solid darkgray;
+}
+
+.yeti-table .yeti-progress_bar-bar {
+    background-color: white;
+}
+
+.yeti-progress_bar-bar-actual {
+    height: 0.5rem;
+    transition: width 0.5s ease-in-out;
+}
+
+:not(.yeti-progress_bar__complete, .yeti-progress_bar__error) .yeti-progress_bar-bar-actual {
+    background-color: #0f62fe;
+}
+.yeti-progress_bar__complete .yeti-progress_bar-bar-actual {
+    background-color: @progress_bar-color-complete;
+}
+.yeti-progress_bar__error .yeti-progress_bar-bar-actual {
+    background-color: @progress_bar-color-error;
+}
+
+/*** Tip ***/
+.yeti-progress_bar-tip {
+    font-size: 0.75rem;
+    letter-spacing: .32px;
+    line-height: 1.33333;
+    margin-top: 0.5rem;
+}
+
+:not(.yeti-progress_bar__error) .yeti-progress_bar-tip {
+    color: #525252;
+}
+
+.yeti-progress_bar__error .yeti-progress_bar-tip {
+    color: @progress_bar-color-error;
+}

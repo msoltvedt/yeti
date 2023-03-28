@@ -44,6 +44,13 @@ export namespace Components {
         "tip": string;
         "type": string;
     }
+    interface YetiIcon {
+        "alt"?: string;
+        "focusable"?: boolean;
+        "iconCSS"?: string;
+        "iconCode": string;
+        "iconId"?: string;
+    }
     interface YetiInput {
         "describedBy": string;
         "inputClass": string;
@@ -73,29 +80,57 @@ export namespace Components {
         "htmlName": string;
         "isValid": boolean;
         "labelledBy": string;
+        "menuAlignment": string;
         "placeholder": string;
         "required": boolean;
         "showClear": boolean;
         "value": string;
     }
+    interface YetiProgressBar {
+        "barCSS": string;
+        "barId": string;
+        "error": boolean;
+        "helperText": string;
+        "label": string;
+        "labelCSS": string;
+        "progress": number;
+        "tooltipPosition": string;
+        "tooltipText": string;
+        "wrapperCSS": string;
+    }
     interface YetiTable {
         "contents": YetiTableContents;
-        "isValid": boolean;
+        /**
+          * Determines whether to handle filtering (true) or just note the user requested it (false).
+         */
+        "filterSelf": boolean;
+        /**
+          * Determines whether to handle pagination (true) or just note the user requested it (false).
+         */
+        "paginateSelf": boolean;
+        "records"?: number;
+        /**
+          * Determines whether to handle sorting (true) or just note the user requested it (false).
+         */
+        "sortSelf": boolean;
         "tableClass": string;
         "tableId": string;
     }
     interface YetiTableActions {
         "cssClass": string;
         "htmlId": string;
+        "useGrid": boolean;
     }
     interface YetiTablePagination {
         "cssClass": string;
-        "endIndex": number;
         "htmlId": string;
         "records": number;
+        "recordsDisplayed": number;
+        "selectedPage": number;
         "startIndex": number;
     }
     interface YetiTooltip {
+        "blockAnchor": boolean;
         "position": string;
         "slotId": string;
         "text": string;
@@ -147,6 +182,12 @@ declare global {
         prototype: HTMLYetiFieldElement;
         new (): HTMLYetiFieldElement;
     };
+    interface HTMLYetiIconElement extends Components.YetiIcon, HTMLStencilElement {
+    }
+    var HTMLYetiIconElement: {
+        prototype: HTMLYetiIconElement;
+        new (): HTMLYetiIconElement;
+    };
     interface HTMLYetiInputElement extends Components.YetiInput, HTMLStencilElement {
     }
     var HTMLYetiInputElement: {
@@ -164,6 +205,12 @@ declare global {
     var HTMLYetiMultiselectElement: {
         prototype: HTMLYetiMultiselectElement;
         new (): HTMLYetiMultiselectElement;
+    };
+    interface HTMLYetiProgressBarElement extends Components.YetiProgressBar, HTMLStencilElement {
+    }
+    var HTMLYetiProgressBarElement: {
+        prototype: HTMLYetiProgressBarElement;
+        new (): HTMLYetiProgressBarElement;
     };
     interface HTMLYetiTableElement extends Components.YetiTable, HTMLStencilElement {
     }
@@ -193,9 +240,11 @@ declare global {
         "my-component": HTMLMyComponentElement;
         "yeti-date-picker": HTMLYetiDatePickerElement;
         "yeti-field": HTMLYetiFieldElement;
+        "yeti-icon": HTMLYetiIconElement;
         "yeti-input": HTMLYetiInputElement;
         "yeti-menu-button": HTMLYetiMenuButtonElement;
         "yeti-multiselect": HTMLYetiMultiselectElement;
+        "yeti-progress-bar": HTMLYetiProgressBarElement;
         "yeti-table": HTMLYetiTableElement;
         "yeti-table-actions": HTMLYetiTableActionsElement;
         "yeti-table-pagination": HTMLYetiTablePaginationElement;
@@ -241,6 +290,13 @@ declare namespace LocalJSX {
         "tip"?: string;
         "type"?: string;
     }
+    interface YetiIcon {
+        "alt"?: string;
+        "focusable"?: boolean;
+        "iconCSS"?: string;
+        "iconCode"?: string;
+        "iconId"?: string;
+    }
     interface YetiInput {
         "describedBy"?: string;
         "inputClass"?: string;
@@ -273,6 +329,7 @@ declare namespace LocalJSX {
         "htmlName"?: string;
         "isValid"?: boolean;
         "labelledBy"?: string;
+        "menuAlignment"?: string;
         "onReadyToVerifyFast"?: (event: YetiMultiselectCustomEvent<CustomEvent>) => void;
         "onReadyToVerifySlow"?: (event: YetiMultiselectCustomEvent<CustomEvent>) => void;
         "placeholder"?: string;
@@ -280,26 +337,56 @@ declare namespace LocalJSX {
         "showClear"?: boolean;
         "value"?: string;
     }
+    interface YetiProgressBar {
+        "barCSS"?: string;
+        "barId"?: string;
+        "error"?: boolean;
+        "helperText"?: string;
+        "label"?: string;
+        "labelCSS"?: string;
+        "progress"?: number;
+        "tooltipPosition"?: string;
+        "tooltipText"?: string;
+        "wrapperCSS"?: string;
+    }
     interface YetiTable {
         "contents"?: YetiTableContents;
-        "isValid"?: boolean;
+        /**
+          * Determines whether to handle filtering (true) or just note the user requested it (false).
+         */
+        "filterSelf"?: boolean;
         "onRowActionClick"?: (event: YetiTableCustomEvent<any>) => void;
+        "onTableFilter"?: (event: YetiTableCustomEvent<any>) => void;
+        "onTablePaginate"?: (event: YetiTableCustomEvent<any>) => void;
+        "onTableSort"?: (event: YetiTableCustomEvent<any>) => void;
+        /**
+          * Determines whether to handle pagination (true) or just note the user requested it (false).
+         */
+        "paginateSelf"?: boolean;
+        "records"?: number;
+        /**
+          * Determines whether to handle sorting (true) or just note the user requested it (false).
+         */
+        "sortSelf"?: boolean;
         "tableClass"?: string;
         "tableId"?: string;
     }
     interface YetiTableActions {
         "cssClass"?: string;
         "htmlId"?: string;
+        "useGrid"?: boolean;
     }
     interface YetiTablePagination {
         "cssClass"?: string;
-        "endIndex"?: number;
         "htmlId"?: string;
-        "onPaginationUpdated"?: (event: YetiTablePaginationCustomEvent<CustomEvent>) => void;
+        "onPaginationUpdated"?: (event: YetiTablePaginationCustomEvent<any>) => void;
         "records"?: number;
+        "recordsDisplayed"?: number;
+        "selectedPage"?: number;
         "startIndex"?: number;
     }
     interface YetiTooltip {
+        "blockAnchor"?: boolean;
         "position"?: string;
         "slotId"?: string;
         "text"?: string;
@@ -311,9 +398,11 @@ declare namespace LocalJSX {
         "my-component": MyComponent;
         "yeti-date-picker": YetiDatePicker;
         "yeti-field": YetiField;
+        "yeti-icon": YetiIcon;
         "yeti-input": YetiInput;
         "yeti-menu-button": YetiMenuButton;
         "yeti-multiselect": YetiMultiselect;
+        "yeti-progress-bar": YetiProgressBar;
         "yeti-table": YetiTable;
         "yeti-table-actions": YetiTableActions;
         "yeti-table-pagination": YetiTablePagination;
@@ -327,9 +416,11 @@ declare module "@stencil/core" {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "yeti-date-picker": LocalJSX.YetiDatePicker & JSXBase.HTMLAttributes<HTMLYetiDatePickerElement>;
             "yeti-field": LocalJSX.YetiField & JSXBase.HTMLAttributes<HTMLYetiFieldElement>;
+            "yeti-icon": LocalJSX.YetiIcon & JSXBase.HTMLAttributes<HTMLYetiIconElement>;
             "yeti-input": LocalJSX.YetiInput & JSXBase.HTMLAttributes<HTMLYetiInputElement>;
             "yeti-menu-button": LocalJSX.YetiMenuButton & JSXBase.HTMLAttributes<HTMLYetiMenuButtonElement>;
             "yeti-multiselect": LocalJSX.YetiMultiselect & JSXBase.HTMLAttributes<HTMLYetiMultiselectElement>;
+            "yeti-progress-bar": LocalJSX.YetiProgressBar & JSXBase.HTMLAttributes<HTMLYetiProgressBarElement>;
             "yeti-table": LocalJSX.YetiTable & JSXBase.HTMLAttributes<HTMLYetiTableElement>;
             "yeti-table-actions": LocalJSX.YetiTableActions & JSXBase.HTMLAttributes<HTMLYetiTableActionsElement>;
             "yeti-table-pagination": LocalJSX.YetiTablePagination & JSXBase.HTMLAttributes<HTMLYetiTablePaginationElement>;

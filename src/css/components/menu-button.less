@@ -6,6 +6,14 @@ Styles for Menu Button
 
 
 
+/************************************** Placeholder/meta ***/
+yeti-menu-button-option {
+    display: none;
+    //background-color: red;
+}
+
+
+
 /************************************** Wrapper ***/
 .yeti-menu_button {
     display: inline-block;
@@ -73,7 +81,9 @@ Styles for Menu Button
     list-style: none;
     position: absolute;
     top: 100%;
-    width: 10rem;
+    min-width: min-content;
+    width: fit-content;
+    max-width: 25vw;
 }
 .yeti-menu_button__open .yeti-menu_button-menu {
     display: block;

@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Element } from '@stencil/core';
+import { Component, Prop, h, State, Element, Listen } from '@stencil/core';
 import { utils } from '../../utils/utils';
 
 @Component({
@@ -21,9 +21,33 @@ export class YetiTooltip {
 
   @Prop() tipId: string = utils.generateUniqueId();
 
+  @Prop() blockAnchor: boolean = false;
+
   @State() iLoveJSX: boolean = false;
 
-  @State() isOpen: boolean = false;
+
+
+  @Listen('mouseover')
+  handleSlotHover() {
+    this.scrollTooltipIntoView();
+  }
+
+
+
+  @Listen('focusin')
+  handleSlotFocus() {
+    this.scrollTooltipIntoView();
+  }
+
+
+
+  scrollTooltipIntoView() {
+    let actual = this.el.querySelector(".yeti-tooltip");
+    actual.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest"
+    });
+  }
 
 
 
@@ -31,6 +55,8 @@ export class YetiTooltip {
 
     let wrapperCSS = 'yeti-tooltip-wrapper';
     let tipClass = 'yeti-tooltip';
+
+    wrapperCSS += (this.blockAnchor) ? ' yeti-tooltip-wrapper-has_block_anchor' : '';
 
     switch (this.position) {
 

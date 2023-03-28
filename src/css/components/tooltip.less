@@ -9,14 +9,23 @@ Styles for Tooltip
 /************************************** Wrapper ***/
 .yeti-tooltip-wrapper {
     position: relative;
+}
+
+.yeti-tooltip-wrapper:not(.yeti-tooltip-wrapper-has_block_anchor) {
     display: inline-block;
 }
 
-
+.yeti-tooltip-wrapper:is(.yeti-tooltip-wrapper-has_block_anchor) {
+    display: block;
+}
 
 /************************************** Slotted Content */
-.yeti-tooltip-slot {
+:not(.yeti-tooltip-wrapper-has_block_anchor) .yeti-tooltip-slot {
     display: inline-block;
+}
+
+.yeti-tooltip-wrapper-has_block_anchor .yeti-tooltip-slot {
+    display: block;
 }
 
 
@@ -41,6 +50,8 @@ Styles for Tooltip
     font-weight: 400;
     letter-spacing: 0.01rem;
     line-height: 1.42857;
+
+    z-index: 2;
 }
 
 .yeti-tooltip-wrapper:not(:is(:focus-within, *:hover)) .yeti-tooltip {
@@ -51,7 +62,7 @@ Styles for Tooltip
 /*** Content ***/
 .yeti-tooltip-content {
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;  
     overflow: hidden;
 }

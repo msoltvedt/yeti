@@ -99,6 +99,10 @@ export interface YetiTableContents {
     id?: string,
     rows : YetiTableRow[]
   },
+
+  state? : {
+    totalRecords: number
+  }
 }
 
 export interface YetiTableRow {
@@ -106,7 +110,8 @@ export interface YetiTableRow {
   isExpandable?: boolean,
   id?: string,
   cells: YetiTableCell[],
-  rowIndex?: number
+  rowIndex?: number,
+  detail?: {}
 }
 
 export interface YetiTableCell {
@@ -119,7 +124,8 @@ export interface YetiTableCell {
   rowIndex?: number,
   filtering?: YetiTableFilterObject,
   rowActions?: YetiTableRowAction[],
-  scope?: string // "col" (default) | "row"
+  scope?: string // "col" (default) | "row",
+  template?: any // HTML
 }
 
 export interface YetiTableFilterObject {

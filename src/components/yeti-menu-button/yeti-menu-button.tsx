@@ -284,7 +284,7 @@ export class YetiMenuButton {
           tabindex="-1"
           key={i}
           data-option-index={i}
-          onClick={() => { this.handleOptionClick(i) }}>
+          onClick={(ev) => { this.handleOptionClick(i, ev, true) }}>
             
             {option.label}
             
@@ -299,7 +299,7 @@ export class YetiMenuButton {
           tabindex="-1"
           key={i}
           data-option-index={i}
-          onClick={() => { this.handleOptionClick(i) }}>
+          onClick={(ev) => { this.handleOptionClick(i, ev) }}>
 
             {option.label}
 
@@ -316,10 +316,14 @@ export class YetiMenuButton {
 
 
 
-  handleOptionClick(i: number) {
+  handleOptionClick(i: number, ev: Event, isLink: boolean = false) {
+
     this.value = this.options[i].label;
     this.justMadeASelection = true;
     this.closeMenu();
+    if (!isLink) {
+      ev.preventDefault();
+    }
   }
 
 
@@ -333,8 +337,9 @@ export class YetiMenuButton {
 
 
 
-  handleButtonClick() {
+  handleButtonClick(ev: Event) {
     this.isOpen = !this.isOpen;
+    ev.preventDefault();
   }
 
 
@@ -357,6 +362,7 @@ export class YetiMenuButton {
 
     let selector = '[data-option-index="' + this.cursorPosition + '"';
     let linkOrButtonElement = this.el.querySelector(selector) as HTMLElement;
+    let menu = this.el.querySelector(".yeti-menu_button-menu");
 
     if (linkOrButtonElement) {
       
@@ -366,7 +372,7 @@ export class YetiMenuButton {
 
     if (this.isOpen) {
 
-      this.el.scrollIntoView({
+      menu.scrollIntoView({
         behavior: "smooth",
         block: "nearest"
       });
@@ -415,8 +421,8 @@ export class YetiMenuButton {
       <div class={wrapperCSS}>
 
         <yeti-tooltip text={this.tooltipText}>
-          <button class={buttonClass} aria-haspopup="true" aria-expanded="true" aria-controls={this.menuId} id={this.buttonId} onClick={() => {
-            this.handleButtonClick()
+          <button class={buttonClass} aria-haspopup="true" aria-expanded="true" aria-controls={this.menuId} id={this.buttonId} onClick={(ev) => {
+            this.handleButtonClick(ev)
           }}>
             <span class="material-icons" aria-hidden="true">more_vert</span>
             <span class="yeti-a11y-hidden">Options</span>
@@ -424,7 +430,7 @@ export class YetiMenuButton {
         </yeti-tooltip>
 
         
-        <ul class={menuClass} role="menu" id={this.menuId} aria-labelledby={this.buttonId}>
+        <ul class={menuClass} role="menu" id={this.menuId} aria-labelledby={this.buttonId} key={this.menuId}>
 
           {this.renderMenuItems()}
 
