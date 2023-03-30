@@ -7,18 +7,20 @@
 
 ## Properties
 
-| Property        | Attribute        | Description | Type     | Default                    |
-| --------------- | ---------------- | ----------- | -------- | -------------------------- |
-| `buttonCSS`     | `button-class`   |             | `string` | `''`                       |
-| `buttonId`      | `button-id`      |             | `string` | `utils.generateUniqueId()` |
-| `describedBy`   | `described-by`   |             | `string` | `""`                       |
-| `labelledBy`    | `labelled-by`    |             | `string` | `""`                       |
-| `menuAlignment` | `menu-alignment` |             | `string` | `""`                       |
-| `menuCSS`       | `menu-class`     |             | `string` | `''`                       |
-| `menuId`        | `menu-id`        |             | `string` | `utils.generateUniqueId()` |
-| `tooltipText`   | `tooltip-text`   |             | `string` | `"Options"`                |
-| `value`         | `value`          |             | `string` | `''`                       |
-| `wrapperCSS`    | `wrapper-class`  |             | `string` | `''`                       |
+| Property        | Attribute        | Description | Type      | Default                    |
+| --------------- | ---------------- | ----------- | --------- | -------------------------- |
+| `buttonCSS`     | `button-class`   |             | `string`  | `''`                       |
+| `buttonId`      | `button-id`      |             | `string`  | `utils.generateUniqueId()` |
+| `buttonType`    | `button-type`    |             | `string`  | `""`                       |
+| `describedBy`   | `described-by`   |             | `string`  | `""`                       |
+| `hasTooltip`    | `has-tooltip`    |             | `boolean` | `true`                     |
+| `labelledBy`    | `labelled-by`    |             | `string`  | `""`                       |
+| `menuAlignment` | `menu-alignment` |             | `string`  | `""`                       |
+| `menuCSS`       | `menu-class`     |             | `string`  | `''`                       |
+| `menuId`        | `menu-id`        |             | `string`  | `utils.generateUniqueId()` |
+| `tooltipText`   | `tooltip-text`   |             | `string`  | `"Options"`                |
+| `value`         | `value`          |             | `string`  | `''`                       |
+| `wrapperCSS`    | `wrapper-class`  |             | `string`  | `''`                       |
 
 
 ## Events

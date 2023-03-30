@@ -19,11 +19,15 @@ export class YetiMenuButton {
 
   @Prop() buttonId: string = utils.generateUniqueId();
 
+  @Prop() buttonType?: string = "";
+
   @Prop() menuId: string = utils.generateUniqueId();
 
   @Prop() tooltipText: string = "Options";
 
   @Prop() menuAlignment: string = "";
+
+  @Prop() hasTooltip: boolean = true;
 
   @Prop({
     mutable: true,
@@ -53,6 +57,7 @@ export class YetiMenuButton {
 
   private justMadeASelection: boolean = false;
 
+  private hasCustomButtonContents: boolean = false;
 
 
   @Listen("click", {
@@ -226,40 +231,80 @@ export class YetiMenuButton {
 
 
 
-  parseOptionElements(options: HTMLCollection) {
+  parseChildTags() {
+
+    let options = this.el.querySelectorAll("yeti-menu-button-option");
+    let buttonLabel = this.el.querySelector("yeti-menu-button-contents");
 
     for (let i = 0; i < options.length; i++) {
       
-      let option = options.item(i);
+      let option = options.item(i) as Element;
       
       // First, confirm this element is indeed a yeti-menu-button-option element.
       if (option.tagName.toLowerCase() == 'yeti-menu-button-option') {
 
+        let optionObject: YetiMenuButtonOption = {
+          label: "",
+          id: "",
+          href: "",
+          value: "",
+          hasHTML: false
+        };
+
+        optionObject.id = (optionObject.id) ? optionObject.id : utils.generateUniqueId();
+        optionObject.label = (option as HTMLElement).innerText.trim().replace(/\t/g, '');
+        optionObject.label = optionObject.label.replace(/\n/g, ' ');
+
         // Check to see if it has a href attribute.
         if (option.hasAttribute("href") && option.getAttribute("href") != "") {
-
-          this.options.push({
-            href: option.getAttribute("href"),
-            label: option.innerHTML
-          })
-
-        } else {
-
-          this.options.push({
-            label: option.innerHTML
-          })
-
+          optionObject.href = option.getAttribute("href");
         }
+
+        // Check to see if it's normal or fancy (i.e. has HTML)
+        if (option.childNodes.length != 1 || option.firstChild.nodeType != 3) { // If there's not just a single text node
+
+          optionObject.hasHTML = true;
+
+          // Create a slot element and move all childNodes to it.
+          let div = document.createElement("div");
+          div.setAttribute("slot", optionObject.id);
+
+          while (option.childNodes.length > 0) {
+            div.appendChild(option.childNodes[0]);
+          }
+
+          this.el.appendChild(div);
+
+          optionObject.innerHTML = option.innerHTML;
+          
+        }
+
+        this.options.push(optionObject);
 
       }
 
     } // End for
+
+    // Handle the button label (if it exists)
+    if (buttonLabel) {
+      this.hasCustomButtonContents = true;
+      buttonLabel.setAttribute("slot", "buttonContents");
+    }
 
     // Finally, we need to remove the option elements.
     for (let j = options.length - 1; j >= 0; --j) {
       options.item(j).remove();
     }
 
+  }
+
+
+
+  unwrapButtonContents() {
+    let wrapper = this.el.querySelector("yeti-menu-button-contents");
+    if (wrapper) {
+      wrapper.replaceWith(...Array.from(wrapper.childNodes));
+    }
   }
 
 
@@ -286,7 +331,7 @@ export class YetiMenuButton {
           data-option-index={i}
           onClick={(ev) => { this.handleOptionClick(i, ev, true) }}>
             
-            {option.label}
+            {(option.hasHTML) ? <slot name={option.id}></slot> : option.label}
             
         </a>
       }
@@ -301,7 +346,7 @@ export class YetiMenuButton {
           data-option-index={i}
           onClick={(ev) => { this.handleOptionClick(i, ev) }}>
 
-            {option.label}
+            {(option.hasHTML) ? <slot name={option.id}></slot> : option.label}
 
         </button>
       }
@@ -344,22 +389,37 @@ export class YetiMenuButton {
 
 
 
-  componentWillLoad() {
-    let optionElements = this.el.children;
+  renderButton(buttonClass: string) {
+    return <button class={buttonClass} aria-haspopup="true" aria-expanded="true" aria-controls={this.menuId} id={this.buttonId} onClick={(ev) => {
+      this.handleButtonClick(ev)
+    }}>
 
-    // Look for and handle any <yeti-menu-button-option> elements.
-    if (optionElements.length > 0) {
-      
-      this.parseOptionElements(optionElements);
+      {(this.hasCustomButtonContents) ?
+        <slot name="buttonContents"></slot>
+      :
+        [
+          <span class="material-icons" aria-hidden="true">more_vert</span>,
+          <span class="yeti-a11y-hidden">Options</span>
+        ]
+      }
+    </button>
+  }
 
-    }
+
+
+  componentWillRender() {
+    // Look for and handle any <yeti-menu-button-*> tags.
+    this.parseChildTags();
   }
 
 
 
   componentDidRender() {
-    // If the cursor is over an option, make sure it's visible.
 
+    // Unwrap button contents, if necessary
+    this.unwrapButtonContents();
+
+    // If the cursor is over an option, make sure it's visible.
     let selector = '[data-option-index="' + this.cursorPosition + '"';
     let linkOrButtonElement = this.el.querySelector(selector) as HTMLElement;
     let menu = this.el.querySelector(".yeti-menu_button-menu");
@@ -414,20 +474,28 @@ export class YetiMenuButton {
       wrapperCSS += ' yeti-menu_button__open';
     }
 
+    if (this.buttonType && this.buttonType != "") {
+      buttonClass = `${buttonClass} yeti-menu_button-button-mimic ${buttonClass}-${this.buttonType}`;
+    }
+
+    wrapperCSS += (this.wrapperCSS && this.wrapperCSS != "") ? " " + this.wrapperCSS : "";
     buttonClass += (this.buttonCSS && this.buttonCSS != "") ? " " + this.buttonCSS : "";
     menuClass += (this.menuCSS && this.menuCSS != "") ? " " + this.menuCSS : "";
 
     return ([
       <div class={wrapperCSS}>
 
-        <yeti-tooltip text={this.tooltipText}>
-          <button class={buttonClass} aria-haspopup="true" aria-expanded="true" aria-controls={this.menuId} id={this.buttonId} onClick={(ev) => {
-            this.handleButtonClick(ev)
-          }}>
-            <span class="material-icons" aria-hidden="true">more_vert</span>
-            <span class="yeti-a11y-hidden">Options</span>
-          </button>
-        </yeti-tooltip>
+        {
+          (this.hasTooltip) ?
+
+            <yeti-tooltip text={this.tooltipText}>
+              {this.renderButton(buttonClass)}
+            </yeti-tooltip>
+
+          :
+
+            this.renderButton(buttonClass)
+        }
 
         
         <ul class={menuClass} role="menu" id={this.menuId} aria-labelledby={this.buttonId} key={this.menuId}>

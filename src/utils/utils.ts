@@ -148,7 +148,11 @@ export interface YetiMultiselectOption {
 
 export interface YetiMenuButtonOption {
   label: string,
-  href?: string
+  href?: string,
+  hasHTML?: boolean,
+  id: string,
+  value?: string,
+  innerHTML?: string
 }
 
 let uniqueId = 0;

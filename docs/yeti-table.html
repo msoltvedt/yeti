@@ -36,8 +36,26 @@
     
 <yeti-table id="vanillaTable"></yeti-table>
 
+<template id="col1Template">
+    <yeti-input></yeti-input>
+</template>
+
 <script type="module">
     const vanillaTable = document.getElementById('vanillaTable');
+
+    /*let col1Template = document.querySelector('#col1Template');
+    let col1CellContents = col1Template.content.cloneNode(true);
+    let tempWrapper = document.createElement('div');
+    let input = col1CellContents.querySelector('yeti-input');
+    input.setAttribute("value", "Hello, World!");
+    tempWrapper.appendChild(input);
+
+    let contents = document.createElement('yeti-input');
+    contents.value = "Hello, World."
+    let col1 = contents.outerHTML;
+
+    let contents = tempWrapper.innerHTML;*/
+
     vanillaTable.contents = {
         "head": {
             "rows": [
@@ -70,7 +88,8 @@
                 {
                     "cells": [
                         {
-                            "value": "Cell 1"
+                            "value": "Cell 1",
+                            //"template": contents
                         },
                         {
                             "value": "Cell 2"
@@ -111,10 +130,6 @@
 
 
         <h3 class="margin-bottom-2">With Row Headings</h3>
-
-        <p class="margin-bottom-2">
-            Provide the table data by setting the <code>contents</code> attribute with JSON matching the <a href="#yetiTableContents"><code>YetiTableContents</code> interface</a>.
-        </p>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
@@ -755,6 +770,10 @@
                             "isHeading": "true",
                             "sortDirection": "unsorted",
                             "value": "Everything, Everywhere, All at Once"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Unsortable"
                         }
                     ]
                 }
@@ -777,6 +796,9 @@
                         },
                         {
                             "value": "Vikings"
+                        },
+                        {
+                            "value": ""
                         }
                     ]
                 },
@@ -794,6 +816,9 @@
                         },
                         {
                             "value": "12"
+                        },
+                        {
+                            "value": ""
                         }
                     ]
                 },
@@ -811,6 +836,9 @@
                         },
                         {
                             "value": "2023/01/30"
+                        },
+                        {
+                            "value": ""
                         }
                     ]
                 },
@@ -828,6 +856,9 @@
                         },
                         {
                             "value": "Wild"
+                        },
+                        {
+                            "value": ""
                         }
                     ]
                 },

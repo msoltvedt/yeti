@@ -63,7 +63,9 @@ export namespace Components {
     interface YetiMenuButton {
         "buttonCSS": string;
         "buttonId": string;
+        "buttonType"?: string;
         "describedBy": string;
+        "hasTooltip": boolean;
         "labelledBy": string;
         "menuAlignment": string;
         "menuCSS": string;
@@ -311,7 +313,9 @@ declare namespace LocalJSX {
     interface YetiMenuButton {
         "buttonCSS"?: string;
         "buttonId"?: string;
+        "buttonType"?: string;
         "describedBy"?: string;
+        "hasTooltip"?: boolean;
         "labelledBy"?: string;
         "menuAlignment"?: string;
         "menuCSS"?: string;

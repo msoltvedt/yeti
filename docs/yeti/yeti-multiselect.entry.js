@@ -11,6 +11,7 @@ const YetiMultiselect = class {
     this.actualId = utils.generateUniqueId();
     this.htmlName = this.htmlId;
     this.required = false;
+    this.menuAlignment = "";
     this.isValid = undefined;
     this.value = '';
     this.labelledBy = "";
@@ -246,6 +247,9 @@ const YetiMultiselect = class {
       cssClasses += ' yeti-multiselect__error';
     }
     flyoutClass += (this.isOpen) ? " yeti-multiselect-flyout__open" : "";
+    if (this.menuAlignment == "right") {
+      flyoutClass += ' yeti-multiselect-flyout-align-right';
+    }
     return ([
       h("div", { class: "yeti-multiselect-wrapper" }, h("select", Object.assign({ tabIndex: -1, class: "yeti-multiselect-actual yeti-a11y-hidden", multiple: true, id: this.htmlId, name: this.htmlName, onFocus: () => { this.handleActualFocus(); } }, ((!this.isValid) ? { "aria-invalid": true } : {}), ((this.labelledBy != "") ? { "aria-labelledby": this.labelledBy } : {}), ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {})), this.renderActualOptions()), h("div", { tabIndex: 0, class: cssClasses, onClick: () => {
           this.isOpen = !this.isOpen;
@@ -256,7 +260,7 @@ const YetiMultiselect = class {
         :
           ""), h("div", { class: flyoutClass, "aria-hidden": "true" }, h("ul", { class: "yeti-multiselect-options" }, this.options.map((option, i) => {
         let optionClass = (this.cursorPosition == i) ? "yeti-multiselect-option yeti-multiselect-option__hover" : "yeti-multiselect-option";
-        return (h("li", { key: i }, h("button", { class: optionClass, tabIndex: -1, onClick: (ev) => { this.handleOptionClick(i); ev.preventDefault(); } }, h("span", { class: "yeti-multiselect-option-checkbox" }, h("span", { class: "material-icons" }, (option.selected) ? "check_box" : "check_box_outline_blank")), h("span", { class: "yeti-multiselect-option-label" }, option.label))));
+        return (h("li", { key: utils.generateUniqueId() }, h("button", { class: optionClass, tabIndex: -1, onClick: (ev) => { this.handleOptionClick(i); ev.preventDefault(); } }, h("span", { class: "yeti-multiselect-option-checkbox" }, h("span", { class: "material-icons" }, (option.selected) ? "check_box" : "check_box_outline_blank")), h("span", { class: "yeti-multiselect-option-label" }, option.label))));
       }))))
     ]);
   }

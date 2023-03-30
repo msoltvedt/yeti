@@ -10,12 +10,26 @@ const YetiTooltip = class {
     this.position = "above";
     this.slotId = utils.generateUniqueId();
     this.tipId = utils.generateUniqueId();
+    this.blockAnchor = false;
     this.iLoveJSX = false;
-    this.isOpen = false;
+  }
+  handleSlotHover() {
+    this.scrollTooltipIntoView();
+  }
+  handleSlotFocus() {
+    this.scrollTooltipIntoView();
+  }
+  scrollTooltipIntoView() {
+    let actual = this.el.querySelector(".yeti-tooltip");
+    actual.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest"
+    });
   }
   render() {
     let wrapperCSS = 'yeti-tooltip-wrapper';
     let tipClass = 'yeti-tooltip';
+    wrapperCSS += (this.blockAnchor) ? ' yeti-tooltip-wrapper-has_block_anchor' : '';
     switch (this.position) {
       case "right":
         tipClass += " yeti-tooltip-right";

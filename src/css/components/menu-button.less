@@ -32,6 +32,9 @@ yeti-menu-button-option {
     bottom: 0;
     left: 0;
 }
+.yeti-menu_button__open:has(.yeti-menu_button-button-mimic)::after {
+    display: none;
+}
 .yeti-menu_button__open:has(.yeti-menu_button-button:hover)::after {
     background-color: #e8e8e8;
 }
@@ -58,16 +61,71 @@ yeti-menu-button-option {
     background: none;
 }
 
-.yeti-menu_button__open .yeti-menu_button-button,
 .yeti-menu_button-button:hover {
     background-color: #8d8d8d1f;
 }
 
-.yeti-menu_button__open .yeti-menu_button-button {
+.yeti-menu_button-button:focus {
+    outline: 2px solid #0f62fe;
+    outline-offset: -2px;
+}
+
+.yeti-menu_button__open .yeti-menu_button-button:not(.yeti-menu_button-button-mimic) {
     background-color: #f4f4f4;
     box-shadow: 0 2px 6px #0000004d;
 }
 
+
+/*** Mimic ***/
+// When we want the menu button to mimic .yeti-button, this mimic class will bring in all the .yeti-button styles.
+.yeti-menu_button-button-mimic {
+    .yeti-button();
+}
+
+
+/* Primary */
+.yeti-menu_button-button-primary {
+    .yeti-button-primary();
+}
+.yeti-menu_button-button-primary:hover {
+    .yeti-button-primary__hover();
+}
+.yeti-menu_button-button-primary:active {
+    .yeti-button-primary__active();
+}
+.yeti-menu_button-button-primary:focus {
+    .yeti-button-primary__focus();
+}
+
+
+/* Secondary */
+.yeti-menu_button-button-secondary {
+    .yeti-button-secondary();
+}
+.yeti-menu_button-button-secondary:hover {
+    .yeti-button-secondary__hover();
+}
+.yeti-menu_button-button-secondary:active {
+    .yeti-button-secondary__active();
+}
+.yeti-menu_button-button-secondary:focus {
+    .yeti-button-secondary__focus();
+}
+
+
+/* Tertiary */
+.yeti-menu_button-button-tertiary {
+    .yeti-button-tertiary();
+}
+.yeti-menu_button-button-tertiary:hover {
+    .yeti-button-tertiary__hover();
+}
+.yeti-menu_button-button-tertiary:active {
+    .yeti-button-tertiary__active();
+}
+.yeti-menu_button-button-tertiary:focus {
+    .yeti-button-tertiary__focus();
+}
 
 
 /************************************** Menu ***/
@@ -81,9 +139,11 @@ yeti-menu-button-option {
     list-style: none;
     position: absolute;
     top: 100%;
-    min-width: min-content;
+    min-width: 100%;
     width: fit-content;
     max-width: 25vw;
+    max-height: 50vh;
+    overflow-y: auto;
 }
 .yeti-menu_button__open .yeti-menu_button-menu {
     display: block;
@@ -105,7 +165,7 @@ yeti-menu-button-option {
     background-color: #0000;
     //display: flex;
     display: block;
-    height: 2.5rem;
+    min-height: 2.5rem;
     padding: 0;
     transition: background-color .11s cubic-bezier(0,0,.38,.9);
     width: 100%;
@@ -136,12 +196,10 @@ yeti-menu-button-option {
     line-height: 1.28572;
 }
 
-.yeti-menu_button-button:hover,
 .yeti-menu_button-menu-item:hover {
     background-color: #e5e5e5;
 }
 
-.yeti-menu_button-button:focus,
 .yeti-menu_button-menu-item-link:focus,
 .yeti-menu_button-menu-item-button:focus {
     outline: 2px solid #0f62fe;

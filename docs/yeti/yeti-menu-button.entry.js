@@ -6,13 +6,16 @@ const YetiMenuButton = class {
     registerInstance(this, hostRef);
     this.menuButtonChange = createEvent(this, "menuButtonChange", 7);
     this.justMadeASelection = false;
+    this.hasCustomButtonContents = false;
     this.wrapperCSS = '';
     this.buttonCSS = '';
     this.menuCSS = '';
     this.buttonId = utils.generateUniqueId();
+    this.buttonType = "";
     this.menuId = utils.generateUniqueId();
     this.tooltipText = "Options";
     this.menuAlignment = "";
+    this.hasTooltip = true;
     this.value = '';
     this.labelledBy = "";
     this.describedBy = "";
@@ -131,28 +134,56 @@ const YetiMenuButton = class {
       this.openMenu();
     }
   }
-  parseOptionElements(options) {
+  parseChildTags() {
+    let options = this.el.querySelectorAll("yeti-menu-button-option");
+    let buttonLabel = this.el.querySelector("yeti-menu-button-contents");
     for (let i = 0; i < options.length; i++) {
       let option = options.item(i);
       // First, confirm this element is indeed a yeti-menu-button-option element.
       if (option.tagName.toLowerCase() == 'yeti-menu-button-option') {
+        let optionObject = {
+          label: "",
+          id: "",
+          href: "",
+          value: "",
+          hasHTML: false
+        };
+        optionObject.id = (optionObject.id) ? optionObject.id : utils.generateUniqueId();
+        optionObject.label = option.innerText.trim().replace(/\t/g, '');
+        optionObject.label = optionObject.label.replace(/\n/g, ' ');
         // Check to see if it has a href attribute.
         if (option.hasAttribute("href") && option.getAttribute("href") != "") {
-          this.options.push({
-            href: option.getAttribute("href"),
-            label: option.innerHTML
-          });
+          optionObject.href = option.getAttribute("href");
         }
-        else {
-          this.options.push({
-            label: option.innerHTML
-          });
+        // Check to see if it's normal or fancy (i.e. has HTML)
+        if (option.childNodes.length != 1 || option.firstChild.nodeType != 3) { // If there's not just a single text node
+          optionObject.hasHTML = true;
+          // Create a slot element and move all childNodes to it.
+          let div = document.createElement("div");
+          div.setAttribute("slot", optionObject.id);
+          while (option.childNodes.length > 0) {
+            div.appendChild(option.childNodes[0]);
+          }
+          this.el.appendChild(div);
+          optionObject.innerHTML = option.innerHTML;
         }
+        this.options.push(optionObject);
       }
     } // End for
+    // Handle the button label (if it exists)
+    if (buttonLabel) {
+      this.hasCustomButtonContents = true;
+      buttonLabel.setAttribute("slot", "buttonContents");
+    }
     // Finally, we need to remove the option elements.
     for (let j = options.length - 1; j >= 0; --j) {
       options.item(j).remove();
+    }
+  }
+  unwrapButtonContents() {
+    let wrapper = this.el.querySelector("yeti-menu-button-contents");
+    if (wrapper) {
+      wrapper.replaceWith(...Array.from(wrapper.childNodes));
     }
   }
   renderMenuItems() {
@@ -166,21 +197,24 @@ const YetiMenuButton = class {
       let item;
       // See if it's a link
       if (option.href) {
-        linkOrButtonElement = h("a", { href: option.href, class: "yeti-menu_button-menu-item-link", role: "menuitem", tabindex: "-1", key: i, "data-option-index": i, onClick: () => { this.handleOptionClick(i); } }, option.label);
+        linkOrButtonElement = h("a", { href: option.href, class: "yeti-menu_button-menu-item-link", role: "menuitem", tabindex: "-1", key: i, "data-option-index": i, onClick: (ev) => { this.handleOptionClick(i, ev, true); } }, (option.hasHTML) ? h("slot", { name: option.id }) : option.label);
       }
       // Nope, it's a button.
       else {
-        linkOrButtonElement = h("button", { class: "yeti-menu_button-menu-item-button", role: "menuitem", tabindex: "-1", key: i, "data-option-index": i, onClick: () => { this.handleOptionClick(i); } }, option.label);
+        linkOrButtonElement = h("button", { class: "yeti-menu_button-menu-item-button", role: "menuitem", tabindex: "-1", key: i, "data-option-index": i, onClick: (ev) => { this.handleOptionClick(i, ev); } }, (option.hasHTML) ? h("slot", { name: option.id }) : option.label);
       }
       item = h("li", { class: "yeti-menu_button-menu-item", role: "presentation" }, linkOrButtonElement);
       items.push(item);
     }
     return items;
   }
-  handleOptionClick(i) {
+  handleOptionClick(i, ev, isLink = false) {
     this.value = this.options[i].label;
     this.justMadeASelection = true;
     this.closeMenu();
+    if (!isLink) {
+      ev.preventDefault();
+    }
   }
   handleActualFocus() {
     let facade = this.el.querySelector(".yeti-multiselect");
@@ -188,25 +222,37 @@ const YetiMenuButton = class {
       facade.focus();
     }
   }
-  handleButtonClick() {
+  handleButtonClick(ev) {
     this.isOpen = !this.isOpen;
+    ev.preventDefault();
   }
-  componentWillLoad() {
-    let optionElements = this.el.children;
-    // Look for and handle any <yeti-menu-button-option> elements.
-    if (optionElements.length > 0) {
-      this.parseOptionElements(optionElements);
-    }
+  renderButton(buttonClass) {
+    return h("button", { class: buttonClass, "aria-haspopup": "true", "aria-expanded": "true", "aria-controls": this.menuId, id: this.buttonId, onClick: (ev) => {
+        this.handleButtonClick(ev);
+      } }, (this.hasCustomButtonContents) ?
+      h("slot", { name: "buttonContents" })
+      :
+        [
+          h("span", { class: "material-icons", "aria-hidden": "true" }, "more_vert"),
+          h("span", { class: "yeti-a11y-hidden" }, "Options")
+        ]);
+  }
+  componentWillRender() {
+    // Look for and handle any <yeti-menu-button-*> tags.
+    this.parseChildTags();
   }
   componentDidRender() {
+    // Unwrap button contents, if necessary
+    this.unwrapButtonContents();
     // If the cursor is over an option, make sure it's visible.
     let selector = '[data-option-index="' + this.cursorPosition + '"';
     let linkOrButtonElement = this.el.querySelector(selector);
+    let menu = this.el.querySelector(".yeti-menu_button-menu");
     if (linkOrButtonElement) {
       linkOrButtonElement.focus();
     }
     if (this.isOpen) {
-      this.el.scrollIntoView({
+      menu.scrollIntoView({
         behavior: "smooth",
         block: "nearest"
       });
@@ -233,12 +279,17 @@ const YetiMenuButton = class {
     if (this.isOpen) {
       wrapperCSS += ' yeti-menu_button__open';
     }
+    if (this.buttonType && this.buttonType != "") {
+      buttonClass = `${buttonClass} yeti-menu_button-button-mimic ${buttonClass}-${this.buttonType}`;
+    }
+    wrapperCSS += (this.wrapperCSS && this.wrapperCSS != "") ? " " + this.wrapperCSS : "";
     buttonClass += (this.buttonCSS && this.buttonCSS != "") ? " " + this.buttonCSS : "";
     menuClass += (this.menuCSS && this.menuCSS != "") ? " " + this.menuCSS : "";
     return ([
-      h("div", { class: wrapperCSS }, h("yeti-tooltip", { text: this.tooltipText }, h("button", { class: buttonClass, "aria-haspopup": "true", "aria-expanded": "true", "aria-controls": this.menuId, id: this.buttonId, onClick: () => {
-          this.handleButtonClick();
-        } }, h("span", { class: "material-icons", "aria-hidden": "true" }, "more_vert"), h("span", { class: "yeti-a11y-hidden" }, "Options"))), h("ul", { class: menuClass, role: "menu", id: this.menuId, "aria-labelledby": this.buttonId }, this.renderMenuItems()))
+      h("div", { class: wrapperCSS }, (this.hasTooltip) ?
+        h("yeti-tooltip", { text: this.tooltipText }, this.renderButton(buttonClass))
+        :
+          this.renderButton(buttonClass), h("ul", { class: menuClass, role: "menu", id: this.menuId, "aria-labelledby": this.buttonId, key: this.menuId }, this.renderMenuItems()))
     ]);
   }
   get el() { return getElement(this); }

@@ -8,12 +8,22 @@ const YetiTablePagination = class {
     this.cssClass = '';
     this.htmlId = utils.generateUniqueId();
     this.records = 0;
-    this.startIndex = 1;
-    this.endIndex = 2;
+    this.startIndex = 0;
+    this.recordsDisplayed = 0;
     this.itemsPerPageOptions = [10, 25, 50, 100, "All"];
     this.selectedItemsPerPageOptionIndex = 0;
     this.selectedPage = 1;
-    this.pages = 3;
+    this.pages = 1;
+  }
+  watchRecordsHandler() {
+    this.updatePages();
+    this.updateIndices();
+  }
+  watchRecordsDisplayed() {
+    this.paginationUpdated.emit({
+      "currentPage": this.selectedPage - 1,
+      "recordsDisplayed": this.recordsDisplayed
+    });
   }
   parseOptionElements(options) {
     let newItemsPerPageOptions = [];
@@ -53,17 +63,17 @@ const YetiTablePagination = class {
     let itemsPerPage = this.getItemsPerPageOption();
     // First set start index
     if (itemsPerPage == "All" || itemsPerPage > this.records) {
-      this.startIndex = 1;
+      this.startIndex = 0;
     }
     else {
-      this.startIndex = ((this.selectedPage - 1) * itemsPerPage) + 1;
+      this.startIndex = ((this.selectedPage - 1) * itemsPerPage);
     }
     // Second set end index
     if (itemsPerPage == "All" || itemsPerPage > this.records) {
-      this.endIndex = this.records;
+      this.recordsDisplayed = this.records;
     }
     else {
-      this.endIndex = Math.min((this.startIndex + itemsPerPage - 1), this.records);
+      this.recordsDisplayed = Math.min((this.records - this.startIndex), itemsPerPage);
     }
   }
   updatePages() {
@@ -77,18 +87,39 @@ const YetiTablePagination = class {
     this.selectedPage = 1;
     this.updatePages();
     this.updateIndices();
+    e.preventDefault();
+    this.paginationUpdated.emit({
+      "currentPage": this.selectedPage - 1,
+      "recordsDisplayed": this.recordsDisplayed
+    });
   }
   handlePageSelectChange(e) {
     let select = e.target;
     this.selectedPage = parseInt(select.value);
+    this.updateIndices();
+    e.preventDefault();
+    this.paginationUpdated.emit({
+      "currentPage": this.selectedPage - 1,
+      "recordsDisplayed": this.recordsDisplayed
+    });
   }
-  handlePreviousPageButtonClick() {
+  handlePreviousPageButtonClick(ev) {
     this.selectedPage = Math.max(1, this.selectedPage - 1);
     this.updateIndices();
+    ev.preventDefault();
+    this.paginationUpdated.emit({
+      "currentPage": this.selectedPage - 1,
+      "recordsDisplayed": this.recordsDisplayed
+    });
   }
-  handleNextPageButtonClick() {
+  handleNextPageButtonClick(ev) {
     this.selectedPage = Math.min(this.pages, this.selectedPage + 1);
     this.updateIndices();
+    ev.preventDefault();
+    this.paginationUpdated.emit({
+      "currentPage": this.selectedPage - 1,
+      "recordsDisplayed": this.recordsDisplayed
+    });
   }
   componentWillLoad() {
     let optionElements = this.el.children;
@@ -96,34 +127,40 @@ const YetiTablePagination = class {
     if (optionElements.length > 0) {
       this.parseOptionElements(optionElements);
     }
-    // Initialize pages
-    this.updatePages();
-    // Initialize start and end indices
-    this.updateIndices();
   }
   render() {
     let cssClasses = 'yeti-table-pagination';
+    //console.warn('Pagination render()', this.el);
     if (this.cssClass != '') {
       cssClasses += ' ' + this.cssClass;
     }
-    this.paginationUpdated.emit();
     return (h("nav", { class: cssClasses, "aria-label": "Table Pagination" }, h("div", { class: "yeti-table-pagination-items_per_page" }, h("label", { htmlFor: "demo-items_per_page", class: "yeti-table-pagination-items_per_page-label" }, "Items per page:"), h("select", { id: "demo-items_per_page", class: "yeti-select yeti-table-pagination-items_per_page-select", onChange: (e) => {
         this.handleItemsPerPageChange(e);
       } }, this.itemsPerPageOptions.map((option) => {
       return h("option", { value: option, class: "yeti-table-pagination-items_per_page-select-option" }, option);
-    })), h("span", { class: "yeti-table-pagination-items_per_page-count" }, this.getItemsPerPageOption() == "All" ?
+    })), h("span", { class: "yeti-table-pagination-items_per_page-count" }, this.getItemsPerPageOption() == "All" || this.records == 0 ?
       ""
-      : this.startIndex + ' to ' + this.endIndex + ' of ', this.records, " item", this.records == 1 ? '' : 's')), h("div", { class: "yeti-table-pagination-pages" }, h("label", { htmlFor: "demo-pages", class: "yeti-a11y-hidden" }, "Page number, of ", this.pages, " page", this.pages == 1 ? '' : 's'), h("select", { id: "demo-pages", class: "yeti-select yeti-table-pagination-pages-select", onChange: (e) => {
-        this.handlePageSelectChange(e);
-      } }, (() => {
-      let options = [];
-      for (let i = 1; i <= this.pages; i++) {
-        options.push(h("option", Object.assign({ value: i, class: "yeti-table-pagination-pages-select-page" }, ((i == this.selectedPage) && { selected: true })), i));
-      }
-      return options;
-    })()), h("span", { class: "yeti-table-pagination-pages-of_pages", "aria-hidden": "true" }, "of ", this.pages, " page", this.pages == 1 ? '' : 's'), h("ul", { class: "yeti-table-pagination-pages-buttons" }, h("li", { class: "yeti-table-pagination-pages-buttons-action" }, h("button", Object.assign({ class: "yeti-table-pagination-pages-buttons-button", onClick: () => { this.handlePreviousPageButtonClick(); } }, ((this.selectedPage == 1) && { disabled: true })), h("span", { class: "material-icons", "aria-hidden": "true" }, "arrow_left"), h("span", { class: "yeti-a11y-hidden" }, "Previous page"))), h("li", { class: "yeti-table-pagination-pages-buttons-action" }, h("button", Object.assign({ class: "yeti-table-pagination-pages-buttons-button", onClick: () => { this.handleNextPageButtonClick(); } }, ((this.selectedPage == this.pages) && { disabled: true })), h("span", { class: "material-icons", "aria-hidden": "true" }, "arrow_right"), h("span", { class: "yeti-a11y-hidden" }, "Next page")))))));
+      : (this.startIndex + 1) + ' to ' + (this.startIndex + this.recordsDisplayed) /*(this.endIndex + 1)*/ + ' of ', this.records, " item", this.records == 1 ? '' : 's')), (this.records > 0) ?
+      h("div", { class: "yeti-table-pagination-pages" }, h("label", { htmlFor: "demo-pages", class: "yeti-a11y-hidden" }, "Page number, of ", this.pages, " page", this.pages == 1 ? '' : 's'), h("select", { id: "demo-pages", class: "yeti-select yeti-table-pagination-pages-select", onChange: (e) => {
+          this.handlePageSelectChange(e);
+        } }, (() => {
+        let options = [];
+        for (let i = 1; i <= this.pages; i++) {
+          options.push(h("option", Object.assign({ value: i, class: "yeti-table-pagination-pages-select-page" }, ((i == this.selectedPage) && { selected: true })), i));
+        }
+        return options;
+      })()), h("span", { class: "yeti-table-pagination-pages-of_pages", "aria-hidden": "true" }, "of ", this.pages, " page", this.pages == 1 ? '' : 's'), h("ul", { class: "yeti-table-pagination-pages-buttons" }, h("li", { class: "yeti-table-pagination-pages-buttons-action" }, h("button", Object.assign({ class: "yeti-table-pagination-pages-buttons-button", onClick: (ev) => { this.handlePreviousPageButtonClick(ev); } }, ((this.selectedPage == 1) && { disabled: true })), h("span", { class: "material-icons", "aria-hidden": "true" }, "arrow_left"), h("span", { class: "yeti-a11y-hidden" }, "Previous page"))), h("li", { class: "yeti-table-pagination-pages-buttons-action" }, h("button", Object.assign({ class: "yeti-table-pagination-pages-buttons-button", onClick: (ev) => { this.handleNextPageButtonClick(ev); } }, ((this.selectedPage == this.pages) && { disabled: true })), h("span", { class: "material-icons", "aria-hidden": "true" }, "arrow_right"), h("span", { class: "yeti-a11y-hidden" }, "Next page")))))
+      :
+        ""));
+  }
+  componentDidRender() {
+    //console.warn("Pagination did render.", this.el)
   }
   get el() { return getElement(this); }
+  static get watchers() { return {
+    "records": ["watchRecordsHandler"],
+    "recordsDisplayed": ["watchRecordsDisplayed"]
+  }; }
 };
 
 export { YetiTablePagination as yeti_table_pagination };

@@ -5,37 +5,31 @@ const YetiTable = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.rowActionClick = createEvent(this, "rowActionClick", 7);
+    this.tableSort = createEvent(this, "tableSort", 7);
+    this.tableFilter = createEvent(this, "tableFilter", 7);
+    this.tablePaginate = createEvent(this, "tablePaginate", 7);
+    this.rowsThatPassFiltering = 0;
+    this.filtersActive = 0;
     this.tableClass = '';
     this.tableId = utils.generateUniqueId();
+    this.records = 0;
     this.contents = {
       head: {
-        rows: [
-          {
-            cells: [
-              {
-                value: "Data"
-              }
-            ]
-          }
-        ]
+        rows: []
       },
       body: {
-        rows: [
-          {
-            cells: [
-              {
-                value: "This table has no data."
-              }
-            ]
-          }
-        ]
+        rows: []
       }
     };
-    this.contentsActual = undefined;
-    this.isValid = true;
+    this.sortSelf = true;
+    this.filterSelf = true;
+    this.paginateSelf = true;
     this.iLoveJSX = true;
+    this.firstRecordIndexToDisplay = 0;
+    this.numRecordsToDisplay = 0;
+    this.paginationComponent = null;
   }
-  watchContentsHandler(newValue) {
+  watchContentsHandler(newValue, oldValue) {
     if (!newValue.body) {
       console.error('Supplied data has no table body.');
       return false;
@@ -44,9 +38,32 @@ const YetiTable = class {
       console.error('Supplied data must have rows in table body.');
       return false;
     }
+    // See if the headings changed
+    if (newValue.head && oldValue.head && newValue.head != oldValue.head) {
+      this.setHeadingColumnIndices();
+      //this.setDefaultFilterValues();
+    }
+    // See if the body changed
+    if (newValue.body && oldValue.body && newValue.body != oldValue.body) {
+      this.setBodyColumnIndices();
+      //this.setDefaultFilterValues();
+    }
   }
-  handlePaginationUpdate() {
-    this.iLoveJSX = !this.iLoveJSX; // this.render() doesn't work, and there's no this.forceUpdate() in Stencil
+  handlePaginationUpdate(ev) {
+    let paginator = ev.target;
+    this.numRecordsToDisplay = paginator.recordsDisplayed;
+    // Handle pagination ourselves
+    if (this.paginateSelf) {
+      this.firstRecordIndexToDisplay = paginator.startIndex;
+      //this.numRecordsToDisplay = paginator.recordsDisplayed;
+    }
+    // Let the component consumer handle pagination
+    else {
+      this.tablePaginate.emit({
+        "currentPage": ev.detail.currentPage,
+        "recordsDisplayed": ev.detail.recordsDisplayed
+      });
+    }
   }
   handleReadyToVerify(ev) {
     let targetGeneric = ev.target;
@@ -58,7 +75,9 @@ const YetiTable = class {
         return;
       case "yeti-multiselect":
         let multiselect = ev.target;
+        //if (ev.type != 'readyToVerifyFast') {
         this.handleMultiselectFilterChange(multiselect, columnIndex);
+        //}
         return;
     }
   }
@@ -124,8 +143,20 @@ const YetiTable = class {
         }
       });
     });
+    this.filtersActive = 0;
   }
-  handleSort(cell) {
+  handleSort(ev, cell) {
+    ev.preventDefault();
+    // First check to see if we're doing this ourselves
+    if (!this.sortSelf) {
+      // We don't have to sort this ourselves.
+      this.tableSort.emit({
+        "columnIndex": cell.columnIndex,
+        "sortDirection": (cell.sortDirection == "ascending") ? "descending" : "ascending"
+      });
+      return;
+    }
+    // We need to sort this ourselves
     this.contents.body.rows.sort((a, b) => {
       // Get values to sort on.
       let aValue = a.cells[cell.columnIndex].value;
@@ -184,30 +215,99 @@ const YetiTable = class {
     this.iLoveJSX = !this.iLoveJSX; // this.render() doesn't work, and there's no this.forceUpdate() in Stencil
   }
   handleTextFilterChange(input, columnIndex) {
-    this.contents.head.rows[0].cells[columnIndex].filtering.value = input.value;
-    this.iLoveJSX = !this.iLoveJSX;
+    // First make sure we're supposed to do this ourselves
+    if (!this.filterSelf) {
+      // Reset pagination current page to 0;
+      this.paginationComponent.selectedPage = 1;
+      this.tableFilter.emit({
+        "columnIndex": columnIndex,
+        "value": input.value
+      });
+      this.filtersActive += (input.value == "") ? -1 : 1;
+    }
+    // Yep, it's our job.
+    else {
+      this.contents.head.rows[0].cells[columnIndex].filtering.value = input.value;
+      this.iLoveJSX = !this.iLoveJSX;
+    }
   }
   handleSelectFilterChange(select, columnIndex) {
-    this.contents.head.rows[0].cells[columnIndex].filtering.value = (select.selectedIndex == 0) ? "" : select.value;
-    this.iLoveJSX = !this.iLoveJSX;
+    // First make sure we're supposed to do this ourselves
+    if (!this.filterSelf) {
+      // Reset pagination current page to 0;
+      this.paginationComponent.selectedPage = 1;
+      this.tableFilter.emit({
+        "columnIndex": columnIndex,
+        "value": select.value
+      });
+    }
+    // Yep, it's our job.
+    else {
+      this.contents.head.rows[0].cells[columnIndex].filtering.value = (select.selectedIndex == 0) ? "" : select.value;
+      this.iLoveJSX = !this.iLoveJSX;
+    }
+    this.filtersActive += (select.value == "") ? -1 : 1;
   }
   handleDateFilterChange(picker, columnIndex) {
-    this.contents.head.rows[0].cells[columnIndex].filtering.value = picker.value;
-    this.iLoveJSX = !this.iLoveJSX;
+    // First make sure we're supposed to do this ourselves
+    if (!this.filterSelf) {
+      // Reset pagination current page to 0;
+      this.paginationComponent.selectedPage = 1;
+      this.tableFilter.emit({
+        "columnIndex": columnIndex,
+        "value": picker.value
+      });
+    }
+    // Yep, it's our job.
+    else {
+      this.contents.head.rows[0].cells[columnIndex].filtering.value = picker.value;
+      this.iLoveJSX = !this.iLoveJSX;
+    }
+    this.filtersActive += (picker.value == "") ? -1 : 1;
   }
   handleMultiselectFilterChange(multiselect, columnIndex) {
-    this.contents.head.rows[0].cells[columnIndex].filtering.value = multiselect.value;
-    this.iLoveJSX = !this.iLoveJSX;
+    // First make sure we're supposed to do this ourselves
+    if (!this.filterSelf) {
+      // Reset pagination current page to 0;
+      this.paginationComponent.selectedPage = 1;
+      this.tableFilter.emit({
+        "columnIndex": columnIndex,
+        "value": multiselect.value
+      });
+    }
+    // Yep, it's our job.
+    else {
+      this.contents.head.rows[0].cells[columnIndex].filtering.value = multiselect.value;
+      this.iLoveJSX = !this.iLoveJSX;
+    }
+    this.filtersActive += (multiselect.value == "") ? -1 : 1;
   }
   handleClearAllFilters() {
+    // First make sure we're supposed to do this ourselves
+    if (!this.filterSelf) {
+      // Reset pagination current page to 0;
+      this.paginationComponent.selectedPage = 1;
+      this.tableFilter.emit({
+        "columnIndex": -1,
+        "value": "clear"
+      });
+    }
+    // Yep, it's our job.
+    else {
+      this.iLoveJSX = !this.iLoveJSX;
+    }
     this.setDefaultFilterValues();
-    this.iLoveJSX = !this.iLoveJSX;
   }
   doesRowPassFiltering(row) {
     // Checks to see if this row should be filtered out or if it's safe to show. Returns true or false.
+    if (!this.filterSelf) {
+      // If we're not filtering ourselves then pass automatically.
+      return true;
+    }
     // Check to see if each cell in the row passes filtering.
     for (let i = 0; i < row.cells.length; i++) {
       if (!this.doesCellPassFiltering(row.cells[i])) {
+        console.error(`row ${row.rowIndex} failed filtering because of cell ${row.cells[i].value}`);
         return false;
       }
     }
@@ -215,13 +315,16 @@ const YetiTable = class {
   }
   doesCellPassFiltering(cell) {
     // Checks to see if this cell matches its heading's filters (if they exist).
+    if (cell.value == "undefined") {
+      cell.value = "";
+    }
     // Row heading only tables can't have filtering, so pass them.
     if (!this.contents.head || !this.contents.head.rows || !(this.contents.head.rows.length > 0)) {
       return true;
     }
     let th = this.contents.head.rows[0].cells[cell.columnIndex];
     // First see if filtering is even a thing for this column. If it isn't, we're good.
-    if (th.filtering && th.filtering.isFilterable) {
+    if (th && th.filtering && th.filtering.isFilterable && th.filtering.value) {
       let filterValue = th.filtering.value;
       // It depends on what type of filter (text, select, date, or multiselect) it is.
       switch (th.filtering.type) {
@@ -290,7 +393,10 @@ const YetiTable = class {
     }
     else {
       let css = (cell.cssClass && cell.cssClass != '') ? ' ' + cell.cssClass : '';
-      return h("td", { class: 'yeti-table-cell' + css, key: cell.id }, cell.value);
+      if (cell.template) {
+        return h("td", { class: 'yeti-table-cell' + css, innerHTML: cell.template });
+      }
+      return h("td", { class: 'yeti-table-cell' + css }, cell.value);
     }
   }
   renderRowActionsCell(cell) {
@@ -300,7 +406,7 @@ const YetiTable = class {
     let control;
     // Handle the case where there are no actions for this row.
     if (cell.rowActions.length <= 0) {
-      return h("td", { class: css, key: cell.id });
+      return h("td", { class: css });
     }
     // Otherwise there are actions for this row.
     else {
@@ -316,25 +422,15 @@ const YetiTable = class {
         actions.push(action);
       }
       control = h("yeti-menu-button", { "menu-alignment": "right", "data-row-index": cell.rowIndex, tooltipText: "Row actions" }, actions);
-      return h("td", { class: css, key: cell.id }, control);
+      return h("td", { class: css }, control);
     }
   }
   renderFilterClearCell(cell) {
     let css = (cell.cssClass && cell.cssClass != "") ?
       " " + cell.cssClass :
       "";
-    let control = h("yeti-tooltip", { text: "Clear filters" }, h("button", { class: "yeti-table-filter-clear-button", onClick: () => { this.handleClearAllFilters(); }, "aria-label": "Clear all filters" }, h("span", { class: "material-icons", "aria-hidden": "true" }, "cancel")));
-    let atLeastOneFilterActive = false;
-    if (this.contents.head && this.contents.head.rows && this.contents.head.rows.length > 0) {
-      for (let i = 0; i < this.contents.head.rows[0].cells.length; i++) {
-        let cell = this.contents.head.rows[0].cells[i];
-        if (cell.filtering && cell.filtering.value && cell.filtering.value != "") {
-          atLeastOneFilterActive = true;
-          break;
-        }
-      }
-    }
-    return h("td", { class: `yeti-table-heading yeti-table-cell-clear ${css}`, key: cell.id }, (atLeastOneFilterActive) ? control : "");
+    let control = h("yeti-tooltip", { text: "Clear filters" }, h("button", { class: "yeti-table-filter-clear-button", onClick: (ev) => { this.handleClearAllFilters(); ev.preventDefault(); }, "aria-label": "Clear all filters" }, h("span", { class: "material-icons", "aria-hidden": "true" }, "cancel")));
+    return h("td", { class: `yeti-table-heading yeti-table-cell-clear ${css}` }, (this.filtersActive > 0) ? control : "");
   }
   renderTableHeading(cell) {
     let css = (cell.cssClass && cell.cssClass != '') ? ' ' + cell.cssClass : '';
@@ -373,17 +469,17 @@ const YetiTable = class {
             h("div", { class: "yeti-table-heading-filter" }, this.renderTableHeadingFilter(cell, headingLabelId));
         }
         sortableHeading =
-          h("th", { class: `yeti-table-heading ${css}`, scope: (cell.scope && cell.scope == "row") ? "row" : "col" }, h("div", { class: "yeti-table-heading-compound" }, h("button", { class: "yeti-table-heading-button", onClick: () => { this.handleSort(cell); } }, h("div", { class: "yeti-table-heading-button-label", id: headingLabelId }, cell.value), h("span", { class: "yeti-table-heading-button-icon" }, h("span", { class: "yeti-a11y-hidden" }, a11yText), h("span", { class: "material-icons", "aria-hidden": "true", title: a11yText }, iconKey))), filter ? filter : ""));
+          h("th", { class: `yeti-table-heading ${css}`, scope: (cell.scope && cell.scope == "row") ? "row" : "col" }, h("div", { class: "yeti-table-heading-compound" }, h("button", { class: "yeti-table-heading-button", onClick: (ev) => { this.handleSort(ev, cell); } }, h("div", { class: "yeti-table-heading-button-label", id: headingLabelId }, cell.value), h("span", { class: "yeti-table-heading-button-icon" }, h("span", { class: "yeti-a11y-hidden" }, a11yText), h("span", { class: "material-icons", "aria-hidden": "true", title: a11yText }, iconKey))), filter ? filter : ""));
         return sortableHeading;
         // See if it's filterable but not sortable.
       }
       else if (cell.filtering && cell.filtering.isFilterable) {
-        return h("th", { class: 'yeti-table-heading' + css, key: cell.id, scope: (cell.scope && cell.scope == "row") ? "row" : "col" }, h("div", { class: "yeti-table-heading-compound" }, h("div", { class: "yeti-table-heading-compound-actual", id: headingLabelId }, cell.value), h("div", { class: "yeti-table-heading-filter" }, this.renderTableHeadingFilter(cell, headingLabelId))));
+        return h("th", { class: 'yeti-table-heading' + css, scope: (cell.scope && cell.scope == "row") ? "row" : "col" }, h("div", { class: "yeti-table-heading-compound" }, h("div", { class: "yeti-table-heading-compound-actual", id: headingLabelId }, cell.value), h("div", { class: "yeti-table-heading-filter" }, this.renderTableHeadingFilter(cell, headingLabelId))));
         // It must be a simple column heading.
       }
       else {
         // It's a simple column heading.
-        return h("th", { class: 'yeti-table-heading' + css, key: cell.id, scope: (cell.scope && cell.scope == "row") ? "row" : "col" }, cell.value);
+        return h("th", { class: 'yeti-table-heading' + css, scope: (cell.scope && cell.scope == "row") ? "row" : "col" }, cell.value);
       }
     }
   }
@@ -414,17 +510,16 @@ const YetiTable = class {
           return false;
         }
         return h("select", { class: "yeti-select yeti-table-heading-filter-input", onChange: (ev) => {
-            let that = ev.target;
-            this.handleSelectFilterChange(that, cell.columnIndex);
-          }, "aria-labelledby": headingLabelId }, h("option", null, "-Any-"), selectOptions);
+            this.handleSelectFilterChange(ev.target, cell.columnIndex);
+          }, "aria-labelledby": headingLabelId }, h("option", { value: "", key: utils.generateUniqueId() }, "-Any-"), selectOptions);
       case "date":
-        return h("yeti-date-picker", { key: utils.generateUniqueId(), "data-column": cell.columnIndex, "labelled-by": headingLabelId, value: cell.filtering.value });
+        return h("yeti-date-picker", { "data-column": cell.columnIndex, "labelled-by": headingLabelId, value: cell.filtering.value });
       case "multiselect":
         let multiselectOptions = [];
         // See if the multiselect options are supplied (they must be)
         if (cell.filtering.options && cell.filtering.options.length > 0) {
           for (let i = 0; i < cell.filtering.options.length; i++) {
-            multiselectOptions.push(h("yeti-multiselect-option", null, cell.filtering.options[i]));
+            multiselectOptions.push(h("yeti-multiselect-option", { key: i }, cell.filtering.options[i]));
           }
           // Contents doesn't have options specified, but they're required. Error out.
         }
@@ -432,7 +527,7 @@ const YetiTable = class {
           console.error("Error in table multiselect filter: no options supplied.");
           return false;
         }
-        return h("yeti-multiselect", { placeholder: "-Any-", "data-column": cell.columnIndex, "labelled-by": headingLabelId, value: cell.filtering.value }, multiselectOptions);
+        return h("yeti-multiselect", { placeholder: "-Any-", "data-column": cell.columnIndex, "labelled-by": headingLabelId, value: cell.filtering.value, key: cell.id }, multiselectOptions);
       default:
         console.error("Error rendering table filter: unexpected filtering type requested:", cell.filtering.type);
         return "";
@@ -445,52 +540,90 @@ const YetiTable = class {
     });
     return cells;
   }
-  renderRows(rowStartIndex = 0, rowEndIndex = this.contents.body.rows.length - 1) {
+  renderHeaderRow(row) {
+    // Basically the same as renderRow but first checks to see if we need to create a placeholder heading cell.
+    if (this.contents.head.rows.length == 0 || !this.contents.head.rows[0].cells || this.contents.head.rows[0].cells.length == 0) {
+      console.warn("All tables should have headers.");
+      return h("th", { class: "yeti-table-heading", scope: "col" }, "No data");
+    }
+    // Base case, just render the row as usual.
+    else {
+      return this.renderRow(row);
+    }
+  }
+  renderRows(rowStartIndex = 0, rowsToDisplay = this.contents.body.rows.length) {
     let tbodyContents = [];
-    let rowsThatPassFiltering = 0;
-    for (let i = rowStartIndex; i <= rowEndIndex; i++) {
+    let rowsThatPassFiltering = [];
+    let numRowsPassedAfterStartIndex = 0;
+    // First make sure there are actual records to render.
+    if (this.contents.body.rows.length == 0 || !this.contents.body.rows[0].cells || this.contents.body.rows[0].cells.length == 0) {
+      // There are no records, display a placeholder row.
+      let colspan = (!this.contents.head.rows[0] || !this.contents.head.rows[0].cells) ? 1 : this.contents.head.rows[0].cells.length;
+      return h("tr", { class: "yeti-table-body-row" }, h("td", { class: "yeti-table-cell", colSpan: colspan }, "This table has no data."));
+    }
+    for (let i = 0; i < this.contents.body.rows.length; i++) {
       const row = this.contents.body.rows[i];
       if (this.doesRowPassFiltering(row)) {
-        ++rowsThatPassFiltering;
-        row.id = (row.id) ? row.id : utils.generateUniqueId();
-        tbodyContents.push(h("tr", { class: "yeti-table-body-row", key: row.id }, this.renderRow(row)));
+        rowsThatPassFiltering.push(row);
+        // row passes filtering. If...
+        if ((i >= rowStartIndex) && // This row is on or after the startIndex,...
+          (numRowsPassedAfterStartIndex < rowsToDisplay) && // ...and we haven't already found enough rows to display,...
+          (rowsThatPassFiltering.length >= rowStartIndex) // ...and it's not one of the filtered rows short of our quota...
+        ) {
+          row.id = (row.id) ? row.id : utils.generateUniqueId();
+          ++numRowsPassedAfterStartIndex;
+          tbodyContents.push(h("tr", { class: "yeti-table-body-row" }, this.renderRow(row)));
+        }
       }
     }
+    this.rowsThatPassFiltering = rowsThatPassFiltering.length;
     // If there's still at least one row to render...
-    if (rowsThatPassFiltering > 0) {
+    if (tbodyContents.length > 0) {
       return tbodyContents;
     }
     // Otherwise, render a placeholder row.
     return h("tr", { class: "yeti-table-body-row" }, h("td", { class: "yeti-table-cell", colSpan: this.contents.head.rows[0].cells.length }, "No matches"));
   }
   componentWillLoad() {
-    this.watchContentsHandler(this.contents);
     this.setHeadingColumnIndices();
     this.setBodyColumnIndices();
-    this.setDefaultFilterValues();
+    this.watchContentsHandler(this.contents, this.contents);
+    this.paginationComponent = this.el.querySelector("yeti-table-pagination");
+    //this.numRecordsToDisplay = (this.numRecordsToDisplay > 0) ? this.numRecordsToDisplay : this.contents.body.rows.length;
+  }
+  componentWillRender() {
+    // If we're not paginating inside the component...
+    if (!this.paginateSelf) {
+      let recordsOnThisPage = this.paginationComponent.recordsDisplayed;
+      // ...then we need to handle the case where we're on the last page, and we don't need to show all the records we got back.
+      this.numRecordsToDisplay = recordsOnThisPage;
+    }
   }
   render() {
     let cssClass = 'yeti-table';
-    let paginationComponent = this.el.querySelector('yeti-table-pagination');
-    let indexOfFirstRowToDisplay = 0;
-    let indexOfLastRowToDisplay = this.contents.body.rows.length - 1;
-    if (paginationComponent != null) {
-      paginationComponent.records = this.contents.body.rows.length;
-      paginationComponent.id = paginationComponent.id ? paginationComponent.id : utils.generateUniqueId();
-      indexOfFirstRowToDisplay = paginationComponent.startIndex - 1;
-      indexOfLastRowToDisplay = paginationComponent.endIndex - 1;
-    }
+    //console.warn('Table render()', this.contents.body.rows.length, this.numRecordsToDisplay);
     if (this.tableClass != '') {
       cssClass += ' ' + this.tableClass;
     }
-    if (this.isValid == false) {
-      cssClass += ' yeti-input__error';
+    return (h("table", { class: cssClass }, (this.contents.head) ?
+      h("thead", { class: "yeti-table-head" }, h("tr", { class: "yeti-table-head-row" }, (this.contents.head && this.contents.head.rows && this.contents.head.rows.length > 0 && this.contents.head.rows[0].cells && this.contents.head.rows[0].cells.length > 0) ?
+        this.contents.head.rows.map((row) => {
+          return this.renderRow(row);
+        })
+        :
+          h("th", { class: "yeti-table-heading", scope: "col" }, "No data")))
+      :
+        "", h("tbody", { class: "yeti-table-body" }, this.renderRows(this.firstRecordIndexToDisplay, this.numRecordsToDisplay))));
+  }
+  componentDidRender() {
+    //console.warn(`Table did render. ${this.rowsThatPassFiltering} of ${this.contents.body.rows.length} rows passed filtering, rendering ${this.numRecordsToDisplay} of those.`);
+    let paginationComponent = this.el.querySelector('yeti-table-pagination');
+    if (paginationComponent != null) {
+      // If we're relying on the component consumer to handle pagination, then we get the record count from them.
+      // Otherwise, we use our own count of total rows (that passed filtering).
+      paginationComponent.records = (this.paginateSelf) ? this.rowsThatPassFiltering : this.records;
+      paginationComponent.id = paginationComponent.id ? paginationComponent.id : utils.generateUniqueId();
     }
-    return (h("table", { class: cssClass }, (this.contents.head && this.contents.head.rows && this.contents.head.rows.length > 0) ?
-      h("thead", { class: "yeti-table-head" }, h("tr", { class: "yeti-table-head-row" }, this.contents.head.rows.map((row) => {
-        return this.renderRow(row);
-      })))
-      : '', h("tbody", { class: "yeti-table-body" }, this.renderRows(indexOfFirstRowToDisplay, indexOfLastRowToDisplay))));
   }
   get el() { return getElement(this); }
   static get watchers() { return {

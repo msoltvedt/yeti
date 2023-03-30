@@ -1,1 +1,0 @@
-import{r as t,h as s,g as i}from"./p-f504dd71.js";import{u as r}from"./p-5c303e9a.js";const e=class{constructor(s){t(this,s),this.cssClass="",this.htmlId=r.generateUniqueId()}render(){let t="yeti-table-actions";return""!=this.cssClass&&(t+=" "+this.cssClass),s("div",{class:t,id:this.htmlId},s("slot",null))}get el(){return i(this)}};export{e as yeti_table_actions}
