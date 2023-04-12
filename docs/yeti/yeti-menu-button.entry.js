@@ -1,5 +1,5 @@
 import { r as registerInstance, e as createEvent, h, g as getElement } from './index-63c9e11c.js';
-import { u as utils } from './utils-a407a515.js';
+import { u as utils } from './utils-ab4e8d6b.js';
 
 const YetiMenuButton = class {
   constructor(hostRef) {
@@ -10,9 +10,9 @@ const YetiMenuButton = class {
     this.wrapperCSS = '';
     this.buttonCSS = '';
     this.menuCSS = '';
-    this.buttonId = utils.generateUniqueId();
+    this.buttonId = "";
     this.buttonType = "";
-    this.menuId = utils.generateUniqueId();
+    this.menuId = "";
     this.tooltipText = "Options";
     this.menuAlignment = "";
     this.hasTooltip = true;
@@ -137,6 +137,7 @@ const YetiMenuButton = class {
   parseChildTags() {
     let options = this.el.querySelectorAll("yeti-menu-button-option");
     let buttonLabel = this.el.querySelector("yeti-menu-button-contents");
+    this.options = (options && options.length && options.length > 0) ? [] : this.options;
     for (let i = 0; i < options.length; i++) {
       let option = options.item(i);
       // First, confirm this element is indeed a yeti-menu-button-option element.
@@ -148,7 +149,8 @@ const YetiMenuButton = class {
           value: "",
           hasHTML: false
         };
-        optionObject.id = (optionObject.id) ? optionObject.id : utils.generateUniqueId();
+        let optionId = option.getAttribute("id");
+        optionObject.id = (optionId && optionId != "") ? optionId : `${this.el.getAttribute("id")}_option${i}`;
         optionObject.label = option.innerText.trim().replace(/\t/g, '');
         optionObject.label = optionObject.label.replace(/\n/g, ' ');
         // Check to see if it has a href attribute.
@@ -195,15 +197,17 @@ const YetiMenuButton = class {
       let option = this.options[i];
       let linkOrButtonElement;
       let item;
+      //let listItemId = `${option.id}_item${i}`;
+      let listItemId = `${option.id}`;
       // See if it's a link
       if (option.href) {
-        linkOrButtonElement = h("a", { href: option.href, class: "yeti-menu_button-menu-item-link", role: "menuitem", tabindex: "-1", key: i, "data-option-index": i, onClick: (ev) => { this.handleOptionClick(i, ev, true); } }, (option.hasHTML) ? h("slot", { name: option.id }) : option.label);
+        linkOrButtonElement = h("a", { href: option.href, class: "yeti-menu_button-menu-item-link", role: "menuitem", tabindex: "-1", "data-option-index": i, onClick: (ev) => { this.handleOptionClick(i, ev, true); } }, (option.hasHTML) ? h("slot", { name: option.id }) : option.label);
       }
       // Nope, it's a button.
       else {
-        linkOrButtonElement = h("button", { class: "yeti-menu_button-menu-item-button", role: "menuitem", tabindex: "-1", key: i, "data-option-index": i, onClick: (ev) => { this.handleOptionClick(i, ev); } }, (option.hasHTML) ? h("slot", { name: option.id }) : option.label);
+        linkOrButtonElement = h("button", { class: "yeti-menu_button-menu-item-button", role: "menuitem", tabindex: "-1", "data-option-index": i, onClick: (ev) => { this.handleOptionClick(i, ev); } }, (option.hasHTML) ? h("slot", { name: option.id }) : option.label);
       }
-      item = h("li", { class: "yeti-menu_button-menu-item", role: "presentation" }, linkOrButtonElement);
+      item = h("li", { class: "yeti-menu_button-menu-item", role: "presentation", id: listItemId, key: listItemId }, linkOrButtonElement);
       items.push(item);
     }
     return items;
@@ -227,15 +231,24 @@ const YetiMenuButton = class {
     ev.preventDefault();
   }
   renderButton(buttonClass) {
-    return h("button", { class: buttonClass, "aria-haspopup": "true", "aria-expanded": "true", "aria-controls": this.menuId, id: this.buttonId, onClick: (ev) => {
+    return h("button", Object.assign({ class: buttonClass, "aria-haspopup": "true" }, ((this.isOpen) ? { "aria-expanded": "true" } : {}), { "aria-controls": this.menuId, id: this.buttonId, role: "button", onClick: (ev) => {
         this.handleButtonClick(ev);
-      } }, (this.hasCustomButtonContents) ?
+      } }), (this.hasCustomButtonContents) ?
       h("slot", { name: "buttonContents" })
       :
         [
           h("span", { class: "material-icons", "aria-hidden": "true" }, "more_vert"),
           h("span", { class: "yeti-a11y-hidden" }, "Options")
         ]);
+  }
+  componentWillLoad() {
+    // Set ids
+    let elementId = this.el.getAttribute("id");
+    if (!elementId || elementId == "") {
+      this.el.setAttribute("id", utils.generateUniqueId());
+    }
+    this.buttonId = (this.buttonId != "") ? this.buttonId : `${elementId}_button`;
+    this.menuId = (this.menuId != "") ? this.menuId : `${elementId}_menu`;
   }
   componentWillRender() {
     // Look for and handle any <yeti-menu-button-*> tags.
@@ -273,6 +286,7 @@ const YetiMenuButton = class {
     let wrapperCSS = 'yeti-menu_button';
     let buttonClass = 'yeti-menu_button-button';
     let menuClass = 'yeti-menu_button-menu';
+    let tooltipId = `${this.el.getAttribute("id")}_tooltip`;
     if (this.menuAlignment.indexOf("right") > -1) {
       wrapperCSS += ' yeti-menu_button-right_aligned';
     }
@@ -287,7 +301,7 @@ const YetiMenuButton = class {
     menuClass += (this.menuCSS && this.menuCSS != "") ? " " + this.menuCSS : "";
     return ([
       h("div", { class: wrapperCSS }, (this.hasTooltip) ?
-        h("yeti-tooltip", { text: this.tooltipText }, this.renderButton(buttonClass))
+        h("yeti-tooltip", { text: this.tooltipText, id: tooltipId, slotId: this.buttonId, tipId: `${this.buttonId}_tooltip` }, this.renderButton(buttonClass))
         :
           this.renderButton(buttonClass), h("ul", { class: menuClass, role: "menu", id: this.menuId, "aria-labelledby": this.buttonId, key: this.menuId }, this.renderMenuItems()))
     ]);

@@ -17,9 +17,15 @@ export class YetiTooltip {
 
   @Prop() position: string = "above";
 
-  @Prop() slotId: string = utils.generateUniqueId();
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) slotId: string = ""; // Set on load
 
-  @Prop() tipId: string = utils.generateUniqueId();
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) tipId: string = ""; // Set on load
 
   @Prop() blockAnchor: boolean = false;
 
@@ -49,6 +55,20 @@ export class YetiTooltip {
     });
   }
 
+
+
+  componentWillLoad() {
+    // Set up ids
+    let componentId = this.el.getAttribute("id");
+
+    if (!componentId || componentId == "") {
+      componentId = utils.generateUniqueId();
+      this.el.setAttribute("id", componentId);
+    }
+
+    this.tipId = (this.tipId != "") ? this.tipId : `${componentId}_tip`;
+    this.slotId = (this.slotId != "") ? this.slotId : `${componentId}_slot`;
+  }
 
 
   render() {
@@ -87,14 +107,18 @@ export class YetiTooltip {
         </div>
 
 
-        <div class="yeti-tooltip-slot" id={this.slotId} aria-describedby={this.tipId}>
-        
-          <slot />
-
-        </div>
+        <slot />
 
       </div>
     ]);
+  }
+
+
+
+  componentDidRender() {
+    let slot = this.el.querySelector(".yeti-tooltip").nextElementSibling;
+    slot.setAttribute("tabindex", "0");
+    slot.setAttribute("aria-describedby",this.tipId);
   }
 
 }

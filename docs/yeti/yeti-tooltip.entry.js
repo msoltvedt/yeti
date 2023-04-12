@@ -1,5 +1,5 @@
 import { r as registerInstance, h, g as getElement } from './index-63c9e11c.js';
-import { u as utils } from './utils-a407a515.js';
+import { u as utils } from './utils-ab4e8d6b.js';
 
 const YetiTooltip = class {
   constructor(hostRef) {
@@ -8,8 +8,8 @@ const YetiTooltip = class {
     this.tooltipCSS = '';
     this.text = "I'm a helpful tooltip.";
     this.position = "above";
-    this.slotId = utils.generateUniqueId();
-    this.tipId = utils.generateUniqueId();
+    this.slotId = "";
+    this.tipId = "";
     this.blockAnchor = false;
     this.iLoveJSX = false;
   }
@@ -25,6 +25,16 @@ const YetiTooltip = class {
       behavior: "smooth",
       block: "nearest"
     });
+  }
+  componentWillLoad() {
+    // Set up ids
+    let componentId = this.el.getAttribute("id");
+    if (!componentId || componentId == "") {
+      componentId = utils.generateUniqueId();
+      this.el.setAttribute("id", componentId);
+    }
+    this.tipId = (this.tipId != "") ? this.tipId : `${componentId}_tip`;
+    this.slotId = (this.slotId != "") ? this.slotId : `${componentId}_slot`;
   }
   render() {
     let wrapperCSS = 'yeti-tooltip-wrapper';
@@ -42,8 +52,13 @@ const YetiTooltip = class {
         break;
     }
     return ([
-      h("div", { class: wrapperCSS }, h("div", { class: tipClass }, h("div", { class: "yeti-tooltip-content", id: this.tipId }, this.text)), h("div", { class: "yeti-tooltip-slot", id: this.slotId, "aria-describedby": this.tipId }, h("slot", null)))
+      h("div", { class: wrapperCSS }, h("div", { class: tipClass }, h("div", { class: "yeti-tooltip-content", id: this.tipId }, this.text)), h("slot", null))
     ]);
+  }
+  componentDidRender() {
+    let slot = this.el.querySelector(".yeti-tooltip").nextElementSibling;
+    slot.setAttribute("tabindex", "0");
+    slot.setAttribute("aria-describedby", this.tipId);
   }
   get el() { return getElement(this); }
 };

@@ -1,5 +1,5 @@
 import { r as registerInstance, h, g as getElement } from './index-63c9e11c.js';
-import { u as utils } from './utils-a407a515.js';
+import { u as utils } from './utils-ab4e8d6b.js';
 
 const YetiProgressBar = class {
   constructor(hostRef) {
@@ -7,7 +7,7 @@ const YetiProgressBar = class {
     this.wrapperCSS = '';
     this.labelCSS = '';
     this.barCSS = '';
-    this.barId = utils.generateUniqueId();
+    this.barId = "";
     this.progress = 0;
     this.label = "";
     this.tooltipText = "";
@@ -36,8 +36,9 @@ const YetiProgressBar = class {
   }
   renderLabel(labelCSS) {
     let state = "";
+    let tooltipId = `${this.el.getAttribute("id")}_tooltip`;
     if (this.tooltipText != "" && this.tooltipPosition != "below") {
-      state = h("yeti-tooltip", { text: this.tooltipText }, h("div", { class: labelCSS, tabIndex: 0 }, this.label, " ", h("span", { class: "yeti-a11y-hidden" }, this.progress, "%")));
+      state = h("yeti-tooltip", { text: this.tooltipText, id: tooltipId }, h("div", { class: labelCSS, tabIndex: 0 }, this.label, " ", h("span", { class: "yeti-a11y-hidden" }, this.progress, "%")));
     }
     else {
       state = h("div", { class: labelCSS }, this.label, " ", h("span", { class: "yeti-a11y-hidden" }, this.progress, "%"));
@@ -45,19 +46,27 @@ const YetiProgressBar = class {
     return state;
   }
   renderProgressBar(wrapperCSS, labelCSS, barCSS, actualStyle) {
-    let progressBar = h("div", Object.assign({ class: wrapperCSS }, ((this.tooltipText != "" && this.tooltipPosition == "below") ? { tabIndex: 0 } : {})), h("div", { class: "yeti-progress_bar-header" }, this.renderLabel(labelCSS), this.renderIcon()), h("div", { class: barCSS, "aria-hidden": "true" }, h("div", { class: "yeti-progress_bar-bar-actual", style: actualStyle })), (this.helperText != "") ?
+    let progressBar = h("div", Object.assign({ class: wrapperCSS, id: this.barId }, ((this.tooltipText != "" && this.tooltipPosition == "below") ? { tabIndex: 0 } : {})), h("div", { class: "yeti-progress_bar-header" }, this.renderLabel(labelCSS), this.renderIcon()), h("div", { class: barCSS, "aria-hidden": "true" }, h("div", { class: "yeti-progress_bar-bar-actual", style: actualStyle })), (this.helperText != "") ?
       h("div", { class: "yeti-progress_bar-tip" }, this.helperText)
       :
         "");
     return progressBar;
   }
   componentWillLoad() {
+    // Set up ids
+    let componentId = this.el.getAttribute("id");
+    if (!componentId || componentId == "") {
+      componentId = utils.generateUniqueId();
+      this.el.setAttribute("id", componentId);
+    }
+    this.barId = (this.barId != "") ? this.barId : `${componentId}_bar`;
     this.handleProgressChange(this.progress);
   }
   render() {
     let wrapperCSS = 'yeti-progress_bar';
     let labelCSS = 'yeti-progress_bar-label';
     let barCSS = 'yeti-progress_bar-bar';
+    let tooltipId = `${this.el.getAttribute("id")}_tooltip`;
     wrapperCSS += (this.progress == 100) ? " yeti-progress_bar__complete" : "";
     wrapperCSS += (this.error) ? " yeti-progress_bar__error" : "";
     wrapperCSS += (this.wrapperCSS && this.wrapperCSS != "") ? " " + this.wrapperCSS : "";
@@ -67,7 +76,7 @@ const YetiProgressBar = class {
       width: `${this.progress}%`
     };
     return ((this.tooltipText != "" && this.tooltipPosition == "below") ?
-      h("yeti-tooltip", { text: this.tooltipText, position: this.tooltipPosition, blockAnchor: true }, this.renderProgressBar(wrapperCSS, labelCSS, barCSS, actualStyle))
+      h("yeti-tooltip", { text: this.tooltipText, position: this.tooltipPosition, id: tooltipId, blockAnchor: true }, this.renderProgressBar(wrapperCSS, labelCSS, barCSS, actualStyle))
       :
         this.renderProgressBar(wrapperCSS, labelCSS, barCSS, actualStyle));
   }

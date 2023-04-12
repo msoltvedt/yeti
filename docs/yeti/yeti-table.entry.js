@@ -1,5 +1,5 @@
 import { r as registerInstance, e as createEvent, h, g as getElement } from './index-63c9e11c.js';
-import { u as utils } from './utils-a407a515.js';
+import { u as utils } from './utils-ab4e8d6b.js';
 
 const YetiTable = class {
   constructor(hostRef) {
@@ -38,6 +38,7 @@ const YetiTable = class {
       console.error('Supplied data must have rows in table body.');
       return false;
     }
+    this.markRowsWithChangedRowActions(oldValue);
     // See if the headings changed
     if (newValue.head && oldValue.head && newValue.head != oldValue.head) {
       this.setHeadingColumnIndices();
@@ -55,7 +56,6 @@ const YetiTable = class {
     // Handle pagination ourselves
     if (this.paginateSelf) {
       this.firstRecordIndexToDisplay = paginator.startIndex;
-      //this.numRecordsToDisplay = paginator.recordsDisplayed;
     }
     // Let the component consumer handle pagination
     else {
@@ -88,6 +88,25 @@ const YetiTable = class {
     this.rowActionClick.emit({
       "rowIndex": rowIndex,
       "actionLabel": newValue
+    });
+  }
+  markRowsWithChangedRowActions(oldContents) {
+    /*
+      Stencil's JSX compiler won't update the row actions <yeti-menu-button> component when row actions are changed in this.contents
+      because it's passed by reference or something. As a result, we have to manually check to see if the row actions have changed,
+      and if so, give the <yeti-menu-button> a new key to trigger a rerender with the latest data.
+    */
+    if (!this.contents.body || !this.contents.body.rows || !this.contents.body.rows.length) {
+      return;
+    }
+    this.contents.body.rows.forEach((row, rowIndex) => {
+      row.cells.forEach((cell, cellIndex) => {
+        if (cell.rowActions && cell.rowActions.length && cell.rowActions.length > 0) {
+          if (oldContents.body && oldContents.body.rows && oldContents.body.rows[rowIndex] && oldContents.body.rows[rowIndex].cells[cellIndex] && !utils.isEqual(cell.rowActions, oldContents.body.rows[rowIndex].cells[cellIndex].rowActions)) {
+            row.rowActionsJustChanged = true;
+          }
+        }
+      });
     });
   }
   isValidTableData(data) {
@@ -376,8 +395,14 @@ const YetiTable = class {
       return true;
     }
   }
+  getNumberOfRecords() {
+    return (this.contents.body && this.contents.body.rows && this.contents.body.rows.length) ? this.contents.body.rows.length : -1;
+  }
   renderCell(cell) {
-    cell.id = (cell.id) ? cell.id : utils.generateUniqueId();
+    if (!cell.id || cell.id == "") {
+      //console.warn("Each table cell should have a unique id.");
+      cell.id = utils.generateUniqueId();
+    }
     // See if it's a filter clear cell
     if (cell.filtering && cell.filtering.isClearCell) {
       return this.renderFilterClearCell(cell);
@@ -394,35 +419,60 @@ const YetiTable = class {
     else {
       let css = (cell.cssClass && cell.cssClass != '') ? ' ' + cell.cssClass : '';
       if (cell.template) {
-        return h("td", { class: 'yeti-table-cell' + css, innerHTML: cell.template });
+        return h("td", { class: 'yeti-table-cell' + css, id: cell.id, key: cell.id, innerHTML: cell.template });
       }
-      return h("td", { class: 'yeti-table-cell' + css }, cell.value);
+      return h("td", { class: 'yeti-table-cell' + css, id: cell.id, key: cell.id }, cell.value);
     }
   }
   renderRowActionsCell(cell) {
     let css = (cell.cssClass && cell.cssClass != "") ?
       "yeti-table-cell yeti-table-control yeti-table-cell-row_actions" + cell.cssClass :
       "yeti-table-cell yeti-table-control yeti-table-cell-row_actions";
+    let preexistingMenuButtonElement = document.querySelector(`#${cell.id} yeti-menu-button`);
+    let controlId;
     let control;
+    let timesUpdated;
+    // Initialize controlId
+    if (preexistingMenuButtonElement && preexistingMenuButtonElement.getAttribute("id")) {
+      controlId = preexistingMenuButtonElement.getAttribute("id");
+    }
+    else {
+      controlId = (cell.id && cell.id !== "") ? `${cell.id}_menuButton` : utils.generateUniqueId();
+    }
+    // Initialize timesUpdated
+    if (preexistingMenuButtonElement && preexistingMenuButtonElement.getAttribute("data-times-updated")) {
+      timesUpdated = parseInt(preexistingMenuButtonElement.getAttribute("data-times-updated"));
+    }
+    else {
+      timesUpdated = 0;
+    }
+    // Handle the case where the row actions have changed.
+    if (this.contents.body.rows[cell.rowIndex].rowActionsJustChanged) {
+      // If the menu button has been changed previously then it'll have an attribute of data-times-updated
+      ++timesUpdated;
+      controlId = (cell.id && cell.id !== "") ? `${cell.id}_menuButton_mk${timesUpdated}` : utils.generateUniqueId();
+      this.contents.body.rows[cell.rowIndex].rowActionsJustChanged = false;
+    }
     // Handle the case where there are no actions for this row.
     if (cell.rowActions.length <= 0) {
-      return h("td", { class: css });
+      return h("td", { class: css, id: cell.id, key: cell.id });
     }
     // Otherwise there are actions for this row.
     else {
       let actions = [];
       for (let i = 0; i < cell.rowActions.length; i++) {
         let action;
+        let actionId = `${controlId}_opt${i}`;
         if (cell.rowActions[i].href) {
-          action = h("yeti-menu-button-option", { href: cell.rowActions[i].href }, cell.rowActions[i].label);
+          action = h("yeti-menu-button-option", { href: cell.rowActions[i].href, id: actionId, key: actionId }, cell.rowActions[i].label);
         }
         else {
-          action = h("yeti-menu-button-option", null, cell.rowActions[i].label);
+          action = h("yeti-menu-button-option", { id: actionId, key: actionId }, cell.rowActions[i].label);
         }
         actions.push(action);
       }
-      control = h("yeti-menu-button", { "menu-alignment": "right", "data-row-index": cell.rowIndex, tooltipText: "Row actions" }, actions);
-      return h("td", { class: css }, control);
+      control = h("yeti-menu-button", { "menu-alignment": "right", "data-row-index": cell.rowIndex, "data-times-updated": `${timesUpdated}`, id: controlId, key: controlId, tooltipText: "Row actions" }, actions);
+      return h("td", { class: css, id: cell.id, key: cell.id }, control);
     }
   }
   renderFilterClearCell(cell) {
@@ -430,7 +480,7 @@ const YetiTable = class {
       " " + cell.cssClass :
       "";
     let control = h("yeti-tooltip", { text: "Clear filters" }, h("button", { class: "yeti-table-filter-clear-button", onClick: (ev) => { this.handleClearAllFilters(); ev.preventDefault(); }, "aria-label": "Clear all filters" }, h("span", { class: "material-icons", "aria-hidden": "true" }, "cancel")));
-    return h("td", { class: `yeti-table-heading yeti-table-cell-clear ${css}` }, (this.filtersActive > 0) ? control : "");
+    return h("td", { class: `yeti-table-heading yeti-table-cell-clear ${css}`, id: cell.id, key: cell.id }, (this.filtersActive > 0) ? control : "");
   }
   renderTableHeading(cell) {
     let css = (cell.cssClass && cell.cssClass != '') ? ' ' + cell.cssClass : '';
@@ -441,7 +491,14 @@ const YetiTable = class {
       // It's a th
     }
     else {
-      let headingLabelId = utils.generateUniqueId();
+      let headingLabelId;
+      if (!cell.id || cell.id == "") {
+        //console.warn("Table cells with filtering require a unique id.");
+        headingLabelId = utils.generateUniqueId();
+      }
+      else {
+        headingLabelId = `${cell.id}_heading`;
+      }
       // It's a th, see if it's sortable or not.
       if (cell.sortDirection) {
         // It's a sortable column heading.
@@ -485,6 +542,7 @@ const YetiTable = class {
   }
   renderTableHeadingFilter(cell, headingLabelId) {
     // Returns the JSX for the appropriate filter object (text, select, date picker, or multiselect)
+    let filterId = `${cell.id}_filter`;
     switch (cell.filtering.type) {
       case "text":
         return h("input", { type: "text", value: cell.filtering.value, class: "yeti-input yeti-table-heading-filter-input", onKeyUp: (ev) => {
@@ -499,9 +557,10 @@ const YetiTable = class {
             // Set selected state based on the filtering value
             // First handle the case where the filtering value is empty (default).
             let selected = (i == 0 && cell.filtering.value == "") ? true : false;
+            let optionId = `${filterId}_option${i}`;
             // Second handle the case where the filtering value matches this label.
             selected = (cell.filtering.options[i] == cell.filtering.value) ? true : false;
-            selectOptions.push(h("option", { selected: selected }, cell.filtering.options[i]));
+            selectOptions.push(h("option", { selected: selected, id: optionId, key: optionId }, cell.filtering.options[i]));
           }
           // Contents doesn't have options specified, but they're required. Error out.
         }
@@ -511,15 +570,16 @@ const YetiTable = class {
         }
         return h("select", { class: "yeti-select yeti-table-heading-filter-input", onChange: (ev) => {
             this.handleSelectFilterChange(ev.target, cell.columnIndex);
-          }, "aria-labelledby": headingLabelId }, h("option", { value: "", key: utils.generateUniqueId() }, "-Any-"), selectOptions);
+          }, "aria-labelledby": headingLabelId }, h("option", { value: "", id: `${filterId}_defaultOption`, key: `${filterId}_defaultOption` }, "- Any -"), selectOptions);
       case "date":
-        return h("yeti-date-picker", { "data-column": cell.columnIndex, "labelled-by": headingLabelId, value: cell.filtering.value });
+        return h("yeti-date-picker", { "data-column": cell.columnIndex, "labelled-by": headingLabelId, value: cell.filtering.value, id: filterId, key: filterId });
       case "multiselect":
         let multiselectOptions = [];
         // See if the multiselect options are supplied (they must be)
         if (cell.filtering.options && cell.filtering.options.length > 0) {
           for (let i = 0; i < cell.filtering.options.length; i++) {
-            multiselectOptions.push(h("yeti-multiselect-option", { key: i }, cell.filtering.options[i]));
+            let optionId = `${filterId}_option${i}`;
+            multiselectOptions.push(h("yeti-multiselect-option", { id: optionId, key: optionId }, cell.filtering.options[i]));
           }
           // Contents doesn't have options specified, but they're required. Error out.
         }
@@ -527,7 +587,7 @@ const YetiTable = class {
           console.error("Error in table multiselect filter: no options supplied.");
           return false;
         }
-        return h("yeti-multiselect", { placeholder: "-Any-", "data-column": cell.columnIndex, "labelled-by": headingLabelId, value: cell.filtering.value, key: cell.id }, multiselectOptions);
+        return h("yeti-multiselect", { placeholder: "- Any -", "data-column": cell.columnIndex, "labelled-by": headingLabelId, id: filterId, key: filterId, value: cell.filtering.value }, multiselectOptions);
       default:
         console.error("Error rendering table filter: unexpected filtering type requested:", cell.filtering.type);
         return "";
@@ -535,7 +595,7 @@ const YetiTable = class {
   }
   renderRow(row) {
     let cells = [];
-    row.cells.map((cell) => {
+    row.cells.forEach((cell) => {
       cells.push(this.renderCell(cell));
     });
     return cells;
@@ -543,7 +603,7 @@ const YetiTable = class {
   renderHeaderRow(row) {
     // Basically the same as renderRow but first checks to see if we need to create a placeholder heading cell.
     if (this.contents.head.rows.length == 0 || !this.contents.head.rows[0].cells || this.contents.head.rows[0].cells.length == 0) {
-      console.warn("All tables should have headers.");
+      //console.warn("All tables should have headers.");
       return h("th", { class: "yeti-table-heading", scope: "col" }, "No data");
     }
     // Base case, just render the row as usual.
@@ -570,9 +630,12 @@ const YetiTable = class {
           (numRowsPassedAfterStartIndex < rowsToDisplay) && // ...and we haven't already found enough rows to display,...
           (rowsThatPassFiltering.length >= rowStartIndex) // ...and it's not one of the filtered rows short of our quota...
         ) {
-          row.id = (row.id) ? row.id : utils.generateUniqueId();
+          if (!row.id || row.id == "") {
+            //console.warn("All table rows should have a unique id.");
+            row.id = utils.generateUniqueId();
+          }
           ++numRowsPassedAfterStartIndex;
-          tbodyContents.push(h("tr", { class: "yeti-table-body-row" }, this.renderRow(row)));
+          tbodyContents.push(h("tr", { class: "yeti-table-body-row", id: row.id, key: row.id }, this.renderRow(row)));
         }
       }
     }
@@ -585,11 +648,42 @@ const YetiTable = class {
     return h("tr", { class: "yeti-table-body-row" }, h("td", { class: "yeti-table-cell", colSpan: this.contents.head.rows[0].cells.length }, "No matches"));
   }
   componentWillLoad() {
+    let componentId = this.el.getAttribute("id");
+    let paginationComponentElement = this.el.querySelector("yeti-table-pagination");
+    let paginationId;
+    // Initialize numRecordsToDisplay
+    if (paginationComponentElement) {
+      /*
+        Note: usually, we let the pagination component tell us what this.numRecordsToDisplay should be. However, on initial render,
+        when the pagination finishes rendering and notifies the table what numRecordsToDisplay should be the table is not yet done
+        rendering. Since numRecordsToDisplay is a state variable, this will trigger an immediate rerender. To avoid this, we cheat
+        a little by peaking at the un-parsed <yeti-table-pagination> tag. If it has <yeti-table-pagination-option>s, then we'll use
+        the value of the first one. If not, we'll use 10 (which is the pagination default).
+      */
+      let firstPaginationOption = paginationComponentElement.querySelector("yeti-table-pagination-option");
+      let peekNumber = (firstPaginationOption) ? parseInt(firstPaginationOption.textContent) : 10;
+      if (firstPaginationOption) {
+        peekNumber = (firstPaginationOption.hasAttribute("all")) ? this.getNumberOfRecords() : peekNumber;
+      }
+      this.numRecordsToDisplay = (!isNaN(peekNumber)) ? peekNumber : 10;
+      // At this point, even if this.numRecordsToDisplay is incorrect, the pagination component will correct it.
+    }
+    else {
+      this.numRecordsToDisplay = this.getNumberOfRecords();
+    }
+    if (!componentId || componentId == "") {
+      componentId = utils.generateUniqueId();
+      this.el.setAttribute("id", componentId);
+    }
     this.setHeadingColumnIndices();
     this.setBodyColumnIndices();
     this.watchContentsHandler(this.contents, this.contents);
     this.paginationComponent = this.el.querySelector("yeti-table-pagination");
-    //this.numRecordsToDisplay = (this.numRecordsToDisplay > 0) ? this.numRecordsToDisplay : this.contents.body.rows.length;
+    if (paginationComponentElement) {
+      paginationId = paginationComponentElement.getAttribute("id");
+      paginationId = (paginationId && paginationId !== "") ? paginationId : `${componentId}_pagination`;
+      paginationComponentElement.setAttribute("id", paginationId);
+    }
   }
   componentWillRender() {
     // If we're not paginating inside the component...
@@ -601,7 +695,6 @@ const YetiTable = class {
   }
   render() {
     let cssClass = 'yeti-table';
-    //console.warn('Table render()', this.contents.body.rows.length, this.numRecordsToDisplay);
     if (this.tableClass != '') {
       cssClass += ' ' + this.tableClass;
     }
@@ -616,13 +709,11 @@ const YetiTable = class {
         "", h("tbody", { class: "yeti-table-body" }, this.renderRows(this.firstRecordIndexToDisplay, this.numRecordsToDisplay))));
   }
   componentDidRender() {
-    //console.warn(`Table did render. ${this.rowsThatPassFiltering} of ${this.contents.body.rows.length} rows passed filtering, rendering ${this.numRecordsToDisplay} of those.`);
     let paginationComponent = this.el.querySelector('yeti-table-pagination');
     if (paginationComponent != null) {
       // If we're relying on the component consumer to handle pagination, then we get the record count from them.
       // Otherwise, we use our own count of total rows (that passed filtering).
       paginationComponent.records = (this.paginateSelf) ? this.rowsThatPassFiltering : this.records;
-      paginationComponent.id = paginationComponent.id ? paginationComponent.id : utils.generateUniqueId();
     }
   }
   get el() { return getElement(this); }

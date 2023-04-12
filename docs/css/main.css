@@ -4528,6 +4528,39 @@ This file should be imports only.
 
 ************************************** components.less ***************************************/
   /************************************** Imports ***/
+  /************************************** breadcrumb.less ***************************************
+
+Styles for Breadcrumb
+
+*************************************** breadcrumb.less **************************************/
+  /************************************** Outer ***/
+  .yeti-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.01rem;
+    line-height: 1.125rem;
+  }
+  /************************************** Items ***/
+  .yeti-breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .yeti-breadcrumb-item:not(:first-child) {
+    padding-left: 1.5rem;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 0 24 24" width="16px" fill="%23161616"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>');
+    background-position: left center;
+    background-repeat: no-repeat;
+  }
+  /************************************** Links ***/
+  .yeti-breadcrumb a:focus {
+    outline: 2px solid #0f62fe;
+    outline-offset: -2px;
+    outline-offset: 0.25rem;
+  }
   /************************************** form.less ***
  *
  * Styles for Form
@@ -6218,6 +6251,9 @@ Styles for Tooltip
   /************************************** Margins ***/
   /*** All Sides ***/
   /*** Top ***/
+  .yeti-margin-top-4 {
+    margin-top: 1rem;
+  }
   .yeti-margin-top-10 {
     margin-top: 2.5rem;
   }
@@ -6242,6 +6278,13 @@ Styles for Tooltip
   /*** All Sides ***/
   .yeti-padding-4 {
     padding: 1rem;
+  }
+  /*** Bottom ***/
+  .yeti-padding-bottom-10 {
+    padding-bottom: 2.5rem;
+  }
+  .yeti-padding-bottom-12 {
+    padding-bottom: 3rem;
   }
   /************************************** size.less ***
  *

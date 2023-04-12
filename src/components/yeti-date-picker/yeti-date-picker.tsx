@@ -13,9 +13,14 @@ export class YetiDatePicker {
 
   @Prop() inputClass: string = '';
 
-  @Prop() inputId: string = utils.generateUniqueId();
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) inputId: string = ""; // Set on load
 
-  @Prop() inputName: string = this.inputId;
+  @Prop({
+    mutable: true
+  }) inputName: string = ""; // Set on load
 
   @Prop() required: boolean = false;
 
@@ -392,6 +397,19 @@ export class YetiDatePicker {
 
 
   componentWillLoad() {
+
+    // Set up ids
+    let componentId = this.el.getAttribute("id");
+
+    if (!componentId || componentId == "") {
+      componentId = utils.generateUniqueId();
+      this.el.setAttribute("id", componentId);
+    }
+
+    this.inputId = (this.inputId != "") ? this.inputId : `${componentId}_input`;
+    this.inputName = this.inputId;
+    this.pickerHeading = `${componentId}_pickerHeading`;
+
     this.watchInputValue();
   }
 

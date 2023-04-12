@@ -7,20 +7,20 @@
 
 ## Properties
 
-| Property        | Attribute        | Description | Type      | Default                    |
-| --------------- | ---------------- | ----------- | --------- | -------------------------- |
-| `actualId`      | `actual-id`      |             | `string`  | `utils.generateUniqueId()` |
-| `cssClass`      | `css-class`      |             | `string`  | `''`                       |
-| `describedBy`   | `described-by`   |             | `string`  | `""`                       |
-| `htmlId`        | `html-id`        |             | `string`  | `utils.generateUniqueId()` |
-| `htmlName`      | `html-name`      |             | `string`  | `this.htmlId`              |
-| `isValid`       | `is-valid`       |             | `boolean` | `undefined`                |
-| `labelledBy`    | `labelled-by`    |             | `string`  | `""`                       |
-| `menuAlignment` | `menu-alignment` |             | `string`  | `""`                       |
-| `placeholder`   | `placeholder`    |             | `string`  | `"-Select-"`               |
-| `required`      | `required`       |             | `boolean` | `false`                    |
-| `showClear`     | `show-clear`     |             | `boolean` | `true`                     |
-| `value`         | `value`          |             | `string`  | `''`                       |
+| Property        | Attribute        | Description | Type      | Default         |
+| --------------- | ---------------- | ----------- | --------- | --------------- |
+| `actualId`      | `actual-id`      |             | `string`  | `""`            |
+| `actualName`    | `actual-name`    |             | `string`  | `this.actualId` |
+| `cssClass`      | `css-class`      |             | `string`  | `''`            |
+| `describedBy`   | `described-by`   |             | `string`  | `""`            |
+| `facadeId`      | `facade-id`      |             | `string`  | `""`            |
+| `isValid`       | `is-valid`       |             | `boolean` | `undefined`     |
+| `labelledBy`    | `labelled-by`    |             | `string`  | `""`            |
+| `menuAlignment` | `menu-alignment` |             | `string`  | `""`            |
+| `placeholder`   | `placeholder`    |             | `string`  | `"- Select -"`  |
+| `required`      | `required`       |             | `boolean` | `false`         |
+| `showClear`     | `show-clear`     |             | `boolean` | `true`          |
+| `value`         | `value`          |             | `string`  | `''`            |
 
 
 ## Events

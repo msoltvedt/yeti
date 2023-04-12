@@ -15,11 +15,20 @@ export class YetiMultiselect {
 
   @Prop() cssClass: string = '';
 
-  @Prop() htmlId: string = utils.generateUniqueId();
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) facadeId: string = "";
 
-  @Prop() actualId: string = utils.generateUniqueId();
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) actualId: string = "";
 
-  @Prop() htmlName: string = this.htmlId;
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) actualName: string = this.actualId;
 
   @Prop() required: boolean = false;
 
@@ -39,7 +48,7 @@ export class YetiMultiselect {
 
   @Prop() describedBy: string = "";
 
-  @Prop() placeholder: string = "-Select-";
+  @Prop() placeholder: string = "- Select -";
 
   @Prop() showClear: boolean = true;
 
@@ -220,9 +229,18 @@ export class YetiMultiselect {
       // First, confirm this element is indeed a yeti-table-pagination-option element.
       if (option.tagName.toLowerCase() == 'yeti-multiselect-option') {
 
+        let optionId;
+
+        if (option.hasAttribute("id")) {
+          optionId = option.getAttribute("id");
+        } else {
+          optionId = `${this.el.getAttribute("id")}_option${i}`;
+        }
+
         this.options.push({
           selected: option.hasAttribute("selected"),
-          label: option.innerHTML
+          label: option.innerHTML,
+          id: optionId
         });
 
         if (option.hasAttribute("selected")) {
@@ -319,7 +337,29 @@ export class YetiMultiselect {
 
 
   componentWillLoad() {
+    // Set up ids and handle any <yeti-multiselect-option> elements
     let optionElements = this.el.children;
+
+    // Set up ids
+    let componentId = this.el.getAttribute("id");
+
+    if (!componentId || componentId == "") {
+      componentId = utils.generateUniqueId();
+      this.el.setAttribute("id", componentId);
+    }
+
+    this.actualId = (this.actualId != "") ? this.actualId : `${componentId}_actual`;
+    this.actualName = this.actualId;
+
+    this.facadeId = (this.facadeId != "") ? this.facadeId : `${componentId}_facade`;
+    
+
+    // Handle any <yeti-multiselect-option> elements
+    if (this.el.hasAttribute("id") && this.el.getAttribute("id") != "") { 
+      this.el.getAttribute("id");
+    } else {
+      this.el.setAttribute("id", utils.generateUniqueId());
+    }
 
     // Look for and handle any <yeti-multiselect-option> elements.
     if (optionElements.length > 0) {
@@ -345,14 +385,6 @@ export class YetiMultiselect {
 
   componentDidRender() {
     // If the cursor is over an option, make sure it's visible.
-    /*let cursorOption = this.el.querySelector(".yeti-multiselect-option__hover");
-    if (cursorOption != null) {
-      cursorOption.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest"
-      });
-    }*/
-
     if (this.isOpen) {
       let flyout = this.el.querySelector(".yeti-multiselect-flyout");
       flyout.scrollIntoView({
@@ -390,8 +422,8 @@ export class YetiMultiselect {
           tabIndex={-1}
           class="yeti-multiselect-actual yeti-a11y-hidden"
           multiple={true}
-          id={this.htmlId}
-          name={this.htmlName}
+          id={this.actualId}
+          name={this.actualName}
           onFocus={() => {this.handleActualFocus()}}
           {...((!this.isValid) ? {"aria-invalid": true} : {})}
           {...((this.labelledBy != "") ? {"aria-labelledby": this.labelledBy} : {})}
@@ -435,6 +467,7 @@ export class YetiMultiselect {
         
           <ul
             class="yeti-multiselect-options"
+            id={this.facadeId}
           >
 
             {this.options.map((option, i) => {
@@ -442,7 +475,7 @@ export class YetiMultiselect {
                 let optionClass = (this.cursorPosition == i) ? "yeti-multiselect-option yeti-multiselect-option__hover" : "yeti-multiselect-option";
               
                 return (
-                  <li key={utils.generateUniqueId()}>
+                  <li id={option.id} key={option.id}>
                     <button class={optionClass} tabIndex={-1} onClick={(ev) => { this.handleOptionClick(i); ev.preventDefault(); }}>
                       <span class="yeti-multiselect-option-checkbox">
                         <span class="material-icons">{(option.selected) ? "check_box" : "check_box_outline_blank"}</span>

@@ -17,11 +17,17 @@ export class YetiMenuButton {
 
   @Prop({ attribute: 'menu-class'}) menuCSS: string = '';
 
-  @Prop() buttonId: string = utils.generateUniqueId();
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) buttonId: string = "";
 
   @Prop() buttonType?: string = "";
 
-  @Prop() menuId: string = utils.generateUniqueId();
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) menuId: string = "";
 
   @Prop() tooltipText: string = "Options";
 
@@ -236,6 +242,8 @@ export class YetiMenuButton {
     let options = this.el.querySelectorAll("yeti-menu-button-option");
     let buttonLabel = this.el.querySelector("yeti-menu-button-contents");
 
+    this.options = (options && options.length && options.length > 0) ? [] : this.options;
+
     for (let i = 0; i < options.length; i++) {
       
       let option = options.item(i) as Element;
@@ -251,7 +259,9 @@ export class YetiMenuButton {
           hasHTML: false
         };
 
-        optionObject.id = (optionObject.id) ? optionObject.id : utils.generateUniqueId();
+        let optionId = option.getAttribute("id");
+
+        optionObject.id = (optionId && optionId != "") ? optionId : `${this.el.getAttribute("id")}_option${i}`;
         optionObject.label = (option as HTMLElement).innerText.trim().replace(/\t/g, '');
         optionObject.label = optionObject.label.replace(/\n/g, ' ');
 
@@ -319,6 +329,8 @@ export class YetiMenuButton {
       let option = this.options[i];
       let linkOrButtonElement;
       let item;
+      //let listItemId = `${option.id}_item${i}`;
+      let listItemId = `${option.id}`;
 
       // See if it's a link
       if (option.href) {
@@ -327,7 +339,6 @@ export class YetiMenuButton {
           class="yeti-menu_button-menu-item-link" 
           role="menuitem" 
           tabindex="-1"
-          key={i}
           data-option-index={i}
           onClick={(ev) => { this.handleOptionClick(i, ev, true) }}>
             
@@ -342,7 +353,6 @@ export class YetiMenuButton {
           class="yeti-menu_button-menu-item-button" 
           role="menuitem" 
           tabindex="-1"
-          key={i}
           data-option-index={i}
           onClick={(ev) => { this.handleOptionClick(i, ev) }}>
 
@@ -351,7 +361,13 @@ export class YetiMenuButton {
         </button>
       }
 
-      item = <li class="yeti-menu_button-menu-item" role="presentation">{linkOrButtonElement}</li>
+      item = <li 
+        class="yeti-menu_button-menu-item" 
+        role="presentation"
+        id={listItemId}
+        key={listItemId}
+      >{linkOrButtonElement}</li>
+
       items.push(item);
 
     }
@@ -390,8 +406,15 @@ export class YetiMenuButton {
 
 
   renderButton(buttonClass: string) {
-    return <button class={buttonClass} aria-haspopup="true" aria-expanded="true" aria-controls={this.menuId} id={this.buttonId} onClick={(ev) => {
-      this.handleButtonClick(ev)
+    return <button 
+      class={buttonClass}
+      aria-haspopup="true"
+      {...((this.isOpen) ? {"aria-expanded": "true"} : {})}
+      aria-controls={this.menuId} 
+      id={this.buttonId}
+      role="button"
+      onClick={(ev) => {
+        this.handleButtonClick(ev)
     }}>
 
       {(this.hasCustomButtonContents) ?
@@ -403,6 +426,23 @@ export class YetiMenuButton {
         ]
       }
     </button>
+  }
+
+
+
+  componentWillLoad() {
+    // Set ids
+    let elementId = this.el.getAttribute("id");
+  
+    if (!elementId || elementId == "") {
+
+      this.el.setAttribute("id", utils.generateUniqueId());
+
+    }
+
+    this.buttonId = (this.buttonId != "") ? this.buttonId : `${elementId}_button`;
+    this.menuId = (this.menuId != "") ? this.menuId : `${elementId}_menu`;
+
   }
 
 
@@ -465,6 +505,7 @@ export class YetiMenuButton {
     let wrapperCSS = 'yeti-menu_button';
     let buttonClass = 'yeti-menu_button-button';
     let menuClass = 'yeti-menu_button-menu';
+    let tooltipId = `${this.el.getAttribute("id")}_tooltip`;
 
     if (this.menuAlignment.indexOf("right") > -1) {
       wrapperCSS += ' yeti-menu_button-right_aligned';
@@ -488,7 +529,7 @@ export class YetiMenuButton {
         {
           (this.hasTooltip) ?
 
-            <yeti-tooltip text={this.tooltipText}>
+            <yeti-tooltip text={this.tooltipText} id={tooltipId} slotId={this.buttonId} tipId={`${this.buttonId}_tooltip`}>
               {this.renderButton(buttonClass)}
             </yeti-tooltip>
 

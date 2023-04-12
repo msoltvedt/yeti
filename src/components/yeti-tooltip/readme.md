@@ -11,9 +11,9 @@
 | ------------- | --------------- | ----------- | --------- | -------------------------- |
 | `blockAnchor` | `block-anchor`  |             | `boolean` | `false`                    |
 | `position`    | `position`      |             | `string`  | `"above"`                  |
-| `slotId`      | `slot-id`       |             | `string`  | `utils.generateUniqueId()` |
+| `slotId`      | `slot-id`       |             | `string`  | `""`                       |
 | `text`        | `text`          |             | `string`  | `"I'm a helpful tooltip."` |
-| `tipId`       | `tip-id`        |             | `string`  | `utils.generateUniqueId()` |
+| `tipId`       | `tip-id`        |             | `string`  | `""`                       |
 | `tooltipCSS`  | `tooltip-class` |             | `string`  | `''`                       |
 | `wrapperCSS`  | `wrapper-class` |             | `string`  | `''`                       |
 

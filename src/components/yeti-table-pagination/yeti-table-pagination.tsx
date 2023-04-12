@@ -17,6 +17,8 @@ export class YetiTablePagination {
 
   @Prop() records: number = 0;
 
+  @Prop() showOptions: boolean = true;
+
   @Watch('records')
   watchRecordsHandler() {
     this.updatePages();
@@ -232,30 +234,36 @@ export class YetiTablePagination {
       <nav class={cssClasses} aria-label="Table Pagination">
 
         {/* Items per page */}
-        <div class="yeti-table-pagination-items_per_page">
+        { (this.showOptions) ?
+        
+          <div class="yeti-table-pagination-items_per_page">
 
-            <label htmlFor="demo-items_per_page" class="yeti-table-pagination-items_per_page-label">Items per page:</label>
+              <label htmlFor="demo-items_per_page" class="yeti-table-pagination-items_per_page-label">Items per page:</label>
 
-            <select id="demo-items_per_page" class="yeti-select yeti-table-pagination-items_per_page-select" onChange={(e) => {
-              this.handleItemsPerPageChange(e);
-            }}>
-              {
-                this.itemsPerPageOptions.map((option) => {
-                  return <option value={option} class="yeti-table-pagination-items_per_page-select-option">{option}</option>
-                })
-              }
-            </select>
+              <select id="demo-items_per_page" class="yeti-select yeti-table-pagination-items_per_page-select" onChange={(e) => {
+                this.handleItemsPerPageChange(e);
+              }}>
+                {
+                  this.itemsPerPageOptions.map((option) => {
+                    return <option value={option} class="yeti-table-pagination-items_per_page-select-option">{option}</option>
+                  })
+                }
+              </select>
 
-            <span class="yeti-table-pagination-items_per_page-count">
-              { 
-                this.getItemsPerPageOption() == "All" || this.records == 0 ? 
-                  "" 
-                  : (this.startIndex + 1) + ' to ' + (this.startIndex + this.recordsDisplayed) /*(this.endIndex + 1)*/ + ' of '
-              }
-              {this.records} item{ this.records == 1 ? '' : 's'}
-            </span>
+              <span class="yeti-table-pagination-items_per_page-count">
+                { 
+                  this.getItemsPerPageOption() == "All" || this.records == 0 ? 
+                    "" 
+                    : (this.startIndex + 1) + ' to ' + (this.startIndex + this.recordsDisplayed) /*(this.endIndex + 1)*/ + ' of '
+                }
+                {this.records} item{ this.records == 1 ? '' : 's'}
+              </span>
 
-        </div>
+          </div>
+
+        :
+          ""
+        }
 
 
         {/* Pages */}

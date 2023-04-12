@@ -7,16 +7,16 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type      | Default                    |
-| ------------- | -------------- | ----------- | --------- | -------------------------- |
-| `describedBy` | `described-by` |             | `string`  | `""`                       |
-| `inputClass`  | `input-class`  |             | `string`  | `''`                       |
-| `inputId`     | `input-id`     |             | `string`  | `utils.generateUniqueId()` |
-| `inputName`   | `input-name`   |             | `string`  | `this.inputId`             |
-| `isValid`     | `is-valid`     |             | `boolean` | `undefined`                |
-| `labelledBy`  | `labelled-by`  |             | `string`  | `""`                       |
-| `required`    | `required`     |             | `boolean` | `false`                    |
-| `value`       | `value`        |             | `string`  | `''`                       |
+| Property      | Attribute      | Description | Type      | Default     |
+| ------------- | -------------- | ----------- | --------- | ----------- |
+| `describedBy` | `described-by` |             | `string`  | `""`        |
+| `inputClass`  | `input-class`  |             | `string`  | `''`        |
+| `inputId`     | `input-id`     |             | `string`  | `""`        |
+| `inputName`   | `input-name`   |             | `string`  | `""`        |
+| `isValid`     | `is-valid`     |             | `boolean` | `undefined` |
+| `labelledBy`  | `labelled-by`  |             | `string`  | `""`        |
+| `required`    | `required`     |             | `boolean` | `false`     |
+| `value`       | `value`        |             | `string`  | `''`        |
 
 
 ## Events

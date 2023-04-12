@@ -1,5 +1,5 @@
 import { r as registerInstance, e as createEvent, h, g as getElement } from './index-63c9e11c.js';
-import { u as utils } from './utils-a407a515.js';
+import { u as utils } from './utils-ab4e8d6b.js';
 
 const YetiMultiselect = class {
   constructor(hostRef) {
@@ -7,16 +7,16 @@ const YetiMultiselect = class {
     this.readyToVerifySlow = createEvent(this, "readyToVerifySlow", 7);
     this.readyToVerifyFast = createEvent(this, "readyToVerifyFast", 7);
     this.cssClass = '';
-    this.htmlId = utils.generateUniqueId();
-    this.actualId = utils.generateUniqueId();
-    this.htmlName = this.htmlId;
+    this.facadeId = "";
+    this.actualId = "";
+    this.actualName = this.actualId;
     this.required = false;
     this.menuAlignment = "";
     this.isValid = undefined;
     this.value = '';
     this.labelledBy = "";
     this.describedBy = "";
-    this.placeholder = "-Select-";
+    this.placeholder = "- Select -";
     this.showClear = true;
     this.options = [];
     this.isTouched = false;
@@ -135,9 +135,17 @@ const YetiMultiselect = class {
       let option = options.item(i);
       // First, confirm this element is indeed a yeti-table-pagination-option element.
       if (option.tagName.toLowerCase() == 'yeti-multiselect-option') {
+        let optionId;
+        if (option.hasAttribute("id")) {
+          optionId = option.getAttribute("id");
+        }
+        else {
+          optionId = `${this.el.getAttribute("id")}_option${i}`;
+        }
         this.options.push({
           selected: option.hasAttribute("selected"),
-          label: option.innerHTML
+          label: option.innerHTML,
+          id: optionId
         });
         if (option.hasAttribute("selected")) {
           ++this.numSelections;
@@ -205,7 +213,24 @@ const YetiMultiselect = class {
     }
   }
   componentWillLoad() {
+    // Set up ids and handle any <yeti-multiselect-option> elements
     let optionElements = this.el.children;
+    // Set up ids
+    let componentId = this.el.getAttribute("id");
+    if (!componentId || componentId == "") {
+      componentId = utils.generateUniqueId();
+      this.el.setAttribute("id", componentId);
+    }
+    this.actualId = (this.actualId != "") ? this.actualId : `${componentId}_actual`;
+    this.actualName = this.actualId;
+    this.facadeId = (this.facadeId != "") ? this.facadeId : `${componentId}_facade`;
+    // Handle any <yeti-multiselect-option> elements
+    if (this.el.hasAttribute("id") && this.el.getAttribute("id") != "") {
+      this.el.getAttribute("id");
+    }
+    else {
+      this.el.setAttribute("id", utils.generateUniqueId());
+    }
     // Look for and handle any <yeti-multiselect-option> elements.
     if (optionElements.length > 0) {
       this.parseOptionElements(optionElements);
@@ -222,13 +247,6 @@ const YetiMultiselect = class {
   }
   componentDidRender() {
     // If the cursor is over an option, make sure it's visible.
-    /*let cursorOption = this.el.querySelector(".yeti-multiselect-option__hover");
-    if (cursorOption != null) {
-      cursorOption.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest"
-      });
-    }*/
     if (this.isOpen) {
       let flyout = this.el.querySelector(".yeti-multiselect-flyout");
       flyout.scrollIntoView({
@@ -251,16 +269,16 @@ const YetiMultiselect = class {
       flyoutClass += ' yeti-multiselect-flyout-align-right';
     }
     return ([
-      h("div", { class: "yeti-multiselect-wrapper" }, h("select", Object.assign({ tabIndex: -1, class: "yeti-multiselect-actual yeti-a11y-hidden", multiple: true, id: this.htmlId, name: this.htmlName, onFocus: () => { this.handleActualFocus(); } }, ((!this.isValid) ? { "aria-invalid": true } : {}), ((this.labelledBy != "") ? { "aria-labelledby": this.labelledBy } : {}), ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {})), this.renderActualOptions()), h("div", { tabIndex: 0, class: cssClasses, onClick: () => {
+      h("div", { class: "yeti-multiselect-wrapper" }, h("select", Object.assign({ tabIndex: -1, class: "yeti-multiselect-actual yeti-a11y-hidden", multiple: true, id: this.actualId, name: this.actualName, onFocus: () => { this.handleActualFocus(); } }, ((!this.isValid) ? { "aria-invalid": true } : {}), ((this.labelledBy != "") ? { "aria-labelledby": this.labelledBy } : {}), ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {})), this.renderActualOptions()), h("div", { tabIndex: 0, class: cssClasses, onClick: () => {
           this.isOpen = !this.isOpen;
         }, onFocus: () => {
           this.isTouched = true;
         }, "aria-hidden": "true" }, h("span", { class: "yeti-multiselect-placeholder", title: this.getPlaceholderDisplay() }, this.getPlaceholderDisplay()), (this.showClear && this.numSelections > 0) ?
         (h("button", { class: "yeti-multiselect-puck", title: "Clear all selections", onClick: (ev) => { this.handleClearSelections(ev); ev.preventDefault(); } }, h("span", { class: "material-icons yeti-multiselect-puck-icon", "aria-hidden": "true" }, "cancel")))
         :
-          ""), h("div", { class: flyoutClass, "aria-hidden": "true" }, h("ul", { class: "yeti-multiselect-options" }, this.options.map((option, i) => {
+          ""), h("div", { class: flyoutClass, "aria-hidden": "true" }, h("ul", { class: "yeti-multiselect-options", id: this.facadeId }, this.options.map((option, i) => {
         let optionClass = (this.cursorPosition == i) ? "yeti-multiselect-option yeti-multiselect-option__hover" : "yeti-multiselect-option";
-        return (h("li", { key: utils.generateUniqueId() }, h("button", { class: optionClass, tabIndex: -1, onClick: (ev) => { this.handleOptionClick(i); ev.preventDefault(); } }, h("span", { class: "yeti-multiselect-option-checkbox" }, h("span", { class: "material-icons" }, (option.selected) ? "check_box" : "check_box_outline_blank")), h("span", { class: "yeti-multiselect-option-label" }, option.label))));
+        return (h("li", { id: option.id, key: option.id }, h("button", { class: optionClass, tabIndex: -1, onClick: (ev) => { this.handleOptionClick(i); ev.preventDefault(); } }, h("span", { class: "yeti-multiselect-option-checkbox" }, h("span", { class: "material-icons" }, (option.selected) ? "check_box" : "check_box_outline_blank")), h("span", { class: "yeti-multiselect-option-label" }, option.label))));
       }))))
     ]);
   }

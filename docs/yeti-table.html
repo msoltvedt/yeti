@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/yeti-examples-only.css">
 
+    <style>
+        .ydoc-code_sample-pre { display: none;}
+    </style>
+
   </head>
   <body>
 
@@ -43,19 +47,6 @@
 <script type="module">
     const vanillaTable = document.getElementById('vanillaTable');
 
-    /*let col1Template = document.querySelector('#col1Template');
-    let col1CellContents = col1Template.content.cloneNode(true);
-    let tempWrapper = document.createElement('div');
-    let input = col1CellContents.querySelector('yeti-input');
-    input.setAttribute("value", "Hello, World!");
-    tempWrapper.appendChild(input);
-
-    let contents = document.createElement('yeti-input');
-    contents.value = "Hello, World."
-    let col1 = contents.outerHTML;
-
-    let contents = tempWrapper.innerHTML;*/
-
     vanillaTable.contents = {
         "head": {
             "rows": [
@@ -88,8 +79,7 @@
                 {
                     "cells": [
                         {
-                            "value": "Cell 1",
-                            //"template": contents
+                            "value": "Cell 1"
                         },
                         {
                             "value": "Cell 2"
@@ -139,32 +129,7 @@
 <script type="module">
     const rowHeadingsTable = document.getElementById('rowHeadingsTable');
     rowHeadingsTable.contents = {
-        /*"head": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "isHeading": "true",
-                            "value": "Heading 1"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Heading 2"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Heading 3"
-                        },
-                        {
-                            "isHeading": "true",
-                            "cssClass": "yeti-table-numeric",
-                            "value": "A Number"
-                        }
-                    ]
-                }
-            ]
-        },*/
-
+        
         "body": {
             "rows": [
                 {
@@ -362,7 +327,7 @@
         <h3 class="margin-bottom-2">Pagination</h3>
 
         <p class="margin-bottom-2">
-            Add pagination to your table as shown below. The <code>yeti-table-pagination-option</code>s shown below are optional.
+            Add pagination to your table as shown below. The <code>yeti-table-pagination-option</code>s shown below are optional. Give <code>&lt;yeti-table-pagination&gt;</code> an attribute of <code>show-options="false"</code> to hide the Items per page dropdown entirely.
         </p>
 
         <script type="module">

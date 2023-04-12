@@ -11,6 +11,63 @@ export const utils = {
   },
 
 
+  isEqual: function(a, b) {
+
+    const objKeysA = Object.keys(a);
+    const objKeysB = Object.keys(b);
+  
+    const areBothArrays = Array.isArray(a) && Array.isArray(b);
+    const areBothObjects = this.isObject(a) && this.isObject(b);
+
+    // Handle type mismatch
+    if (typeof a != typeof b) {
+      return false;
+    }
+
+    // Handle arrays
+    if (areBothArrays) {
+      if (a.length != b.length) {
+        return false;
+      } else {
+        for (let i = 0; i < a.length; i++) {
+          if (!this.isEqual(a[i], b[i])) {
+            return false;
+          }
+        }
+        return true;
+      }
+    }
+
+    // Handle non-array objects
+    if (areBothObjects) {
+  
+      if (objKeysA.length !== objKeysB.length) {
+        return false;
+      }
+    
+      for (var key of objKeysA) {
+        const aValue = a[key];
+        const bValue = b[key];
+    
+        if (!this.isEqual(aValue, bValue)) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    // Handle everything else
+    return a === b;
+  },
+  
+
+
+  isObject: function(object) {
+    return object != null && typeof object === "object";
+  },
+
+
+
   isConvertibleToDate: function(possibleDate: string) {
     const re = /(\b[0-9]{1,4}(\/|\-)[0-9]{1,2}(\/|\-)[0-9]{2,4}\b)|((\w{3})\s\d)/g;
     if (possibleDate.search(re) > -1) {
@@ -81,6 +138,9 @@ export const utils = {
 
 }
 
+
+
+/****************************************************** Interfaces *********************************************/
 export interface YetiTableContents {
   head? : {
     cssClass?: string,
@@ -111,7 +171,8 @@ export interface YetiTableRow {
   id?: string,
   cells: YetiTableCell[],
   rowIndex?: number,
-  detail?: {}
+  rowActionsJustChanged?: boolean,
+  detail?: object
 }
 
 export interface YetiTableCell {
@@ -124,8 +185,9 @@ export interface YetiTableCell {
   rowIndex?: number,
   filtering?: YetiTableFilterObject,
   rowActions?: YetiTableRowAction[],
-  scope?: string // "col" (default) | "row",
-  template?: any // HTML
+  scope?: string, // "col" (default) | "row",
+  template?: any, // HTML
+  detail: object
 }
 
 export interface YetiTableFilterObject {
@@ -143,7 +205,8 @@ export interface YetiTableRowAction {
 
 export interface YetiMultiselectOption {
   selected: boolean,
-  label: string
+  label: string,
+  id?: string
 }
 
 export interface YetiMenuButtonOption {

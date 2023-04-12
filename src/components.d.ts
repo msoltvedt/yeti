@@ -76,10 +76,10 @@ export namespace Components {
     }
     interface YetiMultiselect {
         "actualId": string;
+        "actualName": string;
         "cssClass": string;
         "describedBy": string;
-        "htmlId": string;
-        "htmlName": string;
+        "facadeId": string;
         "isValid": boolean;
         "labelledBy": string;
         "menuAlignment": string;
@@ -129,6 +129,7 @@ export namespace Components {
         "records": number;
         "recordsDisplayed": number;
         "selectedPage": number;
+        "showOptions": boolean;
         "startIndex": number;
     }
     interface YetiTooltip {
@@ -327,10 +328,10 @@ declare namespace LocalJSX {
     }
     interface YetiMultiselect {
         "actualId"?: string;
+        "actualName"?: string;
         "cssClass"?: string;
         "describedBy"?: string;
-        "htmlId"?: string;
-        "htmlName"?: string;
+        "facadeId"?: string;
         "isValid"?: boolean;
         "labelledBy"?: string;
         "menuAlignment"?: string;
@@ -387,6 +388,7 @@ declare namespace LocalJSX {
         "records"?: number;
         "recordsDisplayed"?: number;
         "selectedPage"?: number;
+        "showOptions"?: boolean;
         "startIndex"?: number;
     }
     interface YetiTooltip {

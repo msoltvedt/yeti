@@ -1,5 +1,5 @@
 import { r as registerInstance, e as createEvent, h, g as getElement } from './index-63c9e11c.js';
-import { u as utils } from './utils-a407a515.js';
+import { u as utils } from './utils-ab4e8d6b.js';
 
 const YetiDatePicker = class {
   constructor(hostRef) {
@@ -8,8 +8,8 @@ const YetiDatePicker = class {
     this.keepFocusOnButton = false;
     this.pickerHeading = utils.generateUniqueId();
     this.inputClass = '';
-    this.inputId = utils.generateUniqueId();
-    this.inputName = this.inputId;
+    this.inputId = "";
+    this.inputName = "";
     this.required = false;
     this.isValid = undefined;
     this.value = '';
@@ -256,6 +256,15 @@ const YetiDatePicker = class {
     return tbody;
   }
   componentWillLoad() {
+    // Set up ids
+    let componentId = this.el.getAttribute("id");
+    if (!componentId || componentId == "") {
+      componentId = utils.generateUniqueId();
+      this.el.setAttribute("id", componentId);
+    }
+    this.inputId = (this.inputId != "") ? this.inputId : `${componentId}_input`;
+    this.inputName = this.inputId;
+    this.pickerHeading = `${componentId}_pickerHeading`;
     this.watchInputValue();
   }
   componentDidRender() {

@@ -11,7 +11,10 @@ export class YetiTableActions {
 
   @Prop() cssClass: string = '';
 
-  @Prop() htmlId: string = utils.generateUniqueId();
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) htmlId: string = ""; // Set on component load
 
   @Prop() useGrid: boolean = false;
 
@@ -66,6 +69,23 @@ export class YetiTableActions {
 
 
   componentWillLoad() {
+    // Set up ids and parse table action HTML elements
+
+    // Set up ids
+    let componentId = this.el.getAttribute("id");
+    let parent = this.el.parentElement;
+    let parentId = (parent && parent.getAttribute("id")) ? parent.getAttribute("id") : utils.generateUniqueId();
+
+    if (!componentId || componentId == "") {
+
+      componentId = `${parentId}_actionsComponent`;
+      this.el.setAttribute("id", componentId);
+
+    }
+
+    this.htmlId = (this.htmlId != "") ? this.htmlId : `${parentId}_actions`;
+
+    // Parse children 
     this.parseTableActionElements();
   }
 
