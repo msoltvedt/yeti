@@ -19,6 +19,16 @@ export class YetiTablePagination {
 
   @Prop() showOptions: boolean = true;
 
+  /**
+   * Descriptor of one record (e.g. "1 item")
+   */
+  @Prop() recordAliasSingular: string = "item";
+
+  /**
+   * Descriptor of multiple records (e.g. "22 items")
+   */
+  @Prop() recordAliasPlural: string = "items";
+
   @Watch('records')
   watchRecordsHandler() {
     this.updatePages();
@@ -117,7 +127,7 @@ export class YetiTablePagination {
     let itemsPerPage = this.getItemsPerPageOption();
 
     // First set start index
-    if (itemsPerPage == "All" || itemsPerPage > this.records) {
+    if (itemsPerPage == "All" || itemsPerPage as number > this.records) {
 
       this.startIndex = 0;
 
@@ -128,7 +138,7 @@ export class YetiTablePagination {
     }
 
     // Second set end index
-    if (itemsPerPage == "All" || itemsPerPage > this.records) {
+    if (itemsPerPage == "All" || itemsPerPage as number > this.records) {
 
       this.recordsDisplayed = this.records;
 
@@ -238,7 +248,7 @@ export class YetiTablePagination {
         
           <div class="yeti-table-pagination-items_per_page">
 
-              <label htmlFor="demo-items_per_page" class="yeti-table-pagination-items_per_page-label">Items per page:</label>
+              <label htmlFor="demo-items_per_page" class="yeti-table-pagination-items_per_page-label">{this.recordAliasPlural} per page:</label>
 
               <select id="demo-items_per_page" class="yeti-select yeti-table-pagination-items_per_page-select" onChange={(e) => {
                 this.handleItemsPerPageChange(e);
@@ -256,7 +266,7 @@ export class YetiTablePagination {
                     "" 
                     : (this.startIndex + 1) + ' to ' + (this.startIndex + this.recordsDisplayed) /*(this.endIndex + 1)*/ + ' of '
                 }
-                {this.records} item{ this.records == 1 ? '' : 's'}
+                {this.records} { this.records == 1 ? this.recordAliasSingular : this.recordAliasPlural}
               </span>
 
           </div>

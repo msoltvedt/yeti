@@ -123,6 +123,10 @@ Styles for Table
     text-align: right;
 }
 
+.yeti-table-numeric:has(+ :not(.yeti-table-numeric)) {
+    padding-right: 2rem; // If it's a numeric cell (right-aligned) next to a cell that isn't numeric (left-aligned), add a little extra padding.
+}
+
 .yeti-table-control {
     text-align: center;
 }
@@ -220,6 +224,9 @@ yeti-table-actions[use-grid] yeti-table-action {
     font-size: revert;
     color: revert;
     margin-right: 0.0625rem;
+}
+.yeti-table-pagination-items_per_page-label::first-letter {
+    text-transform: capitalize;
 }
 
 .yeti-table-pagination-items_per_page-select,
