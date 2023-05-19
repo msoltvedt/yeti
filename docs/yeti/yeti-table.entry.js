@@ -8,10 +8,11 @@ const YetiTable = class {
     this.tableSort = createEvent(this, "tableSort", 7);
     this.tableFilter = createEvent(this, "tableFilter", 7);
     this.tablePaginate = createEvent(this, "tablePaginate", 7);
+    this.tableHasFilters = false;
     this.rowsThatPassFiltering = 0;
-    this.filtersActive = 0;
     this.tableClass = '';
     this.tableId = utils.generateUniqueId();
+    this.noMatchesText = "No matches";
     this.records = 0;
     this.contents = {
       head: {
@@ -28,6 +29,7 @@ const YetiTable = class {
     this.firstRecordIndexToDisplay = 0;
     this.numRecordsToDisplay = 0;
     this.paginationComponent = null;
+    this.filtersAreActive = false;
   }
   watchContentsHandler(newValue, oldValue) {
     if (!newValue.body) {
@@ -75,9 +77,10 @@ const YetiTable = class {
         return;
       case "yeti-multiselect":
         let multiselect = ev.target;
-        //if (ev.type != 'readyToVerifyFast') {
-        this.handleMultiselectFilterChange(multiselect, columnIndex);
-        //}
+        if (ev.type == 'readyToVerifyFast') {
+          /* Note: readyToVerifySlow fires whenever yeti-multiselect closes the selection dropdown, which is not what we want here. */
+          this.handleMultiselectFilterChange(multiselect, columnIndex);
+        }
         return;
     }
   }
@@ -89,6 +92,23 @@ const YetiTable = class {
       "rowIndex": rowIndex,
       "actionLabel": newValue
     });
+  }
+  setFiltersActiveFlag() {
+    if (!this.tableHasFilters) {
+      this.filtersAreActive = false;
+    }
+    else {
+      // We know this table has filters. Loop through them all and see if any have a value other than "".
+      for (let i = 0; i < this.contents.head.rows[0].cells.length; i++) {
+        if (this.contents.head.rows[0].cells[i].filtering
+          && this.contents.head.rows[0].cells[i].filtering.value != ""
+          && this.contents.head.rows[0].cells[i].filtering.value != undefined) {
+          this.filtersAreActive = true;
+          return;
+        }
+      }
+      this.filtersAreActive = false;
+    }
   }
   markRowsWithChangedRowActions(oldContents) {
     /*
@@ -162,7 +182,7 @@ const YetiTable = class {
         }
       });
     });
-    this.filtersActive = 0;
+    this.filtersAreActive = false;
   }
   handleSort(ev, cell) {
     ev.preventDefault();
@@ -242,13 +262,13 @@ const YetiTable = class {
         "columnIndex": columnIndex,
         "value": input.value
       });
-      this.filtersActive += (input.value == "") ? -1 : 1;
     }
     // Yep, it's our job.
     else {
       this.contents.head.rows[0].cells[columnIndex].filtering.value = input.value;
       this.iLoveJSX = !this.iLoveJSX;
     }
+    this.setFiltersActiveFlag();
   }
   handleSelectFilterChange(select, columnIndex) {
     // First make sure we're supposed to do this ourselves
@@ -265,7 +285,7 @@ const YetiTable = class {
       this.contents.head.rows[0].cells[columnIndex].filtering.value = (select.selectedIndex == 0) ? "" : select.value;
       this.iLoveJSX = !this.iLoveJSX;
     }
-    this.filtersActive += (select.value == "") ? -1 : 1;
+    this.setFiltersActiveFlag();
   }
   handleDateFilterChange(picker, columnIndex) {
     // First make sure we're supposed to do this ourselves
@@ -282,7 +302,7 @@ const YetiTable = class {
       this.contents.head.rows[0].cells[columnIndex].filtering.value = picker.value;
       this.iLoveJSX = !this.iLoveJSX;
     }
-    this.filtersActive += (picker.value == "") ? -1 : 1;
+    this.setFiltersActiveFlag();
   }
   handleMultiselectFilterChange(multiselect, columnIndex) {
     // First make sure we're supposed to do this ourselves
@@ -299,7 +319,7 @@ const YetiTable = class {
       this.contents.head.rows[0].cells[columnIndex].filtering.value = multiselect.value;
       this.iLoveJSX = !this.iLoveJSX;
     }
-    this.filtersActive += (multiselect.value == "") ? -1 : 1;
+    this.setFiltersActiveFlag();
   }
   handleClearAllFilters() {
     // First make sure we're supposed to do this ourselves
@@ -405,6 +425,7 @@ const YetiTable = class {
     }
     // See if it's a filter clear cell
     if (cell.filtering && cell.filtering.isClearCell) {
+      this.tableHasFilters = true;
       return this.renderFilterClearCell(cell);
     }
     // See if it's a row actions cell
@@ -480,7 +501,7 @@ const YetiTable = class {
       " " + cell.cssClass :
       "";
     let control = h("yeti-tooltip", { text: "Clear filters" }, h("button", { class: "yeti-table-filter-clear-button", onClick: (ev) => { this.handleClearAllFilters(); ev.preventDefault(); }, "aria-label": "Clear all filters" }, h("span", { class: "material-icons", "aria-hidden": "true" }, "cancel")));
-    return h("td", { class: `yeti-table-heading yeti-table-cell-clear ${css}`, id: cell.id, key: cell.id }, (this.filtersActive > 0) ? control : "");
+    return h("td", { class: `yeti-table-heading yeti-table-cell-clear ${css}`, id: cell.id, key: cell.id }, (this.filtersAreActive) ? control : "");
   }
   renderTableHeading(cell) {
     let css = (cell.cssClass && cell.cssClass != '') ? ' ' + cell.cssClass : '';
@@ -645,7 +666,7 @@ const YetiTable = class {
       return tbodyContents;
     }
     // Otherwise, render a placeholder row.
-    return h("tr", { class: "yeti-table-body-row" }, h("td", { class: "yeti-table-cell", colSpan: this.contents.head.rows[0].cells.length }, "No matches"));
+    return h("tr", { class: "yeti-table-body-row" }, h("td", { class: "yeti-table-cell", colSpan: this.contents.head.rows[0].cells.length }, this.noMatchesText));
   }
   componentWillLoad() {
     let componentId = this.el.getAttribute("id");

@@ -15,15 +15,17 @@
     hierarchy in the cascade (last one wins):
 
     1. reset.css
-    2. Carbon*
+    2. third_party:
+        a. Google Material Icons and Symbols
+        b. Carbon
     3. legacy:
         a. base-styles.css
         b. nav-styles.css
         c. legacy.css
-    4. yeti.css*
+    4. yeti.css
     5. overrides.css
 
-    * Do not modify Carbon or yeti.css directly, as your changes will be overridden.
+    * Do not modify any *.css files directly, as your changes will be overridden.
 
 */
 /************************************** main.css **************************************/
@@ -93,6 +95,7 @@ textarea{
 
 .list-detail-header{
   margin: 0px 0px 24px 0px;
+  padding-top:10px;
 }
 
 .txt-space{
@@ -107,6 +110,7 @@ textarea{
   max-width: 100%;
   padding-right:2.0rem;
   padding-left:2.0rem;
+  padding-bottom:1.5rem;
 
 }
 
@@ -379,11 +383,20 @@ label {
 .summary-container {
   display: flex;
   justify-content: space-between;
-  padding: 16px 70px 16px 16px;
+  padding: 16px 2px 16px 2px;
   height: 70px;
   background-color: #f3f3f3;
   /*margin-top:20px;*/
   width:100%;
+}
+
+.summary-container-view-batch {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 16px 16px 16px;
+  background-color: #f3f3f3;
+  width:100%;
+  word-wrap: break-word;
 }
 
 .summary-item {
@@ -546,7 +559,7 @@ margin: 30px 0px 19px 0px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin: 30px 0px 30px 0px;
+  margin: 30px 0px 0px 0px;
 }
 
 .detail-item-dropdown {
@@ -719,7 +732,7 @@ pre {
 }
 
 .last-modified {
-  margin: 5px 0px 5px;
+  margin: 0px 0px 10px;
   font-size: 14px;
   text-align: right;
   color: #525252;
@@ -1061,13 +1074,13 @@ text-align:center;
   font-feature-settings: 'liga';
 }
 .pass-icon{
-  color:#329B19;
+  color:#1A510B;
   font-size:20px !important;
   text-align:center;
 }
 
 .fail-icon{
-  color:#DA1E27;
+  color:#94141B;
   font-size:20px !important;
   text-align:center;ß
 
@@ -1752,6 +1765,12 @@ yeti-nav-container{
   header {
     min-height: 60px;
     align-items: center;
+    background-color: #000000;
+}
+
+
+.nav-back{
+ 
     background-color: #000000;
 }
 
@@ -2894,9 +2913,10 @@ bx-pagination {
     justify-content: flex-end;
 }
 
-.xol bx-table-row:hover bx-table-cell {
+/*Removed - yellow hover on Opportunities Page*/
+/*.xol bx-table-row:hover bx-table-cell {
     background-color: #fdf3dd;
-}
+}*/
 
 .xol-item-count {
     /* Not used? */
@@ -4431,7 +4451,7 @@ html {
  *
 ****************************************************/
 /************************************** Layers ***/
-@layer reset, defaults, globals, components, utilities, overrides, debugging;
+@layer reset, third_party, defaults, globals, components, utilities, overrides, debugging;
 /************************************** Variables and Mixins ***/
 /************************************** variables-and-mixins.less ***
  *
@@ -4481,6 +4501,125 @@ html {
   border: 0;
 }
 /************************************** CSS Reset ***/
+/************************************** Third Party ***/
+@layer third_party {
+  /*
+    Note: this is just a local copy of the CSS we were pulling from https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp
+*/
+  /* fallback */
+  @font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/materialicons/v140/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+  }
+  /* fallback */
+  @font-face {
+    font-family: 'Material Icons Outlined';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/materialiconsoutlined/v109/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUce.woff2) format('woff2');
+  }
+  /* fallback */
+  @font-face {
+    font-family: 'Material Icons Round';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/materialiconsround/v108/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmP.woff2) format('woff2');
+  }
+  /* fallback */
+  @font-face {
+    font-family: 'Material Icons Sharp';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/materialiconssharp/v109/oPWQ_lt5nv4pWNJpghLP75WiFR4kLh3kvmvR.woff2) format('woff2');
+  }
+  /* fallback */
+  @font-face {
+    font-family: 'Material Icons Two Tone';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/materialiconstwotone/v112/hESh6WRmNCxEqUmNyh3JDeGxjVVyMg4tHGctNCu0.woff2) format('woff2');
+  }
+  body {
+    --google-font-color-materialiconstwotone: none;
+  }
+  .material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
+  .material-icons-outlined {
+    font-family: 'Material Icons Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
+  .material-icons-round {
+    font-family: 'Material Icons Round';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
+  .material-icons-sharp {
+    font-family: 'Material Icons Sharp';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
+  .material-icons-two-tone {
+    font-family: 'Material Icons Two Tone';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
+}
 /************************************** Defaults ***/
 /************************************** Globals ***/
 @layer components {
@@ -4489,28 +4628,7 @@ html {
  Styles that could apply to any (or no) components.
 
 ************************************** globals.less **************************************/
-  /************************************** Material Icons ***/
-  @font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/materialicons/v140/flUhRq6tzZclQEJ-Vdg-IuiaDsNZ.ttf) format('truetype');
-}
-
-.material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-}
-
+  /************************************** Global Defaults ***/
   html {
     height: 100%;
   }
@@ -5398,7 +5516,6 @@ Leeloo Dallas multipass
     background-image: url("data:image/svg+xml,%3Csvg preserveAspectRatio='xMidYMid meet' xmlns='http://www.w3.org/2000/svg' fill='%23161616' width='16' height='16' viewBox='0 0 16 16' %3E%3Cpath d='M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z'%3E%3C/path%3E%3C/svg%3E");
     background-position: right 1rem center;
     background-repeat: no-repeat;
-    background-size: 1em 1em;
     width: 100%;
   }
   .yeti-multiselect:focus {
@@ -5640,7 +5757,6 @@ Styles for Select
     background-image: url("data:image/svg+xml,%3Csvg preserveAspectRatio='xMidYMid meet' xmlns='http://www.w3.org/2000/svg' fill='%23161616' width='16' height='16' viewBox='0 0 16 16' %3E%3Cpath d='M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z'%3E%3C/path%3E%3C/svg%3E");
     background-position: right 1rem center;
     background-repeat: no-repeat;
-    background-size: 1em 1em;
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -5759,6 +5875,9 @@ Styles for Table
   .yeti-table-numeric {
     text-align: right;
   }
+  .yeti-table-numeric:has( + :not(.yeti-table-numeric)) {
+    padding-right: 2rem;
+  }
   .yeti-table-control {
     text-align: center;
   }
@@ -5870,6 +5989,9 @@ Styles for Table
     font-size: revert;
     color: revert;
     margin-right: 0.0625rem;
+  }
+  .yeti-table-pagination-items_per_page-label::first-letter {
+    text-transform: capitalize;
   }
   .yeti-table-pagination-items_per_page-select,
   .yeti-table-pagination-pages-select {
@@ -6043,6 +6165,16 @@ Styles for Table
   .yeti-table-filter-clear-button:hover {
     background-color: #d1d1d1;
   }
+  .yeti-table-heading-filter :is(.yeti-input, .yeti-select, .yeti-multiselect, .yeti-date-button) {
+    background-color: white;
+    border: 1px solid #525252;
+  }
+  .yeti-table-heading-filter .yeti-date-button {
+    border-left: 0;
+  }
+  .yeti-table-heading-filter :is(.yeti-input, .yeti-select, .yeti-multiselect, .yeti-date-button):hover {
+    background-color: #f4f4f4;
+  }
   /************************************** Row Actions ***/
   .yeti-table-cell-row_actions {
     padding-top: 0.25rem;
@@ -6211,6 +6343,9 @@ Styles for Tooltip
   .yeti-color-red {
     color: red;
   }
+  .yeti-color-red-error {
+    color: #da1e28;
+  }
   .yeti-color-blue {
     color: blue;
   }
@@ -6219,6 +6354,9 @@ Styles for Tooltip
   }
   .yeti-color-black {
     color: black;
+  }
+  .yeti-color-green-success {
+    color: #24a148;
   }
   /************************************** layout.less ***
  *
@@ -6239,9 +6377,48 @@ Styles for Tooltip
   .yeti-layout-row-center-vertical {
     align-items: center;
   }
+  .yeti-layout-row-space_between {
+    justify-content: space-between;
+  }
   /************************************** Gaps ***/
+  .yeti-layout-gap-none {
+    gap: 0;
+  }
   .yeti-layout-gap-1 {
     gap: 0.25rem;
+  }
+  .yeti-layout-gap-2 {
+    gap: 0.5rem;
+  }
+  .yeti-layout-gap-3 {
+    gap: 0.75rem;
+  }
+  .yeti-layout-gap-4 {
+    gap: 1rem;
+  }
+  .yeti-layout-gap-5 {
+    gap: 1.25rem;
+  }
+  .yeti-layout-gap-6 {
+    gap: 1.5rem;
+  }
+  .yeti-layout-gap-7 {
+    gap: 1.75rem;
+  }
+  .yeti-layout-gap-8 {
+    gap: 2rem;
+  }
+  .yeti-layout-gap-9 {
+    gap: 2.25rem;
+  }
+  .yeti-layout-gap-10 {
+    gap: 2.5rem;
+  }
+  .yeti-layout-gap-11 {
+    gap: 2.75rem;
+  }
+  .yeti-layout-gap-12 {
+    gap: 3rem;
   }
   /************************************** margin-and-padding.less ***
  *
@@ -6250,29 +6427,264 @@ Styles for Tooltip
 ****************************************************/
   /************************************** Margins ***/
   /*** All Sides ***/
+  .yeti-margin-none {
+    margin: 0;
+  }
   /*** Top ***/
+  .yeti-margin-top-none {
+    margin-top: 0;
+  }
+  .yeti-margin-top-1 {
+    margin-top: 0.25rem;
+  }
+  .yeti-margin-top-2 {
+    margin-top: 0.5rem;
+  }
+  .yeti-margin-top-3 {
+    margin-top: 0.75rem;
+  }
   .yeti-margin-top-4 {
     margin-top: 1rem;
   }
+  .yeti-margin-top-5 {
+    margin-top: 1.25rem;
+  }
+  .yeti-margin-top-6 {
+    margin-top: 1.5rem;
+  }
+  .yeti-margin-top-7 {
+    margin-top: 1.75rem;
+  }
+  .yeti-margin-top-8 {
+    margin-top: 2rem;
+  }
+  .yeti-margin-top-9 {
+    margin-top: 2.25rem;
+  }
   .yeti-margin-top-10 {
     margin-top: 2.5rem;
+  }
+  .yeti-margin-top-11 {
+    margin-top: 2.75rem;
+  }
+  .yeti-margin-top-12 {
+    margin-top: 3rem;
+  }
+  .yeti-margin-top-13 {
+    margin-top: 3.25rem;
+  }
+  .yeti-margin-top-14 {
+    margin-top: 3.5rem;
+  }
+  .yeti-margin-top-15 {
+    margin-top: 3.75rem;
+  }
+  .yeti-margin-top-16 {
+    margin-top: 4rem;
+  }
+  .yeti-margin-top-17 {
+    margin-top: 4.25rem;
+  }
+  .yeti-margin-top-18 {
+    margin-top: 4.5rem;
+  }
+  .yeti-margin-top-19 {
+    margin-top: 4.75rem;
   }
   .yeti-margin-top-20 {
     margin-top: 5rem;
   }
   /*** Bottom ***/
+  .yeti-margin-bottom-none {
+    margin-bottom: 0;
+  }
+  .yeti-margin-bottom-1 {
+    margin-bottom: 0.25rem;
+  }
+  .yeti-margin-bottom-2 {
+    margin-bottom: 0.5rem;
+  }
+  .yeti-margin-bottom-3 {
+    margin-bottom: 0.75rem;
+  }
+  .yeti-margin-bottom-4 {
+    margin-bottom: 1rem;
+  }
+  .yeti-margin-bottom-5 {
+    margin-bottom: 1.25rem;
+  }
+  .yeti-margin-bottom-6 {
+    margin-bottom: 1.5rem;
+  }
+  .yeti-margin-bottom-7 {
+    margin-bottom: 1.75rem;
+  }
+  .yeti-margin-bottom-8 {
+    margin-bottom: 2rem;
+  }
+  .yeti-margin-bottom-9 {
+    margin-bottom: 2.25rem;
+  }
   .yeti-margin-bottom-10 {
     margin-bottom: 2.5rem;
+  }
+  .yeti-margin-bottom-11 {
+    margin-bottom: 2.75rem;
+  }
+  .yeti-margin-bottom-12 {
+    margin-bottom: 3rem;
+  }
+  .yeti-margin-bottom-13 {
+    margin-bottom: 3.25rem;
+  }
+  .yeti-margin-bottom-14 {
+    margin-bottom: 3.5rem;
+  }
+  .yeti-margin-bottom-15 {
+    margin-bottom: 3.75rem;
+  }
+  .yeti-margin-bottom-16 {
+    margin-bottom: 4rem;
+  }
+  .yeti-margin-bottom-17 {
+    margin-bottom: 4.25rem;
+  }
+  .yeti-margin-bottom-18 {
+    margin-bottom: 4.5rem;
+  }
+  .yeti-margin-bottom-19 {
+    margin-bottom: 4.75rem;
   }
   .yeti-margin-bottom-20 {
     margin-bottom: 5rem;
   }
   /*** Left ***/
+  .yeti-margin-left-none {
+    margin-left: 0;
+  }
+  .yeti-margin-left-1 {
+    margin-left: 0.25rem;
+  }
+  .yeti-margin-left-2 {
+    margin-left: 0.5rem;
+  }
+  .yeti-margin-left-3 {
+    margin-left: 0.75rem;
+  }
+  .yeti-margin-left-4 {
+    margin-left: 1rem;
+  }
+  .yeti-margin-left-5 {
+    margin-left: 1.25rem;
+  }
+  .yeti-margin-left-6 {
+    margin-left: 1.5rem;
+  }
+  .yeti-margin-left-7 {
+    margin-left: 1.75rem;
+  }
+  .yeti-margin-left-8 {
+    margin-left: 2rem;
+  }
+  .yeti-margin-left-9 {
+    margin-left: 2.25rem;
+  }
   .yeti-margin-left-10 {
     margin-left: 2.5rem;
   }
+  .yeti-margin-left-11 {
+    margin-left: 2.75rem;
+  }
+  .yeti-margin-left-12 {
+    margin-left: 3rem;
+  }
+  .yeti-margin-left-13 {
+    margin-left: 3.25rem;
+  }
+  .yeti-margin-left-14 {
+    margin-left: 3.5rem;
+  }
+  .yeti-margin-left-15 {
+    margin-left: 3.75rem;
+  }
+  .yeti-margin-left-16 {
+    margin-left: 4rem;
+  }
+  .yeti-margin-left-17 {
+    margin-left: 4.25rem;
+  }
+  .yeti-margin-left-18 {
+    margin-left: 4.5rem;
+  }
+  .yeti-margin-left-19 {
+    margin-left: 4.75rem;
+  }
   .yeti-margin-left-20 {
     margin-left: 5rem;
+  }
+  /*** Right ***/
+  .yeti-margin-right-none {
+    margin-right: 0;
+  }
+  .yeti-margin-right-1 {
+    margin-right: 0.25rem;
+  }
+  .yeti-margin-right-2 {
+    margin-right: 0.5rem;
+  }
+  .yeti-margin-right-3 {
+    margin-right: 0.75rem;
+  }
+  .yeti-margin-right-4 {
+    margin-right: 1rem;
+  }
+  .yeti-margin-right-5 {
+    margin-right: 1.25rem;
+  }
+  .yeti-margin-right-6 {
+    margin-right: 1.5rem;
+  }
+  .yeti-margin-right-7 {
+    margin-right: 1.75rem;
+  }
+  .yeti-margin-right-8 {
+    margin-right: 2rem;
+  }
+  .yeti-margin-right-9 {
+    margin-right: 2.25rem;
+  }
+  .yeti-margin-right-10 {
+    margin-right: 2.5rem;
+  }
+  .yeti-margin-right-11 {
+    margin-right: 2.75rem;
+  }
+  .yeti-margin-right-12 {
+    margin-right: 3rem;
+  }
+  .yeti-margin-right-13 {
+    margin-right: 3.25rem;
+  }
+  .yeti-margin-right-14 {
+    margin-right: 3.5rem;
+  }
+  .yeti-margin-right-15 {
+    margin-right: 3.75rem;
+  }
+  .yeti-margin-right-16 {
+    margin-right: 4rem;
+  }
+  .yeti-margin-right-17 {
+    margin-right: 4.25rem;
+  }
+  .yeti-margin-right-18 {
+    margin-right: 4.5rem;
+  }
+  .yeti-margin-right-19 {
+    margin-right: 4.75rem;
+  }
+  .yeti-margin-right-20 {
+    margin-right: 5rem;
   }
   /************************************** Padding ***/
   /*** All Sides ***/
@@ -6280,6 +6692,37 @@ Styles for Tooltip
     padding: 1rem;
   }
   /*** Bottom ***/
+  .yeti-padding-bottom-none,
+  .yeti-padding-bottom-0 {
+    padding-bottom: 0;
+  }
+  .yeti-padding-bottom-1 {
+    padding-bottom: 0.25rem;
+  }
+  .yeti-padding-bottom-2 {
+    padding-bottom: 0.5rem;
+  }
+  .yeti-padding-bottom-3 {
+    padding-bottom: 0.75rem;
+  }
+  .yeti-padding-bottom-4 {
+    padding-bottom: 1rem;
+  }
+  .yeti-padding-bottom-5 {
+    padding-bottom: 1.25rem;
+  }
+  .yeti-padding-bottom-6 {
+    padding-bottom: 1.5rem;
+  }
+  .yeti-padding-bottom-7 {
+    padding-bottom: 1.75rem;
+  }
+  .yeti-padding-bottom-8 {
+    padding-bottom: 2rem;
+  }
+  .yeti-padding-bottom-9 {
+    padding-bottom: 2.25rem;
+  }
   .yeti-padding-bottom-10 {
     padding-bottom: 2.5rem;
   }
@@ -6363,7 +6806,60 @@ Styles for Tooltip
     height: 10rem;
   }
   .yeti-height-128 {
+    height: 32rem;
+  }
+  /************************************** Both ***/
+  .yeti-size-0 {
+    width: 0;
+    height: 0;
+  }
+  .yeti-size-1 {
+    width: 0.25rem;
+    height: 0.25rem;
+  }
+  .yeti-size-2 {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+  .yeti-size-3 {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+  .yeti-size-4 {
+    width: 1rem;
+    height: 1rem;
+  }
+  .yeti-size-5 {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  .yeti-size-6 {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .yeti-size-7 {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+  .yeti-size-8 {
+    width: 2rem;
+    height: 2rem;
+  }
+  .yeti-size-9 {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+  .yeti-size-10 {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .yeti-size-40 {
+    width: 10rem;
+    height: 10rem;
+  }
+  .yeti-size-128 {
     width: 32rem;
+    height: 32rem;
   }
   /************************************** a11y.less **************************************
 

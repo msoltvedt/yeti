@@ -7,15 +7,16 @@
 
 ## Properties
 
-| Property       | Attribute       | Description                                                                                | Type                | Default                                                                    |
-| -------------- | --------------- | ------------------------------------------------------------------------------------------ | ------------------- | -------------------------------------------------------------------------- |
-| `contents`     | --              |                                                                                            | `YetiTableContents` | `{     head: {       rows: []     },     body: {       rows: []     }   }` |
-| `filterSelf`   | `filter-self`   | Determines whether to handle filtering (true) or just note the user requested it (false).  | `boolean`           | `true`                                                                     |
-| `paginateSelf` | `paginate-self` | Determines whether to handle pagination (true) or just note the user requested it (false). | `boolean`           | `true`                                                                     |
-| `records`      | `records`       |                                                                                            | `number`            | `0`                                                                        |
-| `sortSelf`     | `sort-self`     | Determines whether to handle sorting (true) or just note the user requested it (false).    | `boolean`           | `true`                                                                     |
-| `tableClass`   | `table-class`   |                                                                                            | `string`            | `''`                                                                       |
-| `tableId`      | `table-id`      |                                                                                            | `string`            | `utils.generateUniqueId()`                                                 |
+| Property        | Attribute         | Description                                                                                | Type                | Default                                                                    |
+| --------------- | ----------------- | ------------------------------------------------------------------------------------------ | ------------------- | -------------------------------------------------------------------------- |
+| `contents`      | --                |                                                                                            | `YetiTableContents` | `{     head: {       rows: []     },     body: {       rows: []     }   }` |
+| `filterSelf`    | `filter-self`     | Determines whether to handle filtering (true) or just note the user requested it (false).  | `boolean`           | `true`                                                                     |
+| `noMatchesText` | `no-matches-text` |                                                                                            | `string`            | `"No matches"`                                                             |
+| `paginateSelf`  | `paginate-self`   | Determines whether to handle pagination (true) or just note the user requested it (false). | `boolean`           | `true`                                                                     |
+| `records`       | `records`         |                                                                                            | `number`            | `0`                                                                        |
+| `sortSelf`      | `sort-self`       | Determines whether to handle sorting (true) or just note the user requested it (false).    | `boolean`           | `true`                                                                     |
+| `tableClass`    | `table-class`     |                                                                                            | `string`            | `''`                                                                       |
+| `tableId`       | `table-id`        |                                                                                            | `string`            | `utils.generateUniqueId()`                                                 |
 
 
 ## Events

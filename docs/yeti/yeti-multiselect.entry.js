@@ -204,6 +204,7 @@ const YetiMultiselect = class {
     this.numSelections = 0;
     fieldElement.focus();
     ev.stopPropagation();
+    this.readyToVerifySlow.emit();
     this.readyToVerifyFast.emit();
   }
   handleActualFocus() {
