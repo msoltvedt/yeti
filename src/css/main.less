@@ -16,15 +16,17 @@
     hierarchy in the cascade (last one wins):
 
     1. reset.css
-    2. Carbon*
+    2. third_party:
+        a. Google Material Icons and Symbols
+        b. Carbon
     3. legacy:
         a. base-styles.css
         b. nav-styles.css
         c. legacy.css
-    4. yeti.css*
+    4. yeti.css
     5. overrides.css
 
-    * Do not modify Carbon or yeti.css directly, as your changes will be overridden.
+    * Do not modify any *.css files directly, as your changes will be overridden.
 
 */    
 /************************************** main.css **************************************/
@@ -45,6 +47,9 @@
 
 /************************************** Carbon ***/
 @layer carbon {
+    //@import (inline) url("https://fonts.googleapis.com/icon?family=Material+Icons");
+    //@import url('./third-party/material');
+    //@import (inline) url("https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp");
     @import (inline) url('./old/carbon-components.min.css');
 }
 

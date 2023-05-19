@@ -25,6 +25,8 @@ export class YetiTable {
 
   @Prop() tableId: string = utils.generateUniqueId();
 
+  @Prop() noMatchesText: string = "No matches";
+
   @Prop() records?: number = 0;
 
   @Prop() contents: YetiTableContents = {
@@ -87,9 +89,11 @@ export class YetiTable {
 
   @State() paginationComponent: YetiTablePagination = null;
 
-  private rowsThatPassFiltering: number = 0;
+  @State() filtersAreActive: boolean = false;
 
-  private filtersActive: number = 0;
+  private tableHasFilters: boolean = false;
+
+  private rowsThatPassFiltering: number = 0;
 
   @Listen('paginationUpdated')
   handlePaginationUpdate(ev) {
@@ -129,9 +133,11 @@ export class YetiTable {
       case "yeti-multiselect":
 
         let multiselect = ev.target as YetiMultiselect;
-        //if (ev.type != 'readyToVerifyFast') {
+
+        if (ev.type == 'readyToVerifyFast') {
+          /* Note: readyToVerifySlow fires whenever yeti-multiselect closes the selection dropdown, which is not what we want here. */
           this.handleMultiselectFilterChange(multiselect, columnIndex);
-        //}
+        }
         return;
     }
   }
@@ -148,6 +154,28 @@ export class YetiTable {
       "actionLabel": newValue
     });
     
+  }
+
+
+
+  setFiltersActiveFlag() {
+    if (!this.tableHasFilters) {
+      this.filtersAreActive = false;
+    } else {
+      // We know this table has filters. Loop through them all and see if any have a value other than "".
+      for (let i = 0; i < this.contents.head.rows[0].cells.length; i++) {
+        if (
+          this.contents.head.rows[0].cells[i].filtering 
+          && this.contents.head.rows[0].cells[i].filtering.value != ""
+          && this.contents.head.rows[0].cells[i].filtering.value != undefined
+        ) {
+          this.filtersAreActive = true;
+          return;
+        }
+      }
+
+      this.filtersAreActive = false;
+    }
   }
 
 
@@ -256,7 +284,7 @@ export class YetiTable {
       })
     });
     
-    this.filtersActive = 0;
+    this.filtersAreActive = false;
   }
 
 
@@ -364,8 +392,6 @@ export class YetiTable {
         "columnIndex": columnIndex,
         "value": input.value
       });
-
-      this.filtersActive += (input.value == "") ? -1 : 1;
     }
 
     // Yep, it's our job.
@@ -373,6 +399,8 @@ export class YetiTable {
       this.contents.head.rows[0].cells[columnIndex].filtering.value = input.value;
       this.iLoveJSX = !this.iLoveJSX;
     }
+
+    this.setFiltersActiveFlag();
 
   }
 
@@ -398,7 +426,7 @@ export class YetiTable {
       this.iLoveJSX = !this.iLoveJSX;
     }
 
-    this.filtersActive += (select.value == "") ? -1 : 1;
+    this.setFiltersActiveFlag();
     
   }
 
@@ -424,7 +452,7 @@ export class YetiTable {
       this.iLoveJSX = !this.iLoveJSX;
     }
 
-    this.filtersActive += (picker.value == "") ? -1 : 1;
+    this.setFiltersActiveFlag();
     
   }
 
@@ -450,7 +478,7 @@ export class YetiTable {
       this.iLoveJSX = !this.iLoveJSX;
     }
     
-    this.filtersActive += (multiselect.value == "") ? -1 : 1;
+    this.setFiltersActiveFlag();
     
   }
 
@@ -600,6 +628,8 @@ export class YetiTable {
     // See if it's a filter clear cell
     if (cell.filtering && cell.filtering.isClearCell) {
 
+      this.tableHasFilters = true;
+
       return this.renderFilterClearCell(cell);
 
     }
@@ -725,7 +755,7 @@ export class YetiTable {
       </button>
     </yeti-tooltip>
 
-    return <td class={`yeti-table-heading yeti-table-cell-clear ${css}`} id={cell.id} key={cell.id}>{(this.filtersActive > 0) ? control : ""}</td>
+    return <td class={`yeti-table-heading yeti-table-cell-clear ${css}`} id={cell.id} key={cell.id}>{(this.filtersAreActive) ? control : ""}</td>
       
   }
 
@@ -1060,7 +1090,7 @@ export class YetiTable {
 
     // Otherwise, render a placeholder row.
     return <tr class={"yeti-table-body-row"}>
-      <td class="yeti-table-cell" colSpan={this.contents.head.rows[0].cells.length}>No matches</td>
+      <td class="yeti-table-cell" colSpan={this.contents.head.rows[0].cells.length}>{this.noMatchesText}</td>
     </tr>;
   }
 

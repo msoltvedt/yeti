@@ -106,6 +106,7 @@ export namespace Components {
           * Determines whether to handle filtering (true) or just note the user requested it (false).
          */
         "filterSelf": boolean;
+        "noMatchesText": string;
         /**
           * Determines whether to handle pagination (true) or just note the user requested it (false).
          */
@@ -368,6 +369,7 @@ declare namespace LocalJSX {
           * Determines whether to handle filtering (true) or just note the user requested it (false).
          */
         "filterSelf"?: boolean;
+        "noMatchesText"?: string;
         "onRowActionClick"?: (event: YetiTableCustomEvent<any>) => void;
         "onTableFilter"?: (event: YetiTableCustomEvent<any>) => void;
         "onTablePaginate"?: (event: YetiTableCustomEvent<any>) => void;

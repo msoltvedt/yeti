@@ -244,21 +244,32 @@ export class YetiTablePagination {
       <nav class={cssClasses} aria-label="Table Pagination">
 
         {/* Items per page */}
-        { (this.showOptions) ?
         
           <div class="yeti-table-pagination-items_per_page">
 
-              <label htmlFor="demo-items_per_page" class="yeti-table-pagination-items_per_page-label">{this.recordAliasPlural} per page:</label>
+            { (this.showOptions) ?
 
-              <select id="demo-items_per_page" class="yeti-select yeti-table-pagination-items_per_page-select" onChange={(e) => {
-                this.handleItemsPerPageChange(e);
-              }}>
-                {
-                  this.itemsPerPageOptions.map((option) => {
-                    return <option value={option} class="yeti-table-pagination-items_per_page-select-option">{option}</option>
-                  })
-                }
-              </select>
+              <div>
+
+                <label htmlFor="demo-items_per_page" class="yeti-table-pagination-items_per_page-label">{this.recordAliasPlural} per page:</label>
+
+                <select id="demo-items_per_page" class="yeti-select yeti-table-pagination-items_per_page-select" onChange={(e) => {
+                  this.handleItemsPerPageChange(e);
+                }}>
+                  {
+                    this.itemsPerPageOptions.map((option) => {
+                      return <option value={option} class="yeti-table-pagination-items_per_page-select-option">{option}</option>
+                    })
+                  }
+                </select>
+              
+              </div>
+
+            :
+              
+              ""
+            
+            }
 
               <span class="yeti-table-pagination-items_per_page-count">
                 { 
@@ -270,10 +281,6 @@ export class YetiTablePagination {
               </span>
 
           </div>
-
-        :
-          ""
-        }
 
 
         {/* Pages */}

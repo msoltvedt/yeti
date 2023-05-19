@@ -7,7 +7,7 @@
 
 
 /************************************** Layers ***/
-@layer reset, defaults, globals, components, utilities, overrides, debugging;
+@layer reset, third_party, defaults, globals, components, utilities, overrides, debugging;
 
 
 
@@ -17,6 +17,13 @@
 
 
 /************************************** CSS Reset ***/
+
+
+
+/************************************** Third Party ***/
+@layer third_party {
+    @import url('./third-party/material'); // Material Icons
+}
 
 
 

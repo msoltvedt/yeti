@@ -420,6 +420,16 @@ yeti-table-actions[use-grid] yeti-table-action {
     background-color: #d1d1d1;
 }
 
+.yeti-table-heading-filter :is(.yeti-input, .yeti-select, .yeti-multiselect, .yeti-date-button) {
+    background-color: white;
+    border: 1px solid #525252;
+}
+.yeti-table-heading-filter .yeti-date-button { border-left: 0; }
+
+.yeti-table-heading-filter :is(.yeti-input, .yeti-select, .yeti-multiselect, .yeti-date-button):hover {
+    background-color: #f4f4f4;
+}
+
 
 
 /************************************** Row Actions ***/
