@@ -331,6 +331,7 @@ declare namespace LocalJSX {
         "menuCSS"?: string;
         "menuId"?: string;
         "onMenuButtonChange"?: (event: YetiMenuButtonCustomEvent<any>) => void;
+        "onMenuButtonSelectionMade"?: (event: YetiMenuButtonCustomEvent<any>) => void;
         "tooltipText"?: string;
         "value"?: string;
         "wrapperCSS"?: string;

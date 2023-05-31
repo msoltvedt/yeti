@@ -11,6 +11,8 @@ export class YetiMenuButton {
 
   @Event({ bubbles: true }) menuButtonChange: EventEmitter;
 
+  @Event({ bubbles: true }) menuButtonSelectionMade: EventEmitter;
+
   @Prop({ attribute: 'wrapper-class'}) wrapperCSS: string = '';
 
   @Prop({ attribute: 'button-class'}) buttonCSS: string = '';
@@ -492,6 +494,10 @@ export class YetiMenuButton {
         });
 
       }
+
+      this.menuButtonSelectionMade.emit({
+        "value": this.value
+      });
 
       this.justMadeASelection = false;
     }

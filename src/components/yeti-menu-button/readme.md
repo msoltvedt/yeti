@@ -25,9 +25,10 @@
 
 ## Events
 
-| Event              | Description | Type               |
-| ------------------ | ----------- | ------------------ |
-| `menuButtonChange` |             | `CustomEvent<any>` |
+| Event                     | Description | Type               |
+| ------------------------- | ----------- | ------------------ |
+| `menuButtonChange`        |             | `CustomEvent<any>` |
+| `menuButtonSelectionMade` |             | `CustomEvent<any>` |
 
 
 ## Dependencies
