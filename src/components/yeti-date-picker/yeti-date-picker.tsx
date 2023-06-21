@@ -143,6 +143,7 @@ export class YetiDatePicker {
     let dayNumber = parseInt(td.attributes.getNamedItem("data-date").value);
     let justSelectedDate = this.cursorDate;
     let icon = this.el.querySelector('.yeti-date-button') as HTMLElement;
+    e.preventDefault();
     justSelectedDate.setDate(dayNumber);
     this.value = this.convertDateToInputValueString(justSelectedDate);
     this.isPickerVisible = false;
@@ -156,7 +157,64 @@ export class YetiDatePicker {
 
   handleCalendarKeydown(ev: KeyboardEvent) {
     // For navigating the calendar via the keyboard
+
     switch (ev.key) {
+
+        case "Home": {
+
+            ev.preventDefault();
+            this.cursorDate.setDate( this.getFirstDayOfWeek( this.cursorDate ) );
+            this.iLoveJSX = !this.iLoveJSX;
+
+            break;
+        }
+
+        case "End": {
+
+            ev.preventDefault();
+            this.cursorDate.setDate( this.getLastDayOfWeek( this.cursorDate ) );
+            this.iLoveJSX = !this.iLoveJSX;
+
+            break;
+        }
+
+        case "PageUp": {
+
+            ev.preventDefault();
+            let targetDate;
+
+            if (ev.shiftKey) {
+                // Previous Year
+                targetDate = new Date(this.cursorDate.getFullYear()-1, this.cursorDate.getMonth(), this.cursorDate.getDate()); // Previous month
+            } else {
+                // Previous Month
+                targetDate = new Date(this.cursorDate.getFullYear(), this.cursorDate.getMonth()-1, this.cursorDate.getDate());
+            }
+
+            this.cursorDate = this.getAnalogousDateInTargetMonthsGrid( this.cursorDate, targetDate );
+            this.iLoveJSX = !this.iLoveJSX;
+
+            break;
+        }
+
+        case "PageDown": {
+
+            ev.preventDefault();
+            let targetDate;
+
+            if (ev.shiftKey) {
+                // Previous Year
+                targetDate = new Date(this.cursorDate.getFullYear()+1, this.cursorDate.getMonth(), this.cursorDate.getDate());
+            } else {
+                // Previous Month
+                targetDate = new Date(this.cursorDate.getFullYear(), this.cursorDate.getMonth()+1, this.cursorDate.getDate());
+            }
+
+            this.cursorDate = this.getAnalogousDateInTargetMonthsGrid( this.cursorDate, targetDate );
+            this.iLoveJSX = !this.iLoveJSX;
+
+            break;
+        }
 
         case "ArrowLeft": {
 
@@ -222,6 +280,53 @@ export class YetiDatePicker {
     }
   }
 
+
+
+  getFirstDayOfWeek(date: Date) {
+    return (date.getDate() - date.getDay());
+  }
+
+
+
+  getLastDayOfWeek(date: Date) {
+    return (date.getDate() + 6 - date.getDay());
+  }
+
+
+
+  getAnalogousDateInTargetMonthsGrid(currentDate: Date, targetDate: Date) {
+    /*
+        This is a weird one, thank the W3 for this. Say the user's looking at the monthly grid of days in the picker and wants to
+        see the grid for the previous month. This function will try to select the analogous grid spot in that month (i.e. same row
+        and column). If that grid spot doesn't exist, then we need to pick the closest week, and match the column spot in that week.
+    */
+
+    let firstOfCurrentMonth = new Date( currentDate.getFullYear(), currentDate.getMonth(), 1 );
+    let dayIndexForFirstOfCurrentMonth = firstOfCurrentMonth.getDay();
+    let rowIndex = Math.floor( (dayIndexForFirstOfCurrentMonth + currentDate.getDate())  /  7 );
+    let colIndex = currentDate.getDay();
+    let returnDate;
+    let proposedDate;
+    let daysInTargetMonth;
+    
+    targetDate.setDate(1);
+
+    daysInTargetMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
+    proposedDate = (rowIndex*7) + colIndex + 1 - targetDate.getDay();
+
+    proposedDate += (proposedDate < 1) ? 7 : 0; // Make sure the proposed date isn't on a leading empty grid cell
+
+    while (proposedDate > daysInTargetMonth) { // Make sure the proposed date isn't on a trailing empty grid cell
+        proposedDate -= 7;
+    }
+
+    // Now see if the previous month has a date in the grid square at rowIndex + colIndex;
+    returnDate = new Date(targetDate);
+    returnDate.setDate( proposedDate );
+
+    return returnDate;
+
+  }
 
 
   getSelectedDateInThisMonth(month: Date) {
