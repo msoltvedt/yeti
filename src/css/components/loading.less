@@ -1,0 +1,68 @@
+/************************************** loading.less ***************************************
+
+Styles for Loading Indicator
+
+*************************************** loading.less **************************************/
+
+
+
+/************************************** Container ***/
+yeti-loading {
+    display: inline-block;
+    width: min-content;
+    height: min-content;
+}
+
+.yeti-loading {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.yeti-loading:focus {
+    outline: none;
+}
+
+
+/************************************** Icon ***/
+.yeti-loading-icon {
+    width: 200px;
+    height: 200px;
+    border: 0;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 100%;
+    height: 5.5rem;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    width: 5.5rem;
+}
+
+.yeti-loading-icon-svg {
+    fill: transparent;
+
+    animation-duration: .69s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: rotate;
+    animation-timing-function: linear;
+}
+
+.yeti-loading-icon-svg-circle {
+    stroke: #0f62fe;
+    stroke-dashoffset: 52.527552;
+    stroke-dasharray: 276.4608 276.4608;
+    stroke-linecap: butt;
+    stroke-width: 10;
+}
+
+
+
+/************************************** Label ***/
+.yeti-loading-label {
+    font-size: 1.15rem;
+    font-weight: 500;
+    text-align: center;
+}

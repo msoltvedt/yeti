@@ -92,7 +92,7 @@ function watcher(cb) {
 
     // Optionally update Orchestrator with dev mode on as well.
     //watch(`dist/yeti/**/*`, pasteJSToOrchestrator);
-    //watch(`src/css/yeti.css`, pasteCSSToOrchestrator);
+    watch(`src/css/yeti.css`, pasteCSSToOrchestrator);
     cb();
 }
 

@@ -1,0 +1,55 @@
+/************************************** modal.less ***************************************
+
+Styles for Modal
+
+*************************************** modal.less **************************************/
+
+
+
+/************************************** Overlay ***/
+.yeti-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: hsla(0,0%,9%,.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.yeti-modal-overlay-light {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.yeti-modal-overlay__inert {
+    display: none;
+}
+
+
+
+/************************************** Actual ***/
+.yeti-modal {
+    width: 24%;
+    max-height: 48%;
+    background-color: white;
+}
+
+.yeti-modal-overlay-light .yeti-modal {
+    box-shadow: 0 2px 6px rgba(0,0,0,.3);
+}
+
+.yeti-modal:not(:has(.yeti-modal-content)) {
+    padding: 1rem;
+}
+
+
+/*** When Modal Contains Loading ***/
+.yeti-modal:has(.yeti-loading) {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

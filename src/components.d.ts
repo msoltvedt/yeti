@@ -60,6 +60,10 @@ export namespace Components {
         "required": boolean;
         "value": string;
     }
+    interface YetiLoading {
+        "isActive": boolean;
+        "isModal": boolean;
+    }
     interface YetiMenuButton {
         "buttonCSS": string;
         "buttonId": string;
@@ -206,6 +210,12 @@ declare global {
         prototype: HTMLYetiInputElement;
         new (): HTMLYetiInputElement;
     };
+    interface HTMLYetiLoadingElement extends Components.YetiLoading, HTMLStencilElement {
+    }
+    var HTMLYetiLoadingElement: {
+        prototype: HTMLYetiLoadingElement;
+        new (): HTMLYetiLoadingElement;
+    };
     interface HTMLYetiMenuButtonElement extends Components.YetiMenuButton, HTMLStencilElement {
     }
     var HTMLYetiMenuButtonElement: {
@@ -254,6 +264,7 @@ declare global {
         "yeti-field": HTMLYetiFieldElement;
         "yeti-icon": HTMLYetiIconElement;
         "yeti-input": HTMLYetiInputElement;
+        "yeti-loading": HTMLYetiLoadingElement;
         "yeti-menu-button": HTMLYetiMenuButtonElement;
         "yeti-multiselect": HTMLYetiMultiselectElement;
         "yeti-progress-bar": HTMLYetiProgressBarElement;
@@ -319,6 +330,10 @@ declare namespace LocalJSX {
         "onReadyToVerifySlow"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
         "required"?: boolean;
         "value"?: string;
+    }
+    interface YetiLoading {
+        "isActive"?: boolean;
+        "isModal"?: boolean;
     }
     interface YetiMenuButton {
         "buttonCSS"?: string;
@@ -425,6 +440,7 @@ declare namespace LocalJSX {
         "yeti-field": YetiField;
         "yeti-icon": YetiIcon;
         "yeti-input": YetiInput;
+        "yeti-loading": YetiLoading;
         "yeti-menu-button": YetiMenuButton;
         "yeti-multiselect": YetiMultiselect;
         "yeti-progress-bar": YetiProgressBar;
@@ -443,6 +459,7 @@ declare module "@stencil/core" {
             "yeti-field": LocalJSX.YetiField & JSXBase.HTMLAttributes<HTMLYetiFieldElement>;
             "yeti-icon": LocalJSX.YetiIcon & JSXBase.HTMLAttributes<HTMLYetiIconElement>;
             "yeti-input": LocalJSX.YetiInput & JSXBase.HTMLAttributes<HTMLYetiInputElement>;
+            "yeti-loading": LocalJSX.YetiLoading & JSXBase.HTMLAttributes<HTMLYetiLoadingElement>;
             "yeti-menu-button": LocalJSX.YetiMenuButton & JSXBase.HTMLAttributes<HTMLYetiMenuButtonElement>;
             "yeti-multiselect": LocalJSX.YetiMultiselect & JSXBase.HTMLAttributes<HTMLYetiMultiselectElement>;
             "yeti-progress-bar": LocalJSX.YetiProgressBar & JSXBase.HTMLAttributes<HTMLYetiProgressBarElement>;
