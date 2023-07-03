@@ -1,4 +1,4 @@
-import { r as registerInstance, e as createEvent, h, g as getElement } from './index-63c9e11c.js';
+import { r as registerInstance, e as createEvent, h, g as getElement } from './index-0a9ffd8f.js';
 import { u as utils } from './utils-ab4e8d6b.js';
 
 const YetiMultiselect = class {
@@ -53,7 +53,6 @@ const YetiMultiselect = class {
       case "arrowdown": {
         if (this.isOpen) {
           this.cursorPosition = (this.cursorPosition + 1) % this.options.length;
-          this.iLoveJSX = !this.iLoveJSX;
           ev.preventDefault();
         }
         else if (ev.altKey) {
@@ -66,7 +65,6 @@ const YetiMultiselect = class {
       case "arrowup": {
         if (this.isOpen) {
           this.cursorPosition = (this.cursorPosition - 1 + this.options.length) % this.options.length;
-          this.iLoveJSX = !this.iLoveJSX;
           ev.preventDefault();
         }
         else if (ev.altKey) {
@@ -249,8 +247,12 @@ const YetiMultiselect = class {
   componentDidRender() {
     // If the cursor is over an option, make sure it's visible.
     if (this.isOpen) {
+      // The facade flyout is open. If one of the options is being hovered over then we want to scroll it into view.
+      // If not, then we'll scroll the whole flyout into view.
       let flyout = this.el.querySelector(".yeti-multiselect-flyout");
-      flyout.scrollIntoView({
+      let hoveredOption = this.el.querySelector(".yeti-multiselect-option__hover");
+      let thingToScrollIntoView = (hoveredOption) ? hoveredOption : flyout;
+      thingToScrollIntoView.scrollIntoView({
         behavior: "smooth",
         block: "nearest"
       });
