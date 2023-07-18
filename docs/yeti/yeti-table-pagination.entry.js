@@ -1,5 +1,5 @@
-import { r as registerInstance, e as createEvent, h, g as getElement } from './index-0a9ffd8f.js';
-import { u as utils } from './utils-ab4e8d6b.js';
+import { r as registerInstance, a as createEvent, h, g as getElement } from './index-757389e7.js';
+import { u as utils } from './utils-9a04204c.js';
 
 const YetiTablePagination = class {
   constructor(hostRef) {
@@ -170,3 +170,5 @@ const YetiTablePagination = class {
 };
 
 export { YetiTablePagination as yeti_table_pagination };
+
+//# sourceMappingURL=yeti-table-pagination.entry.js.map

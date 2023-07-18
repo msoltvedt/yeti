@@ -393,7 +393,7 @@ label {
 .summary-container-view-batch {
   display: flex;
   justify-content: space-between;
-  padding: 16px 16px 16px 16px;
+  padding: 16px 0px 16px 0px;
   background-color: #f3f3f3;
   width:100%;
   word-wrap: break-word;
@@ -4726,6 +4726,7 @@ Styles for Modal
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 100;
   }
   .yeti-modal-overlay-light {
     background-color: rgba(255, 255, 255, 0.5);

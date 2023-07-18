@@ -1,5 +1,5 @@
 /*
- Stencil Client Platform v2.22.1 | MIT Licensed | https://stenciljs.com
+ Stencil Client Platform v4.0.1 | MIT Licensed | https://stenciljs.com
  */
 /**
  * @license
@@ -385,3 +385,5 @@ const scopeCss = (cssText, scopeId, commentOriginalSelector) => {
 };
 
 export { scopeCss };
+
+//# sourceMappingURL=shadow-css-8a6ccf47.js.map

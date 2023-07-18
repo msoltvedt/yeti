@@ -1,5 +1,5 @@
-import { r as registerInstance, h } from './index-0a9ffd8f.js';
-import { f as format } from './utils-ab4e8d6b.js';
+import { r as registerInstance, h } from './index-757389e7.js';
+import { f as format } from './utils-9a04204c.js';
 
 const myComponentCss = ":host{display:block}";
 
@@ -20,3 +20,5 @@ const MyComponent = class {
 MyComponent.style = myComponentCss;
 
 export { MyComponent as my_component };
+
+//# sourceMappingURL=my-component.entry.js.map
