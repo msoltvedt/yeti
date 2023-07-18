@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { YetiTableContents } from "./utils/utils";
+export { YetiTableContents } from "./utils/utils";
 export namespace Components {
     interface MyComponent {
         /**
