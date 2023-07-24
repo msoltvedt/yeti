@@ -9,17 +9,32 @@ export class YetiProgressBar {
 
   @Element() el: HTMLElement;
 
+  /**
+   * CSS classlist to add to the component's outer wrapper element.
+   */
   @Prop({ attribute: 'wrapper-class'}) wrapperCSS: string = '';
 
+  /**
+   * CSS classlist to add to the component's actual label element.
+   */
   @Prop({ attribute: 'label-class'}) labelCSS: string = '';
 
+  /**
+   * CSS classlist to add to the element representing the component's progress bar.
+   */
   @Prop({ attribute: 'bar-class'}) barCSS: string = '';
 
+  /**
+   * id of the element representing the component's progress bar. Will be given an auto-generated unique id if one is not provided.
+   */
   @Prop({
     mutable: true,
     reflect: true
   }) barId: string = ""; // Set on load
 
+  /**
+   * Number between 0 and 100 that describes the percentage complete to display in the bar.
+   */
   @Prop({
     mutable: true,
     reflect: true
@@ -32,16 +47,34 @@ export class YetiProgressBar {
     }
   }
 
+  /**
+   * Text content for the component's label.
+   */
   @Prop() label: string = "";
 
+  /**
+   * Text content for the component's tooltip.
+   */
   @Prop() tooltipText: string = "";
 
+  /**
+   * Token list describing the component's tooltip's position relative to the bar: left | right and/or above | below.
+   */
   @Prop() tooltipPosition: string = "";
 
+  /**
+   * Text content that appears beneath the bar as helper text.
+   */
   @Prop() helperText: string = "";
 
+  /**
+   * Whether or not the bar should depict an error state.
+   */
   @Prop() error: boolean = false;
 
+  /**
+   * Toggle to re-render the entire component.
+   */
   @State() iLoveJSX: boolean = false;
 
 

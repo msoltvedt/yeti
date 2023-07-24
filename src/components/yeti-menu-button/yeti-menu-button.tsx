@@ -9,21 +9,42 @@ export class YetiMenuButton {
 
   @Element() el: HTMLElement;
 
+  /**
+   * Fires when the selected value of the Menu Button becomes a different value.
+   */
   @Event({ bubbles: true }) menuButtonChange: EventEmitter;
 
+  /**
+   * Fires whenever the user selects a value, even if its the same as it was before.
+   */
   @Event({ bubbles: true }) menuButtonSelectionMade: EventEmitter;
 
+  /**
+   * CSS classlist to add to the Menu Button pattern's outer wrapper.
+   */
   @Prop({ attribute: 'wrapper-class'}) wrapperCSS: string = '';
 
+  /**
+   * CSS classlist to add to the Menu Button's button element.
+   */
   @Prop({ attribute: 'button-class'}) buttonCSS: string = '';
 
+  /**
+   * CSS classlist to add to the Menu Button's menu element.
+   */
   @Prop({ attribute: 'menu-class'}) menuCSS: string = '';
 
+  /**
+   * id to apply to the Menu Button's button element. Will be auto-populated with a unique id if one is not provided.
+   */
   @Prop({
     mutable: true,
     reflect: true
   }) buttonId: string = "";
 
+  /**
+   * Sets a specific type of the button (see the Yeti Button pattern for more info): primary, secondary, tertiary, danger, or ghost.
+   */
   @Prop() buttonType?: string = "";
 
   @Prop({
@@ -31,12 +52,24 @@ export class YetiMenuButton {
     reflect: true
   }) menuId: string = "";
 
+  /**
+   * Text that appears within the optional tooltip bubble.
+   */
   @Prop() tooltipText: string = "Options";
 
+  /**
+   * Token list comprising left | right and/or above | below to align the menu relative to the button.
+   */
   @Prop() menuAlignment: string = "";
 
+  /**
+   * Whether to show a tooltip on hover/focus of the button or not.
+   */
   @Prop() hasTooltip: boolean = true;
 
+  /**
+   * The value of the control (will correspond to the value of one of the options in the menu).
+   */
   @Prop({
     mutable: true,
     reflect: true
@@ -49,18 +82,39 @@ export class YetiMenuButton {
     });
   }
 
+  /**
+   * id of an outside element the control's aria-labelledby attribute references.
+   */
   @Prop() labelledBy: string = "";
 
+  /**
+   * id of an outside element the control's aria-describedby attribute reference.
+   */
   @Prop() describedBy: string = "";
 
+  /**
+   * Array of YetiMenuButtonOptions (see utils.js) that describe the component's representation of its options.
+   */
   @State() options: YetiMenuButtonOption[] = [];
 
+  /**
+   * Whether the user has focused and blurred (i.e. interacted with) the component.
+   */
   @State() isTouched: boolean = false;
 
+  /**
+   * Toggle to re-rerender the component.
+   */
   @State() iLoveJSX: boolean = false;
 
+  /**
+   * Whether the menu is visible or not.
+   */
   @State() isOpen: boolean = false;
 
+  /**
+   * 0-based index of the currently focused option relative to the whole menu.
+   */
   @State() cursorPosition: number = -1;
 
   private justMadeASelection: boolean = false;

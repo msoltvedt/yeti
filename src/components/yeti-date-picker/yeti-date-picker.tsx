@@ -9,33 +9,60 @@ export class YetiDatePicker {
 
   @Element() el: HTMLElement;
 
+  /**
+   * Fires when the user has chosen or entered a date and left (blurred from) the component.
+   */
   @Event({ bubbles: true }) readyToVerifySlow: EventEmitter<CustomEvent>;
 
+  /**
+   * CSS classlist that will be added to the actual HTML input element.
+   */
   @Prop() inputClass: string = '';
 
+  /**
+   * id that will be assigned to the actual HTML input element. If not provided, the component will assign one on load.
+   */
   @Prop({
     mutable: true,
     reflect: true
   }) inputId: string = ""; // Set on load
 
+  /**
+   * name that will be assigned to the actual HTML input element. If not provided, the component will use the id.
+   */
   @Prop({
     mutable: true
   }) inputName: string = ""; // Set on load
 
+  /**
+   * Whether the component is a required field.
+   */
   @Prop() required: boolean = false;
 
+  /**
+   * Tracks whether the component's current value is valid. The default empty value is valid.
+   */
   @Prop({
     mutable: true,
     reflect: true
   }) isValid: boolean;
 
+  /**
+   * The component's value.
+   */
   @Prop({
     mutable: true,
     reflect: true
   }) value: string = '';
 
+  /**
+   * ID of any related label for the component. Used by aria-labelledby.
+   */
   @Prop() labelledBy: string = "";
 
+  /**
+   * ID of any related describing element. Used by aria-describedby.
+   */
   @Prop() describedBy: string = "";
 
   @Watch('value')
@@ -57,14 +84,29 @@ export class YetiDatePicker {
 
   }
 
+  /**
+   * Tracks whether the user has interacted with the field (even if they don't select a value).
+   */
   @State() isTouched: boolean = false;
 
+  /**
+   * The default date the highlighted cursor shows when the user toggles the picker open.
+   */
   @State() cursorDate: Date = new Date(); // Defaults to today, but we'll set it to selected if possible
 
+  /**
+   * Toggle to force a component re-rerender.
+   */
   @State() iLoveJSX: boolean = false;
 
+  /**
+   * Tracks whether the picker window is open or not.
+   */
   @State() isPickerVisible: boolean = false;
 
+  /**
+   * Tracks whether the picker has just opened. Used to handle focus and blur in and around the component.
+   */
   @State() pickerJustOpened: boolean = false;
 
   @Listen("click")
@@ -116,6 +158,7 @@ export class YetiDatePicker {
     }
   }
 
+  // Used to manage focus when paging through different calendar month views via keyboard shortcuts
   keepFocusOnButton: boolean = false;
 
   pickerHeading: string = utils.generateUniqueId();

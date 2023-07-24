@@ -7,14 +7,29 @@ import { utils } from '../../utils/utils';
 })
 export class YetiField {
 
+  /**
+   * id that will be assigned to the actual input element. A unique one will be assigned if one is not provided.
+   */
   @Prop() inputId: string = utils.generateUniqueId();
 
+  /**
+   * name that will be assigned to the actual input element. id will be assigned if one is not provided.
+   */
   @Prop() inputName: string = this.inputId;
 
+  /**
+   * type that will be assigned to the actual input element.
+   */
   @Prop() type: string = "text";
 
+  /**
+   * CSS classlist that will be assigned to the containing field element (probably a div).
+   */
   @Prop() fieldClass: string = "";
   
+  /**
+   * Mandatory value for the label of the field.
+   */
   @Prop() label!: string;
   @Watch('label')
   validateLabel(newValue: string) {
@@ -25,21 +40,42 @@ export class YetiField {
     }
   }
 
+  /**
+   * Value for the optional input tip that appears at the bottom of the field.
+   */
   @Prop() tip: string;
 
+  /**
+   * Whether the field is required to have a valid value by the greater form.
+   */
   @Prop() required: boolean = false;
 
+  /**
+   * Error message that appears when the field is invalid. Can be updated at any time.
+   */
   @Prop({mutable: true}) errorMessage: string = 'Error: please correct this field.'
 
+  /**
+   * Whether the input is currently valid or invalid.
+   */
   @Prop({
     mutable: true,
     reflect: true
   }) isValid: boolean = true;
 
+  /**
+   * Default value of the field's input.
+   */
   @Prop() defaultValue: string = '';
 
+  /**
+   * Determines whether the field should attempt to validate itself or merely pass through any readyToVerify events from its input.
+   */
   @Prop() autovalidate: boolean = true;
 
+  /**
+   * Tracks whether the field's input has been focused and then blurred (i.e. if the user has interacted with it yet).
+   */
   @State() isDirty: boolean = false;
   
   @Listen('readyToVerifySlow', { capture: true })

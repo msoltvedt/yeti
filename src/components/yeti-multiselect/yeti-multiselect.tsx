@@ -9,59 +9,119 @@ export class YetiMultiselect {
 
   @Element() el: HTMLElement;
 
+  /**
+   * Fires when the user has made a selection and closed the dropdown (usually by focusing elsewhere).
+   */
   @Event({ bubbles: true }) readyToVerifySlow: EventEmitter<CustomEvent>;
 
+  /**
+   * Fires when the user toggles any of the options.
+   */
   @Event({ bubbles: true }) readyToVerifyFast: EventEmitter<CustomEvent>;
 
+  /**
+   * CSS classlist to add to the component's outer wrapper element.
+   */
   @Prop() cssClass: string = '';
 
+  /**
+   * id of the visual representation of the drop-down.
+   */
   @Prop({
     mutable: true,
     reflect: true
   }) facadeId: string = "";
 
+  /**
+   * id of the actual drop-down element.
+   */
   @Prop({
     mutable: true,
     reflect: true
   }) actualId: string = "";
 
+  /**
+   * name of the actual drop-down element. Defaults to match id.
+   */
   @Prop({
     mutable: true,
     reflect: true
   }) actualName: string = this.actualId;
 
+  /**
+   * Whether the component requires a valid value.
+   */
   @Prop() required: boolean = false;
 
+  /**
+   * Token list of left | right and/or above | below that describes the drop-down's visual position relative to the closed state anchor.
+   */
   @Prop() menuAlignment: string = "";
 
+  /**
+   * Whether the component has a valid value.
+   */
   @Prop({
     mutable: true,
     reflect: true
   }) isValid: boolean;
 
+  /**
+   * The component's value.
+   */
   @Prop({
     mutable: true,
     reflect: true
   }) value: string = '';
 
+  /**
+   * id of an external HTML element that the component's actual drop-down element references in aria-labelledby.
+   */
   @Prop() labelledBy: string = "";
 
+  /**
+   * id of an external HTML element that the component's actual drop-down element references in aria-describedby.
+   */
   @Prop() describedBy: string = "";
 
+  /**
+   * Text that appears in the closed state/anchor when there are no selections.
+   */
   @Prop() placeholder: string = "- Select -";
 
+  /**
+   * Whether or not to show the optional Clear all selections puck.
+   */
   @Prop() showClear: boolean = true;
 
+  /**
+   * Array of YetiMultiselectOptions that describes the component's internal representation of its options. See utils.js for more detail.
+   */
   @State() options: YetiMultiselectOption[] = [];
 
+  /**
+   * Whether or not the user has interacted with the component (i.e. focused and blurred).
+   */
   @State() isTouched: boolean = false;
 
+  /**
+   * Number of total selections (used primarily for the anchor).
+   */
   @State() numSelections: number = 0;
 
+  /**
+   * Toggle to re-render the whole component.
+   */
   @State() iLoveJSX: boolean = false;
 
+  /**
+   * Whether or not the drop-down is open/visible or not.
+   */
   @State() isOpen: boolean = false;
 
+  /**
+   * 0-based index of the currently focused option.
+   */
   @State() cursorPosition: number = -1;
 
 

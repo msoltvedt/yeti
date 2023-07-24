@@ -9,26 +9,50 @@ export class YetiTooltip {
 
   @Element() el: HTMLElement;
 
+  /**
+   * CSS classlist to add to the element serving as the component's wrapper.
+   */
   @Prop({ attribute: 'wrapper-class'}) wrapperCSS: string = '';
 
+  /**
+   * CSS classlist to add to the actual tooltip element.
+   */
   @Prop({ attribute: 'tooltip-class'}) tooltipCSS: string = '';
 
+  /**
+   * Text value to display as the tooltip's contents.
+   */
   @Prop() text: string = "I'm a helpful tooltip.";
 
+  /**
+   * Token list to describe the tooltip's position relative to its anchor: left | right and/or above | below.
+   */
   @Prop() position: string = "above";
 
+  /**
+   * id of the component's slot element.
+   */
   @Prop({
     mutable: true,
     reflect: true
   }) slotId: string = ""; // Set on load
 
+  /**
+   * id of the component's actual element corresponding to the tooltip. Will be auto-populated with a unique value if not provided.
+   */
   @Prop({
     mutable: true,
     reflect: true
   }) tipId: string = ""; // Set on load
 
+  /**
+   * Whether the anchor should be forced to be a CSS display block style or left as is.
+   */
   @Prop() blockAnchor: boolean = false;
 
+  /**
+   * Toggle to force a re-render of the whole component.
+   */
   @State() iLoveJSX: boolean = false;
 
 

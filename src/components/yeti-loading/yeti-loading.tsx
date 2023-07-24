@@ -9,8 +9,14 @@ export class YetiLoading {
 
   @Element() el: HTMLElement;
 
+  /**
+   * Whether to display the Loading pattern as a modal (covering its parent container) or as an inline-block object.
+   */
   @Prop() isModal: boolean = false;
 
+  /**
+   * Tracks whether the Loader is displaying or not.
+   */
   @Prop() isActive: boolean = false;
   @Watch('isActive')
   handleFocus(newValue: boolean) {
@@ -29,7 +35,7 @@ export class YetiLoading {
   }
 
 
-  previouslyFocusedElement: HTMLElement = null;
+  previouslyFocusedElement: HTMLElement = null; // So we can return focus to wherever the user was when the Loading component appeared.
   shouldStealFocus = false;
   shouldReturnFocus = false;
 

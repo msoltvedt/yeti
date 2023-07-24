@@ -249,21 +249,18 @@ export class YetiTablePagination {
 
             { (this.showOptions) ?
 
-              <div>
-
-                <label htmlFor="demo-items_per_page" class="yeti-table-pagination-items_per_page-label">{this.recordAliasPlural} per page:</label>
-
-                <select id="demo-items_per_page" class="yeti-select yeti-table-pagination-items_per_page-select" onChange={(e) => {
-                  this.handleItemsPerPageChange(e);
-                }}>
-                  {
-                    this.itemsPerPageOptions.map((option) => {
-                      return <option value={option} class="yeti-table-pagination-items_per_page-select-option">{option}</option>
-                    })
-                  }
-                </select>
               
-              </div>
+              [<label htmlFor="demo-items_per_page" class="yeti-table-pagination-items_per_page-label">{this.recordAliasPlural} per page:</label>,
+
+              <select id="demo-items_per_page" class="yeti-select yeti-table-pagination-items_per_page-select" onChange={(e) => {
+                this.handleItemsPerPageChange(e);
+              }}>
+                {
+                  this.itemsPerPageOptions.map((option) => {
+                    return <option value={option} class="yeti-table-pagination-items_per_page-select-option">{option}</option>
+                  })
+                }
+              </select>]
 
             :
               

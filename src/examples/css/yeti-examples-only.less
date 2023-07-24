@@ -22,18 +22,78 @@
 }
 
 
-/************************************** Code Samples ***/
+/************************************** Code Demo ***/
 .ydoc-code_sample {
     line-height: 1.5;
+    margin: 1rem 0;
+    border: 1px solid black;
+}
+
+.ydoc-demo-actual {
+    padding: 4rem;
+}
+
+
+
+/*** Code Section ***/
+.ydoc-demo-code {
+    background-color: black;
+    color: white;
+}
+
+.ydoc-demo-code-actual {
+    overflow: hidden;
+    height: auto;
+}
+
+.ydoc-code_sample:not(.ydoc-demo__code_expanded) .ydoc-demo-code-actual {
+    height: 0;
 }
 
 .ydoc-code_sample + * {
     margin-top: @u * 12;
 }
 
-.ydoc-code_sample-pre {
+.ydoc-demo-pre {
     position: unset;
     width: 100%;
     padding: unset;
-    margin-top: @u * 8;
+}
+
+
+/* Title bar */
+.ydoc-demo-code-title_bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: @u * 2 @u * 4;
+}
+
+.ydoc-demo-code-title_bar-actions {
+    display: flex;
+    gap: @u * 2;
+}
+
+.ydoc-demo-code-title_bar-action {
+    .yeti-mixin-button-vanilla();
+    background-color: inherit;
+    color: inherit;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+}
+
+.ydoc-code_sample.ydoc-demo__code_expanded li:has(.ydoc-demo-code-title_bar-action-expand, .ydoc-demo-code-title_bar-action-expand_all) {
+    display: none;
+}
+.ydoc-code_sample:not(.ydoc-demo__code_expanded) li:has(.ydoc-demo-code-title_bar-action-collapse, .ydoc-demo-code-title_bar-action-collapse_all) {
+    display: none;
+}
+
+
+/************************************** Highlighter JS Overrides ***/
+.ydoc-code_sample pre code.hljs {
+    padding: 2rem;
+    padding-top: 0.5rem;
 }

@@ -9,13 +9,22 @@ export class YetiTableActions {
 
   @Element() el: HTMLElement;
 
+  /**
+   * CSS classlist to add to the actual element serving as the component's wrapper.
+   */
   @Prop() cssClass: string = '';
 
+  /**
+   * id value of the actual element serving as the component's wrapper. Will be auto-generated with a unique value if not provided.
+   */
   @Prop({
     mutable: true,
     reflect: true
   }) htmlId: string = ""; // Set on component load
 
+  /**
+   * Whether or not to use the Yeti Grid system to lay out child options.
+   */
   @Prop() useGrid: boolean = false;
 
 

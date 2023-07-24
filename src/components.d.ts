@@ -23,110 +23,339 @@ export namespace Components {
         "middle": string;
     }
     interface YetiDatePicker {
+        /**
+          * ID of any related describing element. Used by aria-describedby.
+         */
         "describedBy": string;
+        /**
+          * CSS classlist that will be added to the actual HTML input element.
+         */
         "inputClass": string;
+        /**
+          * id that will be assigned to the actual HTML input element. If not provided, the component will assign one on load.
+         */
         "inputId": string;
+        /**
+          * name that will be assigned to the actual HTML input element. If not provided, the component will use the id.
+         */
         "inputName": string;
+        /**
+          * Tracks whether the component's current value is valid. The default empty value is valid.
+         */
         "isValid": boolean;
+        /**
+          * ID of any related label for the component. Used by aria-labelledby.
+         */
         "labelledBy": string;
+        /**
+          * Whether the component is a required field.
+         */
         "required": boolean;
+        /**
+          * The component's value.
+         */
         "value": string;
     }
-    interface YetiField {
-        "autovalidate": boolean;
-        "defaultValue": string;
-        "errorMessage": string;
-        "fieldClass": string;
-        "inputId": string;
-        "inputName": string;
-        "isValid": boolean;
-        "label": string;
-        "required": boolean;
-        "tip": string;
-        "type": string;
-    }
-    interface YetiIcon {
+    interface YetiDemo {
         "alt"?: string;
         "focusable"?: boolean;
         "iconCSS"?: string;
         "iconCode": string;
         "iconId"?: string;
     }
-    interface YetiInput {
-        "describedBy": string;
-        "inputClass": string;
+    interface YetiField {
+        /**
+          * Determines whether the field should attempt to validate itself or merely pass through any readyToVerify events from its input.
+         */
+        "autovalidate": boolean;
+        /**
+          * Default value of the field's input.
+         */
+        "defaultValue": string;
+        /**
+          * Error message that appears when the field is invalid. Can be updated at any time.
+         */
+        "errorMessage": string;
+        /**
+          * CSS classlist that will be assigned to the containing field element (probably a div).
+         */
+        "fieldClass": string;
+        /**
+          * id that will be assigned to the actual input element. A unique one will be assigned if one is not provided.
+         */
         "inputId": string;
+        /**
+          * name that will be assigned to the actual input element. id will be assigned if one is not provided.
+         */
         "inputName": string;
+        /**
+          * Whether the input is currently valid or invalid.
+         */
         "isValid": boolean;
+        /**
+          * Mandatory value for the label of the field.
+         */
+        "label": string;
+        /**
+          * Whether the field is required to have a valid value by the greater form.
+         */
         "required": boolean;
+        /**
+          * Value for the optional input tip that appears at the bottom of the field.
+         */
+        "tip": string;
+        /**
+          * type that will be assigned to the actual input element.
+         */
+        "type": string;
+    }
+    interface YetiIcon {
+        /**
+          * Optional replacement text to use as a more clear description of the icon for screen-reader users. Otherwise AT will announce the Google "code" (i.e. check_circle).
+         */
+        "alt"?: string;
+        /**
+          * Whether the icon can gain focus (used primarily for tooltip anchors).
+         */
+        "focusable"?: boolean;
+        /**
+          * CSS classlist applied to the actual element producing the icon.
+         */
+        "iconCSS"?: string;
+        /**
+          * The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).
+         */
+        "iconCode": string;
+        /**
+          * id of the actual element producing the icon. Set to a unique id if one is not provided.
+         */
+        "iconId"?: string;
+    }
+    interface YetiInput {
+        /**
+          * id of an outside HTML element pointed to by the actual input element's aria-describedby attribute.
+         */
+        "describedBy": string;
+        /**
+          * CSS classlist applied to the actual HTML input element.
+         */
+        "inputClass": string;
+        /**
+          * id applied to the actual HTML input element.
+         */
+        "inputId": string;
+        /**
+          * name applied to the actual HTML input element. Defaults to match id.
+         */
+        "inputName": string;
+        /**
+          * Tracks whether the input's current value is valid or not.
+         */
+        "isValid": boolean;
+        /**
+          * Whether the field is required to have a valid value or not.
+         */
+        "required": boolean;
+        /**
+          * The actual value of the input field.
+         */
         "value": string;
     }
     interface YetiLoading {
+        /**
+          * Tracks whether the Loader is displaying or not.
+         */
         "isActive": boolean;
+        /**
+          * Whether to display the Loading pattern as a modal (covering its parent container) or as an inline-block object.
+         */
         "isModal": boolean;
     }
     interface YetiMenuButton {
+        /**
+          * CSS classlist to add to the Menu Button's button element.
+         */
         "buttonCSS": string;
+        /**
+          * id to apply to the Menu Button's button element. Will be auto-populated with a unique id if one is not provided.
+         */
         "buttonId": string;
+        /**
+          * Sets a specific type of the button (see the Yeti Button pattern for more info): primary, secondary, tertiary, danger, or ghost.
+         */
         "buttonType"?: string;
+        /**
+          * id of an outside element the control's aria-describedby attribute reference.
+         */
         "describedBy": string;
+        /**
+          * Whether to show a tooltip on hover/focus of the button or not.
+         */
         "hasTooltip": boolean;
+        /**
+          * id of an outside element the control's aria-labelledby attribute references.
+         */
         "labelledBy": string;
+        /**
+          * Token list comprising left | right and/or above | below to align the menu relative to the button.
+         */
         "menuAlignment": string;
+        /**
+          * CSS classlist to add to the Menu Button's menu element.
+         */
         "menuCSS": string;
         "menuId": string;
+        /**
+          * Text that appears within the optional tooltip bubble.
+         */
         "tooltipText": string;
+        /**
+          * The value of the control (will correspond to the value of one of the options in the menu).
+         */
         "value": string;
+        /**
+          * CSS classlist to add to the Menu Button pattern's outer wrapper.
+         */
         "wrapperCSS": string;
     }
     interface YetiMultiselect {
+        /**
+          * id of the actual drop-down element.
+         */
         "actualId": string;
+        /**
+          * name of the actual drop-down element. Defaults to match id.
+         */
         "actualName": string;
+        /**
+          * CSS classlist to add to the component's outer wrapper element.
+         */
         "cssClass": string;
+        /**
+          * id of an external HTML element that the component's actual drop-down element references in aria-describedby.
+         */
         "describedBy": string;
+        /**
+          * id of the visual representation of the drop-down.
+         */
         "facadeId": string;
+        /**
+          * Whether the component has a valid value.
+         */
         "isValid": boolean;
+        /**
+          * id of an external HTML element that the component's actual drop-down element references in aria-labelledby.
+         */
         "labelledBy": string;
+        /**
+          * Token list of left | right and/or above | below that describes the drop-down's visual position relative to the closed state anchor.
+         */
         "menuAlignment": string;
+        /**
+          * Text that appears in the closed state/anchor when there are no selections.
+         */
         "placeholder": string;
+        /**
+          * Whether the component requires a valid value.
+         */
         "required": boolean;
+        /**
+          * Whether or not to show the optional Clear all selections puck.
+         */
         "showClear": boolean;
+        /**
+          * The component's value.
+         */
         "value": string;
     }
     interface YetiProgressBar {
+        /**
+          * CSS classlist to add to the element representing the component's progress bar.
+         */
         "barCSS": string;
+        /**
+          * id of the element representing the component's progress bar. Will be given an auto-generated unique id if one is not provided.
+         */
         "barId": string;
+        /**
+          * Whether or not the bar should depict an error state.
+         */
         "error": boolean;
+        /**
+          * Text content that appears beneath the bar as helper text.
+         */
         "helperText": string;
+        /**
+          * Text content for the component's label.
+         */
         "label": string;
+        /**
+          * CSS classlist to add to the component's actual label element.
+         */
         "labelCSS": string;
+        /**
+          * Number between 0 and 100 that describes the percentage complete to display in the bar.
+         */
         "progress": number;
+        /**
+          * Token list describing the component's tooltip's position relative to the bar: left | right and/or above | below.
+         */
         "tooltipPosition": string;
+        /**
+          * Text content for the component's tooltip.
+         */
         "tooltipText": string;
+        /**
+          * CSS classlist to add to the component's outer wrapper element.
+         */
         "wrapperCSS": string;
     }
     interface YetiTable {
+        /**
+          * Unique type that captures the table's contents and configurable state information. See utils.ts for details.
+         */
         "contents": YetiTableContents;
         /**
           * Determines whether to handle filtering (true) or just note the user requested it (false).
          */
         "filterSelf": boolean;
+        /**
+          * Placeholder text when filtering returns no matching records.
+         */
         "noMatchesText": string;
         /**
           * Determines whether to handle pagination (true) or just note the user requested it (false).
          */
         "paginateSelf": boolean;
+        /**
+          * Number of table records
+         */
         "records"?: number;
         /**
           * Determines whether to handle sorting (true) or just note the user requested it (false).
          */
         "sortSelf": boolean;
+        /**
+          * CSS classlist that will be added to the actual html table element.
+         */
         "tableClass": string;
+        /**
+          * id that will be assigned to the actual html table element.
+         */
         "tableId": string;
     }
     interface YetiTableActions {
+        /**
+          * CSS classlist to add to the actual element serving as the component's wrapper.
+         */
         "cssClass": string;
+        /**
+          * id value of the actual element serving as the component's wrapper. Will be auto-generated with a unique value if not provided.
+         */
         "htmlId": string;
+        /**
+          * Whether or not to use the Yeti Grid system to lay out child options.
+         */
         "useGrid": boolean;
     }
     interface YetiTablePagination {
@@ -147,12 +376,33 @@ export namespace Components {
         "startIndex": number;
     }
     interface YetiTooltip {
+        /**
+          * Whether the anchor should be forced to be a CSS display block style or left as is.
+         */
         "blockAnchor": boolean;
+        /**
+          * Token list to describe the tooltip's position relative to its anchor: left | right and/or above | below.
+         */
         "position": string;
+        /**
+          * id of the component's slot element.
+         */
         "slotId": string;
+        /**
+          * Text value to display as the tooltip's contents.
+         */
         "text": string;
+        /**
+          * id of the component's actual element corresponding to the tooltip. Will be auto-populated with a unique value if not provided.
+         */
         "tipId": string;
+        /**
+          * CSS classlist to add to the actual tooltip element.
+         */
         "tooltipCSS": string;
+        /**
+          * CSS classlist to add to the element serving as the component's wrapper.
+         */
         "wrapperCSS": string;
     }
 }
@@ -192,6 +442,12 @@ declare global {
     var HTMLYetiDatePickerElement: {
         prototype: HTMLYetiDatePickerElement;
         new (): HTMLYetiDatePickerElement;
+    };
+    interface HTMLYetiDemoElement extends Components.YetiDemo, HTMLStencilElement {
+    }
+    var HTMLYetiDemoElement: {
+        prototype: HTMLYetiDemoElement;
+        new (): HTMLYetiDemoElement;
     };
     interface HTMLYetiFieldElement extends Components.YetiField, HTMLStencilElement {
     }
@@ -262,6 +518,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
         "yeti-date-picker": HTMLYetiDatePickerElement;
+        "yeti-demo": HTMLYetiDemoElement;
         "yeti-field": HTMLYetiFieldElement;
         "yeti-icon": HTMLYetiIconElement;
         "yeti-input": HTMLYetiInputElement;
@@ -291,121 +548,383 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface YetiDatePicker {
+        /**
+          * ID of any related describing element. Used by aria-describedby.
+         */
         "describedBy"?: string;
+        /**
+          * CSS classlist that will be added to the actual HTML input element.
+         */
         "inputClass"?: string;
+        /**
+          * id that will be assigned to the actual HTML input element. If not provided, the component will assign one on load.
+         */
         "inputId"?: string;
+        /**
+          * name that will be assigned to the actual HTML input element. If not provided, the component will use the id.
+         */
         "inputName"?: string;
+        /**
+          * Tracks whether the component's current value is valid. The default empty value is valid.
+         */
         "isValid"?: boolean;
+        /**
+          * ID of any related label for the component. Used by aria-labelledby.
+         */
         "labelledBy"?: string;
+        /**
+          * Fires when the user has chosen or entered a date and left (blurred from) the component.
+         */
         "onReadyToVerifySlow"?: (event: YetiDatePickerCustomEvent<CustomEvent>) => void;
+        /**
+          * Whether the component is a required field.
+         */
         "required"?: boolean;
+        /**
+          * The component's value.
+         */
         "value"?: string;
     }
-    interface YetiField {
-        "autovalidate"?: boolean;
-        "defaultValue"?: string;
-        "errorMessage"?: string;
-        "fieldClass"?: string;
-        "inputId"?: string;
-        "inputName"?: string;
-        "isValid"?: boolean;
-        "label": string;
-        "required"?: boolean;
-        "tip"?: string;
-        "type"?: string;
-    }
-    interface YetiIcon {
+    interface YetiDemo {
         "alt"?: string;
         "focusable"?: boolean;
         "iconCSS"?: string;
         "iconCode"?: string;
         "iconId"?: string;
     }
-    interface YetiInput {
-        "describedBy"?: string;
-        "inputClass"?: string;
+    interface YetiField {
+        /**
+          * Determines whether the field should attempt to validate itself or merely pass through any readyToVerify events from its input.
+         */
+        "autovalidate"?: boolean;
+        /**
+          * Default value of the field's input.
+         */
+        "defaultValue"?: string;
+        /**
+          * Error message that appears when the field is invalid. Can be updated at any time.
+         */
+        "errorMessage"?: string;
+        /**
+          * CSS classlist that will be assigned to the containing field element (probably a div).
+         */
+        "fieldClass"?: string;
+        /**
+          * id that will be assigned to the actual input element. A unique one will be assigned if one is not provided.
+         */
         "inputId"?: string;
+        /**
+          * name that will be assigned to the actual input element. id will be assigned if one is not provided.
+         */
         "inputName"?: string;
+        /**
+          * Whether the input is currently valid or invalid.
+         */
         "isValid"?: boolean;
-        "onReadyToVerifyFast"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
-        "onReadyToVerifySlow"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
+        /**
+          * Mandatory value for the label of the field.
+         */
+        "label": string;
+        /**
+          * Whether the field is required to have a valid value by the greater form.
+         */
         "required"?: boolean;
+        /**
+          * Value for the optional input tip that appears at the bottom of the field.
+         */
+        "tip"?: string;
+        /**
+          * type that will be assigned to the actual input element.
+         */
+        "type"?: string;
+    }
+    interface YetiIcon {
+        /**
+          * Optional replacement text to use as a more clear description of the icon for screen-reader users. Otherwise AT will announce the Google "code" (i.e. check_circle).
+         */
+        "alt"?: string;
+        /**
+          * Whether the icon can gain focus (used primarily for tooltip anchors).
+         */
+        "focusable"?: boolean;
+        /**
+          * CSS classlist applied to the actual element producing the icon.
+         */
+        "iconCSS"?: string;
+        /**
+          * The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).
+         */
+        "iconCode"?: string;
+        /**
+          * id of the actual element producing the icon. Set to a unique id if one is not provided.
+         */
+        "iconId"?: string;
+    }
+    interface YetiInput {
+        /**
+          * id of an outside HTML element pointed to by the actual input element's aria-describedby attribute.
+         */
+        "describedBy"?: string;
+        /**
+          * CSS classlist applied to the actual HTML input element.
+         */
+        "inputClass"?: string;
+        /**
+          * id applied to the actual HTML input element.
+         */
+        "inputId"?: string;
+        /**
+          * name applied to the actual HTML input element. Defaults to match id.
+         */
+        "inputName"?: string;
+        /**
+          * Tracks whether the input's current value is valid or not.
+         */
+        "isValid"?: boolean;
+        /**
+          * Event that fires when the user enters or changes the contents of the input field.
+         */
+        "onReadyToVerifyFast"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
+        /**
+          * Event that fires when the user leaves (blurs) the input field.
+         */
+        "onReadyToVerifySlow"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
+        /**
+          * Whether the field is required to have a valid value or not.
+         */
+        "required"?: boolean;
+        /**
+          * The actual value of the input field.
+         */
         "value"?: string;
     }
     interface YetiLoading {
+        /**
+          * Tracks whether the Loader is displaying or not.
+         */
         "isActive"?: boolean;
+        /**
+          * Whether to display the Loading pattern as a modal (covering its parent container) or as an inline-block object.
+         */
         "isModal"?: boolean;
     }
     interface YetiMenuButton {
+        /**
+          * CSS classlist to add to the Menu Button's button element.
+         */
         "buttonCSS"?: string;
+        /**
+          * id to apply to the Menu Button's button element. Will be auto-populated with a unique id if one is not provided.
+         */
         "buttonId"?: string;
+        /**
+          * Sets a specific type of the button (see the Yeti Button pattern for more info): primary, secondary, tertiary, danger, or ghost.
+         */
         "buttonType"?: string;
+        /**
+          * id of an outside element the control's aria-describedby attribute reference.
+         */
         "describedBy"?: string;
+        /**
+          * Whether to show a tooltip on hover/focus of the button or not.
+         */
         "hasTooltip"?: boolean;
+        /**
+          * id of an outside element the control's aria-labelledby attribute references.
+         */
         "labelledBy"?: string;
+        /**
+          * Token list comprising left | right and/or above | below to align the menu relative to the button.
+         */
         "menuAlignment"?: string;
+        /**
+          * CSS classlist to add to the Menu Button's menu element.
+         */
         "menuCSS"?: string;
         "menuId"?: string;
+        /**
+          * Fires when the selected value of the Menu Button becomes a different value.
+         */
         "onMenuButtonChange"?: (event: YetiMenuButtonCustomEvent<any>) => void;
+        /**
+          * Fires whenever the user selects a value, even if its the same as it was before.
+         */
         "onMenuButtonSelectionMade"?: (event: YetiMenuButtonCustomEvent<any>) => void;
+        /**
+          * Text that appears within the optional tooltip bubble.
+         */
         "tooltipText"?: string;
+        /**
+          * The value of the control (will correspond to the value of one of the options in the menu).
+         */
         "value"?: string;
+        /**
+          * CSS classlist to add to the Menu Button pattern's outer wrapper.
+         */
         "wrapperCSS"?: string;
     }
     interface YetiMultiselect {
+        /**
+          * id of the actual drop-down element.
+         */
         "actualId"?: string;
+        /**
+          * name of the actual drop-down element. Defaults to match id.
+         */
         "actualName"?: string;
+        /**
+          * CSS classlist to add to the component's outer wrapper element.
+         */
         "cssClass"?: string;
+        /**
+          * id of an external HTML element that the component's actual drop-down element references in aria-describedby.
+         */
         "describedBy"?: string;
+        /**
+          * id of the visual representation of the drop-down.
+         */
         "facadeId"?: string;
+        /**
+          * Whether the component has a valid value.
+         */
         "isValid"?: boolean;
+        /**
+          * id of an external HTML element that the component's actual drop-down element references in aria-labelledby.
+         */
         "labelledBy"?: string;
+        /**
+          * Token list of left | right and/or above | below that describes the drop-down's visual position relative to the closed state anchor.
+         */
         "menuAlignment"?: string;
+        /**
+          * Fires when the user toggles any of the options.
+         */
         "onReadyToVerifyFast"?: (event: YetiMultiselectCustomEvent<CustomEvent>) => void;
+        /**
+          * Fires when the user has made a selection and closed the dropdown (usually by focusing elsewhere).
+         */
         "onReadyToVerifySlow"?: (event: YetiMultiselectCustomEvent<CustomEvent>) => void;
+        /**
+          * Text that appears in the closed state/anchor when there are no selections.
+         */
         "placeholder"?: string;
+        /**
+          * Whether the component requires a valid value.
+         */
         "required"?: boolean;
+        /**
+          * Whether or not to show the optional Clear all selections puck.
+         */
         "showClear"?: boolean;
+        /**
+          * The component's value.
+         */
         "value"?: string;
     }
     interface YetiProgressBar {
+        /**
+          * CSS classlist to add to the element representing the component's progress bar.
+         */
         "barCSS"?: string;
+        /**
+          * id of the element representing the component's progress bar. Will be given an auto-generated unique id if one is not provided.
+         */
         "barId"?: string;
+        /**
+          * Whether or not the bar should depict an error state.
+         */
         "error"?: boolean;
+        /**
+          * Text content that appears beneath the bar as helper text.
+         */
         "helperText"?: string;
+        /**
+          * Text content for the component's label.
+         */
         "label"?: string;
+        /**
+          * CSS classlist to add to the component's actual label element.
+         */
         "labelCSS"?: string;
+        /**
+          * Number between 0 and 100 that describes the percentage complete to display in the bar.
+         */
         "progress"?: number;
+        /**
+          * Token list describing the component's tooltip's position relative to the bar: left | right and/or above | below.
+         */
         "tooltipPosition"?: string;
+        /**
+          * Text content for the component's tooltip.
+         */
         "tooltipText"?: string;
+        /**
+          * CSS classlist to add to the component's outer wrapper element.
+         */
         "wrapperCSS"?: string;
     }
     interface YetiTable {
+        /**
+          * Unique type that captures the table's contents and configurable state information. See utils.ts for details.
+         */
         "contents"?: YetiTableContents;
         /**
           * Determines whether to handle filtering (true) or just note the user requested it (false).
          */
         "filterSelf"?: boolean;
+        /**
+          * Placeholder text when filtering returns no matching records.
+         */
         "noMatchesText"?: string;
+        /**
+          * Fires when user chooses an option from the optional Menu Button component.
+         */
         "onRowActionClick"?: (event: YetiTableCustomEvent<any>) => void;
+        /**
+          * Fires when user updates a column filter. This only fires when filterSelf is false (i.e. some logic outside the component will handle filtering and presumably update the table's contents).
+         */
         "onTableFilter"?: (event: YetiTableCustomEvent<any>) => void;
+        /**
+          * Fires when user chooses a different page of data. This only fires when paginateSelf is false (i.e. some logic outside the component will handle pagination and presumably update the table's contents).
+         */
         "onTablePaginate"?: (event: YetiTableCustomEvent<any>) => void;
+        /**
+          * Fires when user clicks a sortable header. This only fires when sortSelf is false (i.e. some logic outside the component will handle sorting and presumably update the table's contents).
+         */
         "onTableSort"?: (event: YetiTableCustomEvent<any>) => void;
         /**
           * Determines whether to handle pagination (true) or just note the user requested it (false).
          */
         "paginateSelf"?: boolean;
+        /**
+          * Number of table records
+         */
         "records"?: number;
         /**
           * Determines whether to handle sorting (true) or just note the user requested it (false).
          */
         "sortSelf"?: boolean;
+        /**
+          * CSS classlist that will be added to the actual html table element.
+         */
         "tableClass"?: string;
+        /**
+          * id that will be assigned to the actual html table element.
+         */
         "tableId"?: string;
     }
     interface YetiTableActions {
+        /**
+          * CSS classlist to add to the actual element serving as the component's wrapper.
+         */
         "cssClass"?: string;
+        /**
+          * id value of the actual element serving as the component's wrapper. Will be auto-generated with a unique value if not provided.
+         */
         "htmlId"?: string;
+        /**
+          * Whether or not to use the Yeti Grid system to lay out child options.
+         */
         "useGrid"?: boolean;
     }
     interface YetiTablePagination {
@@ -427,17 +946,39 @@ declare namespace LocalJSX {
         "startIndex"?: number;
     }
     interface YetiTooltip {
+        /**
+          * Whether the anchor should be forced to be a CSS display block style or left as is.
+         */
         "blockAnchor"?: boolean;
+        /**
+          * Token list to describe the tooltip's position relative to its anchor: left | right and/or above | below.
+         */
         "position"?: string;
+        /**
+          * id of the component's slot element.
+         */
         "slotId"?: string;
+        /**
+          * Text value to display as the tooltip's contents.
+         */
         "text"?: string;
+        /**
+          * id of the component's actual element corresponding to the tooltip. Will be auto-populated with a unique value if not provided.
+         */
         "tipId"?: string;
+        /**
+          * CSS classlist to add to the actual tooltip element.
+         */
         "tooltipCSS"?: string;
+        /**
+          * CSS classlist to add to the element serving as the component's wrapper.
+         */
         "wrapperCSS"?: string;
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
         "yeti-date-picker": YetiDatePicker;
+        "yeti-demo": YetiDemo;
         "yeti-field": YetiField;
         "yeti-icon": YetiIcon;
         "yeti-input": YetiInput;
@@ -457,6 +998,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "yeti-date-picker": LocalJSX.YetiDatePicker & JSXBase.HTMLAttributes<HTMLYetiDatePickerElement>;
+            "yeti-demo": LocalJSX.YetiDemo & JSXBase.HTMLAttributes<HTMLYetiDemoElement>;
             "yeti-field": LocalJSX.YetiField & JSXBase.HTMLAttributes<HTMLYetiFieldElement>;
             "yeti-icon": LocalJSX.YetiIcon & JSXBase.HTMLAttributes<HTMLYetiIconElement>;
             "yeti-input": LocalJSX.YetiInput & JSXBase.HTMLAttributes<HTMLYetiInputElement>;

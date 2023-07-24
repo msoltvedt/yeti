@@ -13,22 +13,49 @@ export class YetiTable {
 
   @Element() el: HTMLElement;
 
+  /**
+   * Fires when user chooses an option from the optional Menu Button component.
+   */
   @Event({ bubbles: true }) rowActionClick: EventEmitter;
 
+  /**
+   * Fires when user clicks a sortable header. This only fires when sortSelf is false (i.e. some logic outside the component will handle sorting and presumably update the table's contents).
+   */
   @Event({ bubbles: true }) tableSort: EventEmitter;
 
+  /**
+   * Fires when user updates a column filter. This only fires when filterSelf is false (i.e. some logic outside the component will handle filtering and presumably update the table's contents).
+   */
   @Event({ bubbles: true }) tableFilter: EventEmitter;
 
+  /**
+   * Fires when user chooses a different page of data. This only fires when paginateSelf is false (i.e. some logic outside the component will handle pagination and presumably update the table's contents).
+   */
   @Event({ bubbles: true }) tablePaginate: EventEmitter;
 
+  /**
+   * CSS classlist that will be added to the actual html table element.
+   */
   @Prop() tableClass: string = '';
 
+  /**
+   * id that will be assigned to the actual html table element.
+   */
   @Prop() tableId: string = utils.generateUniqueId();
 
+  /**
+   * Placeholder text when filtering returns no matching records.
+   */
   @Prop() noMatchesText: string = "No matches";
 
+  /**
+   * Number of table records
+   */
   @Prop() records?: number = 0;
 
+  /**
+   * Unique type that captures the table's contents and configurable state information. See utils.ts for details.
+   */
   @Prop() contents: YetiTableContents = {
     head: {
       rows: []
@@ -65,7 +92,6 @@ export class YetiTable {
 
   }
 
-  
   /**
    * Determines whether to handle sorting (true) or just note the user requested it (false).
    */
@@ -81,14 +107,29 @@ export class YetiTable {
    */
   @Prop() paginateSelf: boolean = true;
 
+  /**
+   * Toggle this to force a re-render of the whole component.
+   */
   @State() iLoveJSX: boolean = true;
 
+  /**
+   * Index of the first table record to display (used when paging).
+   */
   @State() firstRecordIndexToDisplay: number = 0;
 
+  /**
+   * How many records to display at one time (used when paging).
+   */
   @State() numRecordsToDisplay: number = 0; // Will initialize on load
 
+  /**
+   * Reference to an associated Pagination component, if it exists. This will be auto-set when the component first loads.
+   */
   @State() paginationComponent: YetiTablePagination = null;
 
+  /**
+   * Tracks whether the user has requested filtering on any column. Primarily used to determine whether to show the clear filters icon.
+   */
   @State() filtersAreActive: boolean = false;
 
   private tableHasFilters: boolean = false;
