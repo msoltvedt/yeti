@@ -4,7 +4,7 @@ import { u as utils } from './utils-9a04204c.js';
 const YetiLoading = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
-    this.previouslyFocusedElement = null;
+    this.previouslyFocusedElement = null; // So we can return focus to wherever the user was when the Loading component appeared.
     this.shouldStealFocus = false;
     this.shouldReturnFocus = false;
     this.isModal = false;

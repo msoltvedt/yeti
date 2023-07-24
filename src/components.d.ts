@@ -56,13 +56,6 @@ export namespace Components {
          */
         "value": string;
     }
-    interface YetiDemo {
-        "alt"?: string;
-        "focusable"?: boolean;
-        "iconCSS"?: string;
-        "iconCode": string;
-        "iconId"?: string;
-    }
     interface YetiField {
         /**
           * Determines whether the field should attempt to validate itself or merely pass through any readyToVerify events from its input.
@@ -443,12 +436,6 @@ declare global {
         prototype: HTMLYetiDatePickerElement;
         new (): HTMLYetiDatePickerElement;
     };
-    interface HTMLYetiDemoElement extends Components.YetiDemo, HTMLStencilElement {
-    }
-    var HTMLYetiDemoElement: {
-        prototype: HTMLYetiDemoElement;
-        new (): HTMLYetiDemoElement;
-    };
     interface HTMLYetiFieldElement extends Components.YetiField, HTMLStencilElement {
     }
     var HTMLYetiFieldElement: {
@@ -518,7 +505,6 @@ declare global {
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
         "yeti-date-picker": HTMLYetiDatePickerElement;
-        "yeti-demo": HTMLYetiDemoElement;
         "yeti-field": HTMLYetiFieldElement;
         "yeti-icon": HTMLYetiIconElement;
         "yeti-input": HTMLYetiInputElement;
@@ -584,13 +570,6 @@ declare namespace LocalJSX {
           * The component's value.
          */
         "value"?: string;
-    }
-    interface YetiDemo {
-        "alt"?: string;
-        "focusable"?: boolean;
-        "iconCSS"?: string;
-        "iconCode"?: string;
-        "iconId"?: string;
     }
     interface YetiField {
         /**
@@ -978,7 +957,6 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "my-component": MyComponent;
         "yeti-date-picker": YetiDatePicker;
-        "yeti-demo": YetiDemo;
         "yeti-field": YetiField;
         "yeti-icon": YetiIcon;
         "yeti-input": YetiInput;
@@ -998,7 +976,6 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "yeti-date-picker": LocalJSX.YetiDatePicker & JSXBase.HTMLAttributes<HTMLYetiDatePickerElement>;
-            "yeti-demo": LocalJSX.YetiDemo & JSXBase.HTMLAttributes<HTMLYetiDemoElement>;
             "yeti-field": LocalJSX.YetiField & JSXBase.HTMLAttributes<HTMLYetiFieldElement>;
             "yeti-icon": LocalJSX.YetiIcon & JSXBase.HTMLAttributes<HTMLYetiIconElement>;
             "yeti-input": LocalJSX.YetiInput & JSXBase.HTMLAttributes<HTMLYetiInputElement>;

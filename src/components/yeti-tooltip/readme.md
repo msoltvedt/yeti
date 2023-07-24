@@ -7,15 +7,15 @@
 
 ## Properties
 
-| Property      | Attribute       | Description | Type      | Default                    |
-| ------------- | --------------- | ----------- | --------- | -------------------------- |
-| `blockAnchor` | `block-anchor`  |             | `boolean` | `false`                    |
-| `position`    | `position`      |             | `string`  | `"above"`                  |
-| `slotId`      | `slot-id`       |             | `string`  | `""`                       |
-| `text`        | `text`          |             | `string`  | `"I'm a helpful tooltip."` |
-| `tipId`       | `tip-id`        |             | `string`  | `""`                       |
-| `tooltipCSS`  | `tooltip-class` |             | `string`  | `''`                       |
-| `wrapperCSS`  | `wrapper-class` |             | `string`  | `''`                       |
+| Property      | Attribute       | Description                                                                                                                    | Type      | Default                    |
+| ------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------ | --------- | -------------------------- |
+| `blockAnchor` | `block-anchor`  | Whether the anchor should be forced to be a CSS display block style or left as is.                                             | `boolean` | `false`                    |
+| `position`    | `position`      | Token list to describe the tooltip's position relative to its anchor: left \| right and/or above \| below.                     | `string`  | `"above"`                  |
+| `slotId`      | `slot-id`       | id of the component's slot element.                                                                                            | `string`  | `""`                       |
+| `text`        | `text`          | Text value to display as the tooltip's contents.                                                                               | `string`  | `"I'm a helpful tooltip."` |
+| `tipId`       | `tip-id`        | id of the component's actual element corresponding to the tooltip. Will be auto-populated with a unique value if not provided. | `string`  | `""`                       |
+| `tooltipCSS`  | `tooltip-class` | CSS classlist to add to the actual tooltip element.                                                                            | `string`  | `''`                       |
+| `wrapperCSS`  | `wrapper-class` | CSS classlist to add to the element serving as the component's wrapper.                                                        | `string`  | `''`                       |
 
 
 ## Dependencies

@@ -138,11 +138,11 @@ const YetiTablePagination = class {
       cssClasses += ' ' + this.cssClass;
     }
     return (h("nav", { class: cssClasses, "aria-label": "Table Pagination" }, h("div", { class: "yeti-table-pagination-items_per_page" }, (this.showOptions) ?
-      h("div", null, h("label", { htmlFor: "demo-items_per_page", class: "yeti-table-pagination-items_per_page-label" }, this.recordAliasPlural, " per page:"), h("select", { id: "demo-items_per_page", class: "yeti-select yeti-table-pagination-items_per_page-select", onChange: (e) => {
-          this.handleItemsPerPageChange(e);
-        } }, this.itemsPerPageOptions.map((option) => {
-        return h("option", { value: option, class: "yeti-table-pagination-items_per_page-select-option" }, option);
-      })))
+      [h("label", { htmlFor: "demo-items_per_page", class: "yeti-table-pagination-items_per_page-label" }, this.recordAliasPlural, " per page:"), h("select", { id: "demo-items_per_page", class: "yeti-select yeti-table-pagination-items_per_page-select", onChange: (e) => {
+            this.handleItemsPerPageChange(e);
+          } }, this.itemsPerPageOptions.map((option) => {
+          return h("option", { value: option, class: "yeti-table-pagination-items_per_page-select-option" }, option);
+        }))]
       :
         "", h("span", { class: "yeti-table-pagination-items_per_page-count" }, this.getItemsPerPageOption() == "All" || this.records == 0 ?
       ""

@@ -5,6 +5,7 @@ const YetiDatePicker = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.readyToVerifySlow = createEvent(this, "readyToVerifySlow", 7);
+    // Used to manage focus when paging through different calendar month views via keyboard shortcuts
     this.keepFocusOnButton = false;
     this.pickerHeading = utils.generateUniqueId();
     this.inputClass = '';
