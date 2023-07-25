@@ -32,10 +32,10 @@ pasteJSToOrchestrator.description = 'Paste Yeti\'s copy of its JS to Orchestrato
 task('updateFromOrchestrator', series(cleanCopyOfOrchestratorCSS, copyFromOrchestrator));
 task('updateFromOrchestrator').description = 'Clean up and update Yeti\'s copy of Orchestrator\'s CSS';
 
-task(refreshJSToOrchestrator);
-refreshJSToOrchestrator.description = 'Deletes all Yeti JS *in Orchestrator* and pastes a fresh copy there.';
+task('refreshJSToOrchestrator', series(cleanOrchestratorJS, pasteJSToOrchestrator));
+task('refreshJSToOrchestrator').description = 'Deletes all Yeti JS *in Orchestrator* and pastes a fresh copy there.';
 
-task('updateToOrchestrator', series(refreshJSToOrchestrator, pasteCSSToOrchestrator));
+task('updateToOrchestrator', series(cleanOrchestratorJS, pasteJSToOrchestrator, pasteCSSToOrchestrator));
 task('updateToOrchestrator').description = 'Update Orchestrator\'s copy of Yeti\'s JS and CSS';
 
 task('default', watcher);
@@ -93,11 +93,6 @@ function cleanOrchestratorJS() {
     return deleteAsync([`${settings.orchestratorJSDirectory}**/*`, `!${settings.orchestratorJSDirectory}`], {force: true});
 }
 
-function refreshJSToOrchestrator(cb) {
-    series(cleanOrchestratorJS, pasteJSToOrchestrator);
-    cb();
-}
-
 function pasteJSToOrchestrator() {
     return src(`dist/yeti/**/*`)
         .pipe( dest(settings.orchestratorJSDirectory) );
@@ -109,7 +104,7 @@ function watcher(cb) {
     watch(['src/examples/**/*.js', 'src/examples/**/*.mjs'], series(/*cleanWWWJS,*/ publishExamplesJS))
 
     // Optionally update Orchestrator with dev mode on as well.
-    watch(`dist/yeti/**/*`, refreshJSToOrchestrator);
+    watch(`dist/yeti/**/*`, series(cleanOrchestratorJS, pasteJSToOrchestrator));
     watch(`src/css/yeti.css`, pasteCSSToOrchestrator);
     cb();
 }

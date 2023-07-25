@@ -546,7 +546,6 @@ export class YetiDatePicker {
 
   componentWillLoad() {
 
-    console.log("Hi there.");
     // Set up ids
     let componentId = this.el.getAttribute("id");
 
