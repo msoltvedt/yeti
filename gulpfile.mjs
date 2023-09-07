@@ -104,8 +104,8 @@ function watcher(cb) {
     watch(['src/examples/**/*.js', 'src/examples/**/*.mjs'], series(/*cleanWWWJS,*/ publishExamplesJS))
 
     // Optionally update Orchestrator with dev mode on as well.
-    watch(`dist/yeti/**/*`, series(cleanOrchestratorJS, pasteJSToOrchestrator));
-    watch(`src/css/yeti.css`, pasteCSSToOrchestrator);
+    //watch(`dist/yeti/**/*`, series(cleanOrchestratorJS, pasteJSToOrchestrator));
+    //watch(`src/css/yeti.css`, pasteCSSToOrchestrator);
     cb();
 }
 

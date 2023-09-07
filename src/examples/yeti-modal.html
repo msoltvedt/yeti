@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+
+    <title>Yeti Design System - Modal Component</title>
+
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/yeti-examples-only.css">
+
+  </head>
+  <body>
+
+    <div class="ydoc-wrapper">
+
+      <div role="main">
+    
+        <h1 class="margin-top-none">Modal Component</h1>
+
+        <yeti-page-contents></yeti-page-contents>
+
+        <h2 class="margin-bottom-3">Code Samples</h2>
+
+
+        <h3 class="margin-bottom-2">Default</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<a href="" id="trigger1">Click to open Modal 1</a>
+
+<yeti-modal heading="Default Modal" id="modal1" described-by="modal1_description">
+
+    <yeti-modal-content>
+        <p id="modal1_description">
+            I'm some content.
+        </p>
+    </yeti-modal-content>
+    
+    <yeti-modal-buttons>
+        <button class="yeti-button yeti-button-primary">OK</button>
+        <button class="yeti-button yeti-button-ghost">Cancel</button>
+    </yeti-modal-buttons>
+
+</yeti-modal>
+
+
+<script>
+    const trigger1 = document.getElementById("trigger1");
+    const modal1 = document.getElementById("modal1");
+
+    trigger1.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal1.isActive = true;
+    })
+</script>
+        </div><!-- /code_sample -->
+
+
+        <h3 class="margin-bottom-2">Different Sizes</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<a href="" id="trigger2">Click to open an extra small modal</a>
+
+<yeti-modal heading="Extra Small Modal" size="xs" id="modal2">
+    <yeti-modal-content>
+        I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. 
+    </yeti-modal-content>
+    <yeti-modal-buttons>
+        <button class="yeti-button yeti-button-primary">Yup</button>
+        <button class="yeti-button yeti-button-ghost">Nevermind</button>
+    </yeti-modal-buttons>
+</yeti-modal>
+
+<script>
+    const trigger2 = document.getElementById("trigger2");
+    const modal2 = document.getElementById("modal2");
+
+    trigger2.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal2.isActive = true;
+    })
+</script>
+        </div><!-- /code_sample -->
+
+
+
+        <h2 class="margin-bottom-3">Technical Notes</h2>
+
+        <ul class="yeti-list-bulleted">
+          <li>Yeti Modal will trap focus while open.</li>
+          <li>The actual modal will be appended to the end of the body tag, and all other contents of the body will be wrapped in a div so we can prevent scrolling while the modal is open.</li>
+          <li>Upon opening, the Modal will assign focus the first focusable thing in its content area. If nothing in the content area is focusable, then the content area itself will gain focus.</li>
+          <li>Upon closing, the Modal will return focus to whatever had it before it opened.</li>
+        </ul>
+
+      </div><!-- /main -->
+    
+    </div><!-- /wrapper -->
+
+    <script type="module" src="./yeti/yeti.esm.js"></script>
+
+    <script type="module" src="./js/docs-scripts.mjs"></script>
+    
+  </body>
+</html>

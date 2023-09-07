@@ -7,13 +7,24 @@
 
 /************************************** Outside ***/
 .yeti-list-bulleted {
-    list-style: square inside;
+    list-style: none;
+    list-style-position: outside;
     line-height: 1.25;
 }
 
-.yeti-list-bulleted ::marker {
-    margin-left: 0;
-    margin-right: @u;
+.yeti-list-bulleted li {
+    padding-left: 0.75rem;
+    position: relative;
+}
+
+.yeti-list-bulleted li::before {
+    content: "•";
+    font-size: 1.125rem;
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    top: 0.5rem;
+    line-height: 0;
 }
 
 .yeti-list {
@@ -21,6 +32,6 @@
     line-height: 1.5;
 }
 
-.yeti-list li:not(:last-child) {
+:is(.yeti-list, .yeti-list-bulleted) li:not(:last-child) {
     margin-bottom: @u;
 }

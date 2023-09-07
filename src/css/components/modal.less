@@ -6,18 +6,37 @@ Styles for Modal
 
 
 
+/************************************** Component Only ***/
+yeti-modal,
+yeti-modal-content,
+yeti-modal-buttons {
+    display: contents;
+}
+
+
+
+/************************************** Background ***/
+.yeti-modal-has_active_modal {
+    height: 100%;
+    overflow: hidden;
+}
+
+
+
 /************************************** Overlay ***/
 .yeti-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
-    background-color: hsla(0,0%,9%,.5);
+    min-height: 100%;
+    background-color: #16161680;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 100;
+    overflow: auto;
+    padding: 2rem;
 }
 
 .yeti-modal-overlay-light {
@@ -32,10 +51,16 @@ Styles for Modal
 
 /************************************** Actual ***/
 .yeti-modal {
-    width: 24%;
-    max-height: 48%;
+    width: 40rem;
+    height: fit-content;
     background-color: white;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.30);
 }
+
+.yeti-modal.yeti-modal-size-xl { width: 87.5rem; }
+.yeti-modal.yeti-modal-size-l  { width: 60rem; }
+.yeti-modal.yeti-modal-size-s  { width: 30rem; }
+.yeti-modal.yeti-modal-size-xs { width: 20rem; }
 
 .yeti-modal-overlay-light .yeti-modal {
     box-shadow: 0 2px 6px rgba(0,0,0,.3);
@@ -53,4 +78,104 @@ Styles for Modal
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+
+/************************************** Header ***/
+.yeti-modal-header {
+    height: 5.75rem;
+    padding: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.yeti-modal-header-heading {
+    flex: 1 0 auto;
+    margin: 0;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.75rem;
+    color: #161616;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.yeti-button-ghost.yeti-modal-header-close {
+    flex: 0 0 auto;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    color: #161616;
+    cursor: pointer;
+}
+
+.yeti-button-ghost.yeti-modal-header-close:hover {
+    color: #161616;
+}
+
+
+
+/************************************** Content ***/
+.yeti-modal-content {
+    padding: 0 2rem;
+    min-height: 5rem;
+    max-height: calc(72vh - 12.75rem);
+    position: relative;
+    overflow: hidden auto;
+}
+
+.yeti-modal-content:focus {
+    outline: none;
+}
+
+.yeti-modal-size-xs .yeti-modal-content { max-height: calc(60vh - 12.75rem); }
+.yeti-modal-size-s  .yeti-modal-content { max-height: calc(72vh - 12.75rem); }
+.yeti-modal-size-l  .yeti-modal-content { max-height: calc(84vh - 12.75rem); }
+.yeti-modal-size-xl .yeti-modal-content { max-height: calc(96vh - 16.75rem); }
+
+.yeti-modal-content-fade {
+    position: sticky;
+    height: 3.8125rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%);
+    bottom: -0.125rem;
+    left: 0;
+    width: 100%;
+}
+
+
+/************************************** Actions ***/
+.yeti-modal-actions {
+    height: 7rem;
+    padding: 2rem;
+}
+
+.yeti-modal-actions-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow: auto;
+    gap: 0.75rem;
+}
+
+
+
+/************************************** Sizes ***/
+.yeti-modal-small {
+    width: 30rem;
+}
+
+
+
+/************************************** Bumpers (for focus trapping ***/
+.yeti-modal-bumper-front,
+.yeti-modal-bumper-back {
+    width: 1px;
+    height: 1px;
 }

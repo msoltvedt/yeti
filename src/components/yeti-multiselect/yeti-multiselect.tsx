@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Event, EventEmitter, Element, Listen } from '@stencil/core';
+import { Component, Prop, h, State, Event, EventEmitter, Element, Listen, /*Watch*/ } from '@stencil/core';
 import { utils, YetiMultiselectOption } from '../../utils/utils';
 
 @Component({
@@ -67,12 +67,18 @@ export class YetiMultiselect {
   }) isValid: boolean;
 
   /**
-   * The component's value.
+   * The component's value is represented as a string of comma-separated values.
    */
   @Prop({
     mutable: true,
     reflect: true
   }) value: string = '';
+
+  /**** TODO: handle programmatic value changes: i.e. when controller JS sets [component].value 
+  @Watch("value")
+  handleValueChange(newValue: string, oldValue: string) {
+    this.handleProgrammaticValueChange(newValue, oldValue);
+  }*/
 
   /**
    * id of an external HTML element that the component's actual drop-down element references in aria-labelledby.
@@ -284,7 +290,7 @@ export class YetiMultiselect {
       
       let option = options.item(i);
       
-      // First, confirm this element is indeed a yeti-table-pagination-option element.
+      // First, confirm this element is indeed a yeti-multiselect-option element.
       if (option.tagName.toLowerCase() == 'yeti-multiselect-option') {
 
         let optionId;
@@ -392,6 +398,15 @@ export class YetiMultiselect {
       facade.focus();
     }
   }
+
+
+
+  //handleProgrammaticValueChange(newValue: string, oldValue: string) {
+    // Usually you'd pre-set the value of the control by specifying the selected attribute of yeti-multiselect-option, however it can also be
+    // set programmatically via the value property of the component.
+    
+    //console.log(`Value should change from ${oldValue} to ${newValue}`);
+  //}
 
 
 

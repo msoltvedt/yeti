@@ -26,11 +26,13 @@ export class YetiLoading {
     // Becoming active, take focus
     if (newValue) {
       this.shouldStealFocus = true;
+      this.setBackgroundElementStyles(true);
     }
 
     // Becoming inactive, return focus
     else {
       this.shouldReturnFocus = true;
+      this.setBackgroundElementStyles(false);
     }
   }
 
@@ -38,6 +40,15 @@ export class YetiLoading {
   previouslyFocusedElement: HTMLElement = null; // So we can return focus to wherever the user was when the Loading component appeared.
   shouldStealFocus = false;
   shouldReturnFocus = false;
+
+
+  setBackgroundElementStyles(modalIsActivating: boolean) {
+    if (modalIsActivating) {
+        document.body.classList.add("yeti-modal-has_active_modal");
+    } else {
+        document.body.classList.remove("yeti-modal-has_active_modal");
+    }
+  }
 
 
 
@@ -83,7 +94,7 @@ export class YetiLoading {
       (this.isModal) ?
 
         <div class={modalOverlayCSS}>
-          <div class="yeti-modal">
+          <div class="yeti-modal yeti-modal-size-s">
               {baseLoading}
           </div>
         </div>

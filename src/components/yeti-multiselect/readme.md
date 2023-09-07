@@ -20,7 +20,7 @@
 | `placeholder`   | `placeholder`    | Text that appears in the closed state/anchor when there are no selections.                                                            | `string`  | `"- Select -"`  |
 | `required`      | `required`       | Whether the component requires a valid value.                                                                                         | `boolean` | `false`         |
 | `showClear`     | `show-clear`     | Whether or not to show the optional Clear all selections puck.                                                                        | `boolean` | `true`          |
-| `value`         | `value`          | The component's value.                                                                                                                | `string`  | `''`            |
+| `value`         | `value`          | The component's value is represented as a string of comma-separated values.                                                           | `string`  | `''`            |
 
 
 ## Events

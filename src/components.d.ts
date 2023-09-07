@@ -211,6 +211,24 @@ export namespace Components {
          */
         "wrapperCSS": string;
     }
+    interface YetiModal {
+        /**
+          * The optional id of an element that describes the modal's content.
+         */
+        "describedBy": string;
+        /**
+          * The string that will display in the modal's heading and serve as its title.
+         */
+        "heading": string;
+        /**
+          * Tracks whether the Modal is displaying or not.
+         */
+        "isActive": boolean;
+        /**
+          * The optional size of the modal (other than the default). Options are xl, l, s, xs.
+         */
+        "size": string;
+    }
     interface YetiMultiselect {
         /**
           * id of the actual drop-down element.
@@ -257,7 +275,7 @@ export namespace Components {
          */
         "showClear": boolean;
         /**
-          * The component's value.
+          * The component's value is represented as a string of comma-separated values.
          */
         "value": string;
     }
@@ -466,6 +484,12 @@ declare global {
         prototype: HTMLYetiMenuButtonElement;
         new (): HTMLYetiMenuButtonElement;
     };
+    interface HTMLYetiModalElement extends Components.YetiModal, HTMLStencilElement {
+    }
+    var HTMLYetiModalElement: {
+        prototype: HTMLYetiModalElement;
+        new (): HTMLYetiModalElement;
+    };
     interface HTMLYetiMultiselectElement extends Components.YetiMultiselect, HTMLStencilElement {
     }
     var HTMLYetiMultiselectElement: {
@@ -510,6 +534,7 @@ declare global {
         "yeti-input": HTMLYetiInputElement;
         "yeti-loading": HTMLYetiLoadingElement;
         "yeti-menu-button": HTMLYetiMenuButtonElement;
+        "yeti-modal": HTMLYetiModalElement;
         "yeti-multiselect": HTMLYetiMultiselectElement;
         "yeti-progress-bar": HTMLYetiProgressBarElement;
         "yeti-table": HTMLYetiTableElement;
@@ -742,6 +767,24 @@ declare namespace LocalJSX {
          */
         "wrapperCSS"?: string;
     }
+    interface YetiModal {
+        /**
+          * The optional id of an element that describes the modal's content.
+         */
+        "describedBy"?: string;
+        /**
+          * The string that will display in the modal's heading and serve as its title.
+         */
+        "heading"?: string;
+        /**
+          * Tracks whether the Modal is displaying or not.
+         */
+        "isActive"?: boolean;
+        /**
+          * The optional size of the modal (other than the default). Options are xl, l, s, xs.
+         */
+        "size"?: string;
+    }
     interface YetiMultiselect {
         /**
           * id of the actual drop-down element.
@@ -796,7 +839,7 @@ declare namespace LocalJSX {
          */
         "showClear"?: boolean;
         /**
-          * The component's value.
+          * The component's value is represented as a string of comma-separated values.
          */
         "value"?: string;
     }
@@ -962,6 +1005,7 @@ declare namespace LocalJSX {
         "yeti-input": YetiInput;
         "yeti-loading": YetiLoading;
         "yeti-menu-button": YetiMenuButton;
+        "yeti-modal": YetiModal;
         "yeti-multiselect": YetiMultiselect;
         "yeti-progress-bar": YetiProgressBar;
         "yeti-table": YetiTable;
@@ -981,6 +1025,7 @@ declare module "@stencil/core" {
             "yeti-input": LocalJSX.YetiInput & JSXBase.HTMLAttributes<HTMLYetiInputElement>;
             "yeti-loading": LocalJSX.YetiLoading & JSXBase.HTMLAttributes<HTMLYetiLoadingElement>;
             "yeti-menu-button": LocalJSX.YetiMenuButton & JSXBase.HTMLAttributes<HTMLYetiMenuButtonElement>;
+            "yeti-modal": LocalJSX.YetiModal & JSXBase.HTMLAttributes<HTMLYetiModalElement>;
             "yeti-multiselect": LocalJSX.YetiMultiselect & JSXBase.HTMLAttributes<HTMLYetiMultiselectElement>;
             "yeti-progress-bar": LocalJSX.YetiProgressBar & JSXBase.HTMLAttributes<HTMLYetiProgressBarElement>;
             "yeti-table": LocalJSX.YetiTable & JSXBase.HTMLAttributes<HTMLYetiTableElement>;

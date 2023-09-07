@@ -204,6 +204,7 @@ export class YetiTable {
       this.filtersAreActive = false;
     } else {
       // We know this table has filters. Loop through them all and see if any have a value other than "".
+
       for (let i = 0; i < this.contents.head.rows[0].cells.length; i++) {
         if (
           this.contents.head.rows[0].cells[i].filtering 
@@ -1005,9 +1006,21 @@ export class YetiTable {
           for (let i = 0; i < cell.filtering.options.length; i++) {
             
             let optionId = `${filterId}_option${i}`;
+            let optionLabel = cell.filtering.options[i];
+
+            let optionIsSelected = (cell.filtering.value && cell.filtering.value.includes(optionLabel)) ? true : false;
+
+            let optionProperties = {
+              id: optionId,
+              key: optionId
+            }
+
+            if (optionIsSelected) {
+              optionProperties["selected"] = true;
+            }
 
             multiselectOptions.push(
-              <yeti-multiselect-option id={optionId} key={optionId}>{cell.filtering.options[i]}</yeti-multiselect-option>
+              <yeti-multiselect-option {...optionProperties}>{optionLabel}</yeti-multiselect-option>
             )
 
           }
@@ -1271,6 +1284,8 @@ export class YetiTable {
       paginationComponent.records = (this.paginateSelf) ? this.rowsThatPassFiltering : this.records;
 
     }
+
+    this.setFiltersActiveFlag(); // In case filters were programmatically updated (usually because the component consumer is keeping track of filter state on their end somehow)
   }
 
 }

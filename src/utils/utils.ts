@@ -11,6 +11,13 @@ export const utils = {
   },
 
 
+  wrapAll: function(elements: HTMLCollection, wrapper: HTMLElement) {
+    for (let i=0; i<elements.length; i++) {
+      wrapper.appendChild(elements[i]);
+    }
+  },
+
+
   isEqual: function(a, b) {
 
     const objKeysA = Object.keys(a);
@@ -132,7 +139,90 @@ export const utils = {
 
   getMonthName: function(date: Date) {
     return new Intl.DateTimeFormat("en-US", { month: "long" }).format(date);
-  }
+  },
+
+
+
+  aria: { 
+    // Primarily from the W3 APG
+
+
+    
+    ignoreUtilFocusChanges: false,
+
+
+
+    focusFirstDescendant: function (element) {
+      for (var i = 0; i < element.childNodes.length; i++) {
+        var child = element.childNodes[i];
+        if (
+          utils.aria.attemptFocus(child) ||
+          utils.aria.focusFirstDescendant(child)
+        ) {
+          return true;
+        }
+      }
+      return false;
+    }, // end focusFirstDescendant
+
+
+
+    focusLastDescendant: function (element) {
+      for (var i = element.childNodes.length - 1; i >= 0; i--) {
+        var child = element.childNodes[i];
+        if (
+          utils.aria.attemptFocus(child) ||
+          utils.aria.focusLastDescendant(child)
+        ) {
+          return true;
+        }
+      }
+      return false;
+    }, // end focusLastDescendant
+
+
+
+    attemptFocus: function (element) {
+      if (!utils.aria.isFocusable(element)) {
+        return false;
+      }
+  
+      utils.aria.ignoreUtilFocusChanges = true;
+      try {
+        element.focus();
+      } catch (e) {
+        // continue regardless of error
+      }
+      utils.aria.ignoreUtilFocusChanges = false;
+      return document.activeElement === element;
+    }, // end attemptFocus
+
+
+
+    isFocusable: function (element) {
+      if (element.tabIndex < 0) {
+        return false;
+      }
+    
+      if (element.disabled) {
+        return false;
+      }
+    
+      switch (element.nodeName) {
+        case 'A':
+          return !!element.href && element.rel != 'ignore';
+        case 'INPUT':
+          return element.type != 'hidden';
+        case 'BUTTON':
+        case 'SELECT':
+        case 'TEXTAREA':
+          return true;
+        default:
+          return false;
+      }
+    },
+
+  } // End aria
 
   
 

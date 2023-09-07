@@ -43,7 +43,7 @@ export class YetiField {
   /**
    * Value for the optional input tip that appears at the bottom of the field.
    */
-  @Prop() tip: string;
+  @Prop() tip: string = "";
 
   /**
    * Whether the field is required to have a valid value by the greater form.
@@ -161,16 +161,23 @@ export class YetiField {
             ></yeti-input>
         }
         
-        <span class="yeti-form-tip" aria-live="polite" id={this.tipId}>{
+        {
+          (this.tip != "") ?
 
-              !this.isValid
-              ? this.errorMessage
-              : 
-                this.tip
-                ? this.tip
-                : null
+            <span class="yeti-form-tip" aria-live="polite" id={this.tipId}>{
 
-        }</span>
+                  !this.isValid
+                  ? this.errorMessage
+                  : 
+                    this.tip
+                    ? this.tip
+                    : null
+
+            }</span>
+
+          :
+            ""
+        }
         
       </div>
     );
