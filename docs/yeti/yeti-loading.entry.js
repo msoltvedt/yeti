@@ -1,5 +1,5 @@
-import { r as registerInstance, h, g as getElement } from './index-757389e7.js';
-import { u as utils } from './utils-9a04204c.js';
+import { r as registerInstance, h, g as getElement } from './index-9a76f14e.js';
+import { u as utils } from './utils-b92a1748.js';
 
 const YetiLoading = class {
   constructor(hostRef) {
@@ -16,10 +16,20 @@ const YetiLoading = class {
     // Becoming active, take focus
     if (newValue) {
       this.shouldStealFocus = true;
+      this.setBackgroundElementStyles(true);
     }
     // Becoming inactive, return focus
     else {
       this.shouldReturnFocus = true;
+      this.setBackgroundElementStyles(false);
+    }
+  }
+  setBackgroundElementStyles(modalIsActivating) {
+    if (modalIsActivating) {
+      document.body.classList.add("yeti-modal-has_active_modal");
+    }
+    else {
+      document.body.classList.remove("yeti-modal-has_active_modal");
     }
   }
   focusTrap(e) {
@@ -40,7 +50,7 @@ const YetiLoading = class {
     let baseLoading = h("div", { class: "yeti-loading", tabindex: "-1" }, h("div", { class: "yeti-loading-icon" }, h("svg", { class: "yeti-loading-icon-svg", viewBox: "0 0 100 100", "aria-hidden": "true" }, h("circle", { class: "yeti-loading-icon-svg-circle", cx: "50%", cy: "50%", r: "44" }))), h("div", { class: "yeti-loading-label" }, "Loading..."));
     modalOverlayCSS += (this.isActive) ? "" : " yeti-modal-overlay__inert";
     return ((this.isModal) ?
-      h("div", { class: modalOverlayCSS }, h("div", { class: "yeti-modal" }, baseLoading))
+      h("div", { class: modalOverlayCSS }, h("div", { class: "yeti-modal yeti-modal-size-s" }, baseLoading))
       :
         baseLoading);
   }

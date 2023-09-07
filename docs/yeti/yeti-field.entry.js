@@ -1,5 +1,5 @@
-import { r as registerInstance, h } from './index-757389e7.js';
-import { u as utils } from './utils-9a04204c.js';
+import { r as registerInstance, h } from './index-9a76f14e.js';
+import { u as utils } from './utils-b92a1748.js';
 
 const YetiField = class {
   constructor(hostRef) {
@@ -10,7 +10,7 @@ const YetiField = class {
     this.type = "text";
     this.fieldClass = "";
     this.label = undefined;
-    this.tip = undefined;
+    this.tip = "";
     this.required = false;
     this.errorMessage = 'Error: please correct this field.';
     this.isValid = true;
@@ -59,12 +59,15 @@ const YetiField = class {
     return (h("div", { class: cssClass }, h("label", { htmlFor: this.inputId, class: "yeti-form-label" }, this.label, this.required ? ' (required)' : null), (this.type == "date") ?
       h("yeti-date-picker", { "input-id": this.inputId, "input-name": this.inputName, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": this.tipId })
       :
-        h("yeti-input", { "input-id": this.inputId, "input-class": !this.isValid ? 'yeti-input__error' : null, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": this.tipId }), h("span", { class: "yeti-form-tip", "aria-live": "polite", id: this.tipId }, !this.isValid
-      ? this.errorMessage
+        h("yeti-input", { "input-id": this.inputId, "input-class": !this.isValid ? 'yeti-input__error' : null, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": this.tipId }), (this.tip != "") ?
+      h("span", { class: "yeti-form-tip", "aria-live": "polite", id: this.tipId }, !this.isValid
+        ? this.errorMessage
+        :
+          this.tip
+            ? this.tip
+            : null)
       :
-        this.tip
-          ? this.tip
-          : null)));
+        ""));
   }
   static get watchers() { return {
     "label": ["validateLabel"]

@@ -18,7 +18,7 @@
 | `isValid`            | `is-valid`      | Whether the input is currently valid or invalid.                                                                               | `boolean` | `true`                                |
 | `label` _(required)_ | `label`         | Mandatory value for the label of the field.                                                                                    | `string`  | `undefined`                           |
 | `required`           | `required`      | Whether the field is required to have a valid value by the greater form.                                                       | `boolean` | `false`                               |
-| `tip`                | `tip`           | Value for the optional input tip that appears at the bottom of the field.                                                      | `string`  | `undefined`                           |
+| `tip`                | `tip`           | Value for the optional input tip that appears at the bottom of the field.                                                      | `string`  | `""`                                  |
 | `type`               | `type`          | type that will be assigned to the actual input element.                                                                        | `string`  | `"text"`                              |
 
 

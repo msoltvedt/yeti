@@ -1,5 +1,5 @@
-import { r as registerInstance, a as createEvent, h, g as getElement } from './index-757389e7.js';
-import { u as utils } from './utils-9a04204c.js';
+import { r as registerInstance, a as createEvent, h, g as getElement } from './index-9a76f14e.js';
+import { u as utils } from './utils-b92a1748.js';
 
 const YetiTable = class {
   constructor(hostRef) {
@@ -600,7 +600,16 @@ const YetiTable = class {
         if (cell.filtering.options && cell.filtering.options.length > 0) {
           for (let i = 0; i < cell.filtering.options.length; i++) {
             let optionId = `${filterId}_option${i}`;
-            multiselectOptions.push(h("yeti-multiselect-option", { id: optionId, key: optionId }, cell.filtering.options[i]));
+            let optionLabel = cell.filtering.options[i];
+            let optionIsSelected = (cell.filtering.value && cell.filtering.value.includes(optionLabel)) ? true : false;
+            let optionProperties = {
+              id: optionId,
+              key: optionId
+            };
+            if (optionIsSelected) {
+              optionProperties["selected"] = true;
+            }
+            multiselectOptions.push(h("yeti-multiselect-option", Object.assign({}, optionProperties), optionLabel));
           }
           // Contents doesn't have options specified, but they're required. Error out.
         }
@@ -736,6 +745,7 @@ const YetiTable = class {
       // Otherwise, we use our own count of total rows (that passed filtering).
       paginationComponent.records = (this.paginateSelf) ? this.rowsThatPassFiltering : this.records;
     }
+    this.setFiltersActiveFlag(); // In case filters were programmatically updated (usually because the component consumer is keeping track of filter state on their end somehow)
   }
   get el() { return getElement(this); }
   static get watchers() { return {

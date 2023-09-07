@@ -1,5 +1,5 @@
-import { r as registerInstance, a as createEvent, h, g as getElement } from './index-757389e7.js';
-import { u as utils } from './utils-9a04204c.js';
+import { r as registerInstance, a as createEvent, h, g as getElement } from './index-9a76f14e.js';
+import { u as utils } from './utils-b92a1748.js';
 
 const YetiMultiselect = class {
   constructor(hostRef) {
@@ -131,7 +131,7 @@ const YetiMultiselect = class {
   parseOptionElements(options) {
     for (let i = 0; i < options.length; i++) {
       let option = options.item(i);
-      // First, confirm this element is indeed a yeti-table-pagination-option element.
+      // First, confirm this element is indeed a yeti-multiselect-option element.
       if (option.tagName.toLowerCase() == 'yeti-multiselect-option') {
         let optionId;
         if (option.hasAttribute("id")) {
@@ -211,6 +211,11 @@ const YetiMultiselect = class {
       facade.focus();
     }
   }
+  //handleProgrammaticValueChange(newValue: string, oldValue: string) {
+  // Usually you'd pre-set the value of the control by specifying the selected attribute of yeti-multiselect-option, however it can also be
+  // set programmatically via the value property of the component.
+  //console.log(`Value should change from ${oldValue} to ${newValue}`);
+  //}
   componentWillLoad() {
     // Set up ids and handle any <yeti-multiselect-option> elements
     let optionElements = this.el.children;
