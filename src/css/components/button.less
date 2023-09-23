@@ -181,6 +181,45 @@ Styles for Button
 
 
 
+/************************************** Disabled ***/
+
+/*** Primary, Secondary, and Danger ***/
+.yeti-button-primary[disabled],
+.yeti-button-secondary[disabled],
+.yeti-button-danger[disabled],
+.yeti-button[disabled]:not(.yeti-button-tertiary, .yeti-button-ghost),
+.yeti-button[disabled]:not(.yeti-button-tertiary, .yeti-button-ghost):hover {
+    background-color: #c6c6c6;
+    border-color: #c6c6c6;
+    box-shadow: none;
+    color: #8d8d8d;
+    cursor: not-allowed;
+}
+
+
+/*** Tertiary ***/
+.yeti-button-tertiary[disabled],
+.yeti-button-tertiary[disabled]:hover {
+    background-color: transparent;
+    border-color: #c6c6c6;
+    box-shadow: none;
+    color: #8d8d8d;
+    cursor: not-allowed;
+}
+
+
+/*** Ghost ***/
+.yeti-button-ghost[disabled],
+.yeti-button-ghost[disabled]:hover {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    color: #8d8d8d;
+    cursor: not-allowed;
+}
+
+
+
 /************************************** Sizing ***/
 .yeti-button-size-xs { 
     min-height: 2rem;
