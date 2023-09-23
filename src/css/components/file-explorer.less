@@ -1,0 +1,49 @@
+/************************************** file-explorer.less ***************************************
+
+Styles for File Explorer
+
+*************************************** file-explorer.less **************************************/
+
+
+
+/************************************** Wrapper ***/
+yeti-file-explorer {
+    display: contents;
+}
+
+.yeti-file_explorer {
+    min-height: 4rem;
+    background-color: pink;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+
+
+/************************************** Actual ***/
+.yeti-file_explorer-actual {
+    background-color: #fafafa;
+    flex: 1 1 auto;
+    display: flex;
+    padding-bottom: 1.625rem;
+    border: 1px solid #c6c6c6;
+}
+
+
+
+/************************************** Path ***/
+.yeti-file_explorer-path {
+    background-color: palegreen;
+    flex: 0 0 3rem;
+}
+
+
+
+/************************************** Folder ***/
+.yeti-file_explorer-actual-folder {
+    border-width: 0 1px 1px 0;
+    border-color: #c6c6c6;
+    border-style: solid;
+    padding-right: 1.5rem;
+}

@@ -102,6 +102,12 @@ export namespace Components {
          */
         "type": string;
     }
+    interface YetiFileExplorer {
+        /**
+          * CSS classlist applied to the explorer wrapper element.
+         */
+        "wrapperCSS"?: string;
+    }
     interface YetiIcon {
         /**
           * Optional replacement text to use as a more clear description of the icon for screen-reader users. Otherwise AT will announce the Google "code" (i.e. check_circle).
@@ -460,6 +466,12 @@ declare global {
         prototype: HTMLYetiFieldElement;
         new (): HTMLYetiFieldElement;
     };
+    interface HTMLYetiFileExplorerElement extends Components.YetiFileExplorer, HTMLStencilElement {
+    }
+    var HTMLYetiFileExplorerElement: {
+        prototype: HTMLYetiFileExplorerElement;
+        new (): HTMLYetiFileExplorerElement;
+    };
     interface HTMLYetiIconElement extends Components.YetiIcon, HTMLStencilElement {
     }
     var HTMLYetiIconElement: {
@@ -530,6 +542,7 @@ declare global {
         "my-component": HTMLMyComponentElement;
         "yeti-date-picker": HTMLYetiDatePickerElement;
         "yeti-field": HTMLYetiFieldElement;
+        "yeti-file-explorer": HTMLYetiFileExplorerElement;
         "yeti-icon": HTMLYetiIconElement;
         "yeti-input": HTMLYetiInputElement;
         "yeti-loading": HTMLYetiLoadingElement;
@@ -641,6 +654,12 @@ declare namespace LocalJSX {
           * type that will be assigned to the actual input element.
          */
         "type"?: string;
+    }
+    interface YetiFileExplorer {
+        /**
+          * CSS classlist applied to the explorer wrapper element.
+         */
+        "wrapperCSS"?: string;
     }
     interface YetiIcon {
         /**
@@ -1001,6 +1020,7 @@ declare namespace LocalJSX {
         "my-component": MyComponent;
         "yeti-date-picker": YetiDatePicker;
         "yeti-field": YetiField;
+        "yeti-file-explorer": YetiFileExplorer;
         "yeti-icon": YetiIcon;
         "yeti-input": YetiInput;
         "yeti-loading": YetiLoading;
@@ -1021,6 +1041,7 @@ declare module "@stencil/core" {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "yeti-date-picker": LocalJSX.YetiDatePicker & JSXBase.HTMLAttributes<HTMLYetiDatePickerElement>;
             "yeti-field": LocalJSX.YetiField & JSXBase.HTMLAttributes<HTMLYetiFieldElement>;
+            "yeti-file-explorer": LocalJSX.YetiFileExplorer & JSXBase.HTMLAttributes<HTMLYetiFileExplorerElement>;
             "yeti-icon": LocalJSX.YetiIcon & JSXBase.HTMLAttributes<HTMLYetiIconElement>;
             "yeti-input": LocalJSX.YetiInput & JSXBase.HTMLAttributes<HTMLYetiInputElement>;
             "yeti-loading": LocalJSX.YetiLoading & JSXBase.HTMLAttributes<HTMLYetiLoadingElement>;
