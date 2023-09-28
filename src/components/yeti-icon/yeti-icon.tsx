@@ -15,6 +15,11 @@ export class YetiIcon {
   @Prop({ attribute: 'type'}) iconCode: string = 'check_circle';
 
   /**
+   * The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).
+   */
+  @Prop() iconStyle: string = '';
+
+  /**
    * CSS classlist applied to the actual element producing the icon.
    */
   @Prop({ attribute: 'icon-css'}) iconCSS?: string = '';
@@ -52,6 +57,20 @@ export class YetiIcon {
   render() {
 
     let iconCSS = 'material-icons';
+    let styleModifier = '';
+
+    switch (this.iconStyle) {
+      
+      case 'outlined':
+        styleModifier = '-outlined';
+
+      case '':
+      default: {
+        break;
+      }
+    }
+
+    iconCSS += styleModifier;
 
     iconCSS += (this.iconCSS != '') ? ` ${this.iconCSS}` : '';
 

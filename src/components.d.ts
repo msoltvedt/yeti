@@ -5,8 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { YetiTableContents } from "./utils/utils";
-export { YetiTableContents } from "./utils/utils";
+import { YetiFileSystem, YetiFileSystemItem, YetiTableContents } from "./utils/utils";
+export { YetiFileSystem, YetiFileSystemItem, YetiTableContents } from "./utils/utils";
 export namespace Components {
     interface MyComponent {
         /**
@@ -104,6 +104,18 @@ export namespace Components {
     }
     interface YetiFileExplorer {
         /**
+          * Data model object that describes the state and contents of the explorable file system. See utils.js for details.
+         */
+        "model": YetiFileSystem;
+        /**
+          * Whether or not to show files (folders are always shown).
+         */
+        "showFiles": boolean;
+        /**
+          * The YetiFileFolderContent object that is the last selected item in the path
+         */
+        "terminus": YetiFileSystemItem;
+        /**
           * CSS classlist applied to the explorer wrapper element.
          */
         "wrapperCSS"?: string;
@@ -129,6 +141,10 @@ export namespace Components {
           * id of the actual element producing the icon. Set to a unique id if one is not provided.
          */
         "iconId"?: string;
+        /**
+          * The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).
+         */
+        "iconStyle": string;
     }
     interface YetiInput {
         /**
@@ -230,6 +246,14 @@ export namespace Components {
           * Tracks whether the Modal is displaying or not.
          */
         "isActive": boolean;
+        /**
+          * Whether overflowing contents are shown via scrolling or clipped.
+         */
+        "isScrollable": boolean;
+        /**
+          * Optional CSS classes to add to the modal element.
+         */
+        "modalCSS": string;
         /**
           * The optional size of the modal (other than the default). Options are xl, l, s, xs.
          */
@@ -426,6 +450,10 @@ export namespace Components {
 export interface YetiDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLYetiDatePickerElement;
+}
+export interface YetiFileExplorerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLYetiFileExplorerElement;
 }
 export interface YetiInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -657,6 +685,22 @@ declare namespace LocalJSX {
     }
     interface YetiFileExplorer {
         /**
+          * Data model object that describes the state and contents of the explorable file system. See utils.js for details.
+         */
+        "model"?: YetiFileSystem;
+        /**
+          * Fires when the user clicks a folder
+         */
+        "onFileExplorerChange"?: (event: YetiFileExplorerCustomEvent<any>) => void;
+        /**
+          * Whether or not to show files (folders are always shown).
+         */
+        "showFiles"?: boolean;
+        /**
+          * The YetiFileFolderContent object that is the last selected item in the path
+         */
+        "terminus"?: YetiFileSystemItem;
+        /**
           * CSS classlist applied to the explorer wrapper element.
          */
         "wrapperCSS"?: string;
@@ -682,6 +726,10 @@ declare namespace LocalJSX {
           * id of the actual element producing the icon. Set to a unique id if one is not provided.
          */
         "iconId"?: string;
+        /**
+          * The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).
+         */
+        "iconStyle"?: string;
     }
     interface YetiInput {
         /**
@@ -799,6 +847,14 @@ declare namespace LocalJSX {
           * Tracks whether the Modal is displaying or not.
          */
         "isActive"?: boolean;
+        /**
+          * Whether overflowing contents are shown via scrolling or clipped.
+         */
+        "isScrollable"?: boolean;
+        /**
+          * Optional CSS classes to add to the modal element.
+         */
+        "modalCSS"?: string;
         /**
           * The optional size of the modal (other than the default). Options are xl, l, s, xs.
          */

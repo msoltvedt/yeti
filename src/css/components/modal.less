@@ -61,6 +61,9 @@ yeti-modal-buttons {
 .yeti-modal.yeti-modal-size-l  { width: 60rem; }
 .yeti-modal.yeti-modal-size-s  { width: 30rem; }
 .yeti-modal.yeti-modal-size-xs { width: 20rem; }
+.yeti-modal {
+    max-width: calc(100vw - 4rem);
+}
 
 .yeti-modal-overlay-light .yeti-modal {
     box-shadow: 0 2px 6px rgba(0,0,0,.3);
@@ -170,6 +173,26 @@ yeti-modal-buttons {
 .yeti-modal-small {
     width: 30rem;
 }
+
+
+
+/************************************** Unscrollable ***/
+.yeti-modal__unscrollable .yeti-modal-content-fade {
+    display: none;
+}
+
+.yeti-modal__unscrollable .yeti-modal-content {
+    overflow: hidden;
+    display: flex;
+}
+
+
+
+/************************************** Fixed Height ***/
+.yeti-modal-max_height.yeti-modal-size-xs .yeti-modal-content { height: calc(60vh - 12.75rem); }
+.yeti-modal-max_height.yeti-modal-size-s  .yeti-modal-content { height: calc(72vh - 12.75rem); }
+.yeti-modal-max_height.yeti-modal-size-l  .yeti-modal-content { height: calc(84vh - 12.75rem); }
+.yeti-modal-max_height.yeti-modal-size-xl .yeti-modal-content { height: calc(96vh - 16.75rem); }
 
 
 

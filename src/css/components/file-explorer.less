@@ -11,39 +11,119 @@ yeti-file-explorer {
     display: contents;
 }
 
-.yeti-file_explorer {
+.yeti-file_explorer-wrapper {
     min-height: 4rem;
-    background-color: pink;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    width: 100%;
 }
 
 
 
 /************************************** Actual ***/
-.yeti-file_explorer-actual {
+.yeti-file_explorer {
+    --file_explorer-scrollbar-foreground: #c1c1c1;
+    --file_explorer-scrollbar-background: #fafafa;
+    scrollbar-color: var(--file_explorer-scrollbar-foreground), var(--file_explorer-scrollbar-background);
     background-color: #fafafa;
     flex: 1 1 auto;
-    display: flex;
-    padding-bottom: 1.625rem;
     border: 1px solid #c6c6c6;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: scroll;
 }
-
+.yeti-file_explorer::-webkit-scrollbar-thumb { /* Foreground */
+    background: var(--file_explorer-scrollbar-foreground);
+}
+.yeti-file_explorer::-webkit-scrollbar-track { /* Background */
+    background: var(--file_explorer-scrollbar-background);
+}
 
 
 /************************************** Path ***/
 .yeti-file_explorer-path {
     background-color: palegreen;
     flex: 0 0 3rem;
+    position: relative;
 }
 
 
 
 /************************************** Folder ***/
-.yeti-file_explorer-actual-folder {
+.yeti-file_explorer-folders {
+    display: grid;
+    max-height: 100%;
+    height: 100%;
+    // grid-template-columns: repeat(auto-fill, max(1fr, min-content));
+    grid-auto-columns: minmax(min-content, calc(100% / 3));
+    grid-auto-flow: column;
+    border-bottom: 1px solid #c6c6c6;
+}
+
+.yeti-file_explorer-folder {
+    border-width: 0 1px 0 0;
+    border-color: #c6c6c6;
+    border-style: solid;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    min-height: 100%;
+}
+.yeti-file_explorer-folder:last-child {
+    border-right-width: 0;
+}
+
+.yeti-file_explorer-folder-items {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    min-height: 100%;
+    box-shadow: inset #c6c6c6 -1px 0;
+    margin-bottom: -1px;
+    min-width: max(min-content, 7rem);
+}
+
+
+
+/************************************** Item ***/
+.yeti-file_explorer-folder-item {
     border-width: 0 1px 1px 0;
     border-color: #c6c6c6;
     border-style: solid;
-    padding-right: 1.5rem;
+}
+.yeti-file_explorer-folder-item:last-child {
+    margin-bottom: -1px;
+}
+
+.yeti-file_explorer-folder-item-wrapper {
+    .yeti-mixin-button-vanilla();
+    background-color: white;
+    border-radius: 0;
+    display: flex;
+    min-width: 100%;
+    align-items: center;
+    height: 2.25rem;
+    padding: 0 0.5rem;
+    text-align: left;
+}
+
+.yeti-file_explorer-folder-item-icon {
+    flex: 0 0 1.5rem;
+}
+
+.yeti-file_explorer-folder-item-name {
+    flex: 1 1 auto;
+    padding: 0 2rem 0 0.5rem;
+}
+
+.yeti-file_explorer-folder-item-wrapper:not(.yeti-file_explorer-folder-item-wrapper__selected):hover {
+    background-color: #e8e8e8;
+}
+.yeti-file_explorer-folder-item-wrapper:focus {
+    .yeti-mixin-focus-default();
+}
+
+.yeti-file_explorer-folder-item-wrapper__selected {
+    background-color: #393939;
+    color: white;
 }

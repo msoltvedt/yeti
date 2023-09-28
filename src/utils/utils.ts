@@ -283,7 +283,7 @@ export interface YetiTableCell {
 export interface YetiTableFilterObject {
   isFilterable: boolean,
   isClearCell: boolean,
-  type?: string // "text" | "date" | "select" | "multiselect"
+  type?: string, // "text" | "date" | "select" | "multiselect"
   options?: string[],
   value?: string
 }
@@ -309,3 +309,49 @@ export interface YetiMenuButtonOption {
 }
 
 let uniqueId = 0;
+
+/*** File Explorer types ***/
+export interface YetiFileSystem {
+  root: YetiFileSystemItem,
+  minDisplayDepth: number // Pad out the UI with empty folders if necessary
+}
+
+export interface YetiFileSystemItem {
+  name: string,
+  contents?: YetiFileSystemItem[],
+  path: string,
+  selectedIndex?: number,
+  offset?: number,
+  pageSize?: number,
+  totalElements?: number,
+  isFolder?: boolean,
+  isSelected?: boolean,
+  isTerminus?: boolean,
+  isRoot?: boolean,
+  id?: string,
+}
+
+// export interface YetiFileSystem {
+//   root: YetiFileFolderContent,
+//   displayDepth: number // How many folder layers we should show
+// }
+
+// export interface YetiFileFolder {
+//   contents: YetiFileFolderContent[],
+//   selectedIndex: number,
+//   offset?: number,
+//   pageSize?: number,
+//   totalElements?: number,
+//   isSelected: boolean,
+//   isTerminus: boolean,
+//   isRoot: boolean
+// }
+
+// export interface YetiFileFolderContent {
+//   name: string,
+//   path: string,
+//   isFolder: boolean,
+//   isSelected: boolean,
+//   id?: string,
+//   folderObject?: YetiFileFolder
+// }
