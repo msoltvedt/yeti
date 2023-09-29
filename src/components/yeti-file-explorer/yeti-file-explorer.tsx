@@ -29,23 +29,23 @@ export class YetiFileExplorer {
    */
   @Prop({ mutable: true }) model: YetiFileSystem;
   @Watch("model") handleModelUpdate(newValue, oldValue) {
-    console.log("Model changed.", oldValue, newValue);
+    //console.log("Model changed.", oldValue, newValue);
   }
 
   /**
    * Path array that contains all the folders, in order, from root to terminus
    */
-  @State() path: YetiFileSystemItem[] = [];
-  @Watch("path") handlePathUpdate(newValue, oldValue) {
-    console.log("Path changed.", oldValue, newValue);
-  }
+  // @State() path: YetiFileSystemItem[] = [];
+  // @Watch("path") handlePathUpdate(newValue, oldValue) {
+  //   console.log("Path changed.", oldValue, newValue);
+  // }
 
   /**
    * The YetiFileFolderContent object that is the last selected item in the path
    */
   @Prop({ mutable: true }) terminus: YetiFileSystemItem;
-  @Watch("path") handleTerminusUpdate(newValue, oldValue) {
-    console.log("Terminus changed.", oldValue, newValue);
+  @Watch("terminus") handleTerminusUpdate(newValue, oldValue) {
+    //console.log("Terminus changed.", oldValue, newValue);
   }
 
   /**
@@ -72,7 +72,8 @@ export class YetiFileExplorer {
     // 3. Fire item selected event. Include isFolder and path.
     this.fileExplorerChange.emit({
       "path": path,
-      "pathModel": this.path
+      "depth": depth,
+      "index": index
     });
 
     // 4. Rerender
@@ -88,20 +89,16 @@ export class YetiFileExplorer {
     for (let i=0; i<folderNamesInPath.length; i++) {
         
       let currentTargetFolderNames = currentTarget.contents.map( content => content.name );
-      currentTarget = currentTarget.contents[
-        currentTargetFolderNames.indexOf( folderNamesInPath[i] )
-      ]; // Move to the next step down the path
 
       currentTarget.isSelected = true;
       currentTarget.selectedIndex = currentTargetFolderNames.indexOf( folderNamesInPath[i] );
 
-      this.path[i] = currentTarget;
-
-      console.log("path", this.path);
+      currentTarget = currentTarget.contents[
+        currentTargetFolderNames.indexOf( folderNamesInPath[i] )
+      ]; // Move to the next step down the path
 
     }
 
-    console.log(this.model);
   }
 
 
@@ -195,7 +192,7 @@ export class YetiFileExplorer {
 
     
     // First, handle the initial or reset state where the path is empty
-    if (this.path.length == 0) {
+    if (this.model.root.contents.length == 0) {
 
       for (let i=0; i<this.model.minDisplayDepth; i++) {
         folders.push(
@@ -208,14 +205,21 @@ export class YetiFileExplorer {
     } else {
 
       // There's at least one folder in the path, so proceed normally
-      for (let j=0; j<this.path.length || j<this.model.minDisplayDepth; j++) {
+      // for (let j=0; j<this.path.length || j<this.model.minDisplayDepth; j++) {
 
-        if (!this.path[j] || !this.path[j].contents) {
-          folders.push(this.renderFolder(emptyFolder));
-        } else {
-          folders.push(this.renderFolder(this.path[j]));
-        }
-      }
+      //   if (!this.path[j] || !this.path[j].contents) {
+      //     folders.push(this.renderFolder(emptyFolder));
+      //   } else {
+      //     folders.push(this.renderFolder(this.path[j]));
+      //   }
+      // }
+
+      let workingFolder = this.model.root;
+      do {
+        folders.push(this.renderFolder(workingFolder));
+        workingFolder = workingFolder.contents[ workingFolder.selectedIndex ];
+      } while (workingFolder && workingFolder.isSelected);
+
     }
 
     return folders;
@@ -225,13 +229,16 @@ export class YetiFileExplorer {
 
 
   renderFolder(folder: YetiFileSystemItem) {
+
+    let depth = folder.path.split("/").length-1;
+
     let jsx =
 
       <div class="yeti-file_explorer-folder">
 
         <ul class="yeti-file_explorer-folder-items">
 
-          {this.renderFolderContents(folder, 0)}
+          {this.renderFolderContents(folder, depth)}
 
         </ul>
 
@@ -304,14 +311,14 @@ export class YetiFileExplorer {
 
     // Initialize path
     // 1. The root is always in the path.
-    this.path.push(this.model.root);
+    //this.path.push(this.model.root);
 
     // 2. See if any of the root's contents are a selected folder. If so, add it, and repeat the process for that folder until done.
     workingFolderContents = this.model.root.contents;
 
     workingFolderContents.forEach((value, index) => {
       if (value.isSelected) {
-        this.path.push(value);
+        //this.path.push(value);
         value.selectedIndex = index;
       }
     });
