@@ -318,7 +318,7 @@ export interface YetiFileSystem {
 
 export interface YetiFileSystemItem {
   name: string,
-  contents?: YetiFileSystemItem[],
+  content?: YetiFileSystemItem[],
   path: string,
   selectedIndex?: number,
   offset?: number,
@@ -329,6 +329,7 @@ export interface YetiFileSystemItem {
   isTerminus?: boolean,
   isRoot?: boolean,
   id?: string,
+  type?: string // "file" | "folder"
 }
 
 // export interface YetiFileSystem {

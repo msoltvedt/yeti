@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Element, Watch, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, h, State, Element, Event, EventEmitter } from '@stencil/core';
 import { YetiFileSystem, YetiFileSystemItem } from '../../utils/utils';
 
 @Component({
@@ -28,25 +28,11 @@ export class YetiFileExplorer {
    * Data model object that describes the state and contents of the explorable file system. See utils.js for details.
    */
   @Prop({ mutable: true }) model: YetiFileSystem;
-  @Watch("model") handleModelUpdate(newValue, oldValue) {
-    //console.log("Model changed.", oldValue, newValue);
-  }
-
-  /**
-   * Path array that contains all the folders, in order, from root to terminus
-   */
-  // @State() path: YetiFileSystemItem[] = [];
-  // @Watch("path") handlePathUpdate(newValue, oldValue) {
-  //   console.log("Path changed.", oldValue, newValue);
-  // }
 
   /**
    * The YetiFileFolderContent object that is the last selected item in the path
    */
   @Prop({ mutable: true }) terminus: YetiFileSystemItem;
-  @Watch("terminus") handleTerminusUpdate(newValue, oldValue) {
-    //console.log("Terminus changed.", oldValue, newValue);
-  }
 
   /**
    * Toggle to trigger a re-render of the whole component.
@@ -81,6 +67,13 @@ export class YetiFileExplorer {
   }
 
 
+
+  newFolderObject() {
+    let folder: YetiFileSystemItem;
+    return folder;
+  }
+
+
   
   updatePath(targetPath) {
     let folderNamesInPath = (targetPath.slice(1)).split('/'); // Array of folder names, e.g. /root/path/to/terminus is ["root", "path", "to", "terminus"]
@@ -88,12 +81,12 @@ export class YetiFileExplorer {
 
     for (let i=0; i<folderNamesInPath.length; i++) {
         
-      let currentTargetFolderNames = currentTarget.contents.map( content => content.name );
+      let currentTargetFolderNames = currentTarget.content.map( content => content.name );
 
       currentTarget.isSelected = true;
       currentTarget.selectedIndex = currentTargetFolderNames.indexOf( folderNamesInPath[i] );
 
-      currentTarget = currentTarget.contents[
+      currentTarget = currentTarget.content[
         currentTargetFolderNames.indexOf( folderNamesInPath[i] )
       ]; // Move to the next step down the path
 
@@ -136,8 +129,8 @@ export class YetiFileExplorer {
 
       for (let i=0; i<folderNamesInPath.length; i++) {
         
-        let currentTargetFolderNames = currentTarget.contents.map( content => content.name );
-        currentTarget = currentTarget.contents[
+        let currentTargetFolderNames = currentTarget.content.map( content => content.name );
+        currentTarget = currentTarget.content[
           currentTargetFolderNames.indexOf( folderNamesInPath[i] )
         ]; // Move to the next step down the path
         currentTarget.isSelected = false;
@@ -166,8 +159,8 @@ export class YetiFileExplorer {
     for (let i=0; i<folderNamesInPath.length; i++) {
       // Work through the whole path until currentTarget points at the last one.
       let currentStepNameInPath = folderNamesInPath[i];
-      let currentTargetFolderNames = currentTarget.contents.map( content => content.name );
-      currentTarget = currentTarget.contents[
+      let currentTargetFolderNames = currentTarget.content.map( content => content.name );
+      currentTarget = currentTarget.content[
         currentTargetFolderNames.indexOf(currentStepNameInPath)
       ]
     }
@@ -183,7 +176,7 @@ export class YetiFileExplorer {
     let emptyFolder: YetiFileSystemItem = {
       name: "",
       path: "/",
-      contents: [],
+      content: [],
       selectedIndex: -1,
       isRoot: false,
       isSelected: false,
@@ -192,7 +185,7 @@ export class YetiFileExplorer {
 
     
     // First, handle the initial or reset state where the path is empty
-    if (this.model.root.contents.length == 0) {
+    if (this.model.root.content.length == 0) {
 
       for (let i=0; i<this.model.minDisplayDepth; i++) {
         folders.push(
@@ -204,20 +197,10 @@ export class YetiFileExplorer {
       
     } else {
 
-      // There's at least one folder in the path, so proceed normally
-      // for (let j=0; j<this.path.length || j<this.model.minDisplayDepth; j++) {
-
-      //   if (!this.path[j] || !this.path[j].contents) {
-      //     folders.push(this.renderFolder(emptyFolder));
-      //   } else {
-      //     folders.push(this.renderFolder(this.path[j]));
-      //   }
-      // }
-
       let workingFolder = this.model.root;
       do {
         folders.push(this.renderFolder(workingFolder));
-        workingFolder = workingFolder.contents[ workingFolder.selectedIndex ];
+        workingFolder = workingFolder.content[ workingFolder.selectedIndex ];
       } while (workingFolder && workingFolder.isSelected);
 
     }
@@ -252,7 +235,7 @@ export class YetiFileExplorer {
 
   renderFolderContents(folder: YetiFileSystemItem, depth: number = -1) {
 
-    return folder.contents.map((item, index) => {
+    return folder.content.map((item, index) => {
       return this.renderItem(item, depth, index);
     });
 
@@ -273,6 +256,13 @@ export class YetiFileExplorer {
             
               <span class="yeti-file_explorer-folder-item-name">{item.name}</span>
             
+              {/* {
+                (item.content.length) ? 
+                  <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
+                : 
+                  ""
+              } */}
+
               <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
         
           </button>
@@ -294,7 +284,7 @@ export class YetiFileExplorer {
         root: {
           name: "",
           path: "/",
-          contents: [],
+          content: [],
           selectedIndex: -1,
           offset: 0,
           pageSize: 0,
@@ -310,15 +300,10 @@ export class YetiFileExplorer {
     }
 
     // Initialize path
-    // 1. The root is always in the path.
-    //this.path.push(this.model.root);
-
-    // 2. See if any of the root's contents are a selected folder. If so, add it, and repeat the process for that folder until done.
-    workingFolderContents = this.model.root.contents;
+    workingFolderContents = this.model.root.content;
 
     workingFolderContents.forEach((value, index) => {
       if (value.isSelected) {
-        //this.path.push(value);
         value.selectedIndex = index;
       }
     });
@@ -348,741 +333,25 @@ export class YetiFileExplorer {
         </div>{/* /file_explorer */}
 
       
-        <div class="yeti-file_explorer-path"></div>
+        <div class="yeti-file_explorer-path">{(this.terminus) ? this.terminus.path : ''}</div>
 
       </div>
 
-        // <div class={wrapperCSS}>
-
-        //     <div class="yeti-file_explorer">
-
-        //         <div class="yeti-file_explorer-folders">
-
-        //             <div class="yeti-file_explorer-folder">
-
-        //                 <ul class="yeti-file_explorer-folder-items">
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                 </ul>{/* /folder */}
-                        
-        //             </div>
-
-
-        //             <div class="yeti-file_explorer-folder">
-
-        //                 <ul class="yeti-file_explorer-folder-items">
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">abc</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">def</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">ghi</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                 </ul>{/* /folder */}
-
-        //             </div>
-
-
-        //             <div class="yeti-file_explorer-folder">
-
-        //                 <ul class="yeti-file_explorer-folder-items">
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                 </ul>{/* /folder */}
-
-        //             </div>
-
-
-        //             <div class="yeti-file_explorer-folder">
-
-        //                 <ul class="yeti-file_explorer-folder-items">
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01hasanamethatisjustfarfartoolongandverboseandlongwinded</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                 </ul>{/* /folder */}
-
-        //             </div>
-
-
-        //             <div class="yeti-file_explorer-folder">
-
-        //                 <ul class="yeti-file_explorer-folder-items">
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                 </ul>{/* /folder */}
-
-        //             </div>
-
-
-        //             <div class="yeti-file_explorer-folder">
-
-        //                 <ul class="yeti-file_explorer-folder-items">
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                 </ul>{/* /folder */}
-
-        //             </div>
-
-
-        //             <div class="yeti-file_explorer-folder">
-
-        //                 <ul class="yeti-file_explorer-folder-items">
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare01</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-
-        //                     <li class="yeti-file_explorer-folder-item">
-
-        //                         <button class="yeti-file_explorer-folder-item-wrapper">
-
-        //                             <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
-                                    
-        //                             <span class="yeti-file_explorer-folder-item-name">fileshare02</span>
-                                    
-        //                             <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                                
-        //                         </button>
-
-        //                     </li>
-
-        //                 </ul>{/* /folder */}
-
-        //             </div>
-
-        //         </div>{/* /folders */}
-
-        //     </div>
-
-        //     <div class="yeti-file_explorer-path"></div>
-    
-        // </div>
-
     );
+  }
+
+
+
+  componentDidRender() {
+    // Scroll the last folder into view
+    let folderElements = this.el.querySelectorAll(".yeti-file_explorer-folder");
+
+    if (folderElements && folderElements.length) {
+      folderElements[ folderElements.length-1 ].scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
+    }
   }
 
 }
