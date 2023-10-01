@@ -5,8 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { YetiFileSystem, YetiFileSystemItem, YetiTableContents } from "./utils/utils";
-export { YetiFileSystem, YetiFileSystemItem, YetiTableContents } from "./utils/utils";
+import { YetiFileSystemItem, YetiTableContents } from "./utils/utils";
+export { YetiFileSystemItem, YetiTableContents } from "./utils/utils";
 export namespace Components {
     interface MyComponent {
         /**
@@ -104,9 +104,9 @@ export namespace Components {
     }
     interface YetiFileExplorer {
         /**
-          * Data model object that describes the state and contents of the explorable file system. See utils.js for details.
+          * minimum number of folder layers to show
          */
-        "model": YetiFileSystem;
+        "minimumDisplayDepth": number;
         "newFolderObject": () => Promise<YetiFileSystemItem>;
         /**
           * All the displayed folders in order from root to terminus
@@ -116,10 +116,6 @@ export namespace Components {
           * Whether or not to show files (folders are always shown).
          */
         "showFiles": boolean;
-        /**
-          * The YetiFileFolderContent object that is the last selected item in the path
-         */
-        "terminus": YetiFileSystemItem;
         /**
           * CSS classlist applied to the explorer wrapper element.
          */
@@ -690,9 +686,9 @@ declare namespace LocalJSX {
     }
     interface YetiFileExplorer {
         /**
-          * Data model object that describes the state and contents of the explorable file system. See utils.js for details.
+          * minimum number of folder layers to show
          */
-        "model"?: YetiFileSystem;
+        "minimumDisplayDepth"?: number;
         /**
           * Fires when the user clicks a folder
          */
@@ -705,10 +701,6 @@ declare namespace LocalJSX {
           * Whether or not to show files (folders are always shown).
          */
         "showFiles"?: boolean;
-        /**
-          * The YetiFileFolderContent object that is the last selected item in the path
-         */
-        "terminus"?: YetiFileSystemItem;
         /**
           * CSS classlist applied to the explorer wrapper element.
          */
