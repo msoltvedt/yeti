@@ -1,5 +1,5 @@
-import { Component, Prop, h, State, Element, Event, EventEmitter } from '@stencil/core';
-import { YetiFileSystem, YetiFileSystemItem } from '../../utils/utils';
+import { Component, Prop, h, State, Element, Event, EventEmitter, Method, Watch } from '@stencil/core';
+import { YetiFileSystem, YetiFileSystemItem, utils } from '../../utils/utils';
 
 @Component({
   tag: 'yeti-file-explorer',
@@ -30,6 +30,95 @@ export class YetiFileExplorer {
   @Prop({ mutable: true }) model: YetiFileSystem;
 
   /**
+   * All the displayed folders in order from root to terminus
+   */
+  @Prop({ mutable: true }) path: YetiFileSystemItem[] = /*[
+    {
+      name: "root",
+      content: [],
+      path: "//",
+      isFolder: true,
+      isRoot: true,
+      isSelected: true,
+      isTerminus: false,
+      selectedIndex: -1,
+      offset: 0,
+      pageSize: 1000,
+      totalElements: 0,
+      id: utils.generateUniqueId(),
+      type: "folder"
+    }
+  ];*/
+  [
+    {
+      name: "root",
+      content: [
+        {
+          name: "subfolder1",
+          content: [],
+          path: "//subfolder1",
+          isFolder: true,
+          isRoot: false,
+          isSelected: false,
+          isTerminus: false,
+          selectedIndex: -1,
+          offset: 0,
+          pageSize: 1000,
+          totalElements: 0,
+          id: utils.generateUniqueId(),
+          type: "folder"
+        },
+        {
+          name: "subfolder2",
+          content: [],
+          path: "//subfolder2",
+          isFolder: true,
+          isRoot: false,
+          isSelected: false,
+          isTerminus: false,
+          selectedIndex: -1,
+          offset: 0,
+          pageSize: 1000,
+          totalElements: 0,
+          id: utils.generateUniqueId(),
+          type: "folder"
+        },
+        {
+          name: "subfolder3",
+          content: [],
+          path: "//subfolder3",
+          isFolder: true,
+          isRoot: false,
+          isSelected: false,
+          isTerminus: false,
+          selectedIndex: -1,
+          offset: 0,
+          pageSize: 1000,
+          totalElements: 0,
+          id: utils.generateUniqueId(),
+          type: "folder"
+        },
+      ],
+      path: "",
+      isFolder: true,
+      isRoot: true,
+      isSelected: true,
+      isTerminus: false,
+      selectedIndex: -1,
+      offset: 0,
+      pageSize: 1000,
+      totalElements: 3,
+      id: utils.generateUniqueId(),
+      type: "folder"
+    }
+  ];
+  @Watch("path")
+  handlePathChange() {
+    // Since path is an array, a change here won't necessarily force a re-render. Force one.
+    //this.iLoveJSX = !this.iLoveJSX;
+  }
+
+  /**
    * The YetiFileFolderContent object that is the last selected item in the path
    */
   @Prop({ mutable: true }) terminus: YetiFileSystemItem;
@@ -41,7 +130,7 @@ export class YetiFileExplorer {
 
 
 
-  handleItemClick(e: Event, depth: number = 0, index: number = 0) {
+  /*handleItemClick(e: Event, depth: number = 0, index: number = 0) {
     // A folder or file was just clicked. Handle it.
     let path = (e.currentTarget as HTMLElement).getAttribute("data-path");
     let parentPath = path.substring( 0, path.lastIndexOf("/") );
@@ -64,12 +153,54 @@ export class YetiFileExplorer {
 
     // 4. Rerender
     this.iLoveJSX = !this.iLoveJSX;
+  }*/
+
+  handleItemClick(e: Event, depth: number = 0, index: number = 0) {
+    // A folder or file was just clicked. Handle it.
+    let serverPathStringToClickedFolder = ""; // This will be the term by which the server identifies this folder
+    
+    // If necessary, prune any folders that would be to the right of this.
+    while (this.path.length > depth + 1) {
+      this.path.pop();
+    }
+
+    // (Re)set the isSelected state for this folder and its sibling
+    this.path[depth].content.forEach((val) => {
+      val.isSelected = false;
+    })
+
+    // Update the path at this depth
+    this.path[depth].isSelected = true;
+    this.path[depth].selectedIndex = index;
+
+    // Derive the server path to this folder
+    serverPathStringToClickedFolder += this.path[depth].content[index].path;
+
+    // Fire the change event so the component consumer can provide new data
+    this.fileExplorerChange.emit({
+      "path": serverPathStringToClickedFolder,
+      "depth": depth,
+      "index": index
+    });
+
+    // Re-render
+    //this.iLoveJSX = !this.iLoveJSX;
+    
   }
 
 
 
-  newFolderObject() {
-    let folder: YetiFileSystemItem;
+  @Method()
+  async newFolderObject() {
+    let folder: YetiFileSystemItem = {
+      content: [],
+      name: undefined,
+      path: undefined,
+      isFolder: true,
+      isRoot: false,
+      isSelected: false,
+      isTerminus: false,
+    };
     return folder;
   }
 
@@ -183,37 +314,22 @@ export class YetiFileExplorer {
       isTerminus: false
     }
 
-    
-    // First, handle the initial or reset state where the path is empty
-    if (this.model.root.content.length == 0) {
+    // Loop through the path and render each folder in it
+    this.path.forEach((folder, index) => {
+      folders.push(this.renderFolder(folder, index));
+    });
 
-      for (let i=0; i<this.model.minDisplayDepth; i++) {
-        folders.push(
-          this.renderFolder(
-            (i == 0) ? this.model.root : emptyFolder // Show the root folder and then empty ones to fill out the rest of the display depth
-          )
-        )
-      }
-      
-    } else {
-
-      let workingFolder = this.model.root;
-      do {
-        folders.push(this.renderFolder(workingFolder));
-        workingFolder = workingFolder.content[ workingFolder.selectedIndex ];
-      } while (workingFolder && workingFolder.isSelected);
-
+    // Pad out the screen if necessary with empty folders
+    while (folders.length < this.model.minDisplayDepth) {
+      folders.push(this.renderFolder(emptyFolder, -1));
     }
 
     return folders;
-
   }
 
 
 
-  renderFolder(folder: YetiFileSystemItem) {
-
-    let depth = folder.path.split("/").length-1;
+  renderFolder(folder: YetiFileSystemItem, depth) {
 
     let jsx =
 
@@ -333,7 +449,7 @@ export class YetiFileExplorer {
         </div>{/* /file_explorer */}
 
       
-        <div class="yeti-file_explorer-path">{(this.terminus) ? this.terminus.path : ''}</div>
+        <div class="yeti-file_explorer-path">{this.path[ this.path.length - 1 ].path}</div>
 
       </div>
 

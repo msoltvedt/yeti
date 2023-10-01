@@ -107,6 +107,11 @@ export namespace Components {
           * Data model object that describes the state and contents of the explorable file system. See utils.js for details.
          */
         "model": YetiFileSystem;
+        "newFolderObject": () => Promise<YetiFileSystemItem>;
+        /**
+          * All the displayed folders in order from root to terminus
+         */
+        "path": YetiFileSystemItem[];
         /**
           * Whether or not to show files (folders are always shown).
          */
@@ -692,6 +697,10 @@ declare namespace LocalJSX {
           * Fires when the user clicks a folder
          */
         "onFileExplorerChange"?: (event: YetiFileExplorerCustomEvent<any>) => void;
+        /**
+          * All the displayed folders in order from root to terminus
+         */
+        "path"?: YetiFileSystemItem[];
         /**
           * Whether or not to show files (folders are always shown).
          */
