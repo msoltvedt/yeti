@@ -1,5 +1,5 @@
-import { r as registerInstance, h, g as getElement } from './index-9a76f14e.js';
-import { u as utils } from './utils-b92a1748.js';
+import { r as registerInstance, h, g as getElement } from './index-d74f5b26.js';
+import { u as utils } from './utils-146a2098.js';
 
 const YetiModal = class {
   constructor(hostRef) {
@@ -12,6 +12,8 @@ const YetiModal = class {
     this.heading = "Modal Heading";
     this.describedBy = "";
     this.size = "";
+    this.modalCSS = "";
+    this.isScrollable = true;
     this.isActive = false;
   }
   handleFocus(newValue) {
@@ -86,6 +88,8 @@ const YetiModal = class {
     }
     modalOverlayCSS += (this.isActive) ? "" : " yeti-modal-overlay__inert";
     modalCSS += (this.size == "") ? "" : ` yeti-modal-size-${this.size}`;
+    modalCSS += (this.modalCSS != "") ? ` ${this.modalCSS}` : "";
+    modalCSS += (this.isScrollable) ? "" : " yeti-modal__unscrollable";
     return (h("div", { class: modalOverlayCSS }, h("div", { class: "yeti-modal-bumper-front", tabIndex: 0 }), h("div", Object.assign({ class: modalCSS }, modalProperties), h("div", { class: "yeti-modal-header" }, h("h1", { class: "yeti-modal-header-heading", id: this.headingId }, this.heading), h("button", { class: "yeti-modal-header-close yeti-button-ghost", onClick: () => { this.isActive = false; } }, h("span", { class: "material-icons" }, "close"))), h("div", { class: "yeti-modal-content" }, h("slot", { name: "content" }), h("div", { class: "yeti-modal-content-fade" })), h("div", { class: "yeti-modal-actions" }, h("div", { class: "yeti-modal-actions-buttons" }, h("slot", { name: "buttons" })))), h("div", { class: "yeti-modal-bumper-back", tabIndex: 0 })));
   }
   componentDidRender() {

@@ -255,6 +255,9 @@ Styles for Modal
   .yeti-modal.yeti-modal-size-xs {
     width: 20rem;
   }
+  .yeti-modal {
+    max-width: calc(100vw - 4rem);
+  }
   .yeti-modal-overlay-light .yeti-modal {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   }
@@ -350,6 +353,27 @@ Styles for Modal
   .yeti-modal-small {
     width: 30rem;
   }
+  /************************************** Unscrollable ***/
+  .yeti-modal__unscrollable .yeti-modal-content-fade {
+    display: none;
+  }
+  .yeti-modal__unscrollable .yeti-modal-content {
+    overflow: hidden;
+    display: flex;
+  }
+  /************************************** Fixed Height ***/
+  .yeti-modal-max_height.yeti-modal-size-xs .yeti-modal-content {
+    height: calc(60vh - 12.75rem);
+  }
+  .yeti-modal-max_height.yeti-modal-size-s .yeti-modal-content {
+    height: calc(72vh - 12.75rem);
+  }
+  .yeti-modal-max_height.yeti-modal-size-l .yeti-modal-content {
+    height: calc(84vh - 12.75rem);
+  }
+  .yeti-modal-max_height.yeti-modal-size-xl .yeti-modal-content {
+    height: calc(96vh - 16.75rem);
+  }
   /************************************** Bumpers (for focus trapping ***/
   .yeti-modal-bumper-front,
   .yeti-modal-bumper-back {
@@ -388,6 +412,125 @@ Styles for Breadcrumb
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
     outline-offset: 0.25rem;
+  }
+  /************************************** file-explorer.less ***************************************
+
+Styles for File Explorer
+
+*************************************** file-explorer.less **************************************/
+  /************************************** Wrapper ***/
+  yeti-file-explorer {
+    display: contents;
+  }
+  .yeti-file_explorer-wrapper {
+    min-height: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+  /************************************** Actual ***/
+  .yeti-file_explorer {
+    --file_explorer-scrollbar-foreground: #c1c1c1;
+    --file_explorer-scrollbar-background: #fafafa;
+    scrollbar-color: var(--file_explorer-scrollbar-foreground), var(--file_explorer-scrollbar-background);
+    background-color: #fafafa;
+    flex: 1 1 auto;
+    border: 1px solid #c6c6c6;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: scroll;
+  }
+  .yeti-file_explorer::-webkit-scrollbar-thumb {
+    /* Foreground */
+    background: var(--file_explorer-scrollbar-foreground);
+  }
+  .yeti-file_explorer::-webkit-scrollbar-track {
+    /* Background */
+    background: var(--file_explorer-scrollbar-background);
+  }
+  /************************************** Path ***/
+  .yeti-file_explorer-path {
+    flex: 0 0 3rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  /************************************** Folder ***/
+  .yeti-file_explorer-folders {
+    display: grid;
+    max-height: 100%;
+    height: 100%;
+    grid-auto-columns: minmax(min-content, calc(100% / 3));
+    grid-auto-flow: column;
+    border-bottom: 1px solid #c6c6c6;
+  }
+  .yeti-file_explorer-folder {
+    border-width: 0 1px 0 0;
+    border-color: #c6c6c6;
+    border-style: solid;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    min-height: 100%;
+  }
+  .yeti-file_explorer-folder:last-child {
+    border-right-width: 0;
+  }
+  .yeti-file_explorer-folder-items {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    min-height: 100%;
+    box-shadow: inset #c6c6c6 -1px 0;
+    margin-bottom: -1px;
+    min-width: 7rem;
+  }
+  /************************************** Item ***/
+  .yeti-file_explorer-folder-item {
+    border-width: 0 1px 1px 0;
+    border-color: #c6c6c6;
+    border-style: solid;
+  }
+  .yeti-file_explorer-folder-item:last-child {
+    margin-bottom: -1px;
+  }
+  .yeti-file_explorer-folder-item-wrapper {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    background-color: #e0e0e0;
+    border: 0;
+    box-sizing: border-box;
+    color: #161616;
+    cursor: pointer;
+    letter-spacing: 0.16px;
+    background-color: white;
+    border-radius: 0;
+    display: flex;
+    min-width: 100%;
+    align-items: center;
+    height: 2.25rem;
+    padding: 0 0.5rem;
+    text-align: left;
+  }
+  .yeti-file_explorer-folder-item-icon {
+    flex: 0 0 1.5rem;
+  }
+  .yeti-file_explorer-folder-item-name {
+    flex: 1 1 auto;
+    padding: 0 2rem 0 0.5rem;
+    white-space: nowrap;
+  }
+  .yeti-file_explorer-folder-item-wrapper:not(.yeti-file_explorer-folder-item-wrapper__selected):hover {
+    background-color: #e8e8e8;
+  }
+  .yeti-file_explorer-folder-item-wrapper:focus {
+    outline: 2px solid #0f62fe;
+    outline-offset: -2px;
+  }
+  .yeti-file_explorer-folder-item-wrapper__selected {
+    background-color: #393939;
+    color: white;
   }
   /************************************** form.less ***
  *
@@ -1162,6 +1305,37 @@ Styles for Button
   .yeti-button-ghost__focus {
     border-color: #0f62fe;
     box-shadow: inset 0 0 0 1px #0f62fe, inset 0 0 0 2px #f4f4f4;
+  }
+  /************************************** Disabled ***/
+  /*** Primary, Secondary, and Danger ***/
+  .yeti-button-primary[disabled],
+  .yeti-button-secondary[disabled],
+  .yeti-button-danger[disabled],
+  .yeti-button[disabled]:not(.yeti-button-tertiary, .yeti-button-ghost),
+  .yeti-button[disabled]:not(.yeti-button-tertiary, .yeti-button-ghost):hover {
+    background-color: #c6c6c6;
+    border-color: #c6c6c6;
+    box-shadow: none;
+    color: #8d8d8d;
+    cursor: not-allowed;
+  }
+  /*** Tertiary ***/
+  .yeti-button-tertiary[disabled],
+  .yeti-button-tertiary[disabled]:hover {
+    background-color: transparent;
+    border-color: #c6c6c6;
+    box-shadow: none;
+    color: #8d8d8d;
+    cursor: not-allowed;
+  }
+  /*** Ghost ***/
+  .yeti-button-ghost[disabled],
+  .yeti-button-ghost[disabled]:hover {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    color: #8d8d8d;
+    cursor: not-allowed;
   }
   /************************************** Sizing ***/
   .yeti-button-size-xs {
