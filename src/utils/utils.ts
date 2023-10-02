@@ -326,7 +326,6 @@ export interface YetiFileSystemItem {
   totalElements?: number,
   isFolder?: boolean,
   isSelected?: boolean,
-  isTerminus?: boolean,
   isRoot?: boolean,
   id?: string,
   type?: string // "file" | "folder"

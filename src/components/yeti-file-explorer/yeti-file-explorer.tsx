@@ -60,7 +60,6 @@ export class YetiFileExplorer {
           isFolder: true,
           isRoot: false,
           isSelected: false,
-          isTerminus: false,
           selectedIndex: -1,
           offset: 0,
           pageSize: 1000,
@@ -75,7 +74,6 @@ export class YetiFileExplorer {
           isFolder: true,
           isRoot: false,
           isSelected: false,
-          isTerminus: false,
           selectedIndex: -1,
           offset: 0,
           pageSize: 1000,
@@ -90,7 +88,6 @@ export class YetiFileExplorer {
           isFolder: true,
           isRoot: false,
           isSelected: false,
-          isTerminus: false,
           selectedIndex: -1,
           offset: 0,
           pageSize: 1000,
@@ -103,7 +100,6 @@ export class YetiFileExplorer {
       isFolder: true,
       isRoot: true,
       isSelected: true,
-      isTerminus: false,
       selectedIndex: -1,
       offset: 0,
       pageSize: 1000,
@@ -165,7 +161,8 @@ export class YetiFileExplorer {
       isFolder: true,
       isRoot: false,
       isSelected: false,
-      isTerminus: false,
+      selectedIndex: -1,
+      id: utils.generateUniqueId()
     };
     return folder;
   }
@@ -181,8 +178,7 @@ export class YetiFileExplorer {
       content: [],
       selectedIndex: -1,
       isRoot: false,
-      isSelected: false,
-      isTerminus: false
+      isSelected: false
     }
 
     // Loop through the path and render each folder in it
