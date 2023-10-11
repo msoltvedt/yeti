@@ -19,6 +19,11 @@ export class YetiTable {
   @Event({ bubbles: true }) rowActionClick: EventEmitter;
 
   /**
+   * Fires when an isRadio cell changes value.
+   */
+  @Event({ bubbles: true }) cellRadioChange: EventEmitter;
+
+  /**
    * Fires when user clicks a sortable header. This only fires when sortSelf is false (i.e. some logic outside the component will handle sorting and presumably update the table's contents).
    */
   @Event({ bubbles: true }) tableSort: EventEmitter;
@@ -195,6 +200,17 @@ export class YetiTable {
       "actionLabel": newValue
     });
     
+  }
+
+
+
+  handleCellRadioChange(cell: YetiTableCell) {
+    
+    this.cellRadioChange.emit({
+      "row": this.contents.body.rows[ cell.rowIndex ],
+      "cell": cell
+    });
+
   }
 
 
@@ -683,6 +699,13 @@ export class YetiTable {
 
     }
 
+    // See if it's a radio cell
+    if (cell.isRadio) {
+
+      return this.renderRadioCell(cell);
+
+    }
+
     // See if it's a th
     if (cell.isHeading) {
 
@@ -776,6 +799,25 @@ export class YetiTable {
       return <td class={css} id={cell.id} key={cell.id}>{control}</td>
       
     }
+  }
+
+
+
+  renderRadioCell(cell: YetiTableCell) {
+
+    let css = (cell.cssClass && cell.cssClass != "") ? 
+      " " + cell.cssClass : 
+      "";
+
+    let radioName = `${this.tableId}_radios`;
+    let radioValue = `${radioName}_${cell.rowIndex}`;
+
+    let control = <input type="radio" class="yeti-radio" name={radioName} value={radioValue} id={radioValue} onChange={() => {
+      this.handleCellRadioChange(cell);
+    }} />;
+
+    return <td class={`yeti-table-cell yeti-table-control ${css}`} id={cell.id} key={cell.id}>{control}</td>
+    
   }
 
 
@@ -1206,6 +1248,8 @@ export class YetiTable {
 
   componentWillRender() {
 
+    let paginationComponentElement = this.el.querySelector("yeti-table-pagination");
+
     // If we're not paginating inside the component...
     if (!this.paginateSelf) {
 
@@ -1214,6 +1258,11 @@ export class YetiTable {
       // ...then we need to handle the case where we're on the last page, and we don't need to show all the records we got back.
       this.numRecordsToDisplay = recordsOnThisPage;
 
+    }
+
+    if (!paginationComponentElement) {
+      // If we're not paginating, then we need to ensure numRecordsDisplayed is equal to the number of total records.
+      this.numRecordsToDisplay = this.contents.body.rows.length;
     }
 
   }
@@ -1286,6 +1335,7 @@ export class YetiTable {
     }
 
     this.setFiltersActiveFlag(); // In case filters were programmatically updated (usually because the component consumer is keeping track of filter state on their end somehow)
+
   }
 
 }

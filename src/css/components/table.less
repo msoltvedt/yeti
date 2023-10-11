@@ -58,6 +58,11 @@ Styles for Table
     line-height: 1.42857;
 }
 
+.yeti-table__has_sticky_header .yeti-table-head {
+    position: sticky;
+    top: 0;
+}
+
 .yeti-table-heading {
     font-weight: 600;
     height: 100%;
@@ -107,6 +112,15 @@ Styles for Table
 .yeti-table-body .yeti-table-heading,
 .yeti-table-cell {
     vertical-align: middle;
+}
+
+.yeti-table-body-row:has(.yeti-radio:checked) {
+    background-color: #e0e0e0;
+}
+.yeti-table-body-row:has(.yeti-radio:checked):hover {
+    background-color: #d1d1d1;
+    border-top-color: #d1d1d1;
+    border-bottom-color: #d1d1d1;
 }
 
 

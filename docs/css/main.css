@@ -1898,6 +1898,63 @@ color:#525252;
 vertical-align: middle;
 line-height:1.5
 }
+
+
+
+/************************************** New Batch Verification Form ***/
+.nbv-select_material_spec-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  --nbv-select_material_spec-content-table_wrapper-bumper-height: 3.8125rem;
+}
+
+.nbv-select_material_spec-content-search {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.nbv-select_material_spec-content-search-field,
+.nbv-select_material_spec-content-search .yeti-input-wrapper {
+  width: 22.375rem;
+  flex: 0 0 22.375rem;
+}
+
+.nbv-select_material_spec-content-table_wrapper {
+  overflow-y: scroll;
+  flex: 1 1 auto;
+}
+
+.nbv-select_material_spec-content-table_wrapper-bumper {
+  position: sticky;
+  bottom: -1px; /* Chrome seems to leave a small gap otherwise */
+  top: calc(100% - var(--nbv-select_material_spec-content-table_wrapper-bumper-height));
+  width: 100%;
+  height: var(--nbv-select_material_spec-content-table_wrapper-bumper-height);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%);
+  margin-bottom: calc(-1 * var(--nbv-select_material_spec-content-table_wrapper-bumper-height));
+}
+
+
+/*** Material Spec Selection ***/
+.nbv-select_material_spec-selection {
+  margin-top: 2rem;
+  margin-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.nbv-select_material_spec-selection__inert {
+  color: rgba(22, 22, 22, 0.25);
+}
+
+.nbv-select_material_spec-selection-property-name {
+  font-weight: 600;
+  line-height: 1rem;
+}
   header {
     min-height: 3.75rem;
     align-items: center;
@@ -4896,6 +4953,10 @@ Styles for Modal
   .yeti-button-ghost.yeti-modal-header-close:hover {
     color: #161616;
   }
+  .yeti-button-ghost.yeti-modal-header-close:focus {
+    outline: 2px solid #0f62fe;
+    outline-offset: -2px;
+  }
   /************************************** Content ***/
   .yeti-modal-content {
     padding: 0 2rem;
@@ -5291,6 +5352,49 @@ Styles for Icon
  * Styles for Input
  *
 ****************************************************/
+  /************************************** Tag Passthrough ***/
+  yeti-input {
+    display: contents;
+  }
+  /************************************** Chrome Trying to Become the New IE? ***/
+  /* clears the stupid ‘X’ from Chrome */
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-results-button,
+  input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+  }
+  /************************************** Wrapper ***/
+  .yeti-input-wrapper {
+    position: relative;
+  }
+  /************************************** Clear Button ***/
+  .yeti-input-clear {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    background-color: #e0e0e0;
+    border: 0;
+    box-sizing: border-box;
+    color: #161616;
+    cursor: pointer;
+    letter-spacing: 0.16px;
+    background: transparent;
+    padding: 0;
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 1rem;
+  }
+  .yeti-input-clear__inert {
+    display: none;
+  }
+  .yeti-input-clear:focus {
+    outline: 2px solid #0f62fe;
+    outline-offset: -2px;
+  }
   /************************************** Text and Text-like ***/
   .yeti-input {
     /* Note: for the time being, this is basically just a copy of Carbon's input field */
@@ -5308,6 +5412,9 @@ Styles for Icon
     background-color: #f4f4f4;
     color: #161616;
     transition: background-color 70ms cubic-bezier(0.2, 0, 0.38, 0.9), outline 70ms cubic-bezier(0.2, 0, 0.38, 0.9);
+  }
+  .yeti-input:has(~ .yeti-input-clear) {
+    padding-right: 2.5rem;
   }
   .yeti-input:focus:not(.yeti-input__error) {
     outline: 2px solid #0f62fe;
@@ -6266,6 +6373,47 @@ Styles for Progress Bar
   .yeti-progress_bar__error .yeti-progress_bar-tip {
     color: #da1e28;
   }
+  /************************************** radio.less ***************************************
+
+Styles for Radio
+
+*************************************** radio.less **************************************/
+  /************************************** Credits ***/
+  /************************************** Wrapper ***/
+  yeti-radio {
+    display: contents;
+  }
+  .yeti-radio-wrapper:focus-within {
+    color: var(--radio-color);
+  }
+  .yeti-radio {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    /* Remove most all native input styles */
+    appearance: none;
+    /* For iOS < 15 */
+    background-color: white;
+    /* Not removed via appearance */
+    margin: 0;
+    box-sizing: border-box;
+    font: inherit;
+    color: currentColor;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23160000'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z'/%3E%3C/svg%3E");
+  }
+  .yeti-radio:checked {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23161616'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z'/%3E%3C/svg%3E");
+  }
+  .yeti-radio:focus {
+    outline: max(2px, 0.125rem) solid #0f62fe;
+    outline-offset: max(0.5px, 0.03125rem);
+  }
+  /************************************** Sizing ***/
+  .yeti-icon-size-small {
+    font-size: 1.125rem;
+  }
   /************************************** select.less ***************************************
 
 Styles for Select
@@ -6364,6 +6512,10 @@ Styles for Table
     letter-spacing: 0.01rem;
     line-height: 1.42857;
   }
+  .yeti-table__has_sticky_header .yeti-table-head {
+    position: sticky;
+    top: 0;
+  }
   .yeti-table-heading {
     font-weight: 600;
     height: 100%;
@@ -6405,6 +6557,14 @@ Styles for Table
   .yeti-table-body .yeti-table-heading,
   .yeti-table-cell {
     vertical-align: middle;
+  }
+  .yeti-table-body-row:has(.yeti-radio:checked) {
+    background-color: #e0e0e0;
+  }
+  .yeti-table-body-row:has(.yeti-radio:checked):hover {
+    background-color: #d1d1d1;
+    border-top-color: #d1d1d1;
+    border-bottom-color: #d1d1d1;
   }
   /************************************** Row and Cell States ***/
   .yeti-table-body-row__selected {
@@ -7091,6 +7251,10 @@ Styles for Tooltip
   }
   .yeti-layout-row-space_between {
     justify-content: space-between;
+  }
+  /*** Shorthands ***/
+  .yeti-layout-inflexible {
+    flex: 0 0 auto;
   }
   /************************************** Gaps ***/
   /*** All Sides ***/
@@ -7908,6 +8072,9 @@ Styles for Tooltip
   .yeti-width-10 {
     width: 2.5rem;
   }
+  .yeti-width-12 {
+    width: 3rem;
+  }
   .yeti-width-40 {
     width: 10rem;
   }
@@ -8003,6 +8170,59 @@ Styles for Tooltip
   .yeti-size-128 {
     width: 32rem;
     height: 32rem;
+  }
+  /************************************** Both ***/
+  .yeti-size-min-0 {
+    min-width: 0;
+    min-height: 0;
+  }
+  .yeti-size-min-1 {
+    min-width: 0.25rem;
+    min-height: 0.25rem;
+  }
+  .yeti-size-min-2 {
+    min-width: 0.5rem;
+    min-height: 0.5rem;
+  }
+  .yeti-size-min-3 {
+    min-width: 0.75rem;
+    min-height: 0.75rem;
+  }
+  .yeti-size-min-4 {
+    min-width: 1rem;
+    min-height: 1rem;
+  }
+  .yeti-size-min-5 {
+    min-width: 1.25rem;
+    min-height: 1.25rem;
+  }
+  .yeti-size-min-6 {
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+  }
+  .yeti-size-min-7 {
+    min-width: 1.75rem;
+    min-height: 1.75rem;
+  }
+  .yeti-size-min-8 {
+    min-width: 2rem;
+    min-height: 2rem;
+  }
+  .yeti-size-min-9 {
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+  }
+  .yeti-size-min-10 {
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+  }
+  .yeti-size-min-40 {
+    min-width: 10rem;
+    min-height: 10rem;
+  }
+  .yeti-size-min-128 {
+    min-width: 32rem;
+    min-height: 32rem;
   }
   /************************************** a11y.less **************************************
 

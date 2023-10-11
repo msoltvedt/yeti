@@ -1,10 +1,11 @@
 import { r as registerInstance, a as createEvent, h, g as getElement } from './index-d74f5b26.js';
-import { u as utils } from './utils-146a2098.js';
+import { u as utils } from './utils-b92a1748.js';
 
 const YetiTable = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.rowActionClick = createEvent(this, "rowActionClick", 7);
+    this.cellRadioChange = createEvent(this, "cellRadioChange", 7);
     this.tableSort = createEvent(this, "tableSort", 7);
     this.tableFilter = createEvent(this, "tableFilter", 7);
     this.tablePaginate = createEvent(this, "tablePaginate", 7);
@@ -91,6 +92,12 @@ const YetiTable = class {
     this.rowActionClick.emit({
       "rowIndex": rowIndex,
       "actionLabel": newValue
+    });
+  }
+  handleCellRadioChange(cell) {
+    this.cellRadioChange.emit({
+      "row": this.contents.body.rows[cell.rowIndex],
+      "cell": cell
     });
   }
   setFiltersActiveFlag() {
@@ -432,6 +439,10 @@ const YetiTable = class {
     if (cell.rowActions) {
       return this.renderRowActionsCell(cell);
     }
+    // See if it's a radio cell
+    if (cell.isRadio) {
+      return this.renderRadioCell(cell);
+    }
     // See if it's a th
     if (cell.isHeading) {
       return this.renderTableHeading(cell);
@@ -495,6 +506,17 @@ const YetiTable = class {
       control = h("yeti-menu-button", { "menu-alignment": "right", "data-row-index": cell.rowIndex, "data-times-updated": `${timesUpdated}`, id: controlId, key: controlId, tooltipText: "Row actions" }, actions);
       return h("td", { class: css, id: cell.id, key: cell.id }, control);
     }
+  }
+  renderRadioCell(cell) {
+    let css = (cell.cssClass && cell.cssClass != "") ?
+      " " + cell.cssClass :
+      "";
+    let radioName = `${this.tableId}_radios`;
+    let radioValue = `${radioName}_${cell.rowIndex}`;
+    let control = h("input", { type: "radio", class: "yeti-radio", name: radioName, value: radioValue, id: radioValue, onChange: () => {
+        this.handleCellRadioChange(cell);
+      } });
+    return h("td", { class: `yeti-table-cell yeti-table-control ${css}`, id: cell.id, key: cell.id }, control);
   }
   renderFilterClearCell(cell) {
     let css = (cell.cssClass && cell.cssClass != "") ?
@@ -716,11 +738,16 @@ const YetiTable = class {
     }
   }
   componentWillRender() {
+    let paginationComponentElement = this.el.querySelector("yeti-table-pagination");
     // If we're not paginating inside the component...
     if (!this.paginateSelf) {
       let recordsOnThisPage = this.paginationComponent.recordsDisplayed;
       // ...then we need to handle the case where we're on the last page, and we don't need to show all the records we got back.
       this.numRecordsToDisplay = recordsOnThisPage;
+    }
+    if (!paginationComponentElement) {
+      // If we're not paginating, then we need to ensure numRecordsDisplayed is equal to the number of total records.
+      this.numRecordsToDisplay = this.contents.body.rows.length;
     }
   }
   render() {

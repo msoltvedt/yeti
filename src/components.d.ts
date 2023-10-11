@@ -151,7 +151,11 @@ export namespace Components {
         /**
           * id of an outside HTML element pointed to by the actual input element's aria-describedby attribute.
          */
-        "describedBy": string;
+        "describedBy"?: string;
+        /**
+          * Text description of what the input is or does
+         */
+        "description"?: string;
         /**
           * CSS classlist applied to the actual HTML input element.
          */
@@ -169,9 +173,17 @@ export namespace Components {
          */
         "isValid": boolean;
         /**
+          * Standard old-school input placeholder
+         */
+        "placeholder"?: string;
+        /**
           * Whether the field is required to have a valid value or not.
          */
         "required": boolean;
+        /**
+          * What type of input element this is; defaults to "text".
+         */
+        "type"?: string;
         /**
           * The actual value of the input field.
          */
@@ -738,6 +750,10 @@ declare namespace LocalJSX {
          */
         "describedBy"?: string;
         /**
+          * Text description of what the input is or does
+         */
+        "description"?: string;
+        /**
           * CSS classlist applied to the actual HTML input element.
          */
         "inputClass"?: string;
@@ -762,9 +778,21 @@ declare namespace LocalJSX {
          */
         "onReadyToVerifySlow"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
         /**
+          * Event that fires when the field is a search field and the user hits the clear button within it.
+         */
+        "onSearchFieldClear"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
+        /**
+          * Standard old-school input placeholder
+         */
+        "placeholder"?: string;
+        /**
           * Whether the field is required to have a valid value or not.
          */
         "required"?: boolean;
+        /**
+          * What type of input element this is; defaults to "text".
+         */
+        "type"?: string;
         /**
           * The actual value of the input field.
          */
@@ -974,6 +1002,10 @@ declare namespace LocalJSX {
           * Placeholder text when filtering returns no matching records.
          */
         "noMatchesText"?: string;
+        /**
+          * Fires when an isRadio cell changes value.
+         */
+        "onCellRadioChange"?: (event: YetiTableCustomEvent<any>) => void;
         /**
           * Fires when user chooses an option from the optional Menu Button component.
          */

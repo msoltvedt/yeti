@@ -21,12 +21,13 @@
 
 ## Events
 
-| Event            | Description                                                                                                                                                                                             | Type               |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| `rowActionClick` | Fires when user chooses an option from the optional Menu Button component.                                                                                                                              | `CustomEvent<any>` |
-| `tableFilter`    | Fires when user updates a column filter. This only fires when filterSelf is false (i.e. some logic outside the component will handle filtering and presumably update the table's contents).             | `CustomEvent<any>` |
-| `tablePaginate`  | Fires when user chooses a different page of data. This only fires when paginateSelf is false (i.e. some logic outside the component will handle pagination and presumably update the table's contents). | `CustomEvent<any>` |
-| `tableSort`      | Fires when user clicks a sortable header. This only fires when sortSelf is false (i.e. some logic outside the component will handle sorting and presumably update the table's contents).                | `CustomEvent<any>` |
+| Event             | Description                                                                                                                                                                                             | Type               |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
+| `cellRadioChange` | Fires when an isRadio cell changes value.                                                                                                                                                               | `CustomEvent<any>` |
+| `rowActionClick`  | Fires when user chooses an option from the optional Menu Button component.                                                                                                                              | `CustomEvent<any>` |
+| `tableFilter`     | Fires when user updates a column filter. This only fires when filterSelf is false (i.e. some logic outside the component will handle filtering and presumably update the table's contents).             | `CustomEvent<any>` |
+| `tablePaginate`   | Fires when user chooses a different page of data. This only fires when paginateSelf is false (i.e. some logic outside the component will handle pagination and presumably update the table's contents). | `CustomEvent<any>` |
+| `tableSort`       | Fires when user clicks a sortable header. This only fires when sortSelf is false (i.e. some logic outside the component will handle sorting and presumably update the table's contents).                | `CustomEvent<any>` |
 
 
 ## Dependencies
