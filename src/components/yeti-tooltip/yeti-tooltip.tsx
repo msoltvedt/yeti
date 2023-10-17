@@ -69,14 +69,18 @@ export class YetiTooltip {
 
   @Listen('mouseover')
   handleSlotHover() {
-    this.scrollTooltipIntoView();
+    if (!this.clickToOpen) {
+      this.scrollTooltipIntoView();
+    }
   }
 
 
 
   @Listen('focusin')
   handleSlotFocus() {
-    this.scrollTooltipIntoView();
+    if (!this.clickToOpen) {
+      this.scrollTooltipIntoView();
+    }
   }
 
 
@@ -166,6 +170,26 @@ export class YetiTooltip {
       case "left":
 
         tipClass += " yeti-tooltip-left";
+        break;
+
+      case "below-left":
+
+        tipClass += " yeti-tooltip-below-left";
+        break;
+
+      case "below-right":
+
+        tipClass += " yeti-tooltip-below-right";
+        break;
+
+      case "above-left":
+
+        tipClass += " yeti-tooltip-above-left";
+        break;
+
+      case "above-right":
+
+        tipClass += " yeti-tooltip-above-right";
         break;
 
     }
