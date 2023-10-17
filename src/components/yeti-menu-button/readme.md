@@ -45,6 +45,7 @@
 ```mermaid
 graph TD;
   yeti-menu-button --> yeti-tooltip
+  yeti-tooltip --> yeti-icon
   yeti-table --> yeti-menu-button
   style yeti-menu-button fill:#f9f,stroke:#333,stroke-width:4px
 ```

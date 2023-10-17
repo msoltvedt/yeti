@@ -10,6 +10,7 @@
 | Property      | Attribute       | Description                                                                                                                    | Type      | Default                    |
 | ------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------ | --------- | -------------------------- |
 | `blockAnchor` | `block-anchor`  | Whether the anchor should be forced to be a CSS display block style or left as is.                                             | `boolean` | `false`                    |
+| `clickToOpen` | `click-to-open` | Token list to describe the tooltip's position relative to its anchor: left \| right and/or above \| below.                     | `boolean` | `false`                    |
 | `position`    | `position`      | Token list to describe the tooltip's position relative to its anchor: left \| right and/or above \| below.                     | `string`  | `"above"`                  |
 | `slotId`      | `slot-id`       | id of the component's slot element.                                                                                            | `string`  | `""`                       |
 | `text`        | `text`          | Text value to display as the tooltip's contents.                                                                               | `string`  | `"I'm a helpful tooltip."` |
@@ -26,9 +27,14 @@
  - [yeti-progress-bar](../yeti-progress-bar)
  - [yeti-table](../yeti-table)
 
+### Depends on
+
+- [yeti-icon](../yeti-icon)
+
 ### Graph
 ```mermaid
 graph TD;
+  yeti-tooltip --> yeti-icon
   yeti-menu-button --> yeti-tooltip
   yeti-progress-bar --> yeti-tooltip
   yeti-table --> yeti-tooltip

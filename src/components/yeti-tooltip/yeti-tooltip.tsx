@@ -30,6 +30,11 @@ export class YetiTooltip {
   @Prop() position: string = "above";
 
   /**
+   * Token list to describe the tooltip's position relative to its anchor: left | right and/or above | below.
+   */
+  @Prop() clickToOpen: boolean = false;
+
+  /**
    * id of the component's slot element.
    */
   @Prop({
@@ -55,6 +60,11 @@ export class YetiTooltip {
    */
   @State() iLoveJSX: boolean = false;
 
+  /**
+   * Whether the tooltip has been clicked open or not.
+   */
+  @State() isClickedOpen: boolean = false;
+
 
 
   @Listen('mouseover')
@@ -67,6 +77,42 @@ export class YetiTooltip {
   @Listen('focusin')
   handleSlotFocus() {
     this.scrollTooltipIntoView();
+  }
+
+
+
+  @Listen('click', {
+    target: 'body'
+  })
+  handleDeFocusingClick() {
+    this.isClickedOpen = false;
+  }
+
+
+
+  @Listen('click')
+  handleClick(e) {
+    e.stopImmediatePropagation(); // Intercept the click event before it gets to the body-level handler
+  }
+
+  
+
+  handleTriggerClick(e) {
+    if (this.clickToOpen) {
+      this.isClickedOpen = !this.isClickedOpen;
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      this.scrollTooltipIntoView();
+      return false;
+    }
+  }
+
+
+
+  handleCloseTooltipClick(e) {
+    this.isClickedOpen = false;
+    e.stopImmediatePropagation();
+    e.preventDefault();
   }
 
 
@@ -100,6 +146,9 @@ export class YetiTooltip {
     let wrapperCSS = 'yeti-tooltip-wrapper';
     let tipClass = 'yeti-tooltip';
 
+    tipClass += (this.isClickedOpen) ? ' yeti-tooltip__clicked_open' : '';
+
+    wrapperCSS += (this.clickToOpen) ? ' yeti-tooltip-wrapper-is_click_to_open' : '';
     wrapperCSS += (this.blockAnchor) ? ' yeti-tooltip-wrapper-has_block_anchor' : '';
 
     switch (this.position) {
@@ -124,14 +173,28 @@ export class YetiTooltip {
     return ([
       <div class={wrapperCSS}>
 
+      <div class="yeti-tooltip-trigger" onClick={(e) => this.handleTriggerClick(e)}>
+
+        <slot />
+
+      </div>
+
         <div class={tipClass}>
 
           <div class="yeti-tooltip-content" id={this.tipId}>{this.text}</div>
+
+          {
+            (this.clickToOpen) ?
+
+              <button class="yeti-tooltip-close" onClick={(e) => { this.handleCloseTooltipClick(e); }}>
+                <yeti-icon iconCode="close" iconCSS='yeti-color-white yeti-typo-size-5'></yeti-icon>
+              </button>
+
+            :
+              null
+          }
           
         </div>
-
-
-        <slot />
 
       </div>
     ]);
@@ -140,7 +203,7 @@ export class YetiTooltip {
 
 
   componentDidRender() {
-    let slot = this.el.querySelector(".yeti-tooltip").nextElementSibling;
+    let slot = this.el.querySelector(".yeti-tooltip-trigger").firstElementChild;
     slot.setAttribute("tabindex", "0");
     slot.setAttribute("aria-describedby",this.tipId);
   }

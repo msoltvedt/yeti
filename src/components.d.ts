@@ -437,6 +437,10 @@ export namespace Components {
         /**
           * Token list to describe the tooltip's position relative to its anchor: left | right and/or above | below.
          */
+        "clickToOpen": boolean;
+        /**
+          * Token list to describe the tooltip's position relative to its anchor: left | right and/or above | below.
+         */
         "position": string;
         /**
           * id of the component's slot element.
@@ -1080,6 +1084,10 @@ declare namespace LocalJSX {
           * Whether the anchor should be forced to be a CSS display block style or left as is.
          */
         "blockAnchor"?: boolean;
+        /**
+          * Token list to describe the tooltip's position relative to its anchor: left | right and/or above | below.
+         */
+        "clickToOpen"?: boolean;
         /**
           * Token list to describe the tooltip's position relative to its anchor: left | right and/or above | below.
          */

@@ -47,6 +47,7 @@ graph TD;
   yeti-table --> yeti-date-picker
   yeti-table --> yeti-multiselect
   yeti-menu-button --> yeti-tooltip
+  yeti-tooltip --> yeti-icon
   style yeti-table fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
