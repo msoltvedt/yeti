@@ -85,7 +85,12 @@ h4{
 
 textarea{
   resize: none;
+  cursor:text;
 
+}
+
+input{
+  cursor: text;
 }
 
 select:disabled{
@@ -1897,63 +1902,6 @@ background-color:#f4f4f4;
 color:#525252;
 vertical-align: middle;
 line-height:1.5
-}
-
-
-
-/************************************** New Batch Verification Form ***/
-.nbv-select_material_spec-content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  --nbv-select_material_spec-content-table_wrapper-bumper-height: 3.8125rem;
-}
-
-.nbv-select_material_spec-content-search {
-  flex: 0 0 auto;
-  display: flex;
-  gap: 0.25rem;
-  margin-bottom: 1.5rem;
-}
-
-.nbv-select_material_spec-content-search-field,
-.nbv-select_material_spec-content-search .yeti-input-wrapper {
-  width: 22.375rem;
-  flex: 0 0 22.375rem;
-}
-
-.nbv-select_material_spec-content-table_wrapper {
-  overflow-y: scroll;
-  flex: 1 1 auto;
-}
-
-.nbv-select_material_spec-content-table_wrapper-bumper {
-  position: sticky;
-  bottom: -1px; /* Chrome seems to leave a small gap otherwise */
-  top: calc(100% - var(--nbv-select_material_spec-content-table_wrapper-bumper-height));
-  width: 100%;
-  height: var(--nbv-select_material_spec-content-table_wrapper-bumper-height);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%);
-  margin-bottom: calc(-1 * var(--nbv-select_material_spec-content-table_wrapper-bumper-height));
-}
-
-
-/*** Material Spec Selection ***/
-.nbv-select_material_spec-selection {
-  margin-top: 2rem;
-  margin-left: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.nbv-select_material_spec-selection__inert {
-  color: rgba(22, 22, 22, 0.25);
-}
-
-.nbv-select_material_spec-selection-property-name {
-  font-weight: 600;
-  line-height: 1rem;
 }
   header {
     min-height: 3.75rem;
@@ -6891,6 +6839,9 @@ Styles for Tooltip
 
 *************************************** tooltip.less **************************************/
   /************************************** Wrapper ***/
+  yeti-tooltip {
+    display: contents;
+  }
   .yeti-tooltip-wrapper {
     position: relative;
     cursor: default;
@@ -6901,11 +6852,11 @@ Styles for Tooltip
   .yeti-tooltip-wrapper:is(.yeti-tooltip-wrapper-has_block_anchor) {
     display: block;
   }
-  /************************************** Slotted Content */
-  :not(.yeti-tooltip-wrapper-has_block_anchor) .yeti-tooltip-slot {
-    display: inline-block;
+  /************************************** Anchor/Trigger */
+  :not(.yeti-tooltip-wrapper-has_block_anchor) .yeti-tooltip-trigger {
+    display: inline-flex;
   }
-  .yeti-tooltip-wrapper-has_block_anchor .yeti-tooltip-slot {
+  .yeti-tooltip-wrapper-has_block_anchor .yeti-tooltip-trigger {
     display: block;
   }
   /************************************** Actual ***/
@@ -6927,7 +6878,7 @@ Styles for Tooltip
     line-height: 1.42857;
     z-index: 2;
   }
-  .yeti-tooltip-wrapper:not(:is(:focus-within, *:hover)) .yeti-tooltip {
+  .yeti-tooltip-wrapper:not(:is(:focus-within, *:hover)) .yeti-tooltip:not(.yeti-tooltip__clicked_open) {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -6938,12 +6889,57 @@ Styles for Tooltip
     white-space: nowrap;
     border: 0;
   }
+  .yeti-tooltip-wrapper.yeti-tooltip-wrapper-is_click_to_open:not(*.yeti-tooltip__clicked_open) .yeti-tooltip:not(.yeti-tooltip__clicked_open) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  /*** Trigger ***/
+  .yeti-tooltip-trigger {
+    display: inline-flex;
+  }
+  .yeti-tooltip-wrapper-is_click_to_open .yeti-tooltip-trigger {
+    cursor: pointer;
+  }
   /*** Content ***/
   .yeti-tooltip-content {
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    position: relative;
+  }
+  .yeti-tooltip-content:has(+ .yeti-tooltip-close) {
+    padding-right: 3rem;
+  }
+  /*** Close Button ***/
+  .yeti-tooltip-close {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    background-color: #e0e0e0;
+    box-sizing: border-box;
+    color: #161616;
+    cursor: pointer;
+    letter-spacing: 0.16px;
+    background-color: transparent;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    box-shadow: none;
+    position: absolute;
+    right: 0.25rem;
+    top: 0.25rem;
   }
   /*** Caret ***/
   .yeti-tooltip::after {

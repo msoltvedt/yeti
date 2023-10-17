@@ -7,6 +7,10 @@ Styles for Tooltip
 
 
 /************************************** Wrapper ***/
+yeti-tooltip {
+    display: contents;
+}
+
 .yeti-tooltip-wrapper {
     position: relative;
     cursor: default;
@@ -20,12 +24,12 @@ Styles for Tooltip
     display: block;
 }
 
-/************************************** Slotted Content */
-:not(.yeti-tooltip-wrapper-has_block_anchor) .yeti-tooltip-slot {
-    display: inline-block;
+/************************************** Anchor/Trigger */
+:not(.yeti-tooltip-wrapper-has_block_anchor) .yeti-tooltip-trigger {
+    display: inline-flex;
 }
 
-.yeti-tooltip-wrapper-has_block_anchor .yeti-tooltip-slot {
+.yeti-tooltip-wrapper-has_block_anchor .yeti-tooltip-trigger {
     display: block;
 }
 
@@ -55,8 +59,22 @@ Styles for Tooltip
     z-index: 2;
 }
 
-.yeti-tooltip-wrapper:not(:is(:focus-within, *:hover)) .yeti-tooltip {
+.yeti-tooltip-wrapper:not(:is(:focus-within, *:hover)) .yeti-tooltip:not(.yeti-tooltip__clicked_open) {
     .yeti-a11y-hidden();
+}
+
+.yeti-tooltip-wrapper.yeti-tooltip-wrapper-is_click_to_open:not(*.yeti-tooltip__clicked_open) .yeti-tooltip:not(.yeti-tooltip__clicked_open) {
+    .yeti-a11y-hidden();
+}
+
+
+/*** Trigger ***/
+.yeti-tooltip-trigger {
+    display: inline-flex;
+}
+
+.yeti-tooltip-wrapper-is_click_to_open .yeti-tooltip-trigger {
+    cursor: pointer;
 }
 
 
@@ -66,6 +84,28 @@ Styles for Tooltip
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;  
     overflow: hidden;
+    position: relative;
+}
+.yeti-tooltip-content:has(+ .yeti-tooltip-close) {
+    padding-right: 3rem;
+}
+
+
+/*** Close Button ***/
+.yeti-tooltip-close {
+    .yeti-mixin-button-vanilla();
+    background-color: transparent;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    box-shadow: none;
+    position: absolute;
+    right: 0.25rem;
+    top: 0.25rem;
 }
 
 

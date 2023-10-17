@@ -22,11 +22,13 @@
 ### Used by
 
  - [yeti-file-explorer](../yeti-file-explorer)
+ - [yeti-tooltip](../yeti-tooltip)
 
 ### Graph
 ```mermaid
 graph TD;
   yeti-file-explorer --> yeti-icon
+  yeti-tooltip --> yeti-icon
   style yeti-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

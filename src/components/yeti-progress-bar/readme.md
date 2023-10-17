@@ -31,6 +31,7 @@
 ```mermaid
 graph TD;
   yeti-progress-bar --> yeti-tooltip
+  yeti-tooltip --> yeti-icon
   style yeti-progress-bar fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
