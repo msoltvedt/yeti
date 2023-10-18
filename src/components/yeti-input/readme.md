@@ -7,18 +7,19 @@
 
 ## Properties
 
-| Property      | Attribute      | Description                                                                                        | Type      | Default                    |
-| ------------- | -------------- | -------------------------------------------------------------------------------------------------- | --------- | -------------------------- |
-| `describedBy` | `described-by` | id of an outside HTML element pointed to by the actual input element's aria-describedby attribute. | `string`  | `""`                       |
-| `description` | `description`  | Text description of what the input is or does                                                      | `string`  | `""`                       |
-| `inputClass`  | `input-class`  | CSS classlist applied to the actual HTML input element.                                            | `string`  | `''`                       |
-| `inputId`     | `input-id`     | id applied to the actual HTML input element.                                                       | `string`  | `utils.generateUniqueId()` |
-| `inputName`   | `input-name`   | name applied to the actual HTML input element. Defaults to match id.                               | `string`  | `this.inputId`             |
-| `isValid`     | `is-valid`     | Tracks whether the input's current value is valid or not.                                          | `boolean` | `undefined`                |
-| `placeholder` | `placeholder`  | Standard old-school input placeholder                                                              | `string`  | `""`                       |
-| `required`    | `required`     | Whether the field is required to have a valid value or not.                                        | `boolean` | `false`                    |
-| `type`        | `type`         | What type of input element this is; defaults to "text".                                            | `string`  | `"text"`                   |
-| `value`       | `value`        | The actual value of the input field.                                                               | `string`  | `''`                       |
+| Property      | Attribute         | Description                                                                                        | Type      | Default                    |
+| ------------- | ----------------- | -------------------------------------------------------------------------------------------------- | --------- | -------------------------- |
+| `describedBy` | `described-by`    | id of an outside HTML element pointed to by the actual input element's aria-describedby attribute. | `string`  | `""`                       |
+| `description` | `description`     | Text description of what the input is or does                                                      | `string`  | `""`                       |
+| `inputClass`  | `input-class`     | CSS classlist applied to the actual HTML input element.                                            | `string`  | `''`                       |
+| `inputId`     | `input-id`        | id applied to the actual HTML input element.                                                       | `string`  | `utils.generateUniqueId()` |
+| `inputName`   | `input-name`      | name applied to the actual HTML input element. Defaults to match id.                               | `string`  | `this.inputId`             |
+| `isValid`     | `is-valid`        | Tracks whether the input's current value is valid or not.                                          | `boolean` | `undefined`                |
+| `maxlength`   | `input-maxlength` | Optional attribute to set the maxlength of the field                                               | `number`  | `0`                        |
+| `placeholder` | `placeholder`     | Standard old-school input placeholder                                                              | `string`  | `""`                       |
+| `required`    | `required`        | Whether the field is required to have a valid value or not.                                        | `boolean` | `false`                    |
+| `type`        | `type`            | What type of input element this is; defaults to "text".                                            | `string`  | `"text"`                   |
+| `value`       | `value`           | The actual value of the input field.                                                               | `string`  | `''`                       |
 
 
 ## Events

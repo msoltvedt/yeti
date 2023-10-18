@@ -7,19 +7,20 @@
 
 ## Properties
 
-| Property             | Attribute       | Description                                                                                                                    | Type      | Default                               |
-| -------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------ | --------- | ------------------------------------- |
-| `autovalidate`       | `autovalidate`  | Determines whether the field should attempt to validate itself or merely pass through any readyToVerify events from its input. | `boolean` | `true`                                |
-| `defaultValue`       | `default-value` | Default value of the field's input.                                                                                            | `string`  | `''`                                  |
-| `errorMessage`       | `error-message` | Error message that appears when the field is invalid. Can be updated at any time.                                              | `string`  | `'Error: please correct this field.'` |
-| `fieldClass`         | `field-class`   | CSS classlist that will be assigned to the containing field element (probably a div).                                          | `string`  | `""`                                  |
-| `inputId`            | `input-id`      | id that will be assigned to the actual input element. A unique one will be assigned if one is not provided.                    | `string`  | `utils.generateUniqueId()`            |
-| `inputName`          | `input-name`    | name that will be assigned to the actual input element. id will be assigned if one is not provided.                            | `string`  | `this.inputId`                        |
-| `isValid`            | `is-valid`      | Whether the input is currently valid or invalid.                                                                               | `boolean` | `true`                                |
-| `label` _(required)_ | `label`         | Mandatory value for the label of the field.                                                                                    | `string`  | `undefined`                           |
-| `required`           | `required`      | Whether the field is required to have a valid value by the greater form.                                                       | `boolean` | `false`                               |
-| `tip`                | `tip`           | Value for the optional input tip that appears at the bottom of the field.                                                      | `string`  | `""`                                  |
-| `type`               | `type`          | type that will be assigned to the actual input element.                                                                        | `string`  | `"text"`                              |
+| Property             | Attribute         | Description                                                                                                                    | Type      | Default                               |
+| -------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------ | --------- | ------------------------------------- |
+| `autovalidate`       | `autovalidate`    | Determines whether the field should attempt to validate itself or merely pass through any readyToVerify events from its input. | `boolean` | `true`                                |
+| `defaultValue`       | `default-value`   | Default value of the field's input.                                                                                            | `string`  | `''`                                  |
+| `errorMessage`       | `error-message`   | Error message that appears when the field is invalid. Can be updated at any time.                                              | `string`  | `'Error: please correct this field.'` |
+| `fieldClass`         | `field-class`     | CSS classlist that will be assigned to the containing field element (probably a div).                                          | `string`  | `""`                                  |
+| `inputId`            | `input-id`        | id that will be assigned to the actual input element. A unique one will be assigned if one is not provided.                    | `string`  | `utils.generateUniqueId()`            |
+| `inputMaxlength`     | `input-maxlength` | maximum length for the field.                                                                                                  | `number`  | `0`                                   |
+| `inputName`          | `input-name`      | name that will be assigned to the actual input element. id will be assigned if one is not provided.                            | `string`  | `this.inputId`                        |
+| `isValid`            | `is-valid`        | Whether the input is currently valid or invalid.                                                                               | `boolean` | `true`                                |
+| `label` _(required)_ | `label`           | Mandatory value for the label of the field.                                                                                    | `string`  | `undefined`                           |
+| `required`           | `required`        | Whether the field is required to have a valid value by the greater form.                                                       | `boolean` | `false`                               |
+| `tip`                | `tip`             | Value for the optional input tip that appears at the bottom of the field.                                                      | `string`  | `""`                                  |
+| `type`               | `type`            | type that will be assigned to the actual input element.                                                                        | `string`  | `"text"`                              |
 
 
 ## Dependencies
