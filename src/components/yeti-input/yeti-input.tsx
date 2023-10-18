@@ -40,6 +40,11 @@ export class YetiInput {
   @Prop() inputName: string = this.inputId;
 
   /**
+   * Optional attribute to set the maxlength of the field
+   */
+  @Prop({ attribute: "input-maxlength"}) maxlength?: number = 0;
+
+  /**
    * Whether the field is required to have a valid value or not.
    */
   @Prop() required: boolean = false;
@@ -142,6 +147,7 @@ export class YetiInput {
           {...((this.describedBy != "") ? {"aria-describedby": this.describedBy} : {})}
           {...((this.description != "") ? {"aria-description": this.description} : {})}
           {...((this.placeholder != "") ? {"placeholder": this.placeholder} : {})}
+          {...((this.maxlength != 0) ? {"maxlength": this.maxlength} : {})}
         />
 
         <button class={clearButtonClass} onClick={(ev) => this.handleClearClick(ev)}>

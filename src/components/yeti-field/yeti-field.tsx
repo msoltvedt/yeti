@@ -26,6 +26,11 @@ export class YetiField {
    * CSS classlist that will be assigned to the containing field element (probably a div).
    */
   @Prop() fieldClass: string = "";
+
+  /**
+   * maximum length for the field.
+   */
+  @Prop() inputMaxlength?: number = 0;
   
   /**
    * Mandatory value for the label of the field.
@@ -158,6 +163,7 @@ export class YetiField {
               required={this.required}
               is-valid={this.isValid}
               described-by={this.tipId}
+              {...((this.inputMaxlength != 0) ? {"input-maxlength": this.inputMaxlength} : {})}
             ></yeti-input>
         }
         

@@ -78,6 +78,10 @@ export namespace Components {
          */
         "inputId": string;
         /**
+          * maximum length for the field.
+         */
+        "inputMaxlength"?: number;
+        /**
           * name that will be assigned to the actual input element. id will be assigned if one is not provided.
          */
         "inputName": string;
@@ -172,6 +176,10 @@ export namespace Components {
           * Tracks whether the input's current value is valid or not.
          */
         "isValid": boolean;
+        /**
+          * Optional attribute to set the maxlength of the field
+         */
+        "maxlength"?: number;
         /**
           * Standard old-school input placeholder
          */
@@ -676,6 +684,10 @@ declare namespace LocalJSX {
          */
         "inputId"?: string;
         /**
+          * maximum length for the field.
+         */
+        "inputMaxlength"?: number;
+        /**
           * name that will be assigned to the actual input element. id will be assigned if one is not provided.
          */
         "inputName"?: string;
@@ -773,6 +785,10 @@ declare namespace LocalJSX {
           * Tracks whether the input's current value is valid or not.
          */
         "isValid"?: boolean;
+        /**
+          * Optional attribute to set the maxlength of the field
+         */
+        "maxlength"?: number;
         /**
           * Event that fires when the user enters or changes the contents of the input field.
          */
