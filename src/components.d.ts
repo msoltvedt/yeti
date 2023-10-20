@@ -177,6 +177,10 @@ export namespace Components {
          */
         "isValid": boolean;
         /**
+          * id of an outside HTML element pointed to by the actual input element's aria-labeledby attribute.
+         */
+        "labeledBy"?: string;
+        /**
           * Optional attribute to set the maxlength of the field
          */
         "maxlength"?: number;
@@ -389,6 +393,10 @@ export namespace Components {
           * Determines whether to handle pagination (true) or just note the user requested it (false).
          */
         "paginateSelf": boolean;
+        /**
+          * Text that will be displayed in the table body when contents.body is empty.
+         */
+        "placeholderText": string;
         /**
           * Number of table records
          */
@@ -786,6 +794,10 @@ declare namespace LocalJSX {
          */
         "isValid"?: boolean;
         /**
+          * id of an outside HTML element pointed to by the actual input element's aria-labeledby attribute.
+         */
+        "labeledBy"?: string;
+        /**
           * Optional attribute to set the maxlength of the field
          */
         "maxlength"?: number;
@@ -1046,6 +1058,10 @@ declare namespace LocalJSX {
           * Determines whether to handle pagination (true) or just note the user requested it (false).
          */
         "paginateSelf"?: boolean;
+        /**
+          * Text that will be displayed in the table body when contents.body is empty.
+         */
+        "placeholderText"?: string;
         /**
           * Number of table records
          */

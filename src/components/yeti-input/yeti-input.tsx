@@ -71,6 +71,11 @@ export class YetiInput {
   }) value: string = '';
 
   /**
+   * id of an outside HTML element pointed to by the actual input element's aria-labeledby attribute.
+   */
+  @Prop() labeledBy?: string = "";
+
+  /**
    * id of an outside HTML element pointed to by the actual input element's aria-describedby attribute.
    */
   @Prop() describedBy?: string = "";
@@ -144,6 +149,7 @@ export class YetiInput {
           onKeyUp={(ev) => this.handleKeyUp(ev)}
           onBlur={(ev) => this.handleFieldBlur(ev)}
           aria-invalid={!this.isValid}
+          {...((this.labeledBy != "") ? {"aria-labelledby": this.labeledBy} : {})}
           {...((this.describedBy != "") ? {"aria-describedby": this.describedBy} : {})}
           {...((this.description != "") ? {"aria-description": this.description} : {})}
           {...((this.placeholder != "") ? {"placeholder": this.placeholder} : {})}

@@ -113,6 +113,11 @@ export class YetiTable {
   @Prop() paginateSelf: boolean = true;
 
   /**
+   * Text that will be displayed in the table body when contents.body is empty.
+   */
+  @Prop() placeholderText: string = "";
+
+  /**
    * Toggle this to force a re-render of the whole component.
    */
   @State() iLoveJSX: boolean = true;
@@ -975,15 +980,33 @@ export class YetiTable {
 
       case "text":
 
-        return <input 
-          type="text" 
-          value={cell.filtering.value}
-          class="yeti-input yeti-table-heading-filter-input" 
-          onKeyUp={(ev) => {
-            let that = ev.target as HTMLInputElement;
-            this.handleTextFilterChange(that, cell.columnIndex);
-          }}
-          aria-labelledby={headingLabelId} />;
+        return <div class="yeti-table-heading-filter-input-wrapper">
+        
+          {/* <input 
+            type="text" 
+            value={cell.filtering.value}
+            class="yeti-input yeti-table-heading-filter-input" 
+            onKeyUp={(ev) => {
+              let that = ev.target as HTMLInputElement;
+              this.handleTextFilterChange(that, cell.columnIndex);
+            }}
+            aria-labelledby={headingLabelId} /> */}
+
+          <yeti-input
+            type="search"
+            value={cell.filtering.value}
+            inputClass='yeti-table-heading-filter-input'
+            onKeyUp={(ev) => {
+              let that = ev.target as HTMLInputElement;
+              console.log("Key up in search field!");
+              this.handleTextFilterChange(that, cell.columnIndex);
+            }}
+            labeledBy={headingLabelId}
+          ></yeti-input>
+
+          <button class="yeti-table-heading-filter-input-button"><span class="material-icons" aria-hidden="true">search</span></button>
+          
+        </div>
 
 
       case "select":
@@ -1140,7 +1163,7 @@ export class YetiTable {
       let colspan = (!this.contents.head.rows[0] || !this.contents.head.rows[0].cells) ? 1 : this.contents.head.rows[0].cells.length;
       
       return <tr class="yeti-table-body-row">
-        <td class="yeti-table-cell" colSpan={colspan}>This table has no data.</td>
+        <td class="yeti-table-cell" colSpan={colspan}>{this.placeholderText}</td>
       </tr>
     }
 
