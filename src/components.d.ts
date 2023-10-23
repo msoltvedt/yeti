@@ -390,6 +390,10 @@ export namespace Components {
          */
         "noMatchesText": string;
         /**
+          * Placeholder text when filtering returns no matching records.
+         */
+        "noRecordsText": string;
+        /**
           * Determines whether to handle pagination (true) or just note the user requested it (false).
          */
         "paginateSelf": boolean;
@@ -1034,6 +1038,10 @@ declare namespace LocalJSX {
           * Placeholder text when filtering returns no matching records.
          */
         "noMatchesText"?: string;
+        /**
+          * Placeholder text when filtering returns no matching records.
+         */
+        "noRecordsText"?: string;
         /**
           * Fires when an isRadio cell changes value.
          */

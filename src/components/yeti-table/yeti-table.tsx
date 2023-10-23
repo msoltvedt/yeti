@@ -51,7 +51,12 @@ export class YetiTable {
   /**
    * Placeholder text when filtering returns no matching records.
    */
-  @Prop() noMatchesText: string = "No matches";
+  @Prop() noRecordsText: string = "No records";
+
+  /**
+   * Placeholder text when filtering returns no matching records.
+   */
+  @Prop() noMatchesText: string = "No records found matching your filter criteria";
 
   /**
    * Number of table records
