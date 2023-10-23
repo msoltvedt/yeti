@@ -443,9 +443,24 @@ export class YetiTable {
 
 
 
-  handleTextFilterChange(input: HTMLInputElement, columnIndex: number) {
+  handleTextFilterChange(e: KeyboardEvent, input: HTMLInputElement, columnIndex: number) {
 
-    // First make sure we're supposed to do this ourselves
+    // We're only interested in the enter key.
+    if (e.key != "Enter") {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      return false;
+    }
+    
+    // It was enter, so start searching
+    this.handleTextFilterSearch(input, columnIndex);
+
+  }
+
+
+
+  handleTextFilterSearch(input: HTMLInputElement, columnIndex: number) {
+    // First, make sure we're supposed to do this ourselves
     if (!this.filterSelf) {
 
       // Reset pagination current page to 0;
@@ -464,7 +479,20 @@ export class YetiTable {
     }
 
     this.setFiltersActiveFlag();
+  }
 
+
+
+  handleTextFilterButtonClick(e, input: HTMLInputElement, columnIndex: number) {
+    e.preventDefault();
+    this.handleTextFilterSearch(input, columnIndex);
+  }
+
+
+
+  handleTextFilterClear(input, columnIndex) {
+    input.value = ""; // There may be some lag in updating this from the component side; this is to be sure.
+    this.handleTextFilterSearch(input, columnIndex);
   }
 
 
@@ -980,6 +1008,8 @@ export class YetiTable {
 
       case "text":
 
+        let inputIdString = `yeti-table-filter-text-${cell.columnIndex}`;
+
         return <div class="yeti-table-heading-filter-input-wrapper">
         
           {/* <input 
@@ -998,13 +1028,17 @@ export class YetiTable {
             inputClass='yeti-table-heading-filter-input'
             onKeyUp={(ev) => {
               let that = ev.target as HTMLInputElement;
-              console.log("Key up in search field!");
-              this.handleTextFilterChange(that, cell.columnIndex);
+              this.handleTextFilterChange(ev, that, cell.columnIndex);
             }}
+            onSearchFieldClear={() => this.handleTextFilterClear(this.el.querySelector(`#${inputIdString}`), cell.columnIndex)}
+            inputId={inputIdString}
             labeledBy={headingLabelId}
           ></yeti-input>
 
-          <button class="yeti-table-heading-filter-input-button"><span class="material-icons" aria-hidden="true">search</span></button>
+          <button class="yeti-table-heading-filter-input-button" onClick={(ev) => {
+            ev.preventDefault();
+            this.handleTextFilterButtonClick(ev, this.el.querySelector(`#${inputIdString}`), cell.columnIndex);
+          }}><span class="material-icons" aria-hidden="true">search</span></button>
           
         </div>
 
