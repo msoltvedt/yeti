@@ -17,6 +17,19 @@
 | `size`         | `size`          | The optional size of the modal (other than the default). Options are xl, l, s, xs. | `string`  | `""`              |
 
 
+## Dependencies
+
+### Used by
+
+ - [yeti-unsaved-changes](../yeti-unsaved-changes)
+
+### Graph
+```mermaid
+graph TD;
+  yeti-unsaved-changes --> yeti-modal
+  style yeti-modal fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

@@ -774,10 +774,8 @@ pre {
 /*** New ***/
 .virtuoso-step-container {
   display: grid;
-  height: unset;
-  height:8.438rem;
   background-color: #f3f3f3;
-  grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(12.5rem, 15rem));
   background-image: 
     linear-gradient(to bottom, #707070, #707070 0.313rem, transparent 0.313rem),
     linear-gradient(to right, #707070, #707070 1px, transparent 1px);
@@ -1926,6 +1924,67 @@ background-color:#f4f4f4;
 color:#525252;
 vertical-align: middle;
 line-height:1.5
+}
+
+
+
+/************************************** New Batch Verification Form ***/
+.nbv-select_material_spec-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  --nbv-select_material_spec-content-table_wrapper-bumper-height: 3.8125rem;
+}
+
+.nbv-select_material_spec-content-search {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.nbv-select_material_spec-content-search-field,
+.nbv-select_material_spec-content-search .yeti-input-wrapper {
+  width: 22.375rem;
+  flex: 0 0 22.375rem;
+}
+
+.nbv-select_material_spec-content-table_wrapper {
+  overflow-y: scroll;
+  flex: 1 1 auto;
+}
+
+.nbv-select_material_spec-content-table_wrapper-bumper {
+  position: sticky;
+  bottom: -1px; /* Chrome seems to leave a small gap otherwise */
+  top: calc(100% - var(--nbv-select_material_spec-content-table_wrapper-bumper-height));
+  width: 100%;
+  height: var(--nbv-select_material_spec-content-table_wrapper-bumper-height);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%);
+  margin-bottom: calc(-1 * var(--nbv-select_material_spec-content-table_wrapper-bumper-height));
+}
+
+.nbv-selected_validation_type-audit .nbv-fieldset-material_spec {
+  display: none;
+}
+
+
+/*** Material Spec Selection ***/
+.nbv-select_material_spec-selection {
+  margin-top: 2rem;
+  margin-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.nbv-select_material_spec-selection__inert {
+  color: rgba(22, 22, 22, 0.25);
+}
+
+.nbv-select_material_spec-selection-property-name {
+  font-weight: 600;
+  line-height: 1rem;
 }
   header {
     min-height: 3.75rem;
@@ -6499,6 +6558,7 @@ Styles for Table
   .yeti-table-cell {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
+    line-height: 1.28572;
   }
   .yeti-table-heading:first-child:not(:has(.yeti-table-heading-compound)),
   .yeti-table-heading:first-child .yeti-table-heading-button,
@@ -6842,6 +6902,9 @@ Styles for Table
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  .yeti-table-heading-filter-input-wrapper {
+    display: flex;
+  }
   .yeti-table-cell.yeti-table-cell-clear,
   .yeti-table-heading.yeti-table-cell-clear {
     padding-bottom: 0.25rem;
@@ -6873,14 +6936,14 @@ Styles for Table
   .yeti-table-filter-clear-button:hover {
     background-color: #d1d1d1;
   }
-  .yeti-table-heading-filter :is(.yeti-input, .yeti-select, .yeti-multiselect, .yeti-date-button) {
+  .yeti-table-heading-filter :is(.yeti-input, .yeti-select, .yeti-multiselect, .yeti-date-button, .yeti-table-heading-filter-input-button) {
     background-color: white;
     border: 1px solid #525252;
   }
-  .yeti-table-heading-filter .yeti-date-button {
+  .yeti-table-heading-filter :is(.yeti-date-button, .yeti-table-heading-filter-input-button) {
     border-left: 0;
   }
-  .yeti-table-heading-filter :is(.yeti-input, .yeti-select, .yeti-multiselect, .yeti-date-button):hover {
+  .yeti-table-heading-filter :is(.yeti-input, .yeti-select, .yeti-multiselect, .yeti-date-button, .yeti-table-heading-filter-input-button):hover {
     background-color: #f4f4f4;
   }
   /************************************** Row Actions ***/

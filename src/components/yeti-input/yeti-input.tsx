@@ -158,7 +158,7 @@ export class YetiInput {
 
         <button class={clearButtonClass} onClick={(ev) => this.handleClearClick(ev)}>
           <span class="material-icons yeti-size-4 yeti-typo-size-4" aria-hidden="true">close</span>
-          <span class="yeti-a11y-hidden">clear</span>
+          <span class="yeti-a11y-hidden">Clear search input</span>
         </button>
         
 

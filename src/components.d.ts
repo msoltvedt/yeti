@@ -483,6 +483,20 @@ export namespace Components {
          */
         "wrapperCSS": string;
     }
+    interface YetiUnsavedChanges {
+        /**
+          * id of the form element we're watching
+         */
+        "formHasChanges": boolean;
+        /**
+          * id of the form element we're watching
+         */
+        "formId": string;
+        /**
+          * id of the form element we're watching
+         */
+        "isOpen": boolean;
+    }
 }
 export interface YetiDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -519,7 +533,18 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLYetiDatePickerElementEventMap {
+        "readyToVerifySlow": CustomEvent;
+    }
     interface HTMLYetiDatePickerElement extends Components.YetiDatePicker, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLYetiDatePickerElementEventMap>(type: K, listener: (this: HTMLYetiDatePickerElement, ev: YetiDatePickerCustomEvent<HTMLYetiDatePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLYetiDatePickerElementEventMap>(type: K, listener: (this: HTMLYetiDatePickerElement, ev: YetiDatePickerCustomEvent<HTMLYetiDatePickerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLYetiDatePickerElement: {
         prototype: HTMLYetiDatePickerElement;
@@ -531,7 +556,18 @@ declare global {
         prototype: HTMLYetiFieldElement;
         new (): HTMLYetiFieldElement;
     };
+    interface HTMLYetiFileExplorerElementEventMap {
+        "fileExplorerChange": any;
+    }
     interface HTMLYetiFileExplorerElement extends Components.YetiFileExplorer, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLYetiFileExplorerElementEventMap>(type: K, listener: (this: HTMLYetiFileExplorerElement, ev: YetiFileExplorerCustomEvent<HTMLYetiFileExplorerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLYetiFileExplorerElementEventMap>(type: K, listener: (this: HTMLYetiFileExplorerElement, ev: YetiFileExplorerCustomEvent<HTMLYetiFileExplorerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLYetiFileExplorerElement: {
         prototype: HTMLYetiFileExplorerElement;
@@ -543,7 +579,20 @@ declare global {
         prototype: HTMLYetiIconElement;
         new (): HTMLYetiIconElement;
     };
+    interface HTMLYetiInputElementEventMap {
+        "readyToVerifySlow": CustomEvent;
+        "readyToVerifyFast": CustomEvent;
+        "searchFieldClear": CustomEvent;
+    }
     interface HTMLYetiInputElement extends Components.YetiInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLYetiInputElementEventMap>(type: K, listener: (this: HTMLYetiInputElement, ev: YetiInputCustomEvent<HTMLYetiInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLYetiInputElementEventMap>(type: K, listener: (this: HTMLYetiInputElement, ev: YetiInputCustomEvent<HTMLYetiInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLYetiInputElement: {
         prototype: HTMLYetiInputElement;
@@ -555,7 +604,19 @@ declare global {
         prototype: HTMLYetiLoadingElement;
         new (): HTMLYetiLoadingElement;
     };
+    interface HTMLYetiMenuButtonElementEventMap {
+        "menuButtonChange": any;
+        "menuButtonSelectionMade": any;
+    }
     interface HTMLYetiMenuButtonElement extends Components.YetiMenuButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLYetiMenuButtonElementEventMap>(type: K, listener: (this: HTMLYetiMenuButtonElement, ev: YetiMenuButtonCustomEvent<HTMLYetiMenuButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLYetiMenuButtonElementEventMap>(type: K, listener: (this: HTMLYetiMenuButtonElement, ev: YetiMenuButtonCustomEvent<HTMLYetiMenuButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLYetiMenuButtonElement: {
         prototype: HTMLYetiMenuButtonElement;
@@ -567,7 +628,19 @@ declare global {
         prototype: HTMLYetiModalElement;
         new (): HTMLYetiModalElement;
     };
+    interface HTMLYetiMultiselectElementEventMap {
+        "readyToVerifySlow": CustomEvent;
+        "readyToVerifyFast": CustomEvent;
+    }
     interface HTMLYetiMultiselectElement extends Components.YetiMultiselect, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLYetiMultiselectElementEventMap>(type: K, listener: (this: HTMLYetiMultiselectElement, ev: YetiMultiselectCustomEvent<HTMLYetiMultiselectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLYetiMultiselectElementEventMap>(type: K, listener: (this: HTMLYetiMultiselectElement, ev: YetiMultiselectCustomEvent<HTMLYetiMultiselectElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLYetiMultiselectElement: {
         prototype: HTMLYetiMultiselectElement;
@@ -579,7 +652,22 @@ declare global {
         prototype: HTMLYetiProgressBarElement;
         new (): HTMLYetiProgressBarElement;
     };
+    interface HTMLYetiTableElementEventMap {
+        "rowActionClick": any;
+        "cellRadioChange": any;
+        "tableSort": any;
+        "tableFilter": any;
+        "tablePaginate": any;
+    }
     interface HTMLYetiTableElement extends Components.YetiTable, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLYetiTableElementEventMap>(type: K, listener: (this: HTMLYetiTableElement, ev: YetiTableCustomEvent<HTMLYetiTableElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLYetiTableElementEventMap>(type: K, listener: (this: HTMLYetiTableElement, ev: YetiTableCustomEvent<HTMLYetiTableElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLYetiTableElement: {
         prototype: HTMLYetiTableElement;
@@ -591,7 +679,18 @@ declare global {
         prototype: HTMLYetiTableActionsElement;
         new (): HTMLYetiTableActionsElement;
     };
+    interface HTMLYetiTablePaginationElementEventMap {
+        "paginationUpdated": any;
+    }
     interface HTMLYetiTablePaginationElement extends Components.YetiTablePagination, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLYetiTablePaginationElementEventMap>(type: K, listener: (this: HTMLYetiTablePaginationElement, ev: YetiTablePaginationCustomEvent<HTMLYetiTablePaginationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLYetiTablePaginationElementEventMap>(type: K, listener: (this: HTMLYetiTablePaginationElement, ev: YetiTablePaginationCustomEvent<HTMLYetiTablePaginationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLYetiTablePaginationElement: {
         prototype: HTMLYetiTablePaginationElement;
@@ -602,6 +701,12 @@ declare global {
     var HTMLYetiTooltipElement: {
         prototype: HTMLYetiTooltipElement;
         new (): HTMLYetiTooltipElement;
+    };
+    interface HTMLYetiUnsavedChangesElement extends Components.YetiUnsavedChanges, HTMLStencilElement {
+    }
+    var HTMLYetiUnsavedChangesElement: {
+        prototype: HTMLYetiUnsavedChangesElement;
+        new (): HTMLYetiUnsavedChangesElement;
     };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
@@ -619,6 +724,7 @@ declare global {
         "yeti-table-actions": HTMLYetiTableActionsElement;
         "yeti-table-pagination": HTMLYetiTablePaginationElement;
         "yeti-tooltip": HTMLYetiTooltipElement;
+        "yeti-unsaved-changes": HTMLYetiUnsavedChangesElement;
     }
 }
 declare namespace LocalJSX {
@@ -1153,6 +1259,20 @@ declare namespace LocalJSX {
          */
         "wrapperCSS"?: string;
     }
+    interface YetiUnsavedChanges {
+        /**
+          * id of the form element we're watching
+         */
+        "formHasChanges"?: boolean;
+        /**
+          * id of the form element we're watching
+         */
+        "formId"?: string;
+        /**
+          * id of the form element we're watching
+         */
+        "isOpen"?: boolean;
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
         "yeti-date-picker": YetiDatePicker;
@@ -1169,6 +1289,7 @@ declare namespace LocalJSX {
         "yeti-table-actions": YetiTableActions;
         "yeti-table-pagination": YetiTablePagination;
         "yeti-tooltip": YetiTooltip;
+        "yeti-unsaved-changes": YetiUnsavedChanges;
     }
 }
 export { LocalJSX as JSX };
@@ -1190,6 +1311,7 @@ declare module "@stencil/core" {
             "yeti-table-actions": LocalJSX.YetiTableActions & JSXBase.HTMLAttributes<HTMLYetiTableActionsElement>;
             "yeti-table-pagination": LocalJSX.YetiTablePagination & JSXBase.HTMLAttributes<HTMLYetiTablePaginationElement>;
             "yeti-tooltip": LocalJSX.YetiTooltip & JSXBase.HTMLAttributes<HTMLYetiTooltipElement>;
+            "yeti-unsaved-changes": LocalJSX.YetiUnsavedChanges & JSXBase.HTMLAttributes<HTMLYetiUnsavedChangesElement>;
         }
     }
 }

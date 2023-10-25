@@ -1880,6 +1880,7 @@ Styles for Table
   .yeti-table-cell {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
+    line-height: 1.28572;
   }
   .yeti-table-heading:first-child:not(:has(.yeti-table-heading-compound)),
   .yeti-table-heading:first-child .yeti-table-heading-button,
@@ -2223,6 +2224,9 @@ Styles for Table
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  .yeti-table-heading-filter-input-wrapper {
+    display: flex;
+  }
   .yeti-table-cell.yeti-table-cell-clear,
   .yeti-table-heading.yeti-table-cell-clear {
     padding-bottom: 0.25rem;
@@ -2254,14 +2258,14 @@ Styles for Table
   .yeti-table-filter-clear-button:hover {
     background-color: #d1d1d1;
   }
-  .yeti-table-heading-filter :is(.yeti-input, .yeti-select, .yeti-multiselect, .yeti-date-button) {
+  .yeti-table-heading-filter :is(.yeti-input, .yeti-select, .yeti-multiselect, .yeti-date-button, .yeti-table-heading-filter-input-button) {
     background-color: white;
     border: 1px solid #525252;
   }
-  .yeti-table-heading-filter .yeti-date-button {
+  .yeti-table-heading-filter :is(.yeti-date-button, .yeti-table-heading-filter-input-button) {
     border-left: 0;
   }
-  .yeti-table-heading-filter :is(.yeti-input, .yeti-select, .yeti-multiselect, .yeti-date-button):hover {
+  .yeti-table-heading-filter :is(.yeti-input, .yeti-select, .yeti-multiselect, .yeti-date-button, .yeti-table-heading-filter-input-button):hover {
     background-color: #f4f4f4;
   }
   /************************************** Row Actions ***/
