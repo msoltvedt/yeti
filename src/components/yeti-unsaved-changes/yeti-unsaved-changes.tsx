@@ -165,7 +165,7 @@ export class YetiUnsavedChanges {
   render() {
     return (
       <Host>
-        <yeti-modal heading="Unsaved Changes" id="modal1" described-by="modal1_description" isActive={this.isOpen}>
+        <yeti-modal heading="Unsaved Changes" id="modal1" described-by="modal1_description" isActive={this.isOpen} showClose={false}>
 
           <yeti-modal-content>
               <p id="modal1_description" class="yeti-margin-bottom-4">

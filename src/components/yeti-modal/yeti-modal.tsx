@@ -59,6 +59,11 @@ export class YetiModal {
     }
   }
 
+  /**
+   * Whether to show the Close icon (currently an X) or not
+   */
+  @Prop() showClose: boolean = true;
+
 
   previouslyFocusedElement: HTMLElement = null; // So we can return focus to wherever the user was when the Loading component appeared.
   bodyInnerWrapper: HTMLElement = null; // A div wrapped around everything in the body except the modal. Used to prevent background scrolling.
@@ -81,7 +86,7 @@ export class YetiModal {
   @Listen('keydown', { target: 'window'})
   focusTrap(e) {
 
-    if (this.isActive && e.keyCode == 27) { // Escape button
+    if (this.isActive && e.keyCode == 27 && this.showClose) { // Escape button
         this.isActive = false;    
     }
 
@@ -161,9 +166,19 @@ export class YetiModal {
         
                 <div class="yeti-modal-header">
                     <h1 class="yeti-modal-header-heading" id={this.headingId}>{this.heading}</h1>
-                    <button class="yeti-modal-header-close yeti-button-ghost" onClick={() => { this.isActive = false }}>
-                    <span class="material-icons">close</span>
-                    </button>
+
+                    {(this.showClose) ?
+
+                      <button class="yeti-modal-header-close yeti-button-ghost" onClick={() => { this.isActive = false }}>
+                      <span class="material-icons">close</span>
+                      </button>
+
+                    :
+
+                      null
+
+                    }
+                    
                 </div>
 
         

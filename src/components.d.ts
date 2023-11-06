@@ -280,6 +280,10 @@ export namespace Components {
          */
         "modalCSS": string;
         /**
+          * Whether to show the Close icon (currently an X) or not
+         */
+        "showClose": boolean;
+        /**
           * The optional size of the modal (other than the default). Options are xl, l, s, xs.
          */
         "size": string;
@@ -1026,6 +1030,10 @@ declare namespace LocalJSX {
           * Optional CSS classes to add to the modal element.
          */
         "modalCSS"?: string;
+        /**
+          * Whether to show the Close icon (currently an X) or not
+         */
+        "showClose"?: boolean;
         /**
           * The optional size of the modal (other than the default). Options are xl, l, s, xs.
          */
