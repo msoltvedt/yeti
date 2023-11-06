@@ -68,7 +68,5 @@ Finally, if the class uniquely corresponds to a specific browser event or state 
 
 Yeti should be installed in a folder right next to its big brother Orchestrator.
 
-To pull the latest from Orchestrator, update Orchestrator as usual, and then in Yeti run the Gulp task `gulp updateFromOrchestrator`. This will clean out Yeti's copy of Orchestrator's CSS, and replace it with a fresh set. Keep in mind that any changes to non-Yeti CSS should always be done in Orchestrator from a branch as usual, and then pulled into Yeti using the above command. Do not modify non-Yeti CSS in Yeti.
-
-Documentation for pushing from Yeti to Orchestrator will be coming soon after finalizing some CSS implementation details.
+Yeti's `gulp startup` command will automatically refresh your local copy with Orchestrator files. Keep in mind that any changes to non-Yeti CSS should always be done in Orchestrator from a branch as usual, and then pulled into Yeti using the above command. Do not modify non-Yeti CSS in Yeti. As you work, the gulp watcher that runs as part of `gulp startup` will automatically push your changes back to Orchestrator.
 
