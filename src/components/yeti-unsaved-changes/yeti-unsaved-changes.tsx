@@ -15,7 +15,7 @@ export class YetiUnsavedChanges {
   @Prop({ reflect: true }) formId: string = "";  
 
   /**
-   * id of the form element we're watching
+   * whether or not the form has changed since page load
    */
   @Prop({ 
     reflect: true,
@@ -23,7 +23,7 @@ export class YetiUnsavedChanges {
   }) formHasChanges: boolean = false; 
 
   /**
-   * id of the form element we're watching
+   * whether or not the Unsaved Changes modal is currently open
    */
   @Prop({ 
     reflect: true,

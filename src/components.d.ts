@@ -485,7 +485,7 @@ export namespace Components {
     }
     interface YetiUnsavedChanges {
         /**
-          * id of the form element we're watching
+          * whether or not the form has changed since page load
          */
         "formHasChanges": boolean;
         /**
@@ -493,7 +493,7 @@ export namespace Components {
          */
         "formId": string;
         /**
-          * id of the form element we're watching
+          * whether or not the Unsaved Changes modal is currently open
          */
         "isOpen": boolean;
     }
@@ -1261,7 +1261,7 @@ declare namespace LocalJSX {
     }
     interface YetiUnsavedChanges {
         /**
-          * id of the form element we're watching
+          * whether or not the form has changed since page load
          */
         "formHasChanges"?: boolean;
         /**
@@ -1269,7 +1269,7 @@ declare namespace LocalJSX {
          */
         "formId"?: string;
         /**
-          * id of the form element we're watching
+          * whether or not the Unsaved Changes modal is currently open
          */
         "isOpen"?: boolean;
     }

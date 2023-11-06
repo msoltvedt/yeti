@@ -423,7 +423,7 @@ export class YetiTable {
           if (aValue == bValue) {
             return 0;
           } else {
-            return (aValue < bValue) ? (-1 * sortModifier) : (1 * sortModifier);
+            return (aValue.toLowerCase() < bValue.toLowerCase()) ? (-1 * sortModifier) : (1 * sortModifier);
           }
         }
 
