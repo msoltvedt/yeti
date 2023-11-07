@@ -24,6 +24,8 @@ yeti-tooltip {
     display: block;
 }
 
+
+
 /************************************** Anchor/Trigger */
 :not(.yeti-tooltip-wrapper-has_block_anchor) .yeti-tooltip-trigger {
     display: inline-flex;
@@ -42,7 +44,6 @@ yeti-tooltip {
     width: max-content;
 
     min-height: min-content;
-    max-height: 7rem;
     height: max-content;
 
     background-color: #393939;
@@ -57,6 +58,9 @@ yeti-tooltip {
     line-height: 1.42857;
 
     z-index: 2;
+}
+:not(.yeti-tooltip-auto_height) .yeti-tooltip {
+    max-height: 7rem;
 }
 
 .yeti-tooltip-wrapper:not(:is(:focus-within, *:hover)) .yeti-tooltip:not(.yeti-tooltip__clicked_open) {
@@ -80,12 +84,15 @@ yeti-tooltip {
 
 /*** Content ***/
 .yeti-tooltip-content {
+    position: relative;
+}
+:not(.yeti-tooltip-auto_height) .yeti-tooltip-content {
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;  
     overflow: hidden;
-    position: relative;
 }
+
 .yeti-tooltip-content:has(+ .yeti-tooltip-close) {
     padding-right: 3rem;
 }
@@ -220,4 +227,18 @@ yeti-tooltip {
 .yeti-tooltip-above-right::after {
     right: 100%;
     transform: translate(1.25rem, 0.75rem) rotate(45deg);
+}
+
+
+
+/************************************** Special Cases */
+.yeti-tooltip-auto_height .yeti-tooltip {
+    max-height: unset;
+}
+
+.yeti-tooltip-auto_height .yeti-tooltip-content {
+    display: block;
+    -webkit-line-clamp: unset;
+    -webkit-box-orient: unset;
+    overflow: unset;
 }

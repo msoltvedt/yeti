@@ -150,6 +150,9 @@ export class YetiTooltip {
     let wrapperCSS = 'yeti-tooltip-wrapper';
     let tipClass = 'yeti-tooltip';
 
+    wrapperCSS += (this.wrapperCSS != '') ? ` ${this.wrapperCSS}` : '';
+    tipClass += (this.tooltipCSS != '') ? ` ${this.tooltipCSS}` : '';
+
     tipClass += (this.isClickedOpen) ? ' yeti-tooltip__clicked_open' : '';
 
     wrapperCSS += (this.clickToOpen) ? ' yeti-tooltip-wrapper-is_click_to_open' : '';
