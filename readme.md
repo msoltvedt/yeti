@@ -22,9 +22,11 @@ Once that's done, clone this repo to a folder called `yeti` in the same director
 
 ### Initializing Your Local Environment
 
-Once everything is installed, you'll want to open two Terminal windows in your local `yeti` directory (in VSCode, the Split Terminal option is ideal for this). In the first Terminal window, run `gulp startup`. This will pull files from your local copy of Orchestrator, update your local dev environment from your `src` directory, and initialize the Gulp watch tasks.
+The next step is to run your local build. In your local `yeti` directory, run `npm run build`.
 
-In the second Terminal window, run `npm run start` to initiate Stencil. This should start up a local dev server showing you a sparse index.html file with a link to a local copy of the pattern library.
+Once the build completes, you'll want to open two Terminal windows in your local `yeti` directory (in VSCode, the Split Terminal option is ideal for this). In the first Terminal window, run `gulp startup`. This will pull files from your local copy of Orchestrator, update your local dev environment from your `src` directory, and initialize the Gulp watch tasks.
+
+In the second Terminal window, after `gulp startup` has finished its initial startup, run `npm run start` to initiate Stencil. This should start up a local dev server showing you a sparse index.html file with a link to a local copy of the pattern library.
 
 You should only ever modify files in the `src` directory and only while these two tasks are running. If you forget and update something in `src/` while Gulp and Stencil are not running your changes should automatically appear in your local copy once you do those two startup tasks above. Modifications to files in other directories will eventually be overwritten by automated tasks and scripts, so do not make direct edits to them.
 
