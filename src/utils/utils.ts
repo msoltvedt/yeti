@@ -262,7 +262,8 @@ export interface YetiTableRow {
   cells: YetiTableCell[],
   rowIndex?: number,
   rowActionsJustChanged?: boolean,
-  detail?: object
+  detail?: object,
+  isSelected?: boolean
 }
 
 export interface YetiTableCell {

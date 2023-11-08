@@ -215,9 +215,18 @@ export class YetiTable {
 
 
   handleCellRadioChange(cell: YetiTableCell) {
+
+    let rows = this.contents.body.rows;
+    let row = rows[ cell.rowIndex ];
+
+    // Unselect the other rows
+    rows.forEach(row => row.isSelected = false);
+    row.isSelected = true;
+
+    this.iLoveJSX = !this.iLoveJSX;
     
     this.cellRadioChange.emit({
-      "row": this.contents.body.rows[ cell.rowIndex ],
+      "row": row,
       "cell": cell
     });
 
@@ -849,10 +858,20 @@ export class YetiTable {
 
     let radioName = `${this.tableId}_radios`;
     let radioValue = `${radioName}_${cell.rowIndex}`;
+    let row = this.contents.body.rows[cell.rowIndex];
+    let isRowChecked = (row.isSelected) ? true : false;
 
-    let control = <input type="radio" class="yeti-radio" name={radioName} value={radioValue} id={radioValue} onChange={() => {
-      this.handleCellRadioChange(cell);
-    }} />;
+    let control = <input 
+      type="radio" 
+      class="yeti-radio" 
+      name={radioName} 
+      value={radioValue} 
+      id={radioValue} 
+      onChange={() => {
+        this.handleCellRadioChange(cell);
+      }}
+      {...(isRowChecked ? {"checked": true} : {})} 
+    />;
 
     return <td class={`yeti-table-cell yeti-table-control ${css}`} id={cell.id} key={cell.id}>{control}</td>
     
@@ -1209,6 +1228,8 @@ export class YetiTable {
     for (let i = 0; i < this.contents.body.rows.length; i++) {
 
       const row = this.contents.body.rows[i];
+      let rowCSS = "yeti-table-body-row";
+      rowCSS += (row.isSelected) ? " yeti-table-body-row__selected" : "";
 
       if (this.doesRowPassFiltering(row)) {
 
@@ -1228,7 +1249,7 @@ export class YetiTable {
 
           ++numRowsPassedAfterStartIndex;
           tbodyContents.push( 
-            <tr class={"yeti-table-body-row"} id={row.id} key={row.id}>{this.renderRow(row)}</tr>
+            <tr class={rowCSS} id={row.id} key={row.id}>{this.renderRow(row)}</tr>
           );
 
         }
