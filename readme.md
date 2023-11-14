@@ -16,7 +16,7 @@ Stencil components are just Web Components, so they work in any major framework 
 
 ### Installation
 
-First, make sure you have NPM (>= version `8.11.0`) and `gulp-cli` (>= `2.3.0`) installed globally on your machine. 
+First, make sure you have NPM (>= version `8.11.0`) and `gulp-cli` (>= `2.3.0`) installed globally on your machine. I highly recommend [following Node's guidance](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) and installing Node via [NVM](https://github.com/nvm-sh/nvm).
 
 Once that's done, clone this repo to a folder called `yeti` in the same directory as your main `orchestrator` folder. Open up your new `yeti` folder in Terminal and run `npm install`.
 
