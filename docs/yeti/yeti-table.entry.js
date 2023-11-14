@@ -97,8 +97,14 @@ const YetiTable = class {
     });
   }
   handleCellRadioChange(cell) {
+    let rows = this.contents.body.rows;
+    let row = rows[cell.rowIndex];
+    // Unselect the other rows
+    rows.forEach(row => row.isSelected = false);
+    row.isSelected = true;
+    this.iLoveJSX = !this.iLoveJSX;
     this.cellRadioChange.emit({
-      "row": this.contents.body.rows[cell.rowIndex],
+      "row": row,
       "cell": cell
     });
   }
@@ -243,7 +249,7 @@ const YetiTable = class {
             return 0;
           }
           else {
-            return (aValue < bValue) ? (-1 * sortModifier) : (1 * sortModifier);
+            return (aValue.toLowerCase() < bValue.toLowerCase()) ? (-1 * sortModifier) : (1 * sortModifier);
           }
         }
         case "date": {
@@ -533,9 +539,11 @@ const YetiTable = class {
       "";
     let radioName = `${this.tableId}_radios`;
     let radioValue = `${radioName}_${cell.rowIndex}`;
-    let control = h("input", { type: "radio", class: "yeti-radio", name: radioName, value: radioValue, id: radioValue, onChange: () => {
+    let row = this.contents.body.rows[cell.rowIndex];
+    let isRowChecked = (row.isSelected) ? true : false;
+    let control = h("input", Object.assign({ type: "radio", class: "yeti-radio", name: radioName, value: radioValue, id: radioValue, onChange: () => {
         this.handleCellRadioChange(cell);
-      } });
+      } }, (isRowChecked ? { "checked": true } : {})));
     return h("td", { class: `yeti-table-cell yeti-table-control ${css}`, id: cell.id, key: cell.id }, control);
   }
   renderFilterClearCell(cell) {
@@ -699,6 +707,8 @@ const YetiTable = class {
     }
     for (let i = 0; i < this.contents.body.rows.length; i++) {
       const row = this.contents.body.rows[i];
+      let rowCSS = "yeti-table-body-row";
+      rowCSS += (row.isSelected) ? " yeti-table-body-row__selected" : "";
       if (this.doesRowPassFiltering(row)) {
         rowsThatPassFiltering.push(row);
         // row passes filtering. If...
@@ -711,7 +721,7 @@ const YetiTable = class {
             row.id = utils.generateUniqueId();
           }
           ++numRowsPassedAfterStartIndex;
-          tbodyContents.push(h("tr", { class: "yeti-table-body-row", id: row.id, key: row.id }, this.renderRow(row)));
+          tbodyContents.push(h("tr", { class: rowCSS, id: row.id, key: row.id }, this.renderRow(row)));
         }
       }
     }

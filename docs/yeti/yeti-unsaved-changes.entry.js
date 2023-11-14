@@ -91,7 +91,7 @@ const YetiUnsavedChanges = class {
     this.initializeNonPrompters();
   }
   render() {
-    return (h(Host, null, h("yeti-modal", { heading: "Unsaved Changes", id: "modal1", "described-by": "modal1_description", isActive: this.isOpen }, h("yeti-modal-content", null, h("p", { id: "modal1_description", class: "yeti-margin-bottom-4" }, "You have unsaved changes that will be lost."), h("p", null, "Are you sure you want to leave the page?")), h("yeti-modal-buttons", null, h("button", { class: "yeti-button yeti-button-primary", id: "unsavedChangesModalPrimaryButton", onClick: () => { this.handleModalPrimaryClick(); } }, "Yes, Discard Changes"), h("button", { class: "yeti-button yeti-button-secondary", id: "unsavedChangesModalSecondaryButton", onClick: () => { this.handleModalSecondaryClick(); } }, "No, Keep Editing")))));
+    return (h(Host, null, h("yeti-modal", { heading: "Unsaved Changes", id: "modal1", "described-by": "modal1_description", isActive: this.isOpen, showClose: false }, h("yeti-modal-content", null, h("p", { id: "modal1_description", class: "yeti-margin-bottom-4" }, "You have unsaved changes that will be lost."), h("p", null, "Are you sure you want to leave the page?")), h("yeti-modal-buttons", null, h("button", { class: "yeti-button yeti-button-primary", id: "unsavedChangesModalPrimaryButton", onClick: () => { this.handleModalPrimaryClick(); } }, "Yes, Discard Changes"), h("button", { class: "yeti-button yeti-button-secondary", id: "unsavedChangesModalSecondaryButton", onClick: () => { this.handleModalSecondaryClick(); } }, "No, Keep Editing")))));
   }
   get el() { return getElement(this); }
 };

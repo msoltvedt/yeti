@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property         | Attribute          | Description                           | Type      | Default |
-| ---------------- | ------------------ | ------------------------------------- | --------- | ------- |
-| `formHasChanges` | `form-has-changes` | id of the form element we're watching | `boolean` | `false` |
-| `formId`         | `form-id`          | id of the form element we're watching | `string`  | `""`    |
-| `isOpen`         | `is-open`          | id of the form element we're watching | `boolean` | `false` |
+| Property         | Attribute          | Description                                                | Type      | Default |
+| ---------------- | ------------------ | ---------------------------------------------------------- | --------- | ------- |
+| `formHasChanges` | `form-has-changes` | whether or not the form has changed since page load        | `boolean` | `false` |
+| `formId`         | `form-id`          | id of the form element we're watching                      | `string`  | `""`    |
+| `isOpen`         | `is-open`          | whether or not the Unsaved Changes modal is currently open | `boolean` | `false` |
 
 
 ## Dependencies

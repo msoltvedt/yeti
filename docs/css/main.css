@@ -93,12 +93,28 @@ input{
   cursor: text;
 }
 
+input[type=checkbox]{
+  cursor:pointer;
+}
+
+#saveButton, #cancelButton{
+  cursor: pointer;
+}
+
+.yeti-radio{
+  cursor:pointer
+}
+
 select:disabled{
 	color: #8d8d8d;
 }
 
 .bx--text-area {
   resize:none;
+}
+
+.radio-label{
+  cursor:pointer
 }
 
 
@@ -829,7 +845,7 @@ text-align:center;
   border-top:1.125rem solid #329B19;
   font-size:1.5rem;
   text-align:center;
-  padding: 0.938rem;
+  padding:0.75rem 0rem 0.75rem 0rem;
 }
 
 .virtuoso-large-status-cancel-fail{
@@ -839,7 +855,7 @@ text-align:center;
   border-top:1.125rem solid #DA1E28;
   font-size:1.5rem;
   text-align:center;
-  padding: 0.938rem;
+  padding:0.75rem 0rem 0.75rem 0rem;
 }
 
 .virtuoso-large-status-inc-pause{
@@ -849,7 +865,7 @@ text-align:center;
   border-top:1.125rem solid #F1C21B;
   font-size:1.5rem;
   text-align:center;
-  padding: 0.938rem;
+  padding:0.75rem 0rem 0.75rem 0rem;
 }
 
 .virtuoso-large-status-inc-queued{
@@ -859,7 +875,7 @@ text-align:center;
   border-top:1.125rem solid #6E6E6E;
   font-size:1.5rem;
   text-align:center;
-  padding: 0.938rem;
+  padding:0.75rem 0rem 0.75rem 0rem;
 }
 
 .virtuoso-large-status-progress{
@@ -869,7 +885,7 @@ text-align:center;
   border-top:1.125rem solid #0F61FD;
   font-size:1.5rem;
   text-align:center;
-  padding: 0.938rem;
+  padding:0.75rem 0rem 0.75rem 0rem;
 }
 
 .virtuoso-large-status-text{
@@ -6989,7 +7005,6 @@ Styles for Tooltip
     max-width: 18rem;
     width: max-content;
     min-height: min-content;
-    max-height: 7rem;
     height: max-content;
     background-color: #393939;
     color: white;
@@ -7001,6 +7016,9 @@ Styles for Tooltip
     letter-spacing: 0.01rem;
     line-height: 1.42857;
     z-index: 2;
+  }
+  :not(.yeti-tooltip-auto_height) .yeti-tooltip {
+    max-height: 7rem;
   }
   .yeti-tooltip-wrapper:not(:is(:focus-within, *:hover)) .yeti-tooltip:not(.yeti-tooltip__clicked_open) {
     position: absolute;
@@ -7033,11 +7051,13 @@ Styles for Tooltip
   }
   /*** Content ***/
   .yeti-tooltip-content {
+    position: relative;
+  }
+  :not(.yeti-tooltip-auto_height) .yeti-tooltip-content {
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    position: relative;
   }
   .yeti-tooltip-content:has(+ .yeti-tooltip-close) {
     padding-right: 3rem;
@@ -7162,6 +7182,16 @@ Styles for Tooltip
   .yeti-tooltip-above-right::after {
     right: 100%;
     transform: translate(1.25rem, 0.75rem) rotate(45deg);
+  }
+  /************************************** Special Cases */
+  .yeti-tooltip-auto_height .yeti-tooltip {
+    max-height: unset;
+  }
+  .yeti-tooltip-auto_height .yeti-tooltip-content {
+    display: block;
+    -webkit-line-clamp: unset;
+    -webkit-box-orient: unset;
+    overflow: unset;
   }
 }
 /************************************** Utilities ***/

@@ -15,6 +15,7 @@ const YetiModal = class {
     this.modalCSS = "";
     this.isScrollable = true;
     this.isActive = false;
+    this.showClose = true;
   }
   handleFocus(newValue) {
     // When the Loading becomes active it should take focus away from whatever had it before, but
@@ -39,7 +40,7 @@ const YetiModal = class {
     }
   }
   focusTrap(e) {
-    if (this.isActive && e.keyCode == 27) { // Escape button
+    if (this.isActive && e.keyCode == 27 && this.showClose) { // Escape button
       this.isActive = false;
     }
   }
@@ -90,7 +91,10 @@ const YetiModal = class {
     modalCSS += (this.size == "") ? "" : ` yeti-modal-size-${this.size}`;
     modalCSS += (this.modalCSS != "") ? ` ${this.modalCSS}` : "";
     modalCSS += (this.isScrollable) ? "" : " yeti-modal__unscrollable";
-    return (h("div", { class: modalOverlayCSS }, h("div", { class: "yeti-modal-bumper-front", tabIndex: 0 }), h("div", Object.assign({ class: modalCSS }, modalProperties), h("div", { class: "yeti-modal-header" }, h("h1", { class: "yeti-modal-header-heading", id: this.headingId }, this.heading), h("button", { class: "yeti-modal-header-close yeti-button-ghost", onClick: () => { this.isActive = false; } }, h("span", { class: "material-icons" }, "close"))), h("div", { class: "yeti-modal-content" }, h("slot", { name: "content" }), h("div", { class: "yeti-modal-content-fade" })), h("div", { class: "yeti-modal-actions" }, h("div", { class: "yeti-modal-actions-buttons" }, h("slot", { name: "buttons" })))), h("div", { class: "yeti-modal-bumper-back", tabIndex: 0 })));
+    return (h("div", { class: modalOverlayCSS }, h("div", { class: "yeti-modal-bumper-front", tabIndex: 0 }), h("div", Object.assign({ class: modalCSS }, modalProperties), h("div", { class: "yeti-modal-header" }, h("h1", { class: "yeti-modal-header-heading", id: this.headingId }, this.heading), (this.showClose) ?
+      h("button", { class: "yeti-modal-header-close yeti-button-ghost", onClick: () => { this.isActive = false; } }, h("span", { class: "material-icons" }, "close"))
+      :
+        null), h("div", { class: "yeti-modal-content" }, h("slot", { name: "content" }), h("div", { class: "yeti-modal-content-fade" })), h("div", { class: "yeti-modal-actions" }, h("div", { class: "yeti-modal-actions-buttons" }, h("slot", { name: "buttons" })))), h("div", { class: "yeti-modal-bumper-back", tabIndex: 0 })));
   }
   componentDidRender() {
     // Handle focus management. We can't do this when the property changes because the inactive state uses display: none,

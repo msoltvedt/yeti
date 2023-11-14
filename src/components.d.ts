@@ -280,7 +280,7 @@ export namespace Components {
          */
         "modalCSS": string;
         /**
-          * Whether to show the Close icon (currently an X) or not
+          * Choose to show the close icon (currently an X) or not
          */
         "showClose": boolean;
         /**
@@ -1031,7 +1031,7 @@ declare namespace LocalJSX {
          */
         "modalCSS"?: string;
         /**
-          * Whether to show the Close icon (currently an X) or not
+          * Choose to show the close icon (currently an X) or not
          */
         "showClose"?: boolean;
         /**

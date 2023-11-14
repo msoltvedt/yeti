@@ -60,7 +60,7 @@ export class YetiModal {
   }
 
   /**
-   * Whether to show the Close icon (currently an X) or not
+   * Choose to show the close icon (currently an X) or not
    */
   @Prop() showClose: boolean = true;
 

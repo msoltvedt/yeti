@@ -14,6 +14,7 @@
 | `isActive`     | `is-active`     | Tracks whether the Modal is displaying or not.                                     | `boolean` | `false`           |
 | `isScrollable` | `is-scrollable` | Whether overflowing contents are shown via scrolling or clipped.                   | `boolean` | `true`            |
 | `modalCSS`     | `modal-css`     | Optional CSS classes to add to the modal element.                                  | `string`  | `""`              |
+| `showClose`    | `show-close`    | Choose to show the close icon (currently an X) or not                              | `boolean` | `true`            |
 | `size`         | `size`          | The optional size of the modal (other than the default). Options are xl, l, s, xs. | `string`  | `""`              |
 
 
