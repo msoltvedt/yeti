@@ -87,6 +87,35 @@
         </div><!-- /code_sample -->
 
 
+        <h3 class="margin-bottom-2">Without Close Icon</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<a href="" id="trigger3">Click to open a modal with no close button</a>
+
+<yeti-modal heading="Modal Sans Close" id="modal3" show-close="false">
+    <yeti-modal-content>
+        I have no close button. Don't forget to make the buttons below do something; I did, and now you're stuck here. Forever.
+    </yeti-modal-content>
+    <yeti-modal-buttons>
+        <button class="yeti-button yeti-button-primary">Mu</button>
+        <button class="yeti-button yeti-button-ghost">Hahaha</button>
+    </yeti-modal-buttons>
+</yeti-modal>
+
+<script>
+    const trigger3 = document.getElementById("trigger3");
+    const modal3 = document.getElementById("modal3");
+
+    trigger3.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal3.isActive = true;
+    })
+</script>
+        </div><!-- /code_sample -->
+
+
 
         <h2 class="margin-bottom-3">Technical Notes</h2>
 
