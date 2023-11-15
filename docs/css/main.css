@@ -5162,6 +5162,7 @@ Styles for File Explorer
     grid-auto-columns: minmax(min-content, calc(100% / 3));
     grid-auto-flow: column;
     border-bottom: 1px solid #c6c6c6;
+    min-width: fit-content;
   }
   .yeti-file_explorer-folder {
     border-width: 0 1px 0 0;
@@ -5170,6 +5171,7 @@ Styles for File Explorer
     overflow-x: hidden;
     overflow-y: scroll;
     min-height: 100%;
+    position: relative;
   }
   .yeti-file_explorer-folder:last-child {
     border-right-width: 0;

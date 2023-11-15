@@ -288,12 +288,14 @@ export class YetiFileExplorer {
 
   componentDidRender() {
     // Scroll the last folder into view
-    let folderElements = this.el.querySelectorAll(".yeti-file_explorer-folder");
+    let foldersElement = this.el.querySelector(".yeti-file_explorer-folders");
 
-    if (folderElements && folderElements.length) {
-      folderElements[ folderElements.length-1 ].scrollIntoView({
+    if (foldersElement) {
+
+      foldersElement.scrollIntoView({
         behavior: "smooth",
-        block: "nearest"
+        block: "start",
+        inline: "end"
       });
     }
   }
