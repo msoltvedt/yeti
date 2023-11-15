@@ -383,6 +383,15 @@ export class YetiTable {
     }
     
     // We need to sort this ourselves
+    cell.sortDirection = (cell.sortDirection == "ascending") ? "descending" : "ascending";
+    this.sortContentsPerHeaderCell(cell);
+    this.iLoveJSX = !this.iLoveJSX; // this.render() doesn't work, and there's no this.forceUpdate() in Stencil
+
+  }
+
+
+
+  sortContentsPerHeaderCell(cell: YetiTableCell) {
     this.contents.body.rows.sort((a: YetiTableRow, b: YetiTableRow) => {
 
       // Get values to sort on.
@@ -394,7 +403,7 @@ export class YetiTable {
       let bType = utils.getStringifiedType(bValue);
 
       // Adjust for sort direction.
-      let sortModifier = (cell.sortDirection == "ascending") ? -1 : 1; // Always sort ascending unless we already are.
+      let sortModifier = (cell.sortDirection == "ascending") ? 1 : -1; // Always sort ascending unless we already are.
 
       // Handle mismatched types, first.
       if (aType != bType) {
@@ -449,10 +458,7 @@ export class YetiTable {
 
     });
 
-    cell.sortDirection = (cell.sortDirection == "ascending") ? "descending" : "ascending";
     this.setSortableOnCellsOtherThanTheOneWithThisIndex(cell.columnIndex);
-    this.iLoveJSX = !this.iLoveJSX; // this.render() doesn't work, and there's no this.forceUpdate() in Stencil
-
   }
 
 
@@ -1280,6 +1286,7 @@ export class YetiTable {
     let componentId = this.el.getAttribute("id");
     let paginationComponentElement = this.el.querySelector("yeti-table-pagination");
     let paginationId;
+    let headerCells = this.contents.head.rows[0].cells;
 
     // Initialize numRecordsToDisplay
     if (paginationComponentElement) {
@@ -1323,6 +1330,15 @@ export class YetiTable {
       paginationId = paginationComponentElement.getAttribute("id");
       paginationId = (paginationId && paginationId !== "") ? paginationId : `${componentId}_pagination`;
       paginationComponentElement.setAttribute("id", paginationId);
+    }
+
+    // Sort contents if necessary
+    for (let i = 0; i < headerCells.length; i++) {
+      let cell = headerCells[i];
+      if (cell.sortDirection && (cell.sortDirection == "ascending" || cell.sortDirection == "descending")) {
+        this.sortContentsPerHeaderCell(cell);
+        break; // Only sort via the first one (since there should be only one of them anyway)
+      }
     }
 
   }
