@@ -55,7 +55,7 @@ export class YetiUnsavedChanges {
 
       // We've already handled this case, so tell the browser not to prompt.
       this.weGotThis = false;
-      window.removeEventListener("beforeunload", this.handleBeforeUnload, { capture: true }); // For performance in Firefox
+      //window.removeEventListener("beforeunload", this.handleBeforeUnload, { capture: true }); // For performance in Firefox
       return undefined;
 
     }
@@ -77,8 +77,6 @@ export class YetiUnsavedChanges {
       this.isOpen = true;
 
     }
-
-    this.weGotThis = false; // Set this back to the default
     
   }
 
@@ -87,7 +85,6 @@ export class YetiUnsavedChanges {
   handleModalPrimaryClick = () => {
     let exit = this.clickedElementLeftHanging as HTMLElement;
     this.isOpen = false;
-    //window.removeEventListener("beforeunload", this.handleBeforeUnload, { capture: true }); // Remove browser prompt
     exit.removeEventListener("click", this.handleExitClick, true); // Remove our prompt
     exit.click(); // Proceed as if we never interrupted them
   }
@@ -96,6 +93,7 @@ export class YetiUnsavedChanges {
 
   handleModalSecondaryClick() {
     this.isOpen = false;
+    this.weGotThis = false;
   }
 
 
