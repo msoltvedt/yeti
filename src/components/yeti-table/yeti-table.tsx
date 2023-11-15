@@ -1286,7 +1286,7 @@ export class YetiTable {
     let componentId = this.el.getAttribute("id");
     let paginationComponentElement = this.el.querySelector("yeti-table-pagination");
     let paginationId;
-    let headerCells = this.contents.head.rows[0].cells;
+    let headerCells;
 
     // Initialize numRecordsToDisplay
     if (paginationComponentElement) {
@@ -1333,12 +1333,25 @@ export class YetiTable {
     }
 
     // Sort contents if necessary
-    for (let i = 0; i < headerCells.length; i++) {
-      let cell = headerCells[i];
-      if (cell.sortDirection && (cell.sortDirection == "ascending" || cell.sortDirection == "descending")) {
-        this.sortContentsPerHeaderCell(cell);
-        break; // Only sort via the first one (since there should be only one of them anyway)
+    if (this.sortSelf) {
+
+      if (this.contents &&
+          this.contents.head &&
+          this.contents.head.rows &&
+          this.contents.head.rows[0] &&
+          this.contents.head.rows[0].cells) {
+            
+        headerCells = this.contents.head.rows[0].cells;
+
+        for (let i = 0; i < headerCells.length; i++) {
+          let cell = headerCells[i];
+          if (cell.sortDirection && (cell.sortDirection == "ascending" || cell.sortDirection == "descending")) {
+            this.sortContentsPerHeaderCell(cell);
+            break; // Only sort via the first one (since there should be only one of them anyway)
+          }
+        }
       }
+
     }
 
   }
