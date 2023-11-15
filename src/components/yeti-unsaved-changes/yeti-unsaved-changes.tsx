@@ -77,6 +77,8 @@ export class YetiUnsavedChanges {
       this.isOpen = true;
 
     }
+
+    this.weGotThis = false; // Set this back to the default
     
   }
 
