@@ -553,7 +553,9 @@ export class YetiTable {
 
       this.tableFilter.emit({
         "columnIndex": columnIndex,
-        "value": picker.value
+        "value": picker.value,
+        "isValid": picker.isValid,
+        "control": picker
       });
     }
 
@@ -1122,6 +1124,7 @@ export class YetiTable {
           value={cell.filtering.value}
           id={filterId}
           key={filterId}
+          showErrorTooltip={true}
         ></yeti-date-picker>;
 
 

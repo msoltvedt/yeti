@@ -52,6 +52,14 @@ export namespace Components {
          */
         "required": boolean;
         /**
+          * If true, shows a Tooltip that elaborates on an existing error.
+         */
+        "showErrorTooltip": boolean;
+        /**
+          * The text to show in error tooltip (if it's used).
+         */
+        "tooltipText": string;
+        /**
           * The component's value.
          */
         "value": string;
@@ -463,6 +471,10 @@ export namespace Components {
          */
         "clickToOpen": boolean;
         /**
+          * Whether the tooltip should remain open permanently.
+         */
+        "forceOpen": boolean;
+        /**
           * Token list to describe the tooltip's position relative to its anchor: left | right and/or above | below.
          */
         "position": string;
@@ -779,6 +791,14 @@ declare namespace LocalJSX {
           * Whether the component is a required field.
          */
         "required"?: boolean;
+        /**
+          * If true, shows a Tooltip that elaborates on an existing error.
+         */
+        "showErrorTooltip"?: boolean;
+        /**
+          * The text to show in error tooltip (if it's used).
+         */
+        "tooltipText"?: string;
         /**
           * The component's value.
          */
@@ -1242,6 +1262,10 @@ declare namespace LocalJSX {
           * Token list to describe the tooltip's position relative to its anchor: left | right and/or above | below.
          */
         "clickToOpen"?: boolean;
+        /**
+          * Whether the tooltip should remain open permanently.
+         */
+        "forceOpen"?: boolean;
         /**
           * Token list to describe the tooltip's position relative to its anchor: left | right and/or above | below.
          */

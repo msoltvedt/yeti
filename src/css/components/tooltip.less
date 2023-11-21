@@ -63,11 +63,11 @@ yeti-tooltip {
     max-height: 7rem;
 }
 
-.yeti-tooltip-wrapper:not(:is(:focus-within, *:hover)) .yeti-tooltip:not(.yeti-tooltip__clicked_open) {
+.yeti-tooltip-wrapper:not(:is(:focus-within, *:hover)) .yeti-tooltip:not(.yeti-tooltip__clicked_open, .yeti-tooltip__forced_open) {
     .yeti-a11y-hidden();
 }
 
-.yeti-tooltip-wrapper.yeti-tooltip-wrapper-is_click_to_open:not(*.yeti-tooltip__clicked_open) .yeti-tooltip:not(.yeti-tooltip__clicked_open) {
+.yeti-tooltip-wrapper.yeti-tooltip-wrapper-is_click_to_open:not(*.yeti-tooltip__clicked_open) .yeti-tooltip:not(.yeti-tooltip__clicked_open, .yeti-tooltip__forced_open) {
     .yeti-a11y-hidden();
 }
 
