@@ -21,9 +21,16 @@ yeti-date-picker {
 
 /************************************** Field and Icon ***/
 .yeti-date-field {
-    padding: 0 0 0 1rem;
+    padding: 0 1rem;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.yeti-date .yeti-tooltip-wrapper,
+.yeti-date .yeti-tooltip-trigger {
+    flex: 1 1 auto;
+}
+.yeti-date-field.yeti-input__error {
+    padding-right: 2.25rem;
 }
 .yeti-date-field::placeholder {
     color: #161616;

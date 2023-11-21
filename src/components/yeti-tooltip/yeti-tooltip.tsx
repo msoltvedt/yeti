@@ -56,6 +56,11 @@ export class YetiTooltip {
   @Prop() blockAnchor: boolean = false;
 
   /**
+   * Whether the tooltip should remain open permanently.
+   */
+  @Prop() forceOpen: boolean = false;
+
+  /**
    * Toggle to force a re-render of the whole component.
    */
   @State() iLoveJSX: boolean = false;
@@ -154,6 +159,8 @@ export class YetiTooltip {
     tipClass += (this.tooltipCSS != '') ? ` ${this.tooltipCSS}` : '';
 
     tipClass += (this.isClickedOpen) ? ' yeti-tooltip__clicked_open' : '';
+
+    tipClass += (this.forceOpen) ? ' yeti-tooltip__forced_open' : '';
 
     wrapperCSS += (this.clickToOpen) ? ' yeti-tooltip-wrapper-is_click_to_open' : '';
     wrapperCSS += (this.blockAnchor) ? ' yeti-tooltip-wrapper-has_block_anchor' : '';

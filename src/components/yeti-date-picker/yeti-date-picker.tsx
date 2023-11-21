@@ -85,6 +85,16 @@ export class YetiDatePicker {
   }
 
   /**
+   * If true, shows a Tooltip that elaborates on an existing error.
+   */
+  @Prop() showErrorTooltip: boolean = false;
+
+  /**
+   * The text to show in error tooltip (if it's used).
+   */
+  @Prop() tooltipText: string = "Enter the date in mm/dd/yyyy format.";
+
+  /**
    * Tracks whether the user has interacted with the field (even if they don't select a value).
    */
   @State() isTouched: boolean = false;
@@ -544,6 +554,25 @@ export class YetiDatePicker {
 
 
 
+  renderInput(cssClasses: string = 'yeti-input yeti-date-field') {
+    
+    return <input 
+        type="text" 
+        class={cssClasses} 
+        id={this.inputId}
+        name={this.inputName}
+        value={this.value}
+        onBlur={(ev) => this.handleFieldBlur(ev)}
+        aria-invalid={!this.isValid}
+        placeholder="mm/dd/yyyy"
+        autocomplete="off"
+        {...((this.labelledBy != "") ? {"aria-labelledBy": this.labelledBy} : {})}
+        {...((this.describedBy != "") ? {"aria-describedby": this.describedBy} : {})}
+    />
+  }
+
+
+
   componentWillLoad() {
 
     // Set up ids
@@ -559,35 +588,6 @@ export class YetiDatePicker {
     this.pickerHeading = `${componentId}_pickerHeading`;
 
     this.watchInputValue();
-  }
-
-
-
-  componentDidRender() {
-    // Set the focus on either the selected date or today's date, in that order of preference.
-    if (this.isPickerVisible) {
-
-        let td = this.el.querySelector('.yeti-date-calendar-day[tabindex="0"]') as HTMLElement;
-        let picker = this.el.querySelector('.yeti-date-picker') as HTMLElement;
-
-        if (td && !this.keepFocusOnButton) {
-            td.scrollIntoView({
-                behavior: "smooth",
-                block: "nearest"
-            })
-            td.focus();
-        }
-
-        if (this.keepFocusOnButton) {
-            this.keepFocusOnButton = false;
-        }
-
-        picker.scrollIntoView({
-            behavior: "smooth",
-            block: "nearest"
-        });
-    }
-    
   }
 
 
@@ -608,19 +608,13 @@ export class YetiDatePicker {
 
         <div class="yeti-date">
 
-            <input 
-                type="text" 
-                class={cssClasses} 
-                id={this.inputId}
-                name={this.inputName}
-                value={this.value}
-                onBlur={(ev) => this.handleFieldBlur(ev)}
-                aria-invalid={!this.isValid}
-                placeholder="mm/dd/yyyy"
-                autocomplete="off"
-                {...((this.labelledBy != "") ? {"aria-labelledBy": this.labelledBy} : {})}
-                {...((this.describedBy != "") ? {"aria-describedby": this.describedBy} : {})}
-            />
+            {(this.showErrorTooltip && this.isValid == false) ? 
+                <yeti-tooltip text={this.tooltipText} position="below" forceOpen={true}>
+                    {this.renderInput(cssClasses)}
+                </yeti-tooltip>
+            :
+                this.renderInput(cssClasses)
+            }
 
             <button class="yeti-date-button" aria-label={this.getIconButtonLabel()} onClick={(ev) => { this.handleIconClick(ev); }}>
                 <span class="material-icons yeti-date-button-icon" aria-hidden="true">calendar_today</span>
@@ -707,6 +701,35 @@ export class YetiDatePicker {
         </div>
     );
 
+  }
+
+
+
+  componentDidRender() {
+    // Set the focus on either the selected date or today's date, in that order of preference.
+    if (this.isPickerVisible) {
+
+        let td = this.el.querySelector('.yeti-date-calendar-day[tabindex="0"]') as HTMLElement;
+        let picker = this.el.querySelector('.yeti-date-picker') as HTMLElement;
+
+        if (td && !this.keepFocusOnButton) {
+            td.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest"
+            })
+            td.focus();
+        }
+
+        if (this.keepFocusOnButton) {
+            this.keepFocusOnButton = false;
+        }
+
+        picker.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+    }
+    
   }
 
 }
