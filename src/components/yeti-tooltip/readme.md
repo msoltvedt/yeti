@@ -11,6 +11,7 @@
 | ------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------ | --------- | -------------------------- |
 | `blockAnchor` | `block-anchor`  | Whether the anchor should be forced to be a CSS display block style or left as is.                                             | `boolean` | `false`                    |
 | `clickToOpen` | `click-to-open` | Token list to describe the tooltip's position relative to its anchor: left \| right and/or above \| below.                     | `boolean` | `false`                    |
+| `forceOpen`   | `force-open`    | Whether the tooltip should remain open permanently.                                                                            | `boolean` | `false`                    |
 | `position`    | `position`      | Token list to describe the tooltip's position relative to its anchor: left \| right and/or above \| below.                     | `string`  | `"above"`                  |
 | `slotId`      | `slot-id`       | id of the component's slot element.                                                                                            | `string`  | `""`                       |
 | `text`        | `text`          | Text value to display as the tooltip's contents.                                                                               | `string`  | `"I'm a helpful tooltip."` |
@@ -23,6 +24,7 @@
 
 ### Used by
 
+ - [yeti-date-picker](../yeti-date-picker)
  - [yeti-menu-button](../yeti-menu-button)
  - [yeti-progress-bar](../yeti-progress-bar)
  - [yeti-table](../yeti-table)
@@ -35,6 +37,7 @@
 ```mermaid
 graph TD;
   yeti-tooltip --> yeti-icon
+  yeti-date-picker --> yeti-tooltip
   yeti-menu-button --> yeti-tooltip
   yeti-progress-bar --> yeti-tooltip
   yeti-table --> yeti-tooltip

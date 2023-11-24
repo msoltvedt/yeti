@@ -35,6 +35,8 @@
 graph TD;
   yeti-field --> yeti-date-picker
   yeti-field --> yeti-input
+  yeti-date-picker --> yeti-tooltip
+  yeti-tooltip --> yeti-icon
   style yeti-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
