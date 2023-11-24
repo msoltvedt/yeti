@@ -190,8 +190,7 @@ export class YetiTable {
 
         let multiselect = ev.target as YetiMultiselect;
 
-        if (ev.type == 'readyToVerifySlow') {
-          /* Note: readyToVerifyFast fires whenever yeti-multiselect changes selections, which is not what we want here. */
+        if (ev.type == 'readyToVerifyFast') {
           this.handleMultiselectFilterChange(multiselect, columnIndex);
         }
         return;

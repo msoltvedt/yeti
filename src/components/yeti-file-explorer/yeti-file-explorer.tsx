@@ -152,6 +152,84 @@ export class YetiFileExplorer {
 
 
 
+  handleItemKeyDown(event: KeyboardEvent, depth: number = 0, index: number = 0) {
+    // A folder or file was just clicked. Handle it.
+    
+    let htmlElement = event.target as HTMLElement;
+    let grandParentULElement = htmlElement.closest(".yeti-file_explorer-folder-items");
+    let siblingElements = grandParentULElement.querySelectorAll(".yeti-file_explorer-folder-item .yeti-file_explorer-folder-item-wrapper");
+    let indexOfSiblingToFocus;
+    let siblingToFocus;
+    let key = event.key.toLowerCase();
+    
+    switch (key) {
+
+      case "arrowdown": {
+        event.preventDefault();
+        indexOfSiblingToFocus = (index+1 >= this.path[depth].content.length)  ?  0  :  index + 1;
+        siblingToFocus = siblingElements[indexOfSiblingToFocus] as HTMLElement;
+        siblingToFocus.focus();
+        break;
+      }
+
+      case "arrowup": {
+        event.preventDefault();
+        indexOfSiblingToFocus = (index-1 < 0)  ?  this.path[depth].content.length - 1  :  index - 1;
+        siblingToFocus = siblingElements[indexOfSiblingToFocus] as HTMLElement;
+        siblingToFocus.focus();
+        break;
+      }
+
+
+      case "arrowright": {
+        
+        if (this.path[depth+1] && this.path[depth+1].content && this.path[depth+1].content.length > 0) {
+
+          let indexOfAncestor = (this.path[depth+1].selectedIndex > 0) ? this.path[depth+1].selectedIndex : 0;
+
+          event.preventDefault();
+          // Find the first button in the next column over and focus on it
+          siblingToFocus = (this.el.querySelectorAll(".yeti-file_explorer-folder-items")[depth+1].querySelectorAll(".yeti-file_explorer-folder-item .yeti-file_explorer-folder-item-wrapper")[indexOfAncestor] as HTMLElement);
+          siblingToFocus.focus();
+          siblingToFocus.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "nearest"
+          });
+
+        }
+
+        break;
+      }
+
+
+      case "arrowleft": {
+
+        if (depth > 0) {
+
+          let indexOfAncestor = this.path[depth-1].selectedIndex;
+
+          event.preventDefault();
+          // Focus on the item in the previous column that's in the path
+          siblingToFocus = (this.el.querySelectorAll(".yeti-file_explorer-folder-items")[depth-1].querySelectorAll(".yeti-file_explorer-folder-item .yeti-file_explorer-folder-item-wrapper")[indexOfAncestor] as HTMLElement)
+          siblingToFocus.focus();
+          siblingToFocus.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "nearest"
+          });
+
+        }
+
+        break;
+
+      }
+
+    }
+  }
+
+
+
   @Method()
   async newFolderObject() {
     let folder: YetiFileSystemItem = {
@@ -232,7 +310,7 @@ export class YetiFileExplorer {
 
       <li class="yeti-file_explorer-folder-item">
 
-          <button class={buttonCSS} onClick={() => { this.handleItemClick(depth, index); }} data-path={item.path}>
+          <button class={buttonCSS} onClick={() => { this.handleItemClick(depth, index); }} data-path={item.path} onKeyDown={(e) => { this.handleItemKeyDown(e, depth, index); }}>
 
               <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
             

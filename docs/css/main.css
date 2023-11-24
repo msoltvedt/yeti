@@ -101,6 +101,21 @@ input[type=checkbox]{
   cursor: pointer;
 }
 
+#license-footer{
+  position: fixed;
+  left: 2rem;
+  bottom: 1rem;
+  width: 50%;
+  text-align: left;
+}
+
+#version-footer{
+  position: fixed;
+  right: 2rem;
+  bottom: 1rem;
+  text-align: right;
+}
+
 .yeti-radio{
   cursor:pointer
 }
@@ -127,6 +142,9 @@ select:disabled{
   margin: 0.938rem 0rem 0.938rem 0rem;
 }
 
+.overflow-break{
+  overflow-wrap: break-word;
+}
 /* Grid */
 
 .bx--grid{
@@ -5496,9 +5514,16 @@ A control that helps the user choose a date.
   }
   /************************************** Field and Icon ***/
   .yeti-date-field {
-    padding: 0 0 0 1rem;
+    padding: 0 1rem;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  .yeti-date .yeti-tooltip-wrapper,
+  .yeti-date .yeti-tooltip-trigger {
+    flex: 1 1 auto;
+  }
+  .yeti-date-field.yeti-input__error {
+    padding-right: 2.25rem;
   }
   .yeti-date-field::placeholder {
     color: #161616;
@@ -7022,7 +7047,7 @@ Styles for Tooltip
   :not(.yeti-tooltip-auto_height) .yeti-tooltip {
     max-height: 7rem;
   }
-  .yeti-tooltip-wrapper:not(:is(:focus-within, *:hover)) .yeti-tooltip:not(.yeti-tooltip__clicked_open) {
+  .yeti-tooltip-wrapper:not(:is(:focus-within, *:hover)) .yeti-tooltip:not(.yeti-tooltip__clicked_open, .yeti-tooltip__forced_open) {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -7033,7 +7058,7 @@ Styles for Tooltip
     white-space: nowrap;
     border: 0;
   }
-  .yeti-tooltip-wrapper.yeti-tooltip-wrapper-is_click_to_open:not(*.yeti-tooltip__clicked_open) .yeti-tooltip:not(.yeti-tooltip__clicked_open) {
+  .yeti-tooltip-wrapper.yeti-tooltip-wrapper-is_click_to_open:not(*.yeti-tooltip__clicked_open) .yeti-tooltip:not(.yeti-tooltip__clicked_open, .yeti-tooltip__forced_open) {
     position: absolute;
     width: 1px;
     height: 1px;
