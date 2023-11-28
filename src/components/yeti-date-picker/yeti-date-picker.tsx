@@ -10,7 +10,7 @@ export class YetiDatePicker {
   @Element() el: HTMLElement;
 
   /**
-   * Fires when the user has chosen or entered a date and left (blurred from) the component.
+   * Fires when the user has chosen or entered a date and either hit the enter key or left (blurred from) the component.
    */
   @Event({ bubbles: true }) readyToVerifySlow: EventEmitter<CustomEvent>;
 
@@ -157,6 +157,7 @@ export class YetiDatePicker {
         // User hit shift+tab while focused on the first navigation button, which moves focus out of the picker.
         this.isPickerVisible = false;
         this.isTouched = true;
+
     } else if (ev.key == "Tab" &&
                ev.target.classList.contains('yeti-date-button') &&
                !this.isPickerVisible &&
@@ -166,6 +167,7 @@ export class YetiDatePicker {
         this.isTouched = true;
         this.watchInputValue();
     }
+    
   }
 
   // Used to manage focus when paging through different calendar month views via keyboard shortcuts
@@ -178,6 +180,18 @@ export class YetiDatePicker {
     let hyphensToSlashes = ev.target.value.replaceAll("-","/");
     this.isTouched = true;
     this.value = hyphensToSlashes;
+  }
+
+
+
+  handlePotentialEnterKeyPress(ev) {
+    
+    // If the user hits enter while in the input field, then want to 
+    if (ev.key == "Enter") {
+        let hyphensToSlashes = ev.target.value.replaceAll("-","/");
+        this.isTouched = true;
+        this.value = hyphensToSlashes;
+    }
   }
 
 
@@ -204,7 +218,7 @@ export class YetiDatePicker {
         // Return focus to the calendar icon
         icon.focus();
     }
-}
+  }
 
 
 
@@ -563,6 +577,7 @@ export class YetiDatePicker {
         name={this.inputName}
         value={this.value}
         onBlur={(ev) => this.handleFieldBlur(ev)}
+        onKeyPress={(ev) => this.handlePotentialEnterKeyPress(ev)}
         aria-invalid={!this.isValid}
         placeholder="mm/dd/yyyy"
         autocomplete="off"
