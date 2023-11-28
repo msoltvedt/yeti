@@ -631,7 +631,7 @@ export class YetiTable {
     // Check to see if each cell in the row passes filtering.
     for (let i=0; i<row.cells.length; i++) {
       if (!this.doesCellPassFiltering(row.cells[i])) {
-        console.error(`row ${row.rowIndex} failed filtering because of cell ${row.cells[i].value}`)
+        //console.error(`row ${row.rowIndex} failed filtering because of cell ${row.cells[i].value}`)
         return false;
       }
     }
@@ -1451,5 +1451,7 @@ export class YetiTable {
     this.setFiltersActiveFlag(); // In case filters were programmatically updated (usually because the component consumer is keeping track of filter state on their end somehow)
 
   }
+
+
 
 }

@@ -784,7 +784,7 @@ declare namespace LocalJSX {
          */
         "labelledBy"?: string;
         /**
-          * Fires when the user has chosen or entered a date and left (blurred from) the component.
+          * Fires when the user has chosen or entered a date and either hit the enter key or left (blurred from) the component.
          */
         "onReadyToVerifySlow"?: (event: YetiDatePickerCustomEvent<CustomEvent>) => void;
         /**
