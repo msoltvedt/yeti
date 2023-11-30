@@ -76,7 +76,7 @@ export const utils = {
 
 
   isConvertibleToDate: function(possibleDate: string) {
-    const re = /(\b[0-9]{1,4}(\/|\-)[0-9]{1,2}(\/|\-)[0-9]{2,4}\b)|((\w{3})\s\d)/g;
+    const re = /(^[0-9]{1,4}(\/|\-)[0-9]{1,2}(\/|\-)[0-9]{2,4}$)|(^((jan|Jan|JAN|january|January|JANUARY)|(feb|Feb|FEB|february|February|FEBRUARY)|(mar|Mar|MAR|march|March|MARCH)|(apr|Apr|APR|april|April|APRIL)|(may|May|MAY)|(jun|Jun|JUN|june|June|JUNE)|(jul|Jul|JUL|july|July|JULY)|(aug|Aug|AUG|august|August|AUGUST)|(sep|Sep|SEP|september|September|SEPTEMBER)|(oct|Oct|OCT|october|October|OCTOBER)|(nov|Nov|NOV|november|November|NOVEMBER)|(dec|Dec|DEC|december|December|DECEMBER))\s[0-9]{1,4}$)/g;
     if (possibleDate.search(re) > -1) {
       let dateObject = new Date(possibleDate);
       if (dateObject.toString() == "Invalid Date") {
@@ -92,12 +92,19 @@ export const utils = {
 
 
   isConvertibleToNumber: function(possibleNumber: string) {
-    let castedPossibility = this.castToNumber(possibleNumber.toString());
-    if (Number.isNaN(castedPossibility)) {
-      return false;
-    } else {
+    const re = /(^(((-|\+)?((\d)*(\.)?(\d)*)){1})$)/g;
+    // let castedPossibility = this.castToNumber(possibleNumber.toString());
+    possibleNumber = possibleNumber.replace(/,/g, "");
+    if (possibleNumber.search(re) > -1) {
       return true;
+    } else {
+      return false;
     }
+    // if (Number.isNaN(castedPossibility)) {
+    //   return false;
+    // } else {
+    //   return true;
+    // }
   },
 
 

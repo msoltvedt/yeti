@@ -16,7 +16,7 @@ Styles for Button
     display: inline-flex;
     max-width: 20rem;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis; // Note, this won't work while we're using display: inline-flex.
     white-space: nowrap;
     min-height: 3rem;
     flex-shrink: 0;
@@ -246,7 +246,7 @@ Styles for Button
 .yeti-button-group {
     display: grid;
     gap: 1rem;
-    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-columns: 1fr;
     grid-auto-flow: column;
     width: fit-content;
 }
@@ -257,5 +257,5 @@ Styles for Button
 }
 
 .yeti-button-group .yeti-button {
-    width: 100%;
+    flex: 1 0 100%;
 }

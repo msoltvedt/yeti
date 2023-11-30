@@ -1117,13 +1117,13 @@ text-align:center;
   font-feature-settings: 'liga';
 }
 .pass-icon{
-  color:#1A510B;
+  color:#24a148;
   font-size:1.25rem !important;
   text-align:center;
 }
 
 .fail-icon{
-  color:#94141B;
+  color:#da1e28;
   font-size:1.25rem !important;
   text-align:center;
 
@@ -6129,7 +6129,7 @@ Styles for Button
   .yeti-button-group {
     display: grid;
     gap: 1rem;
-    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-columns: 1fr;
     grid-auto-flow: column;
     width: fit-content;
   }
@@ -6138,7 +6138,7 @@ Styles for Button
     align-items: center;
   }
   .yeti-button-group .yeti-button {
-    width: 100%;
+    flex: 1 0 100%;
   }
   /************************************** loading.less ***************************************
 

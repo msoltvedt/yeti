@@ -123,7 +123,8 @@ export class YetiMenuButton {
 
 
   @Listen("click", {
-    target: "body"
+    target: "body",
+    capture: true
   })
   handleDefocusingClick() {
     if (this.el.querySelectorAll(":focus").length == 0 && this.isOpen) {

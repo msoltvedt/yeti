@@ -1417,7 +1417,7 @@ Styles for Button
   .yeti-button-group {
     display: grid;
     gap: 1rem;
-    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-columns: 1fr;
     grid-auto-flow: column;
     width: fit-content;
   }
@@ -1426,7 +1426,7 @@ Styles for Button
     align-items: center;
   }
   .yeti-button-group .yeti-button {
-    width: 100%;
+    flex: 1 0 100%;
   }
   /************************************** loading.less ***************************************
 
