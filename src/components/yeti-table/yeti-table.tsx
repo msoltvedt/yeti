@@ -391,6 +391,7 @@ export class YetiTable {
 
 
   sortContentsPerHeaderCell(cell: YetiTableCell) {
+
     this.contents.body.rows.sort((a: YetiTableRow, b: YetiTableRow) => {
 
       // Get values to sort on.

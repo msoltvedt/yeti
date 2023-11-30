@@ -46,6 +46,9 @@ task('watch').description = 'Watches for any changes to the non-JS source code, 
 task(cleanWWW);
 cleanWWW.description = 'Remove all Yeti stuff from WWW directory (leaving Stencil stuff)';
 
+task(cleanWWWJS);
+cleanWWW.description = 'Remove all Yeti JS from WWW directory';
+
 task(cleanDocs);
 cleanDocs.description = 'Remove everything from the GitHub Pages (/docs) directory';
 
@@ -136,7 +139,8 @@ function cleanWWW(cb) {
 }
 
 function cleanWWWJS(cb) {
-    return deleteAsync( ['www/**/yeti/*.js'])
+    console.log("In cleanWWWJS");
+    return deleteAsync( ['www/**/yeti/*.js*'])
 }
 
 function cleanDocs(cb) {
