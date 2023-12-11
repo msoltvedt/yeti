@@ -1,7 +1,7 @@
 {
   "name": "yeti",
   "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "description": "Yeti Component Library",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -12,7 +12,7 @@
   "unpkg": "dist/yeti/yeti.esm.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ionic-team/stencil-component-starter.git"
+    "url": "https://github.com/msoltvedt/yeti.git"
   },
   "files": [
     "dist/",
@@ -20,8 +20,8 @@
   ],
   "scripts": {
     "build": "stencil build --docs",
-    "start": "stencil build --dev --watch --serve",
-    "startProd": "stencil build --watch --serve",
+    "start": "stencil build --docs --dev --watch --serve",
+    "startProd": "stencil build --docs --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate"
