@@ -6,6 +6,7 @@ export const config: Config = {
     {
       type: 'dist',
       esmLoaderPath: '../loader',
+      isPrimaryPackageOutputTarget: true
     },
     /*{
       type: 'dist-custom-elements',
@@ -17,6 +18,7 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
   ],
+  validatePrimaryPackageOutputTarget: true,
   extras: {
     experimentalSlotFixes: true
   }
