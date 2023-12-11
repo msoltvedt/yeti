@@ -16,5 +16,8 @@ export const config: Config = {
       empty: false,
       serviceWorker: null, // disable service workers
     },
-  ]
+  ],
+  extras: {
+    experimentalSlotFixes: true
+  }
 };

@@ -32,70 +32,11 @@ export class YetiFileExplorer {
   /**
    * All the displayed folders in order from root to terminus
    */
-  @Prop({ mutable: true }) path: YetiFileSystemItem[] = /*[
-    {
-      name: "root",
-      content: [],
-      path: "//",
-      isFolder: true,
-      isRoot: true,
-      isSelected: true,
-      isTerminus: false,
-      selectedIndex: -1,
-      offset: 0,
-      pageSize: 1000,
-      totalElements: 0,
-      id: utils.generateUniqueId(),
-      type: "folder"
-    }
-  ];*/
+  @Prop({ mutable: true }) path: YetiFileSystemItem[] = 
   [
     {
       name: "root",
-      content: [
-        {
-          name: "subfolder1",
-          content: [],
-          path: "//subfolder1",
-          isFolder: true,
-          isRoot: false,
-          isSelected: false,
-          selectedIndex: -1,
-          offset: 0,
-          pageSize: 1000,
-          totalElements: 0,
-          id: utils.generateUniqueId(),
-          type: "folder"
-        },
-        {
-          name: "subfolder2",
-          content: [],
-          path: "//subfolder2",
-          isFolder: true,
-          isRoot: false,
-          isSelected: false,
-          selectedIndex: -1,
-          offset: 0,
-          pageSize: 1000,
-          totalElements: 0,
-          id: utils.generateUniqueId(),
-          type: "folder"
-        },
-        {
-          name: "subfolder3",
-          content: [],
-          path: "//subfolder3",
-          isFolder: true,
-          isRoot: false,
-          isSelected: false,
-          selectedIndex: -1,
-          offset: 0,
-          pageSize: 1000,
-          totalElements: 0,
-          id: utils.generateUniqueId(),
-          type: "folder"
-        },
-      ],
+      content: [],
       path: "",
       isFolder: true,
       isRoot: true,
@@ -103,11 +44,14 @@ export class YetiFileExplorer {
       selectedIndex: -1,
       offset: 0,
       pageSize: 1000,
-      totalElements: 3,
+      totalElements: 0,
       id: utils.generateUniqueId(),
       type: "folder"
     }
   ];
+
+
+
   @Watch("path")
   handlePathChange() {
     // TODO: validate the incoming path variable
