@@ -34,7 +34,7 @@ You can also run `gulp --tasks` to see a list of all available Gulp tasks.
 
 ### Updating GitHub Pages
 
-Once you're ready to push an update to the [public copy of the pattern library](https://msoltvedt.github.io/yeti/), run `gulp updateGithubPages`. This will update your local `docs` directory. Commit your changes, submit a PR, and once your PR is accepted and merged GitHub Pages will automatically update the site.
+GitHub Pages serves a copy of the demo pages from the docs directory. If you modify an HTML file while the `gulp startup` task is running the docs directory will automatically update.
 
 
 ## Naming Conventions
