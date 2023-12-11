@@ -319,6 +319,7 @@ export class YetiFileExplorer {
         block: "start",
         inline: "end"
       });
+
     }
   }
 
