@@ -37,6 +37,11 @@ You can also run `gulp --tasks` to see a list of all available Gulp tasks.
 GitHub Pages serves a copy of the demo pages from the docs directory. If you modify an HTML file while the `gulp startup` task is running the docs directory will automatically update.
 
 
+## Style Guide
+
+See the [Yeti Style Guide](style-guide.md) for guidance on code formatting.
+
+
 ## Naming Conventions
 
 ### HTML
