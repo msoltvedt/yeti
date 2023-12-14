@@ -137,3 +137,72 @@ Yeti does not use an automated code formatter, so this document should provide s
         .yeti-table__scrollable:focus {
           .yeti-mixin-focus-default();
         }
+
+## JS/TS
+
+1. Comment class properties and methods like this:
+
+        /**
+         * Fires when the selected value of the Menu Button becomes a different value.
+         */
+        @Event({ bubbles: true }) menuButtonChange: EventEmitter;
+
+2. In classes, follow this order when possible:
+      1. Properties
+      2. State properties
+      3. Events
+      4. Event handlers
+      5. Public methods
+      6. Private methods
+      7. (Stencil) lifecycle methods in chronological order (i.e. ComponentWillLoad comes before render)
+
+3. Put three empty lines between methods and named functions.
+
+4. Put one empty line on either side of control expressions (like if/else)...
+
+        case "enter": {
+        
+          // Check to see if the menu is open.
+          if (!this.isOpen) {
+            
+            ...
+   
+          }
+          
+          // Menu is already open, so the user just made a selection.
+          else {
+          
+            ...
+          
+          }
+          
+          break;
+        }
+
+5. ...unless it's very complex (or the whole section won't fit on screen at the same time), in which case use two empty lines:
+
+        if (isTellingUsToDoAllTehThings) {
+        
+          // ... All Teh Things
+        
+        }
+        
+        
+        else {
+        
+          // ... Some of the things
+        
+        }
+
+6. Put one empty line on either side of the variable initialization blocks at the top of functions:
+
+        parseChildTags() {
+        
+          let options = this.el.querySelectorAll("yeti-menu-button-option");
+          let buttonLabel = this.el.querySelector("yeti-menu-button-contents");
+          
+          // Something else
+   
+        }
+
+7. TSX should follow the HTML style guidelines above when possible.
