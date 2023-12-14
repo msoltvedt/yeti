@@ -65,5 +65,17 @@ Yeti does not use an automated code formatter, so this document should provide s
         </div><!-- /big_kahuna -->
 
 
-## CSS
+## CSS/Less
+
+1. Use the following header at the top of each file so we can debug compiled files:
+   
+        /************************************** table.less ***************************************
+
+        Styles for Table
+
+        *************************************** table.less **************************************/
+
+2. Use the following subheader to denote a section:
+
+        /************************************** Basic Table Styles ***/
 
