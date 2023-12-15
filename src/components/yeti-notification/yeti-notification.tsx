@@ -10,29 +10,15 @@ export class YetiTooltip {
   @Element() el: HTMLElement;
 
 
-    /**
+  /**
    * CSS classlist to add to the element serving as the component's wrapper.
    */
-    // @Prop({ attribute: 'wrapper-class'}) wrapperCSS: string = '';
-     @Prop() wrapperCSS: string = "";
-
-
+  @Prop({ attribute: 'wrapper-class'}) wrapperCSS: string = '';
 
   /**
-   * Text value to display as the notification contents.
+   * Text value to display as the notification's title.
    */
-  @Prop() text: string = "I'm helpful instructional text that will enlighten users.";
-
-   /**
-   * Text value to display as the tooltip's contents.
-   */
-    @Prop() texttitle: string = "Mmmm Toast!";
-
-
-  /**
-   * Token list to describe the tooltip's position relative to its anchor: left | right and/or above | below.
-   */
-  @Prop() clickToOpen: boolean = false;
+  @Prop() textTitle: string = "Mmmm Toast!";
 
   /**
    * id of the component's slot element.
@@ -52,7 +38,6 @@ export class YetiTooltip {
 
   
 
-
   /**
    * Toggle to force a re-render of the whole component.
    */
@@ -62,8 +47,6 @@ export class YetiTooltip {
    * Whether the tooltip has been clicked open or not.
    */
   @State() isClickedOpen: boolean = false;
-
-
 
 
 
@@ -81,11 +64,6 @@ export class YetiTooltip {
     e.stopImmediatePropagation();
     e.preventDefault();
   }
-
-
-
-
-
 
 
   componentWillLoad() {
@@ -110,23 +88,28 @@ export class YetiTooltip {
     return ([
       <div class={wrapperCSS}>
 
-      <div class="yeti-notification-container">
+        <div class="yeti-notification-container">
+          
           <div class="yeti-flex">
-          <yeti-icon iconCode="error" iconCSS='yeti-color-red yeti-typo-size-5 yeti-margin-right-2'></yeti-icon>
-      </div>
-      <div class="yeti-notification-content-wrapper">
-      <div class="yeti-notification-content-title" id={this.notificationId}>{this.texttitle}</div>
-      <div class="yeti-notification-content" id={this.notificationId}>{this.text}</div>
-      </div>
-            <button class="yeti-notification-close" onClick={(e) => { this.handleCloseClick(e); }}>
-                <yeti-icon iconCode="close" iconCSS='yeti-color-white yeti-typo-size-4'></yeti-icon>
-              </button>
+            <yeti-icon iconCode="error" iconCSS='yeti-color-red yeti-typo-size-5 yeti-margin-right-2'></yeti-icon>
+          </div>
 
-        <slot />
+          <div class="yeti-notification-content-wrapper">
+          
+            <div class="yeti-notification-content-title" id={this.notificationId}>{this.textTitle}</div>
+            <div class="yeti-notification-content" id={this.notificationId}>
 
-      </div>
+              <slot />
 
-      
+            </div>
+
+          </div>
+          
+          <button class="yeti-notification-close" onClick={(e) => { this.handleCloseClick(e); }}>
+            <yeti-icon iconCode="close" iconCSS='yeti-color-white yeti-typo-size-4'></yeti-icon>
+          </button>
+
+        </div>
 
       </div>
     ]);
