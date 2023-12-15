@@ -346,6 +346,24 @@ export namespace Components {
          */
         "value": string;
     }
+    interface YetiNotification {
+        /**
+          * id of the component's actual element corresponding to the tooltip. Will be auto-populated with a unique value if not provided.
+         */
+        "notificationId": string;
+        /**
+          * id of the component's slot element.
+         */
+        "slotId": string;
+        /**
+          * Text value to display as the notification's title.
+         */
+        "textTitle": string;
+        /**
+          * CSS classlist to add to the element serving as the component's wrapper.
+         */
+        "wrapperCSS": string;
+    }
     interface YetiProgressBar {
         /**
           * CSS classlist to add to the element representing the component's progress bar.
@@ -662,6 +680,12 @@ declare global {
         prototype: HTMLYetiMultiselectElement;
         new (): HTMLYetiMultiselectElement;
     };
+    interface HTMLYetiNotificationElement extends Components.YetiNotification, HTMLStencilElement {
+    }
+    var HTMLYetiNotificationElement: {
+        prototype: HTMLYetiNotificationElement;
+        new (): HTMLYetiNotificationElement;
+    };
     interface HTMLYetiProgressBarElement extends Components.YetiProgressBar, HTMLStencilElement {
     }
     var HTMLYetiProgressBarElement: {
@@ -735,6 +759,7 @@ declare global {
         "yeti-menu-button": HTMLYetiMenuButtonElement;
         "yeti-modal": HTMLYetiModalElement;
         "yeti-multiselect": HTMLYetiMultiselectElement;
+        "yeti-notification": HTMLYetiNotificationElement;
         "yeti-progress-bar": HTMLYetiProgressBarElement;
         "yeti-table": HTMLYetiTableElement;
         "yeti-table-actions": HTMLYetiTableActionsElement;
@@ -1117,6 +1142,24 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface YetiNotification {
+        /**
+          * id of the component's actual element corresponding to the tooltip. Will be auto-populated with a unique value if not provided.
+         */
+        "notificationId"?: string;
+        /**
+          * id of the component's slot element.
+         */
+        "slotId"?: string;
+        /**
+          * Text value to display as the notification's title.
+         */
+        "textTitle"?: string;
+        /**
+          * CSS classlist to add to the element serving as the component's wrapper.
+         */
+        "wrapperCSS"?: string;
+    }
     interface YetiProgressBar {
         /**
           * CSS classlist to add to the element representing the component's progress bar.
@@ -1316,6 +1359,7 @@ declare namespace LocalJSX {
         "yeti-menu-button": YetiMenuButton;
         "yeti-modal": YetiModal;
         "yeti-multiselect": YetiMultiselect;
+        "yeti-notification": YetiNotification;
         "yeti-progress-bar": YetiProgressBar;
         "yeti-table": YetiTable;
         "yeti-table-actions": YetiTableActions;
@@ -1338,6 +1382,7 @@ declare module "@stencil/core" {
             "yeti-menu-button": LocalJSX.YetiMenuButton & JSXBase.HTMLAttributes<HTMLYetiMenuButtonElement>;
             "yeti-modal": LocalJSX.YetiModal & JSXBase.HTMLAttributes<HTMLYetiModalElement>;
             "yeti-multiselect": LocalJSX.YetiMultiselect & JSXBase.HTMLAttributes<HTMLYetiMultiselectElement>;
+            "yeti-notification": LocalJSX.YetiNotification & JSXBase.HTMLAttributes<HTMLYetiNotificationElement>;
             "yeti-progress-bar": LocalJSX.YetiProgressBar & JSXBase.HTMLAttributes<HTMLYetiProgressBarElement>;
             "yeti-table": LocalJSX.YetiTable & JSXBase.HTMLAttributes<HTMLYetiTableElement>;
             "yeti-table-actions": LocalJSX.YetiTableActions & JSXBase.HTMLAttributes<HTMLYetiTableActionsElement>;
