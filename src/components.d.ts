@@ -348,10 +348,6 @@ export namespace Components {
     }
     interface YetiNotification {
         /**
-          * Token list to describe the tooltip's position relative to its anchor: left | right and/or above | below.
-         */
-        "clickToOpen": boolean;
-        /**
           * id of the component's actual element corresponding to the tooltip. Will be auto-populated with a unique value if not provided.
          */
         "notificationId": string;
@@ -360,13 +356,9 @@ export namespace Components {
          */
         "slotId": string;
         /**
-          * Text value to display as the notification contents.
+          * Text value to display as the notification's title.
          */
-        "text": string;
-        /**
-          * Text value to display as the tooltip's contents.
-         */
-        "texttitle": string;
+        "textTitle": string;
         /**
           * CSS classlist to add to the element serving as the component's wrapper.
          */
@@ -1152,10 +1144,6 @@ declare namespace LocalJSX {
     }
     interface YetiNotification {
         /**
-          * Token list to describe the tooltip's position relative to its anchor: left | right and/or above | below.
-         */
-        "clickToOpen"?: boolean;
-        /**
           * id of the component's actual element corresponding to the tooltip. Will be auto-populated with a unique value if not provided.
          */
         "notificationId"?: string;
@@ -1164,13 +1152,9 @@ declare namespace LocalJSX {
          */
         "slotId"?: string;
         /**
-          * Text value to display as the notification contents.
+          * Text value to display as the notification's title.
          */
-        "text"?: string;
-        /**
-          * Text value to display as the tooltip's contents.
-         */
-        "texttitle"?: string;
+        "textTitle"?: string;
         /**
           * CSS classlist to add to the element serving as the component's wrapper.
          */

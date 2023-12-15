@@ -22,7 +22,7 @@
 ### Used by
 
  - [yeti-file-explorer](../yeti-file-explorer)
- - [yeti-notification](../yeti-toast)
+ - [yeti-notification](../yeti-notification)
  - [yeti-tooltip](../yeti-tooltip)
 
 ### Graph
