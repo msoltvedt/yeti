@@ -7220,6 +7220,241 @@ Styles for Tooltip
     -webkit-box-orient: unset;
     overflow: unset;
   }
+  /************************************** notification.less ***************************************
+
+Styles for notification
+
+*************************************** notification.less **************************************/
+  /************************************** Wrapper ***/
+  yeti-notification {
+    display: contents;
+  }
+  .yeti-notification-wrapper-error {
+    background-color: #393939;
+    min-width: 18rem;
+    max-width: 18rem;
+    padding: 0.9375rem 1.4375rem 0.9375rem 1.4375rem;
+    border-left: #fa4d56 solid 3px;
+    position: relative;
+    cursor: default;
+  }
+  .yeti-notification-wrapper-info {
+    background-color: #edf5ff;
+    min-width: 18rem;
+    max-width: 18rem;
+    padding: 0.9375rem 1.4375rem 0.9375rem 1.4375rem;
+    border-left: #0043ce solid 3px;
+    position: relative;
+    cursor: default;
+  }
+  /************************************** Content Wrapper ***/
+  .yeti-notification-content-wrapper {
+    flex: 1;
+  }
+  /************************************** Actual ***/
+  .yeti-notification {
+    min-width: 18rem;
+    max-width: 18rem;
+    width: max-content;
+    min-height: min-content;
+    height: max-content;
+    background-color: #393939;
+    color: white;
+    position: absolute;
+    display: block;
+    padding: 1rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.01rem;
+    line-height: 1.42857;
+    z-index: 2;
+  }
+  :not(.yeti-notification-auto_height) .yeti-notification {
+    max-height: 7rem;
+  }
+  .yeti-notification-wrapper:not(:is(:focus-within, *:hover)) .yeti-notification:not(.yeti-notification__clicked_open, .yeti-notification__forced_open) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .yeti-notification-wrapper.yeti-notification-wrapper-is_click_to_open:not(*.yeti-notification__clicked_open) .yeti-notification:not(.yeti-notification__clicked_open, .yeti-notification__forced_open) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  /*** Content ***/
+  .yeti-notification-content {
+    color: #FFFFFF;
+  }
+  :not(.yeti-notification-auto_height) .yeti-notification-content {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .yeti-notification-content:has(+ .yeti-notification-close) {
+    padding-right: 3rem;
+  }
+  .yeti-notification-content-title {
+    color: #FFFFFF;
+    font-weight: bold;
+  }
+  .yeti-notification-error {
+    background-color: #fa4d56;
+  }
+  .yeti-notification-info {
+    background-color: blueviolet;
+  }
+  .yeti-flex {
+    flex: 1;
+    max-width: 2rem;
+  }
+  .yeti-notification-container {
+    display: flex;
+  }
+  /*** Close Button ***/
+  .yeti-notification-close {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    background-color: #e0e0e0;
+    box-sizing: border-box;
+    color: #161616;
+    cursor: pointer;
+    letter-spacing: 0.16px;
+    background-color: transparent;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    box-shadow: none;
+    position: absolute;
+    right: 0.25rem;
+    top: 0.25rem;
+  }
+  /*** Caret ***/
+  .yeti-notification::after {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #393939;
+    display: block;
+    position: absolute;
+  }
+  /************************************** Positioning */
+  /*** Above or Below ***/
+  .yeti-notification:not(.yeti-notification-left, .yeti-notification-right, .yeti-notification-below-left, .yeti-notification-below-right, .yeti-notification-above-left, .yeti-notification-above-right) {
+    left: 50%;
+    translate: -50%;
+  }
+  .yeti-notification:not(.yeti-notification-left, .yeti-notification-right, .yeti-notification-below-left, .yeti-notification-below-right, .yeti-notification-above-left, .yeti-notification-above-right)::after {
+    left: 50%;
+  }
+  /* Above */
+  .yeti-notification:not(.yeti-notification-left, .yeti-notification-right, .yeti-notification-below, .yeti-notification-below-left, .yeti-notification-below-right, .yeti-notification-above-left, .yeti-notification-above-right) {
+    bottom: calc(100% + 0.5rem);
+  }
+  .yeti-notification:not(.yeti-notification-left, .yeti-notification-right, .yeti-notification-below, .yeti-notification-below-left, .yeti-notification-below-right, .yeti-notification-above-left, .yeti-notification-above-right)::after {
+    top: 100%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  /* Below */
+  .yeti-notification-below,
+  .yeti-notification-below-left,
+  .yeti-notification-below-right {
+    top: calc(100% + 0.5rem);
+  }
+  .yeti-notification-below::after,
+  .yeti-notification-below-left::after,
+  .yeti-notification-below-right::after {
+    bottom: 100%;
+    transform: translate(-50%, 50%) rotate(45deg);
+  }
+  /*** Left or Right ***/
+  .yeti-notification:is(.yeti-notification-left, .yeti-notification-right) {
+    top: 50%;
+    translate: 0 -50%;
+  }
+  .yeti-notification:is(.yeti-notification-left, .yeti-notification-right)::after {
+    top: 50%;
+  }
+  /* Left */
+  .yeti-notification-left {
+    right: calc(100% + 0.5rem);
+  }
+  .yeti-notification-left::after {
+    left: 100%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  /* Right */
+  .yeti-notification-right {
+    left: calc(100% + 0.5rem);
+  }
+  .yeti-notification-right::after {
+    right: 100%;
+    transform: translate(50%, -50%) rotate(45deg);
+  }
+  /*** Combo Platter (above/below and left/right) ***/
+  /* Below Right */
+  .yeti-notification-below-right {
+    left: 50%;
+    translate: -1rem;
+    /* Center the caret, not the left edge. */
+  }
+  /* Below Left */
+  .yeti-notification-below-left {
+    right: 50%;
+    translate: 1rem;
+  }
+  .yeti-notification-below-left::after {
+    left: 100%;
+    translate: -1rem;
+  }
+  /* Above Left */
+  .yeti-notification-above-left {
+    right: 50%;
+    bottom: calc(100% + 0.5rem);
+    translate: 1rem;
+  }
+  .yeti-notification-above-left::after {
+    left: 100%;
+    transform: translate(-1.25rem, 0.75rem) rotate(45deg);
+  }
+  /* Above Right */
+  .yeti-notification-above-right {
+    left: 50%;
+    bottom: calc(100% + 0.5rem);
+    translate: -1rem;
+  }
+  .yeti-notification-above-right::after {
+    right: 100%;
+    transform: translate(1.25rem, 0.75rem) rotate(45deg);
+  }
+  /************************************** Special Cases */
+  .yeti-notification-auto_height .yeti-notification {
+    max-height: unset;
+  }
+  .yeti-notification-auto_height .yeti-notification-content {
+    display: block;
+    -webkit-line-clamp: unset;
+    -webkit-box-orient: unset;
+    overflow: unset;
+  }
 }
 /************************************** Utilities ***/
 @layer utilities {
