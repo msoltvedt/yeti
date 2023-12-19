@@ -12,6 +12,8 @@ import path from 'node:path';
 const settings = {
     orchestratorCSSDirectory: "../orchestrator/OrchestratorUI/src/main/webapp/css/",
     orchestratorJSDirectory: "../orchestrator/OrchestratorUI/src/main/webapp/js/yeti/",
+    crmCSSDirectory: "../creekside-crm/src/main/webapp/css/",
+    crmJSDirectory: "../creekside-crm/src/main/webapp/js/yeti/",
     carbonCSS: "../orchestrator/OrchestratorUI/src/main/webapp/lib/carbon.10.56.0/carbon-components.min.css",
     yetiCopyOfOrchestratorCSSDirectory: "src/css/old/",
     yetiCSSDirectory: "src/css/"
@@ -28,6 +30,12 @@ cleanOrchestratorJS.description = 'Clean the directory *in Orchestrator* that co
 
 task(pasteJSToOrchestrator);
 pasteJSToOrchestrator.description = 'Paste Yeti\'s copy of its JS to Orchestrator.';
+
+task(cleanCrmJS);
+cleanCrmJS.description = 'Clean the directory *in CRM* that contains Yeti JS files.';
+
+task(pasteJSToCrm);
+pasteJSToCrm.description = 'Paste Yeti\'s copy of its JS to CRM.';
 
 task('updateFromOrchestrator', series(cleanCopyOfOrchestratorCSS, copyFromOrchestrator));
 task('updateFromOrchestrator').description = 'Clean up and update Yeti\'s copy of Orchestrator\'s CSS';
@@ -89,6 +97,11 @@ function pasteCSSToOrchestrator() {
         .pipe( dest(settings.orchestratorCSSDirectory) );
 }
 
+function pasteCSSToCrm() {
+    return src(`src/css/yeti.css`)
+        .pipe( dest(settings.crmCSSDirectory) );
+}
+
 function cleanOrchestratorJS() {
     return deleteAsync([`${settings.orchestratorJSDirectory}**/*`, `!${settings.orchestratorJSDirectory}`], {force: true});
 }
@@ -98,14 +111,23 @@ function pasteJSToOrchestrator() {
         .pipe( dest(settings.orchestratorJSDirectory) );
 }
 
+function cleanCrmJS() {
+    return deleteAsync([`${settings.crmJSDirectory}**/*`, `!${settings.crmJSDirectory}`], {force: true});
+}
+
+function pasteJSToCrm() {
+    return src(`dist/yeti/**/*`)
+        .pipe( dest(settings.crmJSDirectory) );
+}
+
 function watcher(cb) {
     watch(['src/css/**/*.less', 'src/examples/css/yeti-examples-only.less'], series(/*cleanWWWCSS,*/ yetiCSS, examplesOnlyCSS, mainCSS));
     watch('src/**/*.html', series(publishHTML, cleanDocs, pushToDocs));
     watch(['src/examples/**/*.js', 'src/examples/**/*.mjs'], series(cleanWWWJS, publishExamplesJS))
 
-    // Optionally update Orchestrator with dev mode on as well.
-    watch(`dist/yeti/**/*`, series(cleanOrchestratorJS, pasteJSToOrchestrator));
-    watch(`src/css/yeti.css`, pasteCSSToOrchestrator);
+    // Optionally update Orchestrator and CRM as well.
+    watch(`dist/yeti/**/*`, series(cleanOrchestratorJS, pasteJSToOrchestrator, cleanCrmJS, pasteJSToCrm));
+    watch(`src/css/yeti.css`, parallel(pasteCSSToOrchestrator, pasteCSSToCrm));
     cb();
 }
 
