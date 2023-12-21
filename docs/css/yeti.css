@@ -818,10 +818,10 @@ A control that helps the user choose a date.
   }
   .yeti-date-button {
     appearance: none;
-    padding: 0 0.25rem;
+    padding: 0;
     border: none;
     color: #161616;
-    width: 3rem;
+    width: 2.5rem;
     height: 2.5rem;
     display: flex;
     align-items: center;
@@ -2274,6 +2274,10 @@ Styles for Table
   .yeti-table-heading-filter :is(.yeti-date-button, .yeti-table-heading-filter-input-button) {
     border-left: 0;
   }
+  .yeti-table-heading-filter-input-button {
+    width: 2.5rem;
+    flex: 1 0 2.5rem;
+  }
   .yeti-table-heading-filter :is(.yeti-input, .yeti-select, .yeti-multiselect, .yeti-date-button, .yeti-table-heading-filter-input-button):hover {
     background-color: #f4f4f4;
   }
@@ -2742,6 +2746,47 @@ Styles for notification
     -webkit-line-clamp: unset;
     -webkit-box-orient: unset;
     overflow: unset;
+  }
+  /************************************** contents.less ***************************************
+
+Styles for Contents
+
+*************************************** contents.less **************************************/
+  /************************************** Wrapper ***/
+  yeti-page-contents {
+    display: contents;
+  }
+  #yeti-contents-wrapper {
+    width: 100%;
+    min-height: 2rem;
+    border: 1px solid #666;
+    position: relative;
+    left: 0;
+    top: 0;
+  }
+  #yeti-contents-menu {
+    background-color: #333;
+    margin-bottom: 2rem;
+    position: sticky;
+    top: 0;
+  }
+  #yeti-contents-menu ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: inline-block;
+  }
+  #yeti-contents-menu ul li {
+    display: inline-block;
+  }
+  #yeti-contents-menu a {
+    text-decoration: none;
+    color: white;
+    padding: 15px 20px;
+    display: block;
+  }
+  #yeti-contents-menu a:hover {
+    background-color: #555;
   }
 }
 /************************************** Utilities ***/

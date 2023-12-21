@@ -364,6 +364,32 @@ export namespace Components {
          */
         "wrapperCSS": string;
     }
+    interface YetiPageContents {
+        /**
+          * Optional replacement text to use as a more clear description of the icon for screen-reader users. Otherwise AT will announce the Google "code" (i.e. check_circle).
+         */
+        "alt"?: string;
+        /**
+          * Whether the icon can gain focus (used primarily for tooltip anchors).
+         */
+        "focusable"?: boolean;
+        /**
+          * CSS classlist applied to the actual element producing the icon.
+         */
+        "iconCSS"?: string;
+        /**
+          * The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).
+         */
+        "iconCode": string;
+        /**
+          * id of the actual element producing the icon. Set to a unique id if one is not provided.
+         */
+        "iconId"?: string;
+        /**
+          * The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).
+         */
+        "iconStyle": string;
+    }
     interface YetiProgressBar {
         /**
           * CSS classlist to add to the element representing the component's progress bar.
@@ -686,6 +712,12 @@ declare global {
         prototype: HTMLYetiNotificationElement;
         new (): HTMLYetiNotificationElement;
     };
+    interface HTMLYetiPageContentsElement extends Components.YetiPageContents, HTMLStencilElement {
+    }
+    var HTMLYetiPageContentsElement: {
+        prototype: HTMLYetiPageContentsElement;
+        new (): HTMLYetiPageContentsElement;
+    };
     interface HTMLYetiProgressBarElement extends Components.YetiProgressBar, HTMLStencilElement {
     }
     var HTMLYetiProgressBarElement: {
@@ -760,6 +792,7 @@ declare global {
         "yeti-modal": HTMLYetiModalElement;
         "yeti-multiselect": HTMLYetiMultiselectElement;
         "yeti-notification": HTMLYetiNotificationElement;
+        "yeti-page-contents": HTMLYetiPageContentsElement;
         "yeti-progress-bar": HTMLYetiProgressBarElement;
         "yeti-table": HTMLYetiTableElement;
         "yeti-table-actions": HTMLYetiTableActionsElement;
@@ -1160,6 +1193,32 @@ declare namespace LocalJSX {
          */
         "wrapperCSS"?: string;
     }
+    interface YetiPageContents {
+        /**
+          * Optional replacement text to use as a more clear description of the icon for screen-reader users. Otherwise AT will announce the Google "code" (i.e. check_circle).
+         */
+        "alt"?: string;
+        /**
+          * Whether the icon can gain focus (used primarily for tooltip anchors).
+         */
+        "focusable"?: boolean;
+        /**
+          * CSS classlist applied to the actual element producing the icon.
+         */
+        "iconCSS"?: string;
+        /**
+          * The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).
+         */
+        "iconCode"?: string;
+        /**
+          * id of the actual element producing the icon. Set to a unique id if one is not provided.
+         */
+        "iconId"?: string;
+        /**
+          * The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).
+         */
+        "iconStyle"?: string;
+    }
     interface YetiProgressBar {
         /**
           * CSS classlist to add to the element representing the component's progress bar.
@@ -1360,6 +1419,7 @@ declare namespace LocalJSX {
         "yeti-modal": YetiModal;
         "yeti-multiselect": YetiMultiselect;
         "yeti-notification": YetiNotification;
+        "yeti-page-contents": YetiPageContents;
         "yeti-progress-bar": YetiProgressBar;
         "yeti-table": YetiTable;
         "yeti-table-actions": YetiTableActions;
@@ -1383,6 +1443,7 @@ declare module "@stencil/core" {
             "yeti-modal": LocalJSX.YetiModal & JSXBase.HTMLAttributes<HTMLYetiModalElement>;
             "yeti-multiselect": LocalJSX.YetiMultiselect & JSXBase.HTMLAttributes<HTMLYetiMultiselectElement>;
             "yeti-notification": LocalJSX.YetiNotification & JSXBase.HTMLAttributes<HTMLYetiNotificationElement>;
+            "yeti-page-contents": LocalJSX.YetiPageContents & JSXBase.HTMLAttributes<HTMLYetiPageContentsElement>;
             "yeti-progress-bar": LocalJSX.YetiProgressBar & JSXBase.HTMLAttributes<HTMLYetiProgressBarElement>;
             "yeti-table": LocalJSX.YetiTable & JSXBase.HTMLAttributes<HTMLYetiTableElement>;
             "yeti-table-actions": LocalJSX.YetiTableActions & JSXBase.HTMLAttributes<HTMLYetiTableActionsElement>;
