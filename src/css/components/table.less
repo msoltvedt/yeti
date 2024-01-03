@@ -7,6 +7,10 @@ Styles for Table
 
 
 /************************************** Basic Table Styles ***/
+yeti-table {
+    display: contents;
+}
+
 .yeti-table {
     width: 100%;
     border-collapse: collapse;
@@ -195,6 +199,10 @@ Styles for Table
     border-top: 1px solid #e0e0e0;
 }
 
+yeti-table-actions {
+    display: contents;
+}
+
 yeti-table-actions[use-grid] yeti-table-action {
     display: flex;
     align-items: center;
@@ -221,6 +229,10 @@ yeti-table-actions[use-grid] yeti-table-action {
 
 
 /************************************** Pagination ***/
+yeti-table-pagination {
+    display: contents;
+}
+
 .yeti-table-pagination {
     min-height: 2.5rem;
     display: flex;
@@ -396,7 +408,8 @@ yeti-table-actions[use-grid] yeti-table-action {
     justify-content: flex-end;
 }
 
-.yeti-table-heading-filter > * {
+.yeti-table-heading-filter > *,
+.yeti-table-heading-filter .yeti-multiselect-wrapper {
     flex: 1 1 auto;
 }
 
