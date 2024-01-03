@@ -4887,7 +4887,7 @@ html {
 }
 /************************************** Defaults ***/
 /************************************** Globals ***/
-@layer components {
+@layer globals {
   /************************************** globals.less **************************************
 
  Styles that could apply to any (or no) components.
@@ -5279,6 +5279,9 @@ Styles for File Explorer
     color: #525252;
   }
   /************************************** Field ***/
+  yeti-field {
+    display: contents;
+  }
   .yeti-form-field:not(.yeti-form-field-inline) {
     display: flex;
     flex-direction: column;
@@ -5402,8 +5405,7 @@ Styles for Icon
 *************************************** icon.less **************************************/
   /************************************** Wrapper ***/
   yeti-icon {
-    display: inline-flex;
-    height: min-content;
+    display: contents;
   }
   yeti-icon:focus {
     outline: 2px solid #0f62fe;
@@ -5504,7 +5506,7 @@ A control that helps the user choose a date.
 ************************************** date-picker.less ***************************************/
   /************************************** Wrapper ***/
   yeti-date-picker {
-    display: inline;
+    display: contents;
   }
   .yeti-date {
     position: relative;
@@ -5530,10 +5532,10 @@ A control that helps the user choose a date.
   }
   .yeti-date-button {
     appearance: none;
-    padding: 0 0.25rem;
+    padding: 0;
     border: none;
     color: #161616;
-    width: 3rem;
+    width: 2.5rem;
     height: 2.5rem;
     display: flex;
     align-items: center;
@@ -5719,6 +5721,9 @@ Styles for Menu Button
     display: none;
   }
   /************************************** Wrapper ***/
+  yeti-menu-button {
+    display: contents;
+  }
   .yeti-menu_button {
     display: inline-block;
     position: relative;
@@ -6147,9 +6152,7 @@ Styles for Loading Indicator
 *************************************** loading.less **************************************/
   /************************************** Container ***/
   yeti-loading {
-    display: inline-block;
-    width: min-content;
-    height: min-content;
+    display: contents;
   }
   .yeti-loading {
     display: inline-flex;
@@ -6203,7 +6206,7 @@ Leeloo Dallas multipass
 *************************************** multiselect.less **************************************/
   /************************************** Wrapper ***/
   yeti-multiselect {
-    width: 100%;
+    display: contents;
   }
   .yeti-multiselect-wrapper {
     position: relative;
@@ -6379,6 +6382,9 @@ Styles for Progress Bar
 *************************************** progress_bar.less **************************************/
   /************************************** Variables ***/
   /************************************** Wrapper ***/
+  yeti-progress-bar {
+    display: contents;
+  }
   .yeti-progress_bar {
     width: 100%;
     display: flex;
@@ -6577,6 +6583,9 @@ Styles for Table
 
 *************************************** table.css **************************************/
   /************************************** Basic Table Styles ***/
+  yeti-table {
+    display: contents;
+  }
   .yeti-table {
     width: 100%;
     border-collapse: collapse;
@@ -6763,6 +6772,9 @@ Styles for Table
     background-color: #f4f4f4;
     border-top: 1px solid #e0e0e0;
   }
+  yeti-table-actions {
+    display: contents;
+  }
   yeti-table-actions[use-grid] yeti-table-action {
     display: flex;
     align-items: center;
@@ -6785,6 +6797,9 @@ Styles for Table
     outline-offset: 0.6875rem;
   }
   /************************************** Pagination ***/
+  yeti-table-pagination {
+    display: contents;
+  }
   .yeti-table-pagination {
     min-height: 2.5rem;
     display: flex;
@@ -6936,7 +6951,8 @@ Styles for Table
   .yeti-table-numeric .yeti-table-heading-filter {
     justify-content: flex-end;
   }
-  .yeti-table-heading-filter > * {
+  .yeti-table-heading-filter > *,
+  .yeti-table-heading-filter .yeti-multiselect-wrapper {
     flex: 1 1 auto;
   }
   .yeti-table-heading-compound-actual {
@@ -6985,6 +7001,10 @@ Styles for Table
   }
   .yeti-table-heading-filter :is(.yeti-date-button, .yeti-table-heading-filter-input-button) {
     border-left: 0;
+  }
+  .yeti-table-heading-filter-input-button {
+    width: 2.5rem;
+    flex: 1 0 2.5rem;
   }
   .yeti-table-heading-filter :is(.yeti-input, .yeti-select, .yeti-multiselect, .yeti-date-button, .yeti-table-heading-filter-input-button):hover {
     background-color: #f4f4f4;
