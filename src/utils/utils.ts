@@ -4,25 +4,25 @@ export function format(first: string, middle: string, last: string): string {
 
 export const utils = {
 
-  
-  generateUniqueId: function() {
+
+  generateUniqueId: function () {
     ++uniqueId;
     return 'yid' + uniqueId;
   },
 
 
-  wrapAll: function(elements: HTMLCollection, wrapper: HTMLElement) {
-    for (let i=0; i<elements.length; i++) {
+  wrapAll: function (elements: HTMLCollection, wrapper: HTMLElement) {
+    for (let i = 0; i < elements.length; i++) {
       wrapper.appendChild(elements[i]);
     }
   },
 
 
-  isEqual: function(a, b) {
+  isEqual: function (a, b) {
 
     const objKeysA = Object.keys(a);
     const objKeysB = Object.keys(b);
-  
+
     const areBothArrays = Array.isArray(a) && Array.isArray(b);
     const areBothObjects = this.isObject(a) && this.isObject(b);
 
@@ -47,15 +47,15 @@ export const utils = {
 
     // Handle non-array objects
     if (areBothObjects) {
-  
+
       if (objKeysA.length !== objKeysB.length) {
         return false;
       }
-    
+
       for (var key of objKeysA) {
         const aValue = a[key];
         const bValue = b[key];
-    
+
         if (!this.isEqual(aValue, bValue)) {
           return false;
         }
@@ -66,16 +66,16 @@ export const utils = {
     // Handle everything else
     return a === b;
   },
-  
 
 
-  isObject: function(object) {
+
+  isObject: function (object) {
     return object != null && typeof object === "object";
   },
 
 
 
-  isConvertibleToDate: function(possibleDate: string) {
+  isConvertibleToDate: function (possibleDate: string) {
     const re = /(^[0-9]{1,4}(\/|\-)[0-9]{1,2}(\/|\-)[0-9]{2,4}$)|(^((jan|Jan|JAN|january|January|JANUARY)|(feb|Feb|FEB|february|February|FEBRUARY)|(mar|Mar|MAR|march|March|MARCH)|(apr|Apr|APR|april|April|APRIL)|(may|May|MAY)|(jun|Jun|JUN|june|June|JUNE)|(jul|Jul|JUL|july|July|JULY)|(aug|Aug|AUG|august|August|AUGUST)|(sep|Sep|SEP|september|September|SEPTEMBER)|(oct|Oct|OCT|october|October|OCTOBER)|(nov|Nov|NOV|november|November|NOVEMBER)|(dec|Dec|DEC|december|December|DECEMBER))\s[0-9]{1,4}$)/g;
     if (possibleDate.search(re) > -1) {
       let dateObject = new Date(possibleDate);
@@ -91,7 +91,7 @@ export const utils = {
 
 
 
-  isConvertibleToNumber: function(possibleNumber: string) {
+  isConvertibleToNumber: function (possibleNumber: string) {
     const re = /(^(((-|\+)?((\d)*(\.)?(\d)*)){1})$)/g;
     // let castedPossibility = this.castToNumber(possibleNumber.toString());
     possibleNumber = possibleNumber.replace(/,/g, "");
@@ -109,11 +109,11 @@ export const utils = {
 
 
 
-  getStringifiedType: function(dunno: string) {
+  getStringifiedType: function (dunno: string) {
     if (utils.isConvertibleToDate(dunno)) {
       return "date";
     } else {
-      if (utils.isConvertibleToNumber( dunno )) {
+      if (utils.isConvertibleToNumber(dunno)) {
         return "number";
       } else {
         return "string";
@@ -123,13 +123,13 @@ export const utils = {
 
 
 
-  castToNumber: function(someString: string) {
-    return parseFloat( someString.replace(/,/g, '') );
+  castToNumber: function (someString: string) {
+    return parseFloat(someString.replace(/,/g, ''));
   },
 
 
 
-  isValidJSON: function(candidate: object | string) {
+  isValidJSON: function (candidate: object | string) {
 
     candidate = JSON.stringify(candidate);
 
@@ -144,17 +144,17 @@ export const utils = {
 
 
 
-  getMonthName: function(date: Date) {
+  getMonthName: function (date: Date) {
     return new Intl.DateTimeFormat("en-US", { month: "long" }).format(date);
   },
 
 
 
-  aria: { 
+  aria: {
     // Primarily from the W3 APG
 
 
-    
+
     ignoreUtilFocusChanges: false,
 
 
@@ -193,7 +193,7 @@ export const utils = {
       if (!utils.aria.isFocusable(element)) {
         return false;
       }
-  
+
       utils.aria.ignoreUtilFocusChanges = true;
       try {
         element.focus();
@@ -210,11 +210,11 @@ export const utils = {
       if (element.tabIndex < 0) {
         return false;
       }
-    
+
       if (element.disabled) {
         return false;
       }
-    
+
       switch (element.nodeName) {
         case 'A':
           return !!element.href && element.rel != 'ignore';
@@ -231,7 +231,7 @@ export const utils = {
 
   } // End aria
 
-  
+
 
 }
 
@@ -239,25 +239,25 @@ export const utils = {
 
 /****************************************************** Interfaces *********************************************/
 export interface YetiTableContents {
-  head? : {
+  head?: {
     cssClass?: string,
     id?: string,
-    rows : YetiTableRow[]
+    rows: YetiTableRow[]
   },
 
-  body : {
+  body: {
     cssClass?: string,
     id?: string,
-    rows : YetiTableRow[]
+    rows: YetiTableRow[]
   },
 
-  foot? : {
+  foot?: {
     cssClass?: string,
     id?: string,
-    rows : YetiTableRow[]
+    rows: YetiTableRow[]
   },
 
-  state? : {
+  state?: {
     totalRecords: number
   }
 }
@@ -270,7 +270,9 @@ export interface YetiTableRow {
   rowIndex?: number,
   rowActionsJustChanged?: boolean,
   detail?: object,
-  isSelected?: boolean
+  isSelected?: boolean,
+  isExpanded?: boolean,
+  childRows?: YetiTableRow[]
 }
 
 export interface YetiTableCell {
@@ -286,7 +288,9 @@ export interface YetiTableCell {
   scope?: string, // "col" (default) | "row",
   template?: any, // HTML
   detail?: object,
-  isRadio?: boolean
+  isRadio?: boolean,
+  colspan?: number,
+  rowspan?: number
 }
 
 export interface YetiTableFilterObject {

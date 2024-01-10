@@ -36,6 +36,7 @@
 
 ### Depends on
 
+- [yeti-icon](../yeti-icon)
 - [yeti-menu-button](../yeti-menu-button)
 - [yeti-tooltip](../yeti-tooltip)
 - [yeti-input](../yeti-input)
@@ -45,6 +46,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  yeti-table --> yeti-icon
   yeti-table --> yeti-menu-button
   yeti-table --> yeti-tooltip
   yeti-table --> yeti-input
