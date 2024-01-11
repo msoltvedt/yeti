@@ -208,7 +208,7 @@ export class YetiTable {
       "rowIndex": rowIndex,
       "actionLabel": newValue
     });
-    
+
   }
 
 
@@ -216,14 +216,14 @@ export class YetiTable {
   handleCellRadioChange(cell: YetiTableCell) {
 
     let rows = this.contents.body.rows;
-    let row = rows[ cell.rowIndex ];
+    let row = rows[cell.rowIndex];
 
     // Unselect the other rows
     rows.forEach(row => row.isSelected = false);
     row.isSelected = true;
 
     this.iLoveJSX = !this.iLoveJSX;
-    
+
     this.cellRadioChange.emit({
       "row": row,
       "cell": cell
@@ -241,7 +241,7 @@ export class YetiTable {
 
       for (let i = 0; i < this.contents.head.rows[0].cells.length; i++) {
         if (
-          this.contents.head.rows[0].cells[i].filtering 
+          this.contents.head.rows[0].cells[i].filtering
           && this.contents.head.rows[0].cells[i].filtering.value != ""
           && this.contents.head.rows[0].cells[i].filtering.value != undefined
         ) {
@@ -270,7 +270,7 @@ export class YetiTable {
       row.cells.forEach((cell, cellIndex) => {
         if (cell.rowActions && cell.rowActions.length && cell.rowActions.length > 0) {
           if (oldContents.body && oldContents.body.rows && oldContents.body.rows[rowIndex] && oldContents.body.rows[rowIndex].cells[cellIndex] && !utils.isEqual(cell.rowActions, oldContents.body.rows[rowIndex].cells[cellIndex].rowActions)) {
-            
+
             row.rowActionsJustChanged = true;
 
           }
@@ -283,7 +283,7 @@ export class YetiTable {
 
   isValidTableData(data: object | string): boolean {
     // Verify that the supplied data is in the correct format.
-    
+
     if (utils.isValidJSON(data)) {
       // The data is at least JSON
       data = JSON.stringify(data);
@@ -300,7 +300,7 @@ export class YetiTable {
 
 
   setHeadingColumnIndices() {
-    
+
     // First check if there even is a head.
     if (!this.contents.head || !this.contents.head.rows || !(this.contents.head.rows.length > 0)) {
       return;
@@ -333,15 +333,15 @@ export class YetiTable {
   setSortableOnCellsOtherThanTheOneWithThisIndex(columnIndex: number) {
 
     let ths = this.contents.head.rows[0].cells;
-    
+
     for (let i = 0, th = ths[0]; i < ths.length; i++, th = ths[i]) {
-    
+
       if (th.sortDirection) {
 
         th.sortDirection = (th.columnIndex == columnIndex) ? th.sortDirection : "unsorted"
 
       }
-      
+
     }
   }
 
@@ -359,12 +359,12 @@ export class YetiTable {
         }
       })
     });
-    
+
     this.filtersAreActive = false;
   }
 
 
-  
+
   handleSort(ev: Event, cell: YetiTableCell) {
 
     ev.preventDefault();
@@ -380,7 +380,7 @@ export class YetiTable {
 
       return;
     }
-    
+
     // We need to sort this ourselves
     cell.sortDirection = (cell.sortDirection == "ascending") ? "descending" : "ascending";
     this.sortContentsPerHeaderCell(cell);
@@ -471,7 +471,7 @@ export class YetiTable {
       e.stopImmediatePropagation();
       return false;
     }
-    
+
     // It was enter, so start searching
     this.handleTextFilterSearch(input, columnIndex);
 
@@ -538,7 +538,7 @@ export class YetiTable {
     }
 
     this.setFiltersActiveFlag();
-    
+
   }
 
 
@@ -566,7 +566,7 @@ export class YetiTable {
     }
 
     this.setFiltersActiveFlag();
-    
+
   }
 
 
@@ -590,15 +590,15 @@ export class YetiTable {
       this.contents.head.rows[0].cells[columnIndex].filtering.value = multiselect.value;
       this.iLoveJSX = !this.iLoveJSX;
     }
-    
+
     this.setFiltersActiveFlag();
-    
+
   }
 
 
 
   handleClearAllFilters() {
-    
+
     // First make sure we're supposed to do this ourselves
     if (!this.filterSelf) {
 
@@ -630,7 +630,7 @@ export class YetiTable {
     }
 
     // Check to see if each cell in the row passes filtering.
-    for (let i=0; i<row.cells.length; i++) {
+    for (let i = 0; i < row.cells.length; i++) {
       if (!this.doesCellPassFiltering(row.cells[i])) {
         //console.error(`row ${row.rowIndex} failed filtering because of cell ${row.cells[i].value}`)
         return false;
@@ -658,7 +658,7 @@ export class YetiTable {
 
     // First see if filtering is even a thing for this column. If it isn't, we're good.
     if (th && th.filtering && th.filtering.isFilterable && th.filtering.value) {
-      
+
       let filterValue = th.filtering.value;
 
       // It depends on what type of filter (text, select, date, or multiselect) it is.
@@ -685,7 +685,7 @@ export class YetiTable {
 
 
         case "date": {
-          
+
           if (filterValue == "") {
             return true;
           } else if (new Date(filterValue).getTime() == new Date(cell.value).getTime()) {
@@ -702,7 +702,7 @@ export class YetiTable {
           if (filterValue == "") {
             return true;
 
-          // Second, see if the cell's value is in the array.
+            // Second, see if the cell's value is in the array.
           } else {
             let filterValuesArray = filterValue.split(",");
             return filterValuesArray.includes(cell.value);
@@ -716,7 +716,7 @@ export class YetiTable {
           return false;
       }
 
-    // There's no filtering, so it passes by default.
+      // There's no filtering, so it passes by default.
     } else {
       return true;
     }
@@ -731,7 +731,7 @@ export class YetiTable {
 
 
 
-  renderCell(cell: YetiTableCell) {
+  renderCell(cell: YetiTableCell, containingRow: YetiTableRow, isRowExpanderCell: boolean = false) {
 
     if (!cell.id || cell.id == "") {
       //console.warn("Each table cell should have a unique id.");
@@ -766,16 +766,31 @@ export class YetiTable {
 
       return this.renderTableHeading(cell);
 
-    // It must be a td
+      // It must be a td
     } else {
 
       let css = (cell.cssClass && cell.cssClass != '') ? ' ' + cell.cssClass : '';
 
-      if (cell.template) {
-        return <td class={'yeti-table-cell' + css} id={cell.id} key={cell.id} innerHTML={cell.template}></td>
-      }
+      return <td
+        class={'yeti-table-cell' + css}
+        id={cell.id}
+        key={cell.id}
+        {...((cell.template) ? { "innerHTML": cell.template } : {})} // If it's a cell template, set the innerHTML attribute.
+        {...((cell.colspan && typeof cell.colspan == "number") ? { "colspan": cell.colspan } : {})} // Set colspan if provided.
+        {...((cell.rowspan && typeof cell.rowspan == "number") ? { "rowspan": cell.rowspan } : {})} // Set rowspan if provided.
+      >
 
-      return <td class={'yeti-table-cell' + css} id={cell.id} key={cell.id}>{cell.value}</td>
+        {(isRowExpanderCell ?                     /* If this is an expandable row...*/
+
+          this.renderExpandoButton(containingRow) /* ...then render the expando button control. */
+
+          :
+
+          '')}
+
+        {((cell.template) ? {} : cell.value) /* Use the cell template if provided; otherwise just use the value as usual. */}
+
+      </td>
 
     }
 
@@ -783,10 +798,47 @@ export class YetiTable {
 
 
 
+  renderExpandoButton(containingRow) {
+    // Render the expando button control. Assumes containingRow is an expandable row, and therefore has childRows.
+
+    let childRowIds = [];
+    let childRowIdsAsString = "";
+    containingRow.isExpanded = (containingRow.isExpanded == undefined || containingRow.isExpanded == true) ? true : false; // containingRow.isExpanded could be undefined at this point.
+    let ariaLabelText = (containingRow.isExpanded) ? "Collapse current row" : "Expand current row";
+    let iconCode = (containingRow.isExpanded) ? "expand_less" : "expand_more";
+
+    if (!containingRow.id || containingRow.id == "") {
+      // Should never get here, but just in case.
+      containingRow.id = utils.generateUniqueId();
+    }
+
+    // First, get the ids of all the childRows, assigning new ids if necessary.
+
+    containingRow.childRows.forEach((childRow, index) => {
+
+      childRow.id = (!childRow.id || childRow.id == "") ? `${containingRow.id}_child_${index}` : childRow.id;
+      childRowIds.push(childRow.id);
+
+    });
+
+    childRowIdsAsString = childRowIds.join(" ");
+
+    return <button type="button" class="yeti-table-expando_button" aria-label={ariaLabelText} aria-expanded={containingRow.isExpanded} aria-controls={childRowIdsAsString} onClick={() => {
+      containingRow.isExpanded = !containingRow.isExpanded;
+      this.iLoveJSX = !this.iLoveJSX;
+    }}>
+
+      <yeti-icon iconCode={iconCode} aria-hidden={true}></yeti-icon>
+
+    </button>
+  }
+
+
+
   renderRowActionsCell(cell: YetiTableCell) {
 
-    let css = (cell.cssClass && cell.cssClass != "") ? 
-      "yeti-table-cell yeti-table-control yeti-table-cell-row_actions" + cell.cssClass : 
+    let css = (cell.cssClass && cell.cssClass != "") ?
+      "yeti-table-cell yeti-table-control yeti-table-cell-row_actions" + cell.cssClass :
       "yeti-table-cell yeti-table-control yeti-table-cell-row_actions";
 
     let preexistingMenuButtonElement = document.querySelector(`#${cell.id} yeti-menu-button`);
@@ -804,20 +856,20 @@ export class YetiTable {
 
     // Initialize timesUpdated
     if (preexistingMenuButtonElement && preexistingMenuButtonElement.getAttribute("data-times-updated")) {
-      timesUpdated = parseInt( preexistingMenuButtonElement.getAttribute("data-times-updated"));
+      timesUpdated = parseInt(preexistingMenuButtonElement.getAttribute("data-times-updated"));
     } else {
       timesUpdated = 0;
     }
 
     // Handle the case where the row actions have changed.
     if (this.contents.body.rows[cell.rowIndex].rowActionsJustChanged) {
-      
+
       // If the menu button has been changed previously then it'll have an attribute of data-times-updated
       ++timesUpdated;
 
       controlId = (cell.id && cell.id !== "") ? `${cell.id}_menuButton_mk${timesUpdated}` : utils.generateUniqueId();
       this.contents.body.rows[cell.rowIndex].rowActionsJustChanged = false;
-    
+
     }
 
     // Handle the case where there are no actions for this row.
@@ -843,16 +895,16 @@ export class YetiTable {
         actions.push(action);
       }
 
-      control = <yeti-menu-button 
-        menu-alignment="right" 
-        data-row-index={cell.rowIndex} 
+      control = <yeti-menu-button
+        menu-alignment="right"
+        data-row-index={cell.rowIndex}
         data-times-updated={`${timesUpdated}`}
         id={controlId}
         key={controlId}
         tooltipText="Row actions">{actions}</yeti-menu-button>
 
       return <td class={css} id={cell.id} key={cell.id}>{control}</td>
-      
+
     }
   }
 
@@ -860,8 +912,8 @@ export class YetiTable {
 
   renderRadioCell(cell: YetiTableCell) {
 
-    let css = (cell.cssClass && cell.cssClass != "") ? 
-      " " + cell.cssClass : 
+    let css = (cell.cssClass && cell.cssClass != "") ?
+      " " + cell.cssClass :
       "";
 
     let radioName = `${this.tableId}_radios`;
@@ -869,43 +921,43 @@ export class YetiTable {
     let row = this.contents.body.rows[cell.rowIndex];
     let isRowChecked = (row.isSelected) ? true : false;
 
-    let control = <input 
-      type="radio" 
-      class="yeti-radio" 
-      name={radioName} 
-      value={radioValue} 
-      id={radioValue} 
+    let control = <input
+      type="radio"
+      class="yeti-radio"
+      name={radioName}
+      value={radioValue}
+      id={radioValue}
       onChange={() => {
         this.handleCellRadioChange(cell);
       }}
-      {...(isRowChecked ? {"checked": true} : {})} 
+      {...(isRowChecked ? { "checked": true } : {})}
     />;
 
     return <td class={`yeti-table-cell yeti-table-control ${css}`} id={cell.id} key={cell.id}>{control}</td>
-    
+
   }
 
 
 
   renderFilterClearCell(cell: YetiTableCell) {
 
-    let css = (cell.cssClass && cell.cssClass != "") ? 
-      " " + cell.cssClass : 
+    let css = (cell.cssClass && cell.cssClass != "") ?
+      " " + cell.cssClass :
       "";
 
     let control = <yeti-tooltip text="Clear filters">
-      <button 
-        class="yeti-table-filter-clear-button" 
-        onClick={(ev) => { this.handleClearAllFilters(); ev.preventDefault(); }} 
+      <button
+        class="yeti-table-filter-clear-button"
+        onClick={(ev) => { this.handleClearAllFilters(); ev.preventDefault(); }}
         aria-label="Clear all filters">
-        
+
         <span class="material-icons" aria-hidden="true">cancel</span>
-        
+
       </button>
     </yeti-tooltip>
 
     return <td class={`yeti-table-heading yeti-table-cell-clear ${css}`} id={cell.id} key={cell.id}>{(this.filtersAreActive) ? control : ""}</td>
-      
+
   }
 
 
@@ -920,7 +972,7 @@ export class YetiTable {
       console.error("Error rendering table cell: expected th, got td.");
       return;
 
-    // It's a th
+      // It's a th
     } else {
 
       let headingLabelId;
@@ -957,21 +1009,21 @@ export class YetiTable {
             a11yText = "Sorted descending";
             iconKey = "expand_more"
             break;
-            
+
 
           default:
 
             a11yText = "Sortable";
             iconKey = "unfold_more";
-      
+
         }
 
         // See if it's sortable and filterable
         if (cell.filtering && cell.filtering.isFilterable) {
           filter =
-          <div class="yeti-table-heading-filter">
-            {this.renderTableHeadingFilter(cell, headingLabelId)}
-          </div>
+            <div class="yeti-table-heading-filter">
+              {this.renderTableHeadingFilter(cell, headingLabelId)}
+            </div>
         }
 
         sortableHeading =
@@ -979,18 +1031,18 @@ export class YetiTable {
 
             <div class="yeti-table-heading-compound">
 
-                <button class="yeti-table-heading-button" onClick={(ev) => { this.handleSort(ev, cell) }}>
+              <button class="yeti-table-heading-button" onClick={(ev) => { this.handleSort(ev, cell) }}>
 
-                    <div class="yeti-table-heading-button-label" id={headingLabelId}>{cell.value}</div>
+                <div class="yeti-table-heading-button-label" id={headingLabelId}>{cell.value}</div>
 
-                    <span class="yeti-table-heading-button-icon">
-                        <span class="yeti-a11y-hidden">{a11yText}</span>
-                        <span class="material-icons" aria-hidden="true" title={a11yText}>{iconKey}</span>
-                    </span>
+                <span class="yeti-table-heading-button-icon">
+                  <span class="yeti-a11y-hidden">{a11yText}</span>
+                  <span class="material-icons" aria-hidden="true" title={a11yText}>{iconKey}</span>
+                </span>
 
-                </button>
+              </button>
 
-                { filter ? filter : "" }
+              {filter ? filter : ""}
 
             </div>
 
@@ -998,7 +1050,7 @@ export class YetiTable {
 
         return sortableHeading;
 
-      // See if it's filterable but not sortable.
+        // See if it's filterable but not sortable.
       } else if (cell.filtering && cell.filtering.isFilterable) {
 
         return <th class={'yeti-table-heading' + css} scope={(cell.scope && cell.scope == "row") ? "row" : "col"}>
@@ -1009,7 +1061,7 @@ export class YetiTable {
 
 
             <div class="yeti-table-heading-filter">
-              
+
               {this.renderTableHeadingFilter(cell, headingLabelId)}
 
             </div>
@@ -1018,7 +1070,7 @@ export class YetiTable {
 
         </th>
 
-      // It must be a simple column heading.
+        // It must be a simple column heading.
       } else {
 
         // It's a simple column heading.
@@ -1030,7 +1082,7 @@ export class YetiTable {
   }
 
 
-  
+
   renderTableHeadingFilter(cell: YetiTableCell, headingLabelId: string) {
     // Returns the JSX for the appropriate filter object (text, select, date picker, or multiselect)
 
@@ -1043,7 +1095,7 @@ export class YetiTable {
         let inputIdString = `yeti-table-filter-text-${cell.columnIndex}`;
 
         return <div class="yeti-table-heading-filter-input-wrapper">
-        
+
           {/* <input 
             type="text" 
             value={cell.filtering.value}
@@ -1071,7 +1123,7 @@ export class YetiTable {
             ev.preventDefault();
             this.handleTextFilterButtonClick(ev, this.el.querySelector(`#${inputIdString}`), cell.columnIndex);
           }}><span class="material-icons" aria-hidden="true">search</span></button>
-          
+
         </div>
 
 
@@ -1097,7 +1149,7 @@ export class YetiTable {
             )
           }
 
-        // Contents doesn't have options specified, but they're required. Error out.
+          // Contents doesn't have options specified, but they're required. Error out.
         } else {
 
           console.error("Error in table select filter: no options supplied.");
@@ -1105,22 +1157,22 @@ export class YetiTable {
 
         }
 
-        return <select 
-          class="yeti-select yeti-table-heading-filter-input" 
+        return <select
+          class="yeti-select yeti-table-heading-filter-input"
           onChange={(ev) => {
             this.handleSelectFilterChange(ev.target as HTMLSelectElement, cell.columnIndex);
           }}
           aria-labelledby={headingLabelId}>
-            <option value="" id={`${filterId}_defaultOption`} key={`${filterId}_defaultOption`}>- Any -</option>
-            {selectOptions}
-          </select>;
+          <option value="" id={`${filterId}_defaultOption`} key={`${filterId}_defaultOption`}>- Any -</option>
+          {selectOptions}
+        </select>;
 
 
       case "date":
 
-        return <yeti-date-picker 
-          data-column={cell.columnIndex} 
-          labelled-by={headingLabelId} 
+        return <yeti-date-picker
+          data-column={cell.columnIndex}
+          labelled-by={headingLabelId}
           value={cell.filtering.value}
           id={filterId}
           key={filterId}
@@ -1136,7 +1188,7 @@ export class YetiTable {
         if (cell.filtering.options && cell.filtering.options.length > 0) {
 
           for (let i = 0; i < cell.filtering.options.length; i++) {
-            
+
             let optionId = `${filterId}_option${i}`;
             let optionLabel = cell.filtering.options[i];
 
@@ -1157,7 +1209,7 @@ export class YetiTable {
 
           }
 
-        // Contents doesn't have options specified, but they're required. Error out.
+          // Contents doesn't have options specified, but they're required. Error out.
         } else {
 
           console.error("Error in table multiselect filter: no options supplied.");
@@ -1165,15 +1217,15 @@ export class YetiTable {
 
         }
 
-        return <yeti-multiselect 
-            placeholder="- Any -" 
-            data-column={cell.columnIndex}
-            labelled-by={headingLabelId}
-            id={filterId}
-            key={filterId}
-            value={cell.filtering.value}>
-                {multiselectOptions}
-          </yeti-multiselect>
+        return <yeti-multiselect
+          placeholder="- Any -"
+          data-column={cell.columnIndex}
+          labelled-by={headingLabelId}
+          id={filterId}
+          key={filterId}
+          value={cell.filtering.value}>
+          {multiselectOptions}
+        </yeti-multiselect>
 
 
       default:
@@ -1189,8 +1241,12 @@ export class YetiTable {
 
     let cells = [];
 
-    row.cells.forEach((cell: YetiTableCell) => {
-      cells.push(this.renderCell(cell));
+    // Check to see if this row has child rows so we can tell renderCell to add the expand/collapse button.
+    let isAnExpandableRow = (row.childRows && row.childRows.length && row.childRows.length > 0) ? true : false;
+
+    row.cells.forEach((cell: YetiTableCell, index) => {
+      let needsAnExpandCollapseButton = (isAnExpandableRow && index == 0) ? true : false; // Only the first cell in an expandable row needs an expando button.
+      cells.push(this.renderCell(cell, row, needsAnExpandCollapseButton));
     })
 
     return cells;
@@ -1200,7 +1256,7 @@ export class YetiTable {
 
 
   renderHeaderRow(row: YetiTableRow) {
-    
+
     // Basically the same as renderRow but first checks to see if we need to create a placeholder heading cell.
     if (this.contents.head.rows.length == 0 || !this.contents.head.rows[0].cells || this.contents.head.rows[0].cells.length == 0) {
 
@@ -1228,7 +1284,7 @@ export class YetiTable {
 
       // There are no records, display a placeholder row.
       let colspan = (!this.contents.head.rows[0] || !this.contents.head.rows[0].cells) ? 1 : this.contents.head.rows[0].cells.length;
-      
+
       return <tr class="yeti-table-body-row">
         <td class="yeti-table-cell" colSpan={colspan}>{this.placeholderText}</td>
       </tr>
@@ -1238,7 +1294,9 @@ export class YetiTable {
 
       const row = this.contents.body.rows[i];
       let rowCSS = "yeti-table-body-row";
+      let childRowCSS;
       rowCSS += (row.isSelected) ? " yeti-table-body-row__selected" : "";
+      childRowCSS = rowCSS + " yeti-table-body-row-child_row";
 
       if (this.doesRowPassFiltering(row)) {
 
@@ -1250,16 +1308,37 @@ export class YetiTable {
           (numRowsPassedAfterStartIndex < rowsToDisplay) && // ...and we haven't already found enough rows to display,...
           (rowsThatPassFiltering.length >= rowStartIndex)   // ...and it's not one of the filtered rows short of our quota...
         ) {
-        
+
           if (!row.id || row.id == "") {
             //console.warn("All table rows should have a unique id.");
             row.id = utils.generateUniqueId();
           }
 
           ++numRowsPassedAfterStartIndex;
-          tbodyContents.push( 
+          tbodyContents.push(
             <tr class={rowCSS} id={row.id} key={row.id}>{this.renderRow(row)}</tr>
           );
+
+          // Check to see if this row has child rows, and if so, add them as well.
+          if (row.childRows && row.childRows.length && row.childRows.length > 0) {
+
+            if (row.isExpanded == undefined) {
+              row.isExpanded = true; // Default to expandable rows being expanded.
+            }
+
+            if (!row.isExpanded) {
+              childRowCSS += " yeti-table-body-row-child_row__hidden";
+            }
+
+            for (let c = 0; c < row.childRows.length; c++) {
+
+              tbodyContents.push(
+                <tr class={childRowCSS} id={`${row.id}_child_${c}`} key={`${row.id}_child_${c}`}>{this.renderRow(row.childRows[c])}</tr>
+              );
+
+            }
+
+          }
 
         }
 
@@ -1271,9 +1350,9 @@ export class YetiTable {
 
     // If there's still at least one row to render...
     if (tbodyContents.length > 0) {
-      
+
       return tbodyContents;
-    
+
     }
 
     // Otherwise, render a placeholder row.
@@ -1339,11 +1418,11 @@ export class YetiTable {
     if (this.sortSelf) {
 
       if (this.contents &&
-          this.contents.head &&
-          this.contents.head.rows &&
-          this.contents.head.rows[0] &&
-          this.contents.head.rows[0].cells) {
-            
+        this.contents.head &&
+        this.contents.head.rows &&
+        this.contents.head.rows[0] &&
+        this.contents.head.rows[0].cells) {
+
         headerCells = this.contents.head.rows[0].cells;
 
         for (let i = 0; i < headerCells.length; i++) {
@@ -1393,32 +1472,32 @@ export class YetiTable {
     }
 
     return (
-      
+
       <table class={cssClass}>
 
-        {( this.contents.head ) ?
-        
+        {(this.contents.head) ?
+
           <thead class="yeti-table-head">
 
             <tr class="yeti-table-head-row">
 
-              {( this.contents.head && this.contents.head.rows && this.contents.head.rows.length > 0 && this.contents.head.rows[0].cells && this.contents.head.rows[0].cells.length > 0) ?
+              {(this.contents.head && this.contents.head.rows && this.contents.head.rows.length > 0 && this.contents.head.rows[0].cells && this.contents.head.rows[0].cells.length > 0) ?
 
                 this.contents.head.rows.map((row) => {
                   return this.renderRow(row);
                 })
 
-              :
+                :
 
                 <th class="yeti-table-heading" scope="col">No data</th>
 
               }
-                
+
             </tr>
 
           </thead>
 
-        :
+          :
 
           ""
 
@@ -1433,14 +1512,14 @@ export class YetiTable {
 
         </tbody>
 
-    </table>
+      </table>
     );
   }
 
 
   componentDidRender() {
     let paginationComponent = this.el.querySelector('yeti-table-pagination');
-    
+
     if (paginationComponent != null) {
 
       // If we're relying on the component consumer to handle pagination, then we get the record count from them.

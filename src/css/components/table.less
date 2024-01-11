@@ -15,7 +15,8 @@ yeti-table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
-    height: 1px; /* Tables are still weird. Needed to make yeti-table-heading-compound fill full cell height? */
+    height: 1px;
+    /* Tables are still weird. Needed to make yeti-table-heading-compound fill full cell height? */
 }
 
 .yeti-table-heading:not(.yeti-table-numeric, .yeti-table-control),
@@ -39,6 +40,7 @@ yeti-table {
     padding-right: 0.75rem;
     line-height: 1.28572;
 }
+
 .yeti-table-heading:first-child:not(:has(.yeti-table-heading-compound)),
 .yeti-table-heading:first-child .yeti-table-heading-button,
 .yeti-table-heading:first-child .yeti-table-heading-compound-actual,
@@ -46,6 +48,7 @@ yeti-table {
 .yeti-table-cell:first-child {
     padding-left: 1rem;
 }
+
 .yeti-table-heading:last-child:not(:has(.yeti-table-heading-compound)),
 .yeti-table-heading:last-child .yeti-table-heading-button,
 .yeti-table-heading:last-child .yeti-table-heading-compound-actual,
@@ -101,6 +104,7 @@ yeti-table {
     border-top: 1px solid #f4f4f4;
     border-bottom: 1px solid #e0e0e0;
 }
+
 .yeti-table-body-row:hover {
     background-color: #e5e5e5;
     border-bottom-color: #e5e5e5;
@@ -122,6 +126,7 @@ yeti-table {
 .yeti-table-body-row:has(.yeti-radio:checked) {
     background-color: #e0e0e0;
 }
+
 .yeti-table-body-row:has(.yeti-radio:checked):hover {
     background-color: #d1d1d1;
     border-top-color: #d1d1d1;
@@ -157,6 +162,7 @@ yeti-table {
     width: 100%;
     overflow-x: auto;
 }
+
 .yeti-table__scrollable:focus {
     .yeti-mixin-focus-default();
 }
@@ -173,22 +179,69 @@ yeti-table {
     text-overflow: ellipsis;
 }
 
-.yeti-table__fixed .yeti-table-grid-16 { width: calc(100% / 16 * 16); }
-.yeti-table__fixed .yeti-table-grid-15 { width: calc(100% / 16 * 15); }
-.yeti-table__fixed .yeti-table-grid-14 { width: calc(100% / 16 * 14); }
-.yeti-table__fixed .yeti-table-grid-13 { width: calc(100% / 16 * 13); }
-.yeti-table__fixed .yeti-table-grid-12 { width: calc(100% / 16 * 12); }
-.yeti-table__fixed .yeti-table-grid-11 { width: calc(100% / 16 * 11); }
-.yeti-table__fixed .yeti-table-grid-10 { width: calc(100% / 16 * 10); }
-.yeti-table__fixed .yeti-table-grid-9  { width: calc(100% / 16 * 9); }
-.yeti-table__fixed .yeti-table-grid-8  { width: calc(100% / 16 * 8); }
-.yeti-table__fixed .yeti-table-grid-7  { width: calc(100% / 16 * 7); }
-.yeti-table__fixed .yeti-table-grid-6  { width: calc(100% / 16 * 6); }
-.yeti-table__fixed .yeti-table-grid-5  { width: calc(100% / 16 * 5); }
-.yeti-table__fixed .yeti-table-grid-4  { width: calc(100% / 16 * 4); }
-.yeti-table__fixed .yeti-table-grid-3  { width: calc(100% / 16 * 3); }
-.yeti-table__fixed .yeti-table-grid-2  { width: calc(100% / 16 * 2); }
-.yeti-table__fixed .yeti-table-grid-1  { width: calc(100% / 16 * 1); }
+.yeti-table__fixed .yeti-table-grid-16 {
+    width: calc(100% / 16 * 16);
+}
+
+.yeti-table__fixed .yeti-table-grid-15 {
+    width: calc(100% / 16 * 15);
+}
+
+.yeti-table__fixed .yeti-table-grid-14 {
+    width: calc(100% / 16 * 14);
+}
+
+.yeti-table__fixed .yeti-table-grid-13 {
+    width: calc(100% / 16 * 13);
+}
+
+.yeti-table__fixed .yeti-table-grid-12 {
+    width: calc(100% / 16 * 12);
+}
+
+.yeti-table__fixed .yeti-table-grid-11 {
+    width: calc(100% / 16 * 11);
+}
+
+.yeti-table__fixed .yeti-table-grid-10 {
+    width: calc(100% / 16 * 10);
+}
+
+.yeti-table__fixed .yeti-table-grid-9 {
+    width: calc(100% / 16 * 9);
+}
+
+.yeti-table__fixed .yeti-table-grid-8 {
+    width: calc(100% / 16 * 8);
+}
+
+.yeti-table__fixed .yeti-table-grid-7 {
+    width: calc(100% / 16 * 7);
+}
+
+.yeti-table__fixed .yeti-table-grid-6 {
+    width: calc(100% / 16 * 6);
+}
+
+.yeti-table__fixed .yeti-table-grid-5 {
+    width: calc(100% / 16 * 5);
+}
+
+.yeti-table__fixed .yeti-table-grid-4 {
+    width: calc(100% / 16 * 4);
+}
+
+.yeti-table__fixed .yeti-table-grid-3 {
+    width: calc(100% / 16 * 3);
+}
+
+.yeti-table__fixed .yeti-table-grid-2 {
+    width: calc(100% / 16 * 2);
+}
+
+.yeti-table__fixed .yeti-table-grid-1 {
+    width: calc(100% / 16 * 1);
+}
 
 
 
@@ -218,8 +271,9 @@ yeti-table-actions[use-grid] yeti-table-action {
     align-items: center;
     padding: 0 0.75rem;
 }
+
 .yeti-table-actions-links-item:not(:last-child) {
-    border-right: 1px solid #8d8d8d; 
+    border-right: 1px solid #8d8d8d;
 }
 
 .yeti-table-actions-link:focus {
@@ -252,6 +306,7 @@ yeti-table-pagination {
     color: revert;
     margin-right: 0.0625rem;
 }
+
 .yeti-table-pagination-items_per_page-label::first-letter {
     text-transform: capitalize;
 }
@@ -313,13 +368,16 @@ yeti-table-pagination {
     width: 2.5rem;
     color: #161616;
 }
+
 .yeti-table-pagination-pages-buttons-button:hover:not(:disabled) {
     background-color: #e8e8e8;
 }
+
 .yeti-table-pagination-pages-buttons-button:focus {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
 }
+
 .yeti-table-pagination-pages-buttons-button:disabled {
     cursor: not-allowed;
     color: #16161640;
@@ -351,17 +409,20 @@ yeti-table-pagination {
     font-size: 100%;
     font: inherit;
     margin: 0;
-    transition: background-color 70ms cubic-bezier(0,0,.38,.9),outline 70ms cubic-bezier(0,0,.38,.9);
+    transition: background-color 70ms cubic-bezier(0, 0, .38, .9), outline 70ms cubic-bezier(0, 0, .38, .9);
     vertical-align: initial;
     width: 100%;
     padding-top: 0.5rem;
 }
+
 .yeti-table-heading-button:focus {
     .yeti-mixin-focus-default();
 }
+
 .yeti-table-numeric .yeti-table-heading-button {
     justify-content: flex-end;
 }
+
 .yeti-table-heading-button:is(:hover, :focus) {
     background-color: #d1d1d1;
 }
@@ -391,7 +452,8 @@ yeti-table-pagination {
 .yeti-table-heading-button .material-icons {
     display: flex;
     justify-content: center;
-    margin-right: -0.4375rem; /* Set the icon flush with the edge of the content box, just like normal content. */
+    margin-right: -0.4375rem;
+    /* Set the icon flush with the edge of the content box, just like normal content. */
 }
 
 
@@ -404,6 +466,7 @@ yeti-table-pagination {
     padding-bottom: 0.75rem;
     text-overflow: ellipsis;
 }
+
 .yeti-table-numeric .yeti-table-heading-filter {
     justify-content: flex-end;
 }
@@ -456,7 +519,10 @@ yeti-table-pagination {
     background-color: white;
     border: 1px solid #525252;
 }
-.yeti-table-heading-filter :is(.yeti-date-button, .yeti-table-heading-filter-input-button) { border-left: 0; }
+
+.yeti-table-heading-filter :is(.yeti-date-button, .yeti-table-heading-filter-input-button) {
+    border-left: 0;
+}
 
 .yeti-table-heading-filter-input-button {
     width: 2.5rem;
@@ -482,4 +548,36 @@ yeti-table-pagination {
 .yeti-table-cell:has(yeti-progress-bar) {
     padding-top: 0.40625rem;
     padding-bottom: 0.40625rem;
+}
+
+
+
+/************************************** Expand/Collapse ***/
+.yeti-table-expando_button {
+    .yeti-mixin-button-vanilla();
+    background-color: transparent;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 0.25rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+}
+
+.yeti-table-expando_button:focus {
+    .yeti-mixin-focus-default();
+}
+
+.yeti-table-body-row-child_row {
+    background-color: rgba(0, 0, 0, 0.025);
+}
+
+.yeti-table-body-row-child_row__hidden {
+    display: none;
+}
+
+.yeti-table-body-row-child_row .yeti-table-cell:first-child,
+.yeti-table:has(.yeti-table-expando_button) .yeti-table-heading:first-child {
+    padding-left: 2.75rem;
 }
