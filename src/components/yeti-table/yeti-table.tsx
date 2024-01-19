@@ -289,14 +289,12 @@ export class YetiTable {
           if (this.hasRowActions(cell) && !utils.isEqual(cell.rowActions, correspondingCellInOldContents.rowActions)) {
 
             row.rowActionsJustChanged = true;
-            console.log("Row has changed:", row);
 
           }
 
         } catch {
 
           row.rowActionsJustChanged = true; // For when cell has row actions, but we can't find row actions for the given cell in oldContents
-          console.log("Row has changed:", row);
         
         }
 
@@ -319,14 +317,12 @@ export class YetiTable {
               if (this.hasRowActions(childRowCell) && !utils.isEqual(childRowCell.rowActions, correspondingCellInOldContents.rowActions)) {
 
                 childRow.rowActionsJustChanged = true;
-                console.log("Row has changed:", childRow);
 
               }
 
             } catch {
 
               childRow.rowActionsJustChanged = true; // For when cell has row actions, but we can't find row actions for the given cell in oldContents
-              console.log("Row has changed:", childRow);
             
             }
 
