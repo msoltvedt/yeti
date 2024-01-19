@@ -2878,6 +2878,10 @@ Styles for notification
   .yeti-typo-align-left {
     text-align: left;
   }
+  /************************************** Weight ***/
+  .yeti-typo-weight-strong {
+    font-weight: 700;
+  }
   /************************************** colors.less ***
  *
  * Utilities > Colors
@@ -3045,6 +3049,14 @@ Styles for notification
   }
   .yeti-layout-row-space_between {
     justify-content: space-between;
+  }
+  /*** Column ***/
+  .yeti-layout-column {
+    display: flex;
+    flex-direction: column;
+  }
+  .yeti-layout-column-align-right {
+    align-items: flex-end;
   }
   /*** Shorthands ***/
   .yeti-layout-inflexible {

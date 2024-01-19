@@ -35,6 +35,11 @@ yeti-tooltip {
     display: block;
 }
 
+.yeti-tooltip-trigger:focus {
+    .yeti-mixin-focus-default();
+    outline-offset: 0px;
+}
+
 
 
 /************************************** Actual ***/
@@ -85,6 +90,7 @@ yeti-tooltip {
 /*** Content ***/
 .yeti-tooltip-content {
     position: relative;
+    text-align: left;
 }
 :not(.yeti-tooltip-auto_height) .yeti-tooltip-content {
     display: -webkit-box;

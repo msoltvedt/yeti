@@ -118,6 +118,11 @@ export class YetiTable {
   @Prop() paginateSelf: boolean = true;
 
   /**
+   * Determines whether this table has rows that can expand and collapse.
+   */
+  @Prop() hasExpandableRows: boolean = false;
+
+  /**
    * Text that will be displayed in the table body when contents.body is empty.
    */
   @Prop() placeholderText: string = "";
@@ -203,9 +208,11 @@ export class YetiTable {
     let menuButton = ev.target;
     let newValue = ev.detail.newValue;
     let rowIndex = menuButton.getAttribute("data-row-index");
+    let parentRowIndex = menuButton.getAttribute("data-parent-row-index");
 
     this.rowActionClick.emit({
       "rowIndex": rowIndex,
+      "parentRowIndex": parentRowIndex,
       "actionLabel": newValue
     });
 
@@ -262,21 +269,124 @@ export class YetiTable {
       because it's passed by reference or something. As a result, we have to manually check to see if the row actions have changed,
       and if so, give the <yeti-menu-button> a new key to trigger a rerender with the latest data.
     */
-    if (!this.contents.body || !this.contents.body.rows || !this.contents.body.rows.length) {
+    if (!this.rowExistsAtIndex(0)) {
+      // Return if there isn't at least one row.
       return;
     }
 
+    // Loop through each row
     this.contents.body.rows.forEach((row, rowIndex) => {
+
+      // Loop through each cell in that row
       row.cells.forEach((cell, cellIndex) => {
-        if (cell.rowActions && cell.rowActions.length && cell.rowActions.length > 0) {
-          if (oldContents.body && oldContents.body.rows && oldContents.body.rows[rowIndex] && oldContents.body.rows[rowIndex].cells[cellIndex] && !utils.isEqual(cell.rowActions, oldContents.body.rows[rowIndex].cells[cellIndex].rowActions)) {
+
+        // See if the cell has row actions, and...
+        try {
+
+          let correspondingCellInOldContents = oldContents.body.rows[rowIndex].cells[cellIndex];
+
+          // ...if so, if they're the same as what was in oldContents at the same row and column index.
+          if (this.hasRowActions(cell) && !utils.isEqual(cell.rowActions, correspondingCellInOldContents.rowActions)) {
 
             row.rowActionsJustChanged = true;
+            console.log("Row has changed:", row);
 
           }
+
+        } catch {
+
+          row.rowActionsJustChanged = true; // For when cell has row actions, but we can't find row actions for the given cell in oldContents
+          console.log("Row has changed:", row);
+        
         }
+
       });
+
+      
+      // Repeat process for childRows.
+      if (row.childRows) {
+
+        row.childRows.forEach((childRow, childRowIndex) => {
+
+          childRow.cells.forEach((childRowCell, childRowCellIndex) => {
+
+            // See if the cell has row actions, and...
+            try {
+
+              let correspondingCellInOldContents = oldContents.body.rows[rowIndex].childRows[childRowIndex].cells[childRowCellIndex];
+
+              // ...if so, if they're the same as what was in oldContents at the same row and column index.
+              if (this.hasRowActions(childRowCell) && !utils.isEqual(childRowCell.rowActions, correspondingCellInOldContents.rowActions)) {
+
+                childRow.rowActionsJustChanged = true;
+                console.log("Row has changed:", childRow);
+
+              }
+
+            } catch {
+
+              childRow.rowActionsJustChanged = true; // For when cell has row actions, but we can't find row actions for the given cell in oldContents
+              console.log("Row has changed:", childRow);
+            
+            }
+
+          })
+
+        });
+
+      }
+
     });
+
+    // this.contents.body.rows.forEach((row, rowIndex) => {
+    //   row.cells.forEach((cell, cellIndex) => {
+    //     if (cell.rowActions && cell.rowActions.length && cell.rowActions.length > 0) {
+    //       if (oldContents.body && oldContents.body.rows && oldContents.body.rows[rowIndex] && oldContents.body.rows[rowIndex].cells[cellIndex] && !utils.isEqual(cell.rowActions, oldContents.body.rows[rowIndex].cells[cellIndex].rowActions)) {
+
+    //         row.rowActionsJustChanged = true;
+
+    //       }
+    //     }
+    //   });
+    // });
+
+  }
+
+
+
+  hasRowActions(cell: YetiTableCell) {
+    // Returns true if cell has at least one row action in it.
+    if (cell.rowActions && cell.rowActions.length && cell.rowActions.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+
+  rowExistsAtIndex(rowIndex: number, childRowIndex: number = -1, contents: YetiTableContents = this.contents) {
+    // Helper function that returns false unless a valid row object exists at the specified index in the given table contents's body.
+    try {
+
+      let potentialRow: YetiTableRow;
+      if (childRowIndex >= 0) {
+        potentialRow = contents.body.rows[rowIndex].childRows[childRowIndex];
+      } else {
+        potentialRow = contents.body.rows[rowIndex];
+      }
+      
+      if (potentialRow != undefined) {
+        return true;
+      } else {
+        return false;
+      }
+
+    } catch {
+
+      return false;
+
+    }
   }
 
 
@@ -321,10 +431,32 @@ export class YetiTable {
     this.contents.body.rows.forEach((row, rowIndex) => {
       row.rowIndex = rowIndex;
 
-      row.cells.forEach((cell, cellIndex) => {
-        cell.columnIndex = cellIndex;
-        cell.rowIndex = rowIndex;
-      })
+      this.setColumnIndicesForRow(row);
+
+      // If row has childRows then we need to index them too.
+      if (row.childRows && row.childRows.length && row.childRows.length > 0) {
+
+        // There are childRows. Index them.
+        row.childRows.forEach((childRow, childRowIndex) => {
+          childRow.rowIndex = childRowIndex;
+          childRow.parentRow = row;
+          this.setColumnIndicesForRow(childRow, rowIndex);
+        });
+
+      }
+
+    })
+  }
+
+
+
+  setColumnIndicesForRow(row: YetiTableRow, parentRowIndex: number = -1) {
+    // Assumes row is valid and has a rowIndex already.
+    let rowIndex = row.rowIndex;
+    row.cells.forEach((cell, cellIndex) => {
+      cell.columnIndex = cellIndex;
+      cell.rowIndex = rowIndex;
+      cell.parentRowIndex = parentRowIndex;
     })
   }
 
@@ -731,7 +863,7 @@ export class YetiTable {
 
 
 
-  renderCell(cell: YetiTableCell, containingRow: YetiTableRow, isRowExpanderCell: boolean = false) {
+  renderCell(cell: YetiTableCell) {
 
     if (!cell.id || cell.id == "") {
       //console.warn("Each table cell should have a unique id.");
@@ -780,15 +912,7 @@ export class YetiTable {
         {...((cell.rowspan && typeof cell.rowspan == "number") ? { "rowspan": cell.rowspan } : {})} // Set rowspan if provided.
       >
 
-        {(isRowExpanderCell ?                     /* If this is an expandable row...*/
-
-          this.renderExpandoButton(containingRow) /* ...then render the expando button control. */
-
-          :
-
-          '')}
-
-        {((cell.template) ? {} : cell.value) /* Use the cell template if provided; otherwise just use the value as usual. */}
+        {((cell.template) ? "" : cell.value) /* Use the cell template if provided; otherwise just use the value as usual. */}
 
       </td>
 
@@ -803,7 +927,7 @@ export class YetiTable {
 
     let childRowIds = [];
     let childRowIdsAsString = "";
-    containingRow.isExpanded = (containingRow.isExpanded == undefined || containingRow.isExpanded == true) ? true : false; // containingRow.isExpanded could be undefined at this point.
+    containingRow.isExpanded = (containingRow.isExpanded == undefined || containingRow.isExpanded == false) ? false : true; // containingRow.isExpanded could be undefined at this point. Default to false.
     let ariaLabelText = (containingRow.isExpanded) ? "Collapse current row" : "Expand current row";
     let iconCode = (containingRow.isExpanded) ? "expand_less" : "expand_more";
 
@@ -846,6 +970,7 @@ export class YetiTable {
     let controlId;
     let control;
     let timesUpdated;
+    let containingRow = (cell.parentRowIndex >= 0) ? this.contents.body.rows[cell.parentRowIndex].childRows[cell.rowIndex] : this.contents.body.rows[cell.rowIndex];
 
     // Initialize controlId
     if (preexistingMenuButtonElement && preexistingMenuButtonElement.getAttribute("id")) {
@@ -862,13 +987,13 @@ export class YetiTable {
     }
 
     // Handle the case where the row actions have changed.
-    if (this.contents.body.rows[cell.rowIndex].rowActionsJustChanged) {
+    if (containingRow.rowActionsJustChanged) {
 
       // If the menu button has been changed previously then it'll have an attribute of data-times-updated
       ++timesUpdated;
 
       controlId = (cell.id && cell.id !== "") ? `${cell.id}_menuButton_mk${timesUpdated}` : utils.generateUniqueId();
-      this.contents.body.rows[cell.rowIndex].rowActionsJustChanged = false;
+      containingRow.rowActionsJustChanged = false;
 
     }
 
@@ -898,10 +1023,14 @@ export class YetiTable {
       control = <yeti-menu-button
         menu-alignment="right"
         data-row-index={cell.rowIndex}
+        data-parent-row-index={cell.parentRowIndex}
         data-times-updated={`${timesUpdated}`}
         id={controlId}
         key={controlId}
-        tooltipText="Row actions">{actions}</yeti-menu-button>
+        tooltipText="Row actions"
+        // data-parent-row={ (parentRow != "undefined") ? "yep" : "nope" }
+        // {...(parentRowIndex ? { "data-parent-row-index": parentRow.rowIndex } : {})}
+      >{actions}</yeti-menu-button>
 
       return <td class={css} id={cell.id} key={cell.id}>{control}</td>
 
@@ -1074,7 +1203,15 @@ export class YetiTable {
       } else {
 
         // It's a simple column heading.
-        return <th class={'yeti-table-heading' + css} scope={(cell.scope && cell.scope == "row") ? "row" : "col"}>{cell.value}</th>
+        return <th 
+          class={'yeti-table-heading' + css} 
+          scope={(cell.scope && cell.scope == "row") ? "row" : "col"}
+          {...((cell.template) ? { "innerHTML": cell.template } : {})} // If it's a cell template, set the innerHTML attribute.
+        >
+          
+          {((cell.template) ? "" : cell.value) /* Use the cell template if provided; otherwise just use the value as usual. */}
+        
+        </th>
 
       }
 
@@ -1244,31 +1381,52 @@ export class YetiTable {
     // Check to see if this row has child rows so we can tell renderCell to add the expand/collapse button.
     let isAnExpandableRow = (row.childRows && row.childRows.length && row.childRows.length > 0) ? true : false;
 
-    row.cells.forEach((cell: YetiTableCell, index) => {
-      let needsAnExpandCollapseButton = (isAnExpandableRow && index == 0) ? true : false; // Only the first cell in an expandable row needs an expando button.
-      cells.push(this.renderCell(cell, row, needsAnExpandCollapseButton));
+    if (this.hasExpandableRows) {
+
+      // Need to add a cell to the start of the row.
+      let expandoCellId = `${row.id}_expando`;
+
+      // Determine if this is a header row or a body row.
+      if (row.cells && row.cells[0] && row.cells[0].isHeading) {
+        
+        // It's a header row.
+        cells.push(
+          <th class="yeti-table-heading yeti-table-heading-expando" scope="col" id={expandoCellId} key={expandoCellId}></th>
+        )
+      
+      } else {
+
+        // It's a body row.
+        
+        // See if it's a child row or a parent row.
+        if (isAnExpandableRow) {
+          
+          // It is, add the expando button control.
+          cells.push(
+            <td class="yeti-table-cell yeti-table-cell-expando" id={expandoCellId} key={expandoCellId}>{this.renderExpandoButton(row)}</td>
+          )
+
+        } else {
+
+          // It isn't, just add an empty cell.
+          cells.push(
+            <td class="yeti-table-cell yeti-table-cell-expando" id={expandoCellId} key={expandoCellId}></td>
+          )
+
+        }
+
+      }
+
+    }
+    
+    // Handle the rest of the cells.
+    row.cells.forEach((cell: YetiTableCell) => {
+      //let needsAnExpandCollapseButton = (isAnExpandableRow && index == 0) ? true : false; // Only the first cell in an expandable row needs an expando button.
+      cells.push(this.renderCell(cell));
     })
 
     return cells;
 
-  }
-
-
-
-  renderHeaderRow(row: YetiTableRow) {
-
-    // Basically the same as renderRow but first checks to see if we need to create a placeholder heading cell.
-    if (this.contents.head.rows.length == 0 || !this.contents.head.rows[0].cells || this.contents.head.rows[0].cells.length == 0) {
-
-      //console.warn("All tables should have headers.");
-
-      return <th class="yeti-table-heading" scope="col">No data</th>
-    }
-
-    // Base case, just render the row as usual.
-    else {
-      return this.renderRow(row);
-    }
   }
 
 
@@ -1323,7 +1481,7 @@ export class YetiTable {
           if (row.childRows && row.childRows.length && row.childRows.length > 0) {
 
             if (row.isExpanded == undefined) {
-              row.isExpanded = true; // Default to expandable rows being expanded.
+              row.isExpanded = false; // Default to expandable rows being hidden.
             }
 
             if (!row.isExpanded) {
@@ -1332,8 +1490,11 @@ export class YetiTable {
 
             for (let c = 0; c < row.childRows.length; c++) {
 
+              let childRowId = 
+                  row.childRows[c].id = `${row.id}_child_${c}`;
+
               tbodyContents.push(
-                <tr class={childRowCSS} id={`${row.id}_child_${c}`} key={`${row.id}_child_${c}`}>{this.renderRow(row.childRows[c])}</tr>
+                <tr class={childRowCSS} id={childRowId} key={childRowId}>{this.renderRow(row.childRows[c])}</tr>
               );
 
             }

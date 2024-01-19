@@ -46,14 +46,6 @@ export class YetiIcon {
 
 
 
-  componentDidRender() {
-    if (this.focusable) {
-        this.el.setAttribute("tabindex", "0");
-    }
-  }
-
-
-
   render() {
 
     let iconCSS = 'material-icons';
@@ -79,7 +71,10 @@ export class YetiIcon {
         // <span class="yeti-icon-wrapper" {...((this.focusable) ? {"tabindex": 0} : {})}>
         [
             
-            <span class={iconCSS} {...((this.alt != "") ? {"aria-hidden": true} : {})}>{this.iconCode}</span>,
+            <span 
+              class={iconCSS}
+              {...((this.focusable) ? {"tabindex": "0"} : {})}
+              {...((this.alt != "") ? {"aria-hidden": true} : {})}>{this.iconCode}</span>,
             
             (this.alt != "") ? <span class="yeti-a11y-hidden">{this.alt}</span> : ""
           
