@@ -264,7 +264,6 @@ export interface YetiTableContents {
 
 export interface YetiTableRow {
   cssClass?: string,
-  isExpandable?: boolean,
   id?: string,
   cells: YetiTableCell[],
   rowIndex?: number,
@@ -272,7 +271,8 @@ export interface YetiTableRow {
   detail?: object,
   isSelected?: boolean,
   isExpanded?: boolean,
-  childRows?: YetiTableRow[]
+  childRows?: YetiTableRow[],
+  parentRow?: YetiTableRow
 }
 
 export interface YetiTableCell {
@@ -283,6 +283,7 @@ export interface YetiTableCell {
   value: string,
   columnIndex?: number,
   rowIndex?: number,
+  parentRowIndex?: number,
   filtering?: YetiTableFilterObject,
   rowActions?: YetiTableRowAction[],
   scope?: string, // "col" (default) | "row",

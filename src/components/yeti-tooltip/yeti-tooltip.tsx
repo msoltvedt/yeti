@@ -116,6 +116,14 @@ export class YetiTooltip {
     }
   }
 
+  
+
+  handleTriggerKeyUp(e) {
+    if (this.clickToOpen && e.key == "Enter") {
+      this.handleTriggerClick(e);
+    }
+  }
+
 
 
   handleCloseTooltipClick(e) {
@@ -207,7 +215,12 @@ export class YetiTooltip {
     return ([
       <div class={wrapperCSS}>
 
-      <div class="yeti-tooltip-trigger" onClick={(e) => this.handleTriggerClick(e)}>
+      <div 
+        class="yeti-tooltip-trigger" 
+        onClick={(e) => this.handleTriggerClick(e)}
+        onKeyUp={(e) => this.handleTriggerKeyUp(e)}
+        {...((this.clickToOpen) ? { "tabindex": 0 } : {})}  
+      >
 
         <slot />
 
@@ -218,7 +231,7 @@ export class YetiTooltip {
           <div class="yeti-tooltip-content" id={this.tipId}>{this.text}</div>
 
           {
-            (this.clickToOpen) ?
+            (this.clickToOpen && this.isClickedOpen) ?
 
               <button class="yeti-tooltip-close" onClick={(e) => { this.handleCloseTooltipClick(e); }}>
                 <yeti-icon iconCode="close" iconCSS='yeti-color-white yeti-typo-size-5'></yeti-icon>
@@ -238,7 +251,7 @@ export class YetiTooltip {
 
   componentDidRender() {
     let slot = this.el.querySelector(".yeti-tooltip-trigger").firstElementChild;
-    slot.setAttribute("tabindex", "0");
+    //slot.setAttribute("tabindex", "0");
     slot.setAttribute("aria-describedby",this.tipId);
   }
 
