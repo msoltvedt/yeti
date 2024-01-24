@@ -348,9 +348,29 @@ export namespace Components {
     }
     interface YetiNotification {
         /**
+          * The alt text for the icon.
+         */
+        "iconAltText": string;
+        /**
+          * Which icon to use (see Google Material Icons).
+         */
+        "iconCode": string;
+        /**
+          * Whether to use the low-contrast variant or not.
+         */
+        "isLowContrast": boolean;
+        /**
           * id of the component's actual element corresponding to the tooltip. Will be auto-populated with a unique value if not provided.
          */
         "notificationId": string;
+        /**
+          * The type of notification: error (default) | info | success | warning | warningAlt.
+         */
+        "notificationType": string;
+        /**
+          * Whether to show the close button or not.
+         */
+        "showCloseButton": boolean;
         /**
           * id of the component's slot element.
          */
@@ -1148,9 +1168,29 @@ declare namespace LocalJSX {
     }
     interface YetiNotification {
         /**
+          * The alt text for the icon.
+         */
+        "iconAltText"?: string;
+        /**
+          * Which icon to use (see Google Material Icons).
+         */
+        "iconCode"?: string;
+        /**
+          * Whether to use the low-contrast variant or not.
+         */
+        "isLowContrast"?: boolean;
+        /**
           * id of the component's actual element corresponding to the tooltip. Will be auto-populated with a unique value if not provided.
          */
         "notificationId"?: string;
+        /**
+          * The type of notification: error (default) | info | success | warning | warningAlt.
+         */
+        "notificationType"?: string;
+        /**
+          * Whether to show the close button or not.
+         */
+        "showCloseButton"?: boolean;
         /**
           * id of the component's slot element.
          */
