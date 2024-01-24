@@ -26,21 +26,57 @@
 
         <h3 class="margin-bottom-2">Default</h3>
 
-
-        <h3 class="margin-bottom-2">Click to Open</h3>
-
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-<yeti-notification text-title="Mmmm Toast!" wrapper-class="yeti-notification-wrapper-error">
+<yeti-notification text-title="Basic Bob">
   
-  This is helpful text that will enlighten the user. It can be HTML like <a href="">links</a> or whatever.
+  Content will be inline if possible and can be HTML like <a href="">links</a> or whatever.
 
 </yeti-notification>
         </div><!-- /code_sample -->
 
 
-       
-        
+
+        <h3 class="margin-bottom-2">Setting a Notification Type</h3>
+
+        <p>
+          Set the type via the optional <code>notification-type</code> attribute. Possible values are <code>error</code> (default), <code>info</code>, <code>success</code>, <code>warning</code>, and <code>warningAlt</code>.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-notification text-title="Warning Warren" notification-type="warningAlt">
+  
+  Be forewarned and whatnot.
+
+</yeti-notification>
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-2">Low-contrast Mode</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-notification text-title="Error Erin" is-low-contrast="true">
+  
+  Welp, that didn't work.
+
+</yeti-notification>
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-2">Without Close Button</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-notification text-title="Error Erin" show-close-button="false">
+  
+  Welp, that didn't work.
+
+</yeti-notification>
+        </div><!-- /code_sample -->
 
 
 

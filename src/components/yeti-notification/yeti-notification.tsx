@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Element, Listen } from '@stencil/core';
+import { Component, Prop, h, State, Element } from '@stencil/core';
 import { utils } from '../../utils/utils';
 
 @Component({
@@ -14,6 +14,31 @@ export class YetiTooltip {
    * CSS classlist to add to the element serving as the component's wrapper.
    */
   @Prop({ attribute: 'wrapper-class'}) wrapperCSS: string = '';
+
+  /**
+   * The type of notification: error (default) | info | success | warning | warningAlt.
+   */
+  @Prop() notificationType: string = "";
+
+  /**
+   * Whether to use the low-contrast variant or not.
+   */
+  @Prop() isLowContrast: boolean = false;
+
+  /**
+   * Whether to show the close button or not.
+   */
+  @Prop() showCloseButton: boolean = true;
+
+  /**
+   * Which icon to use (see Google Material Icons).
+   */
+  @Prop() iconCode: string = "";
+
+  /**
+   * The alt text for the icon.
+   */
+  @Prop() iconAltText: string = "";
 
   /**
    * Text value to display as the notification's title.
@@ -44,23 +69,14 @@ export class YetiTooltip {
   @State() iLoveJSX: boolean = false;
 
   /**
-   * Whether the tooltip has been clicked open or not.
+   * Whether the notification is visible or not.
    */
-  @State() isClickedOpen: boolean = false;
-
-
-
-  @Listen('click', {
-    target: 'body'
-  })
-  handleDeFocusingClick() {
-    this.isClickedOpen = false;
-  }
+  @State() isVisible: boolean = true;
 
 
 
   handleCloseClick(e) {
-    this.isClickedOpen = false;
+    this.isVisible = false;
     e.stopImmediatePropagation();
     e.preventDefault();
   }
@@ -82,45 +98,105 @@ export class YetiTooltip {
 
   render() {
 
-    let wrapperCSS = 'yeti-notification-wrapper-error';
+    let altText = this.iconAltText;
+    let iconCode = this.iconCode;
+    let wrapperCSS = 'yeti-notification';
+    wrapperCSS += (this.wrapperCSS !== '') ? ` ${this.wrapperCSS}` : ``;
+
+    // Set type-based CSS class
+    switch (this.notificationType) {
+
+      case "error":
+
+        wrapperCSS += ' yeti-notification-error';
+        altText = (altText != '') ? altText : 'Error';
+        iconCode = (iconCode != '') ? iconCode : 'error';
+        break;
+
+      case "info":
+
+        wrapperCSS += ' yeti-notification-info';
+        altText = (altText != '') ? altText : 'Information';
+        iconCode = (iconCode != '') ? iconCode : 'info';
+        break;
+
+      case "success":
+
+        wrapperCSS += ' yeti-notification-success';
+        altText = (altText != '') ? altText : 'Success';
+        iconCode = (iconCode != '') ? iconCode : 'check_circle';
+        break;
+
+      case "warning":
+
+        wrapperCSS += ' yeti-notification-warning';
+        altText = (altText != '') ? altText : 'Warning';
+        iconCode = (iconCode != '') ? iconCode : 'error';
+        break;
+
+      case "warningAlt":
+
+        wrapperCSS += ' yeti-notification-warning_alt';
+        altText = (altText != '') ? altText : 'Warning';
+        iconCode = (iconCode != '') ? iconCode : 'warning';
+        break;
+
+      case "":
+      default:
+        altText = (altText != '') ? altText : 'Error';
+        iconCode = (iconCode != '') ? iconCode : 'error';
+        break;
+
+    }
+    
+
+    // Set low-contrast mode
+    wrapperCSS += (this.isLowContrast) ? ' yeti-notification-low_contrast' : '';
+
+
+    // Set visibility
+    wrapperCSS += (this.isVisible) ? '' : ' yeti-notification__hidden';
   
 
-    return ([
-      <div class={wrapperCSS}>
+    return (
+      <div class={wrapperCSS} id={this.notificationId} role="status">
 
-        <div class="yeti-notification-container">
+        <div class="yeti-notification-icon">
           
-          <div class="yeti-flex">
-            <yeti-icon iconCode="error" iconCSS='yeti-color-red yeti-typo-size-5 yeti-margin-right-2'></yeti-icon>
-          </div>
-
-          <div class="yeti-notification-content-wrapper">
-          
-            <div class="yeti-notification-content-title" id={this.notificationId}>{this.textTitle}</div>
-            <div class="yeti-notification-content" id={this.notificationId}>
-
-              <slot />
-
-            </div>
-
-          </div>
-          
-          <button class="yeti-notification-close" onClick={(e) => { this.handleCloseClick(e); }}>
-            <yeti-icon iconCode="close" iconCSS='yeti-color-white yeti-typo-size-4'></yeti-icon>
-          </button>
+          <span class="material-icons" aria-hidden="true">{iconCode}</span>
+          <span class="yeti-a11y-hidden">{altText}</span>
 
         </div>
 
+
+        <div class="yeti-notification-content">
+        
+          {
+            (this.textTitle != "") ?
+              <div class="yeti-notification-content-title">{this.textTitle}</div>
+            :
+              ''
+          }
+          <div class="yeti-notification-content-subtitle">
+
+            <slot />
+
+          </div>
+
+        </div>
+
+        {
+          (this.showCloseButton) ?
+
+            <button class="yeti-notification-close" onClick={(e) => this.handleCloseClick(e)}>
+              <span class="material-icons">close</span>
+            </button>
+          :
+            ""
+        }
+
       </div>
-    ]);
-  }
-
-
-
-  componentDidRender() {
-    let slot = this.el.querySelector(".yeti-notification-trigger").firstElementChild;
-    slot.setAttribute("tabindex", "0");
-    slot.setAttribute("aria-describedby",this.notificationId);
+    );
   }
 
 }

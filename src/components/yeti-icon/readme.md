@@ -22,7 +22,6 @@
 ### Used by
 
  - [yeti-file-explorer](../yeti-file-explorer)
- - [yeti-notification](../yeti-notification)
  - [yeti-table](../yeti-table)
  - [yeti-tooltip](../yeti-tooltip)
 
@@ -30,7 +29,6 @@
 ```mermaid
 graph TD;
   yeti-file-explorer --> yeti-icon
-  yeti-notification --> yeti-icon
   yeti-table --> yeti-icon
   yeti-tooltip --> yeti-icon
   style yeti-icon fill:#f9f,stroke:#333,stroke-width:4px
