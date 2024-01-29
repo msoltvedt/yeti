@@ -1446,7 +1446,7 @@ export class YetiTable {
       let colspan = (!this.contents.head.rows[0] || !this.contents.head.rows[0].cells) ? 1 : this.contents.head.rows[0].cells.length;
 
       return <tr class="yeti-table-body-row">
-        { this.hasExpandableRows ? <td></td> : {} }
+        { this.hasExpandableRows ? <td></td> : "" }
         <td class="yeti-table-cell" colSpan={colspan}>{this.placeholderText}</td>
       </tr>
     }
