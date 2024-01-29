@@ -1008,7 +1008,13 @@ export class YetiTable {
         let actionId = `${controlId}_opt${i}`;
 
         if (cell.rowActions[i].href) {
-          action = <yeti-menu-button-option href={cell.rowActions[i].href} id={actionId} key={actionId}>{cell.rowActions[i].label}</yeti-menu-button-option>
+          action = <yeti-menu-button-option 
+            href={cell.rowActions[i].href}
+            {...((cell.rowActions[i].target) ? {"target": cell.rowActions[i].target} : {})}
+            {...((cell.rowActions[i].downloadAs && cell.rowActions[i].downloadAs != "") ? {"download-as": cell.rowActions[i].downloadAs} : {})}
+            id={actionId} 
+            key={actionId}
+          >{cell.rowActions[i].label}</yeti-menu-button-option>
         } else {
           action = <yeti-menu-button-option id={actionId} key={actionId}>{cell.rowActions[i].label}</yeti-menu-button-option>
         }
@@ -1440,6 +1446,7 @@ export class YetiTable {
       let colspan = (!this.contents.head.rows[0] || !this.contents.head.rows[0].cells) ? 1 : this.contents.head.rows[0].cells.length;
 
       return <tr class="yeti-table-body-row">
+        { this.hasExpandableRows ? <td></td> : {} }
         <td class="yeti-table-cell" colSpan={colspan}>{this.placeholderText}</td>
       </tr>
     }

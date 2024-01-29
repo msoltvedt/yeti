@@ -304,7 +304,9 @@ export interface YetiTableFilterObject {
 
 export interface YetiTableRowAction {
   label: string,
-  href?: string
+  href?: string,
+  target?: string,
+  downloadAs?: string
 }
 
 export interface YetiMultiselectOption {
@@ -316,6 +318,8 @@ export interface YetiMultiselectOption {
 export interface YetiMenuButtonOption {
   label: string,
   href?: string,
+  target?: string,
+  downloadAs?: string,
   hasHTML?: boolean,
   id: string,
   value?: string,

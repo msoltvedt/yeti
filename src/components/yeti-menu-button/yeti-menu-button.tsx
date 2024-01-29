@@ -325,6 +325,14 @@ export class YetiMenuButton {
         // Check to see if it has a href attribute.
         if (option.hasAttribute("href") && option.getAttribute("href") != "") {
           optionObject.href = option.getAttribute("href");
+
+          if (option.hasAttribute("target") && option.getAttribute("target") != "") {
+            optionObject.target = option.getAttribute("target");
+          }
+
+          if (option.hasAttribute("download-as") && option.getAttribute("download-as") != "") {
+            optionObject.downloadAs = option.getAttribute("download-as");
+          }
         }
 
         // Check to see if it's normal or fancy (i.e. has HTML)
@@ -393,6 +401,8 @@ export class YetiMenuButton {
       if (option.href) {
         linkOrButtonElement = <a 
           href={option.href} 
+          {...((option.target != "" && !option.downloadAs) ? {"target": option.target} : {})}
+          {...((option.downloadAs && option.downloadAs != "") ? {"download": option.downloadAs} : {})}
           class="yeti-menu_button-menu-item-link" 
           role="menuitem" 
           tabindex="-1"
