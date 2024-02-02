@@ -2064,9 +2064,6 @@ Styles for Table
     background-color: #f4f4f4;
     border-top: 1px solid #e0e0e0;
   }
-  yeti-table-actions {
-    display: contents;
-  }
   yeti-table-actions[use-grid] yeti-table-action {
     display: flex;
     align-items: center;
@@ -2089,9 +2086,6 @@ Styles for Table
     outline-offset: 0.6875rem;
   }
   /************************************** Pagination ***/
-  yeti-table-pagination {
-    display: contents;
-  }
   .yeti-table-pagination {
     min-height: 2.5rem;
     display: flex;
@@ -3798,6 +3792,9 @@ Styles for notification
   }
   .yeti-width-180 {
     width: 45rem;
+  }
+  .yeti-width-full {
+    width: 100%;
   }
   /*** Max Width ***/
   .yeti-width-max-108 {
