@@ -202,11 +202,11 @@ export class YetiTable {
     }
   }
 
-  @Listen('menuButtonChange')
-  handleMenuButtonChange(ev) {
+  @Listen('menuButtonSelectionMade')
+  handleMenuButtonSelectionMade(ev) {
 
     let menuButton = ev.target;
-    let newValue = ev.detail.newValue;
+    let newValue = ev.detail.value;
     let rowIndex = menuButton.getAttribute("data-row-index");
     let parentRowIndex = menuButton.getAttribute("data-parent-row-index");
 

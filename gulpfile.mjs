@@ -126,8 +126,8 @@ function watcher(cb) {
     watch(['src/examples/**/*.js', 'src/examples/**/*.mjs'], series(cleanWWWJS, publishExamplesJS))
 
     // Optionally update Orchestrator and CRM as well.
-    // watch(`dist/yeti/**/*`, series(cleanOrchestratorJS, pasteJSToOrchestrator, cleanCrmJS, pasteJSToCrm));
-    // watch(`src/css/yeti.css`, parallel(pasteCSSToOrchestrator, pasteCSSToCrm));
+    watch(`dist/yeti/**/*`, series(cleanOrchestratorJS, pasteJSToOrchestrator, cleanCrmJS, pasteJSToCrm));
+    watch(`src/css/yeti.css`, parallel(pasteCSSToOrchestrator, pasteCSSToCrm));
     cb();
 }
 
