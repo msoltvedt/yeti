@@ -958,7 +958,7 @@ export class YetiTable {
   renderRowActionsCell(cell: YetiTableCell) {
 
     let css = (cell.cssClass && cell.cssClass != "") ?
-      "yeti-table-cell yeti-table-control yeti-table-cell-row_actions" + cell.cssClass :
+      "yeti-table-cell yeti-table-control yeti-table-cell-row_actions " + cell.cssClass :
       "yeti-table-cell yeti-table-control yeti-table-cell-row_actions";
 
     let preexistingMenuButtonElement = document.querySelector(`#${cell.id} yeti-menu-button`);
