@@ -357,6 +357,9 @@ Styles for Modal
     overflow: auto;
     gap: 0.75rem;
   }
+  .yeti-modal-actions:not(:has(.yeti-button)) {
+    display: none;
+  }
   /************************************** Sizes ***/
   .yeti-modal-small {
     width: 30rem;
@@ -1217,6 +1220,7 @@ Styles for Menu Button
     display: block;
     font-size: 0.875rem;
     line-height: 1.28572;
+    color: #161616;
   }
   .yeti-menu_button-menu-item:hover {
     background-color: #e5e5e5;
@@ -1502,6 +1506,7 @@ Leeloo Dallas multipass
   }
   .yeti-multiselect-wrapper {
     position: relative;
+    max-width: 100%;
   }
   /************************************** Facade Styles ***/
   .yeti-multiselect {
@@ -2250,6 +2255,9 @@ Styles for Table
   .yeti-table-heading-filter-input-wrapper {
     display: flex;
   }
+  .yeti-table-heading-filter-input-wrapper .yeti-input-wrapper {
+    flex: 1 1 auto;
+  }
   .yeti-table-cell.yeti-table-cell-clear,
   .yeti-table-heading.yeti-table-cell-clear {
     padding-bottom: 0.25rem;
@@ -2290,15 +2298,15 @@ Styles for Table
   }
   .yeti-table-heading-filter-input-button {
     width: 2.5rem;
-    flex: 1 0 2.5rem;
+    flex: 0 0 2.5rem;
   }
   .yeti-table-heading-filter :is(.yeti-input, .yeti-select, .yeti-multiselect, .yeti-date-button, .yeti-table-heading-filter-input-button):hover {
     background-color: #f4f4f4;
   }
   /************************************** Row Actions ***/
   .yeti-table-cell-row_actions {
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
+    padding-top: 0.125rem;
+    padding-bottom: 0.125rem;
   }
   /************************************** Progress Bar Cells ***/
   .yeti-table-cell-has_progress_bar,
@@ -2310,9 +2318,8 @@ Styles for Table
   /*** Cells ***/
   .yeti-table-heading-expando,
   .yeti-table-cell.yeti-table-cell-expando {
-    width: 2.5rem;
-    padding-left: 0.5rem;
-    padding-right: 0rem;
+    width: 3.25rem;
+    padding: 0.75rem 0 0.75rem 0.75rem;
   }
   .yeti-table-expando_button {
     -webkit-appearance: none;
@@ -2328,8 +2335,9 @@ Styles for Table
     vertical-align: middle;
     display: inline-flex;
     align-items: center;
-    width: 2rem;
-    height: 2rem;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
     padding: 0.25rem;
   }
   .yeti-table-expando_button:focus {
@@ -2658,6 +2666,7 @@ Styles for notification
   .yeti-notification-content {
     flex: 1 1 auto;
     padding: 0.9375rem 0.8175rem 0.9375rem 0;
+    line-height: 1.28572;
     display: flex;
     flex-wrap: wrap;
     gap: 0 0.25rem;
@@ -2667,6 +2676,54 @@ Styles for notification
   }
   .yeti-notification-content-subtitle {
     word-break: break-word;
+  }
+  /************************************** Actions ***/
+  .yeti-notification-action {
+    flex: 0 0 auto;
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    background-color: #e0e0e0;
+    box-sizing: border-box;
+    color: #161616;
+    cursor: pointer;
+    letter-spacing: 0.16px;
+    background-color: transparent;
+    color: #78a9ff;
+    height: 2rem;
+    margin-top: 0.5rem;
+    padding: 0.4375rem 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    box-shadow: none;
+  }
+  .yeti-notification-low_contrast .yeti-notification-action {
+    color: #0f62fe;
+  }
+  .yeti-notification-action:active {
+    background-color: #4c4c4c;
+  }
+  .yeti-notification-low_contrast .yeti-notification-action:active {
+    background-color: #0043ce;
+  }
+  .yeti-notification-action:focus {
+    border-color: #0000;
+    box-shadow: none;
+    outline: 2px solid #ffffff;
+    outline-offset: -2px;
+  }
+  .yeti-notification-low_contrast .yeti-notification-action:focus {
+    outline-color: #0f62fe;
+  }
+  .yeti-notification-action:hover {
+    background-color: #4c4c4c;
+    color: #78a9ff;
+  }
+  .yeti-notification-low_contrast .yeti-notification-action:hover {
+    color: #0043ce;
+    background-color: #fff;
   }
   /************************************** Close ***/
   .yeti-notification-close {
@@ -2689,6 +2746,13 @@ Styles for notification
     justify-content: center;
     border: 0;
     box-shadow: none;
+  }
+  .yeti-notification-close:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: -1px;
+  }
+  .yeti-notification-low_contrast .yeti-notification-close:focus {
+    outline-color: #0f62fe;
   }
   .yeti-notification-close .material-icons {
     font-size: 1rem;
@@ -2861,6 +2925,43 @@ Styles for notification
   }
   .yeti-color-green-success {
     color: #24a148;
+  }
+  /*** Gray ***/
+  .yeti-color-gray-0 {
+    color: white;
+  }
+  .yeti-color-gray-10 {
+    color: #f4f4f4;
+  }
+  .yeti-color-gray-20 {
+    color: #e0e0e0;
+  }
+  .yeti-color-gray-30 {
+    color: #c6c6c6;
+  }
+  .yeti-color-gray-40 {
+    color: #a8a8a8;
+  }
+  .yeti-color-gray-50 {
+    color: #8d8d8d;
+  }
+  .yeti-color-gray-55 {
+    color: #727272;
+  }
+  .yeti-color-gray-60 {
+    color: #6f6f6f;
+  }
+  .yeti-color-gray-70 {
+    color: #525252;
+  }
+  .yeti-color-gray-80 {
+    color: #393939;
+  }
+  .yeti-color-gray-90 {
+    color: #262626;
+  }
+  .yeti-color-gray-100 {
+    color: #161616;
   }
   /*** Red ***/
   .yeti-color-red-10 {

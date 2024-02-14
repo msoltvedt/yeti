@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Element } from '@stencil/core';
+import { Component, Prop, h, State, Element, Event, EventEmitter } from '@stencil/core';
 import { utils } from '../../utils/utils';
 
 @Component({
@@ -8,6 +8,11 @@ import { utils } from '../../utils/utils';
 export class YetiTooltip {
 
   @Element() el: HTMLElement;
+
+  /**
+   * Fires when the user clicks the action button.
+   */
+  @Event({ bubbles: true }) notificationActionClick: EventEmitter;
 
 
   /**
@@ -46,6 +51,11 @@ export class YetiTooltip {
   @Prop() textTitle: string = "Mmmm Toast!";
 
   /**
+   * Text label for the action button.
+   */
+  @Prop() actionLabel: string = "";
+
+  /**
    * id of the component's slot element.
    */
   @Prop({
@@ -71,7 +81,7 @@ export class YetiTooltip {
   /**
    * Whether the notification is visible or not.
    */
-  @State() isVisible: boolean = true;
+  @Prop() isVisible: boolean = true;
 
 
 
@@ -80,6 +90,15 @@ export class YetiTooltip {
     e.stopImmediatePropagation();
     e.preventDefault();
   }
+
+
+
+  handleActionClick(e) {
+    this.notificationActionClick.emit();
+    e.stopImmediatePropagation();
+    e.preventDefault();
+  }
+
 
 
   componentWillLoad() {
@@ -184,6 +203,16 @@ export class YetiTooltip {
           </div>
 
         </div>
+
+        {
+          (this.actionLabel != "") ?
+
+            <button class="yeti-notification-action" onClick={(e) => this.handleActionClick(e)}>
+              {this.actionLabel}
+            </button>
+          :
+            ""
+        }
 
         {
           (this.showCloseButton) ?

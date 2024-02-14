@@ -348,6 +348,10 @@ export namespace Components {
     }
     interface YetiNotification {
         /**
+          * Text label for the action button.
+         */
+        "actionLabel": string;
+        /**
           * The alt text for the icon.
          */
         "iconAltText": string;
@@ -359,6 +363,10 @@ export namespace Components {
           * Whether to use the low-contrast variant or not.
          */
         "isLowContrast": boolean;
+        /**
+          * Whether the notification is visible or not.
+         */
+        "isVisible": boolean;
         /**
           * id of the component's actual element corresponding to the tooltip. Will be auto-populated with a unique value if not provided.
          */
@@ -576,6 +584,10 @@ export interface YetiMultiselectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLYetiMultiselectElement;
 }
+export interface YetiNotificationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLYetiNotificationElement;
+}
 export interface YetiTableCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLYetiTableElement;
@@ -704,7 +716,18 @@ declare global {
         prototype: HTMLYetiMultiselectElement;
         new (): HTMLYetiMultiselectElement;
     };
+    interface HTMLYetiNotificationElementEventMap {
+        "notificationActionClick": any;
+    }
     interface HTMLYetiNotificationElement extends Components.YetiNotification, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLYetiNotificationElementEventMap>(type: K, listener: (this: HTMLYetiNotificationElement, ev: YetiNotificationCustomEvent<HTMLYetiNotificationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLYetiNotificationElementEventMap>(type: K, listener: (this: HTMLYetiNotificationElement, ev: YetiNotificationCustomEvent<HTMLYetiNotificationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLYetiNotificationElement: {
         prototype: HTMLYetiNotificationElement;
@@ -1168,6 +1191,10 @@ declare namespace LocalJSX {
     }
     interface YetiNotification {
         /**
+          * Text label for the action button.
+         */
+        "actionLabel"?: string;
+        /**
           * The alt text for the icon.
          */
         "iconAltText"?: string;
@@ -1180,6 +1207,10 @@ declare namespace LocalJSX {
          */
         "isLowContrast"?: boolean;
         /**
+          * Whether the notification is visible or not.
+         */
+        "isVisible"?: boolean;
+        /**
           * id of the component's actual element corresponding to the tooltip. Will be auto-populated with a unique value if not provided.
          */
         "notificationId"?: string;
@@ -1187,6 +1218,10 @@ declare namespace LocalJSX {
           * The type of notification: error (default) | info | success | warning | warningAlt.
          */
         "notificationType"?: string;
+        /**
+          * Fires when the user clicks the action button.
+         */
+        "onNotificationActionClick"?: (event: YetiNotificationCustomEvent<any>) => void;
         /**
           * Whether to show the close button or not.
          */

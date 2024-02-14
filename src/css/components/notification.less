@@ -98,6 +98,7 @@ yeti-notification {
 .yeti-notification-content {
     flex: 1 1 auto;
     padding: 0.9375rem 0.8175rem 0.9375rem 0;
+    line-height: 1.28572;
     display: flex;
     flex-wrap: wrap;
     gap: 0 0.25rem;
@@ -109,6 +110,49 @@ yeti-notification {
 
 .yeti-notification-content-subtitle {
     word-break: break-word;
+}
+
+
+
+/************************************** Actions ***/
+.yeti-notification-action {
+    flex: 0 0 auto;
+    .yeti-mixin-button-vanilla();
+    background-color: transparent;
+    color: #78a9ff;
+    height: 2rem;
+    margin-top: 0.5rem;
+    padding: 0.4375rem 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    box-shadow: none;
+}
+.yeti-notification-low_contrast .yeti-notification-action {
+    color: #0f62fe;
+}
+
+.yeti-notification-action:active {  background-color: #4c4c4c; }
+.yeti-notification-low_contrast .yeti-notification-action:active { background-color: #0043ce; }
+
+.yeti-notification-action:focus {
+    border-color: #0000;
+    box-shadow: none;
+    outline: 2px solid #ffffff;
+    outline-offset: -2px;
+}
+.yeti-notification-low_contrast .yeti-notification-action:focus {
+    outline-color: #0f62fe;
+}
+
+.yeti-notification-action:hover {
+    background-color: #4c4c4c;
+    color: #78a9ff;
+}
+.yeti-notification-low_contrast .yeti-notification-action:hover {
+    color: #0043ce;
+    background-color: #fff;
 }
 
 
@@ -127,6 +171,14 @@ yeti-notification {
     justify-content: center;
     border: 0;
     box-shadow: none;
+}
+
+.yeti-notification-close:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: -1px;
+}
+.yeti-notification-low_contrast .yeti-notification-close:focus {
+    outline-color: #0f62fe;
 }
 
 .yeti-notification-close .material-icons {
