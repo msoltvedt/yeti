@@ -71,6 +71,9 @@ yeti-notification {
 
     display: flex;
 }
+.yeti-notification:not(:has(.yeti-notification-close)) {
+    padding-right: 1rem;
+}
 
 .yeti-notification.yeti-notification-low_contrast {
     border: 1px solid var(--color-accent);
@@ -97,7 +100,7 @@ yeti-notification {
 
 .yeti-notification-content {
     flex: 1 1 auto;
-    padding: 0.9375rem 0.8175rem 0.9375rem 0;
+    padding: 0.9375rem 2rem 0.9375rem 0;
     line-height: 1.28572;
     display: flex;
     flex-wrap: wrap;

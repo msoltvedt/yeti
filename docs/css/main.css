@@ -216,6 +216,13 @@ select:disabled{
 
 }
 
+.billing-page-container {
+  margin-right: 2rem;
+  margin-left: 2rem;
+  padding-bottom:5rem;
+
+}
+
 .table-view{
     margin-top: 1.5rem;
     display: flex;
@@ -6206,6 +6213,10 @@ Styles for Loading Indicator
     font-weight: 500;
     text-align: center;
   }
+  /************************************** Content ***/
+  .yeti-loading-content {
+    margin-top: 1rem;
+  }
   /************************************** multiselect.less ***************************************
 
 Styles for Multiselect
@@ -6934,6 +6945,10 @@ Styles for Table
   .yeti-table-head-row:has(.yeti-table-heading-filter) .yeti-table-heading:not(:has(.yeti-table-heading-compound)) {
     padding-bottom: 3.5rem;
   }
+  .yeti-table-head-row:has(.yeti-table-heading-button-icon):has(.yeti-table-heading-filter) .yeti-table-heading:not(:has(.yeti-table-heading-compound)) {
+    padding-top: 0.5rem;
+    padding-bottom: 3.7125rem;
+  }
   .yeti-table-head-row:has(.yeti-table-heading-filter) .yeti-table-heading.yeti-table-cell-clear {
     padding-bottom: 0.75rem;
   }
@@ -7360,6 +7375,9 @@ Styles for notification
     line-height: 1.42857;
     display: flex;
   }
+  .yeti-notification:not(:has(.yeti-notification-close)) {
+    padding-right: 1rem;
+  }
   .yeti-notification.yeti-notification-low_contrast {
     border: 1px solid var(--color-accent);
     border-left-width: 3px;
@@ -7377,7 +7395,7 @@ Styles for notification
   /************************************** Content ***/
   .yeti-notification-content {
     flex: 1 1 auto;
-    padding: 0.9375rem 0.8175rem 0.9375rem 0;
+    padding: 0.9375rem 2rem 0.9375rem 0;
     line-height: 1.28572;
     display: flex;
     flex-wrap: wrap;

@@ -40,6 +40,7 @@ export class YetiLoading {
   previouslyFocusedElement: HTMLElement = null; // So we can return focus to wherever the user was when the Loading component appeared.
   shouldStealFocus = false;
   shouldReturnFocus = false;
+  slottedContent = null;
 
 
   setBackgroundElementStyles(modalIsActivating: boolean) {
@@ -68,8 +69,18 @@ export class YetiLoading {
       componentId = utils.generateUniqueId();
       this.el.setAttribute("id", componentId);
     }
+    
+    // Check to see if there's slotted content
+    let innerHTML = this.el.innerHTML.trim();
+
+    if (innerHTML != "" && innerHTML != "<!---->") {
+      this.slottedContent = innerHTML;
+    } else {
+      this.slottedContent = null;
+    }
 
   }
+
 
 
   render() {
@@ -79,6 +90,7 @@ export class YetiLoading {
     let baseLoading =
 
       <div class="yeti-loading" tabindex="-1">
+
         <div class="yeti-loading-icon">
             <svg class="yeti-loading-icon-svg" viewBox="0 0 100 100" aria-hidden="true">
                 <circle class="yeti-loading-icon-svg-circle" cx="50%" cy="50%" r="44"></circle>
@@ -86,6 +98,20 @@ export class YetiLoading {
         </div>
 
         <div class="yeti-loading-label">Loading...</div>
+
+        {(this.slottedContent == null && this.slottedContent != "<!---->") ?
+          
+          ""
+
+        :
+        
+          <div class="yeti-loading-content">
+            
+            <slot />
+          
+          </div>
+        }
+
       </div>
 
     modalOverlayCSS += (this.isActive) ? "" : " yeti-modal-overlay__inert";
@@ -94,7 +120,7 @@ export class YetiLoading {
       (this.isModal) ?
 
         <div class={modalOverlayCSS}>
-          <div class="yeti-modal yeti-modal-size-s">
+          <div class="yeti-modal yeti-modal-size-xs">
               {baseLoading}
           </div>
         </div>
