@@ -39,6 +39,20 @@ yeti-modal-buttons {
     padding: 2rem;
 }
 
+.yeti-modal_ss-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    background-color: rgba(34, 34, 34, 0.15);
+    display: flex;
+    align-items: flex-end;
+    justify-content: stretch;
+    padding: 0;
+    flex-direction: column;
+}
+
 .yeti-modal-overlay-light {
     background-color: rgba(255, 255, 255, 0.5);
 }
@@ -57,6 +71,16 @@ yeti-modal-buttons {
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.30);
 }
 
+.yeti-modal.yeti-modal_ss {
+    flex: 0 1 auto;
+    height: unset;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 2s;
+    transform: translateX(100%);
+}
+
 .yeti-modal.yeti-modal-size-xl { width: 87.5rem; }
 .yeti-modal.yeti-modal-size-l  { width: 60rem; }
 .yeti-modal.yeti-modal-size-s  { width: 30rem; }
@@ -73,6 +97,16 @@ yeti-modal-buttons {
     padding: 1rem;
 }
 
+/*** Side Sheet Animation ***/
+.yeti-modal__opening .yeti-modal_ss {
+    transform: translateX(0);
+}
+
+.yeti-modal__closing .yeti-modal_ss {
+    transform: translateX(100%);
+}
+
+
 
 /*** When Modal Contains Loading ***/
 .yeti-modal:has(.yeti-loading) {
@@ -87,23 +121,27 @@ yeti-modal-buttons {
 
 /************************************** Header ***/
 .yeti-modal-header {
-    height: 5.75rem;
+    // height: 5.75rem;
     padding: 2rem;
     display: flex;
-    align-items: flex-start;
-    gap: 2rem;
+    align-items: center;
+    gap: 1rem;
+    max-height: 40%;
 }
 
 .yeti-modal-header-heading {
-    flex: 1 0 auto;
+    flex: 1 1 max-content;
+    min-width: min-content;
     margin: 0;
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
     line-height: 1.75rem;
     color: #161616;
-    white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
+    padding-right: 1rem;
+    max-height: 100%;
 }
 
 .yeti-button-ghost.yeti-modal-header-close {
@@ -127,6 +165,20 @@ yeti-modal-buttons {
     .yeti-mixin-focus-default();
 }
 
+/*** Header Action ***/
+yeti-modal-header-action { display: contents; }
+
+.yeti-modal-header-action:empty {
+    display: none;
+}
+
+.yeti-modal-header-action {
+    flex: 0 3 max-content;
+    min-width: min-content;
+    overflow: hidden;
+    max-height: 100%;
+}
+
 
 /************************************** Content ***/
 .yeti-modal-content {
@@ -136,15 +188,19 @@ yeti-modal-buttons {
     position: relative;
     overflow: hidden auto;
 }
+.yeti-modal_ss .yeti-modal-content {
+    max-height: unset;
+    flex: 0 1 100%;
+}
 
 .yeti-modal-content:focus {
     outline: none;
 }
 
-.yeti-modal-size-xs .yeti-modal-content { max-height: calc(60vh - 12.75rem); }
-.yeti-modal-size-s  .yeti-modal-content { max-height: calc(72vh - 12.75rem); }
-.yeti-modal-size-l  .yeti-modal-content { max-height: calc(84vh - 12.75rem); }
-.yeti-modal-size-xl .yeti-modal-content { max-height: calc(96vh - 16.75rem); }
+:not(.yeti-modal_ss).yeti-modal-size-xs .yeti-modal-content { max-height: calc(60vh - 12.75rem); }
+:not(.yeti-modal_ss).yeti-modal-size-s  .yeti-modal-content { max-height: calc(72vh - 12.75rem); }
+:not(.yeti-modal_ss).yeti-modal-size-l  .yeti-modal-content { max-height: calc(84vh - 12.75rem); }
+:not(.yeti-modal_ss).yeti-modal-size-xl .yeti-modal-content { max-height: calc(96vh - 16.75rem); }
 
 .yeti-modal-content-fade {
     position: sticky;
@@ -207,5 +263,5 @@ yeti-modal-buttons {
 .yeti-modal-bumper-front,
 .yeti-modal-bumper-back {
     width: 1px;
-    height: 1px;
+    height: 0;
 }

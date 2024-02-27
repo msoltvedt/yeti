@@ -10,6 +10,11 @@ export class YetiModal {
   @Element() el: HTMLElement;
 
   /**
+   * Whether or not it's the special Side Sheet variant of Modal.
+   */
+  @Prop() isSideSheet: boolean = false;
+
+  /**
    * The string that will display in the modal's heading and serve as its title.
    */
   @Prop() heading: string = "Modal Heading";
@@ -46,17 +51,38 @@ export class YetiModal {
     // When the Loading becomes active it should take focus away from whatever had it before, but
     // we want to keep track of what that was so we can return focus if Loading becomes inactive.
 
-    // Becoming active, take focus
-    if (newValue) {
-      this.shouldStealFocus = true;
-      this.setBackgroundElementStyles(true);
+    if (!this.isSideSheet) {
+      // Becoming active, take focus
+      if (newValue) {
+        this.shouldStealFocus = true;
+        this.setBackgroundElementStyles(true);
+      }
+
+      // Becoming inactive, return focus
+      else {
+        this.shouldReturnFocus = true;
+        this.setBackgroundElementStyles(false);
+      }
+
+    } else {
+
+      // It's a side sheet modal
+
+      if (newValue) {
+        // Side sheet modal becoming active
+        this.el.querySelector(".yeti-modal_ss-overlay").classList.remove("yeti-modal-overlay__inert");
+        this.setBackgroundElementStyles(true);
+        this.isClosing = false;
+        this.isOpening = true;
+      }
+
+      else {
+        this.isOpening = false;
+        this.isClosing = true;
+      }
     }
 
-    // Becoming inactive, return focus
-    else {
-      this.shouldReturnFocus = true;
-      this.setBackgroundElementStyles(false);
-    }
+
   }
 
   /**
@@ -69,6 +95,8 @@ export class YetiModal {
   bodyInnerWrapper: HTMLElement = null; // A div wrapped around everything in the body except the modal. Used to prevent background scrolling.
   shouldStealFocus = false;
   shouldReturnFocus = false;
+  isOpening = false;
+  isClosing = false;
   headingId = utils.generateUniqueId();
   
 
@@ -94,6 +122,34 @@ export class YetiModal {
 
 
 
+  @Listen('transitionend')
+  handleTransitionEnd(e) {
+
+    if (!e.propertyName || e.propertyName != "transform") {
+      return;
+    }
+
+    if (this.isOpening) {
+
+      // Becoming active, take focus
+      this.previouslyFocusedElement = document.activeElement as HTMLElement;
+      this.handleInitialFocus();
+
+    } else if (this.isClosing) {
+
+      this.el.querySelector(".yeti-modal_ss-overlay").classList.add("yeti-modal-overlay__inert");
+      this.isClosing = false;
+      this.setBackgroundElementStyles(false);
+      if (this.previouslyFocusedElement) {
+        this.previouslyFocusedElement.focus();
+      }
+
+    }
+
+  }
+
+
+
   handleInitialFocus() {
     // Sets focus on the correct thing within the modal's content when it first opens. If nothing is focusable, uses the content area itself.
     let contentArea = this.el.querySelector('.yeti-modal-content') as HTMLElement;
@@ -113,6 +169,7 @@ export class YetiModal {
     let componentId = this.el.getAttribute("id");
     let content = this.el.querySelector("yeti-modal-content");
     let buttons = this.el.querySelector("yeti-modal-buttons");
+    let headerAction = this.el.querySelector("yeti-modal-header-action");
 
     if (!content) {
         console.error("Yeti Modal components must have a yeti-modal-content element.");
@@ -126,9 +183,17 @@ export class YetiModal {
         buttons.setAttribute("slot", "buttons");
     }
 
+    if (headerAction) {
+      headerAction.setAttribute("slot", "header_action");
+    }
+
     if (!componentId || componentId == "") {
       componentId = utils.generateUniqueId();
       this.el.setAttribute("id", componentId);
+    }
+
+    if (this.isActive) {
+      this.setBackgroundElementStyles(true);
     }
 
   }
@@ -136,8 +201,8 @@ export class YetiModal {
 
   render() {
 
-    let modalOverlayCSS = "yeti-modal-overlay";
-    let modalCSS = "yeti-modal";
+    let modalOverlayCSS = (this.isSideSheet) ? "yeti-modal_ss-overlay" : "yeti-modal-overlay";
+    let modalCSS = `yeti-modal${(this.isSideSheet) ? " yeti-modal_ss" : ""}`;
     let modalProperties = {
         "role": "dialog",
         "aria-modal": "true",
@@ -148,7 +213,7 @@ export class YetiModal {
         modalProperties["aria-describedby"] = this.describedBy;
     }
 
-    modalOverlayCSS += (this.isActive) ? "" : " yeti-modal-overlay__inert";
+    modalOverlayCSS += (this.isActive || this.isClosing) ? "" : " yeti-modal-overlay__inert";
 
     modalCSS += (this.size == "") ? "" : ` yeti-modal-size-${this.size}`;
 
@@ -166,6 +231,10 @@ export class YetiModal {
         
                 <div class="yeti-modal-header">
                     <h1 class="yeti-modal-header-heading" id={this.headingId}>{this.heading}</h1>
+
+                    <div class="yeti-modal-header-action">
+                      <slot name="header_action" />
+                    </div>
 
                     {(this.showClose) ?
 
@@ -217,10 +286,11 @@ export class YetiModal {
     // Handle focus management. We can't do this when the property changes because the inactive state uses display: none,
     // which interferes with the ability to accept focus depending on some race conditions.
 
+    let overlay = this.el.querySelector(".yeti-modal_ss-overlay");
+
     if (this.shouldStealFocus) {
       // Becoming active, take focus
       this.previouslyFocusedElement = document.activeElement as HTMLElement;
-      //utils.aria.focusFirstDescendant(this.el);
       this.handleInitialFocus();
     }
 
@@ -229,6 +299,22 @@ export class YetiModal {
       if (this.previouslyFocusedElement) {
         this.previouslyFocusedElement.focus();
       }
+    }
+
+    if (this.isOpening) {
+      // It's a side sheet modal, and it's opening. Add the opening class to the overlay to initiate the CSS transition.
+      setTimeout(() => {
+        overlay.classList.add("yeti-modal__opening");
+        overlay.classList.remove("yeti-modal__closing");
+      }, 1);
+      
+    }
+
+    if (this.isClosing) {
+      setTimeout(() => {
+        overlay.classList.add("yeti-modal__closing");
+        overlay.classList.remove("yeti-modal__opening");
+      }, 1);
     }
 
     this.shouldStealFocus = false;
