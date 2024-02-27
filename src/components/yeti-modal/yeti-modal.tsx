@@ -1,4 +1,4 @@
-import { Component, Prop, h, Element, Watch, Listen } from '@stencil/core';
+import { Component, Prop, State, h, Element, Watch, Listen } from '@stencil/core';
 import { utils } from '../../utils/utils';
 
 @Component({
@@ -48,9 +48,10 @@ export class YetiModal {
   }) isActive: boolean = false;
   @Watch('isActive')
   handleFocus(newValue: boolean) {
-    // When the Loading becomes active it should take focus away from whatever had it before, but
-    // we want to keep track of what that was so we can return focus if Loading becomes inactive.
+    // When the Modal becomes active it should take focus away from whatever had it before, but
+    // we want to keep track of what that was so we can return focus if Modal becomes inactive.
 
+    // First, normal Modals have only two states: active and inactive (i.e. they don't use the isOpening and isClosing states)
     if (!this.isSideSheet) {
       // Becoming active, take focus
       if (newValue) {
@@ -64,21 +65,19 @@ export class YetiModal {
         this.setBackgroundElementStyles(false);
       }
 
+    // Side Sheet modals have four states: inactive, opening, active, and closing.
     } else {
 
       // It's a side sheet modal
 
       if (newValue) {
         // Side sheet modal becoming active
-        this.el.querySelector(".yeti-modal_ss-overlay").classList.remove("yeti-modal-overlay__inert");
         this.setBackgroundElementStyles(true);
-        this.isClosing = false;
-        this.isOpening = true;
+        this.isAnimating = true;
       }
 
       else {
-        this.isOpening = false;
-        this.isClosing = true;
+        this.isAnimating = true;
       }
     }
 
@@ -90,13 +89,18 @@ export class YetiModal {
    */
   @Prop() showClose: boolean = true;
 
+  @State() isAnimating: boolean = false;
+
+  @State() isOpening: boolean = false;
+
+  @State() isClosing: boolean = false;
+
 
   previouslyFocusedElement: HTMLElement = null; // So we can return focus to wherever the user was when the Loading component appeared.
   bodyInnerWrapper: HTMLElement = null; // A div wrapped around everything in the body except the modal. Used to prevent background scrolling.
   shouldStealFocus = false;
   shouldReturnFocus = false;
-  isOpening = false;
-  isClosing = false;
+  hasOpened = false;
   headingId = utils.generateUniqueId();
   
 
@@ -134,17 +138,20 @@ export class YetiModal {
       // Becoming active, take focus
       this.previouslyFocusedElement = document.activeElement as HTMLElement;
       this.handleInitialFocus();
+      this.isOpening = false;
+      this.hasOpened = true;
 
     } else if (this.isClosing) {
 
-      this.el.querySelector(".yeti-modal_ss-overlay").classList.add("yeti-modal-overlay__inert");
-      this.isClosing = false;
       this.setBackgroundElementStyles(false);
       if (this.previouslyFocusedElement) {
         this.previouslyFocusedElement.focus();
       }
+      this.isClosing = false;
 
     }
+
+    this.isAnimating = false;
 
   }
 
@@ -213,7 +220,11 @@ export class YetiModal {
         modalProperties["aria-describedby"] = this.describedBy;
     }
 
-    modalOverlayCSS += (this.isActive || this.isClosing) ? "" : " yeti-modal-overlay__inert";
+    modalOverlayCSS += (this.isActive || this.isAnimating) ? "" : " yeti-modal-overlay__inert";
+
+    modalOverlayCSS += (this.isOpening) ? " yeti-modal__opening" : "";
+    modalOverlayCSS += (this.hasOpened) ? " yeti-modal__open" : "";
+    modalOverlayCSS += (this.isClosing) ? " yeti-modal__closing" : "";
 
     modalCSS += (this.size == "") ? "" : ` yeti-modal-size-${this.size}`;
 
@@ -286,8 +297,7 @@ export class YetiModal {
     // Handle focus management. We can't do this when the property changes because the inactive state uses display: none,
     // which interferes with the ability to accept focus depending on some race conditions.
 
-    let overlay = this.el.querySelector(".yeti-modal_ss-overlay");
-
+    // For regular modals...
     if (this.shouldStealFocus) {
       // Becoming active, take focus
       this.previouslyFocusedElement = document.activeElement as HTMLElement;
@@ -301,20 +311,23 @@ export class YetiModal {
       }
     }
 
-    if (this.isOpening) {
+    
+    // For side sheet modals
+    if (this.isAnimating) {
       // It's a side sheet modal, and it's opening. Add the opening class to the overlay to initiate the CSS transition.
-      setTimeout(() => {
-        overlay.classList.add("yeti-modal__opening");
-        overlay.classList.remove("yeti-modal__closing");
-      }, 1);
+      if (this.isActive) {
+        setTimeout(() => {
+          this.isOpening = true;
+          this.isClosing = false;
+        }, 1);
+      } else {
+        setTimeout(() => {
+          this.isOpening = false;
+          this.hasOpened = false;
+          this.isClosing = true;
+        }, 1);
+      }
       
-    }
-
-    if (this.isClosing) {
-      setTimeout(() => {
-        overlay.classList.add("yeti-modal__closing");
-        overlay.classList.remove("yeti-modal__opening");
-      }, 1);
     }
 
     this.shouldStealFocus = false;
