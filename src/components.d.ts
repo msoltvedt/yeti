@@ -284,6 +284,10 @@ export namespace Components {
          */
         "isScrollable": boolean;
         /**
+          * Whether or not it's the special Side Sheet variant of Modal.
+         */
+        "isSideSheet": boolean;
+        /**
           * Optional CSS classes to add to the modal element.
          */
         "modalCSS": string;
@@ -1118,6 +1122,10 @@ declare namespace LocalJSX {
           * Whether overflowing contents are shown via scrolling or clipped.
          */
         "isScrollable"?: boolean;
+        /**
+          * Whether or not it's the special Side Sheet variant of Modal.
+         */
+        "isSideSheet"?: boolean;
         /**
           * Optional CSS classes to add to the modal element.
          */
