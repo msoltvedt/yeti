@@ -116,6 +116,73 @@
         </div><!-- /code_sample -->
 
 
+        <h3 class="margin-bottom-2">With Header Action</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<a href="" id="trigger5">Click to open a modal with a header action like a link or Menu Button.</a>
+
+<yeti-modal heading="Action Jackson" id="modal5">
+
+    <yeti-modal-header-action>
+        <a href="">I'm a link</a>
+    </yeti-modal-header-action>
+    
+    <yeti-modal-content>
+        This modal's header action is a link, but it could also be a Menu Button or pretty much anything else.
+    </yeti-modal-content>
+    
+    <yeti-modal-buttons>
+        <button class="yeti-button yeti-button-primary">Got It</button>
+        <button class="yeti-button yeti-button-ghost">Whatever</button>
+    </yeti-modal-buttons>
+
+</yeti-modal>
+
+<script>
+    const trigger5 = document.getElementById("trigger5");
+    const modal5 = document.getElementById("modal5");
+
+    trigger5.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal5.isActive = true;
+    })
+</script>
+        </div><!-- /code_sample -->
+
+
+        <h2 class="margin-bottom-2">Side Sheet variant</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<a href="" id="ssm-trigger">Click to open a Side Sheet Modal</a>
+
+<yeti-modal heading="Side Sheet Modal" id="ssm-modal" is-side-sheet="true">
+    
+    <yeti-modal-content>
+        I'm some content.
+    </yeti-modal-content>
+    
+    <yeti-modal-buttons>
+        <button class="yeti-button yeti-button-primary">Important</button>
+        <button class="yeti-button yeti-button-ghost">Less So</button>
+    </yeti-modal-buttons>
+</yeti-modal>
+
+<script>
+    const trigger4 = document.getElementById("ssm-trigger");
+    const modal4 = document.getElementById("ssm-modal");
+
+    trigger4.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal4.isActive = true;
+    })
+</script>
+        </div><!-- /code_sample -->
+
+
 
         <h2 class="margin-bottom-3">Technical Notes</h2>
 
