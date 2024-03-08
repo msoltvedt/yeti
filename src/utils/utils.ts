@@ -315,6 +315,12 @@ export interface YetiMultiselectOption {
   id?: string
 }
 
+export interface YetiComboboxOption {
+  selected: boolean,
+  label: string,
+  id?: string
+}
+
 export interface YetiMenuButtonOption {
   label: string,
   href?: string,
