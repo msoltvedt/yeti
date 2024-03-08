@@ -14,7 +14,7 @@
 | `inputId`          | `input-id`           | id that will be assigned to the actual HTML input element. If not provided, the component will assign one on load. | `string`  | `""`                                     |
 | `inputName`        | `input-name`         | name that will be assigned to the actual HTML input element. If not provided, the component will use the id.       | `string`  | `""`                                     |
 | `isValid`          | `is-valid`           | Tracks whether the component's current value is valid. The default empty value is valid.                           | `boolean` | `undefined`                              |
-| `labelledBy`       | `labelled-by`        | ID of any related label for the component. Used by aria-labelledby.                                                | `string`  | `""`                                     |
+| `labeledBy`        | `labeled-by`         | ID of any related label for the component. Used by aria-labeledby.                                                 | `string`  | `""`                                     |
 | `required`         | `required`           | Whether the component is a required field.                                                                         | `boolean` | `false`                                  |
 | `showErrorTooltip` | `show-error-tooltip` | If true, shows a Tooltip that elaborates on an existing error.                                                     | `boolean` | `false`                                  |
 | `tooltipText`      | `tooltip-text`       | The text to show in error tooltip (if it's used).                                                                  | `string`  | `"Enter the date in mm/dd/yyyy format."` |

@@ -56,9 +56,9 @@ export class YetiDatePicker {
   }) value: string = '';
 
   /**
-   * ID of any related label for the component. Used by aria-labelledby.
+   * ID of any related label for the component. Used by aria-labeledby.
    */
-  @Prop() labelledBy: string = "";
+  @Prop() labeledBy: string = "";
 
   /**
    * ID of any related describing element. Used by aria-describedby.
@@ -581,7 +581,7 @@ export class YetiDatePicker {
         aria-invalid={!this.isValid}
         placeholder="mm/dd/yyyy"
         autocomplete="off"
-        {...((this.labelledBy != "") ? {"aria-labelledBy": this.labelledBy} : {})}
+        {...((this.labeledBy != "") ? {"aria-labeledBy": this.labeledBy} : {})}
         {...((this.describedBy != "") ? {"aria-describedby": this.describedBy} : {})}
     />
   }
@@ -692,7 +692,7 @@ export class YetiDatePicker {
                 </div>
 
 
-                <table class="yeti-date-calendar" role="grid" aria-labelledby={this.pickerHeading}
+                <table class="yeti-date-calendar" role="grid" aria-labeledby={this.pickerHeading}
                 onKeyDown={(ev) => { this.handleCalendarKeydown(ev) }}>
 
                     <thead>
