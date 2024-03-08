@@ -22,17 +22,17 @@ export class YetiMenuButton {
   /**
    * CSS classlist to add to the Menu Button pattern's outer wrapper.
    */
-  @Prop({ attribute: 'wrapper-class'}) wrapperCSS: string = '';
+  @Prop({ attribute: 'wrapper-class'}) wrapperClass: string = '';
 
   /**
    * CSS classlist to add to the Menu Button's button element.
    */
-  @Prop({ attribute: 'button-class'}) buttonCSS: string = '';
+  @Prop({ attribute: 'button-class'}) buttonClass: string = '';
 
   /**
    * CSS classlist to add to the Menu Button's menu element.
    */
-  @Prop({ attribute: 'menu-class'}) menuCSS: string = '';
+  @Prop({ attribute: 'menu-class'}) menuClass: string = '';
 
   /**
    * id to apply to the Menu Button's button element. Will be auto-populated with a unique id if one is not provided.
@@ -83,9 +83,9 @@ export class YetiMenuButton {
   }
 
   /**
-   * id of an outside element the control's aria-labelledby attribute references.
+   * id of an outside element the control's aria-labeledby attribute references.
    */
-  @Prop() labelledBy: string = "";
+  @Prop() labeledBy: string = "";
 
   /**
    * id of an outside element the control's aria-describedby attribute reference.
@@ -573,29 +573,29 @@ export class YetiMenuButton {
 
   render() {
 
-    let wrapperCSS = 'yeti-menu_button';
+    let wrapperClass = 'yeti-menu_button';
     let buttonClass = 'yeti-menu_button-button';
     let menuClass = 'yeti-menu_button-menu';
     let tooltipId = `${this.el.getAttribute("id")}_tooltip`;
 
     if (this.menuAlignment.indexOf("right") > -1) {
-      wrapperCSS += ' yeti-menu_button-right_aligned';
+      wrapperClass += ' yeti-menu_button-right_aligned';
     }
 
     if (this.isOpen) {
-      wrapperCSS += ' yeti-menu_button__open';
+      wrapperClass += ' yeti-menu_button__open';
     }
 
     if (this.buttonType && this.buttonType != "") {
       buttonClass = `${buttonClass} yeti-menu_button-button-mimic ${buttonClass}-${this.buttonType}`;
     }
 
-    wrapperCSS += (this.wrapperCSS && this.wrapperCSS != "") ? " " + this.wrapperCSS : "";
-    buttonClass += (this.buttonCSS && this.buttonCSS != "") ? " " + this.buttonCSS : "";
-    menuClass += (this.menuCSS && this.menuCSS != "") ? " " + this.menuCSS : "";
+    wrapperClass += (this.wrapperClass && this.wrapperClass != "") ? " " + this.wrapperClass : "";
+    buttonClass += (this.buttonClass && this.buttonClass != "") ? " " + this.buttonClass : "";
+    menuClass += (this.menuClass && this.menuClass != "") ? " " + this.menuClass : "";
 
     return ([
-      <div class={wrapperCSS}>
+      <div class={wrapperClass}>
 
         {
           (this.hasTooltip) ?
@@ -610,7 +610,7 @@ export class YetiMenuButton {
         }
 
         
-        <ul class={menuClass} role="menu" id={this.menuId} aria-labelledby={this.buttonId} key={this.menuId}>
+        <ul class={menuClass} role="menu" id={this.menuId} aria-labeledby={this.buttonId} key={this.menuId}>
 
           {this.renderMenuItems()}
 

@@ -22,7 +22,7 @@ export class YetiMultiselect {
   /**
    * CSS classlist to add to the component's outer wrapper element.
    */
-  @Prop() cssClass: string = '';
+  @Prop() wrapperClass: string = '';
 
   /**
    * id of the visual representation of the drop-down.
@@ -81,9 +81,9 @@ export class YetiMultiselect {
   }*/
 
   /**
-   * id of an external HTML element that the component's actual drop-down element references in aria-labelledby.
+   * id of an external HTML element that the component's actual drop-down element references in aria-labeledby.
    */
-  @Prop() labelledBy: string = "";
+  @Prop() labeledBy: string = "";
 
   /**
    * id of an external HTML element that the component's actual drop-down element references in aria-describedby.
@@ -476,15 +476,15 @@ export class YetiMultiselect {
 
   render() {
 
-    let cssClasses = 'yeti-multiselect';
+    let wrapperClasses = 'yeti-multiselect';
     let flyoutClass = 'yeti-multiselect-flyout';
 
-    if (this.cssClass != '') {
-      cssClasses += ' ' + this.cssClass;
+    if (this.wrapperClass != '') {
+      wrapperClasses += ' ' + this.wrapperClass;
     }
 
     if (this.isValid == false) {
-      cssClasses += ' yeti-multiselect__error';
+      wrapperClasses += ' yeti-multiselect__error';
     }
 
     flyoutClass += (this.isOpen) ? " yeti-multiselect-flyout__open" : "";
@@ -504,7 +504,7 @@ export class YetiMultiselect {
           name={this.actualName}
           onFocus={() => {this.handleActualFocus()}}
           {...((!this.isValid) ? {"aria-invalid": true} : {})}
-          {...((this.labelledBy != "") ? {"aria-labelledby": this.labelledBy} : {})}
+          {...((this.labeledBy != "") ? {"aria-labeledby": this.labeledBy} : {})}
           {...((this.describedBy != "") ? {"aria-describedby": this.describedBy} : {})}
         >
           
@@ -514,7 +514,7 @@ export class YetiMultiselect {
 
         <div 
           tabIndex={0}
-          class={cssClasses}
+          class={wrapperClasses}
           onClick={() => {
             this.isOpen = !this.isOpen;
           }}

@@ -44,9 +44,9 @@ export namespace Components {
          */
         "isValid": boolean;
         /**
-          * ID of any related label for the component. Used by aria-labelledby.
+          * ID of any related label for the component. Used by aria-labeledby.
          */
-        "labelledBy": string;
+        "labeledBy": string;
         /**
           * Whether the component is a required field.
          */
@@ -131,7 +131,7 @@ export namespace Components {
         /**
           * CSS classlist applied to the explorer wrapper element.
          */
-        "wrapperCSS"?: string;
+        "wrapperClass"?: string;
     }
     interface YetiIcon {
         /**
@@ -145,7 +145,7 @@ export namespace Components {
         /**
           * CSS classlist applied to the actual element producing the icon.
          */
-        "iconCSS"?: string;
+        "iconClass"?: string;
         /**
           * The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).
          */
@@ -223,7 +223,7 @@ export namespace Components {
         /**
           * CSS classlist to add to the Menu Button's button element.
          */
-        "buttonCSS": string;
+        "buttonClass": string;
         /**
           * id to apply to the Menu Button's button element. Will be auto-populated with a unique id if one is not provided.
          */
@@ -241,9 +241,9 @@ export namespace Components {
          */
         "hasTooltip": boolean;
         /**
-          * id of an outside element the control's aria-labelledby attribute references.
+          * id of an outside element the control's aria-labeledby attribute references.
          */
-        "labelledBy": string;
+        "labeledBy": string;
         /**
           * Token list comprising left | right and/or above | below to align the menu relative to the button.
          */
@@ -251,7 +251,7 @@ export namespace Components {
         /**
           * CSS classlist to add to the Menu Button's menu element.
          */
-        "menuCSS": string;
+        "menuClass": string;
         "menuId": string;
         /**
           * Text that appears within the optional tooltip bubble.
@@ -264,7 +264,7 @@ export namespace Components {
         /**
           * CSS classlist to add to the Menu Button pattern's outer wrapper.
          */
-        "wrapperCSS": string;
+        "wrapperClass": string;
     }
     interface YetiModal {
         /**
@@ -310,10 +310,6 @@ export namespace Components {
          */
         "actualName": string;
         /**
-          * CSS classlist to add to the component's outer wrapper element.
-         */
-        "cssClass": string;
-        /**
           * id of an external HTML element that the component's actual drop-down element references in aria-describedby.
          */
         "describedBy": string;
@@ -326,9 +322,9 @@ export namespace Components {
          */
         "isValid": boolean;
         /**
-          * id of an external HTML element that the component's actual drop-down element references in aria-labelledby.
+          * id of an external HTML element that the component's actual drop-down element references in aria-labeledby.
          */
-        "labelledBy": string;
+        "labeledBy": string;
         /**
           * Token list of left | right and/or above | below that describes the drop-down's visual position relative to the closed state anchor.
          */
@@ -349,6 +345,10 @@ export namespace Components {
           * The component's value is represented as a string of comma-separated values.
          */
         "value": string;
+        /**
+          * CSS classlist to add to the component's outer wrapper element.
+         */
+        "wrapperClass": string;
     }
     interface YetiNotification {
         /**
@@ -394,13 +394,13 @@ export namespace Components {
         /**
           * CSS classlist to add to the element serving as the component's wrapper.
          */
-        "wrapperCSS": string;
+        "wrapperClass": string;
     }
     interface YetiProgressBar {
         /**
           * CSS classlist to add to the element representing the component's progress bar.
          */
-        "barCSS": string;
+        "barClass": string;
         /**
           * id of the element representing the component's progress bar. Will be given an auto-generated unique id if one is not provided.
          */
@@ -420,7 +420,7 @@ export namespace Components {
         /**
           * CSS classlist to add to the component's actual label element.
          */
-        "labelCSS": string;
+        "labelClass": string;
         /**
           * Number between 0 and 100 that describes the percentage complete to display in the bar.
          */
@@ -436,7 +436,7 @@ export namespace Components {
         /**
           * CSS classlist to add to the component's outer wrapper element.
          */
-        "wrapperCSS": string;
+        "wrapperClass": string;
     }
     interface YetiTable {
         /**
@@ -547,11 +547,11 @@ export namespace Components {
         /**
           * CSS classlist to add to the actual tooltip element.
          */
-        "tooltipCSS": string;
+        "tooltipClass": string;
         /**
           * CSS classlist to add to the element serving as the component's wrapper.
          */
-        "wrapperCSS": string;
+        "wrapperClass": string;
     }
     interface YetiUnsavedChanges {
         /**
@@ -856,9 +856,9 @@ declare namespace LocalJSX {
          */
         "isValid"?: boolean;
         /**
-          * ID of any related label for the component. Used by aria-labelledby.
+          * ID of any related label for the component. Used by aria-labeledby.
          */
-        "labelledBy"?: string;
+        "labeledBy"?: string;
         /**
           * Fires when the user has chosen or entered a date and either hit the enter key or left (blurred from) the component.
          */
@@ -950,7 +950,7 @@ declare namespace LocalJSX {
         /**
           * CSS classlist applied to the explorer wrapper element.
          */
-        "wrapperCSS"?: string;
+        "wrapperClass"?: string;
     }
     interface YetiIcon {
         /**
@@ -964,7 +964,7 @@ declare namespace LocalJSX {
         /**
           * CSS classlist applied to the actual element producing the icon.
          */
-        "iconCSS"?: string;
+        "iconClass"?: string;
         /**
           * The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).
          */
@@ -1054,7 +1054,7 @@ declare namespace LocalJSX {
         /**
           * CSS classlist to add to the Menu Button's button element.
          */
-        "buttonCSS"?: string;
+        "buttonClass"?: string;
         /**
           * id to apply to the Menu Button's button element. Will be auto-populated with a unique id if one is not provided.
          */
@@ -1072,9 +1072,9 @@ declare namespace LocalJSX {
          */
         "hasTooltip"?: boolean;
         /**
-          * id of an outside element the control's aria-labelledby attribute references.
+          * id of an outside element the control's aria-labeledby attribute references.
          */
-        "labelledBy"?: string;
+        "labeledBy"?: string;
         /**
           * Token list comprising left | right and/or above | below to align the menu relative to the button.
          */
@@ -1082,7 +1082,7 @@ declare namespace LocalJSX {
         /**
           * CSS classlist to add to the Menu Button's menu element.
          */
-        "menuCSS"?: string;
+        "menuClass"?: string;
         "menuId"?: string;
         /**
           * Fires when the selected value of the Menu Button becomes a different value.
@@ -1103,7 +1103,7 @@ declare namespace LocalJSX {
         /**
           * CSS classlist to add to the Menu Button pattern's outer wrapper.
          */
-        "wrapperCSS"?: string;
+        "wrapperClass"?: string;
     }
     interface YetiModal {
         /**
@@ -1149,10 +1149,6 @@ declare namespace LocalJSX {
          */
         "actualName"?: string;
         /**
-          * CSS classlist to add to the component's outer wrapper element.
-         */
-        "cssClass"?: string;
-        /**
           * id of an external HTML element that the component's actual drop-down element references in aria-describedby.
          */
         "describedBy"?: string;
@@ -1165,9 +1161,9 @@ declare namespace LocalJSX {
          */
         "isValid"?: boolean;
         /**
-          * id of an external HTML element that the component's actual drop-down element references in aria-labelledby.
+          * id of an external HTML element that the component's actual drop-down element references in aria-labeledby.
          */
-        "labelledBy"?: string;
+        "labeledBy"?: string;
         /**
           * Token list of left | right and/or above | below that describes the drop-down's visual position relative to the closed state anchor.
          */
@@ -1196,6 +1192,10 @@ declare namespace LocalJSX {
           * The component's value is represented as a string of comma-separated values.
          */
         "value"?: string;
+        /**
+          * CSS classlist to add to the component's outer wrapper element.
+         */
+        "wrapperClass"?: string;
     }
     interface YetiNotification {
         /**
@@ -1245,13 +1245,13 @@ declare namespace LocalJSX {
         /**
           * CSS classlist to add to the element serving as the component's wrapper.
          */
-        "wrapperCSS"?: string;
+        "wrapperClass"?: string;
     }
     interface YetiProgressBar {
         /**
           * CSS classlist to add to the element representing the component's progress bar.
          */
-        "barCSS"?: string;
+        "barClass"?: string;
         /**
           * id of the element representing the component's progress bar. Will be given an auto-generated unique id if one is not provided.
          */
@@ -1271,7 +1271,7 @@ declare namespace LocalJSX {
         /**
           * CSS classlist to add to the component's actual label element.
          */
-        "labelCSS"?: string;
+        "labelClass"?: string;
         /**
           * Number between 0 and 100 that describes the percentage complete to display in the bar.
          */
@@ -1287,7 +1287,7 @@ declare namespace LocalJSX {
         /**
           * CSS classlist to add to the component's outer wrapper element.
          */
-        "wrapperCSS"?: string;
+        "wrapperClass"?: string;
     }
     interface YetiTable {
         /**
@@ -1419,11 +1419,11 @@ declare namespace LocalJSX {
         /**
           * CSS classlist to add to the actual tooltip element.
          */
-        "tooltipCSS"?: string;
+        "tooltipClass"?: string;
         /**
           * CSS classlist to add to the element serving as the component's wrapper.
          */
-        "wrapperCSS"?: string;
+        "wrapperClass"?: string;
     }
     interface YetiUnsavedChanges {
         /**

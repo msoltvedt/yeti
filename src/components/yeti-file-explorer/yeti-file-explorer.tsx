@@ -17,7 +17,7 @@ export class YetiFileExplorer {
   /**
    * CSS classlist applied to the explorer wrapper element.
    */
-  @Prop({ attribute: 'wrapper-css'}) wrapperCSS?: string = '';
+  @Prop({ attribute: 'wrapper-css'}) wrapperClass?: string = '';
 
   /**
    * Whether or not to show files (folders are always shown).
@@ -280,13 +280,13 @@ export class YetiFileExplorer {
 
   render() {
 
-    let wrapperCSS = 'yeti-file_explorer-wrapper';
+    let wrapperClass = 'yeti-file_explorer-wrapper';
 
-    wrapperCSS += (this.wrapperCSS != '') ? ` ${this.wrapperCSS}` : '';
+    wrapperClass += (this.wrapperClass != '') ? ` ${this.wrapperClass}` : '';
 
     return (
 
-      <div class={wrapperCSS}>
+      <div class={wrapperClass}>
 
         <div class="yeti-file_explorer">
 

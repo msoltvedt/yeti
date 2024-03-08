@@ -12,12 +12,12 @@ export class YetiTooltip {
   /**
    * CSS classlist to add to the element serving as the component's wrapper.
    */
-  @Prop({ attribute: 'wrapper-class'}) wrapperCSS: string = '';
+  @Prop({ attribute: 'wrapper-class'}) wrapperClass: string = '';
 
   /**
    * CSS classlist to add to the actual tooltip element.
    */
-  @Prop({ attribute: 'tooltip-class'}) tooltipCSS: string = '';
+  @Prop({ attribute: 'tooltip-class'}) tooltipClass: string = '';
 
   /**
    * Text value to display as the tooltip's contents.
@@ -160,18 +160,18 @@ export class YetiTooltip {
 
   render() {
 
-    let wrapperCSS = 'yeti-tooltip-wrapper';
+    let wrapperClass = 'yeti-tooltip-wrapper';
     let tipClass = 'yeti-tooltip';
 
-    wrapperCSS += (this.wrapperCSS != '') ? ` ${this.wrapperCSS}` : '';
-    tipClass += (this.tooltipCSS != '') ? ` ${this.tooltipCSS}` : '';
+    wrapperClass += (this.wrapperClass != '') ? ` ${this.wrapperClass}` : '';
+    tipClass += (this.tooltipClass != '') ? ` ${this.tooltipClass}` : '';
 
     tipClass += (this.isClickedOpen) ? ' yeti-tooltip__clicked_open' : '';
 
     tipClass += (this.forceOpen) ? ' yeti-tooltip__forced_open' : '';
 
-    wrapperCSS += (this.clickToOpen) ? ' yeti-tooltip-wrapper-is_click_to_open' : '';
-    wrapperCSS += (this.blockAnchor) ? ' yeti-tooltip-wrapper-has_block_anchor' : '';
+    wrapperClass += (this.clickToOpen) ? ' yeti-tooltip-wrapper-is_click_to_open' : '';
+    wrapperClass += (this.blockAnchor) ? ' yeti-tooltip-wrapper-has_block_anchor' : '';
 
     switch (this.position) {
 
@@ -213,7 +213,7 @@ export class YetiTooltip {
     }
 
     return ([
-      <div class={wrapperCSS}>
+      <div class={wrapperClass}>
 
       <div 
         class="yeti-tooltip-trigger" 
@@ -234,7 +234,7 @@ export class YetiTooltip {
             (this.clickToOpen && this.isClickedOpen) ?
 
               <button class="yeti-tooltip-close" onClick={(e) => { this.handleCloseTooltipClick(e); }}>
-                <yeti-icon iconCode="close" iconCSS='yeti-color-white yeti-typo-size-5'></yeti-icon>
+                <yeti-icon iconCode="close" iconClass='yeti-color-white yeti-typo-size-5'></yeti-icon>
               </button>
 
             :

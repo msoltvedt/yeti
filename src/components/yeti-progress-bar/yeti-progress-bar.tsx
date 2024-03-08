@@ -12,17 +12,17 @@ export class YetiProgressBar {
   /**
    * CSS classlist to add to the component's outer wrapper element.
    */
-  @Prop({ attribute: 'wrapper-class'}) wrapperCSS: string = '';
+  @Prop({ attribute: 'wrapper-class'}) wrapperClass: string = '';
 
   /**
    * CSS classlist to add to the component's actual label element.
    */
-  @Prop({ attribute: 'label-class'}) labelCSS: string = '';
+  @Prop({ attribute: 'label-class'}) labelClass: string = '';
 
   /**
    * CSS classlist to add to the element representing the component's progress bar.
    */
-  @Prop({ attribute: 'bar-class'}) barCSS: string = '';
+  @Prop({ attribute: 'bar-class'}) barClass: string = '';
 
   /**
    * id of the element representing the component's progress bar. Will be given an auto-generated unique id if one is not provided.
@@ -111,19 +111,19 @@ export class YetiProgressBar {
 
 
 
-  renderLabel(labelCSS: string) {
+  renderLabel(labelClass: string) {
     let state = "";
     let tooltipId = `${this.el.getAttribute("id")}_tooltip`;
     
     if (this.tooltipText != "" && this.tooltipPosition != "below") {
       
       state = <yeti-tooltip text={this.tooltipText} id={tooltipId}>
-        <div class={labelCSS} tabIndex={0}>{this.label} <span class="yeti-a11y-hidden">{this.progress}%</span></div>
+        <div class={labelClass} tabIndex={0}>{this.label} <span class="yeti-a11y-hidden">{this.progress}%</span></div>
       </yeti-tooltip>;
 
     } else {
 
-      state = <div class={labelCSS}>{this.label} <span class="yeti-a11y-hidden">{this.progress}%</span></div>;
+      state = <div class={labelClass}>{this.label} <span class="yeti-a11y-hidden">{this.progress}%</span></div>;
 
     }
 
@@ -133,23 +133,23 @@ export class YetiProgressBar {
 
 
 
-  renderProgressBar(wrapperCSS, labelCSS, barCSS, actualStyle) {
+  renderProgressBar(wrapperClass, labelClass, barClass, actualStyle) {
       let progressBar =
 
         <div 
-          class={wrapperCSS}
+          class={wrapperClass}
           id={this.barId}
           {...((this.tooltipText != "" && this.tooltipPosition == "below") ? {tabIndex: 0} : {})}>
 
           <div class="yeti-progress_bar-header">
             
-            {this.renderLabel(labelCSS)}
+            {this.renderLabel(labelClass)}
 
             {this.renderIcon()}
 
           </div>
 
-          <div class={barCSS} aria-hidden="true">
+          <div class={barClass} aria-hidden="true">
               <div class="yeti-progress_bar-bar-actual" style={actualStyle}></div>
           </div>
 
@@ -189,17 +189,17 @@ export class YetiProgressBar {
 
   render() {
 
-    let wrapperCSS = 'yeti-progress_bar';
-    let labelCSS = 'yeti-progress_bar-label';
-    let barCSS = 'yeti-progress_bar-bar';
+    let wrapperClass = 'yeti-progress_bar';
+    let labelClass = 'yeti-progress_bar-label';
+    let barClass = 'yeti-progress_bar-bar';
     let tooltipId = `${this.el.getAttribute("id")}_tooltip`;
 
-    wrapperCSS += (this.progress == 100) ? " yeti-progress_bar__complete" : "";
-    wrapperCSS += (this.error) ? " yeti-progress_bar__error" : "";
+    wrapperClass += (this.progress == 100) ? " yeti-progress_bar__complete" : "";
+    wrapperClass += (this.error) ? " yeti-progress_bar__error" : "";
 
-    wrapperCSS += (this.wrapperCSS && this.wrapperCSS != "") ? " " + this.wrapperCSS : "";
-    labelCSS += (this.labelCSS && this.labelCSS != "") ? " " + this.labelCSS : "";
-    barCSS += (this.barCSS && this.barCSS != "") ? " " + this.barCSS : "";
+    wrapperClass += (this.wrapperClass && this.wrapperClass != "") ? " " + this.wrapperClass : "";
+    labelClass += (this.labelClass && this.labelClass != "") ? " " + this.labelClass : "";
+    barClass += (this.barClass && this.barClass != "") ? " " + this.barClass : "";
 
     let actualStyle = {
         width: `${this.progress}%`
@@ -215,13 +215,13 @@ export class YetiProgressBar {
           id={tooltipId}
           blockAnchor={true}>
             
-            {this.renderProgressBar(wrapperCSS, labelCSS, barCSS, actualStyle)}
+            {this.renderProgressBar(wrapperClass, labelClass, barClass, actualStyle)}
             
         </yeti-tooltip>
       
       :
         
-        this.renderProgressBar(wrapperCSS, labelCSS, barCSS, actualStyle)
+        this.renderProgressBar(wrapperClass, labelClass, barClass, actualStyle)
 
     );
   }
