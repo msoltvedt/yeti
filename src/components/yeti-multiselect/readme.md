@@ -14,7 +14,7 @@
 | `describedBy`   | `described-by`   | id of an external HTML element that the component's actual drop-down element references in aria-describedby.                          | `string`  | `""`            |
 | `facadeId`      | `facade-id`      | id of the visual representation of the drop-down.                                                                                     | `string`  | `""`            |
 | `isValid`       | `is-valid`       | Whether the component has a valid value.                                                                                              | `boolean` | `undefined`     |
-| `labeledBy`     | `labeled-by`     | id of an external HTML element that the component's actual drop-down element references in aria-labeledby.                            | `string`  | `""`            |
+| `labelledBy`    | `labelled-by`    | id of an external HTML element that the component's actual drop-down element references in aria-labelledby.                           | `string`  | `""`            |
 | `menuAlignment` | `menu-alignment` | Token list of left \| right and/or above \| below that describes the drop-down's visual position relative to the closed state anchor. | `string`  | `""`            |
 | `placeholder`   | `placeholder`    | Text that appears in the closed state/anchor when there are no selections.                                                            | `string`  | `"- Select -"`  |
 | `required`      | `required`       | Whether the component requires a valid value.                                                                                         | `boolean` | `false`         |

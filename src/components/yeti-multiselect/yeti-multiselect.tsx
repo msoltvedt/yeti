@@ -81,9 +81,9 @@ export class YetiMultiselect {
   }*/
 
   /**
-   * id of an external HTML element that the component's actual drop-down element references in aria-labeledby.
+   * id of an external HTML element that the component's actual drop-down element references in aria-labelledby.
    */
-  @Prop() labeledBy: string = "";
+  @Prop() labelledBy: string = "";
 
   /**
    * id of an external HTML element that the component's actual drop-down element references in aria-describedby.
@@ -504,7 +504,7 @@ export class YetiMultiselect {
           name={this.actualName}
           onFocus={() => {this.handleActualFocus()}}
           {...((!this.isValid) ? {"aria-invalid": true} : {})}
-          {...((this.labeledBy != "") ? {"aria-labeledby": this.labeledBy} : {})}
+          {...((this.labelledBy != "") ? {"aria-labeledby": this.labelledBy} : {})}
           {...((this.describedBy != "") ? {"aria-describedby": this.describedBy} : {})}
         >
           

@@ -44,9 +44,9 @@ export namespace Components {
          */
         "isValid": boolean;
         /**
-          * ID of any related label for the component. Used by aria-labeledby.
+          * ID of any related label for the component. Used by aria-labelledby.
          */
-        "labeledBy": string;
+        "labelledBy": string;
         /**
           * Whether the component is a required field.
          */
@@ -241,9 +241,9 @@ export namespace Components {
          */
         "hasTooltip": boolean;
         /**
-          * id of an outside element the control's aria-labeledby attribute references.
+          * id of an outside element the control's aria-labelledby attribute references.
          */
-        "labeledBy": string;
+        "labelledBy": string;
         /**
           * Token list comprising left | right and/or above | below to align the menu relative to the button.
          */
@@ -322,9 +322,9 @@ export namespace Components {
          */
         "isValid": boolean;
         /**
-          * id of an external HTML element that the component's actual drop-down element references in aria-labeledby.
+          * id of an external HTML element that the component's actual drop-down element references in aria-labelledby.
          */
-        "labeledBy": string;
+        "labelledBy": string;
         /**
           * Token list of left | right and/or above | below that describes the drop-down's visual position relative to the closed state anchor.
          */
@@ -856,9 +856,9 @@ declare namespace LocalJSX {
          */
         "isValid"?: boolean;
         /**
-          * ID of any related label for the component. Used by aria-labeledby.
+          * ID of any related label for the component. Used by aria-labelledby.
          */
-        "labeledBy"?: string;
+        "labelledBy"?: string;
         /**
           * Fires when the user has chosen or entered a date and either hit the enter key or left (blurred from) the component.
          */
@@ -1072,9 +1072,9 @@ declare namespace LocalJSX {
          */
         "hasTooltip"?: boolean;
         /**
-          * id of an outside element the control's aria-labeledby attribute references.
+          * id of an outside element the control's aria-labelledby attribute references.
          */
-        "labeledBy"?: string;
+        "labelledBy"?: string;
         /**
           * Token list comprising left | right and/or above | below to align the menu relative to the button.
          */
@@ -1161,9 +1161,9 @@ declare namespace LocalJSX {
          */
         "isValid"?: boolean;
         /**
-          * id of an external HTML element that the component's actual drop-down element references in aria-labeledby.
+          * id of an external HTML element that the component's actual drop-down element references in aria-labelledby.
          */
-        "labeledBy"?: string;
+        "labelledBy"?: string;
         /**
           * Token list of left | right and/or above | below that describes the drop-down's visual position relative to the closed state anchor.
          */
