@@ -83,9 +83,9 @@ export class YetiMenuButton {
   }
 
   /**
-   * id of an outside element the control's aria-labeledby attribute references.
+   * id of an outside element the control's aria-labelledby attribute references.
    */
-  @Prop() labeledBy: string = "";
+  @Prop() labelledBy: string = "";
 
   /**
    * id of an outside element the control's aria-describedby attribute reference.
@@ -610,7 +610,7 @@ export class YetiMenuButton {
         }
 
         
-        <ul class={menuClass} role="menu" id={this.menuId} aria-labeledby={this.buttonId} key={this.menuId}>
+        <ul class={menuClass} role="menu" id={this.menuId} aria-labelledby={this.buttonId} key={this.menuId}>
 
           {this.renderMenuItems()}
 

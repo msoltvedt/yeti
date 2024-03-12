@@ -14,7 +14,7 @@
 | `buttonType`    | `button-type`    | Sets a specific type of the button (see the Yeti Button pattern for more info): primary, secondary, tertiary, danger, or ghost. | `string`  | `""`        |
 | `describedBy`   | `described-by`   | id of an outside element the control's aria-describedby attribute reference.                                                    | `string`  | `""`        |
 | `hasTooltip`    | `has-tooltip`    | Whether to show a tooltip on hover/focus of the button or not.                                                                  | `boolean` | `true`      |
-| `labeledBy`     | `labeled-by`     | id of an outside element the control's aria-labeledby attribute references.                                                     | `string`  | `""`        |
+| `labelledBy`    | `labelled-by`    | id of an outside element the control's aria-labelledby attribute references.                                                    | `string`  | `""`        |
 | `menuAlignment` | `menu-alignment` | Token list comprising left \| right and/or above \| below to align the menu relative to the button.                             | `string`  | `""`        |
 | `menuClass`     | `menu-class`     | CSS classlist to add to the Menu Button's menu element.                                                                         | `string`  | `''`        |
 | `menuId`        | `menu-id`        |                                                                                                                                 | `string`  | `""`        |

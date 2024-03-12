@@ -56,9 +56,9 @@ export class YetiDatePicker {
   }) value: string = '';
 
   /**
-   * ID of any related label for the component. Used by aria-labeledby.
+   * ID of any related label for the component. Used by aria-labelledby.
    */
-  @Prop() labeledBy: string = "";
+  @Prop() labelledBy: string = "";
 
   /**
    * ID of any related describing element. Used by aria-describedby.
@@ -581,7 +581,7 @@ export class YetiDatePicker {
         aria-invalid={!this.isValid}
         placeholder="mm/dd/yyyy"
         autocomplete="off"
-        {...((this.labeledBy != "") ? {"aria-labeledBy": this.labeledBy} : {})}
+        {...((this.labelledBy != "") ? {"aria-labelledBy": this.labelledBy} : {})}
         {...((this.describedBy != "") ? {"aria-describedby": this.describedBy} : {})}
     />
   }
