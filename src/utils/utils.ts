@@ -309,6 +309,12 @@ export interface YetiTableRowAction {
   downloadAs?: string
 }
 
+export interface YetiComboboxOption {
+  selected: boolean,
+  label: string,
+  id?: string
+}
+
 export interface YetiMultiselectOption {
   selected: boolean,
   label: string,

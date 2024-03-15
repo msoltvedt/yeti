@@ -22,6 +22,36 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface YetiCombobox {
+        /**
+          * Whether the component has a valid value.
+         */
+        "isValid": boolean;
+        /**
+          * Token list of left | right and/or above | below that describes the drop-down's visual position relative to the closed state anchor.
+         */
+        "menuAlignment": string;
+        /**
+          * Text that appears in the closed state/anchor when there are no selections.
+         */
+        "placeholder": string;
+        /**
+          * Whether the component requires a valid value.
+         */
+        "required": boolean;
+        /**
+          * Whether or not to show the optional Clear all selections puck.
+         */
+        "showClear": boolean;
+        /**
+          * The component's value.
+         */
+        "value": string;
+        /**
+          * CSS classlist to add to the component's outer wrapper element.
+         */
+        "wrapperCss": string;
+    }
     interface YetiDatePicker {
         /**
           * ID of any related describing element. Used by aria-describedby.
@@ -568,6 +598,10 @@ export namespace Components {
         "isOpen": boolean;
     }
 }
+export interface YetiComboboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLYetiComboboxElement;
+}
 export interface YetiDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLYetiDatePickerElement;
@@ -606,6 +640,24 @@ declare global {
     var HTMLMyComponentElement: {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
+    };
+    interface HTMLYetiComboboxElementEventMap {
+        "readyToVerifySlow": CustomEvent;
+        "readyToVerifyFast": CustomEvent;
+    }
+    interface HTMLYetiComboboxElement extends Components.YetiCombobox, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLYetiComboboxElementEventMap>(type: K, listener: (this: HTMLYetiComboboxElement, ev: YetiComboboxCustomEvent<HTMLYetiComboboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLYetiComboboxElementEventMap>(type: K, listener: (this: HTMLYetiComboboxElement, ev: YetiComboboxCustomEvent<HTMLYetiComboboxElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLYetiComboboxElement: {
+        prototype: HTMLYetiComboboxElement;
+        new (): HTMLYetiComboboxElement;
     };
     interface HTMLYetiDatePickerElementEventMap {
         "readyToVerifySlow": CustomEvent;
@@ -801,6 +853,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "yeti-combobox": HTMLYetiComboboxElement;
         "yeti-date-picker": HTMLYetiDatePickerElement;
         "yeti-field": HTMLYetiFieldElement;
         "yeti-file-explorer": HTMLYetiFileExplorerElement;
@@ -833,6 +886,44 @@ declare namespace LocalJSX {
           * The middle name
          */
         "middle"?: string;
+    }
+    interface YetiCombobox {
+        /**
+          * Whether the component has a valid value.
+         */
+        "isValid"?: boolean;
+        /**
+          * Token list of left | right and/or above | below that describes the drop-down's visual position relative to the closed state anchor.
+         */
+        "menuAlignment"?: string;
+        /**
+          * Fires when the user clicks an option or types in the input field.
+         */
+        "onReadyToVerifyFast"?: (event: YetiComboboxCustomEvent<CustomEvent>) => void;
+        /**
+          * Fires when the user has made a selection and closed the dropdown (usually by focusing elsewhere).
+         */
+        "onReadyToVerifySlow"?: (event: YetiComboboxCustomEvent<CustomEvent>) => void;
+        /**
+          * Text that appears in the closed state/anchor when there are no selections.
+         */
+        "placeholder"?: string;
+        /**
+          * Whether the component requires a valid value.
+         */
+        "required"?: boolean;
+        /**
+          * Whether or not to show the optional Clear all selections puck.
+         */
+        "showClear"?: boolean;
+        /**
+          * The component's value.
+         */
+        "value"?: string;
+        /**
+          * CSS classlist to add to the component's outer wrapper element.
+         */
+        "wrapperCss"?: string;
     }
     interface YetiDatePicker {
         /**
@@ -1441,6 +1532,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "yeti-combobox": YetiCombobox;
         "yeti-date-picker": YetiDatePicker;
         "yeti-field": YetiField;
         "yeti-file-explorer": YetiFileExplorer;
@@ -1464,6 +1556,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "yeti-combobox": LocalJSX.YetiCombobox & JSXBase.HTMLAttributes<HTMLYetiComboboxElement>;
             "yeti-date-picker": LocalJSX.YetiDatePicker & JSXBase.HTMLAttributes<HTMLYetiDatePickerElement>;
             "yeti-field": LocalJSX.YetiField & JSXBase.HTMLAttributes<HTMLYetiFieldElement>;
             "yeti-file-explorer": LocalJSX.YetiFileExplorer & JSXBase.HTMLAttributes<HTMLYetiFileExplorerElement>;

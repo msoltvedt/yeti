@@ -6280,6 +6280,232 @@ Styles for Loading Indicator
   .yeti-loading-content {
     margin-top: 1rem;
   }
+  /************************************** combobox.less ***************************************
+
+Styles for Combobox
+
+*************************************** combobox.less **************************************/
+  /************************************** Wrapper ***/
+  yeti-combobox {
+    display: contents;
+  }
+  .yeti-combobox-wrapper {
+    position: relative;
+    max-width: 100%;
+  }
+  /************************************** Facade Styles ***/
+  .yeti-combobox {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #f4f4f4;
+    border: none;
+    border-radius: 0;
+    color: #161616;
+    cursor: pointer;
+    display: flex;
+    align-items: stretch;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 400;
+    height: 2.5rem;
+    letter-spacing: 0.16px;
+    line-height: 1.28572;
+    opacity: 1;
+    outline: 2px solid #0000;
+    outline-offset: -2px;
+    padding: 0;
+    transition: outline 70ms cubic-bezier(0.2, 0, 0.38, 0.9);
+    gap: 0.125rem;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  .yeti-combobox:hover {
+    background-color: #e8e8e8;
+  }
+  .yeti-combobox__error {
+    outline: 2px solid #da1e28;
+    outline-offset: -2px;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23da1e28" xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M10 14.708q.562 0 .958-.385.396-.385.396-.969 0-.562-.385-.969-.386-.406-.969-.406-.562 0-.958.406-.396.407-.396.969 0 .563.385.958.386.396.969.396Zm-1.229-3.666h2.458v-5.48H8.771ZM10 18.708q-1.812 0-3.396-.677-1.583-.677-2.771-1.864-1.187-1.188-1.864-2.771-.677-1.584-.677-3.396 0-1.833.677-3.406.677-1.573 1.864-2.761 1.188-1.187 2.771-1.864Q8.188 1.292 10 1.292q1.833 0 3.406.677 1.573.677 2.761 1.864 1.187 1.188 1.864 2.761.677 1.573.677 3.406 0 1.812-.677 3.396-.677 1.583-1.864 2.771-1.188 1.187-2.761 1.864-1.573.677-3.406.677Z"/></svg>');
+    background-size: 1rem 1rem;
+    background-position: top 50% right 1rem;
+    background-repeat: no-repeat;
+    padding-right: 4.5rem;
+    background: url('data:image/svg+xml;utf8,<svg fill="%23da1e28" xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M10 14.708q.562 0 .958-.385.396-.385.396-.969 0-.562-.385-.969-.386-.406-.969-.406-.562 0-.958.406-.396.407-.396.969 0 .563.385.958.386.396.969.396Zm-1.229-3.666h2.458v-5.48H8.771ZM10 18.708q-1.812 0-3.396-.677-1.583-.677-2.771-1.864-1.187-1.188-1.864-2.771-.677-1.584-.677-3.396 0-1.833.677-3.406.677-1.573 1.864-2.761 1.188-1.187 2.771-1.864Q8.188 1.292 10 1.292q1.833 0 3.406.677 1.573.677 2.761 1.864 1.187 1.188 1.864 2.761.677 1.573.677 3.406 0 1.812-.677 3.396-.677 1.583-1.864 2.771-1.188 1.187-2.761 1.864-1.573.677-3.406.677Z"/></svg>') right 2.5rem center no-repeat, #f4f4f4 url("data:image/svg+xml,%3Csvg preserveAspectRatio='xMidYMid meet' xmlns='http://www.w3.org/2000/svg' fill='%23161616' width='16' height='16' viewBox='0 0 16 16' %3E%3Cpath d='M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z'%3E%3C/path%3E%3C/svg%3E") right 1rem center no-repeat;
+  }
+  yeti-combobox-option {
+    display: none;
+  }
+  /*** Input ***/
+  .yeti-combobox-input {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    background-color: #e0e0e0;
+    border: 0;
+    box-sizing: border-box;
+    color: #161616;
+    cursor: pointer;
+    letter-spacing: 0.16px;
+    background-color: transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 1rem;
+    padding-right: 4.5rem;
+    border-bottom: 1px solid #8d8d8d;
+    flex: 1 0 auto;
+    min-width: 6.5rem;
+  }
+  .yeti-combobox-wrapper:focus-within .yeti-combobox-input {
+    color: #161616;
+    outline: 2px solid #0f62fe;
+    outline-offset: -2px;
+  }
+  /*** Button ***/
+  .yeti-combobox-button {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    background-color: #e0e0e0;
+    border: 0;
+    box-sizing: border-box;
+    color: #161616;
+    cursor: pointer;
+    letter-spacing: 0.16px;
+    background-color: transparent;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    position: absolute;
+    right: 0.875rem;
+    top: 50%;
+    translate: 0 -50%;
+  }
+  .yeti-combobox-button:focus {
+    outline: none;
+  }
+  .yeti-combobox-button .material-icons {
+    font-size: 1.25rem;
+  }
+  /*** Clear Button ***/
+  .yeti-combobox-clear {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    background-color: #e0e0e0;
+    border: 0;
+    box-sizing: border-box;
+    color: #161616;
+    cursor: pointer;
+    letter-spacing: 0.16px;
+    position: absolute;
+    right: 2.5rem;
+    top: 50%;
+    translate: 0 -50%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .yeti-combobox-clear:focus {
+    outline: 2px solid #0f62fe;
+    outline-offset: -2px;
+  }
+  .yeti-combobox-clear-icon {
+    font-size: 1rem;
+  }
+  /************************************** Dropdown (Options) ***/
+  .yeti-combobox-dropdown {
+    position: absolute;
+    z-index: 2;
+    min-width: 100%;
+    width: fit-content;
+    max-width: 16rem;
+    overflow: hidden;
+    max-height: 0;
+  }
+  .yeti-combobox-dropdown__open {
+    max-height: min(25rem, 60vh);
+    max-height: calc(60vh - 2.5rem);
+    box-shadow: 0 2px 6px #0000004d;
+  }
+  .yeti-combobox-dropdown-align-right {
+    right: 0;
+  }
+  .yeti-combobox-options {
+    display: flex;
+    flex-direction: column;
+    list-style: outside none;
+    background-color: #f4f4f4;
+    max-height: min(25rem, 60vh);
+    /* The reason I repeat this here is that we can't smoothly animate something with overflow auto */
+    max-height: calc(60vh - 2.5rem);
+    overflow-y: auto;
+  }
+  .yeti-combobox-option {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #e0e0e0;
+    border: 0;
+    box-sizing: border-box;
+    color: #161616;
+    cursor: pointer;
+    letter-spacing: 0.16px;
+    display: flex;
+    background: none;
+    padding: 0 0.875rem 0 1rem;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    height: 2.5rem;
+    gap: 0.5rem;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .yeti-combobox-option:hover,
+  .yeti-combobox-option__hover {
+    background-color: #e8e8e8;
+  }
+  .yeti-combobox-option__selected,
+  .yeti-combobox-option__selected:hover {
+    background-color: #cacaca;
+    border-bottom-color: #cacaca;
+  }
+  .yeti-combobox-option-label {
+    flex: 1 1 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    white-space: nowrap;
+  }
+  .yeti-combobox-option-checkmark {
+    height: 1.25rem;
+    width: 1.25rem;
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  .yeti-combobox-option-checkmark .material-icons {
+    font-size: 1rem;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  /************************************** Actual ***/
+  .yeti-combobox-actual {
+    position: absolute;
+    right: 100px;
+    bottom: calc(100% + 20px);
+    width: 10rem;
+    height: 10rem;
+  }
   /************************************** multiselect.less ***************************************
 
 Styles for Multiselect
