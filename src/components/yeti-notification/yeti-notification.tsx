@@ -18,7 +18,7 @@ export class YetiTooltip {
   /**
    * CSS classlist to add to the element serving as the component's wrapper.
    */
-  @Prop({ attribute: 'wrapper-class'}) wrapperCSS: string = '';
+  @Prop({ attribute: 'wrapper-class'}) wrapperClass: string = '';
 
   /**
    * The type of notification: error (default) | info | success | warning | warningAlt.
@@ -119,43 +119,43 @@ export class YetiTooltip {
 
     let altText = this.iconAltText;
     let iconCode = this.iconCode;
-    let wrapperCSS = 'yeti-notification';
-    wrapperCSS += (this.wrapperCSS !== '') ? ` ${this.wrapperCSS}` : ``;
+    let wrapperClass = 'yeti-notification';
+    wrapperClass += (this.wrapperClass !== '') ? ` ${this.wrapperClass}` : ``;
 
     // Set type-based CSS class
     switch (this.notificationType) {
 
       case "error":
 
-        wrapperCSS += ' yeti-notification-error';
+        wrapperClass += ' yeti-notification-error';
         altText = (altText != '') ? altText : 'Error';
         iconCode = (iconCode != '') ? iconCode : 'error';
         break;
 
       case "info":
 
-        wrapperCSS += ' yeti-notification-info';
+        wrapperClass += ' yeti-notification-info';
         altText = (altText != '') ? altText : 'Information';
         iconCode = (iconCode != '') ? iconCode : 'info';
         break;
 
       case "success":
 
-        wrapperCSS += ' yeti-notification-success';
+        wrapperClass += ' yeti-notification-success';
         altText = (altText != '') ? altText : 'Success';
         iconCode = (iconCode != '') ? iconCode : 'check_circle';
         break;
 
       case "warning":
 
-        wrapperCSS += ' yeti-notification-warning';
+        wrapperClass += ' yeti-notification-warning';
         altText = (altText != '') ? altText : 'Warning';
         iconCode = (iconCode != '') ? iconCode : 'error';
         break;
 
       case "warningAlt":
 
-        wrapperCSS += ' yeti-notification-warning_alt';
+        wrapperClass += ' yeti-notification-warning_alt';
         altText = (altText != '') ? altText : 'Warning';
         iconCode = (iconCode != '') ? iconCode : 'warning';
         break;
@@ -170,15 +170,15 @@ export class YetiTooltip {
     
 
     // Set low-contrast mode
-    wrapperCSS += (this.isLowContrast) ? ' yeti-notification-low_contrast' : '';
+    wrapperClass += (this.isLowContrast) ? ' yeti-notification-low_contrast' : '';
 
 
     // Set visibility
-    wrapperCSS += (this.isVisible) ? '' : ' yeti-notification__hidden';
+    wrapperClass += (this.isVisible) ? '' : ' yeti-notification__hidden';
   
 
     return (
-      <div class={wrapperCSS} id={this.notificationId} role="status">
+      <div class={wrapperClass} id={this.notificationId} role="status">
 
         <div class="yeti-notification-icon">
           

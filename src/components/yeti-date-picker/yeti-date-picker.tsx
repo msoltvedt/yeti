@@ -692,7 +692,7 @@ export class YetiDatePicker {
                 </div>
 
 
-                <table class="yeti-date-calendar" role="grid" aria-labelledby={this.pickerHeading}
+                <table class="yeti-date-calendar" role="grid" aria-labeledby={this.pickerHeading}
                 onKeyDown={(ev) => { this.handleCalendarKeydown(ev) }}>
 
                     <thead>

@@ -19,7 +19,7 @@
 | `showCloseButton`  | `show-close-button` | Whether to show the close button or not.                                                                                       | `boolean` | `true`          |
 | `slotId`           | `slot-id`           | id of the component's slot element.                                                                                            | `string`  | `""`            |
 | `textTitle`        | `text-title`        | Text value to display as the notification's title.                                                                             | `string`  | `"Mmmm Toast!"` |
-| `wrapperCSS`       | `wrapper-class`     | CSS classlist to add to the element serving as the component's wrapper.                                                        | `string`  | `''`            |
+| `wrapperClass`     | `wrapper-class`     | CSS classlist to add to the element serving as the component's wrapper.                                                        | `string`  | `''`            |
 
 
 ## Events

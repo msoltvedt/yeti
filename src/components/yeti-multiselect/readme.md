@@ -11,7 +11,6 @@
 | --------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------- | --------- | --------------- |
 | `actualId`      | `actual-id`      | id of the actual drop-down element.                                                                                                   | `string`  | `""`            |
 | `actualName`    | `actual-name`    | name of the actual drop-down element. Defaults to match id.                                                                           | `string`  | `this.actualId` |
-| `cssClass`      | `css-class`      | CSS classlist to add to the component's outer wrapper element.                                                                        | `string`  | `''`            |
 | `describedBy`   | `described-by`   | id of an external HTML element that the component's actual drop-down element references in aria-describedby.                          | `string`  | `""`            |
 | `facadeId`      | `facade-id`      | id of the visual representation of the drop-down.                                                                                     | `string`  | `""`            |
 | `isValid`       | `is-valid`       | Whether the component has a valid value.                                                                                              | `boolean` | `undefined`     |
@@ -21,6 +20,7 @@
 | `required`      | `required`       | Whether the component requires a valid value.                                                                                         | `boolean` | `false`         |
 | `showClear`     | `show-clear`     | Whether or not to show the optional Clear all selections puck.                                                                        | `boolean` | `true`          |
 | `value`         | `value`          | The component's value is represented as a string of comma-separated values.                                                           | `string`  | `''`            |
+| `wrapperClass`  | `wrapper-class`  | CSS classlist to add to the component's outer wrapper element.                                                                        | `string`  | `''`            |
 
 
 ## Events
