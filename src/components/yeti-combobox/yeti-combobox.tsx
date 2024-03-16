@@ -94,6 +94,7 @@ export class YetiCombobox {
   // These will be initialized on component load
   componentId: string;
   inputId: string;
+  buttonId: string;
   dropdownId: string;
 
 
@@ -113,6 +114,13 @@ export class YetiCombobox {
     this.isTouched = true;
     this.toggleFlyout();
     ev.preventDefault();
+  }
+
+
+
+  handleButtonClick(ev) {
+    ev.preventDefault();
+    // Otherwise just let the handleClick function do the rest.
   }
 
 
@@ -203,7 +211,7 @@ export class YetiCombobox {
         let target = ev.target as HTMLElement;
 
         // First check if the clear everything puck has focus
-        if (target.classList.contains("yeti-combobox-puck")) {
+        if (target.classList.contains("yeti-combobox-clear")) {
           target.click();
           break;
         } 
@@ -374,6 +382,7 @@ export class YetiCombobox {
     }
 
     this.inputId = this.componentId + "_input";
+    this.buttonId = this.componentId + "_button";
     this.dropdownId = this.componentId + "_dropdown";
 
     // Look for and handle any <yeti-combobox-option> elements.
@@ -388,6 +397,7 @@ export class YetiCombobox {
 
     let wrapperCss = 'yeti-combobox-wrapper';
     let dropdownCss = 'yeti-combobox-dropdown';
+    let activeDescendantId = (this.isOpen && this.cursorPosition != -1) ? `${this.componentId}_option${this.cursorPosition}` : ``; // If there is an active descendant (i.e. the menu is open and one of the options has the cursor highlight) then its id will look something like componentId_option3.
 
     wrapperCss += (this.wrapperCss == "") ? '' : ` ${this.wrapperCss}`;
 
@@ -426,6 +436,7 @@ export class YetiCombobox {
             aria-controls={this.dropdownId}
             aria-expanded={this.isOpen}
             id={this.inputId}
+            {...(activeDescendantId != "") ? { "aria-activedescendant" : activeDescendantId } : {}}
           />
 
           { (this.showClear && this.value != '') ? 
@@ -440,7 +451,14 @@ export class YetiCombobox {
 
           }
 
-          <button class="yeti-combobox-button" tabIndex={-1} aria-hidden="true">
+          <button 
+            class="yeti-combobox-button" 
+            tabIndex={-1}
+            aria-controls={this.dropdownId}
+            aria-expanded={this.isOpen}
+            id={this.buttonId}
+            onClick={(ev) => { this.handleButtonClick(ev) }}
+          >
             <yeti-icon iconCode={(this.isOpen ? 'expand_less' : 'expand_more')} alt={(this.isOpen ? 'close' : 'open')}></yeti-icon>
           </button>
 
@@ -466,14 +484,10 @@ export class YetiCombobox {
                     key={option.id} 
                     role="option"
                     aria-selected={option.selected}
+                    class={optionClass}
+                    onClick={(ev) => { this.handleOptionClick(i); ev.preventDefault(); }}
                   >
-                    <button 
-                      class={optionClass} 
-                      tabIndex={-1} 
-                      onClick={(ev) => { this.handleOptionClick(i); ev.preventDefault(); }}
-                      aria-controls={this.dropdownId}
-                      aria-expanded={this.isOpen}
-                    >
+
                       <span class="yeti-combobox-option-label">{option.label}</span>
                       <span class="yeti-combobox-option-checkmark">
                         {(option.selected) ? 
@@ -486,7 +500,7 @@ export class YetiCombobox {
 
                         }
                       </span>
-                    </button>
+
                   </li>
                 )
               }
