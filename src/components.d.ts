@@ -24,6 +24,14 @@ export namespace Components {
     }
     interface YetiCombobox {
         /**
+          * Optionally provide the id of a describing element (like an input tip).
+         */
+        "inputDescribedBy": string;
+        /**
+          * Optionally provide a form element name.
+         */
+        "inputName": string;
+        /**
           * Whether the component has a valid value.
          */
         "isValid": boolean;
@@ -888,6 +896,14 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface YetiCombobox {
+        /**
+          * Optionally provide the id of a describing element (like an input tip).
+         */
+        "inputDescribedBy"?: string;
+        /**
+          * Optionally provide a form element name.
+         */
+        "inputName"?: string;
         /**
           * Whether the component has a valid value.
          */
