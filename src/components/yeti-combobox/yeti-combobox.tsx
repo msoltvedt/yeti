@@ -90,6 +90,16 @@ export class YetiCombobox {
    */
   @Prop() showClear: boolean = true;
 
+  /**
+   * Optionally provide a form element name.
+   */
+  @Prop() inputName: string = "";
+
+  /**
+   * Optionally provide the id of a describing element (like an input tip).
+   */
+  @Prop({ attribute: 'input-describedby'}) inputDescribedBy: string = "";
+
 
   // These will be initialized on component load
   componentId: string;
@@ -385,6 +395,8 @@ export class YetiCombobox {
     this.buttonId = this.componentId + "_button";
     this.dropdownId = this.componentId + "_dropdown";
 
+    this.inputName = (this.inputName != "") ? this.inputName : this.inputId; // If the user supplied a name, use it, otherwise just re-use the id.
+
     // Look for and handle any <yeti-combobox-option> elements.
     if (optionElements.length > 0) {
       this.parseOptionElements(optionElements);
@@ -424,6 +436,7 @@ export class YetiCombobox {
             class="yeti-combobox-input" 
             title={this.value}
             value={this.value}
+            name={this.inputName}
             onFocus={() => {
               this.isTouched = true;
             }}
@@ -432,10 +445,12 @@ export class YetiCombobox {
             }}
             onInput={(ev) => this.handleInputChange(ev)}
             role="combobox"
+            autocomplete="off"
             aria-autocomplete="none"
             aria-controls={this.dropdownId}
             aria-expanded={this.isOpen}
             id={this.inputId}
+            {...(this.inputDescribedBy != "") ? { "aria-describedby" : this.inputDescribedBy } : {}}
             {...(activeDescendantId != "") ? { "aria-activedescendant" : activeDescendantId } : {}}
           />
 
