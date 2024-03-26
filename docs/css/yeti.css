@@ -1829,8 +1829,9 @@ Leeloo Dallas multipass
     gap: 0.125rem;
     justify-content: flex-start;
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg preserveAspectRatio='xMidYMid meet' xmlns='http://www.w3.org/2000/svg' fill='%23161616' width='16' height='16' viewBox='0 0 16 16' %3E%3Cpath d='M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z'%3E%3C/path%3E%3C/svg%3E");
-    background-position: right 1rem center;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="%23161616"><path d="M0 0h24v24H0z" fill="none"/><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg>');
+    background-size: 1.25rem 1.25rem;
+    background-position: right 0.875rem center;
     background-repeat: no-repeat;
     width: 100%;
   }
@@ -2520,7 +2521,7 @@ Styles for Table
   }
   .yeti-table-head-row:has(.yeti-table-heading-button-icon):has(.yeti-table-heading-filter) .yeti-table-heading:not(:has(.yeti-table-heading-compound)) {
     padding-top: 0.5rem;
-    padding-bottom: 3.7125rem;
+    /*padding-bottom: 3.7125rem;*/
   }
   .yeti-table-head-row:has(.yeti-table-heading-filter) .yeti-table-heading.yeti-table-cell-clear {
     padding-bottom: 0.75rem;

@@ -25,28 +25,28 @@ export class YetiMultiselect {
   @Prop() wrapperClass: string = '';
 
   /**
-   * id of the visual representation of the drop-down.
+   * id of the combobox element.
    */
   @Prop({
     mutable: true,
     reflect: true
-  }) facadeId: string = "";
+  }) comboboxId: string = ""; // Will be initialized on load (if necessary).
 
   /**
-   * id of the actual drop-down element.
+   * id of the drop-down element.
    */
   @Prop({
     mutable: true,
     reflect: true
-  }) actualId: string = "";
+  }) flyoutId: string = ""; // Will be initialized on load (if necessary).
 
   /**
-   * name of the actual drop-down element. Defaults to match id.
+   * form's name for the actual drop-down element. Defaults to match id.
    */
   @Prop({
     mutable: true,
     reflect: true
-  }) actualName: string = this.actualId;
+  }) formName: string = ""; // Will be initialized on load (if necessary).
 
   /**
    * Whether the component requires a valid value.
@@ -64,7 +64,7 @@ export class YetiMultiselect {
   @Prop({
     mutable: true,
     reflect: true
-  }) isValid: boolean;
+  }) isValid: boolean = true;
 
   /**
    * The component's value is represented as a string of comma-separated values.
@@ -181,6 +181,7 @@ export class YetiMultiselect {
           ev.preventDefault();
         } else if (ev.altKey) {
 
+          this.cursorPosition = 0;
           this.openFlyout();
           ev.preventDefault();
 
@@ -286,6 +287,8 @@ export class YetiMultiselect {
 
   parseOptionElements(options: HTMLCollection) {
 
+    let runningInitialValueArray = [];
+
     for (let i = 0; i < options.length; i++) {
       
       let option = options.item(i);
@@ -309,11 +312,15 @@ export class YetiMultiselect {
 
         if (option.hasAttribute("selected")) {
           ++this.numSelections;
+          runningInitialValueArray.push(option.innerHTML);
         }
 
       }
 
     } // End for
+
+    // Initialize value
+    this.value = runningInitialValueArray.toString();
 
     // Finally, we need to remove the option elements.
     for (let j = options.length - 1; j >= 0; --j) {
@@ -343,19 +350,6 @@ export class YetiMultiselect {
       default: // Multiple selections
         return `${this.numSelections} selections`;
     }
-  }
-
-
-
-  renderActualOptions() {
-    // Creates the <option>s for the actual <select>.
-    let optionsActual = [];
-    for (let i=0; i<this.options.length; i++) {
-      let optionActual = <option value={this.options[i].label} selected={this.options[i].selected}>{this.options[i].label}</option>;
-      optionsActual.push(optionActual);
-    }
-
-    return optionsActual;
   }
 
 
@@ -392,15 +386,6 @@ export class YetiMultiselect {
 
 
 
-  handleActualFocus() {
-    let facade = this.el.querySelector(".yeti-multiselect") as HTMLElement;
-    if (facade) {
-      facade.focus();
-    }
-  }
-
-
-
   //handleProgrammaticValueChange(newValue: string, oldValue: string) {
     // Usually you'd pre-set the value of the control by specifying the selected attribute of yeti-multiselect-option, however it can also be
     // set programmatically via the value property of the component.
@@ -422,18 +407,11 @@ export class YetiMultiselect {
       this.el.setAttribute("id", componentId);
     }
 
-    this.actualId = (this.actualId != "") ? this.actualId : `${componentId}_actual`;
-    this.actualName = this.actualId;
+    this.comboboxId = (this.comboboxId != "") ? this.comboboxId : `${componentId}_combobox`;
+    this.formName = (this.formName != "") ? this.formName : componentId;
 
-    this.facadeId = (this.facadeId != "") ? this.facadeId : `${componentId}_facade`;
-    
+    this.flyoutId = (this.flyoutId != "") ? this.flyoutId : `${componentId}_flyout`;
 
-    // Handle any <yeti-multiselect-option> elements
-    if (this.el.hasAttribute("id") && this.el.getAttribute("id") != "") { 
-      this.el.getAttribute("id");
-    } else {
-      this.el.setAttribute("id", utils.generateUniqueId());
-    }
 
     // Look for and handle any <yeti-multiselect-option> elements.
     if (optionElements.length > 0) {
@@ -445,22 +423,10 @@ export class YetiMultiselect {
 
 
 
-  componentWillRender() {
-    if (this.value == "") {
-      for (let i=0; i<this.options.length; i++) {
-        this.options[i].selected = false;
-      }
-      this.value = "";
-      this.numSelections = 0;
-    }
-  }
-
-
-
   componentDidRender() {
     // If the cursor is over an option, make sure it's visible.
     if (this.isOpen) {
-      // The facade flyout is open. If one of the options is being hovered over then we want to scroll it into view.
+      // The flyout is open. If one of the options is being hovered over then we want to scroll it into view.
       // If not, then we'll scroll the whole flyout into view.
       let flyout = this.el.querySelector(".yeti-multiselect-flyout");
       let hoveredOption = this.el.querySelector(".yeti-multiselect-option__hover");
@@ -476,15 +442,15 @@ export class YetiMultiselect {
 
   render() {
 
-    let wrapperClasses = 'yeti-multiselect';
+    let comboboxClasses = 'yeti-multiselect';
     let flyoutClass = 'yeti-multiselect-flyout';
 
     if (this.wrapperClass != '') {
-      wrapperClasses += ' ' + this.wrapperClass;
+      comboboxClasses += ' ' + this.wrapperClass;
     }
 
     if (this.isValid == false) {
-      wrapperClasses += ' yeti-multiselect__error';
+      comboboxClasses += ' yeti-multiselect__error';
     }
 
     flyoutClass += (this.isOpen) ? " yeti-multiselect-flyout__open" : "";
@@ -496,39 +462,43 @@ export class YetiMultiselect {
     return ([
       <div class="yeti-multiselect-wrapper">
 
-        <select
-          tabIndex={-1}
-          class="yeti-multiselect-actual yeti-a11y-hidden"
-          multiple={true}
-          id={this.actualId}
-          name={this.actualName}
-          onFocus={() => {this.handleActualFocus()}}
-          {...((!this.isValid) ? {"aria-invalid": true} : {})}
-          {...((this.labelledBy != "") ? {"aria-labeledby": this.labelledBy} : {})}
-          {...((this.describedBy != "") ? {"aria-describedby": this.describedBy} : {})}
-        >
-          
-          {this.renderActualOptions()}
-
-        </select>
-
         <div 
           tabIndex={0}
-          class={wrapperClasses}
+          class={comboboxClasses}
           onClick={() => {
             this.isOpen = !this.isOpen;
           }}
           onFocus={() => {
             this.isTouched = true;
           }}
-          aria-hidden="true"
+          role="combobox"
+          {...((!this.isValid) ? {"aria-invalid": 'true'} : {})}
+          {...((this.labelledBy != "") ? {"aria-labeledby": this.labelledBy} : {})}
+          {...((this.describedBy != "") ? {"aria-describedby": this.describedBy} : {})}
+          aria-controls={this.flyoutId}
+          aria-expanded={this.isOpen}
+          aria-haspopup="listbox"
+          {...((this.isOpen && this.cursorPosition >= 0) ? { "aria-activedescendant": this.options[this.cursorPosition].id } : {})}
+          id={this.comboboxId}
         >
 
-          <span class="yeti-multiselect-placeholder" title={this.getPlaceholderDisplay()}>{this.getPlaceholderDisplay()}</span>
+          <span 
+            class="yeti-multiselect-placeholder"
+            title={this.getPlaceholderDisplay()}
+          >{this.getPlaceholderDisplay()}
+          
+          {(this.numSelections > 1) ?
+            <span class="yeti-a11y-hidden">{this.value}</span>
+          :
+            ""
+          }
+          </span>
+
 
           { (this.showClear && this.numSelections > 0) ? 
 
             (<button class="yeti-multiselect-puck" title="Clear all selections" onClick={ (ev) => { this.handleClearSelections(ev); ev.preventDefault() }}>
+              <span class="yeti-a11y-hidden">Clear all selections</span>
               <span class="material-icons yeti-multiselect-puck-icon" aria-hidden="true">cancel</span>
             </button>)
 
@@ -541,11 +511,15 @@ export class YetiMultiselect {
         </div>
 
         
-        <div class={flyoutClass} aria-hidden="true">
+        <div class={flyoutClass}>
         
           <ul
             class="yeti-multiselect-options"
-            id={this.facadeId}
+            id={this.flyoutId}
+            role="listbox"
+            aria-multiselectable="true"
+            {...((this.labelledBy != "") ? {"aria-labeledby": this.labelledBy} : {})}
+            {...((this.isOpen && this.cursorPosition >= 0) ? { "aria-activedescendant": this.options[this.cursorPosition].id } : {})}
           >
 
             {this.options.map((option, i) => {
@@ -553,10 +527,15 @@ export class YetiMultiselect {
                 let optionClass = (this.cursorPosition == i) ? "yeti-multiselect-option yeti-multiselect-option__hover" : "yeti-multiselect-option";
               
                 return (
-                  <li id={option.id} key={option.id}>
+                  <li 
+                    id={option.id} 
+                    key={option.id}
+                    role="option"
+                    aria-selected={`${option.selected}`}
+                  >
                     <button class={optionClass} tabIndex={-1} onClick={(ev) => { this.handleOptionClick(i); ev.preventDefault(); }}>
                       <span class="yeti-multiselect-option-checkbox">
-                        <span class="material-icons">{(option.selected) ? "check_box" : "check_box_outline_blank"}</span>
+                        <span class="material-icons" aria-hidden="true">{(option.selected) ? "check_box" : "check_box_outline_blank"}</span>
                       </span>
                       <span class="yeti-multiselect-option-label">{option.label}</span>
                     </button>

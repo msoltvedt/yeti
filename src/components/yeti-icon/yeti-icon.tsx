@@ -22,7 +22,7 @@ export class YetiIcon {
   /**
    * CSS classlist applied to the actual element producing the icon.
    */
-  @Prop({ attribute: 'icon-class'}) iconClass?: string = '';
+  @Prop() iconClass?: string = '';
 
   /**
    * id of the actual element producing the icon. Set to a unique id if one is not provided.
@@ -68,18 +68,16 @@ export class YetiIcon {
 
     return (
 
-        // <span class="yeti-icon-wrapper" {...((this.focusable) ? {"tabindex": 0} : {})}>
         [
             
             <span 
               class={iconClass}
               {...((this.focusable) ? {"tabindex": "0"} : {})}
-              {...((this.alt != "") ? {"aria-hidden": true} : {})}>{this.iconCode}</span>,
+              {...((this.alt != "") ? {"aria-hidden": 'true'} : {})}>{this.iconCode}</span>,
             
             (this.alt != "") ? <span class="yeti-a11y-hidden">{this.alt}</span> : ""
           
         ]
-        //</span>
 
     );
   }

@@ -12,12 +12,12 @@ export class YetiTooltip {
   /**
    * CSS classlist to add to the element serving as the component's wrapper.
    */
-  @Prop({ attribute: 'wrapper-class'}) wrapperClass: string = '';
+  @Prop() wrapperClass: string = '';
 
   /**
    * CSS classlist to add to the actual tooltip element.
    */
-  @Prop({ attribute: 'tooltip-class'}) tooltipClass: string = '';
+  @Prop() tooltipClass: string = '';
 
   /**
    * Text value to display as the tooltip's contents.
