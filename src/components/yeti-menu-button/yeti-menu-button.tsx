@@ -22,17 +22,17 @@ export class YetiMenuButton {
   /**
    * CSS classlist to add to the Menu Button pattern's outer wrapper.
    */
-  @Prop({ attribute: 'wrapper-class'}) wrapperClass: string = '';
+  @Prop() wrapperClass: string = '';
 
   /**
    * CSS classlist to add to the Menu Button's button element.
    */
-  @Prop({ attribute: 'button-class'}) buttonClass: string = '';
+  @Prop() buttonClass: string = '';
 
   /**
    * CSS classlist to add to the Menu Button's menu element.
    */
-  @Prop({ attribute: 'menu-class'}) menuClass: string = '';
+  @Prop() menuClass: string = '';
 
   /**
    * id to apply to the Menu Button's button element. Will be auto-populated with a unique id if one is not provided.

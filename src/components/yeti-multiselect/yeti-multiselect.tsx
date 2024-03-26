@@ -40,14 +40,6 @@ export class YetiMultiselect {
     reflect: true
   }) flyoutId: string = ""; // Will be initialized on load (if necessary).
 
-  // /**
-  //  * id of the actual drop-down element.
-  //  */
-  // @Prop({
-  //   mutable: true,
-  //   reflect: true
-  // }) actualId: string = "";
-
   /**
    * form's name for the actual drop-down element. Defaults to match id.
    */
@@ -362,19 +354,6 @@ export class YetiMultiselect {
 
 
 
-  // renderActualOptions() {
-  //   // Creates the <option>s for the actual <select>.
-  //   let optionsActual = [];
-  //   for (let i=0; i<this.options.length; i++) {
-  //     let optionActual = <option value={this.options[i].label} selected={this.options[i].selected}>{this.options[i].label}</option>;
-  //     optionsActual.push(optionActual);
-  //   }
-
-  //   return optionsActual;
-  // }
-
-
-
   handleOptionClick(i: number) {
     // i = options index
     let newValue = [];
@@ -407,15 +386,6 @@ export class YetiMultiselect {
 
 
 
-  // handleActualFocus() {
-  //   let facade = this.el.querySelector(".yeti-multiselect") as HTMLElement;
-  //   if (facade) {
-  //     facade.focus();
-  //   }
-  // }
-
-
-
   //handleProgrammaticValueChange(newValue: string, oldValue: string) {
     // Usually you'd pre-set the value of the control by specifying the selected attribute of yeti-multiselect-option, however it can also be
     // set programmatically via the value property of the component.
@@ -437,9 +407,6 @@ export class YetiMultiselect {
       this.el.setAttribute("id", componentId);
     }
 
-    // this.actualId = (this.actualId != "") ? this.actualId : `${componentId}_actual`;
-    // this.actualName = this.actualId;
-
     this.comboboxId = (this.comboboxId != "") ? this.comboboxId : `${componentId}_combobox`;
     this.formName = (this.formName != "") ? this.formName : componentId;
 
@@ -456,22 +423,10 @@ export class YetiMultiselect {
 
 
 
-  // componentWillRender() {
-  //   if (this.value == "") {
-  //     for (let i=0; i<this.options.length; i++) {
-  //       this.options[i].selected = false;
-  //     }
-  //     this.value = "";
-  //     this.numSelections = 0;
-  //   }
-  // }
-
-
-
   componentDidRender() {
     // If the cursor is over an option, make sure it's visible.
     if (this.isOpen) {
-      // The facade flyout is open. If one of the options is being hovered over then we want to scroll it into view.
+      // The flyout is open. If one of the options is being hovered over then we want to scroll it into view.
       // If not, then we'll scroll the whole flyout into view.
       let flyout = this.el.querySelector(".yeti-multiselect-flyout");
       let hoveredOption = this.el.querySelector(".yeti-multiselect-option__hover");
@@ -506,22 +461,6 @@ export class YetiMultiselect {
 
     return ([
       <div class="yeti-multiselect-wrapper">
-
-        {/* <select
-          tabIndex={-1}
-          class="yeti-multiselect-actual yeti-a11y-hidden"
-          multiple={true}
-          id={this.actualId}
-          name={this.actualName}
-          onFocus={() => {this.handleActualFocus()}}
-          {...((!this.isValid) ? {"aria-invalid": true} : {})}
-          {...((this.labelledBy != "") ? {"aria-labeledby": this.labelledBy} : {})}
-          {...((this.describedBy != "") ? {"aria-describedby": this.describedBy} : {})}
-        >
-          
-          {this.renderActualOptions()}
-
-        </select> */}
 
         <div 
           tabIndex={0}

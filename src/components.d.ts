@@ -328,7 +328,7 @@ export namespace Components {
         /**
           * Optional CSS classes to add to the modal element.
          */
-        "modalCSS": string;
+        "modalClass": string;
         /**
           * Choose to show the close icon (currently an X) or not
          */
@@ -1236,7 +1236,7 @@ declare namespace LocalJSX {
         /**
           * Optional CSS classes to add to the modal element.
          */
-        "modalCSS"?: string;
+        "modalClass"?: string;
         /**
           * Choose to show the close icon (currently an X) or not
          */

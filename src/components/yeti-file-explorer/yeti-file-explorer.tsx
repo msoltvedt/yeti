@@ -17,7 +17,7 @@ export class YetiFileExplorer {
   /**
    * CSS classlist applied to the explorer wrapper element.
    */
-  @Prop({ attribute: 'wrapper-css'}) wrapperClass?: string = '';
+  @Prop() wrapperClass?: string = '';
 
   /**
    * Whether or not to show files (folders are always shown).
@@ -259,13 +259,6 @@ export class YetiFileExplorer {
               <yeti-icon iconCode="folder" alt="subfolder" icon-style="outlined" class="yeti-file_explorer-folder-item-icon"></yeti-icon>
             
               <span class="yeti-file_explorer-folder-item-name">{item.name}</span>
-            
-              {/* {
-                (item.content.length) ? 
-                  <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
-                : 
-                  ""
-              } */}
 
               <yeti-icon iconCode="chevron_right" alt="open subfolder" class="yeti-file_explorer-folder-more"></yeti-icon>
         

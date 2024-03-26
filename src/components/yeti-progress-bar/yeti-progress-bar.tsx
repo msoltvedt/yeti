@@ -12,17 +12,17 @@ export class YetiProgressBar {
   /**
    * CSS classlist to add to the component's outer wrapper element.
    */
-  @Prop({ attribute: 'wrapper-class'}) wrapperClass: string = '';
+  @Prop() wrapperClass: string = '';
 
   /**
    * CSS classlist to add to the component's actual label element.
    */
-  @Prop({ attribute: 'label-class'}) labelClass: string = '';
+  @Prop() labelClass: string = '';
 
   /**
    * CSS classlist to add to the element representing the component's progress bar.
    */
-  @Prop({ attribute: 'bar-class'}) barClass: string = '';
+  @Prop() barClass: string = '';
 
   /**
    * id of the element representing the component's progress bar. Will be given an auto-generated unique id if one is not provided.

@@ -18,7 +18,7 @@ export class YetiTooltip {
   /**
    * CSS classlist to add to the element serving as the component's wrapper.
    */
-  @Prop({ attribute: 'wrapper-class'}) wrapperClass: string = '';
+  @Prop() wrapperClass: string = '';
 
   /**
    * The type of notification: error (default) | info | success | warning | warningAlt.

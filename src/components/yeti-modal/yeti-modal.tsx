@@ -32,7 +32,7 @@ export class YetiModal {
   /**
    * Optional CSS classes to add to the modal element.
    */
-  @Prop({ attribute: 'modal-css'}) modalCSS: string = "";
+  @Prop() modalClass: string = "";
 
   /**
    * Whether overflowing contents are shown via scrolling or clipped.
@@ -228,7 +228,7 @@ export class YetiModal {
 
     modalCSS += (this.size == "") ? "" : ` yeti-modal-size-${this.size}`;
 
-    modalCSS += (this.modalCSS != "") ? ` ${this.modalCSS}` : "";
+    modalCSS += (this.modalClass != "") ? ` ${this.modalClass}` : "";
 
     modalCSS += (this.isScrollable) ? "" : " yeti-modal__unscrollable";
 
