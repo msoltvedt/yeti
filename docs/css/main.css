@@ -469,6 +469,83 @@ label {
   line-height: 1;
 }
 
+.skip-nav-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  height:2.375rem;
+  font-size:1rem;
+  width:12.75rem;   
+  line-height:22px;
+  padding: 8px 0 0 6px;
+  background-color: white;
+  color: #0F62FE;
+  opacity: 0;
+  border: 0 0 0 0;
+  outline:0.125rem solid;
+  outline-offset:0;
+  text-decoration:none;
+  text-align:center;
+  vertical-align: center;
+  
+}
+.skip-nav-link:focus {
+  left: 11px;
+  top: 11px;
+  transform: translateX(-1%);
+  opacity: 1;
+}
+
+.skip-nav-link:hover {
+  background-color: #E8E8E8;
+}
+
+.skip-nav-icon{
+  font-size:21px;
+  vertical-align: middle;
+  font-weight:bold
+}
+
+/*skip content link*/
+.skip-content-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  height:2.375rem;
+  font-size:1rem;
+  width:12.125rem;   
+  line-height:22px;
+  padding: 8px 0 4px 0;
+  background-color: white;
+  color: #0F62FE;
+  opacity: 0;
+  border: 0 0 0 0;
+  outline:0.125rem solid;
+  outline-offset:0;
+  text-decoration:none;
+  text-align:center;
+  vertical-align: center;
+  
+}
+.skip-content-link:focus {
+  left: 2.063rem;
+  top: 270px;
+  transform: translateX(-1%);
+  opacity: 1;
+}
+
+.skip-content-link:hover {
+  background-color: #E8E8E8;
+}
+
+.skip-content-icon{
+  font-size:21px;
+  vertical-align: middle;
+  font-weight:bold
+}
+
+
+
 
 .header-links {
   padding-top: 0.875rem;
@@ -7240,7 +7317,7 @@ Styles for Table
   }
   .yeti-table-head-row:has(.yeti-table-heading-button-icon):has(.yeti-table-heading-filter) .yeti-table-heading:not(:has(.yeti-table-heading-compound)) {
     padding-top: 0.5rem;
-    padding-bottom: 3.7125rem;
+    /*padding-bottom: 3.7125rem;*/
   }
   .yeti-table-head-row:has(.yeti-table-heading-filter) .yeti-table-heading.yeti-table-cell-clear {
     padding-bottom: 0.75rem;

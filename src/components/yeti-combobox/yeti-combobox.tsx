@@ -434,7 +434,7 @@ export class YetiCombobox {
           <input 
             type="text" 
             class="yeti-combobox-input" 
-            title={this.value}
+            // title={this.value}
             value={this.value}
             name={this.inputName}
             onFocus={() => {
@@ -457,7 +457,7 @@ export class YetiCombobox {
           { (this.showClear && this.value != '') ? 
 
             (<button class="yeti-combobox-clear" title="Clear all selections" onClick={ (ev) => { this.handleClearSelections(ev); ev.preventDefault() }}>
-              <span class="material-icons yeti-combobox-clear-icon">clear</span>
+              <span class="material-icons yeti-combobox-clear-icon" aria-hidden="true">clear</span>
             </button>)
 
           :
@@ -480,7 +480,7 @@ export class YetiCombobox {
         </div>
 
         
-        <div class={dropdownCss} aria-hidden="true">
+        <div class={dropdownCss}>
         
           <ul
             class="yeti-combobox-options"
@@ -498,16 +498,16 @@ export class YetiCombobox {
                     id={option.id} 
                     key={option.id} 
                     role="option"
-                    aria-selected={option.selected}
+                    aria-selected={`${option.selected}`}
                     class={optionClass}
                     onClick={(ev) => { this.handleOptionClick(i); ev.preventDefault(); }}
                   >
 
                       <span class="yeti-combobox-option-label">{option.label}</span>
-                      <span class="yeti-combobox-option-checkmark">
+                      <span class="yeti-combobox-option-checkmark" aria-hidden='true'>
                         {(option.selected) ? 
                         
-                          <yeti-icon iconCode='checkmark' alt='selected'></yeti-icon>
+                          <yeti-icon iconCode='checkmark'></yeti-icon>
 
                         :
 

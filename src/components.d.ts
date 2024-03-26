@@ -340,21 +340,21 @@ export namespace Components {
     }
     interface YetiMultiselect {
         /**
-          * id of the actual drop-down element.
+          * id of the combobox element.
          */
-        "actualId": string;
-        /**
-          * name of the actual drop-down element. Defaults to match id.
-         */
-        "actualName": string;
+        "comboboxId": string;
         /**
           * id of an external HTML element that the component's actual drop-down element references in aria-describedby.
          */
         "describedBy": string;
         /**
-          * id of the visual representation of the drop-down.
+          * id of the drop-down element.
          */
-        "facadeId": string;
+        "flyoutId": string;
+        /**
+          * form's name for the actual drop-down element. Defaults to match id.
+         */
+        "formName": string;
         /**
           * Whether the component has a valid value.
          */
@@ -1248,21 +1248,21 @@ declare namespace LocalJSX {
     }
     interface YetiMultiselect {
         /**
-          * id of the actual drop-down element.
+          * id of the combobox element.
          */
-        "actualId"?: string;
-        /**
-          * name of the actual drop-down element. Defaults to match id.
-         */
-        "actualName"?: string;
+        "comboboxId"?: string;
         /**
           * id of an external HTML element that the component's actual drop-down element references in aria-describedby.
          */
         "describedBy"?: string;
         /**
-          * id of the visual representation of the drop-down.
+          * id of the drop-down element.
          */
-        "facadeId"?: string;
+        "flyoutId"?: string;
+        /**
+          * form's name for the actual drop-down element. Defaults to match id.
+         */
+        "formName"?: string;
         /**
           * Whether the component has a valid value.
          */

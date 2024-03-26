@@ -2521,7 +2521,7 @@ Styles for Table
   }
   .yeti-table-head-row:has(.yeti-table-heading-button-icon):has(.yeti-table-heading-filter) .yeti-table-heading:not(:has(.yeti-table-heading-compound)) {
     padding-top: 0.5rem;
-    padding-bottom: 3.7125rem;
+    /*padding-bottom: 3.7125rem;*/
   }
   .yeti-table-head-row:has(.yeti-table-heading-filter) .yeti-table-heading.yeti-table-cell-clear {
     padding-bottom: 0.75rem;
