@@ -91,6 +91,11 @@ export class YetiCombobox {
   @Prop() showClear: boolean = true;
 
   /**
+   * Optionally provide an id for the combobox element.
+   */
+  @Prop() inputId: string = "";
+
+  /**
    * Optionally provide a form element name.
    */
   @Prop() inputName: string = "";
@@ -103,7 +108,6 @@ export class YetiCombobox {
 
   // These will be initialized on component load
   componentId: string;
-  inputId: string;
   buttonId: string;
   dropdownId: string;
 
@@ -331,7 +335,7 @@ export class YetiCombobox {
         }
 
         this.options.push({
-          selected: option.hasAttribute("selected"),
+          selected: (option.hasAttribute("selected") || option.innerHTML == this.value),
           label: option.innerHTML,
           id: optionId
         });
@@ -391,7 +395,7 @@ export class YetiCombobox {
       this.el.setAttribute("id", this.componentId);
     }
 
-    this.inputId = this.componentId + "_input";
+    this.inputId = (this.inputId != "") ? this.inputId : this.componentId + "_input";
     this.buttonId = this.componentId + "_button";
     this.dropdownId = this.componentId + "_dropdown";
 

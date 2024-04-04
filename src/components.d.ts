@@ -28,6 +28,10 @@ export namespace Components {
          */
         "inputDescribedBy": string;
         /**
+          * Optionally provide an id for the combobox element.
+         */
+        "inputId": string;
+        /**
           * Optionally provide a form element name.
          */
         "inputName": string;
@@ -900,6 +904,10 @@ declare namespace LocalJSX {
           * Optionally provide the id of a describing element (like an input tip).
          */
         "inputDescribedBy"?: string;
+        /**
+          * Optionally provide an id for the combobox element.
+         */
+        "inputId"?: string;
         /**
           * Optionally provide a form element name.
          */

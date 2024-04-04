@@ -10,6 +10,7 @@
 | Property           | Attribute           | Description                                                                                                                           | Type      | Default        |
 | ------------------ | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | --------- | -------------- |
 | `inputDescribedBy` | `input-describedby` | Optionally provide the id of a describing element (like an input tip).                                                                | `string`  | `""`           |
+| `inputId`          | `input-id`          | Optionally provide an id for the combobox element.                                                                                    | `string`  | `""`           |
 | `inputName`        | `input-name`        | Optionally provide a form element name.                                                                                               | `string`  | `""`           |
 | `isValid`          | `is-valid`          | Whether the component has a valid value.                                                                                              | `boolean` | `undefined`    |
 | `menuAlignment`    | `menu-alignment`    | Token list of left \| right and/or above \| below that describes the drop-down's visual position relative to the closed state anchor. | `string`  | `""`           |
