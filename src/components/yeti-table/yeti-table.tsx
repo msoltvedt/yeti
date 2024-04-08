@@ -171,7 +171,8 @@ export class YetiTable {
     else {
       this.tablePaginate.emit({
         "currentPage": ev.detail.currentPage,
-        "recordsDisplayed": ev.detail.recordsDisplayed
+        "recordsDisplayed": ev.detail.recordsDisplayed,
+        "recordsPerPage": ev.detail.recordsPerPage
       })
     }
   }

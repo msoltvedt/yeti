@@ -47,10 +47,7 @@ export class YetiTablePagination {
 
   @Watch('recordsDisplayed')
   watchRecordsDisplayed() {
-    this.paginationUpdated.emit({
-      "currentPage": this.selectedPage-1,
-      "recordsDisplayed": this.recordsDisplayed
-    });
+    this.emitPaginationUpdatedEvent();
   }
 
   @State() itemsPerPageOptions: (number | string)[] = [10, 25, 50, 100, "All"];
@@ -76,6 +73,11 @@ export class YetiTablePagination {
       
       // First, confirm this element is indeed a yeti-table-pagination-option element.
       if (option.tagName.toLowerCase() == 'yeti-table-pagination-option') {
+
+        // Check to see if it has a selected attribute.
+        if (option.attributes && option.attributes['selected'] && (option.attributes['selected'].value == 'undefined' || option.attributes['selected'].value == "true")) {
+          this.selectedItemsPerPageOptionIndex = i;
+        }
 
         // Check to see if it has an all attribute, and push the string "All" if it does.
         if (option.attributes && option.attributes['all']) {
@@ -170,10 +172,7 @@ export class YetiTablePagination {
     this.updatePages();
     this.updateIndices();
     e.preventDefault();
-    this.paginationUpdated.emit({
-      "currentPage": this.selectedPage-1,
-      "recordsDisplayed": this.recordsDisplayed
-    });
+    this.emitPaginationUpdatedEvent();
   }
 
 
@@ -183,10 +182,7 @@ export class YetiTablePagination {
     this.selectedPage = parseInt(select.value);
     this.updateIndices();
     e.preventDefault();
-    this.paginationUpdated.emit({
-      "currentPage": this.selectedPage-1,
-      "recordsDisplayed": this.recordsDisplayed
-    });
+    this.emitPaginationUpdatedEvent();
   }
 
 
@@ -195,10 +191,7 @@ export class YetiTablePagination {
     this.selectedPage = Math.max(1, this.selectedPage - 1);
     this.updateIndices();
     ev.preventDefault();
-    this.paginationUpdated.emit({
-      "currentPage": this.selectedPage-1,
-      "recordsDisplayed": this.recordsDisplayed
-    });
+    this.emitPaginationUpdatedEvent();
   }
 
 
@@ -207,9 +200,17 @@ export class YetiTablePagination {
     this.selectedPage = Math.min(this.pages, this.selectedPage + 1);
     this.updateIndices();
     ev.preventDefault();
+    this.emitPaginationUpdatedEvent();
+  }
+
+
+
+  emitPaginationUpdatedEvent() {
+    let itemsPerPage = this.getItemsPerPageOption();
     this.paginationUpdated.emit({
       "currentPage": this.selectedPage-1,
-      "recordsDisplayed": this.recordsDisplayed
+      "recordsDisplayed": this.recordsDisplayed,
+      "recordsPerPage": itemsPerPage
     });
   }
 
@@ -256,8 +257,8 @@ export class YetiTablePagination {
                 this.handleItemsPerPageChange(e);
               }}>
                 {
-                  this.itemsPerPageOptions.map((option) => {
-                    return <option value={option} class="yeti-table-pagination-items_per_page-select-option">{option}</option>
+                  this.itemsPerPageOptions.map((option, index) => {
+                    return <option value={option} selected={(index == this.selectedItemsPerPageOptionIndex)} class="yeti-table-pagination-items_per_page-select-option">{option}</option>
                   })
                 }
               </select>]
