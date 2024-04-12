@@ -43,7 +43,7 @@ task('updateFromOrchestrator').description = 'Clean up and update Yeti\'s copy o
 task('refreshJSToOrchestrator', series(cleanOrchestratorJS, pasteJSToOrchestrator));
 task('refreshJSToOrchestrator').description = 'Deletes all Yeti JS *in Orchestrator* and pastes a fresh copy there.';
 
-task('updateToOrchestrator', series(cleanOrchestratorJS, pasteJSToOrchestrator, pasteCSSToOrchestrator));
+task('updateToOrchestrator', series(cleanOrchestratorJS, pasteJSToOrchestrator, pasteCSSToOrchestrator, pasteFontsToOrchestrator));
 task('updateToOrchestrator').description = 'Update Orchestrator\'s copy of Yeti\'s JS and CSS';
 
 task('default', watcher);
@@ -66,13 +66,15 @@ task('html', publishHTML);
 
 task('examplesJS', publishExamplesJS);
 
+task('fonts', pasteFontsToWWW);
+
 task('startup', series(
     task('updateFromOrchestrator'),
     task('cleanWWW'),
     task('css'),
+    task('fonts'),
     task('html'),
     task('examplesJS'),
-    publishHTML,
     watcher
 ));
 task('startup').description = 'Cleans, sets up, and otherwise initilizes www directory; starts watcher';
@@ -84,22 +86,33 @@ task('startup').description = 'Cleans, sets up, and otherwise initilizes www dir
 /************* Function Definitions */
 
 function cleanCopyOfOrchestratorCSS() {
-    return deleteAsync( `${settings.yetiCopyOfOrchestratorCSSDirectory}**/*` );
+    return deleteAsync([`${settings.yetiCopyOfOrchestratorCSSDirectory}**/*`, `!${settings.orchestratorCSSDirectory}/fonts/**/*`]);
 }
 
 function copyFromOrchestrator() {
-    return src([ `${settings.orchestratorCSSDirectory}*.css`, settings.carbonCSS])
+    // return src([ `${settings.orchestratorCSSDirectory}*.css`, settings.carbonCSS])
+    return src(`${settings.orchestratorCSSDirectory}/old/*.css`)
         .pipe( dest(settings.yetiCopyOfOrchestratorCSSDirectory) );
 }
 
 function pasteCSSToOrchestrator() {
-    return src(`src/css/yeti.css`)
+    return src([`src/css/yeti.css`, 'src/css/main.css'])
         .pipe( dest(settings.orchestratorCSSDirectory) );
 }
 
 function pasteCSSToCrm() {
-    return src(`src/css/yeti.css`)
+    return src([`src/css/yeti.css`, 'src/css/main.css'])
         .pipe( dest(settings.crmCSSDirectory) );
+}
+
+function pasteFontsToOrchestrator() {
+    return src(`src/css/fonts/**/*`)
+        .pipe( dest(`${settings.orchestratorCSSDirectory}/fonts`) );
+}
+
+function pasteFontsToCrm() {
+    return src(`src/css/fonts/**/*`)
+        .pipe( dest(`${settings.crmCSSDirectory}/fonts`) );
 }
 
 function cleanOrchestratorJS() {
@@ -120,14 +133,24 @@ function pasteJSToCrm() {
         .pipe( dest(settings.crmJSDirectory) );
 }
 
+function cleanOrchestratorFonts() {
+    return deleteAsync([`${settings.orchestratorCSSDirectory}/fonts/**/*`, `!${settings.orchestratorCSSDirectory}/fonts`], {force: true})
+}
+
+function cleanCRMFonts() {
+    return deleteAsync([`${settings.crmCSSDirectory}/fonts/**/*`, `!${settings.crmCSSDirectory}/fonts`], {force: true})
+}
+
 function watcher(cb) {
     watch(['src/css/**/*.less', 'src/examples/css/yeti-examples-only.less'], series(/*cleanWWWCSS,*/ yetiCSS, examplesOnlyCSS, mainCSS));
     watch('src/**/*.html', series(publishHTML, cleanDocs, pushToDocs));
     watch(['src/examples/**/*.js', 'src/examples/**/*.mjs'], series(cleanWWWJS, publishExamplesJS))
+    watch('src/css/fonts/**/*', series(cleanWWWFonts, pasteFontsToWWW));
 
     // Optionally update Orchestrator and CRM as well.
     watch(`dist/yeti/**/*`, series(cleanOrchestratorJS, pasteJSToOrchestrator, cleanCrmJS, pasteJSToCrm));
-    watch(`src/css/yeti.css`, parallel(pasteCSSToOrchestrator, pasteCSSToCrm));
+    watch([`src/css/yeti.css`, 'src/css/main.css'], parallel(pasteCSSToOrchestrator, pasteCSSToCrm));
+    watch(`src/css/fonts/**/*`, series(cleanOrchestratorFonts, cleanCRMFonts, pasteFontsToOrchestrator, pasteFontsToCrm));
     cb();
 }
 
@@ -149,6 +172,7 @@ function examplesOnlyCSS(cb) {
 function mainCSS(cb) {
     return gulp.src('src/css/main.less')
     .pipe(less())
+    .pipe(gulp.dest('src/css/'))
     .pipe(gulp.dest('src/examples/css/'))
     .pipe(gulp.dest('www/examples/css/'));
 }
@@ -159,7 +183,11 @@ function cleanWWW(cb) {
 
 function cleanWWWJS(cb) {
     console.log("In cleanWWWJS");
-    return deleteAsync( ['www/**/yeti/*.js*'])
+    return deleteAsync( ['www/**/yeti/*.js*']);
+}
+
+function cleanWWWFonts(cb) {
+    return deleteAsync( ['www/**/css/fonts/**/*']);
 }
 
 function cleanDocs(cb) {
@@ -179,4 +207,9 @@ function publishExamplesJS(cb) {
 function pushToDocs(cb) {
     return gulp.src( ['www/examples/**/*'] )
         .pipe(gulp.dest('docs/'));
+}
+
+function pasteFontsToWWW(cb) {
+    return gulp.src('src/css/fonts/**/*')
+        .pipe(gulp.dest('www/examples/css/fonts'));
 }

@@ -32,46 +32,49 @@
 /************************************** main.css **************************************/
 
 
+/************************************** Imports (@import that isn't inlined must come before any rules) ***/
+
+/*** Workaround ***/
+/* Less apparently has a bug where it inserts a space between the layer tag and the parentheses, which renders it useless in browser.
+   By stringifying it Less just prints the literal string out the way we want it. */
+@layer-reset: layer(reset);
+@layer-carbon: layer(carbon);
+@layer-legacy: layer(legacy);
+@layer-yeti: layer(yeti);
+@layer-overrides: layer(overrides);
+@layer-app: layer(app);
+
 
 /************************************** Layers ***/
 @layer reset, carbon, legacy, yeti, overrides;
 
 
-
 /************************************** Reset ***/
-@layer reset {
-    @import (inline) url('./old/reset.css');
-}
+@import url('./old/reset.css') @layer-reset;
 
 
 
 /************************************** Carbon ***/
-@layer carbon {
-    //@import (inline) url("https://fonts.googleapis.com/icon?family=Material+Icons");
-    //@import url('./third-party/material');
-    //@import (inline) url("https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp");
-    @import (inline) url('./old/carbon-components.min.css');
-}
+@import url('./third-party/carbon-components.min.css') @layer-carbon;
 
 
 
 /************************************** Legacy ***/
-@layer legacy {
-    @import (inline) url('./old/base-styles.css');
-    @import (inline) url('./old/nav-styles.css');
-    @import (inline) url('./old/legacy.css');
-}
+@import url('./old/base-styles.css') @layer-legacy;
+@import url('./old/nav-styles.css') @layer-legacy;
+@import url('./old/legacy.css') @layer-legacy;
 
 
 
 /************************************** Yeti ***/
-@layer yeti {
-    @import (inline) url('yeti.css');
-}
+@import url('yeti.css') @layer-yeti;
 
 
 
 /************************************** Overrides ***/
-@layer overrides {
-    @import (inline) url('./old/overrides.css');
-}
+@import url('./old/overrides.css') @layer-overrides;
+
+
+
+/************************************** App ***/
+@import url('./old/app.css') @layer-app;
