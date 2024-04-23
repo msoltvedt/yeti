@@ -35,8 +35,10 @@ export class YetiReorderer {
     let swapee = this.el.querySelector(`[position='${swapeePosition}']`);
     let swapeeChild = swapee.querySelector(".yeti-reorderee") as HTMLElement;
     let swapeeRect = swapeeChild.getBoundingClientRect();
-    let yDelta = swapeeRect.y - moverRect.y;
-    let that = this;
+    let moverYDelta = (isUp) ? swapeeRect.y - moverRect.y : /* i.e. just move it up to where the swapee is */
+      swapeeRect.height + (swapeeRect.y - moverRect.y - moverRect.height); // Move it down by height of swapee + distance between mover and swapee.
+    let swapeeYDelta = (isUp) ? moverRect.height + (moverRect.y - swapeeRect.y - swapeeRect.height) : moverRect.y - swapeeRect.y;
+    let that = this; // So we can reference the class object inside a proper function later on.
 
     if (event.detail.isDisabled) {
       // This is just to be safe; Reorderee should never emit a reorderRequested event on a disabled trigger.
@@ -47,8 +49,8 @@ export class YetiReorderer {
     moverChild.addEventListener('transitionend', handleTransitionEnd);
     moverChild.style.setProperty('transition', 'transform 300ms');
     swapeeChild.style.setProperty('transition', 'transform 300ms');
-    moverChild.style.setProperty('transform', `translateY(${yDelta}px)`);
-    swapeeChild.style.setProperty('transform', `translateY(${-yDelta}px)`);
+    moverChild.style.setProperty('transform', `translateY(${moverYDelta}px)`);
+    swapeeChild.style.setProperty('transform', `translateY(${swapeeYDelta}px)`);
 
     function handleTransitionEnd() {
       let placement = ((isUp) ? 'beforebegin' : 'afterend') as InsertPosition;
