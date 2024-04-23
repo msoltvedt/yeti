@@ -480,6 +480,38 @@ export namespace Components {
          */
         "wrapperClass": string;
     }
+    interface YetiReorderee {
+        /**
+          * Id assigned by parent Yeti Reorderer component.
+         */
+        "assignedId": string;
+        /**
+          * Id of the HTML element that should move this reorderee up the order when clicked.
+         */
+        "downTrigger": string;
+        /**
+          * Position (of sibling yeti-reorderee elements) assigned by parent Yeti Reorderer component.
+         */
+        "position": number;
+        /**
+          * Total number of yeti-reorderee siblings, including this one (assigned by parent Yeti Reorderer component)
+         */
+        "reorderees": number;
+        /**
+          * Id of the HTML element that should move this reorderee up the order when clicked.
+         */
+        "upTrigger": string;
+        /**
+          * CSS class list that should apply to the HTML element wrapping the slotted content.
+         */
+        "wrapperClass"?: string;
+    }
+    interface YetiReorderer {
+        /**
+          * CSS class list that should apply to the top-most wrapper element.
+         */
+        "wrapperClass": string;
+    }
     interface YetiTable {
         /**
           * Unique type that captures the table's contents and configurable state information. See utils.ts for details.
@@ -637,6 +669,14 @@ export interface YetiMultiselectCustomEvent<T> extends CustomEvent<T> {
 export interface YetiNotificationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLYetiNotificationElement;
+}
+export interface YetiReordereeCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLYetiReordereeElement;
+}
+export interface YetiReordererCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLYetiReordererElement;
 }
 export interface YetiTableCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -807,6 +847,40 @@ declare global {
         prototype: HTMLYetiProgressBarElement;
         new (): HTMLYetiProgressBarElement;
     };
+    interface HTMLYetiReordereeElementEventMap {
+        "reorderRequested": any;
+    }
+    interface HTMLYetiReordereeElement extends Components.YetiReorderee, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLYetiReordereeElementEventMap>(type: K, listener: (this: HTMLYetiReordereeElement, ev: YetiReordereeCustomEvent<HTMLYetiReordereeElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLYetiReordereeElementEventMap>(type: K, listener: (this: HTMLYetiReordereeElement, ev: YetiReordereeCustomEvent<HTMLYetiReordereeElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLYetiReordereeElement: {
+        prototype: HTMLYetiReordereeElement;
+        new (): HTMLYetiReordereeElement;
+    };
+    interface HTMLYetiReordererElementEventMap {
+        "reorderCompleted": any;
+    }
+    interface HTMLYetiReordererElement extends Components.YetiReorderer, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLYetiReordererElementEventMap>(type: K, listener: (this: HTMLYetiReordererElement, ev: YetiReordererCustomEvent<HTMLYetiReordererElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLYetiReordererElementEventMap>(type: K, listener: (this: HTMLYetiReordererElement, ev: YetiReordererCustomEvent<HTMLYetiReordererElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLYetiReordererElement: {
+        prototype: HTMLYetiReordererElement;
+        new (): HTMLYetiReordererElement;
+    };
     interface HTMLYetiTableElementEventMap {
         "rowActionClick": any;
         "cellRadioChange": any;
@@ -877,6 +951,8 @@ declare global {
         "yeti-multiselect": HTMLYetiMultiselectElement;
         "yeti-notification": HTMLYetiNotificationElement;
         "yeti-progress-bar": HTMLYetiProgressBarElement;
+        "yeti-reorderee": HTMLYetiReordereeElement;
+        "yeti-reorderer": HTMLYetiReordererElement;
         "yeti-table": HTMLYetiTableElement;
         "yeti-table-actions": HTMLYetiTableActionsElement;
         "yeti-table-pagination": HTMLYetiTablePaginationElement;
@@ -1404,6 +1480,40 @@ declare namespace LocalJSX {
          */
         "wrapperClass"?: string;
     }
+    interface YetiReorderee {
+        /**
+          * Id assigned by parent Yeti Reorderer component.
+         */
+        "assignedId"?: string;
+        /**
+          * Id of the HTML element that should move this reorderee up the order when clicked.
+         */
+        "downTrigger"?: string;
+        "onReorderRequested"?: (event: YetiReordereeCustomEvent<any>) => void;
+        /**
+          * Position (of sibling yeti-reorderee elements) assigned by parent Yeti Reorderer component.
+         */
+        "position"?: number;
+        /**
+          * Total number of yeti-reorderee siblings, including this one (assigned by parent Yeti Reorderer component)
+         */
+        "reorderees"?: number;
+        /**
+          * Id of the HTML element that should move this reorderee up the order when clicked.
+         */
+        "upTrigger"?: string;
+        /**
+          * CSS class list that should apply to the HTML element wrapping the slotted content.
+         */
+        "wrapperClass"?: string;
+    }
+    interface YetiReorderer {
+        "onReorderCompleted"?: (event: YetiReordererCustomEvent<any>) => void;
+        /**
+          * CSS class list that should apply to the top-most wrapper element.
+         */
+        "wrapperClass"?: string;
+    }
     interface YetiTable {
         /**
           * Unique type that captures the table's contents and configurable state information. See utils.ts for details.
@@ -1568,6 +1678,8 @@ declare namespace LocalJSX {
         "yeti-multiselect": YetiMultiselect;
         "yeti-notification": YetiNotification;
         "yeti-progress-bar": YetiProgressBar;
+        "yeti-reorderee": YetiReorderee;
+        "yeti-reorderer": YetiReorderer;
         "yeti-table": YetiTable;
         "yeti-table-actions": YetiTableActions;
         "yeti-table-pagination": YetiTablePagination;
@@ -1592,6 +1704,8 @@ declare module "@stencil/core" {
             "yeti-multiselect": LocalJSX.YetiMultiselect & JSXBase.HTMLAttributes<HTMLYetiMultiselectElement>;
             "yeti-notification": LocalJSX.YetiNotification & JSXBase.HTMLAttributes<HTMLYetiNotificationElement>;
             "yeti-progress-bar": LocalJSX.YetiProgressBar & JSXBase.HTMLAttributes<HTMLYetiProgressBarElement>;
+            "yeti-reorderee": LocalJSX.YetiReorderee & JSXBase.HTMLAttributes<HTMLYetiReordereeElement>;
+            "yeti-reorderer": LocalJSX.YetiReorderer & JSXBase.HTMLAttributes<HTMLYetiReordererElement>;
             "yeti-table": LocalJSX.YetiTable & JSXBase.HTMLAttributes<HTMLYetiTableElement>;
             "yeti-table-actions": LocalJSX.YetiTableActions & JSXBase.HTMLAttributes<HTMLYetiTableActionsElement>;
             "yeti-table-pagination": LocalJSX.YetiTablePagination & JSXBase.HTMLAttributes<HTMLYetiTablePaginationElement>;
