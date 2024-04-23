@@ -60,7 +60,7 @@ cleanWWW.description = 'Remove all Yeti JS from WWW directory';
 task(cleanDocs);
 cleanDocs.description = 'Remove everything from the GitHub Pages (/docs) directory';
 
-task('css', series(yetiCSS, examplesOnlyCSS, mainCSS)); // Note: the order is important, since mainCSS is expecting a file yetiCSS generates
+task('css', series(yetiCSS, examplesOnlyCSS, pushOldOrchCSSCopiesToWWW, pushOrchThirdPartyCopiesToWWW, mainCSS)); // Note: the order is important, since mainCSS is expecting a file yetiCSS generates
 
 task('html', publishHTML);
 
@@ -142,9 +142,10 @@ function cleanCRMFonts() {
 }
 
 function watcher(cb) {
-    watch(['src/css/**/*.less', 'src/examples/css/yeti-examples-only.less'], series(/*cleanWWWCSS,*/ yetiCSS, examplesOnlyCSS, mainCSS));
+    watch(['src/css/**/*.less', 'src/examples/css/yeti-examples-only.less', 'src/css/old/**/*.css', 'src/css/third-party/**/*.css'], series(/*cleanWWWCSS,*/ yetiCSS, examplesOnlyCSS, mainCSS, pushOldOrchCSSCopiesToWWW, pushOrchThirdPartyCopiesToWWW));
     watch('src/**/*.html', series(publishHTML, cleanDocs, pushToDocs));
-    watch(['src/examples/**/*.js', 'src/examples/**/*.mjs'], series(cleanWWWJS, publishExamplesJS))
+    watch(['src/examples/**/*.js', 'src/examples/**/*.mjs'], series(cleanWWWJS, publishExamplesJS));
+    watch('src/css/third-party/carbon-components.min.css', parallel(pushCarbonCSSToCRM, pushCarbonCSSToOrchestrator));
     watch('src/css/fonts/**/*', series(cleanWWWFonts, pasteFontsToWWW));
 
     // Optionally update Orchestrator and CRM as well.
@@ -177,12 +178,31 @@ function mainCSS(cb) {
     .pipe(gulp.dest('www/examples/css/'));
 }
 
+function pushOldOrchCSSCopiesToWWW(cb) {
+    return gulp.src(['src/css/old/**/*'])
+        .pipe(gulp.dest('www/examples/css/old'));
+}
+
+function pushOrchThirdPartyCopiesToWWW(cb) {
+    return gulp.src(['src/css/third-party/**/*'])
+        .pipe(gulp.dest('www/examples/css/third-party'));
+}
+
+function pushCarbonCSSToCRM(cb) {
+    return gulp.src('src/css/third-party/carbon-components.min.css')
+        .pipe(gulp.dest(`${settings.crmCSSDirectory}third-party/`));
+}
+
+function pushCarbonCSSToOrchestrator(cb) {
+    return gulp.src('src/css/third-party/carbon-components.min.css')
+        .pipe(gulp.dest(`${settings.orchestratorCSSDirectory}third-party/`));
+}
+
 function cleanWWW(cb) {
     return deleteAsync( ['www/**/*', '!www/'] );
 }
 
 function cleanWWWJS(cb) {
-    console.log("In cleanWWWJS");
     return deleteAsync( ['www/**/yeti/*.js*']);
 }
 

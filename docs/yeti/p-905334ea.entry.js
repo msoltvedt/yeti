@@ -1,0 +1,2 @@
+import{r as e,h as r,g as t}from"./p-e8f90371.js";const s=class{constructor(r){e(this,r);this.wrapperClass="";this.iLoveJSX=false}render(){let e="yeti-reorderer";if(this.wrapperClass!=""){e+=` ${this.wrapperClass}`}return r("ul",{key:"d8b7b2d56efa09908c7a58f708c985b60e1d7431",class:e},r("slot",{key:"0aeda8874aa27674e09b8ed5379eaaade5f0831d"}))}componentWillLoad(){let e=this.el.querySelectorAll("yeti-reorderee");e[0].insertAdjacentElement("beforebegin",e[1])}get el(){return t(this)}};export{s as yeti_reorderer};
+//# sourceMappingURL=p-905334ea.entry.js.map
