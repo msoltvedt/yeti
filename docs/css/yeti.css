@@ -2346,8 +2346,7 @@ Styles for Reorderer
   /************************************** Wrapper ***/
   yeti-reorderer,
   yeti-reorderee,
-  .yeti-reorderer,
-  .yeti-reorderee {
+  .yeti-reorderer {
     display: contents;
   }
   .yeti-reorderer {
@@ -3294,6 +3293,11 @@ Styles for notification
   /************************************** Visibility ***/
   .yeti-notification__hidden {
     display: none;
+  }
+  /************************************** Sizing ***/
+  .yeti-notification_full {
+    max-width: unset;
+    width: unset;
   }
 }
 /************************************** Utilities ***/

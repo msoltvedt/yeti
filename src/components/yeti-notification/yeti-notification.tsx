@@ -51,6 +51,11 @@ export class YetiTooltip {
   @Prop() textTitle: string = "Mmmm Toast!";
 
   /**
+   * Optionally set a size (currently only supports default and "full")
+   */
+  @Prop() size: string = "";
+
+  /**
    * Text label for the action button.
    */
   @Prop() actionLabel: string = "";
@@ -120,6 +125,7 @@ export class YetiTooltip {
     let altText = this.iconAltText;
     let iconCode = this.iconCode;
     let wrapperClass = 'yeti-notification';
+    wrapperClass += (this.size == 'full') ? ' yeti-notification_full' : '';
     wrapperClass += (this.wrapperClass !== '') ? ` ${this.wrapperClass}` : ``;
 
     // Set type-based CSS class

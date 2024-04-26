@@ -1,2 +1,0 @@
-import{r as e,h as r,g as s}from"./p-e8f90371.js";const t=class{constructor(r){e(this,r);this.wrapperClass="";this.iLoveJSX=false}render(){let e="yeti-reorderee";if(this.wrapperClass!=""){e+=` ${this.wrapperClass}`}return r("li",{key:"d8747aacd4b3e23ac7c3cc3e935a3d603c4013a5",class:e},"Ready for reassignment")}get el(){return s(this)}};export{t as yeti_reorderee};
-//# sourceMappingURL=p-354b3863.entry.js.map

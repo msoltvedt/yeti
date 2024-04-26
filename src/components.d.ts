@@ -426,6 +426,10 @@ export namespace Components {
          */
         "showCloseButton": boolean;
         /**
+          * Optionally set a size (currently only supports default and "full")
+         */
+        "size": string;
+        /**
           * id of the component's slot element.
          */
         "slotId": string;
@@ -1425,6 +1429,10 @@ declare namespace LocalJSX {
           * Whether to show the close button or not.
          */
         "showCloseButton"?: boolean;
+        /**
+          * Optionally set a size (currently only supports default and "full")
+         */
+        "size"?: string;
         /**
           * id of the component's slot element.
          */
