@@ -39,11 +39,13 @@ Type: `Promise<YetiFileSystemItem>`
 
 ### Depends on
 
+- [yeti-loading](../yeti-loading)
 - [yeti-icon](../yeti-icon)
 
 ### Graph
 ```mermaid
 graph TD;
+  yeti-file-explorer --> yeti-loading
   yeti-file-explorer --> yeti-icon
   style yeti-file-explorer fill:#f9f,stroke:#333,stroke-width:4px
 ```

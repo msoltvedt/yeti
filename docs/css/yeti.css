@@ -1726,7 +1726,8 @@ Styles for Loading Indicator
   yeti-loading {
     display: contents;
   }
-  .yeti-loading {
+  .yeti-loading,
+  .yeti-loading_inline {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
@@ -2346,8 +2347,7 @@ Styles for Reorderer
   /************************************** Wrapper ***/
   yeti-reorderer,
   yeti-reorderee,
-  .yeti-reorderer,
-  .yeti-reorderee {
+  .yeti-reorderer {
     display: contents;
   }
   .yeti-reorderer {

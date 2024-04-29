@@ -10,6 +10,11 @@ export class YetiLoading {
   @Element() el: HTMLElement;
 
   /**
+   * Whether to display the Loading pattern inline or default mode.
+   */
+  @Prop() isInline: boolean = false;
+
+  /**
    * Whether to display the Loading pattern as a modal (covering its parent container) or as an inline-block object.
    */
   @Prop() isModal: boolean = false;
@@ -114,6 +119,23 @@ export class YetiLoading {
 
       </div>
 
+
+    let inlineLoading = 
+    
+      <div class="yeti-loading_inline">
+          
+        <div class="yeti-loading_inline-icon">
+            <svg class="yeti-loading_inline-icon-svg" viewBox="0 0 100 100">
+                <circle class="yeti-loading_inline-icon-svg-background" cx="50%" cy="50%" r="44"></circle>
+                <circle class="yeti-loading_inline-icon-svg-stroke" cx="50%" cy="50%" r="44"></circle>
+            </svg>
+        </div>
+
+        <div class="yeti-loading_inline-label">Loading...</div>
+      
+      </div>;
+
+
     modalOverlayCSS += (this.isActive) ? "" : " yeti-modal-overlay__inert";
 
     return (
@@ -127,7 +149,7 @@ export class YetiLoading {
 
       :
 
-        baseLoading
+        (this.isInline) ? inlineLoading : baseLoading
 
     );
   }

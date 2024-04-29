@@ -231,7 +231,7 @@ export class YetiFileExplorer {
 
       <ul class="yeti-file_explorer-folder-items">
 
-        <li class="yeti-file_explorer-folder-item">Loading...</li>
+        <li class="yeti-file_explorer-folder-item"><yeti-loading isInline={true} isActive={true}></yeti-loading></li>
 
       </ul>
 

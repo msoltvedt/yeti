@@ -1,2 +1,0 @@
-import{r as e,h as r,g as s}from"./p-e8f90371.js";const t=class{constructor(r){e(this,r);this.wrapperClass="";this.iLoveJSX=false}render(){let e="yeti-reorderer";if(this.wrapperClass!=""){e+=` ${this.wrapperClass}`}return r("ul",{key:"732c3b8091732a538417e328335205c007d87ee0",class:e},r("slot",{key:"e5b38a447b39b0780c30ae3130f0c242624d40b0"}))}componentDidLoad(){console.log("Yup")}get el(){return s(this)}};export{t as yeti_reorderer};
-//# sourceMappingURL=p-c12b1ea1.entry.js.map
