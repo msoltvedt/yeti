@@ -17,6 +17,7 @@
 | `notificationId`   | `notification-id`   | id of the component's actual element corresponding to the tooltip. Will be auto-populated with a unique value if not provided. | `string`  | `""`            |
 | `notificationType` | `notification-type` | The type of notification: error (default) \| info \| success \| warning \| warningAlt.                                         | `string`  | `""`            |
 | `showCloseButton`  | `show-close-button` | Whether to show the close button or not.                                                                                       | `boolean` | `true`          |
+| `size`             | `size`              | Optionally set a size (currently only supports default and "full")                                                             | `string`  | `""`            |
 | `slotId`           | `slot-id`           | id of the component's slot element.                                                                                            | `string`  | `""`            |
 | `textTitle`        | `text-title`        | Text value to display as the notification's title.                                                                             | `string`  | `"Mmmm Toast!"` |
 | `wrapperClass`     | `wrapper-class`     | CSS classlist to add to the element serving as the component's wrapper.                                                        | `string`  | `''`            |
