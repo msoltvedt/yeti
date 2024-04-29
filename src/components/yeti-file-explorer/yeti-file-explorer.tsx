@@ -41,6 +41,7 @@ export class YetiFileExplorer {
       isFolder: true,
       isRoot: true,
       isSelected: true,
+      isLoading: false,
       selectedIndex: -1,
       offset: 0,
       pageSize: 1000,
@@ -182,6 +183,7 @@ export class YetiFileExplorer {
       path: undefined,
       isFolder: true,
       isRoot: false,
+      isLoading: false,
       isSelected: false,
       selectedIndex: -1,
       id: utils.generateUniqueId()
@@ -200,7 +202,8 @@ export class YetiFileExplorer {
       content: [],
       selectedIndex: -1,
       isRoot: false,
-      isSelected: false
+      isSelected: false,
+      isLoading: false
     }
 
     // Loop through the path and render each folder in it
@@ -219,6 +222,23 @@ export class YetiFileExplorer {
 
   renderFolder(folder: YetiFileSystemItem, depth) {
 
+    // We have two possibilities here. Either the item is in a normal or loading state. We want to return the applicable JSX based on that state.
+    
+    // Loading state
+    let loadingJsx =
+
+    <div class="yeti-file_explorer-folder">
+
+      <ul class="yeti-file_explorer-folder-items">
+
+        <li class="yeti-file_explorer-folder-item"><yeti-loading isInline={true} isActive={true}></yeti-loading></li>
+
+      </ul>
+
+    </div>;
+
+
+    // Normal (not Loading) state
     let jsx =
 
       <div class="yeti-file_explorer-folder">
@@ -229,9 +249,10 @@ export class YetiFileExplorer {
 
         </ul>
 
-      </div>
+      </div>;
 
-    return jsx;
+
+    return (folder.isLoading) ? loadingJsx : jsx;
       
   }
 
@@ -250,6 +271,7 @@ export class YetiFileExplorer {
   renderItem(item: YetiFileSystemItem, depth: number = -1, index: number = -1) {
 
     let buttonCSS = "yeti-file_explorer-folder-item-wrapper" + ((item.isSelected) ? " yeti-file_explorer-folder-item-wrapper__selected" : "");
+    
     let jsx = 
 
       <li class="yeti-file_explorer-folder-item">
@@ -264,9 +286,10 @@ export class YetiFileExplorer {
         
           </button>
 
-      </li>
+      </li>;
 
     return jsx;
+
   }
 
 

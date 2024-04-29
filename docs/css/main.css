@@ -34,14 +34,14 @@
 /* Less apparently has a bug where it inserts a space between the layer tag and the parentheses, which renders it useless in browser.
    By stringifying it Less just prints the literal string out the way we want it. */
 /************************************** Layers ***/
-@import url('./old/reset.css') layer(reset);
-@import url('./third-party/carbon-components.min.css') layer(carbon);
-@import url('./old/base-styles.css') layer(legacy);
-@import url('./old/nav-styles.css') layer(legacy);
-@import url('./old/legacy.css') layer(legacy);
+@import url('old/reset.css') layer(reset);
+@import url('third-party/carbon-components.min.css') layer(carbon);
+@import url('old/base-styles.css') layer(legacy);
+@import url('old/nav-styles.css') layer(legacy);
+@import url('old/legacy.css') layer(legacy);
 @import url('yeti.css') layer(yeti);
-@import url('./old/overrides.css') layer(overrides);
-@import url('./old/app.css') layer(app);
+@import url('old/overrides.css') layer(overrides);
+@import url('old/app.css') layer(app);
 @layer reset, carbon, legacy, yeti, overrides;
 /************************************** Reset ***/
 /************************************** Carbon ***/

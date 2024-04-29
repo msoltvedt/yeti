@@ -257,6 +257,10 @@ export namespace Components {
          */
         "isActive": boolean;
         /**
+          * Whether to display the Loading pattern inline or default mode.
+         */
+        "isInline": boolean;
+        /**
           * Whether to display the Loading pattern as a modal (covering its parent container) or as an inline-block object.
          */
         "isModal": boolean;
@@ -1240,6 +1244,10 @@ declare namespace LocalJSX {
           * Tracks whether the Loader is displaying or not.
          */
         "isActive"?: boolean;
+        /**
+          * Whether to display the Loading pattern inline or default mode.
+         */
+        "isInline"?: boolean;
         /**
           * Whether to display the Loading pattern as a modal (covering its parent container) or as an inline-block object.
          */

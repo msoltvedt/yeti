@@ -98,6 +98,11 @@ yeti-file-explorer {
     margin-bottom: -1px;
 }
 
+.yeti-file_explorer-folder-item:has(yeti-loading) {
+    border: 0;
+    padding: 1rem;
+}
+
 .yeti-file_explorer-folder-item-wrapper {
     .yeti-mixin-button-vanilla();
     background-color: white;

@@ -339,6 +339,7 @@ export interface YetiFileSystemItem {
   name: string,
   content?: YetiFileSystemItem[],
   path: string,
+  isLoading?: boolean,
   selectedIndex?: number,
   offset?: number,
   pageSize?: number,
