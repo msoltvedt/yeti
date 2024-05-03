@@ -264,7 +264,12 @@ export class YetiModal {
         
                 <div class="yeti-modal-content">
 
-                    <slot name="content" />
+                    <div class="yeti-modal-content-actual">
+                      
+                      <slot name="content" />
+                    
+                    </div>
+                    
         
                     <div class="yeti-modal-content-fade"></div>
         
