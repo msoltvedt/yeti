@@ -1,0 +1,268 @@
+header {
+    min-height: 3.75rem;
+    align-items: center;
+    background-color: #000000;
+}
+
+
+.nav-back{
+ 
+    background-color: #000000;
+}
+
+.header-container {
+    height: 3.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.plus-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-dropdown-content {
+    right: 0rem;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    color: white;
+    min-width: 10rem;
+}
+.account-section {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    margin-right: 1.625rem;
+}
+.nav-dropdown span {
+    color: #f9f9f9;
+}
+.nav-dropdown-control {
+    display: flex;
+    column-gap: 0.313rem;
+}
+.nav-dropdown-control path {
+    fill: white;
+}
+.nav-dropdown:hover .nav-dropdown-content {
+    display: block;
+}
+
+.nav-dropdown-text:hover {
+    background-color: #006add;
+    color: #fff;
+}
+
+.nav-dropdown-text a:link {
+    text-decoration: none;
+    color: #161616;
+}
+
+.nav-dropdown-text {
+    padding: 0.313rem 0rem 0.313rem 0.688rem;
+    font-size: 0.875rem;
+}
+
+.username-container {
+    height: 3.75rem;
+}
+
+header .logo {
+    height: 2rem;
+    margin-left: 1.125rem;
+}
+
+.nav-container {
+    width: 100%;
+    background-color: #4c4c4c;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-item {
+    color: #fff;
+    display: block;
+    align-self: flex-end;
+}
+
+.nav-item:hover {
+    border-top: solid 0.25rem #f89922;
+    background-color: #161616;
+    font-weight: 600;
+    margin:0rem;
+}
+
+.nav-item a:link {
+    text-decoration: none;
+    color: #fff;
+    
+}
+
+.nav-item a:link {
+    text-decoration: none;
+    padding:0.813rem 1.563rem 1rem 1.563rem;
+    color: #fff;
+    display:block;
+    cursor:pointer
+}
+
+
+.active-text {
+    color: #fff;
+    font-weight: 600;
+
+}
+
+.inactive-text {
+    color: #fff;
+}
+
+.nav-item.active {
+    border-top: solid 0.25rem #f89922;
+    background-color: #727272;
+  
+}
+
+.active {
+    border-top: solid 0.25rem #f89922;
+    background-color: #727272;
+   
+}
+
+.nav-item-preset_hover_width {
+    font-weight: 600;
+    display: block;
+    visibility: hidden;
+    overflow: hidden;
+    height: 0;
+}
+
+.side-nav {
+    width: 12.125rem;
+    height: 31.25rem;
+    margin-right: 1.813rem;
+    float:left;
+}
+
+.side-nav-item {
+    width: 12.125rem;
+    height: 2.5rem;
+    background-color: #f3f3f3;
+    border-left: solid 0.25rem transparent;
+    border-top: solid 0.063rem #e0e0e0;
+  
+}
+
+.bottom-border {
+    border-bottom: solid 0.063rem #e0e0e0;
+}
+
+.side-nav-active {
+    background-color: #e5e5e5;
+    border-left: solid 0.25rem #f89922;
+    
+    
+}
+
+.side-nav-active-text {
+    color: #161616;
+    font-weight: 600;
+}
+
+.side-nav-inactive-text {
+    color: #525252;
+}
+
+.side-nav-item a:link {
+    text-decoration: none;
+    color: #525252;
+    padding: 0.688rem 0rem 0.688rem 1rem;
+    display:block;
+    cursor:pointer;
+}
+
+.side-nav-item:hover {
+    background-color: #e5e5e5;
+}
+
+
+.want-to-dropdown-button {
+    width: 8.063rem;
+    height: 2.25rem;
+    border: solid 0.063rem #525252;
+    padding: 0.5rem 2.231rem 0.5rem 1.019rem;
+    background-color: #f89922;
+}
+
+.want-to-dropdown-button:hover {
+   background-color:  #f9ac4e;
+}
+.want-to-menu {
+    display: none;
+    width:auto;
+    min-width:9.375rem;
+    left:auto;
+    right:0;
+    text-overflow:initial;
+    overflow:visible;
+
+}
+
+.want-to-show{
+    overflow:visible;
+    margin:0.313rem;
+    height:auto;
+    padding-right:0.313rem;
+    padding-left:0.313rem;
+}
+
+.want-to-menu li{
+    background-color: #f3f3f3;
+}
+
+.want-to-menu li a {
+    text-decoration: none;
+    color: #161616;
+}
+
+.want-to-menu li:hover{
+    background-color: rgb(224, 224, 224);
+}
+
+.want-to-dropdown:focus {
+    outline: none;
+}
+
+.want-to-dropdown .bx--list-box {
+    border-bottom: none;
+    outline: none;
+}
+
+/*.want-to-dropdown:hover .want-to-menu {
+    display: block;
+}*/
+
+
+.want-to-dropdown div:focus-within > ul, .want-to-dropdown:hover .want-to-menu  {
+    display: block;
+}
+
+
+.nav-welcome{
+    color:white;
+    font-weight:bold;
+}
+
+.nav-signout{
+    
+    color:white;
+    
+}
+
+.nav-signout a{
+    color:white;
+    margin-left:2rem;
+    font-weight:bold;
+}

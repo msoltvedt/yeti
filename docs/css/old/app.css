@@ -1,0 +1,62 @@
+/************************************** app.css **************************************
+
+ This file contains app-specific styles that override Yeti, so use this
+ carefully! Styles in here should only apply very narrowly, and should probably be 
+ moved to Yeti as component variants.
+
+************************************** app.css **************************************/
+
+
+
+/************************************** Header ***/
+.app-nav-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0 2rem;
+}
+
+.app-nav-utility {
+    display: flex;
+    gap: 2rem;
+    padding-left: 1rem;
+    padding-right: 1.563rem;
+    flex: 1 0 auto;
+    justify-content: flex-end;
+}
+
+.app-nav-utility-item {
+    display: flex;
+    align-items: center;
+}
+
+
+
+/************************************** Carbon Tables ***/
+.app-carbon_table-wrapper {
+    min-width: min-content;
+}
+
+
+
+/************************************** Insert Token ***/
+.app-insert_token-menu {
+    background-color: white;
+    max-height: min(32rem, 80vh);
+}
+
+.app-insert_token-menu :is(.yeti-menu_button-menu-item-button, .yeti-menu_button-menu-item-link) {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.app-insert_token-menu-object {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25rem;
+}
+
+.app-insert_token-menu-key {
+    font-weight: bold;
+}

@@ -1,0 +1,2056 @@
+
+h1 {
+  display: block;
+    font-size: 1.875rem;
+    margin: 2.563rem 0rem 1.5rem 0rem;
+    color: #525252;
+    font-weight: 600;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+h2 {
+  margin-right: 0.375rem;
+  font-size: 1.5rem;
+  color: #525252;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+h3 {
+  margin-right: 0.375rem;
+  font-size: 1.25rem;
+  color: #525252;
+  font-family: 'IBM Plex Sans', sans-serif;
+  margin-top:0.938rem;
+  margin-bottom:0.938rem;
+}
+
+h4{
+  margin-right: 0.375rem;
+  font-size: 0.938rem;
+  color: #525252;
+  font-family: 'IBM Plex Sans', sans-serif;
+  margin-top:0.938rem;
+  margin-bottom:0.938rem;
+}
+
+textarea{
+  resize: none;
+  cursor:text;
+
+}
+
+input{
+  cursor: text;
+}
+
+input[type=checkbox]{
+  cursor:pointer;
+}
+
+#saveButton, #cancelButton{
+  cursor: pointer;
+}
+
+#license-footer{
+  position: fixed;
+  left: 2rem;
+  bottom: 1rem;
+  width: 50%;
+  text-align: left;
+}
+
+#version-footer{
+  position: fixed;
+  right: 2rem;
+  bottom: 1rem;
+  text-align: right;
+}
+
+.yeti-radio{
+  cursor:pointer
+}
+
+select:disabled{
+	color: #8d8d8d;
+}
+
+.bx--text-area {
+  resize:none;
+}
+
+.radio-label{
+  cursor:pointer
+}
+
+
+.list-detail-header{
+  margin: 0rem 0rem 1.5rem 0rem;
+  padding-top:0.625rem;
+}
+
+.txt-space{
+  margin: 0.938rem 0rem 0.938rem 0rem;
+}
+
+.overflow-break{
+  overflow-wrap: break-word;
+}
+/* Grid */
+
+.bx--grid{
+  margin-right:0rem;
+  margin-left: 0rem;
+  max-width: 100%;
+  padding-right:2.0rem;
+  padding-left:2.0rem;
+  padding-bottom:1.5rem;
+
+}
+
+.row-top-margin{
+  margin-top:1.5rem;
+}
+
+.row-bottom-margin{
+  margin-bottom:1.5rem;
+}
+
+
+
+/*end grid styles*/
+
+.orange-sub-header{
+    height: 2.688rem;
+    padding: 0.813rem 0rem 0.625rem 1rem;
+    display: flex;
+    background-color: #fde3c3;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1.938rem;
+  
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+
+
+
+.link-space{
+  margin: 0.938rem 0rem 0.938rem 0rem;
+}
+
+.title{
+  font-size: 1.5rem;
+  margin-bottom: 0.625rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.form-title{
+  font-size: 1.5rem;
+  margin: 1.5rem 0rem 1.5rem 0rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.new-form-button-container {
+  margin-top: 2rem;
+}
+
+.display-none{
+  display:none;
+}
+
+.page-container {
+  margin-right: 2rem;
+  margin-left: 2rem;
+
+}
+
+.billing-page-container {
+  margin-right: 2rem;
+  margin-left: 2rem;
+  padding-bottom:5rem;
+
+}
+
+.table-view{
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.table-view-full{
+  margin-top: 1.5rem;
+   align-items: center;
+}
+
+
+
+.want-to-container {
+  float: right;
+}
+
+.main-table-container {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inside-table-container{
+  width: 100%;
+  display:flex
+}
+
+.main-container {
+  display: flex;
+}
+
+.bx--btn {
+  height: 3rem;
+  width: 11.125rem;
+  white-space: nowrap;
+}
+
+.bx--btn--primary {
+  background-color: #f89922;
+  color: #000000;
+  border: solid 0.063rem #525252;
+  height: 3rem;
+  width: 11.125rem;
+}
+.bx--btn--primary:hover {
+  border: solid 0.063rem #525252;
+  background-color: #f9ac4e;
+  color: #525252;
+}
+.bx--btn--primary:active {
+  background-color: #f28907;
+}
+
+.bx--btn--secondary {
+  background-color: #383838;
+}
+
+.bx--btn--secondary:hover {
+  background-color: #4c4c4c;
+}
+.bx--btn--secondary:active {
+  background-color: #6e6e6e;
+}
+
+.bx--link {
+  text-decoration: underline;
+}
+.bx--link:focus {
+  border-bottom: #0f61fd 0.188rem !important;
+}
+.bx--link:active {
+  color: #161616;
+}
+.bx--link:visited {
+  color: #8a3efc;
+}
+
+.bx--date-picker.bx--date-picker--single .bx--date-picker__input {
+  width: 10.063rem;
+}
+
+.bx--search-magnifier {
+  left: 0.75rem;
+  z-index: 2;
+  position: absolute;
+}
+
+label {
+  font-size: 0.875rem;
+  color: #525252;
+}
+
+.bold-label {
+  margin-bottom: 0.313rem;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #525252;
+}
+
+.full-width-field {
+  width: 100%;
+}
+.three-fourths-field {
+  width: 75%;
+}
+
+.half-field {
+  width: 50%;
+}
+.required {
+  color: #da1e27;
+}
+
+.required-top {
+  margin: 0 0 1rem 0;
+  color: #da1e27;
+}
+
+.required-txt{
+  margin: 0.938rem 0 0.938rem 0;
+  color: #da1e27;
+}
+
+.bx--checkbox-label {
+  padding-left: 1.563rem;
+  margin-bottom: 0.625rem;
+  /*width: 20.875rem;*/
+}
+
+.spec-column-width{
+  width:13.375rem
+}
+
+.divider {
+  height: 0.25rem;
+  border: 0;
+  background-color: #707070;
+}
+
+.bx--inline-notification__text-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.table-icon{
+  width: 1rem;
+  height: 1rem;
+  margin-right:1rem;
+}
+
+.table-trunc{
+  max-width: 180.313rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+.table-trunc-com{
+  max-width: 400rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break:none;
+}
+
+
+.table-trunc-gen{
+  max-width:500rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space:nowrap;
+  
+
+}
+
+.toast-notification {
+    min-width: 200rem;
+    padding-right: 1.063rem;
+    height: 60.25rem;
+    display: flex;
+    align-items: center;
+    column-gap: 1.063rem;
+    padding-left: 1.063rem;
+    background-color: #383838;
+    color: white;
+}
+
+.error-toast-notification {
+    border-left: 0.188rem solid #fa4d55;
+}
+.success-toast-notification {
+    border-left: 0.188rem solid #33c05b;
+}
+
+/*Links*/
+.return-to{
+  margin-top:1.25rem;
+  margin-bottom:1.25rem;
+}
+
+/*Summary Header Styles*/
+.summary-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0.125rem 1rem 0.125rem;
+  height: 4.375rem;
+  background-color: #f3f3f3;
+  /*margin-top:1.25rem;*/
+  width:100%;
+}
+
+.summary-container-view-batch {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0rem 1rem 0rem;
+  background-color: #f3f3f3;
+  width:100%;
+  word-wrap: break-word;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+}
+.summary-header {
+  height: 1.25rem;
+  font-size: 0.875rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
+  color: #161616;
+}
+
+.summary-data {
+  margin-top: 0.313rem;
+}
+
+.summary-data .bx--link {
+  line-height: 1;
+}
+
+.skip-nav-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  height:2.375rem;
+  font-size:1rem;
+  width:12.75rem;   
+  line-height:22px;
+  padding: 8px 0 0 6px;
+  background-color: white;
+  color: #0F62FE;
+  opacity: 0;
+  border: 0 0 0 0;
+  outline:0.125rem solid;
+  outline-offset:0;
+  text-decoration:none;
+  text-align:center;
+  vertical-align: center;
+  
+}
+.skip-nav-link:focus {
+  left: 11px;
+  top: 11px;
+  transform: translateX(-1%);
+  opacity: 1;
+}
+
+.skip-nav-link:hover {
+  background-color: #E8E8E8;
+}
+
+.skip-nav-icon{
+  font-size:21px;
+  vertical-align: middle;
+  font-weight:bold
+}
+
+/*skip content link*/
+.skip-content-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  height:2.375rem;
+  font-size:1rem;
+  width:12.125rem;   
+  line-height:22px;
+  padding: 8px 0 4px 0;
+  background-color: white;
+  color: #0F62FE;
+  opacity: 0;
+  border: 0 0 0 0;
+  outline:0.125rem solid;
+  outline-offset:0;
+  text-decoration:none;
+  text-align:center;
+  vertical-align: center;
+  
+}
+.skip-content-link:focus {
+  left: 2.063rem;
+  top: 270px;
+  transform: translateX(-1%);
+  opacity: 1;
+}
+
+.skip-content-link:hover {
+  background-color: #E8E8E8;
+}
+
+.skip-content-icon{
+  font-size:21px;
+  vertical-align: middle;
+  font-weight:bold
+}
+
+
+
+
+.header-links {
+  padding-top: 0.875rem;
+  margin-right: 5rem;
+}
+
+.pagination-row {
+  background-color: #f4f4f4;
+  border-top: 0.063rem solid #e0e0e0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.summary-search{
+  width: 160%;
+}
+
+/* New Item Container*/
+.new-form-container {
+  display: flex;
+  flex-direction: column;
+  width: 39.938rem;
+  padding: 1.5rem 0.563rem 3.563rem 2.938rem;
+  border: solid 0.063rem #cfcfcf;
+  margin-top: 30.563rem;
+  margin-bottom: 50.313rem;
+}
+
+  .secondary-button{
+    padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+    width:auto;
+    height:auto;
+    min-height:auto;
+    display: inline;
+    text-align: center;
+  }
+
+.new-form-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.625rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.form-required {
+  color: #da1e27;
+  font-size: 0.875rem;
+}
+
+.new-input-field {
+  margin-top: 1rem;
+}
+
+.page-error {
+  margin-left: -3rem;
+  width: 110%;
+  margin-top:3rem;
+}
+
+.page-error-form {
+  margin-left: -3rem;
+  width: 110%;
+ }
+
+.new-form-button {
+  width: 7.5rem;
+  padding: 0.938rem 0.938rem 0.938rem 0.938rem;
+  margin-right: 1rem;
+  display:inline;
+  text-align:center;
+}
+
+/*selected table row*/
+bx-table-row[selected] bx-table-cell{
+  background-color:#fdf3dd;
+}
+
+/*detail page styles*/
+.sub-header-container{
+  height: 2.688rem;
+  padding: 0.813rem 0rem 0.625rem 1rem;
+  display:flex;
+  background-color: #fde3c3;
+  font-family: 'IBM Plex Sans', sans-serif;
+ 
+}
+.sub-header-1 {
+height: 2.688rem;
+padding: 0.813rem 0rem 0.625rem 1rem;
+color:#ffffff;
+background-color: #727272;
+font-family: 'IBM Plex Sans', sans-serif;
+font-size: 1rem;
+font-weight: 600;
+margin: 1.875rem 0rem 1.25rem 0rem;
+}
+
+.sub-header-2 {
+font-family: 'IBM Plex Sans', sans-serif;
+font-size: 1rem;
+font-weight: 600;
+}
+
+.sub-header-2-detail {
+margin-bottom: 1.938rem;
+ width: 50%;
+display: flex;
+justify-content: space-between;
+flex-direction: column;
+}
+
+
+/*detail columns - ex. materials general specs*/
+.detail-item {
+margin-bottom: 1.938rem;
+width: 30%;
+display: flex;
+justify-content: space-between;
+flex-direction: column;
+white-space: nowrap;
+}
+
+.detail-content-container{
+margin-left: 20.563rem;
+float:left;
+width: 86%;
+}
+
+.detail-container {
+width: 510.125rem;
+display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
+margin: 1.875rem 0rem 10.563rem 0rem;
+}
+
+.detail-container-dropdown {
+  width: 1000rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 1.875rem 0rem 0rem 0rem;
+}
+
+.detail-item-dropdown {
+  margin-bottom: 1.938rem;
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-right:1.875rem
+  }
+
+  .detail-content-container-dropdown{
+    margin-left: 20.563rem;
+    float:left;
+    width: 86%;
+    }
+
+
+    .bx--inline-notification-large{
+      max-width:100%
+
+    }
+
+    .target-image-width{
+      width:80%;
+      margin-top:0.938rem
+    }
+
+    .target-image-txt-space{
+      margin-top:50rem;
+    }
+
+    .xml-container{
+    width: 100%;
+    height:25rem;
+    border: solid 0.063rem #cfcfcf;
+    overflow:auto;
+    position:relative;
+  }
+
+  .project-container{
+    width: 75%;
+    height:100rem;
+    margin-bottom:1.563rem;
+    border: solid 0.063rem #cfcfcf;
+    overflow:auto;
+    position:relative;
+  }
+
+  .namingselect-select-option{
+    height:100%;
+    width:100%;
+  }
+
+.namingselect-select-option select, option{
+  margin-top:0.5rem;
+  margin-bottom:0.5rem
+
+}
+
+ .checksums-radio{
+      padding-bottom:0.313rem;
+  }
+
+  .checksums-txt-area.bx--select-input{
+    height:6rem;
+  }
+
+  .bx--text-input__field-wrapper-horiz {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+   display:inline;
+    width: 100%;
+}
+
+.bx--text-input__invalid-icon {
+  fill: #da1e28;
+  width:1rem;
+  height:1rem;
+}
+
+/*form styles*/ 
+/*Currently being utilized in Virtuoso, we need to apply to other areas of the site*/
+.form-container-global{
+  margin: 30.563rem auto 50.313rem auto;
+  display: flex;
+  flex-direction: column;
+  width: 39.938rem;
+  padding: 1.5rem 0.563rem 3.563rem 2.938rem;
+  border: solid 0.063rem #cfcfcf;
+}
+
+.form-browse-button{
+  width: 80rem;
+  height:40rem;
+  min-height:40rem; /*this is an override for bx-btn*/
+  padding: 0.125rem 0.125rem 0.125rem 0.125rem;
+  margin-right: 1rem;
+  display: inline;
+  text-align: center;
+
+}
+
+.form-read_only .new-input-field {
+  margin-top: 2rem;
+}
+
+.form-read_only .new-form-button-container {
+  margin-top: 3rem;
+}
+/*utility classes*/
+
+.float-left{
+float:left;
+}
+
+.margin-top-25{
+margin-top:1.563rem;
+}
+
+.margin-bottom-25{
+  margin-bottom:1.563rem;
+  }
+.margin-top-40{
+  margin-top:2.5rem;
+  }
+
+.margin-top-15{
+  margin-top:0.938rem;
+  }
+
+.margin-left-30{
+  margin-left:1.875rem
+}
+
+.block{
+  display:block;
+}
+
+.align-right{
+  text-align:right;
+}
+
+.txt-space{
+  margin: 0.313rem 0rem 0.313rem 0rem;
+}
+
+.txt-space-lg{
+  margin: 1.563rem 0rem 1.563rem 0rem;
+}
+
+hr {
+  border: none;
+  height: 0.063rem;
+  color: #ccc;
+  background-color: #ccc;
+  margin: 1.563rem 0rem 1.563rem 0rem;
+}
+
+pre {
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  position:absolute;
+   width:100%;
+  padding:1.563rem;
+}
+
+.item-align-right{
+  margin-left: auto;
+  margin-right:0;
+  display:block;
+}
+
+.last-modified {
+  margin: 0rem 0rem 0.625rem;
+  font-size: 0.875rem;
+  text-align: right;
+  color: #525252;
+  float: right;
+}
+
+.virtuoso-step-top-text {
+  font-size:0.875rem;
+  text-align:center;
+}
+
+.virtuoso-step-bottom-text {
+  font-size:0.875rem;
+  text-align:center;
+  font-weight:bold;
+}
+
+.virtuoso-step-bottom-text-reg {
+  font-size:0.875rem;
+  text-align:center;
+  margin-top:0.313rem;
+}
+
+/*** New ***/
+.virtuoso-step-container {
+  display: grid;
+  background-color: #f3f3f3;
+  grid-template-columns: repeat(auto-fit, minmax(12.5rem, 15rem));
+  background-image: 
+    linear-gradient(to bottom, #707070, #707070 0.313rem, transparent 0.313rem),
+    linear-gradient(to right, #707070, #707070 1px, transparent 1px);
+  padding-left: 1px; /* For "border" */
+}
+
+[class*="virtuoso-step-current"] {
+  float: none;
+  width: unset;
+  height: 8.438rem;
+  padding: 0.625rem;
+  border: 1px solid #6e6e6e;
+  border-top-color: #329B19;
+  border-top-width: 0.313rem;
+  border-left: none;
+  background-color: #E0F0DC;
+  top: unset;
+  text-align: center;
+}
+
+.virtuoso-step-current-fail {
+  border-top-color: #DA1E28;
+  background-color:#FFF1F1;
+}
+
+.virtuoso-step-current-queued {
+  background-color:#E8E8E8;
+  border-top-color: #6e6e6e;
+}
+/*** End New ***/
+
+.virtuoso-current-icon{
+margin-left: auto;
+margin-right:auto;
+margin-top:0.625rem;
+margin-bottom:0.625rem;
+text-align:center;
+}
+
+.virtuoso-current-pass{
+   top: 1.875rem;
+  left: 3.125rem;
+  z-index: 1;
+}
+
+
+.virtuoso-large-status-pass{
+  background-color:#E0F0DC;
+  width:12.125rem;
+  height:100%;
+  border-top:1.125rem solid #329B19;
+  font-size:1.5rem;
+  text-align:center;
+  padding:0.75rem 0rem 0.75rem 0rem;
+}
+
+.virtuoso-large-status-cancel-fail{
+  background-color:#FFF1F1;
+  width:12.125rem;
+  height:100%;
+  border-top:1.125rem solid #DA1E28;
+  font-size:1.5rem;
+  text-align:center;
+  padding:0.75rem 0rem 0.75rem 0rem;
+}
+
+.virtuoso-large-status-inc-pause{
+  background-color:#FFF8E1;
+  width:12.125rem;
+  height:100%;
+  border-top:1.125rem solid #F1C21B;
+  font-size:1.5rem;
+  text-align:center;
+  padding:0.75rem 0rem 0.75rem 0rem;
+}
+
+.virtuoso-large-status-inc-queued{
+  background-color:#E8E8E8;
+  width:12.125rem;
+  height:100%;
+  border-top:1.125rem solid #6E6E6E;
+  font-size:1.5rem;
+  text-align:center;
+  padding:0.75rem 0rem 0.75rem 0rem;
+}
+
+.virtuoso-large-status-progress{
+  background-color:#EDF5FF;
+  width:12.125rem;
+  height:100%;
+  border-top:1.125rem solid #0F61FD;
+  font-size:1.5rem;
+  text-align:center;
+  padding:0.75rem 0rem 0.75rem 0rem;
+}
+
+.virtuoso-large-status-text{
+  font-size:2rem;
+  font-weight:bold;
+}
+
+.virtuoso-small-status-text{
+  font-size:20.125rem;
+  font-weight:bold;
+}
+
+.virtuoso-icon-box{
+  width:8.75rem;
+  height:6.25rem;
+  margin: 0 auto;
+  margin-bottom:0.313rem;
+  margin-top:0.188rem;
+  position:relative;
+}
+
+.virtuoso-icon{
+  position: relative;
+  top: 0.938rem;
+  left: 0;
+  z-index: 1;
+}
+
+.virtuoso-pass{
+  position: absolute;
+  top: 1.875rem;
+  left: 3.125rem;
+  z-index: 1;
+}
+
+.virtuoso-pass-white{
+  position: absolute;
+  top: 2.188rem;
+  left: 3.125rem;
+  z-index: 1;
+}
+
+.virtuoso-owner-name {
+  font-size: 0.875rem;
+  color: #525252;
+  font-family: 'IBM Plex Sans', sans-serif;
+  margin-bottom:1.5rem
+}
+
+.virtuoso-title {
+  font-size: 1.875rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #525252;
+  font-weight: 600;
+  margin: 0rem 0rem 0.625rem 0rem;
+}
+
+.virtuoso-prog-bar{
+  color: blue;
+  background-color: blue;
+}
+
+.virtuoso-bar{
+  border: 0.063rem solid #000;
+  float:right;
+  height: 0.875rem;
+  width:110rem;
+  margin-left:0.188rem;
+  position:relative;
+  box-sizing: content-box;
+  position: relative;
+  background: #fff;
+}
+
+.virtuoso-table-pass{
+    color:#329B19;
+}
+
+.virtuoso-table-fail svg{
+    fill: #DA1E28;
+    height:1.25rem;
+    width:1.25rem;
+}
+
+.virtuoso-bar span{
+  display: block;
+  height: 0.875rem;
+  background-color: blue;
+  position: relative;
+  overflow: hidden;
+}
+
+.virtuoso-table-trunc{
+  max-width: 50rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right:0.313rem;
+  display: inline-block;
+
+}
+
+.virtuoso-table-trunc-name{
+  max-width: 200rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right:0.313rem;
+  display: inline-block;
+
+}
+
+.virtuoso-batch-name-trunc{
+  width: 170.313rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right:0.313rem;
+  display: inline-block;
+
+}
+
+.tooltip-wrapper {
+  position: relative;
+  visibility: hidden;
+}
+
+
+
+.has-tooltip::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  clear: both;
+}
+
+.has-tooltip:hover .tooltip-wrapper {
+  visibility: visible;
+
+}
+
+.tooltip {
+  display: block;
+  position: absolute;
+  top: -6.5em;
+  right: 10%;
+   width: 350rem;
+  height: 80rem;
+  padding:10rem;
+  color: #FFFFFF;
+  background: #000000;
+  line-height: 1.25rem;
+  text-align: left;
+  overflow-wrap: break-word;
+
+}
+.tooltip:after {
+  content: '';
+  position: absolute;
+    top: 100%;
+    left: 50%;
+  margin-left: -0.5rem;
+  width: 0;
+  height: 0;
+  border-top: 0.5rem solid #000000;
+  border-right: 0.5rem solid transparent;
+  border-left: 0.5rem solid transparent;
+}
+
+
+
+.virtuoso-table-icons{
+  height:37;
+  width:auto;
+ margin-left:50rem
+}
+
+.light-yellow-back{
+  background-color: #FDF3DD
+}
+
+.text-align-center{
+  text-align:center;
+}
+
+/**********Google Font Icons***********/
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.5rem;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+.pass-icon{
+  color:#24a148;
+  font-size:1.25rem !important;
+  text-align:center;
+}
+
+.fail-icon{
+  color:#da1e28;
+  font-size:1.25rem !important;
+  text-align:center;
+
+}
+
+.flag-icon{
+  
+  font-size:0.875rem !important;
+  text-align:center;
+
+}
+
+.flag-icon-red{
+  color:#DA1E27;
+  font-size:0.875rem !important;
+  text-align:center;
+
+}
+
+.flag-icon-circle{
+  color:#DA1E27;
+  font-size:1.25rem !important;
+  text-align:center;
+
+}
+
+.material-icons.flag-icon-circle {
+  font-variation-settings:
+  'FILL' 0;
+}
+
+
+.info-icon{
+  color:blue;
+  font-size:1.125rem !important;
+  vertical-align:bottom;
+  text-align:center;
+  margin-left:0.313rem;
+
+  vertical-align: bottom;
+  margin-left:0.313rem;
+  cursor:pointer;
+}
+
+.info-icon-large{
+  color:blue;
+  font-size:20.125rem !important;
+  text-align:center;
+  vertical-align: bottom;
+  margin-left:0.313rem;
+  cursor:pointer;
+
+}
+
+/************************************** Suspended Opportunity ***/
+
+.suspended-opportunity{
+  border: 0.063rem solid #DA1E27;
+  background-color:#FFF1F1;
+  padding:0.6rem;
+  margin-bottom:1.438rem;
+  width:15rem;
+  font-weight:bold;
+}
+
+
+/************************************** Batch Summary ***/
+.batch_summary {
+  background-color: #f3f3f3;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(1rem, auto));
+  gap: 1.5rem;
+  max-width: 100%;
+  padding: 1rem;
+}
+
+.batch_summary-data {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  line-height: 1.25;
+  display: inline-block;
+}
+
+.no-wrap{
+  white-space:nowrap;
+}
+
+
+/************************************** Typography ***/
+/*** Headings ***/
+.typo-like-h4 {
+  font-weight: normal;
+  color: #525252;
+}
+
+.typo-nowrap { white-space: nowrap !important; }
+
+.typo-truncate {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.typo-like-label {
+  font-weight: 600;
+  color: #525252;
+  font-size: 0.875rem;
+}
+
+.typo-align-center {
+  text-align: center !important;
+}
+
+.typo-align-right {
+  text-align: right !important;
+}
+
+
+
+/************************************** Grid ***/
+.grid {
+  display: grid;
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+  gap: 1rem 1.5rem;
+  margin: 0 1rem;
+}
+
+/*** Rows ***/
+.grid-row-2 { grid-row: span 2; }
+.grid-row-3 { grid-row: span 3; }
+
+/*** Columns ***/
+.grid-column-all,
+.grid-column-16 { grid-column-end: span 16; }
+.grid-column-15 { grid-column-end: span 15; }
+.grid-column-14 { grid-column-end: span 14; }
+.grid-column-13 { grid-column-end: span 13; }
+.grid-column-12 { grid-column-end: span 12; }
+.grid-column-11 { grid-column-end: span 11; }
+.grid-column-10 { grid-column-end: span 10; }
+.grid-column-9  { grid-column-end: span 9; }
+.grid-column-8  { grid-column-end: span 8; }
+.grid-column-7  { grid-column-end: span 7; }
+.grid-column-6  { grid-column-end: span 6; }
+.grid-column-5  { grid-column-end: span 5; }
+.grid-column-4  { grid-column-end: span 4; }
+.grid-column-3  { grid-column-end: span 3; }
+.grid-column-2  { grid-column-end: span 2; }
+.grid-column-1  { grid-column-end: span 1; }
+
+.grid-gapless [class^="grid-column"] {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.grid-column-gutterless {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+.grid-content-unpad {
+  margin-left: -1rem; /* must equal -column padding! */
+  margin-right: -1rem;
+}
+
+.grid-start_row {
+  grid-column-start: 1;
+}
+
+
+/*** Miscellaneous Grid stuff ***/
+.grid-gutterless {
+  margin: 0;
+}
+
+.grid-gapless {
+  gap: 0;
+}
+
+.grid-mimic_all {
+  display: block;
+  margin-left: 1rem; /* Same as grid wrapper */
+  margin-right: 1rem;
+}
+
+
+/************************************** Buttons ***/
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-unstyled {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
+
+
+/************************************** Headings ***/
+.heading-section-a {
+  background-color: #727272;
+  padding: 0.25rem 1rem;
+}
+
+.heading-section-a-actual {
+  color: white;
+  margin: 0;
+}
+
+.heading-section-b {
+  background-color: #fde3c3;
+  color: white;
+  padding: 0.5rem 1rem;
+}
+
+.heading-section-b-actual {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #161616;
+}
+
+
+/************************************** Button Menu ***/
+
+/*** Wrapper ***/
+.button_menu {
+  position: relative;
+  width: fit-content;
+}
+
+/*** Button ***/
+.button_menu-button {
+  border: 0.063rem solid #525252;
+  background-color: #f89922;
+  padding: 0.5rem 1rem;
+  min-width: 8rem;
+  cursor: pointer;
+  border-radius: 0;
+  white-space: nowrap;
+}
+
+.button_menu-button:hover {
+  background-color: #f9ac4e;
+}
+
+
+/*** Menu ***/
+.button_menu-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  display: none;
+  flex-direction: column;
+  background-color: #f4f4f4;
+  box-shadow: 0 0.125rem 0.375rem rgb(0 0 0 / 30%);
+  z-index: 1;
+}
+.button_menu:focus-within .button_menu-menu,
+.button_menu:hover .button_menu-menu {
+  display: inline-flex;
+}
+
+.button_menu-menu-item {
+  border-bottom: 0.063rem solid #e0e0e0;
+}
+.button_menu-menu-item:last-child {
+  border-bottom: 0;
+}
+
+.button_menu-menu-item-link {
+  color: #525252;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.28572;
+  letter-spacing: 1rem;
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.6875rem;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.button_menu-menu-item-link:hover {
+  background-color: rgb(224, 224, 224);
+}
+
+
+/************************************** Definitions (aka glossary, read-only form, etc.) ***/
+.definitions-key {
+  color: #525252;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.definitions-flex-stacked {
+  display: flex;
+  flex-direction: column;
+}
+
+.definitions-flex-stacked .definitions-value {
+  flex: 1 0 auto;
+}
+
+.definitions-value {
+  overflow-wrap: break-word;
+  line-height: 1.25;
+}
+
+/*** Control Pairing
+  For cases where the dd (definition) should appear inline and in front of the dt (term), like when the dd is a checkbox ***/
+.definitions-control_pairing {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.definitions-control_pairing .definitions-value {
+  order: 1;
+}
+.definitions-control_pairing .definitions-key {
+  order: 2;
+}
+
+
+/************************************** Summary Header (Variant A) ***/
+.summary_a {
+  padding: 0.75rem 1rem;
+  display: flex;
+  gap: 6rem;
+  background-color: #f3f3f3;
+  align-items: flex-start;
+  line-height: 1.5;
+}
+
+.summary_a-pair-key {
+  font-weight: 600;
+}
+
+
+/************************************** GeneralSpecsView Tag ***/
+.generalSpecsView-wrapper-virtuoso .generalSpecsView-derivatives-section_heading {
+  display: none;
+}
+
+.generalSpecsView-grid {
+  display: grid;
+  min-width: min-content;
+  width: 100%;
+  max-width: min(100%, 64rem);
+  margin: 0 1rem 1.5rem 1rem;
+
+  grid-template-columns: repeat(3, minmax(12rem, 22rem));
+  grid-template-rows: repeat(5, minmax(min-content, 1fr));
+  gap: 1rem;
+  grid-auto-flow: column;
+}
+
+/* If the grid has between 5-6 items */
+.generalSpecsView-grid:has(
+  .generalSpecsView-grid-definition:first-child:nth-last-child(5),
+  .generalSpecsView-grid-definition:first-child:nth-last-child(6)
+) {
+  grid-template-rows: repeat(2, minmax(min-content, 1fr));
+}
+
+/* If the grid has between 7-9 items */
+.generalSpecsView-grid:has(
+  .generalSpecsView-grid-definition:first-child:nth-last-child(7),
+  .generalSpecsView-grid-definition:first-child:nth-last-child(8),
+  .generalSpecsView-grid-definition:first-child:nth-last-child(9)
+) {
+  grid-template-rows: repeat(3, minmax(min-content, 1fr));
+}
+
+/* If the grid has between 10-12 items */
+.generalSpecsView-grid:has(
+  .generalSpecsView-grid-definition:first-child:nth-last-child(10),
+  .generalSpecsView-grid-definition:first-child:nth-last-child(11),
+  .generalSpecsView-grid-definition:first-child:nth-last-child(12)
+) {
+  grid-template-rows: repeat(4, minmax(min-content, 1fr));
+}
+
+/* If the grid has between 13-15 items */
+.generalSpecsView-grid:has(
+  .generalSpecsView-grid-definition:first-child:nth-last-child(13),
+  .generalSpecsView-grid-definition:first-child:nth-last-child(14),
+  .generalSpecsView-grid-definition:first-child:nth-last-child(15)
+) {
+  grid-template-rows: repeat(5, minmax(min-content, 1fr));
+}
+
+/* If the grid has between 16-18 items */
+.generalSpecsView-grid:has(
+  .generalSpecsView-grid-definition:first-child:nth-last-child(16),
+  .generalSpecsView-grid-definition:first-child:nth-last-child(17),
+  .generalSpecsView-grid-definition:first-child:nth-last-child(18)
+) {
+  grid-template-rows: repeat(6, minmax(min-content, 1fr));
+}
+
+/************************************** Layout, Flow, and Structure ***/
+
+/*** Float and Clear ***/
+.float_and_clear-right {
+  float: right !important;
+}
+.float_and_clear-right::after {
+  content: '';
+  clear: both;
+}
+
+/***align*****/
+
+.vertical-align{
+  vertical-align: middle;
+}
+
+/*** Wrappers ***/
+.layout-wrapper-content {
+  margin: 2rem auto;
+  padding: 0 2rem;
+  max-width: 82.625rem; /* TODO: parameterize */
+}
+
+
+/*** Flexible Containers ***/
+.layout-flex { 
+  display: flex;
+}
+
+.layout-flex-inline {
+  display: inline-flex;
+}
+
+.layout-flex-expand_min { /* Stuff at the start expands, stuff at the end doesn't */
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.layout-flex-expand_min > *:not(:first-child) {
+  flex: 1 1 auto;
+}
+
+.layout-flex-expand_min > :last-child {
+  flex: 0 0 min-content;
+}
+
+/*** Flexible Container Modifiers ***/
+.layout-flex-centered,
+.layout-flex-centered-vertically {
+  align-items: center;
+}
+
+.layout-flex-centered,
+.layout-flex-centered-horizontally {
+  justify-content: center;
+}
+
+.layout-flex-right {
+  justify-content: right;
+}
+
+.layout-flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+/*** Block ***/
+.layout-block {
+  display: block;
+}
+
+
+/*** Random Containers ***/
+.container-code {
+  /* For stuff like the "XML Box for JPEG2000" */
+  border: 0.063rem solid #707070;
+  color: #161616;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 0.75rem 1.5rem;
+  position: unset;
+}
+
+.container-read_only_textfield {
+  border: 0.063rem solid #707070;
+  color: #161616;
+  background-color: #f0f0f0;
+  padding: 0.5rem;
+  line-height: 1.25;
+  min-height: 4rem;
+  box-sizing: border-box;
+}
+
+
+/*** Lists ***/
+.layout-list-inline {
+  display: inline-flex;
+  gap: 1.5rem;
+}
+
+/************************************** Nav Bar ***/
+yeti-nav-container{
+  height: 3.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.688rem 0 0.625rem;
+  width:100%;
+}
+
+span.username-trunc {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+  line-height: normal;
+  vertical-align: text-top;
+}
+
+
+
+/************************************** Progress Bar ***/
+.old-progress_bar-labeled {
+  display: flex;
+  column-gap: 0.25rem;
+  width: 14rem;
+}
+
+.old-progress_bar-label {
+  flex: 0 0 auto;
+  width: 6.75rem;
+}
+
+.old-progress_bar {
+  border: 0.063rem solid black;
+  height: 1rem;
+  width: 7rem;
+  display: flex;
+  justify-content: flex-start;
+  flex: 0 0 auto;
+}
+
+.old-progress_bar-progress {
+  background-color: blue;
+}
+
+
+
+/************************************** Tooltip ***/
+.old-tooltip-wrapper {
+  position: relative;
+}
+
+.old-tooltip {
+  position: absolute;
+  color: white;
+  background-color: black;
+  bottom: calc(100% + 0.5rem);
+  display: none;
+  padding: 1rem;
+  z-index: 1;
+  left: 50%;
+  translate: -50%;
+  width: max-content;
+  max-width: 22rem;
+}
+
+.old-tooltip::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  background-color: black;
+  width: 0.5rem;
+  height: 0.5rem;
+  display: block;
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+}
+
+.old-tooltip-wrapper:hover .old-tooltip {
+  display: block;
+}
+
+
+
+/************************************** Accessibility (a11y) ***/
+.a11y-invisible {
+  position: absolute !important;
+  width: 0.063rem !important;
+  height: 0.063rem !important;
+  padding: 0 !important;
+  margin: -0.063rem !important;
+  overflow: hidden !important;
+  clip: rect(0,0,0,0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+
+
+/************************************** Borders ***/
+
+.border-707070 { border: 0.063rem solid #707070 !important; }
+.border-cfcfcf { border: 0.063rem solid #cfcfcf !important; }
+
+.border-bottom-e0e0e0 {
+  border-bottom: 0.063rem solid #e0e0e0;
+}
+
+
+
+/************************************** Gaps (for Flexbox and Grid) ***/
+/*** Horizontal ***/
+.gap-horizontal-2 { column-gap: 0.5rem !important; }
+.gap-horizontal-4 { column-gap: 1rem !important; }
+
+/*** Vertical ***/
+.gap-vertical-3 { row-gap: 0.75rem !important; }
+
+
+
+/************************************** Margins ***/
+/*** All sides ***/
+.margin-none { margin: 0 !important; }
+
+
+/*** Top ***/
+.margin-top-none { margin-top: 0 !important; }
+.margin-top-3    { margin-top: 0.75rem !important; }
+.margin-top-4    { margin-top: 1rem !important; }
+.margin-top-7    { margin-top: 1.75rem !important; }
+.margin-top-8    { margin-top: 2rem !important; }
+
+
+/*** Bottom ***/
+.margin-bottom-none { margin-bottom: 0 !important; }
+.margin-bottom-1 { margin-bottom: 0.25rem !important; }
+.margin-bottom-2 { margin-bottom: 0.5rem !important; }
+.margin-bottom-3 { margin-bottom: 0.75rem !important; }
+.margin-bottom-4 { margin-bottom: 1rem !important; }
+.margin-bottom-5 { margin-bottom: 1.25rem !important; }
+.margin-bottom-6 { margin-bottom: 1.5rem !important; }
+.margin-bottom-7 { margin-bottom: 1.75rem !important; }
+
+
+/*** Left ***/
+.margin-left-5  { margin-left: 1.25rem !important; }
+
+
+/*** Horizontal ***/
+.margin-horizontal-auto  { margin-left: auto !important; margin-right: auto !important; }
+
+/* Negative */
+.margin-horizontal-negative-12 { margin-left: -3rem !important; margin-right: -3rem !important; }
+
+
+/*** Vertical ***/
+.margin-vertical-8  { margin-top: 2rem !important; margin-bottom: 2rem !important; }
+
+
+
+/************************************** Padding ***/
+/* All sides */
+.padding-none { padding: 0 !important; }
+.padding-3    { padding: 0.75rem !important; }
+.padding-4    { padding: 1rem !important; }
+.padding-12   { padding: 3.0rem !important; }
+
+/* Right */
+.padding-right-3  { padding-right: 0.75rem !important; }
+.padding-right-6  { padding-right: 1.5rem !important; }
+.padding-right-12 { padding-right: 3rem !important; }
+
+/* Top */
+.padding-top-12  { padding-top: 3rem !important; }
+
+/* Bottom */
+.padding-bottom-3 { padding-bottom: 0.75rem !important; }
+.padding-bottom-4 { padding-bottom: 1rem !important; }
+
+/* Horizontal */
+.padding-horizontal-3  { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+.padding-horizontal-8  { padding-left: 2rem !important; padding-right: 2rem !important; }
+.padding-horizontal-12 { padding-left: 3rem !important; padding-right: 3rem !important; }
+
+/* Vertical */
+.padding-vertical-2 { padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; }
+.padding-vertical-3 { padding-top: 0.75rem !important; padding-bottom: 0.75rem !important; }
+.padding-vertical-6 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+
+
+/*** Left ***/
+.padding-left-5   { padding-left: 1.25rem !important; }
+
+
+
+/************************************** Width ***/
+.width-auto        { width: auto !important; }
+.width-content-fit { width: fit-content !important; }
+.width-160         { width: 40rem !important; }
+.width-320         { width: 80rem !important; }
+
+/*** Minimum Widths ***/
+.width-min-content-min { min-width: min-content !important; }
+
+
+/*** Maximum Widths ***/
+.width-max-160 { max-width: 40rem !important; }
+
+
+/************************************** Height ***/
+.height-auto  { height: auto !important; }
+.height-full  { height: 100% !important; }
+.height-5     { height: 2.5rem !important; }
+
+
+
+/************************************** Colors ***/
+.color-white  { color: white !important; }
+
+
+
+/************************************** Checkboxes ***/
+.checkbox {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+}
+
+
+/**** Progress Bar *****/
+.progress-material-icon {
+  height: 0.875rem;
+  margin: 0.5rem 0rem 0rem 0.688rem;
+}
+
+/*********BG Color*****/
+.bkgrd-white{
+  background-color:#FFFFFF;
+}
+
+
+/**Instructional Text - located on New Material Specs form**/
+.inst-text{
+  font-size: 14px;
+  color: #525252;
+  line-height:1.25
+}
+
+/************************************** Radios/Checkboxes with Compound Labels ***/
+.bs-form-fieldset-label-compound {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: auto 1fr;
+  row-gap: 0.25rem;
+}
+
+.bs-form-fieldset-label-compound-control,
+.bx--radio-button__appearance.bs-form-fieldset-label-compound-control {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.bs-form-fieldset-label-compound-heading {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.bs-form-fieldset-label-compound-detail {
+  grid-column: 2 / span 1;
+  grid-row: 2 / span 1;
+}
+
+.virtuoso-header-links{
+  padding-top: 0.625rem;
+  margin-right: 5rem
+}
+
+.break-long-value{
+  word-break:break-all
+}
+
+/************************************** Batch Header ***/
+.batch_header {
+  background-color: #f4f4f4;
+  display: flex;
+  padding: 1rem;
+  gap: 2rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+
+.batch_header-property {
+  flex: 1 0 fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.batch_header-property-term {
+  font-weight: 600;
+}
+
+.batch_header-property-definition {
+  display: flex;
+  gap: 0.375rem;
+  align-items: center;
+}
+
+
+/* This is used on composer until we swap to a yeti table*/
+.no-results{
+padding-bottom: 0.8125rem;
+padding-top: 0.8125rem;
+padding-left:1rem;
+height: 3rem;
+background-color:#f4f4f4;
+color:#525252;
+vertical-align: middle;
+line-height:1.5
+}
+
+
+
+/************************************** New Batch Verification Form ***/
+.nbv-select_material_spec-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  --nbv-select_material_spec-content-table_wrapper-bumper-height: 3.8125rem;
+}
+
+.nbv-select_material_spec-content-search {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.nbv-select_material_spec-content-search-field,
+.nbv-select_material_spec-content-search .yeti-input-wrapper {
+  width: 22.375rem;
+  flex: 0 0 22.375rem;
+}
+
+.nbv-select_material_spec-content-table_wrapper {
+  overflow-y: scroll;
+  flex: 1 1 auto;
+}
+
+.nbv-select_material_spec-content-table_wrapper-bumper {
+  position: sticky;
+  bottom: -1px; /* Chrome seems to leave a small gap otherwise */
+  top: calc(100% - var(--nbv-select_material_spec-content-table_wrapper-bumper-height));
+  width: 100%;
+  height: var(--nbv-select_material_spec-content-table_wrapper-bumper-height);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%);
+  margin-bottom: calc(-1 * var(--nbv-select_material_spec-content-table_wrapper-bumper-height));
+}
+
+.nbv-selected_validation_type-audit .nbv-fieldset-material_spec {
+  display: none;
+}
+
+
+/*** Material Spec Selection ***/
+.nbv-select_material_spec-selection {
+  margin-top: 2rem;
+  margin-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.nbv-select_material_spec-selection__inert {
+  color: rgba(22, 22, 22, 0.25);
+}
+
+.nbv-select_material_spec-selection-property-name {
+  font-weight: 600;
+  line-height: 1rem;
+}

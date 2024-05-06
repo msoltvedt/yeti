@@ -1,0 +1,2419 @@
+/************************************** legacy.css ***/
+/*
+
+    This stylesheet contains a consolidated version of all the legacy "one-off" stylesheets:
+    stylesheets that were only included on one or two pages.
+
+    Each section corresponds to a single former file and is labeled accordingly, with the
+    new class prefix for that file/section in parenthesis (e.g. xafs).
+
+    Ultimately, we want to replace all of these styles with analogous stuff from Yeti and 
+    delete this file.
+
+*/
+
+
+
+/************************************** account-form-styles.css (xafs) ***/
+.xafs-new-account-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.xafs-new-account-form-container {
+    display: flex;
+    flex-direction: column;
+    width: 39.938rem;
+    padding: 1.5rem 0.563rem 3.563rem 2.938rem;
+    border: solid 0.063rem #cfcfcf;
+    margin-top: 2.438rem;
+    margin-bottom: 3.438rem;
+}
+
+.xafs-sub-title {
+  margin-top: 1.875rem;
+  font-size: 1.25rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.xafs-new-account-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.625rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.xafs-account-required {
+    color: #da1e27;
+    font-size: 0.875rem;
+}
+
+.xafs-new-account-element {
+    margin-top: 1rem;
+}
+
+.xafs-new-account-page-button {
+    width: 7.5rem;
+    padding-right: 1rem;
+    margin-right: 1rem;
+}
+
+.xafs-account-page-error {
+    width: 110%;
+    margin-left: -3rem;
+}
+
+
+
+/************************************** account-list.css (xal) ***/
+.xal-account-view-page {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.xal-title {
+    display: block;
+    font-size: 1.875rem;
+    margin: 2.563rem 0rem 1.5rem 0rem;
+    color: #525252;
+    font-weight: 600;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.xal-account-view-tablelinks {
+    display: flex;
+}
+
+.xal-new-account-link {
+    padding-right: 0.5rem;
+}
+
+.xal-export-link {
+    padding-left:  0.5rem;
+}
+
+.xal-account-export {
+    padding-top: 0.875rem;
+    margin-right: 5rem;
+}
+
+.xal-pagination-row {
+    background-color: #f4f4f4;
+    border-top: 0.063rem solid #e0e0e0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.xal .bx--search-magnifier {
+    left: 0.75rem;
+    z-index: 2;
+    position: absolute;
+}
+
+.xal-account-search {
+    width: 160%;
+}
+
+
+
+/************************************** account-view-style.css (xavs) ***/
+.xavs-account-opportunity-page {
+    margin-right: 4rem;
+    margin-left: 4rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+.xavs-last-modified {
+    margin: 0.313rem 0rem 0.313rem;
+    font-size: 0.875rem;
+    text-align: right;
+    color: #525252;
+    float: right;
+}
+
+.xavs-title {
+    font-size: 1.875rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #525252;
+    font-weight: 600;
+}
+
+
+.xavs .bx--list-box__menu-item__option {
+    text-align: left;
+}
+
+.xavs-owner-name {
+    font-size: 0.875rem;
+    color: #525252;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.xavs-accounts-view-table {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.xavs-main-container {
+    display: flex;
+}
+
+.xavs-account-main-container, .table-container {
+    width: 100%;
+}
+
+.xavs .side-nav-item:first-child {
+    border-top: none;
+}
+
+.xavs .side-nav-item {
+    border-top: solid 0.063rem #e0e0e0; 
+  
+}
+
+.xavs-account-view-table-header {
+    margin-right: 0.375rem;
+    font-size: 1.5rem;
+    color: #525252;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.xavs-links-container {
+    margin-top: 1rem;
+    height: 3rem;
+    padding: 1rem 1.25rem 0rem 1rem;
+    background-color: #f3f3f3;
+    width: 100%;
+}
+
+.xavs-link-divider {
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+
+.xavs-account-view-table-count {
+    float: right;
+}
+
+
+
+/************************************** accountAddContact.css (xaac) ***/
+.xaac-account-add-contact {
+    margin-bottom: 4rem;
+}
+
+.xaac-account-add-contact-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.625rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.xaac-account-add-contact-required {
+    color: #da1e27;
+    font-size: 0.875rem;
+}
+
+.xaac-account-add-contact-element {
+    margin-top: 1rem;
+}
+
+.xaac-account-add-contact-button {
+    width: 7.5rem;
+    padding-right: 1rem;
+    margin-right: 1rem;
+}
+
+.xaac-account-add-button-group,
+.xods-button-group.xaac-account-add-button-group {
+    margin-top: 1rem;
+}
+
+.xaac-account-add-contact-element #contactId {
+    width: 34.375rem;
+}
+
+
+
+/************************************** address-form-i.css (xafi) ***/
+.xafi-account-tab-address-form {
+    width: 39.938rem;
+}
+.xafi-address-required {
+    color: #da1e27;
+    font-size: 0.875rem;
+}
+
+.xafi-account-tab-address-element {
+    margin-top: 1rem;
+}
+
+.xafi-account-tab-address-button {
+    width: 7.5rem;
+    padding-right: 1rem;
+    margin-right: 1rem;
+}
+
+.xafi .bx--btn {
+    width: 8.063rem;
+    height: 2.25rem;
+    border: solid 0.063rem #525252;
+    padding: 0.5rem 2.231rem 0.5rem 1.019rem;
+
+}
+
+.xafi .bx--btn--primary {
+    border: solid 0.063rem #525252;
+    background-color: #f89922;
+    color: black;
+}
+
+.xafi-state-selecinvalid-icon {
+    right: 2.5rem;
+}
+
+.xafi-account-tab-address-button-container {
+    margin-top: 2rem;
+}
+
+.xafi .bx--inline-notification {
+    max-width: 32rem;
+}
+
+
+
+/************************************** component-library-styles.css (xcls) ***/
+/* This file wasn't included by anything. */
+
+
+
+/************************************** contact-list.css (xcl) ***/
+.xcl-contact-list-page {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.xcl-title {
+    display: block;
+    font-size: 1.875rem;
+    margin: 2.563rem 0rem 1.5rem 0rem;
+    color: #525252;
+    font-weight: 600;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.xcl-contact-view-tablelinks {
+    display: flex;
+}
+
+.xcl-tablelinks-col {
+    flex: 1;
+}
+
+.xcl-contact-export {
+    padding-top: 0.875rem;
+    margin-right: 5rem;
+}
+
+.xcl-contact-search {
+    width: 160%;
+}
+
+.xcl-pagination-row {
+    background-color: #f4f4f4;
+    border-top: 0.063rem solid #e0e0e0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.xcl-new-contact-link {
+    padding-right: 0.5rem;
+}
+
+.xcl-export-link {
+    padding-left:  0.5rem;
+}
+
+.bx--search-magnifier {
+    left: 0.75rem;
+    z-index: 2;
+    position: absolute;
+    height: 1rem;
+    width: 1rem;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    fill: #525252;
+    fill: var(--cds-icon-02, #525252);
+    pointer-events: none;
+}
+
+
+
+/************************************** contact-view.css (xcv) ***/
+.xcv-created-by {
+    margin: 0.313rem 0rem 0.313rem;
+    font-size: 0.875rem;
+    text-align: right;
+    color: #525252;
+    float: right;
+}
+
+.xcv-contacts-page-view {
+    margin-left: 4rem;
+    margin-right: 4rem;
+}
+
+.xcv .bx--list-box__menu-item__option {
+    text-align: left;
+}
+
+.xcv-contact-details {
+    margin-top: 1rem;
+    margin-right: 0;
+
+}
+
+.xcv-contact-details-col {
+    background-color: #efefef;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+}
+
+.xcv-contact-details-col:first-child {
+    margin-left: 1rem;
+ 
+}
+
+.xcv-contact-details-col p {
+    font-size: 0.875rem;
+}
+
+.xcv-contact-view-table {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.xcv-main-container {
+    display: flex;
+}
+
+.xcv-contact-main-container, .xcv-table-container {
+    width: 100%;
+}
+
+.xcv .side-nav-item:first-child {
+    border-top: none;;
+}
+
+.xcv .side-nav-item {
+    border-top: solid 0.063rem #e0e0e0;
+    border-left: solid 0.25rem transparent; 
+}
+
+.xcv .side-nav-active {
+    background-color: #e5e5e5;
+    border-left: solid 0.25rem #f89922;
+   
+}
+
+.xcv-contact-view-table-header {
+    margin-right: 0.375rem;
+    font-size: 1.5rem;
+    color: #525252;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.xcv-links-container {
+    margin-top: 1rem;
+    height: 3rem;
+    padding: 1rem 1.25rem 0rem 1rem;
+    background-color: #f3f3f3;
+    width: 100%;
+}
+
+.xcv-contact-view-table-count {
+    float: right;
+}
+
+
+
+/************************************** contactForm.css (xcf) ***/
+.xcf-new-contact-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.xcf-new-contact-form-container {
+    display: flex;
+    flex-direction: column;
+    width: 39.938rem;
+    padding-top: 3rem;
+    padding-right: 3rem;
+    padding-left: 3rem;
+    padding-bottom: 3rem;
+    border: solid 0.063rem #cfcfcf;
+    margin-top: 2.438rem;
+    margin-bottom: 3.438rem;
+}
+
+.xcf-new-contact-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.625rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.xcf-new-contact-page-button {
+    width: 7.5rem;
+    padding-right: 1rem;
+    margin-right: 1rem;
+}
+
+.xcf-new-contact-required {
+    color: #da1e27;
+    font-size: 0.875rem;
+}
+
+.xcf-new-contact-element {
+    margin-top: 1rem;
+}
+
+.xcf-contact-page-error {
+    margin-left: -3rem;
+    margin-right: -3rem;
+    width: unset;
+}
+
+
+
+/************************************** new-line-item-styles.css (xnli) ***/
+.xnli-page-title-container {
+    margin-bottom: 1.188rem;
+}
+
+.xnli-page-title-container h1 {
+    margin-top: 0;
+    margin-bottom: 0.313rem;
+}
+
+.xnli-sub-title {
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: #525252;
+}
+
+.xnli-price-amount {
+    display: block;
+    margin: 1.5rem 0rem 0rem 1rem;
+}
+
+.xnli .bx--checkbox-label {
+    color: #161616;
+}
+
+.xnli-field-label {
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 0.563rem;
+    color: #525252;
+}
+
+.xnli-bold-text {
+    font-weight: 600;
+}
+
+.xnli-sub-header-label {
+    /* Not used? */
+    margin-bottom: 0.313rem;
+    font-weight: 600;
+    color: #161616;
+}
+
+.xnli-opportunity-detail-row {
+    margin: 0.5rem 0.313rem 1.25rem 0.313rem;
+}
+
+.xnli .bx--text-area {
+    border: solid 0.063rem #707070;
+    resize: none;
+}
+
+.xnli-material-spec-container .bx--form-item {
+    margin-bottom: 1rem;
+}
+.xnli-material-spec-container .note-field {
+    height: 13.938rem;
+}
+.xnli-material-spec-container textarea {
+    height: 12.5rem;
+}
+
+.xnli-global-technical-specifications-container {
+    column-gap: 4.438rem;
+}
+.xnli-global-technical-specifications-container .bx--select {
+    margin-bottom: 0.75rem;
+    width: 18rem;
+}
+
+.xnli-global-technical-specifications-container .bx--list-box__wrapper {
+    width: 18rem;
+    margin-bottom: 1.125rem;
+}
+
+.xnli-tech-specs-margin {
+    margin-right: -0.5rem;
+}
+.xnli-tech-specs-deliverytypes {
+    padding-left: 0;
+}
+
+.xnli-specifications-checkbox-column {
+    /* Not used? */
+    margin-bottom: 1.25rem;
+}
+
+.xnli-deliverable-types-row {
+    /* Not used */
+    margin-bottom: 1.5rem;
+}
+
+.xnli .bx--text-input::placeholder {
+    color: #161616;
+  }
+
+.xnli .bx--btn {
+    margin-right: 1.625rem;
+    width: 8.063rem;
+}
+
+.xnli .bx--btn--secondary {
+    font-weight: 600;
+}
+
+.xnli-extended-field {
+    width: 28.75rem;
+}
+
+
+
+/************************************** new-opportunity-styles.css (xno) ***/
+.xno {
+    display: flex;
+    flex-direction: column;
+    color: #525252;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.xno-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.625rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+
+}
+
+.xno-sub-title {
+    margin-top: 1.875rem;
+    font-size: 1.25rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.xno-new-opportunity-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.xno-form-container {
+    display: flex;
+    flex-direction: column;
+    width: 39.938rem;
+    padding-top: 3rem;
+    padding-right: 2.5rem;
+    padding-left: 3rem;
+    padding-bottom: 3rem;
+    border: solid 0.063rem #cfcfcf;
+    margin-top: 2.438rem;
+    margin-bottom: 3.438rem;
+}
+
+.xno .bx--form-item {
+    margin-top: 1.625rem;
+}
+
+.xno-invoices-text-input {
+    /* Not used? */
+    margin-top: 0.938rem;
+}
+
+.xno-amount-top-margin {
+    /* Not used? */
+    margin-top: 0rem;
+}
+
+.xno-probability-container {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    column-gap: 1.25rem;
+}
+
+.xno-probability-percentage-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.xno-currency-label {
+    /* Not used? */
+    margin-right: 0.313rem;
+}
+
+.xno-stage-select {
+    width: 55%;
+}
+
+.xno-probability-percentage-label {
+    font-size: 0.875rem;
+}
+
+.xno-probability-percentage {
+    padding: 0.938rem 0 0.938rem 0;
+}
+
+.xno-additional-information-field,
+.xno-additional-information-field input,
+.xno-additional-information-field .bx--select {
+    width: 75%;
+}
+
+.xno-new-opportunity-page-button {
+    width: 7.5rem;
+}
+
+.xno-new-opportunity-button-group {
+    margin-top: 2rem;
+}
+
+.xno-opportunity-primary {
+    margin-right: 1rem;
+}
+
+.xno-stage-selecinvalid-icon {
+    /* Not used? */
+    right: 2.5rem;
+}
+
+.xno-opportunity-page-error {
+    margin-left: -3rem;
+    margin-right: -3rem;
+    width: unset;
+}
+
+
+
+/************************************** opportunities-list-styles.css (xol) ***/
+.xol-opportunities-list-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.xol-form-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  
+}
+
+.xol-title {
+    display: block;
+    font-size: 1.875rem;
+    margin: 2.563rem 0rem 1.5rem 0rem;
+    color: #525252;
+    font-weight: 600;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.xol-header {
+    /* Not used? */
+    margin-bottom: 1.563rem;
+    display: block;
+    font-size: 1.5rem;
+    color: #525252;
+}
+
+.xol-stage-container {
+    margin: 0rem 0rem 1.938rem 0.313rem;
+    background-color: #f3f3f3;
+}
+
+.xol-stage-header {
+    padding: 0.688rem 0rem 0.625rem 0.813rem;
+    min-height: 2.625rem;
+    width: 100%;
+    font-size: 1rem;
+    color: #525252;
+}
+
+.xol-stage-item-container {
+    border-left: solid 0.125rem gray;
+    display: flex;
+}
+
+.xol-stage-item {
+    padding: 0.688rem 0rem 0.688rem 0.938rem;
+    min-height: 2.625rem;
+    width: 100%;
+    border-right: solid 0.125rem gray;
+    white-space:nowrap;
+}
+
+.xol-stage-item:last-child {
+    padding-right:0.938rem;
+
+}
+
+.xol-active-item {
+    font-weight: 600;
+    background-color: #e5e5e5;
+    border-top: solid 0.25rem #f89922;
+}
+
+.xol-inactive-item {
+    border-top: solid 0.25rem #707070;
+}
+
+.xol-stage-item:hover {
+    background-color: #e5e5e5;
+}
+
+.xol-stage-number {
+    /* Not used? */
+    margin-left: 0rem;
+}
+
+.xol-links-container {
+    /* Not used? */
+    margin-top: 1.125rem;
+    min-height: 3rem;
+    padding: 1rem 0rem 0rem 1rem;
+    display: flex;
+    column-gap: 0.938rem;
+    align-items: center;
+}
+
+.xol-table-header {
+    display: flex;
+    align-items: flex-end;
+    background-color: #f3f3f3;
+    padding-bottom: 0.875rem;
+}
+
+.xol-pagination-container {
+    /* Not used? */
+    display: flex;
+    flex-direction: column;
+    width: 9.375rem;
+    align-items: flex-end;
+    margin-top: 1.25rem;
+}
+
+.xol-opportunnity-table-header {
+    background-color: #f3f3f3;
+    margin-left: 0;
+    margin-right: 0;
+    border-top: 0.063rem solid #e0e0e0;
+}
+
+.xol-opportunityltable-links {
+    display: flex;
+}
+
+.xol-opportunity-export {
+    padding-top: 0.875rem;
+    margin-right: 5rem;
+}
+
+.xol .bx--search-magnifier {
+    left: 0.75rem;
+    z-index: 2;
+    position: absolute;
+}
+
+.xol-opportunity-search {
+    width: 160%;
+}
+
+.xol-opportunity-export-divider {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+bx-pagination {
+    border: none;
+}
+
+.xol-per-page {
+    /* Not used? */
+    display: flex;
+    width: 12.5rem;
+    align-items: center;
+    color: #161616;
+    margin-top: 0.5rem;
+    justify-content: flex-end;
+}
+.xol-per-page .bx--select {
+    width: 3.125rem;
+}
+.xol-per-page .bx--select-input {
+    padding-right: 1.125rem;
+    padding-left: 0.313rem;
+    background-color: #f3f3f3;
+    height: 1.125rem;
+}
+
+.xol .bx--pagination {
+    justify-content: flex-end;
+}
+
+/*Removed - yellow hover on Opportunities Page*/
+/*.xol bx-table-row:hover bx-table-cell {
+    background-color: #fdf3dd;
+}*/
+
+.xol-item-count {
+    /* Not used? */
+    text-align: right;
+    font-size: 0.875rem;
+    color: #525252;
+    display: flex;
+    column-gap: 0.313rem;
+}
+
+.xol .bx--overflow-menu {
+    height: 0.938rem;
+    border: none;
+    outline: none;
+}
+
+.xol .bx--page-number {
+    margin-right: 0.625rem;
+}
+
+.xol .bx--pagination__button {
+    border: none;
+}
+
+.xol .bx--pagination__button--forward {
+    padding-right: 0rem;
+}
+
+.xol .bx--pagination__right {
+    margin-left: 1.25rem;
+}
+
+
+
+/************************************** opportunity-detail-edit-styles.css (xode) ***/
+.xode-opportunity-detail-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.xode-form-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 3.875rem 0rem 3.688rem;
+    width: 100%;
+}
+
+.xode-return-link {
+    /* Not used? */
+    font-size: 0.875rem;
+}
+
+.xode-created-by {
+    /* Not used? */
+    margin: 0.313rem 0rem 0.313rem;
+    font-size: 0.875rem;
+    text-align: right;
+    color: #525252;
+}
+
+.xode-title-container {
+    /* Not used? */
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.813rem;
+}
+
+.xode-title {
+    /* Not used? */
+    font-size: 1.875rem;
+    font-family: "IBM Plex Sans", sans-serif;
+    color: #525252;
+    font-weight: 600;
+}
+
+.xode-want-to-container .bx--list-box__wrapper {
+    /* Not used? */
+    width: 8.063rem;
+}
+
+.xode-summary-container {
+    /* Not used? */
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 4.375rem 1.375rem 1rem;
+    height: 5.25rem;
+    background-color: #f3f3f3;
+}
+
+.xode-summary-item {
+    /* Not used? */
+    display: flex;
+    flex-direction: column;
+}
+
+.xode-summary-header {
+    /* Not used? */
+    height: 1.25rem;
+    font-size: 0.875rem;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 600;
+    color: #161616;
+}
+
+.xode-right-button {
+    /* Not used? */
+    width: 8.063rem;
+}
+
+.xode-project-specifications-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.063rem;
+}
+
+.xode-sub-title {
+    margin: 1.5rem 0rem 0.938rem 0rem;
+    font-size: 1.5rem;
+    font-family: "IBM Plex Sans", sans-serif;
+    color: #525252;
+}
+
+.xode-project-description {
+    display: block;
+    margin: 1.813rem 0rem 0.313rem 0rem;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 0.875rem;
+    color: #161616;
+    opacity: 0.8;
+    line-height: 1.43;
+}
+
+.xode .bx--text-area {
+    border: solid 0.063rem #707070;
+    resize: none;
+    margin-bottom: 2.625rem;
+}
+
+.xode-sub-header {
+    height: 2.688rem;
+    padding: 0.813rem 0rem 0.625rem 1rem;
+    background-color: #fde3c3;
+}
+
+.xode-sub-header-text {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.xode-material-handling-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0.5rem 0rem 1.188rem 1.125rem;
+}
+
+.xode-material-handling-item {
+    /* Not used? */
+    margin-bottom: 1.938rem;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.xode-material-handling-column {
+    width: 22.5rem;
+}
+
+.xode .bx--form__helper-text {
+    margin: 0.625rem 0rem 1.063rem 0rem;
+}
+
+.xode .bx--select,
+.xode .bx--list-box__wrapper {
+    width: 18rem;
+    margin: 0rem 5rem 1.125rem 0rem;
+}
+
+.xode .bx--text-input {
+    width: 18rem;
+}
+
+.xode-extended-field {
+    width: 28.75rem;
+}
+
+.xode-global-technical-specifications-container .bx--select {
+    margin-bottom: 0.75rem;
+    width: 18rem;
+}
+
+.xode-global-technical-specifications-container {
+    margin: 0rem 0rem 2rem 1.125rem;
+    display: flex;
+}
+
+.xode .bx--select {
+    margin: 0rem 5rem 1.125rem 0rem;
+}
+
+.xode-material-handling-item {
+    /* Not used? */
+    margin-bottom: 1.938rem;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.xode-global-technical-specs-container {
+    /* Not used? */
+    margin: 0rem 0rem 2rem 1.125rem;
+    display: flex;
+}
+
+.xode-specifications-text-container {
+    margin-top: 0.5rem;
+    width: 22.813rem;
+}
+
+.xode-second-column {
+    /* Not used? */
+    margin-top: 1.563rem;
+}
+
+.xode .bx--text-input::placeholder {
+    color: #161616;
+}
+
+.xode .bx--checkbox-wrapper {
+    height: 1.563rem;
+}
+
+.xode .bx--checkbox-label {
+    color: #161616;
+}
+
+.xode-specifications-checkbox-container {
+    width: 26.875rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.xode-text-item {
+    /* Not used? */
+    margin-bottom: 1.938rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.xode-empty-checkbox {
+    background-color: #c6c6c6;
+}
+
+.xode-checkbox-label {
+    /* Not used? */
+    color: #525252;
+    margin-left: 0.625rem;
+}
+
+.xode-checkbox-header {
+    margin-top: 0.5rem;
+    width: 25rem;
+}
+
+.xode .bx--btn--primary {
+    margin-right: 1.875rem;
+}
+
+.xode .bx--btn {
+    margin-top: 1.688rem;
+    width: 8.063rem;
+}
+
+
+
+/************************************** opportunity-detail-line-item-styles.css (xodl) ***/
+.xodl .cd--accordion--item,
+.xodl .cd--accordion--item::before {
+    /* Not used? */
+    margin-bottom: 0.125rem;
+}
+
+.xodl .bx--accordion__item:last-child {
+    /* Not used? */
+    border-bottom: 0rem;
+}
+
+.xodl .bx--accordion__item--active .cd--accordion__content {
+    /* Not used? */
+    padding: 0.625rem 0rem 1.875rem 0.625rem;
+    margin: 0;
+}
+
+.xodl-price-amount {
+    /* Not used? */
+    display: block;
+    margin: 0.563rem 0rem 0rem 1rem;
+}
+
+.xodl-copy-icon {
+    /* Not used? */
+    margin-right: 0.938rem;
+}
+
+.xodl-trash-button-group {
+    /* Not used? */
+    display: flex;
+}
+
+.xodl-trash-tooltip .tooltiptext {
+    /* Not used? */
+    visibility: hidden;
+    width: 8.125rem;
+    background-color: #f0f0f0;
+    color: black;
+    text-align: center;
+    padding: 0.625rem 0.563rem 0.5rem 0.625rem;
+    font-size: 0.875rem;
+    border-radius: 0.188rem;
+    box-shadow: 0 0 0.313rem 0 rgba(0, 0, 0, 0.37);
+    position: absolute;
+    z-index: 1;
+    bottom: 110%;
+    left: 50%;
+    margin-left: -7.813rem;
+}
+
+.xodl-copy-tooltip .tooltiptext {
+    visibility: hidden;
+    width: 7.813rem;
+    background-color: #f0f0f0;
+    color: black;
+    text-align: center;
+    padding: 0.563rem 0.563rem 0.5rem 0.625rem;
+    font-size: 0.875rem;
+    border-radius: 0.188rem;
+    box-shadow: 0 0 0.313rem 0 rgba(0, 0, 0, 0.37);
+    position: absolute;
+    z-index: 1;
+    bottom: 110%;
+    left: 50%;
+    margin-left: -7.813rem;
+}
+
+.xodl .copy-tooltip:hover .tooltiptext {
+    /* Not used? */
+    visibility: visible;
+}
+
+.xodl-trash-tooltip:hover .tooltiptext {
+    /* Not used? */
+    visibility: visible;
+}
+
+.xodl-trash-tooltip {
+    /* Not used? */
+    position: relative;
+    display: inline-block;
+}
+
+.xodl-copy-tooltip {
+    /* Not used? */
+    position: relative;
+    display: inline-block;
+}
+
+.xodl-price-amount-read {
+    /* Not used? */
+    color: #525252;
+    display: block;
+    margin: 0.563rem 0rem 0rem 0rem;
+}
+
+.xodl .bx--accordion__item--active.cd--accordion__item--material-specs .cd--accordion__content {
+    /* Not used? */
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: minmax(auto, auto) minmax(auto, auto) minmax(auto, auto) 1fr;
+    -ms-grid-rows: repeat(4, 1fr);
+    grid-template-columns:
+        minmax(auto, auto) minmax(auto, auto) minmax(auto, auto) minmax(25rem, 44.563rem);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1.125rem 1.875rem;
+}
+
+.xodl .cd--accordion__item--technical-specs .cd--accordion__content {
+    /* Not used? */
+    display: none;
+}
+
+.xodl .bx--accordion__item--active.cd--accordion__item--technical-specs .cd--accordion__content {
+    display: grid;
+}
+
+.xodl-select-components-wrapper {
+    /* Not used? */
+    display: flex;
+    flex-direction: column;
+}
+
+.xodl .cd--form-item--notes {
+    /* Not used? */
+    height: 100%;
+    grid-row: span 4;
+}
+
+.xodl .cd--form-item--notes .bx--text-area__wrapper {
+    /* Not used? */
+    height: 100%;
+}
+
+.xodl .bx--text-area {
+    /* Not used? */
+    border: solid 0.063rem #707070;
+    resize: none;
+}
+
+.xodl .cd--form-item--notes .bx--text-area {
+    /* Not used? */
+    margin: 0;
+}
+
+.xodl .cd--form-item--link {
+    /* Not used? */
+    grid-column: span 3;
+}
+
+.xodl-sub-title__text--light {
+    color: #fff;
+}
+
+.xodl-sub-title--boxed {
+    /* Not used? */
+    display: flex;
+    justify-content: space-between;
+    background-color: #4c4c4c;
+    padding: 0.313rem 0.875rem 0.313rem 0.938rem;
+}
+
+.xodl-sub-header--accordion,
+.xods-sub-header.xodl-sub-header--accordion {
+    padding: 0.813rem 0rem 0.625rem 0rem;
+}
+
+.xodl-sub-header--accordion:hover::before {
+    /* Not used? */
+    background-color: unset;
+}
+
+.xodl-sub-header-text--light {
+    /* Not used? */
+    color: #fff;
+}
+
+.xodl-specifications-checkbox-container--edit {
+    /* Not used? */
+    width: 26.875rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.xodl-specifications-checkbox-container--edit__special {
+    /* Not used? */
+    width: unset;
+    grid-template-columns: auto 1fr;
+    column-gap: 1rem;
+}
+
+.xodl .bx--checkbox-wrapper.with-text-input {
+    /* Not used? */
+    grid-row: span 3;
+}
+
+.xodl .bx--accordion__arrow {
+    /* Not used? */
+    transform: rotate(0deg);
+    stroke: #000;
+    stroke-width: 2;
+    stroke-linejoin: round;
+}
+
+.xodl .bx--accordion__arrow path {
+    /* Not used? */
+    stroke: #000 0.125rem solid;
+}
+
+.xodl .bx--accordion__item--active .bx--accordion__arrow {
+    /* Not used? */
+    transform: rotate(90deg);
+}
+
+.xodl-action-btn-wrapper {
+    padding-bottom: 3.125rem;
+}
+
+.xodl-action-btn-wrapper .bx--btn {
+    margin-right: 1.25rem;
+    width: 8.063rem;
+}
+
+.xodl-action-link-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 1.25rem;
+}
+
+.xodl-action-link-wrapper--bottom {
+    padding-top: 1.875rem;
+}
+
+.xodl-full-width-field {
+    width: 100%;
+}
+
+.xodl-full-width-field .divider {
+    margin-top: 1.375rem;
+}
+
+.xodl-divider--with-total {
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
+    background-color: transparent;
+    border-top: 0.25rem solid #707070;
+}
+
+.xodl-divider--with-total .total-cost-wrapper {
+    height: 3.125rem;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 1.188rem;
+    text-align: left;
+    color: #161616;
+    padding: 0.875rem 1rem 0.875rem 2.688rem;
+    border: solid 0.125rem #707070;
+    border-top: 0;
+    background-color: #f3f3f3;
+    margin-bottom: 1.25rem;
+}
+
+.xodl-divider--with-total .total-cost-wrapper span:first-of-type {
+    font-weight: 600;
+    margin-right: 0.313rem;
+}
+
+.xodl-read-only .bx--text-input:disabled,
+.xodl-read-only .bx--dropdown--disabled,
+.xodl-read-only .bx--dropdown--disabled button,
+.xodl-read-only .bx--dropdown--disabled:hover {
+    -webkit-text-fill-color: #525252;
+    color: #525252;
+    background-color: transparent;
+    padding-left: 0;
+    cursor: default;
+}
+
+.xodl-read-only .bx--dropdown--disabled svg {
+    /* Not used? */
+    display: none;
+}
+
+.xodl .bx--checkbox-label.disabled:before {
+    background-color: #c6c6c6;
+}
+
+/* Removed for IN1233
+.xodl .bx--checkbox-label::before {
+    background-color: #c6c6c6;
+} */
+
+/* Removed for IN1245
+.xodl-quote-column .bx--checkbox-label::before {
+    background-color: #f3f3f3;
+} */
+
+.xodl .bx--checkbox:disabled+.bx--checkbox-label {
+    color: #525252;
+}
+
+.xodl .bx--checkbox-wrapper.with-text-input .bx--text-input:disabled {
+    padding: 0.313rem;
+    margin-top: -0.938rem;
+}
+
+.xodl-checkbox-header {
+    /* Not used? */
+    grid-column: span 2;
+    margin-top: 0.938rem;
+}
+
+.xodl-quote-generation {
+    display: flex;
+    margin-top: 2.5rem;
+    margin-bottom: 3.75rem;
+    background-color: #f4f4f4;
+    padding: 1.375rem 1.875rem 2.5rem 1.125rem;
+}
+
+.xodl-quote-generation .bx--checkbox-label {
+    padding-top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.xodl-quote-generation .bx--checkbox-wrapper {
+    width: 100%;
+}
+
+.xodl-quote-generation .bx--label {
+    margin-bottom: 0.5rem;
+    margin-top: 0.375rem;
+}
+
+.xodl-quote-column {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.875rem;
+}
+
+.xodl .bx--radio-button__label-text {
+    color: #161616;
+}
+
+.xodl-quote-column .bx--checkbox-label {
+    color: #161616;
+}
+
+/* Removed for IN1233
+
+.xodl-specifications-checkbox-container--edit .bx--checkbox-label::before {
+    background-color: transparent;
+} */
+
+
+
+/************************************** opportunity-detail-notes-styles.css (xodn) ***/
+.xodn-opportunity-detail-page {
+    /* Redundant? */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.xodn-form-container {
+    /* Redundant? */
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 3.875rem 0rem 3.688rem;
+}
+
+.xodn-return-link {
+    margin-bottom: 1.563rem;
+    font-size: 0.875rem;
+}
+
+
+.xodn-title {
+    /* Not used? */
+    display: block;
+    font-size: 1.875rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #525252;
+    font-weight: 600;
+}
+
+.xodn-created-by {
+    /* Not used? */
+    margin: 0.313rem 0rem 0.313rem;
+    font-size: 0.875rem;
+    text-align: right;
+    color: #525252;
+}
+
+.xodn-right-button {
+    /* Not used? */
+    margin-bottom: 1.25rem;
+    display: flex;
+    width: 100%;
+    justify-content: end;
+}
+
+.xodn-want-to-container {
+    /* Redundant? */
+    max-width: 8.063rem;
+}
+
+.xodn .bx--btn {
+    height: 2.25rem;
+    width: 8.063rem;
+}
+
+.xodn-summary-container {
+    /* Redundant? */
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 4.375rem 1.375rem 1rem;
+    height: 5.25rem;
+    background-color: #f3f3f3;
+}
+
+.xodn-summary-item {
+    /* Redundant? */
+    display: flex;
+    flex-direction: column;
+}
+
+.xodn-summary-header {
+    /* Redundant? */
+    height: 1.25rem;
+    font-size: 0.875rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    color: #161616;
+}
+
+.xodn-bold-text {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #525252;
+}
+
+.xodn-normal-text {
+    /* Not used? */
+    font-size: 0.875rem;
+    color: #525252;
+}
+
+.xodn-owner-text {
+    /* Not used? */
+    width: 100%;
+    margin: 1rem 0rem 0.375rem 0rem;
+}
+
+.xodn-main-container {
+    /* Redundant? */
+    margin-top: 1.25rem;
+    display: flex;
+}
+
+.xodn-notes-header-container {
+    width: 100%;
+}
+
+.xodn-notes-header {
+    display: block;
+    font-size: 1.5rem;
+    color: #525252;
+    margin-bottom: 1.125rem;
+}
+
+.xodn-scrollable-container {
+    border: solid 0.063rem #e0e0e0;
+    border-left: 0rem;
+    overflow-y: scroll;
+    height: 27.5rem;
+}
+
+.xodn-note-item-container {
+    padding: 0.75rem 0.375rem 1rem 1rem;
+    border-bottom: solid 0.063rem #e0e0e0;
+    border-left: solid 0.063rem #e0e0e0;
+    height: 5.5rem;
+    width: auto;
+}
+
+.xodn-active-note {
+    border-left: solid 0.25rem #f89922;
+    background-color: #f3f3f3;
+}
+
+.xodn-note-description {
+    margin-bottom: 0.25rem;
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #161616;
+}
+
+.xodn-note-information {
+    margin-bottom: 1.25rem;
+    display: block;
+    font-size: 0.75rem;
+    color: #161616;
+}
+
+.xodn .bx--text-input {
+    width: 36.375rem;
+    margin-bottom: 1.938rem;
+}
+
+.xodn .bx--text-input::placeholder {
+    color: #161616;
+}
+
+.xodn .bx--text-area::placeholder {
+    color: #161616;
+    text-indent: 0;
+}
+
+.xodn-sub-header {
+    margin-bottom: 0.625rem;
+    height: 1.125rem;
+    display: block;
+    font-size: 0.875rem;
+    color: #525252;
+    background: none;
+    padding: 0;
+}
+
+.xodn-note-right-container {
+    height: 27.5rem;
+    margin-bottom: 17.688rem;
+}
+
+.xodn .bx--text-area {
+    height: 13.5rem;
+    border-bottom: 0rem;
+    resize: none;
+    margin-bottom: 2.75rem;
+}
+
+
+
+/************************************** opportunity-detail-read-styles.css (xodr) ***/
+.xodr-project-description {
+    /* Not used? */
+    margin: 1.188rem 0rem 1.188rem 1.125rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.875rem;
+    color: #161616;
+    opacity: 0.8;
+    line-height: 1.43;
+}
+
+.xodr-material-handling-container {
+    width: 32rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0.5rem 0rem 1.188rem 1.125rem;
+}
+
+.xodr-material-handling-item {
+    margin-bottom: 1.938rem;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.xodr-global-technical-specifications-container {
+    display: flex;
+    margin: 0rem 0rem 2rem 1.125rem;
+}
+
+.xodr-specifications-text-container {
+    margin-top: 0.5rem;
+    width: 16rem;
+}
+
+.xodr-specifications-checkbox-container {
+    width: 26.875rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.xodr-text-item {
+    margin-bottom: 1.938rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.xodr-empty-checkbox {
+    /* Not used? */
+    background-color: #c6c6c6;
+}
+
+.xodr-checkbox-label {
+    /* Not used? */
+    color: #525252;
+    margin-left: 0.625rem;
+}
+
+.xodr-checkbox-header {
+    margin-top: 0.5rem;
+    width: 25rem;
+}
+
+.xodr .bx--checkbox-label::before {
+    background-color: #c6c6c6;
+}
+
+.xodr .bx--checkbox:disabled+.bx--checkbox-label {
+    color: #525252;
+}
+
+
+
+/************************************** opportunity-detail-styles.css (xods) ***/
+.xods-opportunity-detail-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.xods-form-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1.5rem 3.875rem 0rem 3.688rem;
+}
+
+.xods-return-link {
+    font-size: 0.875rem;
+}
+
+.xods-created-by {
+    margin: 0.313rem 0rem 0.313rem;
+    font-size: 0.875rem;
+    text-align: right;
+    color: #525252;
+}
+
+.xods-title-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.813rem;
+}
+
+.xods-title {
+    font-size: 1.875rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #525252;
+    font-weight: 600;
+}
+
+.xods-want-to-container {
+    /* Not used? */
+    max-width: 8.063rem;
+}
+
+.xods-summary-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 4.375rem 1.375rem 1rem;
+    height: 5.25rem;
+    background-color: #f3f3f3;
+}
+
+.xods-summary-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.xods-summary-header {
+    height: 1.25rem;
+    font-size: 0.875rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    color: #161616;
+}
+
+.xods-summary-data {
+    margin-top: 0.313rem;
+}
+
+.xods-summary-data .bx--link {
+    line-height: 1;
+}
+
+.xods-right-button {
+    /* Not used? */
+    width: 8.063rem;
+}
+
+.xods-project-specifications-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.063rem;
+}
+
+.xods-sub-title {
+    margin: 1.5rem 0rem 0.938rem 0rem;
+    font-size: 1.5rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #525252;
+}
+
+.xods-sub-header {
+    height: 2.688rem;
+    padding: 0.813rem 0rem 0.625rem 1rem;
+    background-color: #fde3c3;
+}
+
+.xods-sub-header-text {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.xods .bx--checkbox-wrapper {
+    height: 1.563rem;
+}
+
+.xods-button-group {
+    margin-top: 2.813rem;
+}
+
+
+
+/************************************** opportunity-edit-note-styles.css (xoen) ***/
+.xoen-opportunity-detail-page {
+    /* Redundant? */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.xoen-form-container {
+    /* Redundant? */
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 3.875rem 0rem 3.688rem;
+}
+
+.xoen-return-link {
+    /* Not used? */
+    margin-bottom: 1.563rem;
+    font-size: 0.875rem;
+}
+
+.xoen-title {
+    /* Not used? */
+    display: block;
+    font-size: 1.875rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #525252;
+    font-weight: 600;
+}
+
+.xoen-created-by {
+    /* Not used? */
+    margin: 0.313rem 0rem 0.313rem;
+    font-size: 0.875rem;
+    text-align: right;
+    color: #525252;
+}
+
+.xoen-right-button {
+    /* Not used? */
+    margin-bottom: 1.25rem;
+    display: flex;
+    width: 100%;
+    justify-content: end;
+}
+
+.xoen-want-to-container {
+    /* Not used? */
+    max-width: 8.063rem;
+}
+
+.xoen .bx--btn {
+    height: 2.25rem;
+    width: 8.063rem;
+}
+
+.xoen-summary-container {
+    /* Not used? */
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 4.375rem 1.375rem 1rem;
+    height: 5.25rem;
+    background-color: #f3f3f3;
+}
+
+.xoen-summary-item {
+    /* Not used? */
+    display: flex;
+    flex-direction: column;
+}
+
+.xoen-summary-header {
+    /* Not used? */
+    height: 1.25rem;
+    font-size: 0.875rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    color: #161616;
+}
+
+.xoen-bold-text {
+    /* Not used? */
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #525252;
+}
+
+.xoen-normal-text {
+    /* Not used? */
+    font-size: 0.875rem;
+    color: #525252;
+}
+
+.xoen-owner-text {
+    /* Not used? */
+    width: 100%;
+    margin: 1rem 0rem 0.375rem 0rem;
+}
+
+.xoen-main-container {
+    /* Not used? */
+    margin-top: 1.25rem;
+    display: flex;
+}
+
+/* .notes-container {
+    display: flex;
+    flex-wrap: wrap;
+} */
+
+.xoen-notes-header-container {
+    /* Not used? */
+    width: 100%;
+}
+
+.xoen-notes-header {
+    display: block;
+    font-size: 1.5rem;
+    color: #525252;
+    margin-bottom: 1.125rem;
+}
+
+.xoen-scrollable-container {
+    /* Not used? */
+    margin-right: 1.688rem;
+    border: solid 0.063rem #e0e0e0;
+    border-left: 0rem;
+    overflow-y: scroll;
+    width: 20.313rem;
+    height: 27.5rem;
+}
+
+.xoen-note-item-container {
+    /* Not used? */
+    padding: 0.75rem 0.375rem 1rem 1rem;
+    border-bottom: solid 0.063rem #e0e0e0;
+    border-left: solid 0.063rem #e0e0e0;
+    height: 5.5rem;
+    width: auto;
+}
+
+.xoen-active-note {
+    /* Not used? */
+    border-left: solid 0.25rem #f89922;
+    background-color: #f3f3f3;
+}
+
+.xoen-note-description {
+    /* Not used? */
+    margin-bottom: 0.25rem;
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #161616;
+}
+
+.xoen-note-information {
+    /* Not used? */
+    margin-bottom: 1.25rem;
+    display: block;
+    font-size: 0.75rem;
+    color: #161616;
+}
+
+.xoen .bx--text-input {
+    width: 36.375rem;
+}
+
+.xoen .bx--text-input::placeholder {
+    color: #161616;
+}
+
+.xoen .bx--text-area::placeholder {
+    color: #161616;
+    text-indent: 0;
+}
+
+.xoen-sub-header {
+    /* Not used? */
+    margin-bottom: 0.625rem;
+    height: 1.125rem;
+    display: block;
+    font-size: 0.875rem;
+    color: #525252;
+    background: none;
+    padding: 0;
+}
+
+.xoen-note-right-container {
+    /* Not used? */
+    height: 27.5rem;
+    margin-bottom: 17.688rem;
+}
+
+.xoen .bx--text-area {
+    height: 13.5rem;
+    border-bottom: 0rem;
+    resize: none;
+}
+
+
+
+/************************************** opportunity-notes.css (xon) ***/
+.xon-notes-required {
+    color: #da1e27;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.xon-notes-element {
+    margin-top: 1rem;
+}
+
+.xon-notes-error-note {
+    margin-top: 0;
+}
+
+.xon-notes-primary-button {
+    margin-right: 1rem;
+}
+
+
+
+/************************************** progress-styles.css (xps) ***/
+.xps-progress-icon {
+    height: 0.875rem;
+    margin: 0.75rem 0rem 0rem 0.688rem;
+}
+
+.xps-progress-text {
+    margin-left: 0.563rem;
+}
+
+.xps-progress-background {
+    background-color: #f3f3f3;
+}
+
+.xps-progress-step {
+    /* Not used? */
+    min-width: 9rem;
+}
+
+.xps-progress-step-complete {
+    width: 12.5rem;
+    height: 2.5rem;
+    border-top: solid 0.375rem #329b19;
+    border-right: solid 0.063rem gray;
+    background-color: rgba(50, 155, 25, 0.15);
+    min-width: 9rem;
+}
+
+.xps-progress-bar-closed-button {
+    width: 20.313rem;
+    min-width: 20.313rem;
+}
+
+.xps-closed-label-text {
+    overflow: visible;
+}
+
+.xps-progress-step-current {
+    width: 12.5rem;
+    height: 2.5rem;
+    border-top: solid 0.375rem #0f61fd;
+    border-right: solid 0.063rem gray;
+    background-color: rgba(15, 97, 253, 0.17);
+}
+
+.xps-progress-step-incomplete {
+    width: 12.5rem;
+    height: 2.5rem;
+    border-top: solid 0.375rem #7b7b7b;
+    border-right: solid 0.063rem gray;
+    background-color: #f3f3f3;
+}
+
+.xps-progress-suspended {
+    width: 12.5rem;
+    height: 2.5rem;
+    border-top: solid 0.375rem #DA1E27;
+    border-right: solid 0.063rem gray;
+    background-color: #FFF1F1;
+}
+
+.xps-progress-right-side {
+    width: 50%;
+    border-top: solid 0.375rem #7b7b7b;
+}
+
+.xps-below-progress-bar {
+    margin-top: 1.25rem;
+    display: flex;
+}
+
+
+
+/************************************** quote-styles.css (xqs) ***/
+/* This file isn't included from anything? */
+
+
+
+/************************************** related-contacts-styles.css (xrc) ***/
+.xrc-contact-page {
+    /* Not used? */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.xrc-contacts-container,
+.xrc-contacts-main-container {
+    /* Not used? */
+    width: 100%;
+}
+
+.xrc-contacts-main-container {
+    /* Not used? */
+    margin-top: 1.25rem;
+}
+
+.xrc-contacts-header {
+    margin-right: 0.375rem;
+    font-size: 1.5rem;
+    color: #525252;
+}
+
+.xrc-contacts-header-container {
+    /* Not used? */
+    display: flex;
+    justify-content: space-between;
+}
+
+.xrc-links-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.125rem;
+    height: 3rem;
+    padding: 1rem 1.25rem 0rem 1rem;
+    background-color: #f3f3f3;
+    width: 100%;
+}
+
+.xrc-link-divider {
+    /* Not used? */
+    margin: 0rem 1.188rem 0rem 1.188rem;
+}
+
+.xrc-action-menu {
+    /* Not used? */
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.xrc-table-text {
+    /* Not used? */
+    color: #161616;
+}
+
+.xrc bx-table-cell {
+    color: #161616;
+}
+
+.xrc bx-table-row {
+    position: relative;
+    z-index: 100;
+}
+
+.xrc .bx--overflow-menu {
+    float: right;
+    position: relative;
+    z-index: 1000;
+    height: 1rem;
+}
+
+.xrc .bx--overflow-menu .bx--tooltip__trigger {
+    border: none;
+}
+
+.xrc-related-contacts-table-count {
+    float: right;
+}
+
+
+
+/************************************** signin-styles.css (xss) ***/
+/*
+    WTF
+body,
+html {
+    width: 100%;
+    height: 100%;
+} */
+
+.xss-main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: calc(100% - 3.75rem);
+}
+
+.xss-login {
+    margin: 3.75rem;
+    max-width: 25rem;
+    width: 100%;
+    border: solid 0.063rem #cfcfcf;
+}
+
+.xss-login__header {
+    padding: 1.875rem 3.75rem;
+}
+
+.xss-login__title {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 1.875rem;
+    color: #525252;
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: 0;
+    margin: 1.5rem 0rem 1.5rem 0rem;
+}
+
+.xss-login__tip {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: #da1e27;
+}
+
+.xss-login__notification {
+    margin: 0;
+}
+
+.xss-login__form {
+    padding: 1.875rem 3.75rem 3.75rem 3.75rem;
+}
+
+.xss-login__input {
+    margin-bottom: 0.625rem;
+}
+
+.xss-login__input__label {
+    font-size: 0.875rem;
+    letter-spacing: 0.023rem;
+    color: #525252;
+}
+
+.xss-login__actions {
+    padding-top: 0.625rem;
+}
+
+.xss-login__submit {
+    margin-bottom: 1.875rem;
+}
+
+/*Link Box Styles*/
+.xss-link-box {
+    border: 0.188rem #f4f4f4 solid;
+    min-height: 13.125rem;
+    width: 28.125rem;
+    margin-top: 6.25rem;
+    margin-right: 1.25rem;
+ 
+}
+
+.xss-link-box:last-child {
+    margin-right: 0rem;
+}
+
+.xss-link-box-inner {
+    margin: 2rem 2rem 2rem 2rem;
+}
+
+.xss-link-box a {
+    font-size: 2.625rem;
+    font-family: "IBM Plex Sans Semi-Bold", sans-serif;
+}
+
+.xss-link-box p {
+    font-size: 1.125rem;
+    margin-top: 1.5rem;
+    color: #707070;
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+.xss-color-box {
+    height: 3.125rem;
+    margin-bottom: 1.25rem;
+}
+
+.xss-orch-color {
+    background-color: #F89922
+}
+
+.xss-comp-color {
+    background-color: #BB6A0D
+}
+
+.xss-con-color {
+    background-color: #525252
+}
+
+.xss-virt-color {
+    background-color: #707070
+}
+
+.xss-home-container {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.xss-version {
+	margin-left: 2rem;
+}
