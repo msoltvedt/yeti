@@ -5,31 +5,181 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
 
-    <title>Yeti Design System - Breadcrumb Pattern</title>
+    <title>Yeti Design System - Modal Component</title>
 
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/yeti-examples-only.css">
 
   </head>
-  <body class="yeti-modal-has_active_modal">
+  <body>
 
     <div class="ydoc-wrapper">
 
       <div role="main">
     
-        <h1 class="margin-top-none">Modal</h1>
+        <h1 class="margin-top-none">Modal Component</h1>
 
         <yeti-page-contents></yeti-page-contents>
 
         <h2 class="margin-bottom-3">Code Samples</h2>
 
 
-
         <h3 class="margin-bottom-2">Default</h3>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
+<a href="" id="trigger1">Click to open Modal 1</a>
 
+<yeti-modal heading="Default Modal" id="modal1" described-by="modal1_description">
+
+    <yeti-modal-content>
+        <p id="modal1_description">
+            I'm some content.
+        </p>
+    </yeti-modal-content>
+    
+    <yeti-modal-buttons>
+        <button class="yeti-button yeti-button-primary">OK</button>
+        <button class="yeti-button yeti-button-ghost">Cancel</button>
+    </yeti-modal-buttons>
+
+</yeti-modal>
+
+
+<script>
+    const trigger1 = document.getElementById("trigger1");
+    const modal1 = document.getElementById("modal1");
+
+    trigger1.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal1.isActive = true;
+    })
+</script>
+        </div><!-- /code_sample -->
+
+
+        <h3 class="margin-bottom-2">Different Sizes</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<a href="" id="trigger2">Click to open an extra small modal</a>
+
+<yeti-modal heading="Extra Small Modal" size="xs" id="modal2">
+    <yeti-modal-content>
+        I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. I'm a wee modal. 
+    </yeti-modal-content>
+    <yeti-modal-buttons>
+        <button class="yeti-button yeti-button-primary">Yup</button>
+        <button class="yeti-button yeti-button-ghost">Nevermind</button>
+    </yeti-modal-buttons>
+</yeti-modal>
+
+<script>
+    const trigger2 = document.getElementById("trigger2");
+    const modal2 = document.getElementById("modal2");
+
+    trigger2.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal2.isActive = true;
+    })
+</script>
+        </div><!-- /code_sample -->
+
+
+        <h3 class="margin-bottom-2">Without Close Icon</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<a href="" id="trigger3">Click to open a modal with no close button</a>
+
+<yeti-modal heading="Modal Sans Close" id="modal3" show-close="false">
+    <yeti-modal-content>
+        I have no close button. Don't forget to make the buttons below do something; I did, and now you're stuck here. Forever.
+    </yeti-modal-content>
+    <yeti-modal-buttons>
+        <button class="yeti-button yeti-button-primary">Mu</button>
+        <button class="yeti-button yeti-button-ghost">Hahaha</button>
+    </yeti-modal-buttons>
+</yeti-modal>
+
+<script>
+    const trigger3 = document.getElementById("trigger3");
+    const modal3 = document.getElementById("modal3");
+
+    trigger3.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal3.isActive = true;
+    })
+</script>
+        </div><!-- /code_sample -->
+
+
+        <h3 class="margin-bottom-2">With Header Action</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<a href="" id="trigger5">Click to open a modal with a header action like a link or Menu Button.</a>
+
+<yeti-modal heading="Action Jackson" id="modal5">
+
+    <yeti-modal-header-action>
+        <a href="">I'm a link</a>
+    </yeti-modal-header-action>
+    
+    <yeti-modal-content>
+        This modal's header action is a link, but it could also be a Menu Button or pretty much anything else.
+    </yeti-modal-content>
+    
+    <yeti-modal-buttons>
+        <button class="yeti-button yeti-button-primary">Got It</button>
+        <button class="yeti-button yeti-button-ghost">Whatever</button>
+    </yeti-modal-buttons>
+
+</yeti-modal>
+
+<script>
+    const trigger5 = document.getElementById("trigger5");
+    const modal5 = document.getElementById("modal5");
+
+    trigger5.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal5.isActive = true;
+    })
+</script>
+        </div><!-- /code_sample -->
+
+
+        <h2 class="margin-bottom-2">Side Sheet variant</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<a href="" id="ssm-trigger">Click to open a Side Sheet Modal</a>
+
+<yeti-modal heading="Side Sheet Modal" id="ssm-modal" is-side-sheet="true">
+    
+    <yeti-modal-content>
+        I'm some content.
+    </yeti-modal-content>
+    
+    <yeti-modal-buttons>
+        <button class="yeti-button yeti-button-primary">Important</button>
+        <button class="yeti-button yeti-button-ghost">Less So</button>
+    </yeti-modal-buttons>
+</yeti-modal>
+
+<script>
+    const trigger4 = document.getElementById("ssm-trigger");
+    const modal4 = document.getElementById("ssm-modal");
+
+    trigger4.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal4.isActive = true;
+    })
+</script>
         </div><!-- /code_sample -->
 
 
@@ -37,40 +187,15 @@
         <h2 class="margin-bottom-3">Technical Notes</h2>
 
         <ul class="yeti-list-bulleted">
-          <li>The sizes are based on the container width.</li>
+          <li>Yeti Modal will trap focus while open.</li>
+          <li>The actual modal will be appended to the end of the body tag, and all other contents of the body will be wrapped in a div so we can prevent scrolling while the modal is open.</li>
+          <li>Upon opening, the Modal will assign focus the first focusable thing in its content area. If nothing in the content area is focusable, then the content area itself will gain focus.</li>
+          <li>Upon closing, the Modal will return focus to whatever had it before it opened.</li>
         </ul>
 
       </div><!-- /main -->
     
-    </div><!-- /wrapper -->    
- 
-<div class="yeti-modal-overlay yeti-modal-overlay-light">
-  <div class="yeti-modal yeti-modal-size-xs">
-
-      <div class="yeti-modal-header">
-          <h1 class="yeti-modal-header-heading">I'm a heading</h1>
-          <button class="yeti-modal-header-close yeti-button-ghost">
-            <span class="material-icons">close</span>
-          </button>
-      </div>
-
-      <div class="yeti-modal-content">
-
-        I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content. I'm some content.
-
-        <div class="yeti-modal-content-fade"></div>
-
-      </div>
-
-      <div class="yeti-modal-actions">
-        <ul class="yeti-modal-actions-buttons">
-          <li><button class="yeti-button">Button</button></li>
-          <li><button class="yeti-button yeti-button-ghost">Cancel</button></li>
-        </ul>
-      </div>
-
-  </div>
-</div>
+    </div><!-- /wrapper -->
 
     <script type="module" src="./yeti/yeti.esm.js"></script>
 

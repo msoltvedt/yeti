@@ -14,7 +14,7 @@
 | `iconClass` | `icon-class` | CSS classlist applied to the actual element producing the icon.                                                                                                     | `string`  | `''`                       |
 | `iconCode`  | `type`       | The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).                                                                              | `string`  | `'check_circle'`           |
 | `iconId`    | `icon-id`    | id of the actual element producing the icon. Set to a unique id if one is not provided.                                                                             | `string`  | `utils.generateUniqueId()` |
-| `iconStyle` | `icon-style` | The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).                                                                              | `string`  | `''`                       |
+| `iconStyle` | `icon-style` | The style of icon. Defaults to solid, but can also be "outlined".                                                                                                   | `string`  | `''`                       |
 
 
 ## Dependencies

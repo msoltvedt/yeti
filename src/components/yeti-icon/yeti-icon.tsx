@@ -15,7 +15,7 @@ export class YetiIcon {
   @Prop({ attribute: 'type'}) iconCode: string = 'check_circle';
 
   /**
-   * The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).
+   * The style of icon. Defaults to solid, but can also be "outlined".
    */
   @Prop() iconStyle: string = '';
 

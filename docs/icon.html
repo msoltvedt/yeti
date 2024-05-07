@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
 
-    <title>Yeti Design System - Icon Pattern</title>
+    <title>Yeti Design System - Icon Component</title>
 
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/yeti-examples-only.css">
@@ -17,40 +17,64 @@
 
       <div role="main">
     
-        <h1 class="margin-top-none">Icons</h1>
+        <h1 class="margin-top-none">Icon Component</h1>
 
         <yeti-page-contents></yeti-page-contents>
 
         <h2 class="margin-bottom-3">Code Samples</h2>
 
+        <p>
+            Yeti uses <a href="https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Filled">Google's Material Icons</a>. The <code>type</code> attribute shown below corresponds to Google's key (i.e. <code>check_circle</code>).
+        </p>
 
 
         <h3 class="margin-bottom-2">Default</h3>
 
-        <p class="margin-bottom-2">
-            Yeti uses <a href="https://fonts.google.com/icons?icon.set=Material+Icons">Google Material Icons</a>.
-        </p>
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-icon type="check_circle"></yeti-icon>
+
+        </div><!-- /code_sample -->
+
+
+        <h3 class="margin-bottom-2">Outlined Style</h3>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-
-<span class="material-icons home">home</span>
+<yeti-icon type="check_circle" icon-style="outlined"></yeti-icon>
 
         </div><!-- /code_sample -->
 
 
 
-        <h3 class="margin-bottom-2">With Alternate AT Text</h3>
+        <h3 class="margin-bottom-2">With Screenreader Text</h3>
 
-        <p class="margin-bottom-2">
-            Usually the word Google chooses as alt text is good enough, but you can also specify it yourself.
+        <p>
+          Screenreaders will announce Google's key for the icon if you don't provide alternate text as shown below. If you provide an empty string to <code>alt</code> then nothing will be announced.
         </p>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
+<yeti-icon type="check_circle" alt="Complete!"></yeti-icon>
 
-<span class="material-icons home" aria-hidden="true">home</span>
-<span class="yeti-a11y-hidden">Return to home page</span>
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-2">Focusable</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-icon type="check_circle" focusable="true"></yeti-icon>
+
+        </div><!-- /code_sample -->
+
+
+        <h3 class="margin-bottom-2">Alternate Styles</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-icon type="check_circle" icon-class="yeti-color-blue-primary"></yeti-icon>
 
         </div><!-- /code_sample -->
 
@@ -59,7 +83,7 @@
         <h2 class="margin-bottom-3">Technical Notes</h2>
 
         <ul class="yeti-list-bulleted">
-          <li>See <a href="https://fonts.google.com/icons?icon.set=Material+Icons">Google Material Icons</a> for more information.</li>
+          <li>As shown above, use CSS to change the color and size of the icon.</li>
         </ul>
 
       </div><!-- /main -->

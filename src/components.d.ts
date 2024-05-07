@@ -136,6 +136,10 @@ export namespace Components {
          */
         "inputName": string;
         /**
+          * Determines whether the field uses block (default) or inline labels.
+         */
+        "isInline": boolean;
+        /**
           * Whether the input is currently valid or invalid.
          */
         "isValid": boolean;
@@ -197,7 +201,7 @@ export namespace Components {
          */
         "iconId"?: string;
         /**
-          * The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).
+          * The style of icon. Defaults to solid, but can also be "outlined".
          */
         "iconStyle": string;
     }
@@ -1109,6 +1113,10 @@ declare namespace LocalJSX {
          */
         "inputName"?: string;
         /**
+          * Determines whether the field uses block (default) or inline labels.
+         */
+        "isInline"?: boolean;
+        /**
           * Whether the input is currently valid or invalid.
          */
         "isValid"?: boolean;
@@ -1173,7 +1181,7 @@ declare namespace LocalJSX {
          */
         "iconId"?: string;
         /**
-          * The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).
+          * The style of icon. Defaults to solid, but can also be "outlined".
          */
         "iconStyle"?: string;
     }

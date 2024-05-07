@@ -5,10 +5,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
 
-    <title>Yeti Design System - Input Pattern</title>
+    <title>Yeti Design System - Input Component</title>
 
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/yeti-examples-only.css">
+
+    <style>
+        .test {
+            border: 3px solid purple;
+        }
+    </style>
 
   </head>
   <body>
@@ -17,20 +23,66 @@
 
       <div role="main">
     
-        <h1 class="margin-top-none">Input</h1>
+        <h1 class="margin-top-none">Input Component</h1>
 
         <yeti-page-contents></yeti-page-contents>
 
         <h2 class="margin-bottom-3">Code Samples</h2>
 
+
         <h3 class="margin-bottom-2">Text</h3>
+
 
         <h4 class="margin-bottom-2">Default</h4>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
     
-<input type="text" class="yeti-input">
+<yeti-input></yeti-input>
+
+        </div><!-- /code_sample -->
+
+
+        <h4 class="margin-bottom-2">With CSS</h4>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<yeti-input input-class="yeti-width-40"></yeti-input>
+
+        </div><!-- /code_sample -->
+
+
+        <h4 class="margin-bottom-2">With a Maximum Length</h4>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<yeti-input input-maxlength="5"></yeti-input>
+
+        </div><!-- /code_sample -->
+
+
+        <h4 class="margin-bottom-2">With an ID</h4>
+
+        <p class="margin-bottom-2">
+            If you want to pass an id down from the component to the actual input field, you can use <code>input-id</code>. Regular <code>id</code> will still point to the component wrapper (<code>yeti-input</code>).
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<yeti-input input-id="inputFieldId"></yeti-input>
+
+        </div><!-- /code_sample -->
+
+
+        <h4 class="margin-bottom-2">With a Value</h4>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<yeti-input value="my life story"></yeti-input>
 
         </div><!-- /code_sample -->
 
@@ -39,8 +91,73 @@
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-    
-<input type="text" class="yeti-input yeti-input__error">
+
+<yeti-input is-valid="false"></yeti-input>
+
+        </div><!-- /code_sample -->
+
+
+        <h4 class="margin-bottom-4">Ready for Verification</h4>
+
+        <p class="margin-bottom-2">
+            The Input component will fire two different events that signify it's ready for verification: slow and fast. The slow verification event, which is called <code>readyToVerifySlow</code>, will happen <em>after</em> the user is done interacting with an input (e.g. on blur).
+        </p>
+
+        <h5 class="margin-top-3 margin-bottom-2">Slow</h5>
+
+        <p class="margin-bottom-2">
+            In the example below, we use <em>slow verification</em> to see if the field is empty. If it is, we set the <code>is-valid</code> attribute to <code>false</code>, and if the field has a value we set <code>is-valid</code> to <code>true</code>.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<yeti-input id="slowVerification"></yeti-input>
+
+<script>
+
+    const inputElementSlow = document.getElementById('slowVerification');
+
+    inputElementSlow.addEventListener('readyToVerifySlow', (ev) => {
+        let input = ev.target;
+        let value = input.value;
+        if (!value) {
+            input.setAttribute('is-valid', false);
+        } else {
+            input.setAttribute('is-valid', true);
+        }
+    });
+
+</script>
+
+        </div><!-- /code_sample -->
+
+        <h5 class="margin-bottom-2">Fast</h5>
+
+        <p class="margin-bottom-2">
+            In the example below, we do the same thing as in the slow example above, but this time we use <em>fast verification</em>.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<yeti-input id="fastVerification"></yeti-input>
+
+<script>
+
+    const inputElementFast = document.getElementById('fastVerification');
+
+    inputElementFast.addEventListener('readyToVerifyFast', (ev) => {
+        let input = ev.target;
+        let value = input.value;
+        if (value == '') {
+            input.setAttribute('is-valid', false);
+        } else {
+            input.setAttribute('is-valid', true);
+        }
+    });
+
+</script>
 
         </div><!-- /code_sample -->
 
