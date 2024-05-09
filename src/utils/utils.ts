@@ -338,7 +338,8 @@ let uniqueId = 0;
 export interface YetiFileSystemItem {
   name: string,
   content?: YetiFileSystemItem[],
-  path: string,
+  path: string, // the "actual" path used by -- and in communication with -- the server
+  displayPath: string, // the path that we'll show the user beneath the main picker window
   isLoading?: boolean,
   selectedIndex?: number,
   offset?: number,
