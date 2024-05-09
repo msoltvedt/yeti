@@ -1,935 +1,1369 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
+
+<head>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
 
-    <title>Yeti Design System - Table Pattern</title>
+    <title>Yeti Design System - Table Component</title>
 
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/yeti-examples-only.css">
 
-  </head>
-  <body>
+</head>
+
+<body>
 
     <div class="ydoc-wrapper">
 
-      <div role="main">
-    
-        <h1 class="margin-top-none">Table</h1>
-
-        <yeti-page-contents></yeti-page-contents>
-
-        <h2 class="margin-bottom-3">Code Samples</h2>
-
-
-
-        <h3 class="margin-bottom-2">Default</h3>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-    
-<table class="yeti-table">
-
-    <thead class="yeti-table-head">
-
-        <tr class="yeti-table-head-row">
-            <th class="yeti-table-heading">Column A</th>
-            <th class="yeti-table-heading">Column B</th>
-            <th class="yeti-table-heading">Column C</th>
-            <th class="yeti-table-heading">Column D</th>
-        </tr>
-
-    </thead>
-
-
-    <tbody class="yeti-table-body">
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A1</td>
-            <td class="yeti-table-cell">B1</td>
-            <td class="yeti-table-cell">C1</td>
-            <td class="yeti-table-cell">D1</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A2</td>
-            <td class="yeti-table-cell">B2</td>
-            <td class="yeti-table-cell">C2</td>
-            <td class="yeti-table-cell">D2</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A3</td>
-            <td class="yeti-table-cell">B3</td>
-            <td class="yeti-table-cell">C3</td>
-            <td class="yeti-table-cell">D3</td>
-        </tr>
-
-    </tbody>
-
-</table>
-
-        </div><!-- /code_sample -->
-
-
-
-        <h3 class="margin-bottom-2">With Row Headings</h3>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-    
-<table class="yeti-table">
-
-    <tbody class="yeti-table-body">
-
-        <tr class="yeti-table-body-row">
-            <th class="yeti-table-heading" scope="row">A1</th>
-            <td class="yeti-table-cell">B1</td>
-            <td class="yeti-table-cell">C1</td>
-            <td class="yeti-table-cell">D1</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <th class="yeti-table-heading" scope="row">A2</th>
-            <td class="yeti-table-cell">B2</td>
-            <td class="yeti-table-cell">C2</td>
-            <td class="yeti-table-cell">D2</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <th class="yeti-table-heading" scope="row">A3</th>
-            <td class="yeti-table-cell">B3</td>
-            <td class="yeti-table-cell">C3</td>
-            <td class="yeti-table-cell">D3</td>
-        </tr>
-
-    </tbody>
-
-</table>
-
-        </div><!-- /code_sample -->
-
-
-
-        <h3 class="margin-bottom-2">With Selected Row</h3>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-    
-<table class="yeti-table">
-
-    <thead class="yeti-table-head">
-
-        <tr class="yeti-table-head-row">
-            <th class="yeti-table-heading">Column A</th>
-            <th class="yeti-table-heading">Column B</th>
-            <th class="yeti-table-heading">Column C</th>
-            <th class="yeti-table-heading">Column D</th>
-        </tr>
-
-    </thead>
-
-
-    <tbody class="yeti-table-body">
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A1</td>
-            <td class="yeti-table-cell">B1</td>
-            <td class="yeti-table-cell">C1</td>
-            <td class="yeti-table-cell">D1</td>
-        </tr>
-
-        <tr class="yeti-table-body-row yeti-table-body-row__selected">
-            <td class="yeti-table-cell">A2</td>
-            <td class="yeti-table-cell">B2</td>
-            <td class="yeti-table-cell">C2</td>
-            <td class="yeti-table-cell">D2</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A3</td>
-            <td class="yeti-table-cell">B3</td>
-            <td class="yeti-table-cell">C3</td>
-            <td class="yeti-table-cell">D3</td>
-        </tr>
-
-    </tbody>
-
-</table>
-
-        </div><!-- /code_sample -->
-
-
-
-        <h3 class="margin-bottom-2">Content Alignment</h3>
-
-        <h4 class="margin-bottom-2">Numeric Values</h4>
-
-        <p class="margin-bottom-2">
-            Table cell values default to alpha-numeric (left-aligned). Numeric values should be right-aligned as shown in column C below.
-        </p>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-    
-<table class="yeti-table">
-
-    <thead class="yeti-table-head">
-
-        <tr class="yeti-table-head-row">
-            <th class="yeti-table-heading">Column A</th>
-            <th class="yeti-table-heading">Column B</th>
-            <th class="yeti-table-heading yeti-table-numeric">Nice Numbers</th>
-            <th class="yeti-table-heading">Column D</th>
-        </tr>
-
-    </thead>
-
-
-    <tbody class="yeti-table-body">
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A1</td>
-            <td class="yeti-table-cell">B1</td>
-            <td class="yeti-table-cell yeti-table-numeric">22</td>
-            <td class="yeti-table-cell">D1</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A2</td>
-            <td class="yeti-table-cell">B2</td>
-            <td class="yeti-table-cell yeti-table-numeric">24</td>
-            <td class="yeti-table-cell">D2</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A3</td>
-            <td class="yeti-table-cell">B3</td>
-            <td class="yeti-table-cell yeti-table-numeric">12</td>
-            <td class="yeti-table-cell">D3</td>
-        </tr>
-
-    </tbody>
-
-</table>
-
-        </div><!-- /code_sample -->
-
-
-
-        <h4 class="margin-bottom-2">Control Cells</h4>
-
-        <p class="margin-bottom-2">
-            Controls should be centered.
-        </p>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-    
-<table class="yeti-table">
-
-    <thead class="yeti-table-head">
-
-        <tr class="yeti-table-head-row">
-            <th class="yeti-table-heading yeti-table-control">Controls</th>
-            <th class="yeti-table-heading">Column A</th>
-            <th class="yeti-table-heading">Column B</th>
-            <th class="yeti-table-heading">Column C</th>
-        </tr>
-
-    </thead>
-
-
-    <tbody class="yeti-table-body">
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell yeti-table-control">[control]</td>
-            <td class="yeti-table-cell">A1</td>
-            <td class="yeti-table-cell">B1</td>
-            <td class="yeti-table-cell">C1</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell yeti-table-control">[control]</td>
-            <td class="yeti-table-cell">A2</td>
-            <td class="yeti-table-cell">B2</td>
-            <td class="yeti-table-cell">C2</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell yeti-table-control">[control]</td>
-            <td class="yeti-table-cell">A3</td>
-            <td class="yeti-table-cell">B3</td>
-            <td class="yeti-table-cell">C3</td>
-        </tr>
-
-    </tbody>
-
-</table>
-
-        </div><!-- /code_sample -->
-
-
-
-        <h3 class="margin-bottom-2">Scrollable</h3>
-
-        <p class="margin-bottom-2">
-            Tables default to 100% width, but sometimes their content will push them beyond the horizontal limits of their container. One option in this case is to use the scrollable wrapper. Note that a tabindex of 0 is necessary for keyboard users.
-        </p>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
- 
-<div class="yeti-table__scrollable" tabindex="0">
-
-    <table class="yeti-table">
-
-        <thead class="yeti-table-head">
-
-            <tr class="yeti-table-head-row">
-                <th class="yeti-table-heading">Column A</th>
-                <th class="yeti-table-heading">Column B</th>
-                <th class="yeti-table-heading">Column C</th>
-                <th class="yeti-table-heading">Column D</th>
-            </tr>
-
-        </thead>
-
-
-        <tbody class="yeti-table-body">
-
-            <tr class="yeti-table-body-row">
-                <td class="yeti-table-cell">supercalifragilisticexpialidocious</td>
-                <td class="yeti-table-cell">supercalifragilisticexpialidocious</td>
-                <td class="yeti-table-cell">supercalifragilisticexpialidocious</td>
-                <td class="yeti-table-cell">supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious</td>
-            </tr>
-
-            <tr class="yeti-table-body-row">
-                <td class="yeti-table-cell">A2</td>
-                <td class="yeti-table-cell">B2</td>
-                <td class="yeti-table-cell">C2</td>
-                <td class="yeti-table-cell">D2</td>
-            </tr>
-
-            <tr class="yeti-table-body-row">
-                <td class="yeti-table-cell">A3</td>
-                <td class="yeti-table-cell">B3</td>
-                <td class="yeti-table-cell">C3</td>
-                <td class="yeti-table-cell">D3</td>
-            </tr>
-
-        </tbody>
-
-    </table>
-
-</div>
-
-        </div><!-- /code_sample -->
-
-
-
-        <h3 class="margin-bottom-2">Fixed</h3>
-
-        <p class="margin-bottom-2">
-            The fixed layout allows you to define fixed widths on columns (the default is equal widths). This also means the table will not expand beyond 100%, and cell content that doesn't fit will be truncated.
-        </p>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-
-<table class="yeti-table yeti-table__fixed">
-
-    <thead class="yeti-table-head">
-
-        <tr class="yeti-table-head-row">
-            <th class="yeti-table-heading">Column A</th>
-            <th class="yeti-table-heading">Column B</th>
-            <th class="yeti-table-heading">Column C</th>
-            <th class="yeti-table-heading">Column D</th>
-        </tr>
-
-    </thead>
-
-
-    <tbody class="yeti-table-body">
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">supercalifragilisticexpialidocious</td>
-            <td class="yeti-table-cell">demonstrate wrapping behavior demonstrate wrapping behavior demonstrate wrapping behavior demonstrate wrapping behavior demonstrate wrapping behavior demonstrate wrapping behavior</td>
-            <td class="yeti-table-cell">supercalifragilisticexpialidocious</td>
-            <td class="yeti-table-cell">supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A2</td>
-            <td class="yeti-table-cell">B2</td>
-            <td class="yeti-table-cell">C2</td>
-            <td class="yeti-table-cell">D2</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A3</td>
-            <td class="yeti-table-cell">B3</td>
-            <td class="yeti-table-cell">C3</td>
-            <td class="yeti-table-cell">D3</td>
-        </tr>
-
-    </tbody>
-
-</table>
-
-        </div><!-- /code_sample -->
-
-
-
-        <h4 class="margin-bottom-2">Grid Alignment</h4>
-
-        <p class="margin-bottom-2">
-            The columns will default to equal widths, but you can set them to match the <a href="grid.html">Grid pattern</a>. Note that the grid is 16 columns, so make sure you specify the width of each column (you only need to specify it on the first row) and that they add up to 16.
-        </p>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-
-<table class="yeti-table yeti-table__fixed">
-
-    <thead class="yeti-table-head">
-
-        <tr class="yeti-table-head-row">
-            <th class="yeti-table-heading yeti-table-grid-2">Column A (2/16)</th>
-            <th class="yeti-table-heading yeti-table-grid-3">Column B (3/16)</th>
-            <th class="yeti-table-heading yeti-table-grid-6">Column C (6/16)</th>
-            <th class="yeti-table-heading yeti-table-grid-5">Column D (5/16)</th>
-        </tr>
-
-    </thead>
-
-
-    <tbody class="yeti-table-body">
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">supercalifragilisticexpialidocious</td>
-            <td class="yeti-table-cell">demonstrate wrapping behavior demonstrate wrapping behavior demonstrate wrapping behavior demonstrate wrapping behavior demonstrate wrapping behavior demonstrate wrapping behavior</td>
-            <td class="yeti-table-cell">supercalifragilisticexpialidocious</td>
-            <td class="yeti-table-cell">supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A2</td>
-            <td class="yeti-table-cell">B2</td>
-            <td class="yeti-table-cell">C2</td>
-            <td class="yeti-table-cell">D2</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A3</td>
-            <td class="yeti-table-cell">B3</td>
-            <td class="yeti-table-cell">C3</td>
-            <td class="yeti-table-cell">D3</td>
-        </tr>
-
-    </tbody>
-
-</table>
-
-        </div><!-- /code_sample -->
-
-
-
-        <h3 class="margin-bottom-2">Pagination</h3>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-
-<!-- Note this bar can contain more than just pagination -->
-<div class="yeti-table-actions">
-
-    <!-- Pagination -->
-    <nav class="yeti-table-pagination" aria-label="Table Pagination">
-
-        <!-- Items per page -->
-        <div class="yeti-table-pagination-items_per_page">
-
-            <label for="demo-items_per_page" class="yeti-table-pagination-items_per_page-label">Items per page:</label>
-
-            <select id="demo-items_per_page" class="yeti-select yeti-table-pagination-items_per_page-select">
-                <option value="10" class="yeti-table-pagination-items_per_page-select-option">10</option>
-                <option value="20" class="yeti-table-pagination-items_per_page-select-option">20</option>
-                <option value="30" class="yeti-table-pagination-items_per_page-select-option">30</option>
-                <option value="40" class="yeti-table-pagination-items_per_page-select-option">40</option>
-                <option value="50" class="yeti-table-pagination-items_per_page-select-option">50</option>
-            </select>
-
-            <span class="yeti-table-pagination-items_per_page-count">1-10 of 103 items</span>
-
-        </div>
-
-
-        <!-- Pages -->
-        <div class="yeti-table-pagination-pages">
-
-            <label for="demo-pages" class="yeti-a11y-hidden">Page number, of 11 pages</label>
-
-            <select id="demo-pages" class="yeti-select yeti-table-pagination-pages-select">
-                <option value="1" class="yeti-table-pagination-pages-select-page">1</option>
-                <option value="2" class="yeti-table-pagination-pages-select-page">2</option>
-                <option value="3" class="yeti-table-pagination-pages-select-page">3</option>
-                <option value="4" class="yeti-table-pagination-pages-select-page">4</option>
-                <option value="5" class="yeti-table-pagination-pages-select-page">5</option>
-                <option value="6" class="yeti-table-pagination-pages-select-page">6</option>
-                <option value="7" class="yeti-table-pagination-pages-select-page">7</option>
-                <option value="8" class="yeti-table-pagination-pages-select-page">8</option>
-                <option value="9" class="yeti-table-pagination-pages-select-page">9</option>
-                <option value="10" class="yeti-table-pagination-pages-select-page">10</option>
-                <option value="11" class="yeti-table-pagination-pages-select-page">11</option>
-            </select>
-
-            <span class="yeti-table-pagination-pages-of_pages" aria-hidden="true">of 11 pages</span>
-
-            <ul class="yeti-table-pagination-pages-buttons">
-                <li class="yeti-table-pagination-pages-buttons-action">
-                    <button class="yeti-table-pagination-pages-buttons-button" disabled>
-                        <span class="material-icons" aria-hidden="true">arrow_left</span>
-                        <span class="yeti-a11y-hidden">Previous page</span>
-                    </button>
-                </li>
-                <li class="yeti-table-pagination-pages-buttons-action">
-                    <button class="yeti-table-pagination-pages-buttons-button">
-                        <span class="material-icons" aria-hidden="true">arrow_right</span>
-                        <span class="yeti-a11y-hidden">Next page</span>
-                    </button>
-                </li>
+        <div role="main">
+
+            <h1 class="margin-top-none">Table Component</h1>
+
+            <yeti-page-contents></yeti-page-contents>
+
+
+
+            <h2 class="margin-bottom-3">Code Samples</h2>
+
+
+
+            <h3 class="margin-bottom-2">Default</h3>
+
+            <p class="margin-bottom-2">
+                Provide the table data by setting the <code>contents</code> attribute with JSON matching the <a
+                    href="#yetiTableContents"><code>YetiTableContents</code> interface</a>.
+            </p>
+
+            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+            <div class="ydoc-code_sample">
+
+<yeti-table id="vanillaTable"></yeti-table>
+
+<script type="module">
+    const vanillaTable = document.getElementById( 'vanillaTable' );
+
+    vanillaTable.contents = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Heading 1"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Heading 2"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Heading 3"
+                        },
+                        {
+                            "isHeading": "true",
+                            "cssClass": "yeti-table-numeric",
+                            "value": "A Number"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "Cell 1"
+                        },
+                        {
+                            "value": "Cell 2"
+                        },
+                        {
+                            "value": "Cell 3"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "22"
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Cell 2-1"
+                        },
+                        {
+                            "value": "Cell 2-2"
+                        },
+                        {
+                            "value": "Cell 2-3"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "42"
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+</script>
+
+            </div><!-- /code_sample -->
+
+
+
+            <h3 class="margin-bottom-2">With Row Headings</h3>
+
+            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+            <div class="ydoc-code_sample">
+
+<yeti-table id="rowHeadingsTable"></yeti-table>
+
+<script type="module">
+    const rowHeadingsTable = document.getElementById( 'rowHeadingsTable' );
+    rowHeadingsTable.contents = {
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "Cell 1",
+                            "isHeading": true,
+                            "scope": "row"
+                        },
+                        {
+                            "value": "Cell 2"
+                        },
+                        {
+                            "value": "Cell 3"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "22"
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Cell 2-1",
+                            "isHeading": true,
+                            "scope": "row"
+                        },
+                        {
+                            "value": "Cell 2-2"
+                        },
+                        {
+                            "value": "Cell 2-3"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "42"
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+</script>
+
+            </div><!-- /code_sample -->
+
+
+
+            <h3 class="margin-bottom-2">Row Actions</h3>
+
+            <p class="margin-bottom-2">
+                Row actions are a special kind of table body cell as shown below. A <code>rowActionClick</code> event is
+                fired when the user selects an action, and the <code>event.detail</code> provides the
+                <code>rowIndex</code> and <code>actionValue</code>.
+            </p>
+
+            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+            <div class="ydoc-code_sample">
+
+<yeti-table id="rowActionsTable"></yeti-table>
+
+<script type="module">
+    const rowActionsTable = document.getElementById( 'rowActionsTable' );
+    rowActionsTable.contents = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Heading 1"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Heading 2"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Heading 3"
+                        },
+                        {
+                            "isHeading": "true",
+                            "cssClass": "yeti-table-numeric",
+                            "value": "A Number"
+                        },
+                        {
+                            "value": ""
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "Cell 1"
+                        },
+                        {
+                            "value": "Cell 2"
+                        },
+                        {
+                            "value": "Cell 3"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "22"
+                        },
+                        {
+                            "rowActions": [
+                                {
+                                    "label": "Go to CD",
+                                    "href": "http://creeksidedigital.com/"
+                                },
+                                {
+                                    "label": "Edit"
+                                },
+                                {
+                                    "label": "Go to LOC",
+                                    "href": "https://www.loc.gov/"
+                                },
+                                {
+                                    "label": "Delete"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Cell 2-1"
+                        },
+                        {
+                            "value": "Cell 2-2"
+                        },
+                        {
+                            "value": "Cell 2-3"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "42"
+                        },
+                        {
+                            "rowActions": [
+                                {
+                                    "label": "Go to CD",
+                                    "href": "http://creeksidedigital.com/"
+                                },
+                                {
+                                    "label": "Export"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Cell 3-1"
+                        },
+                        {
+                            "value": "Cell 3-2"
+                        },
+                        {
+                            "value": "Cell 3-3"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "64"
+                        },
+                        {
+                            "rowActions": []
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+
+
+
+    rowActionsTable.addEventListener( 'rowActionClick', ( ev ) => {
+        alert( `${ ev.detail.actionLabel } row ${ ev.detail.rowIndex }.` );
+        console.log( ev.target.contents.body.rows[ ev.detail.rowIndex ] );
+    } );
+
+</script>
+
+            </div><!-- /code_sample -->
+
+
+
+            <h3 class="margin-bottom-2">Pagination</h3>
+
+            <p class="margin-bottom-2">
+                Add pagination to your table as shown below. The <code>yeti-table-pagination-option</code>s shown below
+                are optional. Give <code>&lt;yeti-table-pagination&gt;</code> an attribute of
+                <code>show-options="false"</code> to hide the Items per page dropdown entirely.
+            </p>
+
+            <script type="module">
+                const paginationTable = document.getElementById( 'paginationTable' );
+                paginationTable.contents = {
+                    "head": {
+                        "rows": [
+                            {
+                                "cells": [
+                                    {
+                                        "isHeading": "true",
+                                        "value": "Heading 1"
+                                    },
+                                    {
+                                        "isHeading": "true",
+                                        "value": "Heading 2"
+                                    },
+                                    {
+                                        "isHeading": "true",
+                                        "value": "Heading 3"
+                                    },
+                                    {
+                                        "isHeading": "true",
+                                        "cssClass": "yeti-table-numeric",
+                                        "value": "A Number"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+
+                    "body": {
+                        "rows": [
+                            {
+                                "cells": [
+                                    {
+                                        "value": "Cell 1-1"
+                                    },
+                                    {
+                                        "value": "Cell 1-2"
+                                    },
+                                    {
+                                        "value": "Cell 1-3"
+                                    },
+                                    {
+                                        "cssClass": "yeti-table-numeric",
+                                        "value": "22"
+                                    }
+                                ]
+                            },
+                            {
+                                "cells": [
+                                    {
+                                        "value": "Cell 2-1"
+                                    },
+                                    {
+                                        "id": "twenty-two",
+                                        "value": "Cell 2-2"
+                                    },
+                                    {
+                                        "value": "Cell 2-3"
+                                    },
+                                    {
+                                        "cssClass": "yeti-table-numeric",
+                                        "value": "24"
+                                    }
+                                ]
+                            },
+                            {
+                                "cells": [
+                                    {
+                                        "value": "Cell 3-1"
+                                    },
+                                    {
+                                        "value": "Cell 3-2"
+                                    },
+                                    {
+                                        "value": "Cell 3-3"
+                                    },
+                                    {
+                                        "cssClass": "yeti-table-numeric",
+                                        "value": "17"
+                                    }
+                                ]
+                            },
+                            {
+                                "cells": [
+                                    {
+                                        "value": "Cell 4-1"
+                                    },
+                                    {
+                                        "value": "Cell 4-2"
+                                    },
+                                    {
+                                        "value": "Cell 4-3"
+                                    },
+                                    {
+                                        "cssClass": "yeti-table-numeric",
+                                        "value": "17"
+                                    }
+                                ]
+                            },
+                            {
+                                "cells": [
+                                    {
+                                        "value": "Cell 5-1"
+                                    },
+                                    {
+                                        "value": "Cell 5-2"
+                                    },
+                                    {
+                                        "value": "Cell 5-3"
+                                    },
+                                    {
+                                        "cssClass": "yeti-table-numeric",
+                                        "value": "32"
+                                    }
+                                ]
+                            },
+                            {
+                                "cells": [
+                                    {
+                                        "value": "Cell 6-1"
+                                    },
+                                    {
+                                        "value": "Cell 6-2"
+                                    },
+                                    {
+                                        "value": "Cell 6-3"
+                                    },
+                                    {
+                                        "cssClass": "yeti-table-numeric",
+                                        "value": "19"
+                                    }
+                                ]
+                            },
+                            {
+                                "cells": [
+                                    {
+                                        "value": "Cell 7-1"
+                                    },
+                                    {
+                                        "value": "Cell 7-2"
+                                    },
+                                    {
+                                        "value": "Cell 7-3"
+                                    },
+                                    {
+                                        "cssClass": "yeti-table-numeric",
+                                        "value": "18"
+                                    }
+                                ]
+                            },
+                            {
+                                "cells": [
+                                    {
+                                        "value": "Cell 8-1"
+                                    },
+                                    {
+                                        "value": "Cell 8-2"
+                                    },
+                                    {
+                                        "value": "Cell 8-3"
+                                    },
+                                    {
+                                        "cssClass": "yeti-table-numeric",
+                                        "value": "20"
+                                    }
+                                ]
+                            },
+                            {
+                                "cells": [
+                                    {
+                                        "value": "Cell 9-1"
+                                    },
+                                    {
+                                        "value": "Cell 9-2"
+                                    },
+                                    {
+                                        "value": "Cell 9-3"
+                                    },
+                                    {
+                                        "cssClass": "yeti-table-numeric",
+                                        "value": "12"
+                                    }
+                                ]
+                            },
+                            {
+                                "cells": [
+                                    {
+                                        "value": "Cell 10-1"
+                                    },
+                                    {
+                                        "value": "Cell 10-2"
+                                    },
+                                    {
+                                        "value": "Cell 10-3"
+                                    },
+                                    {
+                                        "cssClass": "yeti-table-numeric",
+                                        "value": "13"
+                                    }
+                                ]
+                            },
+                            {
+                                "cells": [
+                                    {
+                                        "value": "Cell 11-1"
+                                    },
+                                    {
+                                        "value": "Cell 11-2"
+                                    },
+                                    {
+                                        "value": "Cell 11-3"
+                                    },
+                                    {
+                                        "cssClass": "yeti-table-numeric",
+                                        "value": "8"
+                                    }
+                                ]
+                            },
+                            {
+                                "cells": [
+                                    {
+                                        "value": "Cell 12-1"
+                                    },
+                                    {
+                                        "value": "Cell 12-2"
+                                    },
+                                    {
+                                        "value": "Cell 12-3"
+                                    },
+                                    {
+                                        "cssClass": "yeti-table-numeric",
+                                        "value": "11"
+                                    }
+                                ]
+                            },
+                            {
+                                "cells": [
+                                    {
+                                        "value": "Cell 13-1"
+                                    },
+                                    {
+                                        "value": "Cell 13-2"
+                                    },
+                                    {
+                                        "value": "Cell 13-3"
+                                    },
+                                    {
+                                        "cssClass": "yeti-table-numeric",
+                                        "value": "2"
+                                    }
+                                ]
+                            },
+                            {
+                                "cells": [
+                                    {
+                                        "value": "Cell 14-1"
+                                    },
+                                    {
+                                        "value": "Cell 14-2"
+                                    },
+                                    {
+                                        "value": "Cell 14-3"
+                                    },
+                                    {
+                                        "cssClass": "yeti-table-numeric",
+                                        "value": "9"
+                                    }
+                                ]
+                            },
+                            {
+                                "cells": [
+                                    {
+                                        "value": "Cell 15-1"
+                                    },
+                                    {
+                                        "value": "Cell 15-2"
+                                    },
+                                    {
+                                        "value": "Cell 15-3"
+                                    },
+                                    {
+                                        "cssClass": "yeti-table-numeric",
+                                        "value": "7"
+                                    }
+                                ]
+                            },
+                            {
+                                "cells": [
+                                    {
+                                        "value": "Cell 16-1"
+                                    },
+                                    {
+                                        "value": "Cell 16-2"
+                                    },
+                                    {
+                                        "value": "Cell 16-3"
+                                    },
+                                    {
+                                        "cssClass": "yeti-table-numeric",
+                                        "value": "4"
+                                    }
+                                ]
+                            },
+                            {
+                                "cells": [
+                                    {
+                                        "value": "Cell 17-1"
+                                    },
+                                    {
+                                        "value": "Cell 17-2"
+                                    },
+                                    {
+                                        "value": "Cell 17-3"
+                                    },
+                                    {
+                                        "cssClass": "yeti-table-numeric",
+                                        "value": "6"
+                                    }
+                                ]
+                            },
+                            {
+                                "cells": [
+                                    {
+                                        "value": "Cell 18-1"
+                                    },
+                                    {
+                                        "value": "Cell 18-2"
+                                    },
+                                    {
+                                        "value": "Cell 18-3"
+                                    },
+                                    {
+                                        "cssClass": "yeti-table-numeric",
+                                        "value": "3"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                };
+            </script>
+
+            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+            <div class="ydoc-code_sample">
+
+<yeti-table id="paginationTable">
+
+    <yeti-table-actions>
+
+        <yeti-table-pagination>
+            <yeti-table-pagination-option>5</yeti-table-pagination-option>
+            <yeti-table-pagination-option selected>10</yeti-table-pagination-option>
+            <yeti-table-pagination-option>15</yeti-table-pagination-option>
+            <yeti-table-pagination-option>I'm ignored.</yeti-table-pagination-option>
+            <yeti-table-pagination-option>20</yeti-table-pagination-option>
+            <yeti-table-pagination-option all>Any value here is also
+                ignored.</yeti-table-pagination-option>
+        </yeti-table-pagination>
+
+    </yeti-table-actions>
+
+</yeti-table>
+
+            </div><!-- /code_sample -->
+
+
+
+            <h3 class="margin-bottom-2">Sorting</h3>
+
+            <p class="margin-bottom-2">
+                Declare sortable columns within the data by setting
+                <code>head.rows.cells.sortDirection = "ascending"</code> (or <code>"descending"</code>, or the default
+                value <code>"unsorted"</code>).
+            </p>
+
+            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+            <div class="ydoc-code_sample">
+
+<yeti-table id="sortableTable"></yeti-table>
+
+<script type="module">
+    const sortableTable = document.getElementById( 'sortableTable' );
+    sortableTable.contents = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "sortDirection": "unsorted",
+                            "value": "Mixed Case"
+                        },
+                        {
+                            "isHeading": "true",
+                            "sortDirection": "descending",
+                            "value": "Numeric",
+                            "cssClass": "yeti-table-numeric",
+                        },
+                        {
+                            "isHeading": "true",
+                            "sortDirection": "unsorted",
+                            "value": "Date"
+                        },
+                        {
+                            "isHeading": "true",
+                            "sortDirection": "unsorted",
+                            "value": "Everything, Everywhere, All at Once"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Unsortable"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "Italian sausage"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "22"
+                        },
+                        {
+                            "value": "2/1/2023"
+                        },
+                        {
+                            "value": "Vikings"
+                        },
+                        {
+                            "value": ""
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "pepperoni"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "-24"
+                        },
+                        {
+                            "value": "2022/11/30"
+                        },
+                        {
+                            "value": "12"
+                        },
+                        {
+                            "value": ""
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "sausage"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "1,024"
+                        },
+                        {
+                            "value": "January 30, 2023"
+                        },
+                        {
+                            "value": "2023/01/30"
+                        },
+                        {
+                            "value": ""
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "extra cheese"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "9,999,999"
+                        },
+                        {
+                            "value": "March 14, 2011"
+                        },
+                        {
+                            "value": "Wild"
+                        },
+                        {
+                            "value": ""
+                        }
+                    ]
+                },
+            ]
+        }
+    };
+</script>
+
+            </div><!-- /code_sample -->
+
+
+
+            <h3 class="margin-bottom-2">Filterable</h3>
+
+            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+            <div class="ydoc-code_sample">
+
+<yeti-table id="filterTable" table-class="yeti-table__fixed"></yeti-table>
+
+<script type="module">
+    const filterTable = document.getElementById( 'filterTable' );
+    filterTable.contents = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Text Filter",
+                            "filtering": {
+                                "isFilterable": true,
+                                "type": "text",
+                                //"value": "Yum"
+                            }
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Select Filter",
+                            "filtering": {
+                                "isFilterable": true,
+                                "type": "select",
+                                "options": [ "Small", "Medium", "Large", "Extra large" ]
+                            }
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Date Filter",
+                            "filtering": {
+                                "isFilterable": true,
+                                "type": "date"
+                            }
+                        },
+                        {
+                            "isHeading": "true",
+                            "cssClass": "yeti-table-numeric",
+                            "value": "Multiselect Filter",
+                            "filtering": {
+                                "isFilterable": true,
+                                "type": "multiselect",
+                                "options": [ "Pepperoni", "Extra cheese", "Sausage", "Hamburger", "Corn" ]
+                            }
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Unsortable and Unfilterable"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "Yum"
+                        },
+                        {
+                            "value": "Large"
+                        },
+                        {
+                            "value": "02/22/2023"
+                        },
+                        {
+                            "value": "Pepperoni"
+                        },
+                        {
+                            "value": "Bake well"
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Nope"
+                        },
+                        {
+                            "value": "Medium"
+                        },
+                        {
+                            "value": "February 14, 2023"
+                        },
+                        {
+                            "value": "Corn"
+                        },
+                        {
+                            "value": "Ireland only"
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+</script>
+
+            </div><!-- /code_sample -->
+
+
+
+            <h3 class="margin-bottom-2">Complex</h3>
+
+            <p class="margin-bottom-2">
+                The table below shows a combination of multiple different options: Sorting, Filtering, Grid Alignment,
+                etc.
+            </p>
+
+            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+            <div class="ydoc-code_sample">
+
+<yeti-table id="complexTable" table-class="yeti-table__fixed"></yeti-table>
+
+<script type="module">
+    const complexTable = document.getElementById( 'complexTable' );
+    complexTable.contents = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Text Filter and Sortable",
+                            "sortDirection": "unsorted",
+                            "filtering": {
+                                "isFilterable": true,
+                                "type": "text"
+                            }
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Select Filter and Sortable with Overly Long and Descriptive Heading",
+                            "sortDirection": "ascending",
+                            "filtering": {
+                                "isFilterable": true,
+                                "type": "select",
+                                "options": [ "Small", "Medium", "Large", "Extra large" ]
+                            }
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Date Filter and Sortable",
+                            "sortDirection": "unsorted",
+                            "filtering": {
+                                "isFilterable": true,
+                                "type": "date"
+                            }
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Multiselect Filter and Sortable",
+                            "sortDirection": "unsorted",
+                            "filtering": {
+                                "isFilterable": true,
+                                "type": "multiselect",
+                                "options": [ "Pepperoni", "Extra cheese", "Sausage", "Hamburger", "Corn" ]
+                            }
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Sortable, Unfilterable, Numeric, Headingcontainsawordthatisreallyreallyhardtowrap",
+                            "sortDirection": "unsorted",
+                            "filtering": {
+                                "isFilterable": false,
+                                "type": "multiselect",
+                                "options": [ "Pepperoni", "Extra cheese", "Sausage", "Hamburger", "Corn" ]
+                            }
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Filterable but Unsortable",
+                            "filtering": {
+                                "isFilterable": true,
+                                "type": "text"
+                            }
+                        },
+                        {
+                            "filtering": {
+                                "isClearCell": true
+                            },
+                            "value": ""
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "Yum"
+                        },
+                        {
+                            "value": "Large"
+                        },
+                        {
+                            "value": "02/22/2023"
+                        },
+                        {
+                            "value": "Pepperoni"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "22"
+                        },
+                        {
+                            "value": "Thin"
+                        },
+                        {
+                            "value": ""
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Nope"
+                        },
+                        {
+                            "value": "Medium"
+                        },
+                        {
+                            "value": "February 14, 2023"
+                        },
+                        {
+                            "value": "Corn"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "24"
+                        },
+                        {
+                            "value": "Pan"
+                        },
+                        {
+                            "value": ""
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Yum"
+                        },
+                        {
+                            "value": "Medium"
+                        },
+                        {
+                            "value": "February 22, 2023"
+                        },
+                        {
+                            "value": "Pepperoni"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "32"
+                        },
+                        {
+                            "value": "Hand-tossed"
+                        },
+                        {
+                            "value": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+</script>
+
+            </div><!-- /code_sample -->
+
+
+
+            <h3 class="margin-bottom-2">With Expandable Rows</h3>
+
+            <p class="margin-bottom-2">
+                Note that the child rows are in an array of their own on the rows object.
+            </p>
+
+            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+            <div class="ydoc-code_sample">
+
+<yeti-table id="expandableRowsTable" table-class="yeti-table__fixed" has-expandable-rows="true"></yeti-table>
+
+<script type="module">
+    const expandableRowsTable = document.getElementById( 'expandableRowsTable' );
+
+    expandableRowsTable.contents = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "City/State",
+                            "cssClass": "yeti-table-grid-5"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Nickname",
+                            "cssClass": "yeti-table-grid-5"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Stadium",
+                            "cssClass": "yeti-table-grid-6"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "New York",
+                            "colspan": 3
+                        }
+                    ],
+                    "childRows": [
+                        {
+                            "cells": [
+                                {
+                                    "value": "New York",
+                                },
+                                {
+                                    "value": "Giants"
+                                },
+                                {
+                                    "value": "A Swamp in New Jersey"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "New York"
+                                },
+                                {
+                                    "value": "Yankees"
+                                },
+                                {
+                                    "value": "The New Yankee Workshop"
+                                }
+                            ]
+                        },
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Minnesota",
+                            "colspan": 3
+                        }
+                    ],
+                    "childRows": [
+                        {
+                            "cells": [
+                                {
+                                    "value": "Minnesota"
+                                },
+                                {
+                                    "value": "Vikings"
+                                },
+                                {
+                                    "value": "U.S. Bank Stadium"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Minnesota"
+                                },
+                                {
+                                    "value": "Wild"
+                                },
+                                {
+                                    "value": "Power Outages R Us Stadium"
+                                }
+                            ]
+                        },
+                    ]
+                },
+            ]
+        }
+    };
+</script>
+
+            </div><!-- /code_sample -->
+
+
+
+            <h3 class="margin-bottom-2" id="yetiTableContents"><code>YetiTableContents</code> Interface</h3>
+
+            <p class="margin-bottom-2">
+                The Yeti Table component expects you to provide data via the contents attribute. That data should match
+                the following format:
+            </p>
+
+            <pre style="padding: unset; position: unset; width: unset;">
+<code class="language-typescript">
+/******************************************** A TypeScripty/pseudo-code interface definition ********************************************/
+
+YetiTableContents = {
+
+    head? : {
+      cssClass?: string,
+      id?: string,
+      rows : YetiTableRow[]
+    },
+  
+    body : {
+      cssClass?: string,
+      id?: string,
+      rows : YetiTableRow[]
+    },
+  
+    foot? : {
+      cssClass?: string,
+      id?: string,
+      rows : YetiTableRow[]
+    },
+
+}
+  
+
+YetiTableRow = {
+    cssClass?: string,
+    isExpandable?: boolean,
+    id?: string,
+    cells: YetiTableCell[]
+}
+  
+  
+YetiTableCell = {
+    cssClass?: string,
+    isHeading?: boolean,
+    sortDirection?: string = "ascending" | "descending" | "unsorted"
+    id?: string,
+    value: string,
+    filtering?: YetiTableFilterObject
+}
+</code>
+</pre>
+
+            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+            <div class="ydoc-code_sample">
+
+                (See the code block below, this is all in a script tag.)
+                <script type="module">
+                    /******************************************** A simple example ********************************************/
+
+                    const exampleData = {
+
+                        /*** Note that the keys must be these exact strings ***/
+
+                        "head": { //............................................. head (object) is optional, but if it exists then...
+                            "rows": [ // ........................................ rows (array) is required.
+                                { //............................................. each row is an object.
+                                    "id": "rowNumber1", //....................... id (string) is an optional property on head, body, foot, row, and cell.
+                                    "cells": [ //................................ cells (array) is required.
+                                        { //..................................... each cell is an object.
+                                            "isHeading": "true", //.............. isHeading (boolean) is optional. Set it to "true" to produce <th> elements instead of <td>.
+                                            "value": "Heading 1" //.............. value is required. This is the cell's contents.
+                                        },
+                                        {
+                                            "isHeading": "true",
+                                            "cssClass": "yeti-table-numeric", //. cssClass (string) is an optional property on head, body, foot, row, and cell.
+                                            "value": "A Number"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+
+                        "body": { //............................................ body (object) is required.
+                            "rows": [ //........................................ all rows and cells in body have the same properties as shown above for head.
+                                {
+                                    "cells": [
+                                        {
+                                            "value": "Cell 1"
+                                        },
+                                        {
+                                            "cssClass": "yeti-table-numeric",
+                                            "value": "22"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    };
+                </script>
+
+            </div><!-- /code_sample -->
+
+
+
+            <h2 class="margin-bottom-3">Technical Notes</h2>
+
+            <ul class="yeti-list-bulleted">
+                <li>Yeti Table only supports JSON for now.</li>
             </ul>
 
-        </div>
-        
-    </nav>
+        </div><!-- /main -->
 
-</div>
-
-<table class="yeti-table">
-
-    <thead class="yeti-table-head">
-
-        <tr class="yeti-table-head-row">
-            <th class="yeti-table-heading">Column A</th>
-            <th class="yeti-table-heading">Column B</th>
-            <th class="yeti-table-heading">Column C</th>
-            <th class="yeti-table-heading">Column D</th>
-        </tr>
-
-    </thead>
-
-
-    <tbody class="yeti-table-body">
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A1</td>
-            <td class="yeti-table-cell">B1</td>
-            <td class="yeti-table-cell">C1</td>
-            <td class="yeti-table-cell">D1</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A2</td>
-            <td class="yeti-table-cell">B2</td>
-            <td class="yeti-table-cell">C2</td>
-            <td class="yeti-table-cell">D2</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A3</td>
-            <td class="yeti-table-cell">B3</td>
-            <td class="yeti-table-cell">C3</td>
-            <td class="yeti-table-cell">D3</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A4</td>
-            <td class="yeti-table-cell">B4</td>
-            <td class="yeti-table-cell">C4</td>
-            <td class="yeti-table-cell">D4</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A5</td>
-            <td class="yeti-table-cell">B5</td>
-            <td class="yeti-table-cell">C5</td>
-            <td class="yeti-table-cell">D5</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A6</td>
-            <td class="yeti-table-cell">B6</td>
-            <td class="yeti-table-cell">C6</td>
-            <td class="yeti-table-cell">D6</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A7</td>
-            <td class="yeti-table-cell">B7</td>
-            <td class="yeti-table-cell">C7</td>
-            <td class="yeti-table-cell">D7</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A8</td>
-            <td class="yeti-table-cell">B8</td>
-            <td class="yeti-table-cell">C8</td>
-            <td class="yeti-table-cell">D8</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A9</td>
-            <td class="yeti-table-cell">B9</td>
-            <td class="yeti-table-cell">C9</td>
-            <td class="yeti-table-cell">D9</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A10</td>
-            <td class="yeti-table-cell">B10</td>
-            <td class="yeti-table-cell">C10</td>
-            <td class="yeti-table-cell">D10</td>
-        </tr>
-
-    </tbody>
-
-</table>
-
-        </div><!-- /code_sample -->
-
-
-
-        <h3 class="margin-bottom-2">Sorting</h3>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-    
-<table class="yeti-table">
-
-    <thead class="yeti-table-head">
-
-        <tr class="yeti-table-head-row">
-
-            <th class="yeti-table-heading">
-
-                <div class="yeti-table-heading-compound">
-
-                    <button class="yeti-table-heading-button">
-
-                        <div class="yeti-table-heading-button-label">Column A</div>
-
-                        <span class="yeti-table-heading-button-icon">
-                            <span class="yeti-a11y-hidden">Sorted ascending</span>
-                            <span class="material-icons" aria-hidden="true" title="Sorted ascending">expand_less</span>
-                        </span>
-
-                    </button>
-
-                </div>
-
-            </th>
-
-
-            <th class="yeti-table-heading">
-
-                <div class="yeti-table-heading-compound">
-
-                    <button class="yeti-table-heading-button">
-
-                        <div class="yeti-table-heading-button-label">Column B</div>
-
-                        <span class="yeti-table-heading-button-icon">
-                            <span class="yeti-a11y-hidden">Sortable</span>
-                            <span class="material-icons" aria-hidden="true" title="Sortable">unfold_more</span>
-                        </span>
-
-                    </button>
-
-                </div>
-
-            </th>
-
-
-            <th class="yeti-table-heading yeti-table-numeric">
-
-                <div class="yeti-table-heading-compound">
-
-                    <button class="yeti-table-heading-button">
-
-                        <div class="yeti-table-heading-button-label">Column C</div>
-
-                        <span class="yeti-table-heading-button-icon">
-                            <span class="yeti-a11y-hidden">Sortable</span>
-                            <span class="material-icons" aria-hidden="true" title="Sortable">unfold_more</span>
-                        </span>
-
-                    </button>
-
-                </div>
-
-            </th>
-
-
-            <th class="yeti-table-heading">Unsortable Column</th>
-
-        </tr>
-
-    </thead>
-
-
-    <tbody class="yeti-table-body">
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A1</td>
-            <td class="yeti-table-cell">B1</td>
-            <td class="yeti-table-cell yeti-table-numeric">22</td>
-            <td class="yeti-table-cell">D1</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A2</td>
-            <td class="yeti-table-cell">B2</td>
-            <td class="yeti-table-cell yeti-table-numeric">23</td>
-            <td class="yeti-table-cell">D2</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A3</td>
-            <td class="yeti-table-cell">B3</td>
-            <td class="yeti-table-cell yeti-table-numeric">24</td>
-            <td class="yeti-table-cell">D3</td>
-        </tr>
-
-    </tbody>
-
-</table>
-
-        </div><!-- /code_sample -->
-
-
-
-        <h3 class="margin-bottom-2">Filterable</h3>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-    
-<table class="yeti-table yeti-table__fixed">
-
-    <thead class="yeti-table-head">
-
-        <tr class="yeti-table-head-row">
-
-            <th class="yeti-table-heading">
-
-                <div class="yeti-table-heading-compound">
-
-                    <button class="yeti-table-heading-button">
-
-                        <div class="yeti-table-heading-button-label">Text Filter Table Heading That Is Long Enough That It Wraps</div>
-
-                        <span class="yeti-table-heading-button-icon">
-                            <span class="yeti-a11y-hidden">Sorted ascending</span>
-                            <span class="material-icons" aria-hidden="true" title="Sorted ascending">expand_less</span>
-                        </span>
-
-                    </button>
-
-
-                    <div class="yeti-table-heading-filter">
-                        <input type="text" class="yeti-input yeti-table-heading-filter-input">
-                    </div>
-
-                </div>
-
-            </th>
-
-
-            <th class="yeti-table-heading">
-
-                <div class="yeti-table-heading-compound">
-
-                    <button class="yeti-table-heading-button">
-
-                        <div class="yeti-table-heading-button-label">Select Filter</div>
-
-                        <span class="yeti-table-heading-button-icon">
-                            <span class="yeti-a11y-hidden">Sortable</span>
-                            <span class="material-icons" aria-hidden="true" title="Sortable">unfold_more</span>
-                        </span>
-
-                    </button>
-
-
-                    <div class="yeti-table-heading-filter">
-                        <select class="yeti-select yeti-table-heading-filter-input">
-                            <option>B1</option>
-                            <option>B2</option>
-                            <option>B3</option>
-                        </select>
-                    </div>
-
-                </div>
-
-            </th>
-
-
-            <th class="yeti-table-heading">
-
-                <div class="yeti-table-heading-compound">
-
-                    <button class="yeti-table-heading-button">
-
-                        <div class="yeti-table-heading-button-label">Date Filter</div>
-
-                        <span class="yeti-table-heading-button-icon">
-                            <span class="yeti-a11y-hidden">Sortable</span>
-                            <span class="material-icons" aria-hidden="true" title="Sortable">unfold_more</span>
-                        </span>
-
-                    </button>
-
-
-                    <div class="yeti-table-heading-filter">
-                        <div class="yeti-date">
-                            <input type="text" class="yeti-input yeti-date-field" id="yid0" name="yid0" placeholder="mm/dd/yyyy" autocomplete="off"><button class="yeti-date-button" aria-label="Choose date"><span class="material-icons yeti-date-button-icon" aria-hidden="true">calendar_today</span></button>
-                        </div>
-                    </div>
-
-                </div>
-
-            </th>
-
-
-            <th class="yeti-table-heading">
-
-                <div class="yeti-table-heading-compound">
-
-                    <button class="yeti-table-heading-button">
-
-                        <div class="yeti-table-heading-button-label">Multiselect Filter</div>
-
-                        <span class="yeti-table-heading-button-icon">
-                            <span class="yeti-a11y-hidden">Sortable</span>
-                            <span class="material-icons" aria-hidden="true" title="Sortable">unfold_more</span>
-                        </span>
-
-                    </button>
-
-
-                    <div class="yeti-table-heading-filter">
-                        <yeti-multiselect placeholder="-Any-">
-                            <yeti-multiselect-option>D1</yeti-multiselect-option>
-                        </yeti-multiselect>
-                    </div>
-
-                </div>
-
-            </th>
-
-
-            <th class="yeti-table-heading">
-
-                <div class="yeti-table-heading-compound">
-
-                    <div class="yeti-table-heading-compound-actual">Filterable but Unsortable</div>
-
-
-                    <div class="yeti-table-heading-filter">
-                        <yeti-multiselect placeholder="-Any-">
-                            <yeti-multiselect-option>D1</yeti-multiselect-option>
-                        </yeti-multiselect>
-                    </div>
-
-                </div>
-
-            </th>
-
-
-            <th class="yeti-table-heading">
-
-                <div class="yeti-table-heading-compound">
-
-                    <button class="yeti-table-heading-button">
-
-                        <div class="yeti-table-heading-button-label">Sortable but Unfilterable</div>
-
-                        <span class="yeti-table-heading-button-icon">
-                            <span class="yeti-a11y-hidden">Sortable</span>
-                            <span class="material-icons" aria-hidden="true" title="Sortable">unfold_more</span>
-                        </span>
-
-                    </button>
-
-                </div>
-
-            </th>
-
-
-            <th class="yeti-table-heading">Unsortable and Unfilterable</th>
-
-        </tr>
-
-    </thead>
-
-
-    <tbody class="yeti-table-body">
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A1</td>
-            <td class="yeti-table-cell">B1</td>
-            <td class="yeti-table-cell">11/01/2022</td>
-            <td class="yeti-table-cell">D1</td>
-            <td class="yeti-table-cell">E1</td>
-            <td class="yeti-table-cell">F1</td>
-            <td class="yeti-table-cell">G1</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A2</td>
-            <td class="yeti-table-cell">B2</td>
-            <td class="yeti-table-cell">02/24/2023</td>
-            <td class="yeti-table-cell">D2</td>
-            <td class="yeti-table-cell">E2</td>
-            <td class="yeti-table-cell">F2</td>
-            <td class="yeti-table-cell">G2</td>
-        </tr>
-
-        <tr class="yeti-table-body-row">
-            <td class="yeti-table-cell">A3</td>
-            <td class="yeti-table-cell">B3</td>
-            <td class="yeti-table-cell">03/06/2023</td>
-            <td class="yeti-table-cell">D3</td>
-            <td class="yeti-table-cell">E3</td>
-            <td class="yeti-table-cell">F3</td>
-            <td class="yeti-table-cell">G3</td>
-        </tr>
-
-    </tbody>
-
-</table>
-
-        </div><!-- /code_sample -->
-
-
-
-        <h2 class="margin-bottom-3">Technical Notes</h2>
-
-        <ul class="yeti-list-bulleted">
-          <li>Tables default to 100% width and browser-default column widths.</li>
-        </ul>
-
-      </div><!-- /main -->
-    
     </div><!-- /wrapper -->
 
     <script type="module" src="./yeti/yeti.esm.js"></script>
 
     <script type="module" src="./js/docs-scripts.mjs"></script>
-    
-  </body>
+
+</body>
+
 </html>
