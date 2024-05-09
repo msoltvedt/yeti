@@ -38,6 +38,7 @@ export class YetiFileExplorer {
       name: "root",
       content: [],
       path: "",
+      displayPath: "",
       isFolder: true,
       isRoot: true,
       isSelected: true,
@@ -68,6 +69,7 @@ export class YetiFileExplorer {
   handleItemClick(depth: number = 0, index: number = 0) {
     // A folder or file was just clicked. Handle it.
     let serverPathStringToClickedFolder = ""; // This will be the term by which the server identifies this folder
+    let displayPathStringToClickedFolder = ""; // This will be the user-readable version of the path
     
     // If necessary, prune any folders that would be to the right of this.
     while (this.path.length > depth + 1) {
@@ -83,12 +85,14 @@ export class YetiFileExplorer {
     this.path[depth].isSelected = true;
     this.path[depth].selectedIndex = index;
 
-    // Derive the server path to this folder
+    // Derive the server and display paths to this folder
     serverPathStringToClickedFolder += this.path[depth].content[index].path;
+    displayPathStringToClickedFolder += this.path[depth].content[index].displayPath;
 
     // Fire the change event so the component consumer can provide new data
     this.fileExplorerChange.emit({
       "path": serverPathStringToClickedFolder,
+      "displayPath": displayPathStringToClickedFolder,
       "depth": depth,
       "index": index
     });
@@ -181,6 +185,7 @@ export class YetiFileExplorer {
       content: [],
       name: undefined,
       path: undefined,
+      displayPath: undefined,
       isFolder: true,
       isRoot: false,
       isLoading: false,
@@ -199,6 +204,7 @@ export class YetiFileExplorer {
     let emptyFolder: YetiFileSystemItem = {
       name: "",
       path: "/",
+      displayPath: "",
       content: [],
       selectedIndex: -1,
       isRoot: false,
@@ -315,7 +321,7 @@ export class YetiFileExplorer {
         </div>{/* /file_explorer */}
 
       
-        <div class="yeti-file_explorer-path">{this.path[ this.path.length - 1 ].path}</div>
+        <div class="yeti-file_explorer-path">{this.path[ this.path.length - 1 ].displayPath}</div>
 
       </div>
 
