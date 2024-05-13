@@ -2,7 +2,7 @@
 
 # Yeti Design System
 
-Yeti is a design pattern and component library. Its components are based on StencilJS.
+Yeti is a component library. Its components are based on StencilJS.
 
 ## Stencil
 
@@ -26,7 +26,7 @@ The next step is to run your local build. In your local `yeti` directory, run `n
 
 Once the build completes, you'll want to open two Terminal windows in your local `yeti` directory (in VSCode, the Split Terminal option is ideal for this). In the first Terminal window, run `gulp startup`. This will pull files from your local copy of Orchestrator, update your local dev environment from your `src` directory, and initialize the Gulp watch tasks.
 
-In the second Terminal window, after `gulp startup` has finished its initial startup, run `npm run start` to initiate Stencil. This should start up a local dev server showing you a sparse index.html file with a link to a local copy of the pattern library.
+In the second Terminal window, after `gulp startup` has finished its initial startup, run `npm run start` to initiate Stencil. This should start up a local dev server showing you a sparse index.html file with a link to a local copy of the component library.
 
 You should only ever modify files in the `src` directory and only while these two tasks are running. If you forget and update something in `src/` while Gulp and Stencil are not running your changes should automatically appear in your local copy once you do those two startup tasks above. Modifications to files in other directories will eventually be overwritten by automated tasks and scripts, so do not make direct edits to them.
 
@@ -54,13 +54,13 @@ All component names (i.e. custom HTML tags) need to be unique and prefixed with 
 
 For now, Yeti has a lot of competition for CSS, so all Yeti classes should be prefixed with `.yeti-`. We hope to remove this requirement later.
 
-#### Pattern/Component Identifier
+#### Component Identifier
 
 A unique, human-readable identifier should immediately follow the prefix. Again, use single nouns whenever possible, but if you have to use a short phrase then use an underscore (`_`) as a space. So `.yeti-button` and `.yeti-panel` and good, `.yeti-split_button` is acceptable, and `.yeti-split-button` is not acceptable.
 
 #### Sub-patterns and modifiers
 
-Most patterns and components will have sub-patterns. For example, a `.yeti-list` will probably have a `.yeti-list-item`. These should immediately follow the main identifier and be separated by a hyphen (`-`). They should also follow the single noun practice whenever possible.
+Most components will have sub-patterns. For example, a `.yeti-list` will probably have a `.yeti-list-item`. These should immediately follow the main identifier and be separated by a hyphen (`-`). They should also follow the single noun practice whenever possible.
 
 Additionally, some classes will have more specific or otherwise distinguished sub-sections and modifiers, and these should follow the same rule. Some examples include `.yeti-margin-none` and `.yeti-padding-left-none`. If there are multiple sub-patterns and/or modifiers, first consider whether there's a better, more semantic name, but if not then order them with sub-patterns first, modifiers after that, and both in increasing order of detail. So `.yeti-table-actions-action-admin_only` rather than `.yeti-table-admin_only-actions-action` or `.yeti-table-actions-action-admin-only`. 
 
