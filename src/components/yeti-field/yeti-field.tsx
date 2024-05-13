@@ -79,6 +79,11 @@ export class YetiField {
   @Prop() autovalidate: boolean = true;
 
   /**
+   * Determines whether the field uses block (default) or inline labels.
+   */
+  @Prop() isInline: boolean = false;
+
+  /**
    * Tracks whether the field's input has been focused and then blurred (i.e. if the user has interacted with it yet).
    */
   @State() isDirty: boolean = false;
@@ -131,6 +136,10 @@ export class YetiField {
 
     let cssClass = "yeti-form-field";
 
+    if (this.isInline) {
+      cssClass += " yeti-form-field-inline";
+    }
+
     this.validateLabel(this.label);
 
     if (this.fieldClass != "") {
@@ -168,7 +177,7 @@ export class YetiField {
         }
         
         {
-          (this.tip != "") ?
+          (this.tip != "" || (this.errorMessage != "" && !this.isValid)) ?
 
             <span class="yeti-form-tip" aria-live="polite" id={this.tipId}>{
 

@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
 
-    <title>Yeti Design System - Tooltip Pattern</title>
+    <title>Yeti Design System - Tooltip Component</title>
 
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/yeti-examples-only.css">
@@ -17,68 +17,59 @@
 
       <div role="main">
     
-        <h1 class="margin-top-none">Tooltip</h1>
+        <h1 class="margin-top-none">Tooltip Component</h1>
 
-        <yeti-page-contents></yeti-page-contents>
+        <yeti-page-contents ignore-within="ydoc-code_sample"></yeti-page-contents>
 
         <h2 class="margin-bottom-3">Code Samples</h2>
 
 
-
         <h3 class="margin-bottom-2">Default</h3>
-
-        <style>
-          .theThingYouWantAToolTipOn {
-            width: 100%;
-            height: 3rem;
-            background-color: orange;
-          }
-
-          .theThingYouWantAToolTipOn:focus {
-            outline: 2px solid #0f62fe;
-            outline-offset: -2px;
-          }
-
-          .justHereForCentering {
-            width: min-content;
-            margin: 0 auto;
-            padding: 0;
-          }
-        </style>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
- 
-<div class="justHereForCentering">
-            
-    <div class="yeti-tooltip-wrapper">
-        <span class="yeti-tooltip">
-            <span class="yeti-tooltip-content" id="tip1">I'm a helpful tooltip.</span>
-        </span>
-        <div class="theThingYouWantAToolTipOn" tabindex="0" aria-describedby="tip1"></div>
-    </div>
-
-</div>
+<yeti-tooltip text="Go to the Library of Congress" position="below-right">
+    <a href="http://www.loc.gov">LOC</a>
+</yeti-tooltip>
 
         </div><!-- /code_sample -->
 
 
-
-        <h3 class="margin-bottom-2">Alternate Positioning</h3>
+        <h3 class="margin-bottom-2">Click to Open</h3>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
- 
-<div class="justHereForCentering">
-            
-    <div class="yeti-tooltip-wrapper">
-        <span class="yeti-tooltip yeti-tooltip-below">
-            <span class="yeti-tooltip-content" id="tip2">I'm positioned below the anchor. I can also be left or right of it.</span>
-        </span>
-        <div class="theThingYouWantAToolTipOn" tabindex="0" aria-describedby="tip2"></div>
-    </div>
+<yeti-tooltip text="This is the way." position="right" click-to-open="true">
+    <yeti-icon type="info"></yeti-icon>
+</yeti-tooltip>
 
-</div>
+        </div><!-- /code_sample -->
+
+
+        <h3 class="margin-bottom-2">Block Content</h3>
+
+        <p>
+          Usually, the Tooltip's anchor is an inline element. If you need it to be treated as a block-level element, then set the <code>block-anchor</code> attribute.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-tooltip text="I like big anchors, and I cannot lie." position="above" block-anchor="true">
+    <div style="background-color: #f0f0ff; border: 1px solid darkblue; padding: 2rem;">
+      I'm a block element that serves as the anchor for the tooltip.
+    </div>
+</yeti-tooltip>
+
+        </div><!-- /code_sample -->
+
+
+        <h3 class="margin-bottom-2">Force Open</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-tooltip text="I insist you read me." position="right" force-open="true">
+    <yeti-icon type="info"></yeti-icon>
+</yeti-tooltip>
 
         </div><!-- /code_sample -->
 
@@ -87,8 +78,7 @@
         <h2 class="margin-bottom-3">Technical Notes</h2>
 
         <ul class="yeti-list-bulleted">
-          <li>Tooltips should default to above and centered.</li>
-          <li>They appear when a user hovers over or focuses on something within the wrapper element.</li>
+          <li>Tooltips should usually be used on inline elements.</li>
         </ul>
 
       </div><!-- /main -->

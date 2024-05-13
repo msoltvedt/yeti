@@ -136,6 +136,10 @@ export namespace Components {
          */
         "inputName": string;
         /**
+          * Determines whether the field uses block (default) or inline labels.
+         */
+        "isInline": boolean;
+        /**
           * Whether the input is currently valid or invalid.
          */
         "isValid": boolean;
@@ -197,7 +201,7 @@ export namespace Components {
          */
         "iconId"?: string;
         /**
-          * The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).
+          * The style of icon. Defaults to solid, but can also be "outlined".
          */
         "iconStyle": string;
     }
@@ -445,6 +449,20 @@ export namespace Components {
           * CSS classlist to add to the element serving as the component's wrapper.
          */
         "wrapperClass": string;
+    }
+    interface YetiPageContents {
+        /**
+          * Headings within a parent of the given class will be ignored.
+         */
+        "ignoreWithin": string;
+        /**
+          * Whether to show the Page Contents menu in expanded or closed state.
+         */
+        "isExpanded": boolean;
+        /**
+          * Whether to show the Page Contents menu in expanded or closed state.
+         */
+        "wrapperId": string;
     }
     interface YetiProgressBar {
         /**
@@ -849,6 +867,12 @@ declare global {
         prototype: HTMLYetiNotificationElement;
         new (): HTMLYetiNotificationElement;
     };
+    interface HTMLYetiPageContentsElement extends Components.YetiPageContents, HTMLStencilElement {
+    }
+    var HTMLYetiPageContentsElement: {
+        prototype: HTMLYetiPageContentsElement;
+        new (): HTMLYetiPageContentsElement;
+    };
     interface HTMLYetiProgressBarElement extends Components.YetiProgressBar, HTMLStencilElement {
     }
     var HTMLYetiProgressBarElement: {
@@ -958,6 +982,7 @@ declare global {
         "yeti-modal": HTMLYetiModalElement;
         "yeti-multiselect": HTMLYetiMultiselectElement;
         "yeti-notification": HTMLYetiNotificationElement;
+        "yeti-page-contents": HTMLYetiPageContentsElement;
         "yeti-progress-bar": HTMLYetiProgressBarElement;
         "yeti-reorderee": HTMLYetiReordereeElement;
         "yeti-reorderer": HTMLYetiReordererElement;
@@ -1109,6 +1134,10 @@ declare namespace LocalJSX {
          */
         "inputName"?: string;
         /**
+          * Determines whether the field uses block (default) or inline labels.
+         */
+        "isInline"?: boolean;
+        /**
           * Whether the input is currently valid or invalid.
          */
         "isValid"?: boolean;
@@ -1173,7 +1202,7 @@ declare namespace LocalJSX {
          */
         "iconId"?: string;
         /**
-          * The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).
+          * The style of icon. Defaults to solid, but can also be "outlined".
          */
         "iconStyle"?: string;
     }
@@ -1454,6 +1483,20 @@ declare namespace LocalJSX {
          */
         "wrapperClass"?: string;
     }
+    interface YetiPageContents {
+        /**
+          * Headings within a parent of the given class will be ignored.
+         */
+        "ignoreWithin"?: string;
+        /**
+          * Whether to show the Page Contents menu in expanded or closed state.
+         */
+        "isExpanded"?: boolean;
+        /**
+          * Whether to show the Page Contents menu in expanded or closed state.
+         */
+        "wrapperId"?: string;
+    }
     interface YetiProgressBar {
         /**
           * CSS classlist to add to the element representing the component's progress bar.
@@ -1693,6 +1736,7 @@ declare namespace LocalJSX {
         "yeti-modal": YetiModal;
         "yeti-multiselect": YetiMultiselect;
         "yeti-notification": YetiNotification;
+        "yeti-page-contents": YetiPageContents;
         "yeti-progress-bar": YetiProgressBar;
         "yeti-reorderee": YetiReorderee;
         "yeti-reorderer": YetiReorderer;
@@ -1719,6 +1763,7 @@ declare module "@stencil/core" {
             "yeti-modal": LocalJSX.YetiModal & JSXBase.HTMLAttributes<HTMLYetiModalElement>;
             "yeti-multiselect": LocalJSX.YetiMultiselect & JSXBase.HTMLAttributes<HTMLYetiMultiselectElement>;
             "yeti-notification": LocalJSX.YetiNotification & JSXBase.HTMLAttributes<HTMLYetiNotificationElement>;
+            "yeti-page-contents": LocalJSX.YetiPageContents & JSXBase.HTMLAttributes<HTMLYetiPageContentsElement>;
             "yeti-progress-bar": LocalJSX.YetiProgressBar & JSXBase.HTMLAttributes<HTMLYetiProgressBarElement>;
             "yeti-reorderee": LocalJSX.YetiReorderee & JSXBase.HTMLAttributes<HTMLYetiReordereeElement>;
             "yeti-reorderer": LocalJSX.YetiReorderer & JSXBase.HTMLAttributes<HTMLYetiReordererElement>;

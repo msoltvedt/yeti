@@ -19,13 +19,13 @@
     
         <h1 class="margin-top-none">Form</h1>
 
-        <yeti-page-contents></yeti-page-contents>
+        <yeti-page-contents ignore-within="ydoc-code_sample"></yeti-page-contents>
 
 
         <h2 class="margin-bottom-3">Code Samples</h2>
 
 
-        <h3 class="margin-bottom-2">Label</h3>
+        <h3 class="margin-bottom-2" id="label">Label</h3>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
@@ -35,7 +35,8 @@
         </div><!-- /code_sample -->
 
 
-        <h3 class="margin-bottom-2">Tip</h3>
+
+        <h3 class="margin-bottom-2" id="tip">Tip</h3>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
@@ -45,71 +46,12 @@
         </div><!-- /code_sample -->
 
 
-        <h3 class="margin-bottom-2">Field</h3>
-
-        <p>
-            A Form <em>Field</em> is some sort of input (or its read-only equivalent) together with its related items: <em>Label</em>, <em>Tip</em>, <em>Field Error</em>, etc.
-        </p>
-
-        <h4 class="margin-bottom-2">Default</h4>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-
-<div class="yeti-form-field">
-    <label class="yeti-form-label" for="example-input">Default Example</label>
-    <input type="text" class="yeti-input" id="example-input_1">
-</div>
-
-        </div><!-- /code_sample -->
-
-
-        <h4 class="margin-bottom-2">With Tip</h4>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-
-<div class="yeti-form-field">
-    <label class="yeti-form-label" for="example-input_2">Default Example</label>
-    <input type="text" class="yeti-input" id="example-input_2" aria-describedby="example-input_2-tip">
-    <span class="yeti-form-tip" id="example-input_2-tip">I'm a helpful tip.</span>
-</div>
-
-        </div><!-- /code_sample -->
-
-
-        <h4 class="margin-bottom-2">With Field Error</h4>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-
-<div class="yeti-form-field">
-    <label class="yeti-form-label" for="example-input_3">Default Example</label>
-    <input type="text" class="yeti-input yeti-input__error" id="example-input_3" aria-describedby="example-input_3-tip" aria-invalid="true">
-    <span class="yeti-form-tip" id="example-input_3-tip">I'm a helpful tip or error message.</span>
-</div>
-
-        </div><!-- /code_sample -->
-
-        <h4 class="margin-bottom-2">Inline Labels</h4>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-
-<div class="yeti-form-field yeti-form-field-inline">
-    <label class="yeti-form-label" for="example-input_4">Default Example</label>
-    <input type="text" class="yeti-input" id="example-input_4" aria-describedby="example-input_4-tip">
-    <span class="yeti-form-tip" id="example-input_4-tip">I'm a helpful tip.</span>
-</div>
-
-        </div><!-- /code_sample -->
-
 
         <h2 class="margin-bottom-3 margin-top-8">Technical Notes</h2>
 
         <ul class="yeti-list-bulleted">
-          <li>Only the input types above are supported.</li>
-          <li>Only use this for input fields similar to text (i.e. phone, search, etc.). There will be separate patterns for things like radios and checkboxes.</li>
+          <li>See <a href="field.html">Field</a> for an easy way to combine an input with a label and a tip or error message.</li>
+          <li>Note that Tip is automatically converted to an error message when it describes something marked as in error. See <a href="field.html">Field</a> for examples and details.</li>
         </ul>
 
       </div><!-- /main -->

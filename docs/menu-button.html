@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
 
-    <title>Yeti Design System - Menu Button Pattern</title>
+    <title>Yeti Design System - Menu Button Component</title>
 
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/yeti-examples-only.css">
@@ -17,140 +17,115 @@
 
       <div role="main">
     
-        <h1 class="margin-top-none">Menu Button</h1>
+        <h1 class="margin-top-none">Menu Button Component</h1>
 
-        <yeti-page-contents></yeti-page-contents>
+        <yeti-page-contents ignore-within="ydoc-code_sample"></yeti-page-contents>
 
         <h2 class="margin-bottom-3">Code Samples</h2>
 
 
-
         <h3 class="margin-bottom-2">Default</h3>
 
-
-        <h3 class="margin-bottom-2">Closed</h3>
-
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-
-<div class="yeti-menu_button">
-
-  <button class="yeti-menu_button-button" aria-haspopup="true" aria-controls="menu1" id="menubutton1">
-    <span class="material-icons" aria-hidden="true">more_vert</span>
-    <span class="yeti-a11y-hidden">Options</span>
-  </button>
-
-  
-  <ul class="yeti-menu_button-menu" role="menu" id="menu1" aria-labelledby="menubtton1">
-
-    <li class="yeti-menu_button-menu-item" role="presentation">
-      <a href="http://creeksidedigital.com/" class="yeti-menu_button-menu-item-link" role="menuitem" tabindex="-1">Action 1 has a label that is too long</a>
-    </li>
-
-    <li class="yeti-menu_button-menu-item" role="presentation">
-      <button class="yeti-menu_button-menu-item-button" role="menuitem" tabindex="-1">Action 2 has a label that is too long</button>
-    </li>
-
-    <li class="yeti-menu_button-menu-item" role="presentation">
-      <a href="https://www.loc.gov/" class="yeti-menu_button-menu-item-link" role="menuitem" tabindex="-1">Action 3</a>
-    </li>
-
-    <li class="yeti-menu_button-menu-item" role="presentation">
-      <button class="yeti-menu_button-menu-item-button" role="menuitem" tabindex="-1">Action 4</button>
-    </li>
-
-  </ul>
-
-</div>
+<yeti-menu-button>
+  <yeti-menu-button-option>Option 1</yeti-menu-button-option>
+  <yeti-menu-button-option>Option 2</yeti-menu-button-option>
+  <yeti-menu-button-option href="http://creeksidedigital.com/">Go to CD</yeti-menu-button-option>
+</yeti-menu-button>
 
         </div><!-- /code_sample -->
 
 
 
-        <h3 class="margin-bottom-2">Open</h3>
+        <h3 class="margin-bottom-2">Menu Alignment</h3>
+
+        <p class="margin-bottom-2">
+            You can set the menu to align with the right edge of the component (instead of the default left) with the <code>menu-alignment</code> attribute.
+        </p>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
+<yeti-menu-button menu-alignment="right" wrapper-class="yeti-margin-left-8">
+  <yeti-menu-button-option>Option 1</yeti-menu-button-option>
+  <yeti-menu-button-option>Option 2</yeti-menu-button-option>
+  <yeti-menu-button-option href="http://creeksidedigital.com/">Go to CD</yeti-menu-button-option>
+</yeti-menu-button>
 
-<div class="yeti-menu_button yeti-menu_button__open">
+        </div><!-- /code_sample -->
 
-  <button class="yeti-menu_button-button" aria-haspopup="true" aria-controls="menu1" id="menubutton1">
-    <span class="material-icons" aria-hidden="true">more_vert</span>
-    <span class="yeti-a11y-hidden">Options</span>
-  </button>
 
+        <h3 class="margin-bottom-2">With Custom Button Contents</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-menu-button has-tooltip="false">
+  <yeti-menu-button-contents>
+    Your Options<yeti-icon type="expand_more"></yeti-icon>
+  </yeti-menu-button-contents>
+  <yeti-menu-button-option>Option 1</yeti-menu-button-option>
+  <yeti-menu-button-option>Option 2</yeti-menu-button-option>
+  <yeti-menu-button-option href="http://creeksidedigital.com/">Go to CD</yeti-menu-button-option>
+</yeti-menu-button>
+
+        </div><!-- /code_sample -->
+
+
+        <h3 class="margin-bottom-2">With Custom Menu Item Contents</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-menu-button>
   
-  <ul class="yeti-menu_button-menu" role="menu" id="menu1" aria-labelledby="menubtton1">
+  <yeti-menu-button-option>
+    I'm <strong>fancy.</strong>
+    No, I mean it. I'm <em>really</em> fancy.
+  </yeti-menu-button-option>
+  
+  <yeti-menu-button-option>Option 2</yeti-menu-button-option>
+  
+  <yeti-menu-button-option href="http://creeksidedigital.com/">Go to CD</yeti-menu-button-option>
 
-    <li class="yeti-menu_button-menu-item" role="presentation">
-      <a href="http://creeksidedigital.com/" class="yeti-menu_button-menu-item-link" role="menuitem" tabindex="-1">Action 1 has a label that is too long</a>
-    </li>
-
-    <li class="yeti-menu_button-menu-item" role="presentation">
-      <button class="yeti-menu_button-menu-item-button" role="menuitem" tabindex="-1">Action 2 has a label that is too long</button>
-    </li>
-
-    <li class="yeti-menu_button-menu-item" role="presentation">
-      <a href="https://www.loc.gov/" class="yeti-menu_button-menu-item-link" role="menuitem" tabindex="-1">Action 3</a>
-    </li>
-
-    <li class="yeti-menu_button-menu-item" role="presentation">
-      <button class="yeti-menu_button-menu-item-button" role="menuitem" tabindex="-1">Action 4</button>
-    </li>
-
-  </ul>
-
-</div>
+</yeti-menu-button>
 
         </div><!-- /code_sample -->
 
 
 
-        <h3 class="margin-bottom-2">Open and Right-aligned</h3>
+        <h3 class="margin-bottom-2"><code>menuButtonChange</code> Event</h3>
+
+        <p class="margin-bottom-2">
+            The menu the <code>menuButtonChange</code> event fires when the user selects a new option. The component will also set its value attribute to match the text label of the selected option. You can also view the <code>oldValue</code> and <code>newValue</code> of the menu button via the <code>menuButtonChange</code> event details.
+        </p>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
+<yeti-menu-button id="mb1">
+  <yeti-menu-button-option>Option 1</yeti-menu-button-option>
+  <yeti-menu-button-option>Option 2</yeti-menu-button-option>
+  <yeti-menu-button-option href="http://creeksidedigital.com/">Go to CD</yeti-menu-button-option>
+</yeti-menu-button>
 
-<div class="yeti-menu_button yeti-menu_button-right_aligned yeti-menu_button__open" style="margin-left: 20vw;">
+<p id="mb1_value"></p>
 
-  <button class="yeti-menu_button-button" aria-haspopup="true" aria-expanded="true" aria-controls="menu1" id="menubutton1">
-    <span class="material-icons" aria-hidden="true">more_vert</span>
-    <span class="yeti-a11y-hidden">Options</span>
-  </button>
+<script>
+    let mb = document.getElementById("mb1");
+    let p = document.getElementById("mb1_value");
 
-  
-  <ul class="yeti-menu_button-menu" role="menu" id="menu1" aria-labelledby="menubtton1">
-
-    <li class="yeti-menu_button-menu-item" role="presentation">
-      <a href="http://creeksidedigital.com/" class="yeti-menu_button-menu-item-link" role="menuitem" tabindex="-1">Action 1 has a label that is too long</a>
-    </li>
-
-    <li class="yeti-menu_button-menu-item" role="presentation">
-      <button class="yeti-menu_button-menu-item-button" role="menuitem" tabindex="-1">Action 2 has a label that is too long</button>
-    </li>
-
-    <li class="yeti-menu_button-menu-item" role="presentation">
-      <a href="https://www.loc.gov/" class="yeti-menu_button-menu-item-link" role="menuitem" tabindex="-1">Action 3</a>
-    </li>
-
-    <li class="yeti-menu_button-menu-item" role="presentation">
-      <button class="yeti-menu_button-menu-item-button" role="menuitem" tabindex="-1">Action 4</button>
-    </li>
-
-  </ul>
-
-</div>
+    mb.addEventListener('menuButtonChange', (ev) => {
+        p.innerHTML = `${ev.detail.newValue}`;
+    });
+</script>
 
         </div><!-- /code_sample -->
 
 
 
-        <h2 class="margin-bottom-3">Technical Notes</h2>
+        <!-- <h2 class="margin-bottom-3">Technical Notes</h2>
 
         <ul class="yeti-list-bulleted">
-          <li>A11y implementation based on guidance from the <a href="https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/examples/menu-button-actions-active-descendant/">WAI APG Actions Menu Button example</a>.</li>
-          <li>It's easier to understand the a11y states by viewing the <a href="yeti-menu-button.html">Menu Button component</a>.</li>
-        </ul>
+          <li>For standard (pick one option) selects, use the <a href="select.html">Select pattern</a>.</li>
+        </ul> -->
 
       </div><!-- /main -->
     

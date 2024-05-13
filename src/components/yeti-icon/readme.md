@@ -14,7 +14,7 @@
 | `iconClass` | `icon-class` | CSS classlist applied to the actual element producing the icon.                                                                                                     | `string`  | `''`                       |
 | `iconCode`  | `type`       | The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).                                                                              | `string`  | `'check_circle'`           |
 | `iconId`    | `icon-id`    | id of the actual element producing the icon. Set to a unique id if one is not provided.                                                                             | `string`  | `utils.generateUniqueId()` |
-| `iconStyle` | `icon-style` | The type of icon. Corresponds to the analogous "code" Google uses (i.e. check_circle).                                                                              | `string`  | `''`                       |
+| `iconStyle` | `icon-style` | The style of icon. Defaults to solid, but can also be "outlined".                                                                                                   | `string`  | `''`                       |
 
 
 ## Dependencies
@@ -23,6 +23,7 @@
 
  - [yeti-combobox](../yeti-combobox)
  - [yeti-file-explorer](../yeti-file-explorer)
+ - [yeti-page-contents](../yeti-page-contents)
  - [yeti-table](../yeti-table)
  - [yeti-tooltip](../yeti-tooltip)
 
@@ -31,6 +32,7 @@
 graph TD;
   yeti-combobox --> yeti-icon
   yeti-file-explorer --> yeti-icon
+  yeti-page-contents --> yeti-icon
   yeti-table --> yeti-icon
   yeti-tooltip --> yeti-icon
   style yeti-icon fill:#f9f,stroke:#333,stroke-width:4px

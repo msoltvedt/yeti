@@ -647,6 +647,11 @@ Styles for Modal
   .yeti-modal__unscrollable .yeti-modal-content {
     overflow: hidden;
     display: flex;
+    flex-direction: column;
+  }
+  .yeti-modal__unscrollable .yeti-modal-content-actual {
+    flex: 1 1 auto;
+    max-height: 100%;
   }
   /************************************** Fixed Height ***/
   .yeti-modal-max_height.yeti-modal-size-xs .yeti-modal-content {
@@ -710,11 +715,11 @@ Styles for File Explorer
     display: contents;
   }
   .yeti-file_explorer-wrapper {
-    min-height: 4rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     width: 100%;
+    max-height: 100%;
   }
   /************************************** Actual ***/
   .yeti-file_explorer {
@@ -725,6 +730,8 @@ Styles for File Explorer
     flex: 1 1 auto;
     border: 1px solid #c6c6c6;
     width: 100%;
+    min-height: 4rem;
+    max-height: 100%;
     overflow-y: hidden;
     overflow-x: scroll;
   }
@@ -782,6 +789,10 @@ Styles for File Explorer
   }
   .yeti-file_explorer-folder-item:last-child {
     margin-bottom: -1px;
+  }
+  .yeti-file_explorer-folder-item:has(yeti-loading) {
+    border: 0;
+    padding: 1rem;
   }
   .yeti-file_explorer-folder-item-wrapper {
     -webkit-appearance: none;
@@ -1729,9 +1740,11 @@ Styles for Loading Indicator
   .yeti-loading,
   .yeti-loading_inline {
     display: inline-flex;
-    flex-direction: column;
     align-items: center;
     gap: 0.5rem;
+  }
+  .yeti-loading {
+    flex-direction: column;
   }
   .yeti-loading:focus {
     outline: none;
@@ -1750,7 +1763,12 @@ Styles for Loading Indicator
     vertical-align: baseline;
     width: 5.5rem;
   }
-  .yeti-loading-icon-svg {
+  .yeti-loading_inline-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+  .yeti-loading-icon-svg,
+  .yeti-loading_inline-icon-svg {
     fill: transparent;
     animation-duration: 0.69s;
     animation-fill-mode: forwards;
@@ -1765,11 +1783,30 @@ Styles for Loading Indicator
     stroke-linecap: butt;
     stroke-width: 10;
   }
+  .yeti-loading_inline-icon-svg-background {
+    stroke: #e0e0e0;
+    stroke-width: 16;
+    stroke-dashoffset: -22;
+  }
+  .yeti-loading_inline-icon-svg-stroke {
+    stroke: #0f62fe;
+    stroke-linecap: butt;
+    stroke-dasharray: 276.4608 276.4608;
+    stroke-width: 16;
+    stroke-dashoffset: 143.759616;
+  }
   /************************************** Label ***/
   .yeti-loading-label {
     font-size: 1.15rem;
     font-weight: 500;
     text-align: center;
+  }
+  .yeti-loading_inline-label {
+    font-size: 0.75rem;
+    color: #525252;
+    font-weight: 400;
+    letter-spacing: 0.32px;
+    line-height: 1.3333333;
   }
   /************************************** Content ***/
   .yeti-loading-content {
@@ -2182,6 +2219,140 @@ Leeloo Dallas multipass
     bottom: calc(100% + 20px);
     width: 10rem;
     height: 10rem;
+  }
+  /************************************** page-contents.css ***************************************
+
+Styles for Page Contents
+
+*************************************** page-contents.css **************************************/
+  /************************************** Wrapper ***/
+  yeti-page-contents {
+    display: contents;
+  }
+  .yeti-page_contents-wrapper {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .yeti-page_contents-wrappee {
+    flex: 1 1 auto;
+  }
+  /************************************** Actual ***/
+  .yeti-page_contents {
+    min-width: 8rem;
+    width: fit-content;
+    max-width: 33vw;
+    position: sticky;
+    top: 0;
+    flex: 0 0 auto;
+    background-color: #f4f4f4;
+    color: #525252;
+    letter-spacing: 0.16px;
+    line-height: 1rem;
+    transition: all 3000ms;
+  }
+  /*** Collapsed State ***/
+  .yeti-page_contents__collapsed {
+    width: 1.75rem;
+    height: 1.75rem;
+    min-width: unset;
+    overflow: hidden;
+  }
+  /*** Title ***/
+  .yeti-page_contents-heading-title a {
+    font-size: inherit;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  /*** Headings List ***/
+  .yeti-page_contents__collapsed .yeti-page_contents-headings {
+    display: none;
+  }
+  .yeti-page_contents-heading {
+    display: flex;
+  }
+  .yeti-page_contents-heading-level-1 {
+    font-weight: 600;
+  }
+  .yeti-page_contents-heading-level-2 {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 0.125rem;
+  }
+  .yeti-page_contents-heading a {
+    padding: 0.5rem 1rem;
+    min-height: 2rem;
+    text-decoration: none;
+    color: inherit;
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+  }
+  .yeti-page_contents-heading a:hover,
+  .yeti-page_contents-heading-action:hover {
+    background-color: #e8e8e8;
+    color: #161616;
+  }
+  .yeti-page_contents-heading__visible:not(:is(.yeti-page_contents-heading__visible ~ .yeti-page_contents-heading__visible, .yeti-page_contents-heading-level-1)) {
+    font-style: italic;
+  }
+  .yeti-page_contents-heading-level-3 a {
+    padding-left: 2rem;
+  }
+  .yeti-page_contents-heading-level-4 a {
+    padding-left: 3rem;
+  }
+  .yeti-page_contents-heading-level-5 a {
+    padding-left: 4rem;
+  }
+  .yeti-page_contents-heading-level-6 a {
+    padding-left: 5rem;
+  }
+  /* Page Content Actions */
+  .yeti-page_contents-heading-actions {
+    padding: 0.625rem 1rem 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    border-top: 1px solid #e0e0e0;
+  }
+  .yeti-page_contents-heading-action {
+    color: inherit;
+    width: 1.75rem;
+    height: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+  .yeti-page_contents-heading-title .material-icons,
+  .yeti-page_contents-heading-action .material-icons {
+    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  /*** Min/max buttons ***/
+  .yeti-page_contents-minmax {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    background-color: #e0e0e0;
+    border: 0;
+    box-sizing: border-box;
+    color: #161616;
+    cursor: pointer;
+    letter-spacing: 0.16px;
+    width: 1.75rem;
+    height: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: #525252;
+  }
+  .yeti-page_contents-minmax:hover {
+    background-color: #e0e0e0;
+    color: #161616;
   }
   /************************************** progress_bar.less ***************************************
 
@@ -3300,6 +3471,9 @@ Styles for notification
     max-width: unset;
     width: unset;
   }
+  .yeti-notification_full .yeti-notification-content {
+    display: unset;
+  }
 }
 /************************************** Utilities ***/
 @layer utilities {
@@ -3601,6 +3775,18 @@ Styles for notification
   /*** Shorthands ***/
   .yeti-layout-inflexible {
     flex: 0 0 auto;
+  }
+  /************************************** Grow/Shrink ***/
+  .yeti-layout-grow,
+  .yeti-layout-grow-1 {
+    flex-grow: 1;
+  }
+  .yeti-layout-shrink-no,
+  .yeti-layout-shrink-0 {
+    flex-shrink: 0;
+  }
+  .yeti-layout-shrink-1 {
+    flex-shrink: 1;
   }
   /************************************** Gaps ***/
   /*** All Sides ***/
@@ -4441,6 +4627,9 @@ Styles for notification
     max-width: 27rem;
   }
   /************************************** Height ***/
+  .yeti-height-0 {
+    height: 0;
+  }
   .yeti-height-1 {
     height: 0.25rem;
   }
@@ -4476,6 +4665,9 @@ Styles for notification
   }
   .yeti-height-128 {
     height: 32rem;
+  }
+  .yeti-height-full {
+    height: 100%;
   }
   /************************************** Both ***/
   .yeti-size-0 {

@@ -351,3 +351,10 @@ export interface YetiFileSystemItem {
   id?: string,
   type?: string // "file" | "folder"
 }
+
+/*** Page Contents ***/
+export interface YetiPageContentsHeader {
+  label: string,
+  level: number,
+  id: string
+}

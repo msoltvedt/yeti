@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
 
-    <title>Yeti Design System - Notification Pattern</title>
+    <title>Yeti Design System - Notification Component</title>
 
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/yeti-examples-only.css">
@@ -17,224 +17,117 @@
 
       <div role="main">
     
-        <h1 class="margin-top-none">Notification</h1>
+        <h1 class="margin-top-none">Notification Component</h1>
 
-        <yeti-page-contents></yeti-page-contents>
+        <yeti-page-contents ignore-within="ydoc-code_sample"></yeti-page-contents>
 
         <h2 class="margin-bottom-3">Code Samples</h2>
-        
+
 
 
         <h3 class="margin-bottom-2">Default</h3>
 
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-notification text-title="Basic Bob">
+  
+  Content will be inline if possible and can be HTML like <a href="">links</a> or whatever.
+
+</yeti-notification>
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-2">Setting a Notification Type</h3>
+
         <p>
-          Note that the default state is the Error state.
+          Set the type via the optional <code>notification-type</code> attribute. Possible values are <code>error</code> (default), <code>info</code>, <code>success</code>, <code>warning</code>, and <code>warningAlt</code>.
         </p>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-<div class="yeti-notification" role="status">
+<yeti-notification text-title="Warning Warren" notification-type="warningAlt">
+  
+  Be forewarned and whatnot.
 
-    <div class="yeti-notification-icon">
-      <span class="material-icons" aria-hidden="true">error</span>
-      <span class="yeti-a11y-hidden">Error</span>
-    </div>
-
-    <div class="yeti-notification-content">
-      <div class="yeti-notification-content-title">Basic Bob</div>
-      <div class="yeti-notification-content-subtitle">Super helpful text to enlighten the user.</div>
-    </div>
-
-    <button class="yeti-notification-close">
-      <span class="material-icons">close</span>
-    </button>
-
-</div>
+</yeti-notification>
         </div><!-- /code_sample -->
 
 
 
-        <h3 class="margin-bottom-2">Info</h3>
+        <h3 class="margin-bottom-2">Low-contrast Mode</h3>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-<div class="yeti-notification yeti-notification-info" role="status">
+<yeti-notification text-title="Error Erin" is-low-contrast="true">
+  
+  Welp, that didn't work.
 
-    <div class="yeti-notification-icon">
-      <span class="material-icons" aria-hidden="true">info</span>
-      <span class="yeti-a11y-hidden">Notification</span>
-    </div>
-
-    <div class="yeti-notification-content">
-      <div class="yeti-notification-content-title">Informative Inigo</div>
-      <div class="yeti-notification-content-subtitle">Super helpful text to enlighten the user.</div>
-    </div>
-
-    <button class="yeti-notification-close">
-      <span class="material-icons">close</span>
-    </button>
-
-</div>
+</yeti-notification>
         </div><!-- /code_sample -->
 
 
 
-        <h3 class="margin-bottom-2">Success</h3>
+        <h3 class="margin-bottom-2">Without Close Button</h3>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-<div class="yeti-notification yeti-notification-success" role="status">
+<yeti-notification text-title="Error Erin" show-close-button="false">
+  
+  Welp, that didn't work.
 
-    <div class="yeti-notification-icon">
-      <span class="material-icons" aria-hidden="true">check_circle</span>
-      <span class="yeti-a11y-hidden">Notification</span>
-    </div>
-
-    <div class="yeti-notification-content">
-      <div class="yeti-notification-content-title">Successful Sara</div>
-      <div class="yeti-notification-content-subtitle">Super helpful text to enlighten the user.</div>
-    </div>
-
-    <button class="yeti-notification-close">
-      <span class="material-icons">close</span>
-    </button>
-
-</div>
-        </div><!-- /code_sample -->
-
-
-
-        <h3 class="margin-bottom-2">Warning</h3>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-<div class="yeti-notification yeti-notification-warning" role="status">
-
-    <div class="yeti-notification-icon">
-      <span class="material-icons" aria-hidden="true">error</span>
-      <span class="yeti-a11y-hidden">Notification</span>
-    </div>
-
-    <div class="yeti-notification-content">
-      <div class="yeti-notification-content-title">Warning Warren</div>
-      <div class="yeti-notification-content-subtitle">Super helpful text to enlighten the user.</div>
-    </div>
-
-    <button class="yeti-notification-close">
-      <span class="material-icons">close</span>
-    </button>
-
-</div>
-        </div><!-- /code_sample -->
-
-
-
-        <h3 class="margin-bottom-2">Warning (Alt)</h3>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-<div class="yeti-notification yeti-notification-warning_alt" role="status">
-
-    <div class="yeti-notification-icon">
-      <span class="material-icons" aria-hidden="true">warning</span>
-      <span class="yeti-a11y-hidden">Notification</span>
-    </div>
-
-    <div class="yeti-notification-content">
-      <div class="yeti-notification-content-title">Warning Warren</div>
-      <div class="yeti-notification-content-subtitle">Super helpful text to enlighten the user.</div>
-    </div>
-
-    <button class="yeti-notification-close">
-      <span class="material-icons">close</span>
-    </button>
-
-</div>
-        </div><!-- /code_sample -->
-
-
-
-        <h3 class="margin-bottom-2">Without the Close Button</h3>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-<div class="yeti-notification" role="status">
-
-    <div class="yeti-notification-icon">
-      <span class="material-icons" aria-hidden="true">error</span>
-      <span class="yeti-a11y-hidden">Notification</span>
-    </div>
-
-    <div class="yeti-notification-content">
-      <div class="yeti-notification-content-title">Everpresent Everett</div>
-      <div class="yeti-notification-content-subtitle">I will not be so easily dismissed.</div>
-    </div>
-
-</div>
-        </div><!-- /code_sample -->
-
-
-        <h3 class="margin-bottom-2">Low Contrast Variants</h3>
-
-        <p>
-          Each type also has a low contrast variant.
-        </p>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-<div class="yeti-notification yeti-notification-low_contrast" role="status">
-
-    <div class="yeti-notification-icon">
-      <span class="material-icons" aria-hidden="true">error</span>
-      <span class="yeti-a11y-hidden">Error</span>
-    </div>
-
-    <div class="yeti-notification-content">
-      <div class="yeti-notification-content-title">Basic Bob</div>
-      <div class="yeti-notification-content-subtitle">Super helpful text to enlighten the user.</div>
-    </div>
-
-    <button class="yeti-notification-close">
-      <span class="material-icons">close</span>
-    </button>
-
-</div>
+</yeti-notification>
         </div><!-- /code_sample -->
 
 
 
         <h3 class="margin-bottom-2">With Action Button</h3>
 
+        <p>
+          If you give the <code>action-label</code> attribute a value then Yeti will add an action button. Yeti will fire a <code>notificationActionClick</code> custom event whenever someone clicks on that button.
+        </p>
+
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-<div class="yeti-notification yeti-notification-info" role="status">
+<yeti-notification text-title="Error Erin" action-label="Action!" id="demo-notification">
+  
+  That didn't work either.
 
-    <div class="yeti-notification-icon">
-      <span class="material-icons" aria-hidden="true">error</span>
-      <span class="yeti-a11y-hidden">Error</span>
-    </div>
+</yeti-notification>
 
-    <div class="yeti-notification-content">
-      <div class="yeti-notification-content-title">Basic Bob</div>
-      <div class="yeti-notification-content-subtitle">Super helpful text to enlighten the user.</div>
-    </div>
+You have clicked the action button in the notification above <span id="demo-count">0</span> time(s).
 
-    <button class="yeti-notification-action">Action!</button>
+<script>
+  const notification = document.getElementById("demo-notification");
+  const countLabel = document.getElementById("demo-count");
+  let timesClicked = 0;
 
-    <button class="yeti-notification-close">
-      <span class="material-icons">close</span>
-    </button>
-
-</div>
+  notification.addEventListener("notificationActionClick", () => {
+    ++timesClicked;
+    countLabel.innerHTML = timesClicked;
+  });
+</script>
         </div><!-- /code_sample -->
 
+
+
+        <h3 class="margin-bottom-2">Full Width Variant</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-notification text-title="Error Erin" size="full">
+  
+  Welp, that didn't work.
+
+</yeti-notification>
+        </div><!-- /code_sample -->
 
 
 
         <h2 class="margin-bottom-3">Technical Notes</h2>
 
         <ul class="yeti-list-bulleted">
-          <li>See also: <a href="yeti-notification.html">Notification Component</a></li>
+          <li>See also: <a href="notification.html">Notification Pattern</a></li>
         </ul>
 
       </div><!-- /main -->

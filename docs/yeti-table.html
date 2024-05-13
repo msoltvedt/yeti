@@ -25,128 +25,6 @@
 
 
 
-            <h3 class="margin-bottom-2">With Expandable Rows</h3>
-
-            <p class="margin-bottom-2">
-                Note that the child rows are in an array of their own on the rows object.
-            </p>
-
-            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-            <div class="ydoc-code_sample">
-
-<yeti-table id="expandableRowsTable" table-class="yeti-table__fixed" has-expandable-rows="true"></yeti-table>
-
-<script type="module">
-    const expandableRowsTable = document.getElementById( 'expandableRowsTable' );
-
-    expandableRowsTable.contents = {
-        "head": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "isHeading": "true",
-                            "value": "City/State",
-                            "cssClass": "yeti-table-grid-5"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Nickname",
-                            "cssClass": "yeti-table-grid-5"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Stadium",
-                            "cssClass": "yeti-table-grid-6"
-                        }
-                    ]
-                }
-            ]
-        },
-
-        "body": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "value": "New York",
-                            "colspan": 3
-                        }
-                    ],
-                    "childRows": [
-                        {
-                            "cells": [
-                                {
-                                    "value": "New York",
-                                },
-                                {
-                                    "value": "Giants"
-                                },
-                                {
-                                    "value": "A Swamp in New Jersey"
-                                }
-                            ]
-                        },
-                        {
-                            "cells": [
-                                {
-                                    "value": "New York"
-                                },
-                                {
-                                    "value": "Yankees"
-                                },
-                                {
-                                    "value": "The New Yankee Workshop"
-                                }
-                            ]
-                        },
-                    ]
-                },
-                {
-                    "cells": [
-                        {
-                            "value": "Minnesota",
-                            "colspan": 3
-                        }
-                    ],
-                    "childRows": [
-                        {
-                            "cells": [
-                                {
-                                    "value": "Minnesota"
-                                },
-                                {
-                                    "value": "Vikings"
-                                },
-                                {
-                                    "value": "U.S. Bank Stadium"
-                                }
-                            ]
-                        },
-                        {
-                            "cells": [
-                                {
-                                    "value": "Minnesota"
-                                },
-                                {
-                                    "value": "Wild"
-                                },
-                                {
-                                    "value": "Power Outages R Us Stadium"
-                                }
-                            ]
-                        },
-                    ]
-                },
-            ]
-        }
-    };
-</script>
-
-            </div><!-- /code_sample -->
-
-
-
             <h2 class="margin-bottom-3">Code Samples</h2>
 
 
@@ -161,78 +39,78 @@
             <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
             <div class="ydoc-code_sample">
 
-                <yeti-table id="vanillaTable"></yeti-table>
+<yeti-table id="vanillaTable"></yeti-table>
 
-                <script type="module">
-                    const vanillaTable = document.getElementById( 'vanillaTable' );
+<script type="module">
+    const vanillaTable = document.getElementById( 'vanillaTable' );
 
-                    vanillaTable.contents = {
-                        "head": {
-                            "rows": [
-                                {
-                                    "cells": [
-                                        {
-                                            "isHeading": "true",
-                                            "value": "Heading 1"
-                                        },
-                                        {
-                                            "isHeading": "true",
-                                            "value": "Heading 2"
-                                        },
-                                        {
-                                            "isHeading": "true",
-                                            "value": "Heading 3"
-                                        },
-                                        {
-                                            "isHeading": "true",
-                                            "cssClass": "yeti-table-numeric",
-                                            "value": "A Number"
-                                        }
-                                    ]
-                                }
-                            ]
+    vanillaTable.contents = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Heading 1"
                         },
-
-                        "body": {
-                            "rows": [
-                                {
-                                    "cells": [
-                                        {
-                                            "value": "Cell 1"
-                                        },
-                                        {
-                                            "value": "Cell 2"
-                                        },
-                                        {
-                                            "value": "Cell 3"
-                                        },
-                                        {
-                                            "cssClass": "yeti-table-numeric",
-                                            "value": "22"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "cells": [
-                                        {
-                                            "value": "Cell 2-1"
-                                        },
-                                        {
-                                            "value": "Cell 2-2"
-                                        },
-                                        {
-                                            "value": "Cell 2-3"
-                                        },
-                                        {
-                                            "cssClass": "yeti-table-numeric",
-                                            "value": "42"
-                                        }
-                                    ]
-                                }
-                            ]
+                        {
+                            "isHeading": "true",
+                            "value": "Heading 2"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Heading 3"
+                        },
+                        {
+                            "isHeading": "true",
+                            "cssClass": "yeti-table-numeric",
+                            "value": "A Number"
                         }
-                    };
-                </script>
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "Cell 1"
+                        },
+                        {
+                            "value": "Cell 2"
+                        },
+                        {
+                            "value": "Cell 3"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "22"
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Cell 2-1"
+                        },
+                        {
+                            "value": "Cell 2-2"
+                        },
+                        {
+                            "value": "Cell 2-3"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "42"
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+</script>
 
             </div><!-- /code_sample -->
 
@@ -243,56 +121,56 @@
             <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
             <div class="ydoc-code_sample">
 
-                <yeti-table id="rowHeadingsTable"></yeti-table>
+<yeti-table id="rowHeadingsTable"></yeti-table>
 
-                <script type="module">
-                    const rowHeadingsTable = document.getElementById( 'rowHeadingsTable' );
-                    rowHeadingsTable.contents = {
+<script type="module">
+    const rowHeadingsTable = document.getElementById( 'rowHeadingsTable' );
+    rowHeadingsTable.contents = {
 
-                        "body": {
-                            "rows": [
-                                {
-                                    "cells": [
-                                        {
-                                            "value": "Cell 1",
-                                            "isHeading": true,
-                                            "scope": "row"
-                                        },
-                                        {
-                                            "value": "Cell 2"
-                                        },
-                                        {
-                                            "value": "Cell 3"
-                                        },
-                                        {
-                                            "cssClass": "yeti-table-numeric",
-                                            "value": "22"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "cells": [
-                                        {
-                                            "value": "Cell 2-1",
-                                            "isHeading": true,
-                                            "scope": "row"
-                                        },
-                                        {
-                                            "value": "Cell 2-2"
-                                        },
-                                        {
-                                            "value": "Cell 2-3"
-                                        },
-                                        {
-                                            "cssClass": "yeti-table-numeric",
-                                            "value": "42"
-                                        }
-                                    ]
-                                }
-                            ]
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "Cell 1",
+                            "isHeading": true,
+                            "scope": "row"
+                        },
+                        {
+                            "value": "Cell 2"
+                        },
+                        {
+                            "value": "Cell 3"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "22"
                         }
-                    };
-                </script>
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Cell 2-1",
+                            "isHeading": true,
+                            "scope": "row"
+                        },
+                        {
+                            "value": "Cell 2-2"
+                        },
+                        {
+                            "value": "Cell 2-3"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "42"
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+</script>
 
             </div><!-- /code_sample -->
 
@@ -309,137 +187,137 @@
             <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
             <div class="ydoc-code_sample">
 
-                <yeti-table id="rowActionsTable"></yeti-table>
+<yeti-table id="rowActionsTable"></yeti-table>
 
-                <script type="module">
-                    const rowActionsTable = document.getElementById( 'rowActionsTable' );
-                    rowActionsTable.contents = {
-                        "head": {
-                            "rows": [
-                                {
-                                    "cells": [
-                                        {
-                                            "isHeading": "true",
-                                            "value": "Heading 1"
-                                        },
-                                        {
-                                            "isHeading": "true",
-                                            "value": "Heading 2"
-                                        },
-                                        {
-                                            "isHeading": "true",
-                                            "value": "Heading 3"
-                                        },
-                                        {
-                                            "isHeading": "true",
-                                            "cssClass": "yeti-table-numeric",
-                                            "value": "A Number"
-                                        },
-                                        {
-                                            "value": ""
-                                        }
-                                    ]
-                                }
-                            ]
+<script type="module">
+    const rowActionsTable = document.getElementById( 'rowActionsTable' );
+    rowActionsTable.contents = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Heading 1"
                         },
+                        {
+                            "isHeading": "true",
+                            "value": "Heading 2"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Heading 3"
+                        },
+                        {
+                            "isHeading": "true",
+                            "cssClass": "yeti-table-numeric",
+                            "value": "A Number"
+                        },
+                        {
+                            "value": ""
+                        }
+                    ]
+                }
+            ]
+        },
 
-                        "body": {
-                            "rows": [
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "Cell 1"
+                        },
+                        {
+                            "value": "Cell 2"
+                        },
+                        {
+                            "value": "Cell 3"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "22"
+                        },
+                        {
+                            "rowActions": [
                                 {
-                                    "cells": [
-                                        {
-                                            "value": "Cell 1"
-                                        },
-                                        {
-                                            "value": "Cell 2"
-                                        },
-                                        {
-                                            "value": "Cell 3"
-                                        },
-                                        {
-                                            "cssClass": "yeti-table-numeric",
-                                            "value": "22"
-                                        },
-                                        {
-                                            "rowActions": [
-                                                {
-                                                    "label": "Go to CD",
-                                                    "href": "http://creeksidedigital.com/"
-                                                },
-                                                {
-                                                    "label": "Edit"
-                                                },
-                                                {
-                                                    "label": "Go to LOC",
-                                                    "href": "https://www.loc.gov/"
-                                                },
-                                                {
-                                                    "label": "Delete"
-                                                }
-                                            ]
-                                        }
-                                    ]
+                                    "label": "Go to CD",
+                                    "href": "http://creeksidedigital.com/"
                                 },
                                 {
-                                    "cells": [
-                                        {
-                                            "value": "Cell 2-1"
-                                        },
-                                        {
-                                            "value": "Cell 2-2"
-                                        },
-                                        {
-                                            "value": "Cell 2-3"
-                                        },
-                                        {
-                                            "cssClass": "yeti-table-numeric",
-                                            "value": "42"
-                                        },
-                                        {
-                                            "rowActions": [
-                                                {
-                                                    "label": "Go to CD",
-                                                    "href": "http://creeksidedigital.com/"
-                                                },
-                                                {
-                                                    "label": "Export"
-                                                }
-                                            ]
-                                        }
-                                    ]
+                                    "label": "Edit"
                                 },
                                 {
-                                    "cells": [
-                                        {
-                                            "value": "Cell 3-1"
-                                        },
-                                        {
-                                            "value": "Cell 3-2"
-                                        },
-                                        {
-                                            "value": "Cell 3-3"
-                                        },
-                                        {
-                                            "cssClass": "yeti-table-numeric",
-                                            "value": "64"
-                                        },
-                                        {
-                                            "rowActions": []
-                                        }
-                                    ]
+                                    "label": "Go to LOC",
+                                    "href": "https://www.loc.gov/"
+                                },
+                                {
+                                    "label": "Delete"
                                 }
                             ]
                         }
-                    };
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Cell 2-1"
+                        },
+                        {
+                            "value": "Cell 2-2"
+                        },
+                        {
+                            "value": "Cell 2-3"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "42"
+                        },
+                        {
+                            "rowActions": [
+                                {
+                                    "label": "Go to CD",
+                                    "href": "http://creeksidedigital.com/"
+                                },
+                                {
+                                    "label": "Export"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Cell 3-1"
+                        },
+                        {
+                            "value": "Cell 3-2"
+                        },
+                        {
+                            "value": "Cell 3-3"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "64"
+                        },
+                        {
+                            "rowActions": []
+                        }
+                    ]
+                }
+            ]
+        }
+    };
 
 
 
-                    rowActionsTable.addEventListener( 'rowActionClick', ( ev ) => {
-                        alert( `${ ev.detail.actionLabel } row ${ ev.detail.rowIndex }.` );
-                        console.log( ev.target.contents.body.rows[ ev.detail.rowIndex ] );
-                    } );
+    rowActionsTable.addEventListener( 'rowActionClick', ( ev ) => {
+        alert( `${ ev.detail.actionLabel } row ${ ev.detail.rowIndex }.` );
+        console.log( ev.target.contents.body.rows[ ev.detail.rowIndex ] );
+    } );
 
-                </script>
+</script>
 
             </div><!-- /code_sample -->
 
@@ -799,23 +677,23 @@
             <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
             <div class="ydoc-code_sample">
 
-                <yeti-table id="paginationTable">
+<yeti-table id="paginationTable">
 
-                    <yeti-table-actions>
+    <yeti-table-actions>
 
-                        <yeti-table-pagination>
-                            <yeti-table-pagination-option>5</yeti-table-pagination-option>
-                            <yeti-table-pagination-option selected>10</yeti-table-pagination-option>
-                            <yeti-table-pagination-option>15</yeti-table-pagination-option>
-                            <yeti-table-pagination-option>I'm ignored.</yeti-table-pagination-option>
-                            <yeti-table-pagination-option>20</yeti-table-pagination-option>
-                            <yeti-table-pagination-option all>Any value here is also
-                                ignored.</yeti-table-pagination-option>
-                        </yeti-table-pagination>
+        <yeti-table-pagination>
+            <yeti-table-pagination-option>5</yeti-table-pagination-option>
+            <yeti-table-pagination-option selected>10</yeti-table-pagination-option>
+            <yeti-table-pagination-option>15</yeti-table-pagination-option>
+            <yeti-table-pagination-option>I'm ignored.</yeti-table-pagination-option>
+            <yeti-table-pagination-option>20</yeti-table-pagination-option>
+            <yeti-table-pagination-option all>Any value here is also
+                ignored.</yeti-table-pagination-option>
+        </yeti-table-pagination>
 
-                    </yeti-table-actions>
+    </yeti-table-actions>
 
-                </yeti-table>
+</yeti-table>
 
             </div><!-- /code_sample -->
 
@@ -832,131 +710,131 @@
             <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
             <div class="ydoc-code_sample">
 
-                <yeti-table id="sortableTable"></yeti-table>
+<yeti-table id="sortableTable"></yeti-table>
 
-                <script type="module">
-                    const sortableTable = document.getElementById( 'sortableTable' );
-                    sortableTable.contents = {
-                        "head": {
-                            "rows": [
-                                {
-                                    "cells": [
-                                        {
-                                            "isHeading": "true",
-                                            "sortDirection": "unsorted",
-                                            "value": "Mixed Case"
-                                        },
-                                        {
-                                            "isHeading": "true",
-                                            "sortDirection": "descending",
-                                            "value": "Numeric",
-                                            "cssClass": "yeti-table-numeric",
-                                        },
-                                        {
-                                            "isHeading": "true",
-                                            "sortDirection": "unsorted",
-                                            "value": "Date"
-                                        },
-                                        {
-                                            "isHeading": "true",
-                                            "sortDirection": "unsorted",
-                                            "value": "Everything, Everywhere, All at Once"
-                                        },
-                                        {
-                                            "isHeading": "true",
-                                            "value": "Unsortable"
-                                        }
-                                    ]
-                                }
-                            ]
+<script type="module">
+    const sortableTable = document.getElementById( 'sortableTable' );
+    sortableTable.contents = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "sortDirection": "unsorted",
+                            "value": "Mixed Case"
                         },
-
-                        "body": {
-                            "rows": [
-                                {
-                                    "cells": [
-                                        {
-                                            "value": "Italian sausage"
-                                        },
-                                        {
-                                            "cssClass": "yeti-table-numeric",
-                                            "value": "22"
-                                        },
-                                        {
-                                            "value": "2/1/2023"
-                                        },
-                                        {
-                                            "value": "Vikings"
-                                        },
-                                        {
-                                            "value": ""
-                                        }
-                                    ]
-                                },
-                                {
-                                    "cells": [
-                                        {
-                                            "value": "pepperoni"
-                                        },
-                                        {
-                                            "cssClass": "yeti-table-numeric",
-                                            "value": "-24"
-                                        },
-                                        {
-                                            "value": "2022/11/30"
-                                        },
-                                        {
-                                            "value": "12"
-                                        },
-                                        {
-                                            "value": ""
-                                        }
-                                    ]
-                                },
-                                {
-                                    "cells": [
-                                        {
-                                            "value": "sausage"
-                                        },
-                                        {
-                                            "cssClass": "yeti-table-numeric",
-                                            "value": "1,024"
-                                        },
-                                        {
-                                            "value": "January 30, 2023"
-                                        },
-                                        {
-                                            "value": "2023/01/30"
-                                        },
-                                        {
-                                            "value": ""
-                                        }
-                                    ]
-                                },
-                                {
-                                    "cells": [
-                                        {
-                                            "value": "extra cheese"
-                                        },
-                                        {
-                                            "cssClass": "yeti-table-numeric",
-                                            "value": "9,999,999"
-                                        },
-                                        {
-                                            "value": "March 14, 2011"
-                                        },
-                                        {
-                                            "value": "Wild"
-                                        },
-                                        {
-                                            "value": ""
-                                        }
-                                    ]
-                                },
-                            ]
+                        {
+                            "isHeading": "true",
+                            "sortDirection": "descending",
+                            "value": "Numeric",
+                            "cssClass": "yeti-table-numeric",
+                        },
+                        {
+                            "isHeading": "true",
+                            "sortDirection": "unsorted",
+                            "value": "Date"
+                        },
+                        {
+                            "isHeading": "true",
+                            "sortDirection": "unsorted",
+                            "value": "Everything, Everywhere, All at Once"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Unsortable"
                         }
-                    };
-                </script>
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "Italian sausage"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "22"
+                        },
+                        {
+                            "value": "2/1/2023"
+                        },
+                        {
+                            "value": "Vikings"
+                        },
+                        {
+                            "value": ""
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "pepperoni"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "-24"
+                        },
+                        {
+                            "value": "2022/11/30"
+                        },
+                        {
+                            "value": "12"
+                        },
+                        {
+                            "value": ""
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "sausage"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "1,024"
+                        },
+                        {
+                            "value": "January 30, 2023"
+                        },
+                        {
+                            "value": "2023/01/30"
+                        },
+                        {
+                            "value": ""
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "extra cheese"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "9,999,999"
+                        },
+                        {
+                            "value": "March 14, 2011"
+                        },
+                        {
+                            "value": "Wild"
+                        },
+                        {
+                            "value": ""
+                        }
+                    ]
+                },
+            ]
+        }
+    };
+</script>
 
             </div><!-- /code_sample -->
 
@@ -967,104 +845,104 @@
             <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
             <div class="ydoc-code_sample">
 
-                <yeti-table id="filterTable" table-class="yeti-table__fixed"></yeti-table>
+<yeti-table id="filterTable" table-class="yeti-table__fixed"></yeti-table>
 
-                <script type="module">
-                    const filterTable = document.getElementById( 'filterTable' );
-                    filterTable.contents = {
-                        "head": {
-                            "rows": [
-                                {
-                                    "cells": [
-                                        {
-                                            "isHeading": "true",
-                                            "value": "Text Filter",
-                                            "filtering": {
-                                                "isFilterable": true,
-                                                "type": "text",
-                                                //"value": "Yum"
-                                            }
-                                        },
-                                        {
-                                            "isHeading": "true",
-                                            "value": "Select Filter",
-                                            "filtering": {
-                                                "isFilterable": true,
-                                                "type": "select",
-                                                "options": [ "Small", "Medium", "Large", "Extra large" ]
-                                            }
-                                        },
-                                        {
-                                            "isHeading": "true",
-                                            "value": "Date Filter",
-                                            "filtering": {
-                                                "isFilterable": true,
-                                                "type": "date"
-                                            }
-                                        },
-                                        {
-                                            "isHeading": "true",
-                                            "cssClass": "yeti-table-numeric",
-                                            "value": "Multiselect Filter",
-                                            "filtering": {
-                                                "isFilterable": true,
-                                                "type": "multiselect",
-                                                "options": [ "Pepperoni", "Extra cheese", "Sausage", "Hamburger", "Corn" ]
-                                            }
-                                        },
-                                        {
-                                            "isHeading": "true",
-                                            "value": "Unsortable and Unfilterable"
-                                        }
-                                    ]
-                                }
-                            ]
+<script type="module">
+    const filterTable = document.getElementById( 'filterTable' );
+    filterTable.contents = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Text Filter",
+                            "filtering": {
+                                "isFilterable": true,
+                                "type": "text",
+                                //"value": "Yum"
+                            }
                         },
-
-                        "body": {
-                            "rows": [
-                                {
-                                    "cells": [
-                                        {
-                                            "value": "Yum"
-                                        },
-                                        {
-                                            "value": "Large"
-                                        },
-                                        {
-                                            "value": "02/22/2023"
-                                        },
-                                        {
-                                            "value": "Pepperoni"
-                                        },
-                                        {
-                                            "value": "Bake well"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "cells": [
-                                        {
-                                            "value": "Nope"
-                                        },
-                                        {
-                                            "value": "Medium"
-                                        },
-                                        {
-                                            "value": "February 14, 2023"
-                                        },
-                                        {
-                                            "value": "Corn"
-                                        },
-                                        {
-                                            "value": "Ireland only"
-                                        }
-                                    ]
-                                }
-                            ]
+                        {
+                            "isHeading": "true",
+                            "value": "Select Filter",
+                            "filtering": {
+                                "isFilterable": true,
+                                "type": "select",
+                                "options": [ "Small", "Medium", "Large", "Extra large" ]
+                            }
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Date Filter",
+                            "filtering": {
+                                "isFilterable": true,
+                                "type": "date"
+                            }
+                        },
+                        {
+                            "isHeading": "true",
+                            "cssClass": "yeti-table-numeric",
+                            "value": "Multiselect Filter",
+                            "filtering": {
+                                "isFilterable": true,
+                                "type": "multiselect",
+                                "options": [ "Pepperoni", "Extra cheese", "Sausage", "Hamburger", "Corn" ]
+                            }
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Unsortable and Unfilterable"
                         }
-                    };
-                </script>
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "Yum"
+                        },
+                        {
+                            "value": "Large"
+                        },
+                        {
+                            "value": "02/22/2023"
+                        },
+                        {
+                            "value": "Pepperoni"
+                        },
+                        {
+                            "value": "Bake well"
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Nope"
+                        },
+                        {
+                            "value": "Medium"
+                        },
+                        {
+                            "value": "February 14, 2023"
+                        },
+                        {
+                            "value": "Corn"
+                        },
+                        {
+                            "value": "Ireland only"
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+</script>
 
             </div><!-- /code_sample -->
 
@@ -1080,166 +958,288 @@
             <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
             <div class="ydoc-code_sample">
 
-                <yeti-table id="complexTable" table-class="yeti-table__fixed"></yeti-table>
+<yeti-table id="complexTable" table-class="yeti-table__fixed"></yeti-table>
 
-                <script type="module">
-                    const complexTable = document.getElementById( 'complexTable' );
-                    complexTable.contents = {
-                        "head": {
-                            "rows": [
+<script type="module">
+    const complexTable = document.getElementById( 'complexTable' );
+    complexTable.contents = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Text Filter and Sortable",
+                            "sortDirection": "unsorted",
+                            "filtering": {
+                                "isFilterable": true,
+                                "type": "text"
+                            }
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Select Filter and Sortable with Overly Long and Descriptive Heading",
+                            "sortDirection": "ascending",
+                            "filtering": {
+                                "isFilterable": true,
+                                "type": "select",
+                                "options": [ "Small", "Medium", "Large", "Extra large" ]
+                            }
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Date Filter and Sortable",
+                            "sortDirection": "unsorted",
+                            "filtering": {
+                                "isFilterable": true,
+                                "type": "date"
+                            }
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Multiselect Filter and Sortable",
+                            "sortDirection": "unsorted",
+                            "filtering": {
+                                "isFilterable": true,
+                                "type": "multiselect",
+                                "options": [ "Pepperoni", "Extra cheese", "Sausage", "Hamburger", "Corn" ]
+                            }
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Sortable, Unfilterable, Numeric, Headingcontainsawordthatisreallyreallyhardtowrap",
+                            "sortDirection": "unsorted",
+                            "filtering": {
+                                "isFilterable": false,
+                                "type": "multiselect",
+                                "options": [ "Pepperoni", "Extra cheese", "Sausage", "Hamburger", "Corn" ]
+                            }
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Filterable but Unsortable",
+                            "filtering": {
+                                "isFilterable": true,
+                                "type": "text"
+                            }
+                        },
+                        {
+                            "filtering": {
+                                "isClearCell": true
+                            },
+                            "value": ""
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "Yum"
+                        },
+                        {
+                            "value": "Large"
+                        },
+                        {
+                            "value": "02/22/2023"
+                        },
+                        {
+                            "value": "Pepperoni"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "22"
+                        },
+                        {
+                            "value": "Thin"
+                        },
+                        {
+                            "value": ""
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Nope"
+                        },
+                        {
+                            "value": "Medium"
+                        },
+                        {
+                            "value": "February 14, 2023"
+                        },
+                        {
+                            "value": "Corn"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "24"
+                        },
+                        {
+                            "value": "Pan"
+                        },
+                        {
+                            "value": ""
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Yum"
+                        },
+                        {
+                            "value": "Medium"
+                        },
+                        {
+                            "value": "February 22, 2023"
+                        },
+                        {
+                            "value": "Pepperoni"
+                        },
+                        {
+                            "cssClass": "yeti-table-numeric",
+                            "value": "32"
+                        },
+                        {
+                            "value": "Hand-tossed"
+                        },
+                        {
+                            "value": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+</script>
+
+            </div><!-- /code_sample -->
+
+
+
+            <h3 class="margin-bottom-2">With Expandable Rows</h3>
+
+            <p class="margin-bottom-2">
+                Note that the child rows are in an array of their own on the rows object.
+            </p>
+
+            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+            <div class="ydoc-code_sample">
+
+<yeti-table id="expandableRowsTable" table-class="yeti-table__fixed" has-expandable-rows="true"></yeti-table>
+
+<script type="module">
+    const expandableRowsTable = document.getElementById( 'expandableRowsTable' );
+
+    expandableRowsTable.contents = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "City/State",
+                            "cssClass": "yeti-table-grid-5"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Nickname",
+                            "cssClass": "yeti-table-grid-5"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Stadium",
+                            "cssClass": "yeti-table-grid-6"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "New York",
+                            "colspan": 3
+                        }
+                    ],
+                    "childRows": [
+                        {
+                            "cells": [
                                 {
-                                    "cells": [
-                                        {
-                                            "isHeading": "true",
-                                            "value": "Text Filter and Sortable",
-                                            "sortDirection": "unsorted",
-                                            "filtering": {
-                                                "isFilterable": true,
-                                                "type": "text"
-                                            }
-                                        },
-                                        {
-                                            "isHeading": "true",
-                                            "value": "Select Filter and Sortable with Overly Long and Descriptive Heading",
-                                            "sortDirection": "ascending",
-                                            "filtering": {
-                                                "isFilterable": true,
-                                                "type": "select",
-                                                "options": [ "Small", "Medium", "Large", "Extra large" ]
-                                            }
-                                        },
-                                        {
-                                            "isHeading": "true",
-                                            "value": "Date Filter and Sortable",
-                                            "sortDirection": "unsorted",
-                                            "filtering": {
-                                                "isFilterable": true,
-                                                "type": "date"
-                                            }
-                                        },
-                                        {
-                                            "isHeading": "true",
-                                            "value": "Multiselect Filter and Sortable",
-                                            "sortDirection": "unsorted",
-                                            "filtering": {
-                                                "isFilterable": true,
-                                                "type": "multiselect",
-                                                "options": [ "Pepperoni", "Extra cheese", "Sausage", "Hamburger", "Corn" ]
-                                            }
-                                        },
-                                        {
-                                            "isHeading": "true",
-                                            "value": "Sortable, Unfilterable, Numeric, Headingcontainsawordthatisreallyreallyhardtowrap",
-                                            "sortDirection": "unsorted",
-                                            "filtering": {
-                                                "isFilterable": false,
-                                                "type": "multiselect",
-                                                "options": [ "Pepperoni", "Extra cheese", "Sausage", "Hamburger", "Corn" ]
-                                            }
-                                        },
-                                        {
-                                            "isHeading": "true",
-                                            "value": "Filterable but Unsortable",
-                                            "filtering": {
-                                                "isFilterable": true,
-                                                "type": "text"
-                                            }
-                                        },
-                                        {
-                                            "filtering": {
-                                                "isClearCell": true
-                                            },
-                                            "value": ""
-                                        }
-                                    ]
+                                    "value": "New York",
+                                },
+                                {
+                                    "value": "Giants"
+                                },
+                                {
+                                    "value": "A Swamp in New Jersey"
                                 }
                             ]
                         },
-
-                        "body": {
-                            "rows": [
+                        {
+                            "cells": [
                                 {
-                                    "cells": [
-                                        {
-                                            "value": "Yum"
-                                        },
-                                        {
-                                            "value": "Large"
-                                        },
-                                        {
-                                            "value": "02/22/2023"
-                                        },
-                                        {
-                                            "value": "Pepperoni"
-                                        },
-                                        {
-                                            "cssClass": "yeti-table-numeric",
-                                            "value": "22"
-                                        },
-                                        {
-                                            "value": "Thin"
-                                        },
-                                        {
-                                            "value": ""
-                                        }
-                                    ]
+                                    "value": "New York"
                                 },
                                 {
-                                    "cells": [
-                                        {
-                                            "value": "Nope"
-                                        },
-                                        {
-                                            "value": "Medium"
-                                        },
-                                        {
-                                            "value": "February 14, 2023"
-                                        },
-                                        {
-                                            "value": "Corn"
-                                        },
-                                        {
-                                            "cssClass": "yeti-table-numeric",
-                                            "value": "24"
-                                        },
-                                        {
-                                            "value": "Pan"
-                                        },
-                                        {
-                                            "value": ""
-                                        }
-                                    ]
+                                    "value": "Yankees"
                                 },
                                 {
-                                    "cells": [
-                                        {
-                                            "value": "Yum"
-                                        },
-                                        {
-                                            "value": "Medium"
-                                        },
-                                        {
-                                            "value": "February 22, 2023"
-                                        },
-                                        {
-                                            "value": "Pepperoni"
-                                        },
-                                        {
-                                            "cssClass": "yeti-table-numeric",
-                                            "value": "32"
-                                        },
-                                        {
-                                            "value": "Hand-tossed"
-                                        },
-                                        {
-                                            "value": ""
-                                        }
-                                    ]
+                                    "value": "The New Yankee Workshop"
                                 }
                             ]
+                        },
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Minnesota",
+                            "colspan": 3
                         }
-                    };
-                </script>
+                    ],
+                    "childRows": [
+                        {
+                            "cells": [
+                                {
+                                    "value": "Minnesota"
+                                },
+                                {
+                                    "value": "Vikings"
+                                },
+                                {
+                                    "value": "U.S. Bank Stadium"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Minnesota"
+                                },
+                                {
+                                    "value": "Wild"
+                                },
+                                {
+                                    "value": "Power Outages R Us Stadium"
+                                }
+                            ]
+                        },
+                    ]
+                },
+            ]
+        }
+    };
+</script>
 
             </div><!-- /code_sample -->
 
