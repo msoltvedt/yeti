@@ -2220,6 +2220,140 @@ Leeloo Dallas multipass
     width: 10rem;
     height: 10rem;
   }
+  /************************************** page-contents.css ***************************************
+
+Styles for Page Contents
+
+*************************************** page-contents.css **************************************/
+  /************************************** Wrapper ***/
+  yeti-page-contents {
+    display: contents;
+  }
+  .yeti-page_contents-wrapper {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .yeti-page_contents-wrappee {
+    flex: 1 1 auto;
+  }
+  /************************************** Actual ***/
+  .yeti-page_contents {
+    min-width: 8rem;
+    width: fit-content;
+    max-width: 33vw;
+    position: sticky;
+    top: 0;
+    flex: 0 0 auto;
+    background-color: #f4f4f4;
+    color: #525252;
+    letter-spacing: 0.16px;
+    line-height: 1rem;
+    transition: all 3000ms;
+  }
+  /*** Collapsed State ***/
+  .yeti-page_contents__collapsed {
+    width: 1.75rem;
+    height: 1.75rem;
+    min-width: unset;
+    overflow: hidden;
+  }
+  /*** Title ***/
+  .yeti-page_contents-heading-title a {
+    font-size: inherit;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  /*** Headings List ***/
+  .yeti-page_contents__collapsed .yeti-page_contents-headings {
+    display: none;
+  }
+  .yeti-page_contents-heading {
+    display: flex;
+  }
+  .yeti-page_contents-heading-level-1 {
+    font-weight: 600;
+  }
+  .yeti-page_contents-heading-level-2 {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 0.125rem;
+  }
+  .yeti-page_contents-heading a {
+    padding: 0.5rem 1rem;
+    min-height: 2rem;
+    text-decoration: none;
+    color: inherit;
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+  }
+  .yeti-page_contents-heading a:hover,
+  .yeti-page_contents-heading-action:hover {
+    background-color: #e8e8e8;
+    color: #161616;
+  }
+  .yeti-page_contents-heading__visible:not(:is(.yeti-page_contents-heading__visible ~ .yeti-page_contents-heading__visible, .yeti-page_contents-heading-level-1)) {
+    font-style: italic;
+  }
+  .yeti-page_contents-heading-level-3 a {
+    padding-left: 2rem;
+  }
+  .yeti-page_contents-heading-level-4 a {
+    padding-left: 3rem;
+  }
+  .yeti-page_contents-heading-level-5 a {
+    padding-left: 4rem;
+  }
+  .yeti-page_contents-heading-level-6 a {
+    padding-left: 5rem;
+  }
+  /* Page Content Actions */
+  .yeti-page_contents-heading-actions {
+    padding: 0.625rem 1rem 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    border-top: 1px solid #e0e0e0;
+  }
+  .yeti-page_contents-heading-action {
+    color: inherit;
+    width: 1.75rem;
+    height: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+  .yeti-page_contents-heading-title .material-icons,
+  .yeti-page_contents-heading-action .material-icons {
+    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  /*** Min/max buttons ***/
+  .yeti-page_contents-minmax {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    background-color: #e0e0e0;
+    border: 0;
+    box-sizing: border-box;
+    color: #161616;
+    cursor: pointer;
+    letter-spacing: 0.16px;
+    width: 1.75rem;
+    height: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: #525252;
+  }
+  .yeti-page_contents-minmax:hover {
+    background-color: #e0e0e0;
+    color: #161616;
+  }
   /************************************** progress_bar.less ***************************************
 
 Styles for Progress Bar

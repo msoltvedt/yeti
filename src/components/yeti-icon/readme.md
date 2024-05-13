@@ -23,6 +23,7 @@
 
  - [yeti-combobox](../yeti-combobox)
  - [yeti-file-explorer](../yeti-file-explorer)
+ - [yeti-page-contents](../yeti-page-contents)
  - [yeti-table](../yeti-table)
  - [yeti-tooltip](../yeti-tooltip)
 
@@ -31,6 +32,7 @@
 graph TD;
   yeti-combobox --> yeti-icon
   yeti-file-explorer --> yeti-icon
+  yeti-page-contents --> yeti-icon
   yeti-table --> yeti-icon
   yeti-tooltip --> yeti-icon
   style yeti-icon fill:#f9f,stroke:#333,stroke-width:4px
