@@ -34,6 +34,22 @@
         <h2 class="yeti-margin-vertical-3">Code Samples</h2>
 
 
+        <h3 class="margin-bottom-2">Slotted Content</h3>
+
+        <p class="margin-bottom-2">
+            Sometimes you need a different type of form element (or you want more direct control over it). For these cases, Yeti provides the <code>slot</code> option to the <code>type</code> property, allowing you to provide your own form element. Make sure to associate the auto-generated label (and input tip) with the supplied element via the <code>input-id</code> (and <code>tip-id</code>) property.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+    
+<yeti-field label="Phone" type="slot" input-id="mySlottedInputElement">
+    <input type="phone" class="yeti-input" id="mySlottedInputElement" slot="element" />
+</yeti-field>
+
+        </div><!-- /code_sample -->
+
+
         <h3 class="margin-bottom-2">Text</h3>
 
 

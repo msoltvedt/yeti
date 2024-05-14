@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Watch, Listen } from '@stencil/core';
+import { Component, Prop, h, State, Watch, Listen, Element } from '@stencil/core';
 import { utils } from '../../utils/utils';
 
 @Component({
@@ -6,6 +6,8 @@ import { utils } from '../../utils/utils';
   shadow: false,
 })
 export class YetiField {
+
+  @Element() el: HTMLElement;
 
   /**
    * id that will be assigned to the actual input element. A unique one will be assigned if one is not provided.
@@ -132,6 +134,12 @@ export class YetiField {
 
 
 
+  componentWillLoad() {
+    console.log(this.el.querySelector('[slot="element"]'));
+  }
+
+
+
   render() {
 
     let cssClass = "yeti-form-field";
@@ -151,29 +159,35 @@ export class YetiField {
 
         <label htmlFor={this.inputId} class="yeti-form-label">{this.label}{this.required ? ' (required)' : null}</label>
 
-        { 
-          (this.type == "date") ?
+        {(this.type != "slot") ?
 
-            <yeti-date-picker
-              input-id={this.inputId}
-              input-name={this.inputName}
-              value={this.defaultValue}
-              required={this.required}
-              is-valid={this.isValid}
-              described-by={this.tipId}
-            ></yeti-date-picker>
+            (this.type == "date") ?
 
-          :
-        
-            <yeti-input 
-              input-id={this.inputId} 
-              input-class={!this.isValid ? 'yeti-input__error' : null} 
-              value={this.defaultValue} 
-              required={this.required}
-              is-valid={this.isValid}
-              described-by={this.tipId}
-              {...((this.inputMaxlength != 0) ? {"input-maxlength": this.inputMaxlength} : {})}
-            ></yeti-input>
+              <yeti-date-picker
+                input-id={this.inputId}
+                input-name={this.inputName}
+                value={this.defaultValue}
+                required={this.required}
+                is-valid={this.isValid}
+                described-by={this.tipId}
+              ></yeti-date-picker>
+
+            :
+          
+              <yeti-input 
+                input-id={this.inputId} 
+                input-class={!this.isValid ? 'yeti-input__error' : null} 
+                value={this.defaultValue} 
+                required={this.required}
+                is-valid={this.isValid}
+                described-by={this.tipId}
+                {...((this.inputMaxlength != 0) ? {"input-maxlength": this.inputMaxlength} : {})}
+              ></yeti-input>
+
+        :
+
+          <slot name="element"></slot>
+
         }
         
         {
