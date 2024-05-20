@@ -27,7 +27,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "^4.12.4"
+    "@stencil/core": "^4.18.1"
   },
   "devDependencies": {
     "@types/jest": "^27.0.3",

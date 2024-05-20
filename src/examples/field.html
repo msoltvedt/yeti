@@ -274,6 +274,26 @@
         </div><!-- /code_sample -->
 
 
+        <h3 class="margin-bottom-2">Slotted Content</h3>
+
+        <p class="margin-bottom-2">
+            Sometimes you need a different type of form element (or you want more direct control over it). For these cases, Yeti provides the option to provide your own form element; just give it a <code>slot</code> attribute with a value of <code>element</code>. Field will ignore its <code>type</code> attribute's value if it detects a slotted element.
+        </p>
+
+        <p class="margin-bottom-2">
+            Field will attempt to automatically assign any ids that you don't provide, connect your element to the label (and tip, if necessary), and sync its error state with the Field's <code>is-valid</code> attribute. You'll have to do your own field validation; the <code>autovalidate</code> property is locked to false if you provide your own element.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+    
+<yeti-field label="Phone" tip="xxx-xxx-xxxx">
+    <input type="phone" class="yeti-input" slot="element" />
+</yeti-field>
+
+        </div><!-- /code_sample -->
+
+
 
         <h2 class="margin-bottom-3">Technical Notes</h2>
 

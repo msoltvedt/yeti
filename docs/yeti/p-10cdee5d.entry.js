@@ -1,2 +1,0 @@
-import{r as t,h as e,g as s}from"./p-e8f90371.js";import{u as r}from"./p-943baa85.js";const a=class{constructor(e){t(this,e);this.isExpanded=false;this.wrapperId=""}componentWillLoad(){let t=this.el.id;if(!t){t=r.generateUniqueId();this.wrapperId=`${t}_wrapper`}}render(){return e("div",{key:"07bc2a45a6ee316bd83cbb78a7beb350420ed6f0",class:"yeti-page_contents-wrapper",id:this.wrapperId},"Page Contents Under Construction")}get el(){return s(this)}};export{a as yeti_page_contents};
-//# sourceMappingURL=p-10cdee5d.entry.js.map

@@ -2263,6 +2263,7 @@ Styles for Page Contents
     font-size: inherit;
     font-weight: 600;
     display: flex;
+    gap: 0.5rem;
     align-items: center;
     justify-content: space-between;
   }

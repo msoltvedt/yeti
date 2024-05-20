@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Watch, Listen } from '@stencil/core';
+import { Component, Prop, h, State, Watch, Listen, Element } from '@stencil/core';
 import { utils } from '../../utils/utils';
 
 @Component({
@@ -6,6 +6,8 @@ import { utils } from '../../utils/utils';
   shadow: false,
 })
 export class YetiField {
+
+  @Element() el: HTMLElement;
 
   /**
    * id that will be assigned to the actual input element. A unique one will be assigned if one is not provided.
@@ -67,6 +69,24 @@ export class YetiField {
     mutable: true,
     reflect: true
   }) isValid: boolean = true;
+  @Watch('isValid')
+  updateSlottedContentForErrorState(newValue: string) {
+    if (!this.hasSlottedField) {
+      return; // We don't need to do anything here unless the form element comes via slotted content.
+    }
+
+    let element = this.el.querySelector(`#${this.inputId}`);
+
+    if (element) {
+
+      if (newValue) {
+        element.classList.add("yeti-input__error");
+      } else {
+        element.classList.remove("yeti-input__error");
+      }
+
+    }
+  }
 
   /**
    * Default value of the field's input.
@@ -76,7 +96,10 @@ export class YetiField {
   /**
    * Determines whether the field should attempt to validate itself or merely pass through any readyToVerify events from its input.
    */
-  @Prop() autovalidate: boolean = true;
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) autovalidate: boolean = true;
 
   /**
    * Determines whether the field uses block (default) or inline labels.
@@ -128,7 +151,48 @@ export class YetiField {
 
   }
 
+
   tipId = utils.generateUniqueId();
+  hasSlottedField: boolean = false;
+
+
+
+  componentWillLoad() {
+    
+    let potentiallySlottedElement = this.el.querySelector('[slot="element"]');
+
+    if (potentiallySlottedElement) {
+
+      this.hasSlottedField = true;
+      this.autovalidate = false; // We can't autovalidate a slotted element provided by the user
+
+      // See if the slotted element has an id
+      if (potentiallySlottedElement.id) {
+        this.inputId = potentiallySlottedElement.id; // It does, so replace the auto-generated default with the user-provided one.
+      } else {
+        potentiallySlottedElement.id = this.inputId; // It doesn't, so assign the auto-generated default one.
+      }
+
+      // See if the slotted element has a name
+      if (potentiallySlottedElement.hasAttribute("name")) {
+        this.inputName = potentiallySlottedElement.getAttribute("name"); // It does, so replace the auto-generated default with the user-provided one.
+      } else {
+        potentiallySlottedElement.setAttribute("name", this.inputName);  // It doesn't, so assign the auto-generated default one.
+      }
+
+      // Connect the slotted element to the tip
+      if (this.tip != "") {
+        potentiallySlottedElement.setAttribute("aria-describedby", this.tipId);
+      }
+
+      // Add the error class if necessary
+      if (!this.isValid) {
+        potentiallySlottedElement.classList.add("yeti-input__error");
+      }
+
+    }
+    
+  }
 
 
 
@@ -151,29 +215,35 @@ export class YetiField {
 
         <label htmlFor={this.inputId} class="yeti-form-label">{this.label}{this.required ? ' (required)' : null}</label>
 
-        { 
-          (this.type == "date") ?
+        {(!this.hasSlottedField) ?
 
-            <yeti-date-picker
-              input-id={this.inputId}
-              input-name={this.inputName}
-              value={this.defaultValue}
-              required={this.required}
-              is-valid={this.isValid}
-              described-by={this.tipId}
-            ></yeti-date-picker>
+            (this.type == "date") ?
 
-          :
-        
-            <yeti-input 
-              input-id={this.inputId} 
-              input-class={!this.isValid ? 'yeti-input__error' : null} 
-              value={this.defaultValue} 
-              required={this.required}
-              is-valid={this.isValid}
-              described-by={this.tipId}
-              {...((this.inputMaxlength != 0) ? {"input-maxlength": this.inputMaxlength} : {})}
-            ></yeti-input>
+              <yeti-date-picker
+                input-id={this.inputId}
+                input-name={this.inputName}
+                value={this.defaultValue}
+                required={this.required}
+                is-valid={this.isValid}
+                described-by={this.tipId}
+              ></yeti-date-picker>
+
+            :
+          
+              <yeti-input 
+                input-id={this.inputId} 
+                input-class={!this.isValid ? 'yeti-input__error' : null} 
+                value={this.defaultValue} 
+                required={this.required}
+                is-valid={this.isValid}
+                described-by={this.tipId}
+                {...((this.inputMaxlength != 0) ? {"input-maxlength": this.inputMaxlength} : {})}
+              ></yeti-input>
+
+        :
+
+          <slot name="element"></slot>
+
         }
         
         {

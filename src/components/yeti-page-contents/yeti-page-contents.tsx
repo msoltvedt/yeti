@@ -18,7 +18,10 @@ export class YetiPageContents {
   /**
    * Whether to show the Page Contents menu in expanded or closed state.
    */
-  @Prop() wrapperId: string = ""; // Will be set in componentWillLoad;
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) wrapperId: string = ""; // Will be set in componentWillLoad;
 
 
   /**
@@ -225,11 +228,16 @@ export class YetiPageContents {
           //   oneOfAllEntries.classList.remove("yeti-page_contents-heading__visible");
           // });
 
-          myCorrespondingEntry.classList.add("yeti-page_contents-heading__visible");
+          if (myCorrespondingEntry && myCorrespondingEntry.classList) {
+            myCorrespondingEntry.classList.add("yeti-page_contents-heading__visible");
+          }
         
         } else {
 
-          myCorrespondingEntry.classList.remove("yeti-page_contents-heading__visible");
+          if (myCorrespondingEntry && myCorrespondingEntry.classList) {
+            myCorrespondingEntry.classList.remove("yeti-page_contents-heading__visible");
+          }
+
         }
 
       });
