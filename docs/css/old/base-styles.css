@@ -47,7 +47,7 @@ input[type=checkbox]{
   cursor:pointer;
 }
 
-#saveButton, #cancelButton{
+#saveButton, #cancelButton, #homeButton{
   cursor: pointer;
 }
 
@@ -1375,7 +1375,7 @@ text-align:center;
 }
 
 .heading-section-b {
-  background-color: #fde3c3;
+  background-color: #FDF1E2;
   color: white;
   padding: 0.5rem 1rem;
 }
@@ -2001,6 +2001,7 @@ line-height:1.5
   position: relative;
   display: flex;
   flex-direction: column;
+  max-height: 100%;
   --nbv-select_material_spec-content-table_wrapper-bumper-height: 3.8125rem;
 }
 
@@ -2054,3 +2055,4 @@ line-height:1.5
   font-weight: 600;
   line-height: 1rem;
 }
+
