@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Element, Listen } from '@stencil/core';
+import { Component, Prop, h, State, Element, Listen, Watch } from '@stencil/core';
 import { utils } from '../../utils/utils';
 
 @Component({
@@ -69,6 +69,17 @@ export class YetiTooltip {
    * Whether the tooltip has been clicked open or not.
    */
   @State() isClickedOpen: boolean = false;
+  @Watch('isClickedOpen')
+  monitorOpenState(newValue: boolean) {
+    let trigger = this.el.querySelector('.yeti-tooltip-trigger') as HTMLElement;
+    let tooltip = this.el.querySelector('.yeti-tooltip') as HTMLElement;
+    console.log(trigger)
+    if (trigger && !newValue){
+    trigger.focus();
+    tooltip.style.display = "none"
+
+    }
+  }
 
 
 
@@ -130,6 +141,7 @@ export class YetiTooltip {
     this.isClickedOpen = false;
     e.stopImmediatePropagation();
     e.preventDefault();
+   
   }
 
 
