@@ -621,7 +621,7 @@ export namespace Components {
          */
         "blockAnchor": boolean;
         /**
-          * Token list to describe the tooltip's position relative to its anchor: left | right and/or above | below.
+          * Boolean value that sets whether the tooltip opens on hover/focus (default) or on click.
          */
         "clickToOpen": boolean;
         /**
@@ -1677,7 +1677,7 @@ declare namespace LocalJSX {
          */
         "blockAnchor"?: boolean;
         /**
-          * Token list to describe the tooltip's position relative to its anchor: left | right and/or above | below.
+          * Boolean value that sets whether the tooltip opens on hover/focus (default) or on click.
          */
         "clickToOpen"?: boolean;
         /**

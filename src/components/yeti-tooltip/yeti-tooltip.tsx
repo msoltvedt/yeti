@@ -30,7 +30,7 @@ export class YetiTooltip {
   @Prop() position: string = "above";
 
   /**
-   * Token list to describe the tooltip's position relative to its anchor: left | right and/or above | below.
+   * Boolean value that sets whether the tooltip opens on hover/focus (default) or on click.
    */
   @Prop() clickToOpen: boolean = false;
 
@@ -73,12 +73,11 @@ export class YetiTooltip {
   monitorOpenState(newValue: boolean) {
     let trigger = this.el.querySelector('.yeti-tooltip-trigger') as HTMLElement;
     let tooltip = this.el.querySelector('.yeti-tooltip') as HTMLElement;
-    console.log(trigger)
-    if (trigger && !newValue){
-    trigger.focus();
-    tooltip.style.display = "none"
 
+    if (trigger && tooltip && this.clickToOpen && !newValue) {
+      trigger.focus();
     }
+
   }
 
 

@@ -10,7 +10,7 @@
 | Property       | Attribute       | Description                                                                                                                    | Type      | Default                    |
 | -------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------ | --------- | -------------------------- |
 | `blockAnchor`  | `block-anchor`  | Whether the anchor should be forced to be a CSS display block style or left as is.                                             | `boolean` | `false`                    |
-| `clickToOpen`  | `click-to-open` | Token list to describe the tooltip's position relative to its anchor: left \| right and/or above \| below.                     | `boolean` | `false`                    |
+| `clickToOpen`  | `click-to-open` | Boolean value that sets whether the tooltip opens on hover/focus (default) or on click.                                        | `boolean` | `false`                    |
 | `forceOpen`    | `force-open`    | Whether the tooltip should remain open permanently.                                                                            | `boolean` | `false`                    |
 | `position`     | `position`      | Token list to describe the tooltip's position relative to its anchor: left \| right and/or above \| below.                     | `string`  | `"above"`                  |
 | `slotId`       | `slot-id`       | id of the component's slot element.                                                                                            | `string`  | `""`                       |
