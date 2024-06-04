@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Element, Listen, Watch } from '@stencil/core';
+import { Component, Prop, h, State, Element, Listen } from '@stencil/core';
 import { utils } from '../../utils/utils';
 
 @Component({
@@ -69,17 +69,8 @@ export class YetiTooltip {
    * Whether the tooltip has been clicked open or not.
    */
   @State() isClickedOpen: boolean = false;
-  @Watch('isClickedOpen')
-  monitorOpenState(newValue: boolean) {
-    let trigger = this.el.querySelector('.yeti-tooltip-trigger') as HTMLElement;
-    let tooltip = this.el.querySelector('.yeti-tooltip') as HTMLElement;
 
-    if (trigger && tooltip && this.clickToOpen && !newValue) {
-      trigger.focus();
-    }
-
-  }
-
+  justClickedClosed: boolean = false;
 
 
   @Listen('mouseover')
@@ -117,19 +108,19 @@ export class YetiTooltip {
   
 
   handleTriggerClick(e) {
-    if (this.clickToOpen) {
-      this.isClickedOpen = !this.isClickedOpen;
+    if (this.clickToOpen && !this.justClickedClosed) {
       e.stopImmediatePropagation();
       e.preventDefault();
       this.scrollTooltipIntoView();
+      this.isClickedOpen = !this.isClickedOpen;
       return false;
     }
   }
 
   
 
-  handleTriggerKeyUp(e) {
-    if (this.clickToOpen && e.key == "Enter") {
+  handleTriggerKeyPress(e) {
+    if (this.clickToOpen && e.key == "Enter" && !this.justClickedClosed) {
       this.handleTriggerClick(e);
     }
   }
@@ -137,10 +128,10 @@ export class YetiTooltip {
 
 
   handleCloseTooltipClick(e) {
-    this.isClickedOpen = false;
+    this.justClickedClosed = true;
     e.stopImmediatePropagation();
     e.preventDefault();
-   
+    this.isClickedOpen = false;
   }
 
 
@@ -226,16 +217,17 @@ export class YetiTooltip {
     return ([
       <div class={wrapperClass}>
 
-      <div 
-        class="yeti-tooltip-trigger" 
-        onClick={(e) => this.handleTriggerClick(e)}
-        onKeyUp={(e) => this.handleTriggerKeyUp(e)}
-        {...((this.clickToOpen) ? { "tabindex": 0 } : {})}  
-      >
+        <div 
+          class="yeti-tooltip-trigger" 
+          onClick={(e) => this.handleTriggerClick(e)}
+          onKeyPress={(e) => this.handleTriggerKeyPress(e)}
+          {...((this.clickToOpen) ? { "tabindex": 0 } : {})}  
+        >
 
-        <slot />
+          <slot />
 
-      </div>
+        </div>
+
 
         <div class={tipClass}>
 
@@ -262,8 +254,16 @@ export class YetiTooltip {
 
   componentDidRender() {
     let slot = this.el.querySelector(".yeti-tooltip-trigger").firstElementChild;
+    let trigger = this.el.querySelector(".yeti-tooltip-trigger") as HTMLElement;
     //slot.setAttribute("tabindex", "0");
     slot.setAttribute("aria-describedby",this.tipId);
+
+    if (this.justClickedClosed && trigger) {
+      // The user just clicked the tooltip closed. Restore focus to the trigger.
+      this.justClickedClosed = false;
+      trigger.focus();
+    }
+
   }
 
 }
