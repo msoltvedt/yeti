@@ -36,6 +36,14 @@ export namespace Components {
          */
         "inputName": string;
         /**
+          * Whether the options list should be filtered by the text input
+         */
+        "isFilterable": boolean;
+        /**
+          * Use the Lookup style (i.e. swap the caret for a search icon)
+         */
+        "isLookup": boolean;
+        /**
           * Whether the component has a valid value.
          */
         "isValid": boolean;
@@ -51,6 +59,10 @@ export namespace Components {
           * Whether the component requires a valid value.
          */
         "required": boolean;
+        /**
+          * Whether/how changes to the text field value select an option from the list. Possible values are "manual" (default) and "automatic". Any value other than "automatic" will equal manual.
+         */
+        "selectionType"?: string;
         /**
           * Whether or not to show the optional Clear all selections puck.
          */
@@ -1022,6 +1034,14 @@ declare namespace LocalJSX {
          */
         "inputName"?: string;
         /**
+          * Whether the options list should be filtered by the text input
+         */
+        "isFilterable"?: boolean;
+        /**
+          * Use the Lookup style (i.e. swap the caret for a search icon)
+         */
+        "isLookup"?: boolean;
+        /**
           * Whether the component has a valid value.
          */
         "isValid"?: boolean;
@@ -1045,6 +1065,10 @@ declare namespace LocalJSX {
           * Whether the component requires a valid value.
          */
         "required"?: boolean;
+        /**
+          * Whether/how changes to the text field value select an option from the list. Possible values are "manual" (default) and "automatic". Any value other than "automatic" will equal manual.
+         */
+        "selectionType"?: string;
         /**
           * Whether or not to show the optional Clear all selections puck.
          */

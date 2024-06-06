@@ -312,6 +312,7 @@ export interface YetiTableRowAction {
 export interface YetiComboboxOption {
   selected: boolean,
   label: string,
+  isVisible: boolean,
   id?: string
 }
 

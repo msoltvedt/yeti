@@ -134,14 +134,14 @@ const YetiTablePagination = class {
         if (this.cssClass != '') {
             cssClasses += ' ' + this.cssClass;
         }
-        return (h("nav", { key: 'dda926ccdbd10111d74a316f3d8fe6c545ea2603', class: cssClasses, "aria-label": "Table Pagination" }, h("div", { key: '46104136dc143194b8dd070c9eaaf5a3baa6868b', class: "yeti-table-pagination-items_per_page" }, (this.showOptions) ?
+        return (h("nav", { key: 'c32d7f0156f28b27fe1aae65420ba59735232c17', class: cssClasses, "aria-label": "Table Pagination" }, h("div", { key: '5b10f926e1a9454f7c1fb9863d4c3f51711454df', class: "yeti-table-pagination-items_per_page" }, (this.showOptions) ?
             [h("label", { htmlFor: "demo-items_per_page", class: "yeti-table-pagination-items_per_page-label" }, this.recordAliasPlural, " per page:"), h("select", { id: "demo-items_per_page", class: "yeti-select yeti-table-pagination-items_per_page-select", onChange: (e) => {
                         this.handleItemsPerPageChange(e);
                     } }, this.itemsPerPageOptions.map((option, index) => {
                     return h("option", { value: option, selected: (index == this.selectedItemsPerPageOptionIndex), class: "yeti-table-pagination-items_per_page-select-option" }, option);
                 }))]
             :
-                "", h("span", { key: 'cfa113b656afc31267d5ef59be69c710839bfaaf', class: "yeti-table-pagination-items_per_page-count" }, this.getItemsPerPageOption() == "All" || this.records == 0 ?
+                "", h("span", { key: '549bbbaa0225352c1ef91038a6d2d268ec7da8a7', class: "yeti-table-pagination-items_per_page-count" }, this.getItemsPerPageOption() == "All" || this.records == 0 ?
             ""
             : (this.startIndex + 1) + ' to ' + (this.startIndex + this.recordsDisplayed) /*(this.endIndex + 1)*/ + ' of ', this.records, " ", this.records == 1 ? this.recordAliasSingular : this.recordAliasPlural)), (this.records > 0) ?
             h("div", { class: "yeti-table-pagination-pages" }, h("label", { htmlFor: "demo-pages", class: "yeti-a11y-hidden" }, "Page number, of ", this.pages, " page", this.pages == 1 ? '' : 's'), h("select", { id: "demo-pages", class: "yeti-select yeti-table-pagination-pages-select", onChange: (e) => {

@@ -105,7 +105,7 @@ const YetiField = class {
         if (this.fieldClass != "") {
             cssClass = "yeti-form-field " + this.fieldClass;
         }
-        return (h("div", { key: '60615c0cf448a6558f81703797b03237d45ff312', class: cssClass }, h("label", { key: '57afbf8cb6359a4fe48133eb5b8a00f5edab8e42', htmlFor: this.inputId, class: "yeti-form-label" }, this.label, this.required ? ' (required)' : null), (!this.hasSlottedField) ?
+        return (h("div", { key: '6805187ace037c884993758fcddfe5b6e44debba', class: cssClass }, h("label", { key: 'baa5235110b075bc62e44421597c802b786d0ec5', htmlFor: this.inputId, class: "yeti-form-label" }, this.label, this.required ? ' (required)' : null), (!this.hasSlottedField) ?
             (this.type == "date") ?
                 h("yeti-date-picker", { "input-id": this.inputId, "input-name": this.inputName, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": this.tipId })
                 :

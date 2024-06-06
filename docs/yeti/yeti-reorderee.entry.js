@@ -37,7 +37,7 @@ const YetiReorderee = class {
         if (this.wrapperClass != '') {
             wrapperClass += ` ${this.wrapperClass}`;
         }
-        return (h("li", { key: '8ac151d6edf9a2ef654bf076f2af8505c3e690a1', class: wrapperClass }, h("slot", { key: 'e95560092a08c16375442a531d7c7b65187f93eb' })));
+        return (h("li", { key: 'b256b5ffe5ab0061373d3c3a85b48f8c6d3c7e99', class: wrapperClass }, h("slot", { key: '3d715b95439f724f24b9d733a1c822e793638e59' })));
     }
     componentDidRender() {
         // Set disabled state for edge case triggers

@@ -4,6 +4,7 @@ import { u as utils } from './utils-90cea6cb.js';
 const YetiTooltip = class {
     constructor(hostRef) {
         registerInstance(this, hostRef);
+        this.justClickedClosed = false;
         this.wrapperClass = '';
         this.tooltipClass = '';
         this.text = "I'm a helpful tooltip.";
@@ -33,23 +34,24 @@ const YetiTooltip = class {
         e.stopImmediatePropagation(); // Intercept the click event before it gets to the body-level handler
     }
     handleTriggerClick(e) {
-        if (this.clickToOpen) {
-            this.isClickedOpen = !this.isClickedOpen;
+        if (this.clickToOpen && !this.justClickedClosed) {
             e.stopImmediatePropagation();
             e.preventDefault();
             this.scrollTooltipIntoView();
+            this.isClickedOpen = !this.isClickedOpen;
             return false;
         }
     }
-    handleTriggerKeyUp(e) {
-        if (this.clickToOpen && e.key == "Enter") {
+    handleTriggerKeyPress(e) {
+        if (this.clickToOpen && e.key == "Enter" && !this.justClickedClosed) {
             this.handleTriggerClick(e);
         }
     }
     handleCloseTooltipClick(e) {
-        this.isClickedOpen = false;
+        this.justClickedClosed = true;
         e.stopImmediatePropagation();
         e.preventDefault();
+        this.isClickedOpen = false;
     }
     scrollTooltipIntoView() {
         let actual = this.el.querySelector(".yeti-tooltip");
@@ -101,7 +103,7 @@ const YetiTooltip = class {
                 break;
         }
         return ([
-            h("div", { key: 'df636ab48cbcd92af214ff270aa57617a3dd604f', class: wrapperClass }, h("div", Object.assign({ key: '1cc141ceb338f38ef3f6df96504a3393667a18fb', class: "yeti-tooltip-trigger", onClick: (e) => this.handleTriggerClick(e), onKeyUp: (e) => this.handleTriggerKeyUp(e) }, ((this.clickToOpen) ? { "tabindex": 0 } : {})), h("slot", { key: '83c5b7f356785c1e71722fb424a0cb50e9c120d7' })), h("div", { key: 'ddb18b87b1fb168668c91900e98a846758b63856', class: tipClass }, h("div", { key: '2d04ca0533ee36320997d306769b000eaafa3980', class: "yeti-tooltip-content", id: this.tipId }, this.text), (this.clickToOpen && this.isClickedOpen) ?
+            h("div", { key: 'd01854ba14aedc855c9f49145728ef44cb7d0aaf', class: wrapperClass }, h("div", Object.assign({ key: 'd46c46bc305fc397af4e0ad27f0b1cface153676', class: "yeti-tooltip-trigger", onClick: (e) => this.handleTriggerClick(e), onKeyPress: (e) => this.handleTriggerKeyPress(e) }, ((this.clickToOpen) ? { "tabindex": 0 } : {})), h("slot", { key: 'aebef7cf005c1c6f4fcb8bb29af4039414aaab62' })), h("div", { key: 'fd22baf4c031df7a1a8bbbd42cdbe4b24f22acb6', class: tipClass }, h("div", { key: 'bf018733ca4989da45fe166aef0612fa38c95644', class: "yeti-tooltip-content", id: this.tipId }, this.text), (this.clickToOpen && this.isClickedOpen) ?
                 h("button", { class: "yeti-tooltip-close", onClick: (e) => { this.handleCloseTooltipClick(e); } }, h("yeti-icon", { iconCode: "close", iconClass: 'yeti-color-white yeti-typo-size-5' }))
                 :
                     null))
@@ -109,8 +111,14 @@ const YetiTooltip = class {
     }
     componentDidRender() {
         let slot = this.el.querySelector(".yeti-tooltip-trigger").firstElementChild;
+        let trigger = this.el.querySelector(".yeti-tooltip-trigger");
         //slot.setAttribute("tabindex", "0");
         slot.setAttribute("aria-describedby", this.tipId);
+        if (this.justClickedClosed && trigger) {
+            // The user just clicked the tooltip closed. Restore focus to the trigger.
+            this.justClickedClosed = false;
+            trigger.focus();
+        }
     }
     get el() { return getElement(this); }
 };

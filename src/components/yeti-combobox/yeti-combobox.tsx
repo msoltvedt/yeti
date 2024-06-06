@@ -93,17 +93,47 @@ export class YetiCombobox {
   /**
    * Optionally provide an id for the combobox element.
    */
-  @Prop() inputId: string = "";
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) inputId: string = "";
 
   /**
    * Optionally provide a form element name.
    */
-  @Prop() inputName: string = "";
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) inputName: string = "";
 
   /**
    * Optionally provide the id of a describing element (like an input tip).
    */
   @Prop({ attribute: 'input-describedby'}) inputDescribedBy: string = "";
+
+  /**
+   * Use the Lookup style (i.e. swap the caret for a search icon)
+   */
+  @Prop() isLookup: boolean = false;
+
+  /**
+   * Whether the options list should be filtered by the text input
+   */
+  @Prop() isFilterable: boolean = false;
+
+  /**
+   * Whether/how changes to the text field value select an option from the list. Possible values are "manual" (default) and "automatic". Any value other than "automatic" will equal manual.
+   */
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) selectionType?: string = "manual";
+ 
+  @Watch("selectionType")
+  handleSelectionTypeChange() {
+    // Make sure selection type is a valid value.
+    this.selectionType = (this.selectionType == "automatic") ? this.selectionType : "manual";
+  }
 
 
   // These will be initialized on component load
@@ -236,7 +266,17 @@ export class YetiCombobox {
           if (this.cursorPosition >= 0 && this.isOpen) {
             // Toggle selection on the option at this cursor position.
             this.handleOptionClick(this.cursorPosition);
-          } 
+          }
+          
+          // Finally, if the selection type is automatic, and there's at least one option selected, set the value to its label.
+          if (this.selectionType == "automatic") {
+            for (let option of this.options) {
+              if (option.selected) {
+                this.value = option.label;
+                break;
+              }
+            }
+          }
           
           this.closeFlyout();
         }
@@ -278,9 +318,36 @@ export class YetiCombobox {
 
   updateOptions() {
     // Based on the (new) value of this.value, set the options' status
+    let foundASelectionAlready = false;
+
     for (let option of this.options) {
       option.selected = (option.label.toLowerCase() == this.value.toLowerCase());
+
+      // Determine whether to show this option or not based on filtering
+      if (this.isFilterable && option.label.toLowerCase().indexOf( this.value.toLowerCase() ) < 0) {
+        option.isVisible = false;
+      } else {
+        option.isVisible = true;
+      }
+
+      // Determine whether to mark this option as selected based on selection type
+      if (this.selectionType == "automatic") {
+
+        // If this is a match, and we don't already have one, mark this one as selected. Otherwise set it as unselected.
+        if (!foundASelectionAlready
+            && this.value != ""
+            && option.label.toLowerCase().indexOf( this.value.toLowerCase() ) >= 0 
+        ) {
+          option.selected = true;
+          foundASelectionAlready = true;
+        } else {
+          option.selected = false;
+        }
+
+      }
+      
     }
+
   }
 
 
@@ -312,6 +379,17 @@ export class YetiCombobox {
 
   handleFieldBlur(ev) {
     this.isTouched = true;
+    
+    // If selection type is automatic, update value with the first selected option.
+    if (this.selectionType == "automatic") {
+      for (let option of this.options) {
+        if (option.selected) {
+          this.value = option.label;
+          break;
+        }
+      }
+    }
+
     this.readyToVerifySlow.emit(ev);
   }
 
@@ -337,6 +415,7 @@ export class YetiCombobox {
         this.options.push({
           selected: (option.hasAttribute("selected") || option.innerHTML == this.value),
           label: option.innerHTML,
+          isVisible: true,
           id: optionId
         });
 
@@ -405,6 +484,9 @@ export class YetiCombobox {
     if (optionElements.length > 0) {
       this.parseOptionElements(optionElements);
     }
+
+    // Make sure selection type is a valid value.
+    this.selectionType = (this.selectionType == "automatic") ? this.selectionType : "manual";
   }
 
 
@@ -443,9 +525,12 @@ export class YetiCombobox {
             name={this.inputName}
             onFocus={() => {
               this.isTouched = true;
+              if (this.selectionType == "automatic") {
+                this.openFlyout();
+              }
             }}
-            onBlur={() => {
-              //this.isOpen = false;
+            onBlur={(e) => {
+              this.handleFieldBlur(e);
             }}
             onInput={(ev) => this.handleInputChange(ev)}
             role="combobox"
@@ -478,7 +563,17 @@ export class YetiCombobox {
             id={this.buttonId}
             onClick={(ev) => { this.handleButtonClick(ev) }}
           >
-            <yeti-icon iconCode={(this.isOpen ? 'expand_less' : 'expand_more')} alt={(this.isOpen ? 'close' : 'open')}></yeti-icon>
+            {
+              (!this.isLookup) ?
+
+                <yeti-icon iconCode={(this.isOpen ? 'expand_less' : 'expand_more')} alt={(this.isOpen ? 'close' : 'open')}></yeti-icon>
+
+              :
+
+                <yeti-icon iconCode='search' alt={(this.isOpen ? 'lookup, close' : 'lookup, open')}></yeti-icon>
+
+            }
+            
           </button>
 
         </div>
@@ -496,6 +591,11 @@ export class YetiCombobox {
 
                 let optionClass = (this.cursorPosition == i) ? "yeti-combobox-option yeti-combobox-option__hover" : "yeti-combobox-option";
                 optionClass += (option.selected) ? " yeti-combobox-option__selected" : "";
+
+                // Only render visible options
+                if (!option.isVisible) {
+                  return "";
+                }
               
                 return (
                   <li 
