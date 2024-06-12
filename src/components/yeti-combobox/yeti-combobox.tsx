@@ -525,9 +525,6 @@ export class YetiCombobox {
             name={this.inputName}
             onFocus={() => {
               this.isTouched = true;
-              if (this.selectionType == "automatic") {
-                this.openFlyout();
-              }
             }}
             onBlur={(e) => {
               this.handleFieldBlur(e);

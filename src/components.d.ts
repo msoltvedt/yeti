@@ -168,6 +168,10 @@ export namespace Components {
          */
         "tip": string;
         /**
+          * Position of the input tip relative to the rest of the field's contents. Defaults to "below", can also be "above".
+         */
+        "tipPosition"?: string;
+        /**
           * type that will be assigned to the actual input element.
          */
         "type": string;
@@ -1177,6 +1181,10 @@ declare namespace LocalJSX {
           * Value for the optional input tip that appears at the bottom of the field.
          */
         "tip"?: string;
+        /**
+          * Position of the input tip relative to the rest of the field's contents. Defaults to "below", can also be "above".
+         */
+        "tipPosition"?: string;
         /**
           * type that will be assigned to the actual input element.
          */

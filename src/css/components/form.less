@@ -35,6 +35,18 @@
     color: #525252;
 }
 
+.yeti-form-tip-above { order: -1; }
+
+
+/************************************** Field Error ***/
+.yeti-form-field-error {
+    font-size: .75rem;
+    line-height: 1rem;
+    letter-spacing: 0.02rem;
+    width: 100%;
+    color: #da1e28;
+}
+
 
 /************************************** Field ***/
 yeti-field {
@@ -52,10 +64,6 @@ yeti-field {
     gap: 0.25rem 1rem;
     grid-template-columns: minmax(min-content, max-content) 1fr;
     grid-template-rows: minmax(min-content, max-content) 1fr;
-}
-
-.yeti-form-field:has(.yeti-input__error) .yeti-form-tip {
-    color: #da1e28;
 }
 
 .yeti-form-field-inline .yeti-form-label {

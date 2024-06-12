@@ -842,6 +842,17 @@ Styles for File Explorer
     width: 100%;
     color: #525252;
   }
+  .yeti-form-tip-above {
+    order: -1;
+  }
+  /************************************** Field Error ***/
+  .yeti-form-field-error {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    letter-spacing: 0.02rem;
+    width: 100%;
+    color: #da1e28;
+  }
   /************************************** Field ***/
   yeti-field {
     display: contents;
@@ -856,9 +867,6 @@ Styles for File Explorer
     gap: 0.25rem 1rem;
     grid-template-columns: minmax(min-content, max-content) 1fr;
     grid-template-rows: minmax(min-content, max-content) 1fr;
-  }
-  .yeti-form-field:has(.yeti-input__error) .yeti-form-tip {
-    color: #da1e28;
   }
   .yeti-form-field-inline .yeti-form-label {
     grid-column: 1 / 2;
@@ -1985,6 +1993,7 @@ Styles for Combobox
     align-items: center;
     justify-content: flex-start;
     height: 2.5rem;
+    flex-shrink: 0;
     gap: 0.5rem;
     border-bottom: 1px solid #e8e8e8;
   }
