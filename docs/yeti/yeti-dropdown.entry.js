@@ -1,7 +1,7 @@
 import { r as registerInstance, a as createEvent, h, g as getElement } from './index-e3c92518.js';
 import { u as utils } from './utils-90cea6cb.js';
 
-const YetiMultiselect = class {
+const YetiDropdown = class {
     constructor(hostRef) {
         registerInstance(this, hostRef);
         this.readyToVerifySlow = createEvent(this, "readyToVerifySlow", 7);
@@ -37,13 +37,13 @@ const YetiMultiselect = class {
             case "tab": {
                 // Normal tab direction
                 if (!ev.shiftKey) {
-                    if (this.el.querySelectorAll(".yeti-multiselect:focus").length == 0) {
+                    if (this.el.querySelectorAll(".yeti-dropdown:focus").length == 0) {
                         this.closeFlyout();
                     }
                     // Shift tab direction (backwards)
                 }
                 else {
-                    if (this.el.querySelectorAll(".yeti-multiselect:focus").length > 0) {
+                    if (this.el.querySelectorAll(".yeti-dropdown:focus").length > 0) {
                         this.closeFlyout();
                     }
                 }
@@ -89,7 +89,7 @@ const YetiMultiselect = class {
                 ev.preventDefault();
                 let target = ev.target;
                 // First check if the clear everything puck has focus
-                if (target.classList.contains("yeti-multiselect-puck")) {
+                if (target.classList.contains("yeti-dropdown-puck")) {
                     target.click();
                     break;
                 }
@@ -133,8 +133,8 @@ const YetiMultiselect = class {
         let runningInitialValueArray = [];
         for (let i = 0; i < options.length; i++) {
             let option = options.item(i);
-            // First, confirm this element is indeed a yeti-multiselect-option element.
-            if (option.tagName.toLowerCase() == 'yeti-multiselect-option') {
+            // First, confirm this element is indeed a yeti-dropdown-option element.
+            if (option.tagName.toLowerCase() == 'yeti-dropdown-option') {
                 let optionId;
                 if (option.hasAttribute("id")) {
                     optionId = option.getAttribute("id");
@@ -190,7 +190,7 @@ const YetiMultiselect = class {
         this.readyToVerifyFast.emit();
     }
     handleClearSelections(ev) {
-        let fieldElement = this.el.querySelector(".yeti-multiselect");
+        let fieldElement = this.el.querySelector(".yeti-dropdown");
         for (let i = 0; i < this.options.length; i++) {
             this.options[i].selected = false;
         }
@@ -202,12 +202,12 @@ const YetiMultiselect = class {
         this.readyToVerifyFast.emit();
     }
     //handleProgrammaticValueChange(newValue: string, oldValue: string) {
-    // Usually you'd pre-set the value of the control by specifying the selected attribute of yeti-multiselect-option, however it can also be
+    // Usually you'd pre-set the value of the control by specifying the selected attribute of yeti-dropdown-option, however it can also be
     // set programmatically via the value property of the component.
     //console.log(`Value should change from ${oldValue} to ${newValue}`);
     //}
     componentWillLoad() {
-        // Set up ids and handle any <yeti-multiselect-option> elements
+        // Set up ids and handle any <yeti-dropdown-option> elements
         let optionElements = this.el.children;
         // Set up ids
         let componentId = this.el.getAttribute("id");
@@ -218,7 +218,7 @@ const YetiMultiselect = class {
         this.comboboxId = (this.comboboxId != "") ? this.comboboxId : `${componentId}_combobox`;
         this.formName = (this.formName != "") ? this.formName : componentId;
         this.flyoutId = (this.flyoutId != "") ? this.flyoutId : `${componentId}_flyout`;
-        // Look for and handle any <yeti-multiselect-option> elements.
+        // Look for and handle any <yeti-dropdown-option> elements.
         if (optionElements.length > 0) {
             this.parseOptionElements(optionElements);
         }
@@ -228,8 +228,8 @@ const YetiMultiselect = class {
         if (this.isOpen) {
             // The flyout is open. If one of the options is being hovered over then we want to scroll it into view.
             // If not, then we'll scroll the whole flyout into view.
-            let flyout = this.el.querySelector(".yeti-multiselect-flyout");
-            let hoveredOption = this.el.querySelector(".yeti-multiselect-option__hover");
+            let flyout = this.el.querySelector(".yeti-dropdown-flyout");
+            let hoveredOption = this.el.querySelector(".yeti-dropdown-option__hover");
             let thingToScrollIntoView = (hoveredOption) ? hoveredOption : flyout;
             thingToScrollIntoView.scrollIntoView({
                 behavior: "smooth",
@@ -238,38 +238,38 @@ const YetiMultiselect = class {
         }
     }
     render() {
-        let comboboxClasses = 'yeti-multiselect';
-        let flyoutClass = 'yeti-multiselect-flyout';
+        let comboboxClasses = 'yeti-dropdown';
+        let flyoutClass = 'yeti-dropdown-flyout';
         if (this.wrapperClass != '') {
             comboboxClasses += ' ' + this.wrapperClass;
         }
         if (this.isValid == false) {
-            comboboxClasses += ' yeti-multiselect__error';
+            comboboxClasses += ' yeti-dropdown__error';
         }
-        flyoutClass += (this.isOpen) ? " yeti-multiselect-flyout__open" : "";
+        flyoutClass += (this.isOpen) ? " yeti-dropdown-flyout__open" : "";
         if (this.menuAlignment == "right") {
-            flyoutClass += ' yeti-multiselect-flyout-align-right';
+            flyoutClass += ' yeti-dropdown-flyout-align-right';
         }
         return ([
-            h("div", { key: '1f3afa64747e1251459e4a41b531bfaa028ed210', class: "yeti-multiselect-wrapper" }, h("div", Object.assign({ key: '3d60f40b9c9779e99be2502f2ab3aaf96596d5c9', tabIndex: 0, class: comboboxClasses, onClick: () => {
+            h("div", { key: 'a24c04cff3dd7736dcd36cec8468671df950a152', class: "yeti-dropdown-wrapper" }, h("div", Object.assign({ key: '14ed4e7b56c260f9b7be829bfed9709d18247030', tabIndex: 0, class: comboboxClasses, onClick: () => {
                     this.isOpen = !this.isOpen;
                 }, onFocus: () => {
                     this.isTouched = true;
-                }, role: "combobox" }, ((!this.isValid) ? { "aria-invalid": 'true' } : {}), ((this.labelledBy != "") ? { "aria-labeledby": this.labelledBy } : {}), ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {}), { "aria-controls": this.flyoutId, "aria-expanded": this.isOpen, "aria-haspopup": "listbox" }, ((this.isOpen && this.cursorPosition >= 0) ? { "aria-activedescendant": this.options[this.cursorPosition].id } : {}), { id: this.comboboxId }), h("span", { key: '823bf614360116504d72edef73100599cf154a86', class: "yeti-multiselect-placeholder", title: this.getPlaceholderDisplay() }, this.getPlaceholderDisplay(), (this.numSelections > 1) ?
+                }, role: "combobox" }, ((!this.isValid) ? { "aria-invalid": 'true' } : {}), ((this.labelledBy != "") ? { "aria-labeledby": this.labelledBy } : {}), ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {}), { "aria-controls": this.flyoutId, "aria-expanded": this.isOpen, "aria-haspopup": "listbox" }, ((this.isOpen && this.cursorPosition >= 0) ? { "aria-activedescendant": this.options[this.cursorPosition].id } : {}), { id: this.comboboxId }), h("span", { key: '4a126f3bee29231f0121f75f900d92fe6006857c', class: "yeti-dropdown-placeholder", title: this.getPlaceholderDisplay() }, this.getPlaceholderDisplay(), (this.numSelections > 1) ?
                 h("span", { class: "yeti-a11y-hidden" }, this.value)
                 :
                     ""), (this.showClear && this.numSelections > 0) ?
-                (h("button", { class: "yeti-multiselect-puck", title: "Clear all selections", onClick: (ev) => { this.handleClearSelections(ev); ev.preventDefault(); } }, h("span", { class: "yeti-a11y-hidden" }, "Clear all selections"), h("span", { class: "material-icons yeti-multiselect-puck-icon", "aria-hidden": "true" }, "cancel")))
+                (h("button", { class: "yeti-dropdown-puck", title: "Clear all selections", onClick: (ev) => { this.handleClearSelections(ev); ev.preventDefault(); } }, h("span", { class: "yeti-a11y-hidden" }, "Clear all selections"), h("span", { class: "material-icons yeti-dropdown-puck-icon", "aria-hidden": "true" }, "cancel")))
                 :
-                    ""), h("div", { key: '3d9fe1c76fd96626f912ab51a72efeecb2fb2883', class: flyoutClass }, h("ul", Object.assign({ key: 'dbce9a6719c5a0e13baf86bd3554b7bd262d24ff', class: "yeti-multiselect-options", id: this.flyoutId, role: "listbox", "aria-multiselectable": "true" }, ((this.labelledBy != "") ? { "aria-labeledby": this.labelledBy } : {}), ((this.isOpen && this.cursorPosition >= 0) ? { "aria-activedescendant": this.options[this.cursorPosition].id } : {})), this.options.map((option, i) => {
-                let optionClass = (this.cursorPosition == i) ? "yeti-multiselect-option yeti-multiselect-option__hover" : "yeti-multiselect-option";
-                return (h("li", { id: option.id, key: option.id, role: "option", "aria-selected": `${option.selected}` }, h("button", { class: optionClass, tabIndex: -1, onClick: (ev) => { this.handleOptionClick(i); ev.preventDefault(); } }, h("span", { class: "yeti-multiselect-option-checkbox" }, h("span", { class: "material-icons", "aria-hidden": "true" }, (option.selected) ? "check_box" : "check_box_outline_blank")), h("span", { class: "yeti-multiselect-option-label" }, option.label))));
+                    ""), h("div", { key: 'b12df52e87cf0c4f4b0bbfa822093f5a8aa6820a', class: flyoutClass }, h("ul", Object.assign({ key: '5d85d14d884c814098fb0cc36c76e08ae1edd87a', class: "yeti-dropdown-options", id: this.flyoutId, role: "listbox", "aria-multiselectable": "true" }, ((this.labelledBy != "") ? { "aria-labeledby": this.labelledBy } : {}), ((this.isOpen && this.cursorPosition >= 0) ? { "aria-activedescendant": this.options[this.cursorPosition].id } : {})), this.options.map((option, i) => {
+                let optionClass = (this.cursorPosition == i) ? "yeti-dropdown-option yeti-dropdown-option__hover" : "yeti-dropdown-option";
+                return (h("li", { id: option.id, key: option.id, role: "option", "aria-selected": `${option.selected}` }, h("button", { class: optionClass, tabIndex: -1, onClick: (ev) => { this.handleOptionClick(i); ev.preventDefault(); } }, h("span", { class: "yeti-dropdown-option-checkbox" }, h("span", { class: "material-icons", "aria-hidden": "true" }, (option.selected) ? "check_box" : "check_box_outline_blank")), h("span", { class: "yeti-dropdown-option-label" }, option.label))));
             }))))
         ]);
     }
     get el() { return getElement(this); }
 };
 
-export { YetiMultiselect as yeti_multiselect };
+export { YetiDropdown as yeti_dropdown };
 
-//# sourceMappingURL=yeti-multiselect.entry.js.map
+//# sourceMappingURL=yeti-dropdown.entry.js.map

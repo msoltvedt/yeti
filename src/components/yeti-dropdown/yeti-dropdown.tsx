@@ -1,11 +1,11 @@
 import { Component, Prop, h, State, Event, EventEmitter, Element, Listen, /*Watch*/ } from '@stencil/core';
-import { utils, YetiMultiselectOption } from '../../utils/utils';
+import { utils, YetiDropdownOption } from '../../utils/utils';
 
 @Component({
-  tag: 'yeti-multiselect',
+  tag: 'yeti-dropdown',
   shadow: false,
 })
-export class YetiMultiselect {
+export class YetiDropdown {
 
   @Element() el: HTMLElement;
 
@@ -25,9 +25,10 @@ export class YetiMultiselect {
   @Prop() wrapperClass: string = '';
 
   /**
-   * id of the combobox element.
+   * id of the root html element.
    */
   @Prop({
+    attribute: "html-id",
     mutable: true,
     reflect: true
   }) comboboxId: string = ""; // Will be initialized on load (if necessary).
@@ -101,9 +102,9 @@ export class YetiMultiselect {
   @Prop() showClear: boolean = true;
 
   /**
-   * Array of YetiMultiselectOptions that describes the component's internal representation of its options. See utils.js for more detail.
+   * Array of YetiDropdownOptions that describes the component's internal representation of its options. See utils.js for more detail.
    */
-  @State() options: YetiMultiselectOption[] = [];
+  @State() options: YetiDropdownOption[] = [];
 
   /**
    * Whether or not the user has interacted with the component (i.e. focused and blurred).
@@ -156,14 +157,14 @@ export class YetiMultiselect {
         // Normal tab direction
         if (!ev.shiftKey) {
 
-          if (this.el.querySelectorAll(".yeti-multiselect:focus").length == 0) {
+          if (this.el.querySelectorAll(".yeti-dropdown:focus").length == 0) {
             this.closeFlyout();
           }
 
         // Shift tab direction (backwards)
         } else {
 
-          if (this.el.querySelectorAll(".yeti-multiselect:focus").length > 0) {
+          if (this.el.querySelectorAll(".yeti-dropdown:focus").length > 0) {
             this.closeFlyout();
           }
 
@@ -229,7 +230,7 @@ export class YetiMultiselect {
         let target = ev.target as HTMLElement;
 
         // First check if the clear everything puck has focus
-        if (target.classList.contains("yeti-multiselect-puck")) {
+        if (target.classList.contains("yeti-dropdown-puck")) {
           target.click();
           break;
         } else {
@@ -293,8 +294,8 @@ export class YetiMultiselect {
       
       let option = options.item(i);
       
-      // First, confirm this element is indeed a yeti-multiselect-option element.
-      if (option.tagName.toLowerCase() == 'yeti-multiselect-option') {
+      // First, confirm this element is indeed a yeti-dropdown-option element.
+      if (option.tagName.toLowerCase() == 'yeti-dropdown-option') {
 
         let optionId;
 
@@ -372,7 +373,7 @@ export class YetiMultiselect {
 
 
   handleClearSelections(ev: Event) {
-    let fieldElement = this.el.querySelector(".yeti-multiselect") as HTMLElement;
+    let fieldElement = this.el.querySelector(".yeti-dropdown") as HTMLElement;
     for (let i=0; i<this.options.length; i++) {
       this.options[i].selected = false;
     }
@@ -387,7 +388,7 @@ export class YetiMultiselect {
 
 
   //handleProgrammaticValueChange(newValue: string, oldValue: string) {
-    // Usually you'd pre-set the value of the control by specifying the selected attribute of yeti-multiselect-option, however it can also be
+    // Usually you'd pre-set the value of the control by specifying the selected attribute of yeti-dropdown-option, however it can also be
     // set programmatically via the value property of the component.
     
     //console.log(`Value should change from ${oldValue} to ${newValue}`);
@@ -396,7 +397,7 @@ export class YetiMultiselect {
 
 
   componentWillLoad() {
-    // Set up ids and handle any <yeti-multiselect-option> elements
+    // Set up ids and handle any <yeti-dropdown-option> elements
     let optionElements = this.el.children;
 
     // Set up ids
@@ -413,7 +414,7 @@ export class YetiMultiselect {
     this.flyoutId = (this.flyoutId != "") ? this.flyoutId : `${componentId}_flyout`;
 
 
-    // Look for and handle any <yeti-multiselect-option> elements.
+    // Look for and handle any <yeti-dropdown-option> elements.
     if (optionElements.length > 0) {
       
       this.parseOptionElements(optionElements);
@@ -428,8 +429,8 @@ export class YetiMultiselect {
     if (this.isOpen) {
       // The flyout is open. If one of the options is being hovered over then we want to scroll it into view.
       // If not, then we'll scroll the whole flyout into view.
-      let flyout = this.el.querySelector(".yeti-multiselect-flyout");
-      let hoveredOption = this.el.querySelector(".yeti-multiselect-option__hover");
+      let flyout = this.el.querySelector(".yeti-dropdown-flyout");
+      let hoveredOption = this.el.querySelector(".yeti-dropdown-option__hover");
       let thingToScrollIntoView = (hoveredOption) ? hoveredOption : flyout;
       thingToScrollIntoView.scrollIntoView({
         behavior: "smooth",
@@ -442,25 +443,25 @@ export class YetiMultiselect {
 
   render() {
 
-    let comboboxClasses = 'yeti-multiselect';
-    let flyoutClass = 'yeti-multiselect-flyout';
+    let comboboxClasses = 'yeti-dropdown';
+    let flyoutClass = 'yeti-dropdown-flyout';
 
     if (this.wrapperClass != '') {
       comboboxClasses += ' ' + this.wrapperClass;
     }
 
     if (this.isValid == false) {
-      comboboxClasses += ' yeti-multiselect__error';
+      comboboxClasses += ' yeti-dropdown__error';
     }
 
-    flyoutClass += (this.isOpen) ? " yeti-multiselect-flyout__open" : "";
+    flyoutClass += (this.isOpen) ? " yeti-dropdown-flyout__open" : "";
 
     if (this.menuAlignment == "right") {
-      flyoutClass += ' yeti-multiselect-flyout-align-right'
+      flyoutClass += ' yeti-dropdown-flyout-align-right'
     }
 
     return ([
-      <div class="yeti-multiselect-wrapper">
+      <div class="yeti-dropdown-wrapper">
 
         <div 
           tabIndex={0}
@@ -483,7 +484,7 @@ export class YetiMultiselect {
         >
 
           <span 
-            class="yeti-multiselect-placeholder"
+            class="yeti-dropdown-placeholder"
             title={this.getPlaceholderDisplay()}
           >{this.getPlaceholderDisplay()}
           
@@ -497,9 +498,9 @@ export class YetiMultiselect {
 
           { (this.showClear && this.numSelections > 0) ? 
 
-            (<button class="yeti-multiselect-puck" title="Clear all selections" onClick={ (ev) => { this.handleClearSelections(ev); ev.preventDefault() }}>
+            (<button class="yeti-dropdown-puck" title="Clear all selections" onClick={ (ev) => { this.handleClearSelections(ev); ev.preventDefault() }}>
               <span class="yeti-a11y-hidden">Clear all selections</span>
-              <span class="material-icons yeti-multiselect-puck-icon" aria-hidden="true">cancel</span>
+              <span class="material-icons yeti-dropdown-puck-icon" aria-hidden="true">cancel</span>
             </button>)
 
           :
@@ -514,7 +515,7 @@ export class YetiMultiselect {
         <div class={flyoutClass}>
         
           <ul
-            class="yeti-multiselect-options"
+            class="yeti-dropdown-options"
             id={this.flyoutId}
             role="listbox"
             aria-multiselectable="true"
@@ -524,7 +525,7 @@ export class YetiMultiselect {
 
             {this.options.map((option, i) => {
 
-                let optionClass = (this.cursorPosition == i) ? "yeti-multiselect-option yeti-multiselect-option__hover" : "yeti-multiselect-option";
+                let optionClass = (this.cursorPosition == i) ? "yeti-dropdown-option yeti-dropdown-option__hover" : "yeti-dropdown-option";
               
                 return (
                   <li 
@@ -534,10 +535,10 @@ export class YetiMultiselect {
                     aria-selected={`${option.selected}`}
                   >
                     <button class={optionClass} tabIndex={-1} onClick={(ev) => { this.handleOptionClick(i); ev.preventDefault(); }}>
-                      <span class="yeti-multiselect-option-checkbox">
+                      <span class="yeti-dropdown-option-checkbox">
                         <span class="material-icons" aria-hidden="true">{(option.selected) ? "check_box" : "check_box_outline_blank"}</span>
                       </span>
-                      <span class="yeti-multiselect-option-label">{option.label}</span>
+                      <span class="yeti-dropdown-option-label">{option.label}</span>
                     </button>
                   </li>
                 )

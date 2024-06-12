@@ -1,7 +1,7 @@
 import { Component, Prop, h, State, Watch, Element, Event, EventEmitter, Listen } from '@stencil/core';
 import { utils, YetiTableContents, YetiTableRow, YetiTableCell } from '../../utils/utils';
 import { YetiDatePicker } from '../yeti-date-picker/yeti-date-picker';
-import { YetiMultiselect } from '../yeti-multiselect/yeti-multiselect';
+import { YetiDropdown } from '../yeti-dropdown/yeti-dropdown';
 import { YetiTablePagination } from '../yeti-table-pagination/yeti-table-pagination';
 
 @Component({
@@ -192,9 +192,9 @@ export class YetiTable {
         this.handleDateFilterChange(picker, columnIndex);
         return;
 
-      case "yeti-multiselect":
+      case "yeti-dropdown":
 
-        let multiselect = ev.target as YetiMultiselect;
+        let multiselect = ev.target as YetiDropdown; // Assuming that a yeti-dropdown here must be a multiselect.
 
         if (ev.type == 'readyToVerifyFast') {
           this.handleMultiselectFilterChange(multiselect, columnIndex);
@@ -700,7 +700,7 @@ export class YetiTable {
 
 
 
-  handleMultiselectFilterChange(multiselect: YetiMultiselect, columnIndex: number) {
+  handleMultiselectFilterChange(multiselect: YetiDropdown, columnIndex: number) {
 
     // First make sure we're supposed to do this ourselves
     if (!this.filterSelf) {
@@ -1344,7 +1344,7 @@ export class YetiTable {
             }
 
             multiselectOptions.push(
-              <yeti-multiselect-option {...optionProperties}>{optionLabel}</yeti-multiselect-option>
+              <yeti-dropdown-option {...optionProperties}>{optionLabel}</yeti-dropdown-option>
             )
 
           }
@@ -1357,7 +1357,8 @@ export class YetiTable {
 
         }
 
-        return <yeti-multiselect
+        return <yeti-dropdown
+          is-multiple={true}
           placeholder="- Any -"
           data-column={cell.columnIndex}
           labelled-by={headingLabelId}
@@ -1365,7 +1366,7 @@ export class YetiTable {
           key={filterId}
           value={cell.filtering.value}>
           {multiselectOptions}
-        </yeti-multiselect>
+        </yeti-dropdown>
 
 
       default:

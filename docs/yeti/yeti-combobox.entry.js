@@ -286,7 +286,7 @@ const YetiCombobox = class {
             dropdownCss += ' yeti-combobox-dropdown-align-right';
         }
         return ([
-            h("div", { key: 'ed411126bc2aed1368bb67b8d854ab14ed15226b', class: wrapperCss }, h("div", { key: '703f705c6e1cef5fe163b81c54fca3a6e91e832b', class: "yeti-combobox", onClick: (ev) => this.handleClick(ev) }, h("input", Object.assign({ key: '8e9e7fbab8078334d96b8233ced113413114a005', type: "text", class: "yeti-combobox-input",
+            h("div", { key: '1212467f7b826d0eba9147824ec9828543d3ccec', class: wrapperCss }, h("div", { key: '91d8a6f99fa1a22b5111fef09c8d993097a45d41', class: "yeti-combobox", onClick: (ev) => this.handleClick(ev) }, h("input", Object.assign({ key: 'd1b521355474c69e377cc77ecc11c1f26656d481', type: "text", class: "yeti-combobox-input",
                 // title={this.value}
                 value: this.value, name: this.inputName, onFocus: () => {
                     this.isTouched = true;
@@ -295,10 +295,10 @@ const YetiCombobox = class {
                 }, onInput: (ev) => this.handleInputChange(ev), role: "combobox", autocomplete: "off", "aria-autocomplete": "none", "aria-controls": this.dropdownId, "aria-expanded": this.isOpen, id: this.inputId }, (this.inputDescribedBy != "") ? { "aria-describedby": this.inputDescribedBy } : {}, (activeDescendantId != "") ? { "aria-activedescendant": activeDescendantId } : {})), (this.showClear && this.value != '') ?
                 (h("button", { class: "yeti-combobox-clear", title: "Clear all selections", onClick: (ev) => { this.handleClearSelections(ev); ev.preventDefault(); } }, h("span", { class: "material-icons yeti-combobox-clear-icon", "aria-hidden": "true" }, "clear")))
                 :
-                    "", h("button", { key: '576f8f740c5b052d1d50acc2ab5f442ad70d3a32', class: "yeti-combobox-button", tabIndex: -1, "aria-controls": this.dropdownId, "aria-expanded": this.isOpen, id: this.buttonId, onClick: (ev) => { this.handleButtonClick(ev); } }, (!this.isLookup) ?
+                    "", h("button", { key: 'c10f8e578dc96933e7daf451d8abe460559b60d9', class: "yeti-combobox-button", tabIndex: -1, "aria-controls": this.dropdownId, "aria-expanded": this.isOpen, id: this.buttonId, onClick: (ev) => { this.handleButtonClick(ev); } }, (!this.isLookup) ?
                 h("yeti-icon", { iconCode: (this.isOpen ? 'expand_less' : 'expand_more'), alt: (this.isOpen ? 'close' : 'open') })
                 :
-                    h("yeti-icon", { iconCode: 'search', alt: (this.isOpen ? 'lookup, close' : 'lookup, open') }))), h("div", { key: '4bd7c8e76f12cb220b10eb80a9dec2d5aaa49ffc', class: dropdownCss }, h("ul", { key: '385f26ff18c8972f93d6324358138ce8d7e1e87d', class: "yeti-combobox-options", id: this.dropdownId, role: "listbox" }, this.options.map((option, i) => {
+                    h("yeti-icon", { iconCode: 'search', alt: (this.isOpen ? 'lookup, close' : 'lookup, open') }))), h("div", { key: 'ca2d4005d51ef830b9990adc269ca936d7e44338', class: dropdownCss }, h("ul", { key: '5b18a0e8cc8728d5d8d58f573c8b5c7f5eb15625', class: "yeti-combobox-options", id: this.dropdownId, role: "listbox" }, this.options.map((option, i) => {
                 let optionClass = (this.cursorPosition == i) ? "yeti-combobox-option yeti-combobox-option__hover" : "yeti-combobox-option";
                 optionClass += (option.selected) ? " yeti-combobox-option__selected" : "";
                 // Only render visible options

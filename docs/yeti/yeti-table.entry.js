@@ -80,8 +80,8 @@ const YetiTable = class {
                 let picker = ev.target;
                 this.handleDateFilterChange(picker, columnIndex);
                 return;
-            case "yeti-multiselect":
-                let multiselect = ev.target;
+            case "yeti-dropdown":
+                let multiselect = ev.target; // Assuming that a yeti-dropdown here must be a multiselect.
                 if (ev.type == 'readyToVerifyFast') {
                     this.handleMultiselectFilterChange(multiselect, columnIndex);
                 }
@@ -772,7 +772,7 @@ const YetiTable = class {
                         if (optionIsSelected) {
                             optionProperties["selected"] = true;
                         }
-                        multiselectOptions.push(h("yeti-multiselect-option", Object.assign({}, optionProperties), optionLabel));
+                        multiselectOptions.push(h("yeti-dropdown-option", Object.assign({}, optionProperties), optionLabel));
                     }
                     // Contents doesn't have options specified, but they're required. Error out.
                 }
@@ -780,7 +780,7 @@ const YetiTable = class {
                     console.error("Error in table multiselect filter: no options supplied.");
                     return false;
                 }
-                return h("yeti-multiselect", { placeholder: "- Any -", "data-column": cell.columnIndex, "labelled-by": headingLabelId, id: filterId, key: filterId, value: cell.filtering.value }, multiselectOptions);
+                return h("yeti-dropdown", { "is-multiple": true, placeholder: "- Any -", "data-column": cell.columnIndex, "labelled-by": headingLabelId, id: filterId, key: filterId, value: cell.filtering.value }, multiselectOptions);
             default:
                 console.error("Error rendering table filter: unexpected filtering type requested:", cell.filtering.type);
                 return "";
@@ -945,7 +945,7 @@ const YetiTable = class {
         if (this.tableClass != '') {
             cssClass += ' ' + this.tableClass;
         }
-        return (h("table", { key: '67641c66fd31049685669d9543aed12b12afe3e7', class: cssClass }, (this.contents.head) ?
+        return (h("table", { key: '2b2943889d76ce18cbafca5de0524710967a2344', class: cssClass }, (this.contents.head) ?
             h("thead", { class: "yeti-table-head" }, h("tr", { class: "yeti-table-head-row" }, (this.contents.head && this.contents.head.rows && this.contents.head.rows.length > 0 && this.contents.head.rows[0].cells && this.contents.head.rows[0].cells.length > 0) ?
                 this.contents.head.rows.map((row) => {
                     return this.renderRow(row);
@@ -953,7 +953,7 @@ const YetiTable = class {
                 :
                     h("th", { class: "yeti-table-heading", scope: "col" }, "No data")))
             :
-                "", h("tbody", { key: '9395bb35fa3bcfa0db6cf5b8ee7a4cd6e5224c10', class: "yeti-table-body" }, this.renderRows(this.firstRecordIndexToDisplay, this.numRecordsToDisplay))));
+                "", h("tbody", { key: 'fb2aaedaa4f872dfe5831b2af2891e8555b02464', class: "yeti-table-body" }, this.renderRows(this.firstRecordIndexToDisplay, this.numRecordsToDisplay))));
     }
     componentDidRender() {
         let paginationComponent = this.el.querySelector('yeti-table-pagination');

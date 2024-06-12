@@ -54,7 +54,7 @@ const YetiField = class {
             // Autoverification is on, this field is required, and the child component just notified us that it's ready for verification.
             // First, regardless of whether it's an input or date-picker, it can't be empty.
             if (childControl.value == "") {
-                this.errorMessage = `${this.label} field is required.`;
+                this.errorMessage = (this.errorMessage != "") ? this.errorMessage : `${this.label} field is required.`;
                 this.isValid = false;
                 return;
             }
@@ -121,7 +121,7 @@ const YetiField = class {
         if (this.fieldClass != "") {
             cssClass = "yeti-form-field " + this.fieldClass;
         }
-        return (h("div", { key: '903417d0f14d0554b66a6779b148b11a1be25132', class: cssClass }, h("label", { key: 'b6f27aa19159092dd26f5ec745d7c58ea9409622', htmlFor: this.inputId, class: "yeti-form-label" }, this.label, (this.required && this.hasSlottedRequired) ? h("slot", { name: "required" }) : null), (!this.hasSlottedField) ?
+        return (h("div", { key: 'deabf371acdeaff60b0dccc10892517535f65636', class: cssClass }, h("label", { key: 'cd575320fe8a34b6ff132c4be4cfec4c719ec5f9', htmlFor: this.inputId, class: "yeti-form-label" }, `${this.label} `, (this.required && this.hasSlottedRequired) ? h("slot", { name: "required" }) : null), (!this.hasSlottedField) ?
             (this.type == "date") ?
                 h("yeti-date-picker", { "input-id": this.inputId, "input-name": this.inputName, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": describedBy })
                 :

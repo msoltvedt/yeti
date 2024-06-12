@@ -9,7 +9,7 @@
 
 | Property        | Attribute        | Description                                                                                                                           | Type      | Default        |
 | --------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------- | --------- | -------------- |
-| `comboboxId`    | `combobox-id`    | id of the combobox element.                                                                                                           | `string`  | `""`           |
+| `comboboxId`    | `html-id`        | id of the root html element.                                                                                                          | `string`  | `""`           |
 | `describedBy`   | `described-by`   | id of an external HTML element that the component's actual drop-down element references in aria-describedby.                          | `string`  | `""`           |
 | `flyoutId`      | `flyout-id`      | id of the drop-down element.                                                                                                          | `string`  | `""`           |
 | `formName`      | `form-name`      | form's name for the actual drop-down element. Defaults to match id.                                                                   | `string`  | `""`           |
@@ -40,8 +40,8 @@
 ### Graph
 ```mermaid
 graph TD;
-  yeti-table --> yeti-multiselect
-  style yeti-multiselect fill:#f9f,stroke:#333,stroke-width:4px
+  yeti-table --> yeti-dropdown
+  style yeti-dropdown fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

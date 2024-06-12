@@ -42,7 +42,7 @@
 - [yeti-tooltip](../yeti-tooltip)
 - [yeti-input](../yeti-input)
 - [yeti-date-picker](../yeti-date-picker)
-- [yeti-multiselect](../yeti-multiselect)
+- [yeti-dropdown](../yeti-dropdown)
 
 ### Graph
 ```mermaid
@@ -52,7 +52,7 @@ graph TD;
   yeti-table --> yeti-tooltip
   yeti-table --> yeti-input
   yeti-table --> yeti-date-picker
-  yeti-table --> yeti-multiselect
+  yeti-table --> yeti-dropdown
   yeti-menu-button --> yeti-tooltip
   yeti-tooltip --> yeti-icon
   yeti-date-picker --> yeti-tooltip

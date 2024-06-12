@@ -316,7 +316,7 @@ export interface YetiComboboxOption {
   id?: string
 }
 
-export interface YetiMultiselectOption {
+export interface YetiDropdownOption {
   selected: boolean,
   label: string,
   id?: string

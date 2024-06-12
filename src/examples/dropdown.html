@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+
+    <title>Yeti Design System - Dropdown Component</title>
+
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/yeti-examples-only.css">
+
+  </head>
+  <body>
+
+    <div class="ydoc-wrapper">
+
+      <div role="main">
+    
+        <h1 class="margin-top-none">Dropdown Component</h1>
+
+        <yeti-page-contents ignore-within="ydoc-code_sample"></yeti-page-contents>
+
+        <h2 class="margin-bottom-3">Code Samples</h2>
+
+
+        <h3 class="margin-bottom-2">Default</h3>
+
+        <p class="margin-bottom-1">
+          The default <code>yeti-dropdown</code> mode is single-select without filtering, just like a regular HTML <code>select</code>. Note that if you provide more than one option with a <code>selected</code> state that Yeti will treat all but the first as unselected.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-dropdown>
+  <yeti-dropdown-option selected>Pepperoni</yeti-dropdown-option>
+  <yeti-dropdown-option>Extra Cheese</yeti-dropdown-option>
+  <yeti-dropdown-option selected>Sausage</yeti-dropdown-option>
+  <yeti-dropdown-option>Hamburger</yeti-dropdown-option>
+  <yeti-dropdown-option>Olives</yeti-dropdown-option>
+</yeti-dropdown>
+
+        </div><!-- /code_sample -->
+
+
+        <h3 class="margin-bottom-2">Multiselect</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-dropdown is-multiselect="true">
+  <yeti-dropdown-option selected>Pepperoni</yeti-dropdown-option>
+  <yeti-dropdown-option>Extra Cheese</yeti-dropdown-option>
+  <yeti-dropdown-option selected>Sausage</yeti-dropdown-option>
+  <yeti-dropdown-option>Hamburger</yeti-dropdown-option>
+  <yeti-dropdown-option>Olives</yeti-dropdown-option>
+</yeti-dropdown>
+
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-2">With Label</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<label for="toppings" class="yeti-form-label">Toppings</label>
+<yeti-dropdown is-multiselect="true" html-id="toppings">
+  <yeti-dropdown-option selected>Pepperoni</yeti-dropdown-option>
+  <yeti-dropdown-option>Extra Cheese</yeti-dropdown-option>
+  <yeti-dropdown-option selected>Sausage</yeti-dropdown-option>
+  <yeti-dropdown-option>Hamburger</yeti-dropdown-option>
+  <yeti-dropdown-option>Olives</yeti-dropdown-option>
+</yeti-dropdown>
+
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-2">With Custom Placeholder Text</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-dropdown is-multiselect="true" placeholder="Choose toppings">
+  <yeti-dropdown-option>Pepperoni</yeti-dropdown-option>
+  <yeti-dropdown-option>Extra Cheese</yeti-dropdown-option>
+  <yeti-dropdown-option>Sausage</yeti-dropdown-option>
+  <yeti-dropdown-option>Hamburger</yeti-dropdown-option>
+  <yeti-dropdown-option>Olives</yeti-dropdown-option>
+</yeti-dropdown>
+
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-2">Without Clear-all Puck</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-dropdown is-multiselect="true" show-clear="false">
+  <yeti-dropdown-option selected>Pepperoni</yeti-dropdown-option>
+  <yeti-dropdown-option>Extra Cheese</yeti-dropdown-option>
+  <yeti-dropdown-option selected>Sausage</yeti-dropdown-option>
+  <yeti-dropdown-option>Hamburger</yeti-dropdown-option>
+  <yeti-dropdown-option>Olives</yeti-dropdown-option>
+</yeti-dropdown>
+
+        </div><!-- /code_sample -->
+
+
+        
+        <h3 class="margin-bottom-2">Invalid</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-dropdown is-multiselect="true" is-valid="false">
+  <yeti-dropdown-option selected>Pepperoni</yeti-dropdown-option>
+  <yeti-dropdown-option>Extra Cheese</yeti-dropdown-option>
+  <yeti-dropdown-option selected>Sausage</yeti-dropdown-option>
+  <yeti-dropdown-option>Hamburger</yeti-dropdown-option>
+  <yeti-dropdown-option>Olives</yeti-dropdown-option>
+</yeti-dropdown>
+
+        </div><!-- /code_sample -->
+
+
+
+        <!-- <h2 class="margin-bottom-3">Technical Notes</h2>
+
+        <ul class="yeti-list-bulleted">
+          <li>For standard (pick one option) selects, use <a href="select.html">Select</a>.</li>
+          <li>The implementation of this uses a hidden standard HTML select element, and that is what screenreader users will interact with.</li>
+        </ul> -->
+
+      </div><!-- /main -->
+    
+    </div><!-- /wrapper -->
+
+    <script type="module" src="./yeti/yeti.esm.js"></script>
+
+    <script type="module" src="./js/docs-scripts.mjs"></script>
+    
+  </body>
+</html>

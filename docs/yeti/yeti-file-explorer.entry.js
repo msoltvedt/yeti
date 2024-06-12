@@ -170,7 +170,7 @@ const YetiFileExplorer = class {
     render() {
         let wrapperClass = 'yeti-file_explorer-wrapper';
         wrapperClass += (this.wrapperClass != '') ? ` ${this.wrapperClass}` : '';
-        return (h("div", { key: 'c7b8dbbcd0010aff1928cbebfef989188ef093f6', class: wrapperClass }, h("div", { key: '827a4264f0e548a14090f6fce83ddbe485c20263', class: "yeti-file_explorer" }, h("div", { key: '249ba1c8eab6c836641087c783c15d71d0cfce3a', class: "yeti-file_explorer-folders" }, this.renderFolders())), h("div", { key: '5988f7982d1c7e4456d8f34fde755cf09c4fed9c', class: "yeti-file_explorer-path" }, this.path[this.path.length - 1].displayPath)));
+        return (h("div", { key: 'a50740edef83112c437dbbed02cd00094dee0267', class: wrapperClass }, h("div", { key: '970446c3d264c187f176a9e99427f4f5a32e881a', class: "yeti-file_explorer" }, h("div", { key: '419001716bd312c862ca82a0e744a3b0c292d274', class: "yeti-file_explorer-folders" }, this.renderFolders())), h("div", { key: '69dea663ba59023cf3b281804d2a54d1e7f808a4', class: "yeti-file_explorer-path" }, this.path[this.path.length - 1].displayPath)));
     }
     componentDidRender() {
         // Scroll the last folder into view
