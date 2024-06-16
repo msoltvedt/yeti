@@ -11,6 +11,7 @@ const YetiDropdown = class {
         this.flyoutId = "";
         this.formName = "";
         this.required = false;
+        this.isMultiselect = false;
         this.menuAlignment = "";
         this.isValid = true;
         this.value = '';
@@ -18,12 +19,14 @@ const YetiDropdown = class {
         this.describedBy = "";
         this.placeholder = "- Select -";
         this.showClear = true;
+        this.isSearchable = false;
+        this.searchString = "";
         this.options = [];
         this.isTouched = false;
         this.numSelections = 0;
-        this.iLoveJSX = false;
         this.isOpen = false;
         this.cursorPosition = -1;
+        this.iLoveJSX = false;
     }
     handleDefocusingClick() {
         if (this.el.querySelectorAll(":focus").length == 0 && this.isOpen) {
@@ -31,6 +34,7 @@ const YetiDropdown = class {
         }
     }
     handleKeydown(ev) {
+        var _a, _b, _c;
         let key = ev.key.toString().toLowerCase();
         switch (key) {
             // Handle potential tabout
@@ -52,7 +56,11 @@ const YetiDropdown = class {
             // Handle arrow navigation
             case "arrowdown": {
                 if (this.isOpen) {
-                    this.cursorPosition = (this.cursorPosition + 1) % this.options.length;
+                    // If the user is searching, we first need to switch focus back to the main control so the readout makes sense.
+                    if (this.el != document.activeElement) {
+                        (_a = this.el.querySelector(".yeti-dropdown")) === null || _a === void 0 ? void 0 : _a.focus();
+                    }
+                    this.cursorPosition = this.getNextVisibleCursorPosition();
                     ev.preventDefault();
                 }
                 else if (ev.altKey) {
@@ -65,7 +73,12 @@ const YetiDropdown = class {
             // Handle arrow navigation
             case "arrowup": {
                 if (this.isOpen) {
-                    this.cursorPosition = (this.cursorPosition - 1 + this.options.length) % this.options.length;
+                    // If the user is searching, we first need to switch focus back to the main control so the readout makes sense.
+                    if (this.el != document.activeElement) {
+                        (_b = this.el.querySelector(".yeti-dropdown")) === null || _b === void 0 ? void 0 : _b.focus();
+                    }
+                    // this.cursorPosition = (this.cursorPosition - 1 + this.options.length) % this.options.length;
+                    this.cursorPosition = this.getPreviousVisibleCursorPosition();
                     ev.preventDefault();
                 }
                 else if (ev.altKey) {
@@ -77,6 +90,12 @@ const YetiDropdown = class {
             // Handle escape navigation
             case "escape": {
                 if (this.isOpen) {
+                    // If the user is searching, escape should just return focus to the main element.
+                    if (this.el != document.activeElement) {
+                        (_c = this.el.querySelector(".yeti-dropdown")) === null || _c === void 0 ? void 0 : _c.focus();
+                        ev.preventDefault();
+                        break;
+                    }
                     this.closeFlyout();
                     ev.preventDefault();
                 }
@@ -108,6 +127,30 @@ const YetiDropdown = class {
             }
         }
     }
+    getNextVisibleCursorPosition() {
+        // Get the index of the option in this.options that corresponds to the next visible option, wrapping to the start of the array if necessary, or returning the original cursor position if no other options are visible.
+        let numOptions = this.options.length;
+        let safeCursorPosition = (this.cursorPosition + numOptions) % numOptions;
+        // Look for a match between this.cursorPosition and the end of the array.
+        for (let i = (safeCursorPosition + 1) % numOptions; i != safeCursorPosition; i = (i + 1) % numOptions) {
+            if (this.options[i].isVisible) {
+                return i;
+            }
+        }
+        return this.cursorPosition;
+    }
+    getPreviousVisibleCursorPosition() {
+        // Get the index of the option in this.options that corresponds to the next visible option, wrapping to the start of the array if necessary, or returning the original cursor position if no other options are visible.
+        let numOptions = this.options.length;
+        let safeCursorPosition = (this.cursorPosition + numOptions) % numOptions;
+        // Look for a match between this.cursorPosition and the end of the array.
+        for (let i = ((safeCursorPosition - 1) + numOptions) % numOptions; i != safeCursorPosition; i = ((i - 1) + numOptions) % numOptions) {
+            if (this.options[i].isVisible) {
+                return i;
+            }
+        }
+        return this.cursorPosition;
+    }
     openFlyout() {
         this.isOpen = true;
     }
@@ -131,23 +174,36 @@ const YetiDropdown = class {
     }
     parseOptionElements(options) {
         let runningInitialValueArray = [];
+        let alreadyFoundASelectedOption = false;
         for (let i = 0; i < options.length; i++) {
             let option = options.item(i);
             // First, confirm this element is indeed a yeti-dropdown-option element.
             if (option.tagName.toLowerCase() == 'yeti-dropdown-option') {
                 let optionId;
+                let selectedState = false;
                 if (option.hasAttribute("id")) {
                     optionId = option.getAttribute("id");
                 }
                 else {
                     optionId = `${this.el.getAttribute("id")}_option${i}`;
                 }
+                // Handle selected attribute
+                if (this.isMultiselect) {
+                    selectedState = option.hasAttribute("selected");
+                }
+                else {
+                    selectedState = option.hasAttribute("selected") && !alreadyFoundASelectedOption; // Single select should ignore all but the first selected attribute
+                    if (selectedState) {
+                        alreadyFoundASelectedOption = true;
+                    }
+                }
                 this.options.push({
-                    selected: option.hasAttribute("selected"),
+                    selected: selectedState,
                     label: option.innerHTML,
-                    id: optionId
+                    id: optionId,
+                    isVisible: true
                 });
-                if (option.hasAttribute("selected")) {
+                if (selectedState) {
                     ++this.numSelections;
                     runningInitialValueArray.push(option.innerHTML);
                 }
@@ -178,15 +234,31 @@ const YetiDropdown = class {
     handleOptionClick(i) {
         // i = options index
         let newValue = [];
-        this.numSelections = (this.options[i].selected) ? --this.numSelections : ++this.numSelections;
+        let newNumSelections = (this.options[i].selected) ? --this.numSelections : ++this.numSelections;
         this.options[i].selected = !this.options[i].selected;
         for (let j = 0; j < this.options.length; j++) {
-            if (this.options[j].selected) {
-                newValue.push(this.options[j].label);
+            // Multiselect
+            if (this.isMultiselect) {
+                if (this.options[j].selected) {
+                    newValue.push(this.options[j].label);
+                }
+                // Single-select
+            }
+            else {
+                if (i == j) {
+                    this.value = this.options[i].label;
+                    newNumSelections = (this.options[j].selected) ? 1 : 0;
+                    this.closeFlyout();
+                }
+                else {
+                    this.options[j].selected = false;
+                }
             }
         }
-        this.value = newValue.toString();
-        this.iLoveJSX = !this.iLoveJSX; // Trigger re-render
+        if (this.isMultiselect) {
+            this.value = newValue.toString(); // Already updated value in the loop for single-select
+        }
+        this.numSelections = newNumSelections;
         this.readyToVerifyFast.emit();
     }
     handleClearSelections(ev) {
@@ -200,6 +272,22 @@ const YetiDropdown = class {
         ev.stopPropagation();
         this.readyToVerifySlow.emit();
         this.readyToVerifyFast.emit();
+    }
+    handleSearchKeyUp(e) {
+        let searchField = e.target;
+        let searchString = searchField.value;
+        if (!this.isSearchable) {
+            return;
+        }
+        for (let option of this.options) {
+            if (searchString != "" && option.label.indexOf(searchString) < 0) {
+                option.isVisible = false;
+            }
+            else {
+                option.isVisible = true;
+            }
+        }
+        this.searchString = searchString;
     }
     //handleProgrammaticValueChange(newValue: string, oldValue: string) {
     // Usually you'd pre-set the value of the control by specifying the selected attribute of yeti-dropdown-option, however it can also be
@@ -251,19 +339,31 @@ const YetiDropdown = class {
             flyoutClass += ' yeti-dropdown-flyout-align-right';
         }
         return ([
-            h("div", { key: 'a24c04cff3dd7736dcd36cec8468671df950a152', class: "yeti-dropdown-wrapper" }, h("div", Object.assign({ key: '14ed4e7b56c260f9b7be829bfed9709d18247030', tabIndex: 0, class: comboboxClasses, onClick: () => {
+            h("div", { key: '56a159378246bb8477b78437e431ec5465aa86dc', class: "yeti-dropdown-wrapper" }, h("div", Object.assign({ key: 'a6ab1d4c160c5c8eb7fe3d93e8663808383891e5', tabIndex: 0, class: comboboxClasses, onClick: () => {
                     this.isOpen = !this.isOpen;
                 }, onFocus: () => {
                     this.isTouched = true;
-                }, role: "combobox" }, ((!this.isValid) ? { "aria-invalid": 'true' } : {}), ((this.labelledBy != "") ? { "aria-labeledby": this.labelledBy } : {}), ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {}), { "aria-controls": this.flyoutId, "aria-expanded": this.isOpen, "aria-haspopup": "listbox" }, ((this.isOpen && this.cursorPosition >= 0) ? { "aria-activedescendant": this.options[this.cursorPosition].id } : {}), { id: this.comboboxId }), h("span", { key: '4a126f3bee29231f0121f75f900d92fe6006857c', class: "yeti-dropdown-placeholder", title: this.getPlaceholderDisplay() }, this.getPlaceholderDisplay(), (this.numSelections > 1) ?
+                }, role: "combobox" }, ((!this.isValid) ? { "aria-invalid": 'true' } : {}), ((this.labelledBy != "") ? { "aria-labeledby": this.labelledBy } : {}), ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {}), { "aria-controls": this.flyoutId, "aria-expanded": this.isOpen, "aria-haspopup": "listbox" }, ((this.isOpen && this.cursorPosition >= 0) ? { "aria-activedescendant": this.options[this.cursorPosition].id } : {}), { id: this.comboboxId }), h("span", { key: '1fa571cbac05ff1ddfd8ade0ed01c2fbf4953d81', class: "yeti-dropdown-placeholder", title: this.getPlaceholderDisplay() }, this.getPlaceholderDisplay(), (this.numSelections > 1) ?
                 h("span", { class: "yeti-a11y-hidden" }, this.value)
                 :
-                    ""), (this.showClear && this.numSelections > 0) ?
+                    ""), (this.isMultiselect && this.showClear && this.numSelections > 0) ? // Clear puck
                 (h("button", { class: "yeti-dropdown-puck", title: "Clear all selections", onClick: (ev) => { this.handleClearSelections(ev); ev.preventDefault(); } }, h("span", { class: "yeti-a11y-hidden" }, "Clear all selections"), h("span", { class: "material-icons yeti-dropdown-puck-icon", "aria-hidden": "true" }, "cancel")))
                 :
-                    ""), h("div", { key: 'b12df52e87cf0c4f4b0bbfa822093f5a8aa6820a', class: flyoutClass }, h("ul", Object.assign({ key: '5d85d14d884c814098fb0cc36c76e08ae1edd87a', class: "yeti-dropdown-options", id: this.flyoutId, role: "listbox", "aria-multiselectable": "true" }, ((this.labelledBy != "") ? { "aria-labeledby": this.labelledBy } : {}), ((this.isOpen && this.cursorPosition >= 0) ? { "aria-activedescendant": this.options[this.cursorPosition].id } : {})), this.options.map((option, i) => {
+                    ""), h("div", { key: '6c329ba63bad0e3d896e4be193106d7b13a53e9d', class: flyoutClass }, /*Search field */ (this.isSearchable) ?
+                h("div", { class: "yeti-dropdown-search-wrapper" }, h("input", Object.assign({ type: "search", class: "yeti-dropdown-search", placeholder: 'Type to search', onKeyUp: (e) => { this.handleSearchKeyUp(e); }, "aria-controls": this.flyoutId }, ((!this.isOpen) ? { "tabindex": -1 } : {}))))
+                :
+                    "", h("ul", Object.assign({ key: 'f3f3ddca585a6454a3c8179af9a2256fac4f42af', class: "yeti-dropdown-options", id: this.flyoutId, role: "listbox", "aria-multiselectable": "true" }, ((this.labelledBy != "") ? { "aria-labeledby": this.labelledBy } : {}), ((this.isOpen && this.cursorPosition >= 0) ? { "aria-activedescendant": this.options[this.cursorPosition].id } : {})), this.options.map((option, i) => {
                 let optionClass = (this.cursorPosition == i) ? "yeti-dropdown-option yeti-dropdown-option__hover" : "yeti-dropdown-option";
-                return (h("li", { id: option.id, key: option.id, role: "option", "aria-selected": `${option.selected}` }, h("button", { class: optionClass, tabIndex: -1, onClick: (ev) => { this.handleOptionClick(i); ev.preventDefault(); } }, h("span", { class: "yeti-dropdown-option-checkbox" }, h("span", { class: "material-icons", "aria-hidden": "true" }, (option.selected) ? "check_box" : "check_box_outline_blank")), h("span", { class: "yeti-dropdown-option-label" }, option.label))));
+                return ((option.isVisible) ?
+                    h("li", { id: option.id, key: option.id, role: "option", "aria-selected": `${option.selected}` }, h("button", { class: optionClass, tabIndex: -1, onClick: (ev) => { this.handleOptionClick(i); ev.preventDefault(); } }, (this.isMultiselect) ?
+                        h("span", { class: "yeti-dropdown-option-checkbox" }, h("span", { class: "material-icons", "aria-hidden": "true" }, (option.selected) ? "check_box" : "check_box_outline_blank"))
+                        :
+                            "", h("span", { class: "yeti-dropdown-option-label" }, option.label), (!this.isMultiselect && option.selected) ?
+                        h("yeti-icon", { iconCode: "check", "aria-hidden": "true", iconClass: 'yeti-typo-size-4' })
+                        :
+                            ""))
+                    :
+                        "");
             }))))
         ]);
     }

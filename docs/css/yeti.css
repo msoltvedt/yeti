@@ -2141,6 +2141,7 @@ Styles for Dropdown
   }
   /************************************** Flyout (Options) ***/
   .yeti-dropdown-flyout {
+    background-color: #f4f4f4;
     position: absolute;
     z-index: 2;
     min-width: 100%;
@@ -2161,7 +2162,6 @@ Styles for Dropdown
     display: flex;
     flex-direction: column;
     list-style: outside none;
-    background-color: #f4f4f4;
     max-height: min(25rem, 60vh);
     /* The reason I repeat this here is that we can't smoothly animate something with overflow auto */
     max-height: calc(60vh - 2.5rem);
@@ -2212,6 +2212,38 @@ Styles for Dropdown
     bottom: calc(100% + 20px);
     width: 10rem;
     height: 10rem;
+  }
+  /************************************** Filter ***/
+  .yeti-dropdown-search-wrapper {
+    display: flex;
+    padding: 0.75rem;
+  }
+  .yeti-dropdown-search {
+    flex: 1 0 auto;
+    border: 1px solid #8D8D8D;
+    background-color: #F4F4F4;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="%23525252"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: 0.5rem 50%;
+    display: flex;
+    align-items: center;
+    min-height: 2rem;
+    height: 2.5rem;
+    padding: 0.125rem;
+    padding-left: 2rem;
+    line-height: 1.125rem;
+    letter-spacing: 0.01rem;
+  }
+  .yeti-dropdown-search::placeholder {
+    color: #A8A8A8;
+    line-height: 1.125rem;
+    /* 128.571% */
+    letter-spacing: 0.01rem;
+  }
+  .yeti-dropdown-search:focus {
+    border-color: #0F62FE;
+    outline: 1px solid #0F62FE;
+    outline-offset: -2px;
   }
   /************************************** page-contents.css ***************************************
 

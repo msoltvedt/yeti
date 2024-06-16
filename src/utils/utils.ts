@@ -319,6 +319,7 @@ export interface YetiComboboxOption {
 export interface YetiDropdownOption {
   selected: boolean,
   label: string,
+  isVisible: boolean,
   id?: string
 }
 

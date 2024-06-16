@@ -136,6 +136,14 @@ export namespace Components {
          */
         "formName": string;
         /**
+          * Whether the component is a Multiselect variant or not (defaults to not).
+         */
+        "isMultiselect": boolean;
+        /**
+          * Whether or not the user can filter the options by searching for a specific string.
+         */
+        "isSearchable": boolean;
+        /**
           * Whether the component has a valid value.
          */
         "isValid": boolean;
@@ -155,6 +163,10 @@ export namespace Components {
           * Whether the component requires a valid value.
          */
         "required": boolean;
+        /**
+          * A string to filter options against. Empty doesn't filter anything.
+         */
+        "searchString": string;
         /**
           * Whether or not to show the optional Clear all selections puck.
          */
@@ -1150,6 +1162,14 @@ declare namespace LocalJSX {
          */
         "formName"?: string;
         /**
+          * Whether the component is a Multiselect variant or not (defaults to not).
+         */
+        "isMultiselect"?: boolean;
+        /**
+          * Whether or not the user can filter the options by searching for a specific string.
+         */
+        "isSearchable"?: boolean;
+        /**
           * Whether the component has a valid value.
          */
         "isValid"?: boolean;
@@ -1177,6 +1197,10 @@ declare namespace LocalJSX {
           * Whether the component requires a valid value.
          */
         "required"?: boolean;
+        /**
+          * A string to filter options against. Empty doesn't filter anything.
+         */
+        "searchString"?: string;
         /**
           * Whether or not to show the optional Clear all selections puck.
          */

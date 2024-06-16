@@ -945,7 +945,7 @@ const YetiTable = class {
         if (this.tableClass != '') {
             cssClass += ' ' + this.tableClass;
         }
-        return (h("table", { key: '2b2943889d76ce18cbafca5de0524710967a2344', class: cssClass }, (this.contents.head) ?
+        return (h("table", { key: 'faa803a60d036b1fbad3662bc1ac10ec5c9e40f8', class: cssClass }, (this.contents.head) ?
             h("thead", { class: "yeti-table-head" }, h("tr", { class: "yeti-table-head-row" }, (this.contents.head && this.contents.head.rows && this.contents.head.rows.length > 0 && this.contents.head.rows[0].cells && this.contents.head.rows[0].cells.length > 0) ?
                 this.contents.head.rows.map((row) => {
                     return this.renderRow(row);
@@ -953,7 +953,7 @@ const YetiTable = class {
                 :
                     h("th", { class: "yeti-table-heading", scope: "col" }, "No data")))
             :
-                "", h("tbody", { key: 'fb2aaedaa4f872dfe5831b2af2891e8555b02464', class: "yeti-table-body" }, this.renderRows(this.firstRecordIndexToDisplay, this.numRecordsToDisplay))));
+                "", h("tbody", { key: 'f4dc72282ae95e0baf7048068887f42b7d84b913', class: "yeti-table-body" }, this.renderRows(this.firstRecordIndexToDisplay, this.numRecordsToDisplay))));
     }
     componentDidRender() {
         let paginationComponent = this.el.querySelector('yeti-table-pagination');

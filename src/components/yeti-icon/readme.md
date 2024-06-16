@@ -22,6 +22,7 @@
 ### Used by
 
  - [yeti-combobox](../yeti-combobox)
+ - [yeti-dropdown](../yeti-dropdown)
  - [yeti-file-explorer](../yeti-file-explorer)
  - [yeti-page-contents](../yeti-page-contents)
  - [yeti-table](../yeti-table)
@@ -31,6 +32,7 @@
 ```mermaid
 graph TD;
   yeti-combobox --> yeti-icon
+  yeti-dropdown --> yeti-icon
   yeti-file-explorer --> yeti-icon
   yeti-page-contents --> yeti-icon
   yeti-table --> yeti-icon

@@ -55,6 +55,11 @@ export class YetiDropdown {
   @Prop() required: boolean = false;
 
   /**
+   * Whether the component is a Multiselect variant or not (defaults to not).
+   */
+  @Prop() isMultiselect: boolean = false;
+
+  /**
    * Token list of left | right and/or above | below that describes the drop-down's visual position relative to the closed state anchor.
    */
   @Prop() menuAlignment: string = "";
@@ -102,6 +107,19 @@ export class YetiDropdown {
   @Prop() showClear: boolean = true;
 
   /**
+   * Whether or not the user can filter the options by searching for a specific string.
+   */
+  @Prop() isSearchable: boolean = false;
+
+  /**
+   * A string to filter options against. Empty doesn't filter anything.
+   */
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) searchString: string = "";
+
+  /**
    * Array of YetiDropdownOptions that describes the component's internal representation of its options. See utils.js for more detail.
    */
   @State() options: YetiDropdownOption[] = [];
@@ -117,11 +135,6 @@ export class YetiDropdown {
   @State() numSelections: number = 0;
 
   /**
-   * Toggle to re-render the whole component.
-   */
-  @State() iLoveJSX: boolean = false;
-
-  /**
    * Whether or not the drop-down is open/visible or not.
    */
   @State() isOpen: boolean = false;
@@ -130,6 +143,14 @@ export class YetiDropdown {
    * 0-based index of the currently focused option.
    */
   @State() cursorPosition: number = -1;
+
+  /**
+   * Toggle to re-render the whole component.
+   */
+  @State() iLoveJSX: boolean = false;
+
+
+  searchId = utils.generateUniqueId();
 
 
 
@@ -148,6 +169,7 @@ export class YetiDropdown {
   handleKeydown(ev: KeyboardEvent) {
 
     let key = ev.key.toString().toLowerCase();
+    let dropdownElement = this.el.querySelector(".yeti-dropdown") as HTMLElement;
 
     switch (key) {
 
@@ -178,8 +200,15 @@ export class YetiDropdown {
       case "arrowdown": {
 
         if (this.isOpen) {
-          this.cursorPosition = (this.cursorPosition + 1) % this.options.length;
+          
+          // If the user is searching, we first need to switch focus back to the main control so the readout makes sense.
+          if (dropdownElement != document.activeElement) {
+            dropdownElement?.focus();
+          }
+
+          this.cursorPosition = this.getNextVisibleCursorPosition();
           ev.preventDefault();
+
         } else if (ev.altKey) {
 
           this.cursorPosition = 0;
@@ -196,8 +225,16 @@ export class YetiDropdown {
       case "arrowup": {
 
         if (this.isOpen) {
-          this.cursorPosition = (this.cursorPosition - 1 + this.options.length) % this.options.length;
+          
+          // If the user is searching, we first need to switch focus back to the main control so the readout makes sense.
+          if (dropdownElement != document.activeElement) {
+            dropdownElement?.focus();
+          }
+
+          // this.cursorPosition = (this.cursorPosition - 1 + this.options.length) % this.options.length;
+          this.cursorPosition = this.getPreviousVisibleCursorPosition();
           ev.preventDefault();
+
         } else if (ev.altKey) {
 
           this.openFlyout();
@@ -213,6 +250,14 @@ export class YetiDropdown {
       case "escape": {
 
         if (this.isOpen) {
+
+          // If the user is searching, escape should just return focus to the main element.
+          if (dropdownElement != document.activeElement) {
+            dropdownElement?.focus();
+            ev.preventDefault();
+            break;
+          }
+
           this.closeFlyout();
           ev.preventDefault();
         }
@@ -254,6 +299,56 @@ export class YetiDropdown {
 
 
 
+  getNextVisibleCursorPosition() {
+    // Get the index of the option in this.options that corresponds to the next visible option, wrapping to the start of the array if necessary, or returning the original cursor position if no other options are visible.
+    
+    let numOptions = this.options.length;
+    let safeCursorPosition = (this.cursorPosition + numOptions) % numOptions;
+    
+    // Look for a match between this.cursorPosition and the end of the array.
+    for (
+        let i = (safeCursorPosition + 1) % numOptions;
+        i != safeCursorPosition;
+        i = (i + 1)  %  numOptions
+    ) {
+
+      if (this.options[i].isVisible) {
+        return i;
+      }
+
+    }
+
+    return this.cursorPosition;
+
+  }
+
+
+
+  getPreviousVisibleCursorPosition() {
+    // Get the index of the option in this.options that corresponds to the next visible option, wrapping to the start of the array if necessary, or returning the original cursor position if no other options are visible.
+    
+    let numOptions = this.options.length;
+    let safeCursorPosition = (this.cursorPosition + numOptions) % numOptions;
+    
+    // Look for a match between this.cursorPosition and the end of the array.
+    for (
+        let i = ((safeCursorPosition - 1) + numOptions) % numOptions;
+        i != safeCursorPosition;
+        i = ((i - 1) + numOptions)  %  numOptions
+    ) {
+
+      if (this.options[i].isVisible) {
+        return i;
+      }
+
+    }
+
+    return this.cursorPosition;
+
+  }
+
+
+
   openFlyout() {
     this.isOpen = true;
   }
@@ -289,6 +384,7 @@ export class YetiDropdown {
   parseOptionElements(options: HTMLCollection) {
 
     let runningInitialValueArray = [];
+    let alreadyFoundASelectedOption = false;
 
     for (let i = 0; i < options.length; i++) {
       
@@ -298,6 +394,7 @@ export class YetiDropdown {
       if (option.tagName.toLowerCase() == 'yeti-dropdown-option') {
 
         let optionId;
+        let selectedState = false;
 
         if (option.hasAttribute("id")) {
           optionId = option.getAttribute("id");
@@ -305,13 +402,24 @@ export class YetiDropdown {
           optionId = `${this.el.getAttribute("id")}_option${i}`;
         }
 
+        // Handle selected attribute
+        if (this.isMultiselect) {
+          selectedState = option.hasAttribute("selected");
+        } else {
+          selectedState = option.hasAttribute("selected") && !alreadyFoundASelectedOption; // Single select should ignore all but the first selected attribute
+          if (selectedState) {
+            alreadyFoundASelectedOption = true;
+          }
+        }
+
         this.options.push({
-          selected: option.hasAttribute("selected"),
+          selected: selectedState,
           label: option.innerHTML,
-          id: optionId
+          id: optionId,
+          isVisible: true
         });
 
-        if (option.hasAttribute("selected")) {
+        if (selectedState) {
           ++this.numSelections;
           runningInitialValueArray.push(option.innerHTML);
         }
@@ -358,16 +466,41 @@ export class YetiDropdown {
   handleOptionClick(i: number) {
     // i = options index
     let newValue = [];
-    this.numSelections = (this.options[i].selected) ? --this.numSelections : ++this.numSelections;
+    let newNumSelections = (this.options[i].selected) ? --this.numSelections : ++this.numSelections;
+
     this.options[i].selected = !this.options[i].selected;
+    
     for (let j = 0; j < this.options.length; j++) {
-      if (this.options[j].selected) {
-        newValue.push(this.options[j].label);
+
+      // Multiselect
+      if (this.isMultiselect) {
+        
+        if (this.options[j].selected) {
+          newValue.push(this.options[j].label);
+        }
+
+      // Single-select
+      } else {
+
+        if (i == j) {
+          this.value = this.options[i].label;
+          newNumSelections = (this.options[j].selected) ? 1 : 0;
+          this.closeFlyout();
+        } else {
+          this.options[j].selected = false;
+        }
+
       }
+      
     }
-    this.value = newValue.toString();
-    this.iLoveJSX = !this.iLoveJSX; // Trigger re-render
+
+    if (this.isMultiselect) {
+      this.value = newValue.toString(); // Already updated value in the loop for single-select
+    }
+
+    this.numSelections = newNumSelections;
     this.readyToVerifyFast.emit();
+
   }
 
 
@@ -383,6 +516,29 @@ export class YetiDropdown {
     ev.stopPropagation();
     this.readyToVerifySlow.emit();
     this.readyToVerifyFast.emit();
+  }
+
+
+
+  handleSearchKeyUp(e: KeyboardEvent) {
+    let searchField = e.target as HTMLInputElement;
+    let searchString = searchField.value;
+
+    if (!this.isSearchable) {
+      return;
+    }
+
+    for (let option of this.options) {
+      
+      if (searchString != "" && option.label.indexOf( searchString ) < 0) {
+        option.isVisible = false;
+      } else {
+        option.isVisible = true;
+      }
+
+    }
+
+    this.searchString = searchString;
   }
 
 
@@ -481,6 +637,7 @@ export class YetiDropdown {
           aria-haspopup="listbox"
           {...((this.isOpen && this.cursorPosition >= 0) ? { "aria-activedescendant": this.options[this.cursorPosition].id } : {})}
           id={this.comboboxId}
+          {...((this.isSearchable) ? { "aria-description": "searchable" } : {})}
         >
 
           <span 
@@ -496,7 +653,7 @@ export class YetiDropdown {
           </span>
 
 
-          { (this.showClear && this.numSelections > 0) ? 
+          { (this.isMultiselect && this.showClear && this.numSelections > 0) ? // Clear puck
 
             (<button class="yeti-dropdown-puck" title="Clear all selections" onClick={ (ev) => { this.handleClearSelections(ev); ev.preventDefault() }}>
               <span class="yeti-a11y-hidden">Clear all selections</span>
@@ -513,6 +670,29 @@ export class YetiDropdown {
 
         
         <div class={flyoutClass}>
+
+          {/*Search field */
+
+            (this.isSearchable) ?
+
+              <div class="yeti-dropdown-search-wrapper">
+                <input 
+                  type="search" 
+                  class="yeti-dropdown-search" 
+                  placeholder='Type to search' 
+                  onKeyUp={(e) => { this.handleSearchKeyUp(e); }}
+                  aria-controls={this.flyoutId}
+                  id={this.searchId}
+                  {...(!this.isOpen ? {"tabindex": "-1"} : {})}
+                />
+              </div>
+
+            :
+
+              ""
+
+          }
+
         
           <ul
             class="yeti-dropdown-options"
@@ -528,19 +708,51 @@ export class YetiDropdown {
                 let optionClass = (this.cursorPosition == i) ? "yeti-dropdown-option yeti-dropdown-option__hover" : "yeti-dropdown-option";
               
                 return (
-                  <li 
-                    id={option.id} 
-                    key={option.id}
-                    role="option"
-                    aria-selected={`${option.selected}`}
-                  >
-                    <button class={optionClass} tabIndex={-1} onClick={(ev) => { this.handleOptionClick(i); ev.preventDefault(); }}>
-                      <span class="yeti-dropdown-option-checkbox">
-                        <span class="material-icons" aria-hidden="true">{(option.selected) ? "check_box" : "check_box_outline_blank"}</span>
-                      </span>
-                      <span class="yeti-dropdown-option-label">{option.label}</span>
-                    </button>
-                  </li>
+
+                  (option.isVisible) ?
+
+                    <li 
+                      id={option.id} 
+                      key={option.id}
+                      role="option"
+                      aria-selected={`${option.selected}`}
+                    >
+                      <button class={optionClass} tabIndex={-1} onClick={(ev) => { this.handleOptionClick(i); ev.preventDefault(); }}>
+
+
+                        {
+                          (this.isMultiselect) ?
+                        
+                            <span class="yeti-dropdown-option-checkbox">
+                              <span class="material-icons" aria-hidden="true">{(option.selected) ? "check_box" : "check_box_outline_blank"}</span>
+                            </span>
+
+                          :
+
+                            ""
+                        }
+
+                        
+                        <span class="yeti-dropdown-option-label">{option.label}</span>
+
+
+                        {
+                          (!this.isMultiselect && option.selected) ?
+
+                            <yeti-icon iconCode="check" aria-hidden="true" iconClass='yeti-typo-size-4'></yeti-icon>
+
+                          :
+
+                            ""
+                        }
+
+
+                      </button>
+                    </li>
+
+                  :
+
+                    ""
                 )
               }
             
