@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Event, EventEmitter, Element, Listen, /*Watch*/ } from '@stencil/core';
+import { Component, Prop, h, State, Event, EventEmitter, Element, Listen, Watch } from '@stencil/core';
 import { utils, YetiDropdownOption } from '../../utils/utils';
 
 @Component({
@@ -122,7 +122,46 @@ export class YetiDropdown {
   /**
    * Array of YetiDropdownOptions that describes the component's internal representation of its options. See utils.js for more detail.
    */
-  @State() options: YetiDropdownOption[] = [];
+  @Prop({mutable: true}) options: YetiDropdownOption[] = [];
+  @Watch("options")
+  handleOptionsChange() {
+
+    let runningInitialValueArray = [];
+    let alreadyFoundASelectedOption = false;
+
+    for (let i = 0; i < this.options.length; i++) {
+
+      let option = this.options[i];
+
+      // Set id
+      option.id = (option.id) ? option.id : `${this.el.getAttribute("id")}_option${i}`;
+
+      // Set value
+      option.value = option.value ? option.value : option.label;
+
+      // Handle selected attribute
+      if (!this.isMultiselect) {
+        if (option.selected) {
+          option.selected = !alreadyFoundASelectedOption;
+        }
+        
+        if (option.selected) {
+          alreadyFoundASelectedOption = true;
+        }
+      }
+
+      if (option.selected) {
+        ++this.numSelections;
+        runningInitialValueArray.push(option.value);
+      }
+        
+
+    } // End for
+
+    // Initialize value
+    this.value = runningInitialValueArray.toString();
+
+  }
 
   /**
    * Whether or not the user has interacted with the component (i.e. focused and blurred).
@@ -395,12 +434,22 @@ export class YetiDropdown {
 
         let optionId;
         let selectedState = false;
+        let optionValue = "";
 
+        // Set id
         if (option.hasAttribute("id")) {
           optionId = option.getAttribute("id");
         } else {
           optionId = `${this.el.getAttribute("id")}_option${i}`;
         }
+
+        // Set value
+        if (option.hasAttribute("value")) {
+          optionValue = option.getAttribute("value");
+        } else {
+          optionValue = option.innerHTML;
+        }
+
 
         // Handle selected attribute
         if (this.isMultiselect) {
@@ -416,6 +465,7 @@ export class YetiDropdown {
           selected: selectedState,
           label: option.innerHTML,
           id: optionId,
+          value: optionValue,
           isVisible: true
         });
 
@@ -483,7 +533,7 @@ export class YetiDropdown {
       } else {
 
         if (i == j) {
-          this.value = this.options[i].label;
+          this.value = this.options[i].value;
           newNumSelections = (this.options[j].selected) ? 1 : 0;
           this.closeFlyout();
         } else {
@@ -530,7 +580,7 @@ export class YetiDropdown {
 
     for (let option of this.options) {
       
-      if (searchString != "" && option.label.indexOf( searchString ) < 0) {
+      if (searchString?.toLowerCase() != "" && option.label?.toLowerCase()?.indexOf( searchString ) < 0) {
         option.isVisible = false;
       } else {
         option.isVisible = true;
@@ -682,6 +732,7 @@ export class YetiDropdown {
                   placeholder='Type to search' 
                   onKeyUp={(e) => { this.handleSearchKeyUp(e); }}
                   aria-controls={this.flyoutId}
+                  autocomplete='off'
                   id={this.searchId}
                   {...(!this.isOpen ? {"tabindex": "-1"} : {})}
                 />

@@ -5,8 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { YetiFileSystemItem, YetiTableContents } from "./utils/utils";
-export { YetiFileSystemItem, YetiTableContents } from "./utils/utils";
+import { YetiDropdownOption, YetiFileSystemItem, YetiTableContents } from "./utils/utils";
+export { YetiDropdownOption, YetiFileSystemItem, YetiTableContents } from "./utils/utils";
 export namespace Components {
     interface MyComponent {
         /**
@@ -156,6 +156,10 @@ export namespace Components {
          */
         "menuAlignment": string;
         /**
+          * Array of YetiDropdownOptions that describes the component's internal representation of its options. See utils.js for more detail.
+         */
+        "options": YetiDropdownOption[];
+        /**
           * Text that appears in the closed state/anchor when there are no selections.
          */
         "placeholder": string;
@@ -237,6 +241,10 @@ export namespace Components {
           * type that will be assigned to the actual input element.
          */
         "type": string;
+        /**
+          * Additional user-supplied CSS classes to apply to the Field's wrapper.
+         */
+        "wrapperClass"?: string;
     }
     interface YetiFileExplorer {
         /**
@@ -1190,6 +1198,10 @@ declare namespace LocalJSX {
          */
         "onReadyToVerifySlow"?: (event: YetiDropdownCustomEvent<CustomEvent>) => void;
         /**
+          * Array of YetiDropdownOptions that describes the component's internal representation of its options. See utils.js for more detail.
+         */
+        "options"?: YetiDropdownOption[];
+        /**
           * Text that appears in the closed state/anchor when there are no selections.
          */
         "placeholder"?: string;
@@ -1271,6 +1283,10 @@ declare namespace LocalJSX {
           * type that will be assigned to the actual input element.
          */
         "type"?: string;
+        /**
+          * Additional user-supplied CSS classes to apply to the Field's wrapper.
+         */
+        "wrapperClass"?: string;
     }
     interface YetiFileExplorer {
         /**

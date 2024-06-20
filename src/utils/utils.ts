@@ -320,6 +320,7 @@ export interface YetiDropdownOption {
   selected: boolean,
   label: string,
   isVisible: boolean,
+  value: string,
   id?: string
 }
 

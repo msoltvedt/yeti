@@ -12,12 +12,18 @@ export class YetiField {
   /**
    * id that will be assigned to the actual input element. A unique one will be assigned if one is not provided.
    */
-  @Prop() inputId: string = utils.generateUniqueId();
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) inputId: string = utils.generateUniqueId();
 
   /**
    * name that will be assigned to the actual input element. id will be assigned if one is not provided.
    */
-  @Prop() inputName: string = this.inputId;
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) inputName: string = this.inputId;
 
   /**
    * type that will be assigned to the actual input element.
@@ -110,6 +116,11 @@ export class YetiField {
    * Determines whether the field uses block (default) or inline labels.
    */
   @Prop() isInline: boolean = false;
+
+  /**
+   * Additional user-supplied CSS classes to apply to the Field's wrapper.
+   */
+  @Prop() wrapperClass?: string = "";
 
   /**
    * Tracks whether the field's input has been focused and then blurred (i.e. if the user has interacted with it yet).
@@ -217,14 +228,13 @@ export class YetiField {
   render() {
 
     let cssClass = "yeti-form-field";
+    cssClass += (this.wrapperClass != "") ? ` ${this.wrapperClass}` : '';
 
     let tipClass = `yeti-form-tip`;
     tipClass += (this.tipPosition == "above") ? ` yeti-form-tip-above` : ``;
 
     let describedBy = (this.tip != "") ? `${this.tipId} ` : ``;
     describedBy += (this.errorMessage != "" && !this.isValid) ? `${this.errorId}` : ``;
-
-    console.log(`IsValid is ${this.isValid}`);
 
 
     if (this.isInline) {

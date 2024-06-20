@@ -1358,7 +1358,7 @@ export class YetiTable {
         }
 
         return <yeti-dropdown
-          is-multiple={true}
+          is-multiselect="true"
           placeholder="- Any -"
           data-column={cell.columnIndex}
           labelled-by={headingLabelId}
