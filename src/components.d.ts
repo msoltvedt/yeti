@@ -5,8 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { YetiFileSystemItem, YetiTableContents } from "./utils/utils";
-export { YetiFileSystemItem, YetiTableContents } from "./utils/utils";
+import { YetiDropdownOption, YetiFileSystemItem, YetiTableContents } from "./utils/utils";
+export { YetiDropdownOption, YetiFileSystemItem, YetiTableContents } from "./utils/utils";
 export namespace Components {
     interface MyComponent {
         /**
@@ -36,6 +36,14 @@ export namespace Components {
          */
         "inputName": string;
         /**
+          * Whether the options list should be filtered by the text input
+         */
+        "isFilterable": boolean;
+        /**
+          * Use the Lookup style (i.e. swap the caret for a search icon)
+         */
+        "isLookup": boolean;
+        /**
           * Whether the component has a valid value.
          */
         "isValid": boolean;
@@ -51,6 +59,10 @@ export namespace Components {
           * Whether the component requires a valid value.
          */
         "required": boolean;
+        /**
+          * Whether/how changes to the text field value select an option from the list. Possible values are "manual" (default) and "automatic". Any value other than "automatic" will equal manual.
+         */
+        "selectionType"?: string;
         /**
           * Whether or not to show the optional Clear all selections puck.
          */
@@ -106,6 +118,72 @@ export namespace Components {
          */
         "value": string;
     }
+    interface YetiDropdown {
+        /**
+          * id of the root html element.
+         */
+        "comboboxId": string;
+        /**
+          * id of an external HTML element that the component's actual drop-down element references in aria-describedby.
+         */
+        "describedBy": string;
+        /**
+          * id of the drop-down element.
+         */
+        "flyoutId": string;
+        /**
+          * form's name for the actual drop-down element. Defaults to match id.
+         */
+        "formName": string;
+        /**
+          * Whether the component is a Multiselect variant or not (defaults to not).
+         */
+        "isMultiselect": boolean;
+        /**
+          * Whether or not the user can filter the options by searching for a specific string.
+         */
+        "isSearchable": boolean;
+        /**
+          * Whether the component has a valid value.
+         */
+        "isValid": boolean;
+        /**
+          * id of an external HTML element that the component's actual drop-down element references in aria-labelledby.
+         */
+        "labelledBy": string;
+        /**
+          * Token list of left | right and/or above | below that describes the drop-down's visual position relative to the closed state anchor.
+         */
+        "menuAlignment": string;
+        /**
+          * Array of YetiDropdownOptions that describes the component's internal representation of its options. See utils.js for more detail.
+         */
+        "options": YetiDropdownOption[];
+        /**
+          * Text that appears in the closed state/anchor when there are no selections.
+         */
+        "placeholder": string;
+        /**
+          * Whether the component requires a valid value.
+         */
+        "required": boolean;
+        /**
+          * A string to filter options against. Empty doesn't filter anything.
+         */
+        "searchString": string;
+        /**
+          * Whether or not to show the optional Clear all selections puck.
+         */
+        "showClear": boolean;
+        /**
+          * The component's value is represented as a string of comma-separated values.
+         */
+        "value": string;
+        /**
+          * CSS classlist to add to the component's outer wrapper element.
+         */
+        "wrapperClass": string;
+    }
     interface YetiField {
         /**
           * Determines whether the field should attempt to validate itself or merely pass through any readyToVerify events from its input.
@@ -156,9 +234,17 @@ export namespace Components {
          */
         "tip": string;
         /**
+          * Position of the input tip relative to the rest of the field's contents. Defaults to "below", can also be "above".
+         */
+        "tipPosition"?: string;
+        /**
           * type that will be assigned to the actual input element.
          */
         "type": string;
+        /**
+          * Additional user-supplied CSS classes to apply to the Field's wrapper.
+         */
+        "wrapperClass"?: string;
     }
     interface YetiFileExplorer {
         /**
@@ -349,56 +435,6 @@ export namespace Components {
           * The optional size of the modal (other than the default). Options are xl, l, s, xs.
          */
         "size": string;
-    }
-    interface YetiMultiselect {
-        /**
-          * id of the combobox element.
-         */
-        "comboboxId": string;
-        /**
-          * id of an external HTML element that the component's actual drop-down element references in aria-describedby.
-         */
-        "describedBy": string;
-        /**
-          * id of the drop-down element.
-         */
-        "flyoutId": string;
-        /**
-          * form's name for the actual drop-down element. Defaults to match id.
-         */
-        "formName": string;
-        /**
-          * Whether the component has a valid value.
-         */
-        "isValid": boolean;
-        /**
-          * id of an external HTML element that the component's actual drop-down element references in aria-labelledby.
-         */
-        "labelledBy": string;
-        /**
-          * Token list of left | right and/or above | below that describes the drop-down's visual position relative to the closed state anchor.
-         */
-        "menuAlignment": string;
-        /**
-          * Text that appears in the closed state/anchor when there are no selections.
-         */
-        "placeholder": string;
-        /**
-          * Whether the component requires a valid value.
-         */
-        "required": boolean;
-        /**
-          * Whether or not to show the optional Clear all selections puck.
-         */
-        "showClear": boolean;
-        /**
-          * The component's value is represented as a string of comma-separated values.
-         */
-        "value": string;
-        /**
-          * CSS classlist to add to the component's outer wrapper element.
-         */
-        "wrapperClass": string;
     }
     interface YetiNotification {
         /**
@@ -676,6 +712,10 @@ export interface YetiDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLYetiDatePickerElement;
 }
+export interface YetiDropdownCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLYetiDropdownElement;
+}
 export interface YetiFileExplorerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLYetiFileExplorerElement;
@@ -687,10 +727,6 @@ export interface YetiInputCustomEvent<T> extends CustomEvent<T> {
 export interface YetiMenuButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLYetiMenuButtonElement;
-}
-export interface YetiMultiselectCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLYetiMultiselectElement;
 }
 export interface YetiNotificationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -753,6 +789,24 @@ declare global {
     var HTMLYetiDatePickerElement: {
         prototype: HTMLYetiDatePickerElement;
         new (): HTMLYetiDatePickerElement;
+    };
+    interface HTMLYetiDropdownElementEventMap {
+        "readyToVerifySlow": CustomEvent;
+        "readyToVerifyFast": CustomEvent;
+    }
+    interface HTMLYetiDropdownElement extends Components.YetiDropdown, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLYetiDropdownElementEventMap>(type: K, listener: (this: HTMLYetiDropdownElement, ev: YetiDropdownCustomEvent<HTMLYetiDropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLYetiDropdownElementEventMap>(type: K, listener: (this: HTMLYetiDropdownElement, ev: YetiDropdownCustomEvent<HTMLYetiDropdownElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLYetiDropdownElement: {
+        prototype: HTMLYetiDropdownElement;
+        new (): HTMLYetiDropdownElement;
     };
     interface HTMLYetiFieldElement extends Components.YetiField, HTMLStencilElement {
     }
@@ -831,24 +885,6 @@ declare global {
     var HTMLYetiModalElement: {
         prototype: HTMLYetiModalElement;
         new (): HTMLYetiModalElement;
-    };
-    interface HTMLYetiMultiselectElementEventMap {
-        "readyToVerifySlow": CustomEvent;
-        "readyToVerifyFast": CustomEvent;
-    }
-    interface HTMLYetiMultiselectElement extends Components.YetiMultiselect, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLYetiMultiselectElementEventMap>(type: K, listener: (this: HTMLYetiMultiselectElement, ev: YetiMultiselectCustomEvent<HTMLYetiMultiselectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLYetiMultiselectElementEventMap>(type: K, listener: (this: HTMLYetiMultiselectElement, ev: YetiMultiselectCustomEvent<HTMLYetiMultiselectElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLYetiMultiselectElement: {
-        prototype: HTMLYetiMultiselectElement;
-        new (): HTMLYetiMultiselectElement;
     };
     interface HTMLYetiNotificationElementEventMap {
         "notificationActionClick": any;
@@ -973,6 +1009,7 @@ declare global {
         "my-component": HTMLMyComponentElement;
         "yeti-combobox": HTMLYetiComboboxElement;
         "yeti-date-picker": HTMLYetiDatePickerElement;
+        "yeti-dropdown": HTMLYetiDropdownElement;
         "yeti-field": HTMLYetiFieldElement;
         "yeti-file-explorer": HTMLYetiFileExplorerElement;
         "yeti-icon": HTMLYetiIconElement;
@@ -980,7 +1017,6 @@ declare global {
         "yeti-loading": HTMLYetiLoadingElement;
         "yeti-menu-button": HTMLYetiMenuButtonElement;
         "yeti-modal": HTMLYetiModalElement;
-        "yeti-multiselect": HTMLYetiMultiselectElement;
         "yeti-notification": HTMLYetiNotificationElement;
         "yeti-page-contents": HTMLYetiPageContentsElement;
         "yeti-progress-bar": HTMLYetiProgressBarElement;
@@ -1022,6 +1058,14 @@ declare namespace LocalJSX {
          */
         "inputName"?: string;
         /**
+          * Whether the options list should be filtered by the text input
+         */
+        "isFilterable"?: boolean;
+        /**
+          * Use the Lookup style (i.e. swap the caret for a search icon)
+         */
+        "isLookup"?: boolean;
+        /**
           * Whether the component has a valid value.
          */
         "isValid"?: boolean;
@@ -1045,6 +1089,10 @@ declare namespace LocalJSX {
           * Whether the component requires a valid value.
          */
         "required"?: boolean;
+        /**
+          * Whether/how changes to the text field value select an option from the list. Possible values are "manual" (default) and "automatic". Any value other than "automatic" will equal manual.
+         */
+        "selectionType"?: string;
         /**
           * Whether or not to show the optional Clear all selections puck.
          */
@@ -1104,6 +1152,80 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface YetiDropdown {
+        /**
+          * id of the root html element.
+         */
+        "comboboxId"?: string;
+        /**
+          * id of an external HTML element that the component's actual drop-down element references in aria-describedby.
+         */
+        "describedBy"?: string;
+        /**
+          * id of the drop-down element.
+         */
+        "flyoutId"?: string;
+        /**
+          * form's name for the actual drop-down element. Defaults to match id.
+         */
+        "formName"?: string;
+        /**
+          * Whether the component is a Multiselect variant or not (defaults to not).
+         */
+        "isMultiselect"?: boolean;
+        /**
+          * Whether or not the user can filter the options by searching for a specific string.
+         */
+        "isSearchable"?: boolean;
+        /**
+          * Whether the component has a valid value.
+         */
+        "isValid"?: boolean;
+        /**
+          * id of an external HTML element that the component's actual drop-down element references in aria-labelledby.
+         */
+        "labelledBy"?: string;
+        /**
+          * Token list of left | right and/or above | below that describes the drop-down's visual position relative to the closed state anchor.
+         */
+        "menuAlignment"?: string;
+        /**
+          * Fires when the user toggles any of the options.
+         */
+        "onReadyToVerifyFast"?: (event: YetiDropdownCustomEvent<CustomEvent>) => void;
+        /**
+          * Fires when the user has made a selection and closed the dropdown (usually by focusing elsewhere).
+         */
+        "onReadyToVerifySlow"?: (event: YetiDropdownCustomEvent<CustomEvent>) => void;
+        /**
+          * Array of YetiDropdownOptions that describes the component's internal representation of its options. See utils.js for more detail.
+         */
+        "options"?: YetiDropdownOption[];
+        /**
+          * Text that appears in the closed state/anchor when there are no selections.
+         */
+        "placeholder"?: string;
+        /**
+          * Whether the component requires a valid value.
+         */
+        "required"?: boolean;
+        /**
+          * A string to filter options against. Empty doesn't filter anything.
+         */
+        "searchString"?: string;
+        /**
+          * Whether or not to show the optional Clear all selections puck.
+         */
+        "showClear"?: boolean;
+        /**
+          * The component's value is represented as a string of comma-separated values.
+         */
+        "value"?: string;
+        /**
+          * CSS classlist to add to the component's outer wrapper element.
+         */
+        "wrapperClass"?: string;
+    }
     interface YetiField {
         /**
           * Determines whether the field should attempt to validate itself or merely pass through any readyToVerify events from its input.
@@ -1154,9 +1276,17 @@ declare namespace LocalJSX {
          */
         "tip"?: string;
         /**
+          * Position of the input tip relative to the rest of the field's contents. Defaults to "below", can also be "above".
+         */
+        "tipPosition"?: string;
+        /**
           * type that will be assigned to the actual input element.
          */
         "type"?: string;
+        /**
+          * Additional user-supplied CSS classes to apply to the Field's wrapper.
+         */
+        "wrapperClass"?: string;
     }
     interface YetiFileExplorer {
         /**
@@ -1370,64 +1500,6 @@ declare namespace LocalJSX {
           * The optional size of the modal (other than the default). Options are xl, l, s, xs.
          */
         "size"?: string;
-    }
-    interface YetiMultiselect {
-        /**
-          * id of the combobox element.
-         */
-        "comboboxId"?: string;
-        /**
-          * id of an external HTML element that the component's actual drop-down element references in aria-describedby.
-         */
-        "describedBy"?: string;
-        /**
-          * id of the drop-down element.
-         */
-        "flyoutId"?: string;
-        /**
-          * form's name for the actual drop-down element. Defaults to match id.
-         */
-        "formName"?: string;
-        /**
-          * Whether the component has a valid value.
-         */
-        "isValid"?: boolean;
-        /**
-          * id of an external HTML element that the component's actual drop-down element references in aria-labelledby.
-         */
-        "labelledBy"?: string;
-        /**
-          * Token list of left | right and/or above | below that describes the drop-down's visual position relative to the closed state anchor.
-         */
-        "menuAlignment"?: string;
-        /**
-          * Fires when the user toggles any of the options.
-         */
-        "onReadyToVerifyFast"?: (event: YetiMultiselectCustomEvent<CustomEvent>) => void;
-        /**
-          * Fires when the user has made a selection and closed the dropdown (usually by focusing elsewhere).
-         */
-        "onReadyToVerifySlow"?: (event: YetiMultiselectCustomEvent<CustomEvent>) => void;
-        /**
-          * Text that appears in the closed state/anchor when there are no selections.
-         */
-        "placeholder"?: string;
-        /**
-          * Whether the component requires a valid value.
-         */
-        "required"?: boolean;
-        /**
-          * Whether or not to show the optional Clear all selections puck.
-         */
-        "showClear"?: boolean;
-        /**
-          * The component's value is represented as a string of comma-separated values.
-         */
-        "value"?: string;
-        /**
-          * CSS classlist to add to the component's outer wrapper element.
-         */
-        "wrapperClass"?: string;
     }
     interface YetiNotification {
         /**
@@ -1727,6 +1799,7 @@ declare namespace LocalJSX {
         "my-component": MyComponent;
         "yeti-combobox": YetiCombobox;
         "yeti-date-picker": YetiDatePicker;
+        "yeti-dropdown": YetiDropdown;
         "yeti-field": YetiField;
         "yeti-file-explorer": YetiFileExplorer;
         "yeti-icon": YetiIcon;
@@ -1734,7 +1807,6 @@ declare namespace LocalJSX {
         "yeti-loading": YetiLoading;
         "yeti-menu-button": YetiMenuButton;
         "yeti-modal": YetiModal;
-        "yeti-multiselect": YetiMultiselect;
         "yeti-notification": YetiNotification;
         "yeti-page-contents": YetiPageContents;
         "yeti-progress-bar": YetiProgressBar;
@@ -1754,6 +1826,7 @@ declare module "@stencil/core" {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "yeti-combobox": LocalJSX.YetiCombobox & JSXBase.HTMLAttributes<HTMLYetiComboboxElement>;
             "yeti-date-picker": LocalJSX.YetiDatePicker & JSXBase.HTMLAttributes<HTMLYetiDatePickerElement>;
+            "yeti-dropdown": LocalJSX.YetiDropdown & JSXBase.HTMLAttributes<HTMLYetiDropdownElement>;
             "yeti-field": LocalJSX.YetiField & JSXBase.HTMLAttributes<HTMLYetiFieldElement>;
             "yeti-file-explorer": LocalJSX.YetiFileExplorer & JSXBase.HTMLAttributes<HTMLYetiFileExplorerElement>;
             "yeti-icon": LocalJSX.YetiIcon & JSXBase.HTMLAttributes<HTMLYetiIconElement>;
@@ -1761,7 +1834,6 @@ declare module "@stencil/core" {
             "yeti-loading": LocalJSX.YetiLoading & JSXBase.HTMLAttributes<HTMLYetiLoadingElement>;
             "yeti-menu-button": LocalJSX.YetiMenuButton & JSXBase.HTMLAttributes<HTMLYetiMenuButtonElement>;
             "yeti-modal": LocalJSX.YetiModal & JSXBase.HTMLAttributes<HTMLYetiModalElement>;
-            "yeti-multiselect": LocalJSX.YetiMultiselect & JSXBase.HTMLAttributes<HTMLYetiMultiselectElement>;
             "yeti-notification": LocalJSX.YetiNotification & JSXBase.HTMLAttributes<HTMLYetiNotificationElement>;
             "yeti-page-contents": LocalJSX.YetiPageContents & JSXBase.HTMLAttributes<HTMLYetiPageContentsElement>;
             "yeti-progress-bar": LocalJSX.YetiProgressBar & JSXBase.HTMLAttributes<HTMLYetiProgressBarElement>;

@@ -21,9 +21,16 @@ const YetiCombobox = class {
         this.inputId = "";
         this.inputName = "";
         this.inputDescribedBy = "";
+        this.isLookup = false;
+        this.isFilterable = false;
+        this.selectionType = "manual";
     }
     handleValueChange() {
         this.updateOptions();
+    }
+    handleSelectionTypeChange() {
+        // Make sure selection type is a valid value.
+        this.selectionType = (this.selectionType == "automatic") ? this.selectionType : "manual";
     }
     handleDefocusingClick() {
         if (this.el.querySelectorAll(":focus").length == 0 && this.isOpen) {
@@ -108,6 +115,15 @@ const YetiCombobox = class {
                         // Toggle selection on the option at this cursor position.
                         this.handleOptionClick(this.cursorPosition);
                     }
+                    // Finally, if the selection type is automatic, and there's at least one option selected, set the value to its label.
+                    if (this.selectionType == "automatic") {
+                        for (let option of this.options) {
+                            if (option.selected) {
+                                this.value = option.label;
+                                break;
+                            }
+                        }
+                    }
                     this.closeFlyout();
                 }
                 break;
@@ -136,8 +152,29 @@ const YetiCombobox = class {
     }
     updateOptions() {
         // Based on the (new) value of this.value, set the options' status
+        let foundASelectionAlready = false;
         for (let option of this.options) {
             option.selected = (option.label.toLowerCase() == this.value.toLowerCase());
+            // Determine whether to show this option or not based on filtering
+            if (this.isFilterable && option.label.toLowerCase().indexOf(this.value.toLowerCase()) < 0) {
+                option.isVisible = false;
+            }
+            else {
+                option.isVisible = true;
+            }
+            // Determine whether to mark this option as selected based on selection type
+            if (this.selectionType == "automatic") {
+                // If this is a match, and we don't already have one, mark this one as selected. Otherwise set it as unselected.
+                if (!foundASelectionAlready
+                    && this.value != ""
+                    && option.label.toLowerCase().indexOf(this.value.toLowerCase()) >= 0) {
+                    option.selected = true;
+                    foundASelectionAlready = true;
+                }
+                else {
+                    option.selected = false;
+                }
+            }
         }
     }
     openFlyout() {
@@ -159,6 +196,15 @@ const YetiCombobox = class {
     }
     handleFieldBlur(ev) {
         this.isTouched = true;
+        // If selection type is automatic, update value with the first selected option.
+        if (this.selectionType == "automatic") {
+            for (let option of this.options) {
+                if (option.selected) {
+                    this.value = option.label;
+                    break;
+                }
+            }
+        }
         this.readyToVerifySlow.emit(ev);
     }
     parseOptionElements(options) {
@@ -176,6 +222,7 @@ const YetiCombobox = class {
                 this.options.push({
                     selected: (option.hasAttribute("selected") || option.innerHTML == this.value),
                     label: option.innerHTML,
+                    isVisible: true,
                     id: optionId
                 });
                 if (option.hasAttribute("selected")) {
@@ -223,6 +270,8 @@ const YetiCombobox = class {
         if (optionElements.length > 0) {
             this.parseOptionElements(optionElements);
         }
+        // Make sure selection type is a valid value.
+        this.selectionType = (this.selectionType == "automatic") ? this.selectionType : "manual";
     }
     render() {
         let wrapperCss = 'yeti-combobox-wrapper';
@@ -237,18 +286,25 @@ const YetiCombobox = class {
             dropdownCss += ' yeti-combobox-dropdown-align-right';
         }
         return ([
-            h("div", { key: '4e9ddf0fe7c808e8ead6d54b22c45ba1bb8e4116', class: wrapperCss }, h("div", { key: 'f94f2da95c3d4232011cb451345cb702ad0fa578', class: "yeti-combobox", onClick: (ev) => this.handleClick(ev) }, h("input", Object.assign({ key: '09f9d07cfa9940d0e1fb72b3591f9e719e3a4bdf', type: "text", class: "yeti-combobox-input",
+            h("div", { key: 'e8d0aaa71f2460cd3582063a117abb1933f4ad98', class: wrapperCss }, h("div", { key: '170c91b6a7e59436e3c8d312f9cadea982bb22d5', class: "yeti-combobox", onClick: (ev) => this.handleClick(ev) }, h("input", Object.assign({ key: 'b86452f812e088d45a00fda0602f33ac2be6a8c5', type: "text", class: "yeti-combobox-input",
                 // title={this.value}
                 value: this.value, name: this.inputName, onFocus: () => {
                     this.isTouched = true;
-                }, onBlur: () => {
-                    //this.isOpen = false;
+                }, onBlur: (e) => {
+                    this.handleFieldBlur(e);
                 }, onInput: (ev) => this.handleInputChange(ev), role: "combobox", autocomplete: "off", "aria-autocomplete": "none", "aria-controls": this.dropdownId, "aria-expanded": this.isOpen, id: this.inputId }, (this.inputDescribedBy != "") ? { "aria-describedby": this.inputDescribedBy } : {}, (activeDescendantId != "") ? { "aria-activedescendant": activeDescendantId } : {})), (this.showClear && this.value != '') ?
                 (h("button", { class: "yeti-combobox-clear", title: "Clear all selections", onClick: (ev) => { this.handleClearSelections(ev); ev.preventDefault(); } }, h("span", { class: "material-icons yeti-combobox-clear-icon", "aria-hidden": "true" }, "clear")))
                 :
-                    "", h("button", { key: 'b23ee26e6b2a502ec5e23c3dbf1ef3ec8461307c', class: "yeti-combobox-button", tabIndex: -1, "aria-controls": this.dropdownId, "aria-expanded": this.isOpen, id: this.buttonId, onClick: (ev) => { this.handleButtonClick(ev); } }, h("yeti-icon", { key: 'c9192137375583ee87955d0a236dd47f5844b03f', iconCode: (this.isOpen ? 'expand_less' : 'expand_more'), alt: (this.isOpen ? 'close' : 'open') }))), h("div", { key: '9f097fb598372bd60a447622e21d660eb6bb09c5', class: dropdownCss }, h("ul", { key: '92a1e281d89623932c0c0e20e5d3035255a9743a', class: "yeti-combobox-options", id: this.dropdownId, role: "listbox" }, this.options.map((option, i) => {
+                    "", h("button", { key: '6833996a1355f858807cf2d38cf06a04551a24f4', class: "yeti-combobox-button", tabIndex: -1, "aria-controls": this.dropdownId, "aria-expanded": this.isOpen, id: this.buttonId, onClick: (ev) => { this.handleButtonClick(ev); } }, (!this.isLookup) ?
+                h("yeti-icon", { iconCode: (this.isOpen ? 'expand_less' : 'expand_more'), alt: (this.isOpen ? 'close' : 'open') })
+                :
+                    h("yeti-icon", { iconCode: 'search', alt: (this.isOpen ? 'lookup, close' : 'lookup, open') }))), h("div", { key: '04bb3a667e4a692e18429475c788428eba99a9a5', class: dropdownCss }, h("ul", { key: 'ea1a9791f238a569c5c855965eb788e5a4d8998a', class: "yeti-combobox-options", id: this.dropdownId, role: "listbox" }, this.options.map((option, i) => {
                 let optionClass = (this.cursorPosition == i) ? "yeti-combobox-option yeti-combobox-option__hover" : "yeti-combobox-option";
                 optionClass += (option.selected) ? " yeti-combobox-option__selected" : "";
+                // Only render visible options
+                if (!option.isVisible) {
+                    return "";
+                }
                 return (h("li", { id: option.id, key: option.id, role: "option", "aria-selected": `${option.selected}`, class: optionClass, onClick: (ev) => { this.handleOptionClick(i); ev.preventDefault(); } }, h("span", { class: "yeti-combobox-option-label" }, option.label), h("span", { class: "yeti-combobox-option-checkmark", "aria-hidden": 'true' }, (option.selected) ?
                     h("yeti-icon", { iconCode: 'checkmark' })
                     :
@@ -272,7 +328,8 @@ const YetiCombobox = class {
     }
     get el() { return getElement(this); }
     static get watchers() { return {
-        "value": ["handleValueChange"]
+        "value": ["handleValueChange"],
+        "selectionType": ["handleSelectionTypeChange"]
     }; }
 };
 

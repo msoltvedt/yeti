@@ -12,12 +12,18 @@ export class YetiField {
   /**
    * id that will be assigned to the actual input element. A unique one will be assigned if one is not provided.
    */
-  @Prop() inputId: string = utils.generateUniqueId();
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) inputId: string = utils.generateUniqueId();
 
   /**
    * name that will be assigned to the actual input element. id will be assigned if one is not provided.
    */
-  @Prop() inputName: string = this.inputId;
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) inputName: string = this.inputId;
 
   /**
    * type that will be assigned to the actual input element.
@@ -51,6 +57,11 @@ export class YetiField {
    * Value for the optional input tip that appears at the bottom of the field.
    */
   @Prop() tip: string = "";
+
+  /**
+   * Position of the input tip relative to the rest of the field's contents. Defaults to "below", can also be "above".
+   */
+  @Prop() tipPosition?: string = "below";
 
   /**
    * Whether the field is required to have a valid value by the greater form.
@@ -107,6 +118,11 @@ export class YetiField {
   @Prop() isInline: boolean = false;
 
   /**
+   * Additional user-supplied CSS classes to apply to the Field's wrapper.
+   */
+  @Prop() wrapperClass?: string = "";
+
+  /**
    * Tracks whether the field's input has been focused and then blurred (i.e. if the user has interacted with it yet).
    */
   @State() isDirty: boolean = false;
@@ -127,7 +143,7 @@ export class YetiField {
       // First, regardless of whether it's an input or date-picker, it can't be empty.
       if (childControl.value == "") {
 
-        this.errorMessage = `${this.label} field is required.`
+        this.errorMessage = (this.errorMessage != "") ? this.errorMessage : `${this.label} field is required.`
         this.isValid = false;
         return;
 
@@ -153,14 +169,27 @@ export class YetiField {
 
 
   tipId = utils.generateUniqueId();
+  errorId = utils.generateUniqueId();
   hasSlottedField: boolean = false;
+  hasSlottedRequired: boolean = false;
 
 
 
   componentWillLoad() {
     
     let potentiallySlottedElement = this.el.querySelector('[slot="element"]');
+    let potentiallySlottedRequired = this.el.querySelector('[slot="required"]');
+    let describedBy = (this.tip != "") ? `${this.tipId} ` : ``;
+    describedBy += (this.errorMessage != "" && !this.isValid) ? `${this.errorId}` : ``;
 
+    // Handle Required
+    if (potentiallySlottedRequired) {
+
+      this.hasSlottedRequired = true;
+
+    }
+
+    // Handle Element
     if (potentiallySlottedElement) {
 
       this.hasSlottedField = true;
@@ -180,9 +209,9 @@ export class YetiField {
         potentiallySlottedElement.setAttribute("name", this.inputName);  // It doesn't, so assign the auto-generated default one.
       }
 
-      // Connect the slotted element to the tip
-      if (this.tip != "") {
-        potentiallySlottedElement.setAttribute("aria-describedby", this.tipId);
+      // Connect the slotted element to the tip and/or error message
+      if (describedBy != "") {
+        potentiallySlottedElement.setAttribute("aria-describedby", describedBy);
       }
 
       // Add the error class if necessary
@@ -199,6 +228,14 @@ export class YetiField {
   render() {
 
     let cssClass = "yeti-form-field";
+    cssClass += (this.wrapperClass != "") ? ` ${this.wrapperClass}` : '';
+
+    let tipClass = `yeti-form-tip`;
+    tipClass += (this.tipPosition == "above") ? ` yeti-form-tip-above` : ``;
+
+    let describedBy = (this.tip != "") ? `${this.tipId} ` : ``;
+    describedBy += (this.errorMessage != "" && !this.isValid) ? `${this.errorId}` : ``;
+
 
     if (this.isInline) {
       cssClass += " yeti-form-field-inline";
@@ -207,13 +244,15 @@ export class YetiField {
     this.validateLabel(this.label);
 
     if (this.fieldClass != "") {
-      cssClass ="yeti-form-field " + this.fieldClass;
+      cssClass = "yeti-form-field " + this.fieldClass;
     }
 
     return (
       <div class={cssClass}>
 
-        <label htmlFor={this.inputId} class="yeti-form-label">{this.label}{this.required ? ' (required)' : null}</label>
+        <label htmlFor={this.inputId} class="yeti-form-label">{`${this.label} `}
+          {(this.required && this.hasSlottedRequired) ? <slot name="required"></slot> : null}
+        </label>
 
         {(!this.hasSlottedField) ?
 
@@ -225,7 +264,7 @@ export class YetiField {
                 value={this.defaultValue}
                 required={this.required}
                 is-valid={this.isValid}
-                described-by={this.tipId}
+                described-by={describedBy}
               ></yeti-date-picker>
 
             :
@@ -236,7 +275,7 @@ export class YetiField {
                 value={this.defaultValue} 
                 required={this.required}
                 is-valid={this.isValid}
-                described-by={this.tipId}
+                described-by={describedBy}
                 {...((this.inputMaxlength != 0) ? {"input-maxlength": this.inputMaxlength} : {})}
               ></yeti-input>
 
@@ -245,20 +284,22 @@ export class YetiField {
           <slot name="element"></slot>
 
         }
+
         
         {
-          (this.tip != "" || (this.errorMessage != "" && !this.isValid)) ?
+          (this.tip != "") ?
 
-            <span class="yeti-form-tip" aria-live="polite" id={this.tipId}>{
+            <span class={tipClass} aria-live="polite" id={this.tipId}>{this.tip}</span>
 
-                  !this.isValid
-                  ? this.errorMessage
-                  : 
-                    this.tip
-                    ? this.tip
-                    : null
+          :
+            ""
+        }
+        
+        
+        {
+          (this.errorMessage != "" && !this.isValid) ?
 
-            }</span>
+            <span class="yeti-form-field-error" aria-live="polite" id={this.errorId}>{this.errorMessage}</span>
 
           :
             ""

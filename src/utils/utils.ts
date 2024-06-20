@@ -312,12 +312,15 @@ export interface YetiTableRowAction {
 export interface YetiComboboxOption {
   selected: boolean,
   label: string,
+  isVisible: boolean,
   id?: string
 }
 
-export interface YetiMultiselectOption {
+export interface YetiDropdownOption {
   selected: boolean,
   label: string,
+  isVisible: boolean,
+  value: string,
   id?: string
 }
 

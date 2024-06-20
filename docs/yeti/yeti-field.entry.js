@@ -5,7 +5,9 @@ const YetiField = class {
     constructor(hostRef) {
         registerInstance(this, hostRef);
         this.tipId = utils.generateUniqueId();
+        this.errorId = utils.generateUniqueId();
         this.hasSlottedField = false;
+        this.hasSlottedRequired = false;
         this.inputId = utils.generateUniqueId();
         this.inputName = this.inputId;
         this.type = "text";
@@ -13,6 +15,7 @@ const YetiField = class {
         this.inputMaxlength = 0;
         this.label = undefined;
         this.tip = "";
+        this.tipPosition = "below";
         this.required = false;
         this.errorMessage = 'Error: please correct this field.';
         this.isValid = true;
@@ -51,7 +54,7 @@ const YetiField = class {
             // Autoverification is on, this field is required, and the child component just notified us that it's ready for verification.
             // First, regardless of whether it's an input or date-picker, it can't be empty.
             if (childControl.value == "") {
-                this.errorMessage = `${this.label} field is required.`;
+                this.errorMessage = (this.errorMessage != "") ? this.errorMessage : `${this.label} field is required.`;
                 this.isValid = false;
                 return;
             }
@@ -69,6 +72,14 @@ const YetiField = class {
     }
     componentWillLoad() {
         let potentiallySlottedElement = this.el.querySelector('[slot="element"]');
+        let potentiallySlottedRequired = this.el.querySelector('[slot="required"]');
+        let describedBy = (this.tip != "") ? `${this.tipId} ` : ``;
+        describedBy += (this.errorMessage != "" && !this.isValid) ? `${this.errorId}` : ``;
+        // Handle Required
+        if (potentiallySlottedRequired) {
+            this.hasSlottedRequired = true;
+        }
+        // Handle Element
         if (potentiallySlottedElement) {
             this.hasSlottedField = true;
             this.autovalidate = false; // We can't autovalidate a slotted element provided by the user
@@ -86,9 +97,9 @@ const YetiField = class {
             else {
                 potentiallySlottedElement.setAttribute("name", this.inputName); // It doesn't, so assign the auto-generated default one.
             }
-            // Connect the slotted element to the tip
-            if (this.tip != "") {
-                potentiallySlottedElement.setAttribute("aria-describedby", this.tipId);
+            // Connect the slotted element to the tip and/or error message
+            if (describedBy != "") {
+                potentiallySlottedElement.setAttribute("aria-describedby", describedBy);
             }
             // Add the error class if necessary
             if (!this.isValid) {
@@ -98,6 +109,11 @@ const YetiField = class {
     }
     render() {
         let cssClass = "yeti-form-field";
+        let tipClass = `yeti-form-tip`;
+        tipClass += (this.tipPosition == "above") ? ` yeti-form-tip-above` : ``;
+        let describedBy = (this.tip != "") ? `${this.tipId} ` : ``;
+        describedBy += (this.errorMessage != "" && !this.isValid) ? `${this.errorId}` : ``;
+        console.log(`IsValid is ${this.isValid}`);
         if (this.isInline) {
             cssClass += " yeti-form-field-inline";
         }
@@ -105,19 +121,17 @@ const YetiField = class {
         if (this.fieldClass != "") {
             cssClass = "yeti-form-field " + this.fieldClass;
         }
-        return (h("div", { key: '60615c0cf448a6558f81703797b03237d45ff312', class: cssClass }, h("label", { key: '57afbf8cb6359a4fe48133eb5b8a00f5edab8e42', htmlFor: this.inputId, class: "yeti-form-label" }, this.label, this.required ? ' (required)' : null), (!this.hasSlottedField) ?
+        return (h("div", { key: '3b757de5ce187070f22fecf996e189078348c85b', class: cssClass }, h("label", { key: '776e0e81ee5322bd1013ed2788806810d2fbf37b', htmlFor: this.inputId, class: "yeti-form-label" }, `${this.label} `, (this.required && this.hasSlottedRequired) ? h("slot", { name: "required" }) : null), (!this.hasSlottedField) ?
             (this.type == "date") ?
-                h("yeti-date-picker", { "input-id": this.inputId, "input-name": this.inputName, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": this.tipId })
+                h("yeti-date-picker", { "input-id": this.inputId, "input-name": this.inputName, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": describedBy })
                 :
-                    h("yeti-input", Object.assign({ "input-id": this.inputId, "input-class": !this.isValid ? 'yeti-input__error' : null, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": this.tipId }, ((this.inputMaxlength != 0) ? { "input-maxlength": this.inputMaxlength } : {})))
+                    h("yeti-input", Object.assign({ "input-id": this.inputId, "input-class": !this.isValid ? 'yeti-input__error' : null, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": describedBy }, ((this.inputMaxlength != 0) ? { "input-maxlength": this.inputMaxlength } : {})))
             :
-                h("slot", { name: "element" }), (this.tip != "" || (this.errorMessage != "" && !this.isValid)) ?
-            h("span", { class: "yeti-form-tip", "aria-live": "polite", id: this.tipId }, !this.isValid
-                ? this.errorMessage
-                :
-                    this.tip
-                        ? this.tip
-                        : null)
+                h("slot", { name: "element" }), (this.tip != "") ?
+            h("span", { class: tipClass, "aria-live": "polite", id: this.tipId }, this.tip)
+            :
+                "", (this.errorMessage != "" && !this.isValid) ?
+            h("span", { class: "yeti-form-field-error", "aria-live": "polite", id: this.errorId }, this.errorMessage)
             :
                 ""));
     }

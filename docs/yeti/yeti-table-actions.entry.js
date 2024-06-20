@@ -62,7 +62,7 @@ const YetiTableActions = class {
         if (this.cssClass != '') {
             cssClasses += ' ' + this.cssClass;
         }
-        return (h("div", { key: 'd79e8d980fc29f91623eab68696f4bbbb169e544', class: cssClasses, id: this.htmlId }, h("slot", { key: '7d118792a9ee776d8c09205a9fda34d1fb962661' })));
+        return (h("div", { key: 'a8ee8792f683cd7f2cb6f6e79313e6446f08a84d', class: cssClasses, id: this.htmlId }, h("slot", { key: 'a68e0cdcaef0303ab3c78c3c2eadd48bf043b14c' })));
     }
     get el() { return getElement(this); }
 };

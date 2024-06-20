@@ -24,6 +24,53 @@
         <h2 class="margin-bottom-3">Code Samples</h2>
 
 
+
+        <h3 class="margin-bottom-2">Selection Types</h3>
+
+        <p>
+          Combobox has three different <em>selection types</em>: manual (default), automatic, and inline. The selection type describes how the user makes their selection from the list. See the examples below for an explanation of each selection type.
+        </p>
+
+        <h4 class="margin-bottom-2">Manual (Default)</h4>
+
+        <p>
+          The manual selection type is the default, and it requires the user to manually select an option from the list by clicking on it or navigating to it with the keyboard and hitting enter.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<yeti-combobox selection-type="manual">
+  <yeti-combobox-option>Pepperoni</yeti-combobox-option>
+  <yeti-combobox-option>Extra Cheese</yeti-combobox-option>
+  <yeti-combobox-option>Sausage</yeti-combobox-option>
+  <yeti-combobox-option>Hamburger</yeti-combobox-option>
+</yeti-combobox>
+
+        </div><!-- /code_sample -->
+        
+
+
+        <h4 class="margin-bottom-2">Automatic</h4>
+
+        <p>
+          The automatic selection type automatically selects the first option in the list, if any, that matches the value of the text field.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<yeti-combobox selection-type="automatic">
+  <yeti-combobox-option>Pepperoni</yeti-combobox-option>
+  <yeti-combobox-option>Extra Cheese</yeti-combobox-option>
+  <yeti-combobox-option>Sausage</yeti-combobox-option>
+  <yeti-combobox-option>Hamburger</yeti-combobox-option>
+</yeti-combobox>
+
+        </div><!-- /code_sample -->
+
+
+
         <h3 class="margin-bottom-2">Default</h3>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
@@ -39,6 +86,23 @@
         </div><!-- /code_sample -->
 
 
+
+        <h3 class="margin-bottom-2">Lookup</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<yeti-combobox is-lookup="true">
+  <yeti-combobox-option>Pepperoni</yeti-combobox-option>
+  <yeti-combobox-option>Extra Cheese</yeti-combobox-option>
+  <yeti-combobox-option>Sausage</yeti-combobox-option>
+  <yeti-combobox-option>Hamburger</yeti-combobox-option>
+</yeti-combobox>
+
+        </div><!-- /code_sample -->
+
+
+
         <h3 class="margin-bottom-2">With a Selection</h3>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
@@ -48,6 +112,21 @@
   <yeti-combobox-option>Pepperoni</yeti-combobox-option>
   <yeti-combobox-option>Extra Cheese</yeti-combobox-option>
   <yeti-combobox-option selected>Sausage</yeti-combobox-option>
+  <yeti-combobox-option>Hamburger</yeti-combobox-option>
+</yeti-combobox>
+
+        </div><!-- /code_sample -->
+
+
+        <h3 class="margin-bottom-2">Filterable</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<yeti-combobox is-filterable="true">
+  <yeti-combobox-option>Pepperoni</yeti-combobox-option>
+  <yeti-combobox-option>Extra Cheese</yeti-combobox-option>
+  <yeti-combobox-option>Sausage</yeti-combobox-option>
   <yeti-combobox-option>Hamburger</yeti-combobox-option>
 </yeti-combobox>
 

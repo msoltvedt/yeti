@@ -21,7 +21,9 @@
 | `label` _(required)_ | `label`           | Mandatory value for the label of the field.                                                                                    | `string`  | `undefined`                           |
 | `required`           | `required`        | Whether the field is required to have a valid value by the greater form.                                                       | `boolean` | `false`                               |
 | `tip`                | `tip`             | Value for the optional input tip that appears at the bottom of the field.                                                      | `string`  | `""`                                  |
+| `tipPosition`        | `tip-position`    | Position of the input tip relative to the rest of the field's contents. Defaults to "below", can also be "above".              | `string`  | `"below"`                             |
 | `type`               | `type`            | type that will be assigned to the actual input element.                                                                        | `string`  | `"text"`                              |
+| `wrapperClass`       | `wrapper-class`   | Additional user-supplied CSS classes to apply to the Field's wrapper.                                                          | `string`  | `""`                                  |
 
 
 ## Dependencies
