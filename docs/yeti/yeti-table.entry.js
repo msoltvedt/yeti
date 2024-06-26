@@ -780,7 +780,7 @@ const YetiTable = class {
                     console.error("Error in table multiselect filter: no options supplied.");
                     return false;
                 }
-                return h("yeti-dropdown", { "is-multiple": true, placeholder: "- Any -", "data-column": cell.columnIndex, "labelled-by": headingLabelId, id: filterId, key: filterId, value: cell.filtering.value }, multiselectOptions);
+                return h("yeti-dropdown", { "is-multiselect": "true", placeholder: "- Any -", "data-column": cell.columnIndex, "labelled-by": headingLabelId, id: filterId, key: filterId, value: cell.filtering.value }, multiselectOptions);
             default:
                 console.error("Error rendering table filter: unexpected filtering type requested:", cell.filtering.type);
                 return "";
@@ -945,7 +945,7 @@ const YetiTable = class {
         if (this.tableClass != '') {
             cssClass += ' ' + this.tableClass;
         }
-        return (h("table", { key: 'faa803a60d036b1fbad3662bc1ac10ec5c9e40f8', class: cssClass }, (this.contents.head) ?
+        return (h("table", { key: '3bd132f0af98d509546ca4cb8e86d9a03ef8bc4f', class: cssClass }, (this.contents.head) ?
             h("thead", { class: "yeti-table-head" }, h("tr", { class: "yeti-table-head-row" }, (this.contents.head && this.contents.head.rows && this.contents.head.rows.length > 0 && this.contents.head.rows[0].cells && this.contents.head.rows[0].cells.length > 0) ?
                 this.contents.head.rows.map((row) => {
                     return this.renderRow(row);
@@ -953,7 +953,7 @@ const YetiTable = class {
                 :
                     h("th", { class: "yeti-table-heading", scope: "col" }, "No data")))
             :
-                "", h("tbody", { key: 'f4dc72282ae95e0baf7048068887f42b7d84b913', class: "yeti-table-body" }, this.renderRows(this.firstRecordIndexToDisplay, this.numRecordsToDisplay))));
+                "", h("tbody", { key: '964334637bdd7074d561391af18e81b8314b2005', class: "yeti-table-body" }, this.renderRows(this.firstRecordIndexToDisplay, this.numRecordsToDisplay))));
     }
     componentDidRender() {
         let paginationComponent = this.el.querySelector('yeti-table-pagination');

@@ -22,6 +22,7 @@ const YetiField = class {
         this.defaultValue = '';
         this.autovalidate = true;
         this.isInline = false;
+        this.wrapperClass = "";
         this.isDirty = false;
     }
     validateLabel(newValue) {
@@ -109,11 +110,11 @@ const YetiField = class {
     }
     render() {
         let cssClass = "yeti-form-field";
+        cssClass += (this.wrapperClass != "") ? ` ${this.wrapperClass}` : '';
         let tipClass = `yeti-form-tip`;
         tipClass += (this.tipPosition == "above") ? ` yeti-form-tip-above` : ``;
         let describedBy = (this.tip != "") ? `${this.tipId} ` : ``;
         describedBy += (this.errorMessage != "" && !this.isValid) ? `${this.errorId}` : ``;
-        console.log(`IsValid is ${this.isValid}`);
         if (this.isInline) {
             cssClass += " yeti-form-field-inline";
         }
@@ -121,7 +122,7 @@ const YetiField = class {
         if (this.fieldClass != "") {
             cssClass = "yeti-form-field " + this.fieldClass;
         }
-        return (h("div", { key: '3b757de5ce187070f22fecf996e189078348c85b', class: cssClass }, h("label", { key: '776e0e81ee5322bd1013ed2788806810d2fbf37b', htmlFor: this.inputId, class: "yeti-form-label" }, `${this.label} `, (this.required && this.hasSlottedRequired) ? h("slot", { name: "required" }) : null), (!this.hasSlottedField) ?
+        return (h("div", { key: '9f1c71a10e4dcd9c689fb0a16d76de3fda3fd01c', class: cssClass }, h("label", { key: '48e39a0724c623227108532f454c6b70479a17db', htmlFor: this.inputId, class: "yeti-form-label" }, `${this.label} `, (this.required && this.hasSlottedRequired) ? h("slot", { name: "required" }) : null), (!this.hasSlottedField) ?
             (this.type == "date") ?
                 h("yeti-date-picker", { "input-id": this.inputId, "input-name": this.inputName, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": describedBy })
                 :

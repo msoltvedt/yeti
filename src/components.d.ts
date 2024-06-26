@@ -22,6 +22,70 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface YetiAccordion {
+        /**
+          * Whether or not to use wizard mode, in which you can only open one section at a time, and you have to go in order
+         */
+        "isWizard": boolean;
+        /**
+          * The 0-based index of the open section.
+         */
+        "openIndex": number;
+        /**
+          * A list of the Accordion's yeti-accordion-section child elements
+         */
+        "sectionElements": NodeList;
+        /**
+          * The total number of sections the Accordion has.
+         */
+        "sections": number;
+    }
+    interface YetiAccordionSection {
+        /**
+          * Whether the consumer supplied buttons or not. Let the component set this.
+         */
+        "hasActions": boolean;
+        /**
+          * The descriptive text that appears in the heading bar above the content.
+         */
+        "heading": string;
+        /**
+          * The heading button's HTML id.
+         */
+        "headingId": string;
+        /**
+          * The 0-based index of this section relative to its peers. This should only be set by the parent Accordion component.
+         */
+        "index": number;
+        /**
+          * Whether the panel is a step in a wizard or not. This should be set by the parent Accordion component.
+         */
+        "isInWizard": boolean;
+        /**
+          * Whether or not to automatically number the section headings
+         */
+        "isNumbered": boolean;
+        /**
+          * Whether the panel is open or not.
+         */
+        "isOpen": boolean;
+        /**
+          * Whether the panel is openable or not.
+         */
+        "isOpenable": boolean;
+        /**
+          * The total number of sections the parent Accordion has. Should only be set by the parent.
+         */
+        "of": number;
+        /**
+          * The section's HTML id.
+         */
+        "sectionId": string;
+        /**
+          * The panel's status: can be "success", "error", or undefined (any other string).
+         */
+        "status": string;
+    }
     interface YetiCombobox {
         /**
           * Optionally provide the id of a describing element (like an input tip).
@@ -704,6 +768,10 @@ export namespace Components {
         "isOpen": boolean;
     }
 }
+export interface YetiAccordionSectionCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLYetiAccordionSectionElement;
+}
 export interface YetiComboboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLYetiComboboxElement;
@@ -754,6 +822,30 @@ declare global {
     var HTMLMyComponentElement: {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
+    };
+    interface HTMLYetiAccordionElement extends Components.YetiAccordion, HTMLStencilElement {
+    }
+    var HTMLYetiAccordionElement: {
+        prototype: HTMLYetiAccordionElement;
+        new (): HTMLYetiAccordionElement;
+    };
+    interface HTMLYetiAccordionSectionElementEventMap {
+        "accordionActionClick": any;
+        "accordionSectionHeaderClick": any;
+    }
+    interface HTMLYetiAccordionSectionElement extends Components.YetiAccordionSection, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLYetiAccordionSectionElementEventMap>(type: K, listener: (this: HTMLYetiAccordionSectionElement, ev: YetiAccordionSectionCustomEvent<HTMLYetiAccordionSectionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLYetiAccordionSectionElementEventMap>(type: K, listener: (this: HTMLYetiAccordionSectionElement, ev: YetiAccordionSectionCustomEvent<HTMLYetiAccordionSectionElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLYetiAccordionSectionElement: {
+        prototype: HTMLYetiAccordionSectionElement;
+        new (): HTMLYetiAccordionSectionElement;
     };
     interface HTMLYetiComboboxElementEventMap {
         "readyToVerifySlow": CustomEvent;
@@ -1007,6 +1099,8 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "yeti-accordion": HTMLYetiAccordionElement;
+        "yeti-accordion-section": HTMLYetiAccordionSectionElement;
         "yeti-combobox": HTMLYetiComboboxElement;
         "yeti-date-picker": HTMLYetiDatePickerElement;
         "yeti-dropdown": HTMLYetiDropdownElement;
@@ -1043,6 +1137,72 @@ declare namespace LocalJSX {
           * The middle name
          */
         "middle"?: string;
+    }
+    interface YetiAccordion {
+        /**
+          * Whether or not to use wizard mode, in which you can only open one section at a time, and you have to go in order
+         */
+        "isWizard"?: boolean;
+        /**
+          * The 0-based index of the open section.
+         */
+        "openIndex"?: number;
+        /**
+          * A list of the Accordion's yeti-accordion-section child elements
+         */
+        "sectionElements"?: NodeList;
+        /**
+          * The total number of sections the Accordion has.
+         */
+        "sections"?: number;
+    }
+    interface YetiAccordionSection {
+        /**
+          * Whether the consumer supplied buttons or not. Let the component set this.
+         */
+        "hasActions"?: boolean;
+        /**
+          * The descriptive text that appears in the heading bar above the content.
+         */
+        "heading"?: string;
+        /**
+          * The heading button's HTML id.
+         */
+        "headingId"?: string;
+        /**
+          * The 0-based index of this section relative to its peers. This should only be set by the parent Accordion component.
+         */
+        "index"?: number;
+        /**
+          * Whether the panel is a step in a wizard or not. This should be set by the parent Accordion component.
+         */
+        "isInWizard"?: boolean;
+        /**
+          * Whether or not to automatically number the section headings
+         */
+        "isNumbered"?: boolean;
+        /**
+          * Whether the panel is open or not.
+         */
+        "isOpen"?: boolean;
+        /**
+          * Whether the panel is openable or not.
+         */
+        "isOpenable"?: boolean;
+        /**
+          * The total number of sections the parent Accordion has. Should only be set by the parent.
+         */
+        "of"?: number;
+        "onAccordionActionClick"?: (event: YetiAccordionSectionCustomEvent<any>) => void;
+        "onAccordionSectionHeaderClick"?: (event: YetiAccordionSectionCustomEvent<any>) => void;
+        /**
+          * The section's HTML id.
+         */
+        "sectionId"?: string;
+        /**
+          * The panel's status: can be "success", "error", or undefined (any other string).
+         */
+        "status"?: string;
     }
     interface YetiCombobox {
         /**
@@ -1797,6 +1957,8 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "yeti-accordion": YetiAccordion;
+        "yeti-accordion-section": YetiAccordionSection;
         "yeti-combobox": YetiCombobox;
         "yeti-date-picker": YetiDatePicker;
         "yeti-dropdown": YetiDropdown;
@@ -1824,6 +1986,8 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "yeti-accordion": LocalJSX.YetiAccordion & JSXBase.HTMLAttributes<HTMLYetiAccordionElement>;
+            "yeti-accordion-section": LocalJSX.YetiAccordionSection & JSXBase.HTMLAttributes<HTMLYetiAccordionSectionElement>;
             "yeti-combobox": LocalJSX.YetiCombobox & JSXBase.HTMLAttributes<HTMLYetiComboboxElement>;
             "yeti-date-picker": LocalJSX.YetiDatePicker & JSXBase.HTMLAttributes<HTMLYetiDatePickerElement>;
             "yeti-dropdown": LocalJSX.YetiDropdown & JSXBase.HTMLAttributes<HTMLYetiDropdownElement>;
