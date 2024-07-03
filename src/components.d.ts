@@ -357,6 +357,10 @@ export namespace Components {
     }
     interface YetiInput {
         /**
+          * id of an outside HTML element controlled by the input
+         */
+        "controls"?: string;
+        /**
           * id of an outside HTML element pointed to by the actual input element's aria-describedby attribute.
          */
         "describedBy"?: string;
@@ -376,6 +380,10 @@ export namespace Components {
           * name applied to the actual HTML input element. Defaults to match id.
          */
         "inputName": string;
+        /**
+          * The tabindex of the input field.
+         */
+        "inputTabindex": string;
         /**
           * Tracks whether the input's current value is valid or not.
          */
@@ -404,6 +412,10 @@ export namespace Components {
           * The actual value of the input field.
          */
         "value": string;
+        /**
+          * CSS classlist applied to the HTML wrapper around the element and associated elements.
+         */
+        "wrapperClass": string;
     }
     interface YetiLoading {
         /**
@@ -1498,6 +1510,10 @@ declare namespace LocalJSX {
     }
     interface YetiInput {
         /**
+          * id of an outside HTML element controlled by the input
+         */
+        "controls"?: string;
+        /**
           * id of an outside HTML element pointed to by the actual input element's aria-describedby attribute.
          */
         "describedBy"?: string;
@@ -1517,6 +1533,10 @@ declare namespace LocalJSX {
           * name applied to the actual HTML input element. Defaults to match id.
          */
         "inputName"?: string;
+        /**
+          * The tabindex of the input field.
+         */
+        "inputTabindex"?: string;
         /**
           * Tracks whether the input's current value is valid or not.
          */
@@ -1557,6 +1577,10 @@ declare namespace LocalJSX {
           * The actual value of the input field.
          */
         "value"?: string;
+        /**
+          * CSS classlist applied to the HTML wrapper around the element and associated elements.
+         */
+        "wrapperClass"?: string;
     }
     interface YetiLoading {
         /**

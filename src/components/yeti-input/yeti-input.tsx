@@ -30,6 +30,11 @@ export class YetiInput {
   @Prop() inputClass: string = '';
 
   /**
+   * CSS classlist applied to the HTML wrapper around the element and associated elements.
+   */
+  @Prop() wrapperClass: string = '';
+
+  /**
    * id applied to the actual HTML input element.
    */
   @Prop() inputId: string = utils.generateUniqueId();
@@ -71,6 +76,14 @@ export class YetiInput {
   }) value: string = '';
 
   /**
+   * The tabindex of the input field.
+   */
+  @Prop({
+    mutable: true,
+    reflect: true,
+  }) inputTabindex: string = '';
+
+  /**
    * id of an outside HTML element pointed to by the actual input element's aria-labeledby attribute.
    */
   @Prop() labeledBy?: string = "";
@@ -89,6 +102,11 @@ export class YetiInput {
    * Standard old-school input placeholder
    */
   @Prop() placeholder?: string = "";
+
+  /**
+   * id of an outside HTML element controlled by the input
+   */
+  @Prop() controls?: string = "";
 
   /**
    * Whether the user has focused and left (i.e. interacted with) the actual input element.
@@ -127,10 +145,15 @@ export class YetiInput {
   render() {
 
     let cssClasses = 'yeti-input';
+    let wrapperClasses = 'yeti-input-wrapper';
     let clearButtonClass = (this.value != "") ? 'yeti-input-clear' : 'yeti-input-clear yeti-input-clear__inert';
 
     if (this.inputClass != '') {
       cssClasses += ' ' + this.inputClass;
+    }
+
+    if (this.wrapperClass != '') {
+      wrapperClasses += ' ' + this.wrapperClass;
     }
 
     if (this.isValid == false) {
@@ -138,7 +161,7 @@ export class YetiInput {
     }
 
     return (
-      <div class="yeti-input-wrapper">
+      <div class={wrapperClasses}>
 
         <input 
           type={this.type} 
@@ -149,7 +172,9 @@ export class YetiInput {
           onKeyUp={(ev) => this.handleKeyUp(ev)}
           onBlur={(ev) => this.handleFieldBlur(ev)}
           aria-invalid={!this.isValid}
+          {...((this.inputTabindex != "") ? {"tabindex": this.inputTabindex} : {})}
           {...((this.labeledBy != "") ? {"aria-labelledby": this.labeledBy} : {})}
+          {...((this.controls != "") ? {"aria-controls": this.controls} : {})}
           {...((this.describedBy != "") ? {"aria-describedby": this.describedBy} : {})}
           {...((this.description != "") ? {"aria-description": this.description} : {})}
           {...((this.placeholder != "") ? {"placeholder": this.placeholder} : {})}

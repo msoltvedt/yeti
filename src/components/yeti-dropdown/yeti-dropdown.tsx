@@ -177,6 +177,12 @@ export class YetiDropdown {
    * Whether or not the drop-down is open/visible or not.
    */
   @State() isOpen: boolean = false;
+  @Watch("isOpen")
+  handleIsOpenChange(newValue) {
+    if (newValue) {
+      this.didJustOpen = true; // So we can set focus on the search field when the flyout opens.
+    }
+  }
 
   /**
    * 0-based index of the currently focused option.
@@ -190,6 +196,7 @@ export class YetiDropdown {
 
 
   searchId = utils.generateUniqueId();
+  didJustOpen = false;
 
 
 
@@ -215,21 +222,13 @@ export class YetiDropdown {
       // Handle potential tabout
       case "tab": {
 
-        // Normal tab direction
-        if (!ev.shiftKey) {
-
-          if (this.el.querySelectorAll(".yeti-dropdown:focus").length == 0) {
+        setTimeout(() => {
+          
+          if (!this.el.contains(document.activeElement)) {
             this.closeFlyout();
           }
 
-        // Shift tab direction (backwards)
-        } else {
-
-          if (this.el.querySelectorAll(".yeti-dropdown:focus").length > 0) {
-            this.closeFlyout();
-          }
-
-        }
+        }, 1);
         
         break;
       }
@@ -291,12 +290,13 @@ export class YetiDropdown {
         if (this.isOpen) {
 
           // If the user is searching, escape should just return focus to the main element.
-          if (dropdownElement != document.activeElement) {
-            dropdownElement?.focus();
-            ev.preventDefault();
-            break;
-          }
+          // if (dropdownElement != document.activeElement) {
+          //   dropdownElement?.focus();
+          //   ev.preventDefault();
+          //   break;
+          // }
 
+          dropdownElement?.focus();
           this.closeFlyout();
           ev.preventDefault();
         }
@@ -313,8 +313,8 @@ export class YetiDropdown {
         ev.preventDefault();
         let target = ev.target as HTMLElement;
 
-        // First check if the clear everything puck has focus
-        if (target.classList.contains("yeti-dropdown-puck")) {
+        // First check if a clear option has focus
+        if (target.classList.contains("yeti-dropdown-puck") || target.classList.contains("yeti-input-clear")) {
           target.click();
           break;
         } else {
@@ -334,6 +334,14 @@ export class YetiDropdown {
       }
 
     }
+  }
+
+
+
+  @Listen("searchFieldClear")
+  handleSearchInputClear() {
+    (this.el.querySelector(".yeti-dropdown-search") as HTMLInputElement).value = "";
+    this.resetAllOptionsVisibility();
   }
 
 
@@ -388,6 +396,14 @@ export class YetiDropdown {
 
 
 
+  resetAllOptionsVisibility() {
+    for (let option of this.options) {
+      option.isVisible = true;
+    }
+  }
+
+
+
   openFlyout() {
     this.isOpen = true;
   }
@@ -398,6 +414,8 @@ export class YetiDropdown {
     this.isOpen = false;
     this.cursorPosition = -1;
     this.isTouched = true;
+    this.searchString = '';
+    this.resetAllOptionsVisibility();
     this.readyToVerifySlow.emit();
   }
 
@@ -492,6 +510,7 @@ export class YetiDropdown {
 
   getPlaceholderDisplay() {
     // Returns the string of text that should go in the placeholder area.
+
     switch (this.numSelections) {
 
       case 0:
@@ -570,8 +589,8 @@ export class YetiDropdown {
 
 
 
-  handleSearchKeyUp(e: KeyboardEvent) {
-    let searchField = e.target as HTMLInputElement;
+  handleSearchKeyUp() {
+    let searchField = this.el.querySelector(".yeti-dropdown-search") as HTMLInputElement;
     let searchString = searchField.value;
 
     if (!this.isSearchable) {
@@ -580,7 +599,7 @@ export class YetiDropdown {
 
     for (let option of this.options) {
       
-      if (searchString?.toLowerCase() != "" && option.label?.toLowerCase()?.indexOf( searchString ) < 0) {
+      if (searchString?.toLowerCase() != "" && option.label?.toLowerCase()?.indexOf( searchString.toLowerCase() ) < 0) {
         option.isVisible = false;
       } else {
         option.isVisible = true;
@@ -590,15 +609,6 @@ export class YetiDropdown {
 
     this.searchString = searchString;
   }
-
-
-
-  //handleProgrammaticValueChange(newValue: string, oldValue: string) {
-    // Usually you'd pre-set the value of the control by specifying the selected attribute of yeti-dropdown-option, however it can also be
-    // set programmatically via the value property of the component.
-    
-    //console.log(`Value should change from ${oldValue} to ${newValue}`);
-  //}
 
 
 
@@ -638,6 +648,12 @@ export class YetiDropdown {
       let flyout = this.el.querySelector(".yeti-dropdown-flyout");
       let hoveredOption = this.el.querySelector(".yeti-dropdown-option__hover");
       let thingToScrollIntoView = (hoveredOption) ? hoveredOption : flyout;
+
+      if (this.isSearchable && this.didJustOpen) {
+        (this.el.querySelector(".yeti-dropdown-search") as HTMLElement)?.focus();
+        this.didJustOpen = false;
+      }
+
       thingToScrollIntoView.scrollIntoView({
         behavior: "smooth",
         block: "nearest"
@@ -703,7 +719,7 @@ export class YetiDropdown {
           </span>
 
 
-          { (this.isMultiselect && this.showClear && this.numSelections > 0) ? // Clear puck
+          { (/*this.isMultiselect && */this.showClear && this.numSelections > 0) ? // Clear puck
 
             (<button class="yeti-dropdown-puck" title="Clear all selections" onClick={ (ev) => { this.handleClearSelections(ev); ev.preventDefault() }}>
               <span class="yeti-a11y-hidden">Clear all selections</span>
@@ -726,7 +742,7 @@ export class YetiDropdown {
             (this.isSearchable) ?
 
               <div class="yeti-dropdown-search-wrapper">
-                <input 
+                {/* <input 
                   type="search" 
                   class="yeti-dropdown-search" 
                   placeholder='Type to search' 
@@ -734,7 +750,18 @@ export class YetiDropdown {
                   aria-controls={this.flyoutId}
                   autocomplete='off'
                   id={this.searchId}
+                  value={this.searchString}
                   {...(!this.isOpen ? {"tabindex": "-1"} : {})}
+                /> */}
+                
+                <yeti-input
+                  input-class="yeti-dropdown-search"
+                  placeholder='Type to search' 
+                  onKeyUp={() => { this.handleSearchKeyUp(); }}
+                  aria-controls={this.flyoutId}
+                  inputId={this.searchId}
+                  value={this.searchString}
+                  {...(!this.isOpen ? {"input-tabindex": "-1"} : {})}
                 />
               </div>
 
