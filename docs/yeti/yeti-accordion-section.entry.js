@@ -1,4 +1,4 @@
-import { r as registerInstance, a as createEvent, h, g as getElement } from './index-e3c92518.js';
+import { r as registerInstance, a as createEvent, h, g as getElement } from './index-a229effc.js';
 import { u as utils } from './utils-90cea6cb.js';
 
 const YetiAccordionSection = class {
@@ -12,6 +12,7 @@ const YetiAccordionSection = class {
         this.of = 1;
         this.isOpen = (this.index == 0);
         this.isOpenable = (this.index == 0);
+        this.isInWizard = false;
         this.hasActions = false;
         this.status = "undefined";
         this.headingId = utils.generateUniqueId();
@@ -52,8 +53,11 @@ const YetiAccordionSection = class {
         }
     }
     renderActions() {
+        // Render the action buttons for a section.
+        // Use the user's content if provided...
         if (this.hasActions) {
             return h("slot", { name: "actions" });
+            // ...otherwise automatically create our own.
         }
         else {
             let actions = [];
@@ -63,7 +67,7 @@ const YetiAccordionSection = class {
             }
             // Next
             if (this.index < this.of - 1) {
-                actions.push(h("li", null, h("button", { class: "yeti-button yeti-button-primary yeti-button-size-s", onClick: (e) => { this.handleActionClick(e, "next"); } }, "Next", h("yeti-icon", { iconCode: 'navigate_next', alt: "", iconClass: 'yeti-accordion-action-button-icon' }))));
+                actions.push(h("li", null, h("button", Object.assign({ class: "yeti-button yeti-button-primary yeti-button-size-s", onClick: (e) => { this.handleActionClick(e, "next"); } }, ((this.isInWizard && this.status != "success") ? { "disabled": true, "tabIndex": -1 } : {})), "Next", h("yeti-icon", { iconCode: 'navigate_next', alt: "", iconClass: 'yeti-accordion-action-button-icon' }))));
             }
             // Cancel
             actions.push(h("li", null, h("button", { class: "yeti-button yeti-button-ghost yeti-button-size-s", onClick: (e) => { this.handleActionClick(e, "cancel"); } }, "Cancel")));
@@ -86,10 +90,10 @@ const YetiAccordionSection = class {
     render() {
         let wrapperCSS = 'yeti-accordion-section';
         wrapperCSS += (this.isOpen) ? ' yeti-accordion-section__open' : '';
-        return (h("div", { key: '189dc2a4a2ecc23d9cf8b9bd9348ed5469666e9b', class: wrapperCSS }, h("button", Object.assign({ key: '5d6667fa437df7ee2f5bdcdd4f4aaf9dec829308', id: this.headingId, class: "yeti-accordion-section-heading", onClick: (e) => { this.handleSectionClick(e); }, "aria-expanded": `${this.isOpen}`, "aria-controls": this.sectionId }, (!this.isOpenable ? { "disabled": true, "tabIndex": -1 } : {})), (this.isOpen) ?
+        return (h("div", { key: '313bfbcab936c6c0246ca71345b059b512e6e818', class: wrapperCSS }, h("button", Object.assign({ key: 'e2949093fedee1a5d9854ada4d98c9512b083aff', id: this.headingId, class: "yeti-accordion-section-heading", onClick: (e) => { this.handleSectionClick(e); }, "aria-expanded": `${this.isOpen}`, "aria-controls": this.sectionId }, (!this.isOpenable ? { "disabled": true, "tabIndex": -1 } : {})), h("div", { key: '423a83c3b429a0526732513918b29c04a156aa22', class: 'yeti-accordion-section-heading-contents' }, (this.isOpen) ?
             h("yeti-icon", { iconCode: 'expand_less', alt: '', iconClass: 'yeti-accordion-section-heading-caret' })
             :
-                h("yeti-icon", { iconCode: 'expand_more', alt: '', iconClass: 'yeti-accordion-section-heading-caret' }), h("div", { key: 'f2794024fc10eee7f11962a812ccaf86d8c0a7f0', class: "yeti-accordion-section-heading-actual" }, (this.isNumbered) ? (this.index + 1) : "", " ", this.heading), this.renderStatusIcon()), h("div", { key: 'eee273119b75aa608fb5319319f5e07a1793f7b0', id: this.sectionId, class: "yeti-accordion-section-content", role: "region", "aria-labelledby": this.headingId }, h("slot", { key: 'f168f31634a3dc4bb083959850cda32cb8c0630c', name: "content" })), h("div", { key: 'e6de8eadbffacebd9f5d17bb686dfba5151a6af2', class: "yeti-accordion-section-actions" }, this.renderActions())));
+                h("yeti-icon", { iconCode: 'expand_more', alt: '', iconClass: 'yeti-accordion-section-heading-caret' }), h("div", { key: '1c597e67838749b8f3af8b8fb6aeb09b56524bf5', class: "yeti-accordion-section-heading-actual" }, (this.isNumbered) ? (this.index + 1) : "", " ", this.heading), this.renderStatusIcon())), h("div", { key: 'a5c20f276e35fe88ee40af70cb7653eab7de1da1', id: this.sectionId, class: "yeti-accordion-section-content", role: "region", "aria-labelledby": this.headingId }, h("slot", { key: '46d5f084fca1c9ea8da5e7529fe9ff1f9d411c09', name: "content" })), h("div", { key: 'f32babec4453e26b51a18fafe7cc5dc762fa32b7', class: "yeti-accordion-section-actions" }, this.renderActions())));
     }
     get el() { return getElement(this); }
 };

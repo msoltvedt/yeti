@@ -35,6 +35,11 @@ export class YetiInput {
   @Prop() wrapperClass: string = '';
 
   /**
+   * Passthrough to the input's autocomplete attribute.
+   */
+  @Prop() autocomplete: string = '';
+
+  /**
    * id applied to the actual HTML input element.
    */
   @Prop() inputId: string = utils.generateUniqueId();
@@ -172,6 +177,7 @@ export class YetiInput {
           onKeyUp={(ev) => this.handleKeyUp(ev)}
           onBlur={(ev) => this.handleFieldBlur(ev)}
           aria-invalid={!this.isValid}
+          {...((this.autocomplete != "") ? {"autocomplete": this.autocomplete} : {})}
           {...((this.inputTabindex != "") ? {"tabindex": this.inputTabindex} : {})}
           {...((this.labeledBy != "") ? {"aria-labelledby": this.labeledBy} : {})}
           {...((this.controls != "") ? {"aria-controls": this.controls} : {})}

@@ -19,7 +19,7 @@
 | `isOpenable` | `is-openable`  | Whether the panel is openable or not.                                                                               | `boolean` | `(this.index == 0)`        |
 | `of`         | `of`           | The total number of sections the parent Accordion has. Should only be set by the parent.                            | `number`  | `1`                        |
 | `sectionId`  | `section-id`   | The section's HTML id.                                                                                              | `string`  | `utils.generateUniqueId()` |
-| `status`     | `status`       | The panel's status: can be "success", "error", or undefined (any other string).                                     | `string`  | `"undefined"`              |
+| `status`     | `status`       | The panel's status: can be "success", "error", "reachable", or "undefined".                                         | `string`  | `"undefined"`              |
 
 
 ## Events

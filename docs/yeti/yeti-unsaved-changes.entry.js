@@ -1,4 +1,4 @@
-import { r as registerInstance, h, e as Host, g as getElement } from './index-e3c92518.js';
+import { r as registerInstance, h, e as Host, g as getElement } from './index-a229effc.js';
 
 const YetiUnsavedChanges = class {
     constructor(hostRef) {
@@ -91,7 +91,7 @@ const YetiUnsavedChanges = class {
         this.initializeNonPrompters();
     }
     render() {
-        return (h(Host, { key: '8dd5df5f298cf2ec5147271657e8c2e11e435044' }, h("yeti-modal", { key: 'f4b9b8c9d02d349c7fbe6d51d9c88f1febccaa22', heading: "Unsaved Changes", id: "modal1", "described-by": "modal1_description", isActive: this.isOpen, showClose: false }, h("yeti-modal-content", { key: 'afdbb01ce3fdae3d4a2187aaa4ce45d8a0514ee8' }, h("p", { key: '367e000b5653110397ea7720f0f3c688b247dfbd', id: "modal1_description", class: "yeti-margin-bottom-4" }, "You have unsaved changes that will be lost."), h("p", { key: '08cc72781cef53237235d0d7613de04ad7c0c030' }, "Are you sure you want to leave the page?")), h("yeti-modal-buttons", { key: 'ea0b0b460c00d443c4b9f2b92d82128e3f8db8b2' }, h("button", { key: '85f8d04d7ffa0cf05c3bddb791fdfbe1cd28be17', class: "yeti-button yeti-button-primary", id: "unsavedChangesModalPrimaryButton", onClick: () => { this.handleModalPrimaryClick(); } }, "Yes, Discard Changes"), h("button", { key: '0e37b5a1427f07fb07230fe4acce495b35e47afb', class: "yeti-button yeti-button-secondary", id: "unsavedChangesModalSecondaryButton", onClick: () => { this.handleModalSecondaryClick(); } }, "No, Keep Editing")))));
+        return (h(Host, { key: '5d979c88d18f13d808e28350c0fa811b12d1f608' }, h("yeti-modal", { key: 'a1f02aaf19fa1b2528ccdd12af1972640b4f8702', heading: "Unsaved Changes", id: "modal1", "described-by": "modal1_description", isActive: this.isOpen, showClose: false }, h("yeti-modal-content", { key: '456aa195ea2f3a7e8492f3bc5d88f43f25991f98' }, h("p", { key: '65aab4708debb632f0269cf9a19b450cd673fc36', id: "modal1_description", class: "yeti-margin-bottom-4" }, "You have unsaved changes that will be lost."), h("p", { key: '50c759d0b47c788680efd9d2859070bd5ba0a2d1' }, "Are you sure you want to leave the page?")), h("yeti-modal-buttons", { key: '092659b75081b672a6c5a0a52d26216f003fe7e3' }, h("button", { key: 'fa19e2766afba97507778bcc2c19292c5e1526c9', class: "yeti-button yeti-button-primary", id: "unsavedChangesModalPrimaryButton", onClick: () => { this.handleModalPrimaryClick(); } }, "Yes, Discard Changes"), h("button", { key: '0ebeedcfd2faccfc7ae283e39625c554e347dd8d', class: "yeti-button yeti-button-secondary", id: "unsavedChangesModalSecondaryButton", onClick: () => { this.handleModalSecondaryClick(); } }, "No, Keep Editing")))));
     }
     get el() { return getElement(this); }
 };

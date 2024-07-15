@@ -82,7 +82,7 @@ export namespace Components {
          */
         "sectionId": string;
         /**
-          * The panel's status: can be "success", "error", or undefined (any other string).
+          * The panel's status: can be "success", "error", "reachable", or "undefined".
          */
         "status": string;
     }
@@ -356,6 +356,10 @@ export namespace Components {
         "iconStyle": string;
     }
     interface YetiInput {
+        /**
+          * Passthrough to the input's autocomplete attribute.
+         */
+        "autocomplete": string;
         /**
           * id of an outside HTML element controlled by the input
          */
@@ -1212,7 +1216,7 @@ declare namespace LocalJSX {
          */
         "sectionId"?: string;
         /**
-          * The panel's status: can be "success", "error", or undefined (any other string).
+          * The panel's status: can be "success", "error", "reachable", or "undefined".
          */
         "status"?: string;
     }
@@ -1509,6 +1513,10 @@ declare namespace LocalJSX {
         "iconStyle"?: string;
     }
     interface YetiInput {
+        /**
+          * Passthrough to the input's autocomplete attribute.
+         */
+        "autocomplete"?: string;
         /**
           * id of an outside HTML element controlled by the input
          */

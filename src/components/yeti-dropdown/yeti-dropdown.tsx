@@ -128,6 +128,7 @@ export class YetiDropdown {
 
     let runningInitialValueArray = [];
     let alreadyFoundASelectedOption = false;
+    let newNumSelections = 0;
 
     for (let i = 0; i < this.options.length; i++) {
 
@@ -151,15 +152,16 @@ export class YetiDropdown {
       }
 
       if (option.selected) {
-        ++this.numSelections;
+        ++newNumSelections;
         runningInitialValueArray.push(option.value);
       }
         
 
     } // End for
 
-    // Initialize value
+    // Initialize value and numSelections
     this.value = runningInitialValueArray.toString();
+    this.numSelections = newNumSelections;
 
   }
 
@@ -211,8 +213,8 @@ export class YetiDropdown {
 
 
 
-  @Listen("keydown")
-  handleKeydown(ev: KeyboardEvent) {
+  @Listen("keyup")
+  handleKeyup(ev: KeyboardEvent) {
 
     let key = ev.key.toString().toLowerCase();
     let dropdownElement = this.el.querySelector(".yeti-dropdown") as HTMLElement;
@@ -342,6 +344,7 @@ export class YetiDropdown {
   handleSearchInputClear() {
     (this.el.querySelector(".yeti-dropdown-search") as HTMLInputElement).value = "";
     this.resetAllOptionsVisibility();
+    this.searchString = "";
   }
 
 
@@ -589,12 +592,16 @@ export class YetiDropdown {
 
 
 
-  handleSearchKeyUp() {
+  handleSearchKeyUp(ev: KeyboardEvent) {
     let searchField = this.el.querySelector(".yeti-dropdown-search") as HTMLInputElement;
     let searchString = searchField.value;
 
     if (!this.isSearchable) {
       return;
+    }
+
+    if (ev.key == " ") {
+      ev.stopImmediatePropagation();
     }
 
     for (let option of this.options) {
@@ -757,10 +764,11 @@ export class YetiDropdown {
                 <yeti-input
                   input-class="yeti-dropdown-search"
                   placeholder='Type to search' 
-                  onKeyUp={() => { this.handleSearchKeyUp(); }}
+                  onKeyUp={(e) => { this.handleSearchKeyUp(e); }}
                   aria-controls={this.flyoutId}
                   inputId={this.searchId}
                   value={this.searchString}
+                  autocomplete="off"
                   {...(!this.isOpen ? {"input-tabindex": "-1"} : {})}
                 />
               </div>

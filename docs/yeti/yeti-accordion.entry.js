@@ -1,4 +1,4 @@
-import { r as registerInstance, h, g as getElement } from './index-e3c92518.js';
+import { r as registerInstance, h, g as getElement } from './index-a229effc.js';
 import { u as utils } from './utils-90cea6cb.js';
 
 const YetiAccordion = class {
@@ -45,12 +45,16 @@ const YetiAccordion = class {
             let sectionHeader = section.querySelector(".yeti-accordion-section-heading");
             if (index == suppliedIndex) {
                 section.setAttribute("is-open", "true");
-                sectionHeader === null || sectionHeader === void 0 ? void 0 : sectionHeader.focus();
                 this.openIndex = index;
+                setTimeout(() => {
+                    sectionHeader === null || sectionHeader === void 0 ? void 0 : sectionHeader.focus();
+                }, 100);
             }
             else {
                 section.setAttribute("is-open", "false");
             }
+            // Set the Openable state
+            section.setAttribute("is-openable", `${(index <= suppliedIndex) || !this.isWizard}`);
         });
         this.openIndex = suppliedIndex;
     }
@@ -70,10 +74,12 @@ const YetiAccordion = class {
             section.setAttribute("is-open", `${(index == 0)}`);
             section.setAttribute("index", `${index}`);
             section.setAttribute("of", `${this.sectionElements.length}`);
+            section.setAttribute("is-openable", `${(index == 0)}`);
+            section.setAttribute("is-in-wizard", `${this.isWizard}`);
         });
     }
     render() {
-        return (h("div", { key: 'f65be95803ee1b6f34afe8aa28be904cadbdd648', class: "yeti-accordion" }, h("slot", { key: 'f5f7d657e6d620986bcedb435895412a02265930' })));
+        return (h("div", { key: '2c6d46f8d34b043252d055c887f19236a2ef92e4', class: "yeti-accordion" }, h("slot", { key: '3a875a5c8b82c16a8a860776ee85a4fc1f530258' })));
     }
     get el() { return getElement(this); }
 };

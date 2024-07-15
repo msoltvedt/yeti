@@ -9,6 +9,7 @@
 
 | Property        | Attribute         | Description                                                                                        | Type      | Default                    |
 | --------------- | ----------------- | -------------------------------------------------------------------------------------------------- | --------- | -------------------------- |
+| `autocomplete`  | `autocomplete`    | Passthrough to the input's autocomplete attribute.                                                 | `string`  | `''`                       |
 | `controls`      | `controls`        | id of an outside HTML element controlled by the input                                              | `string`  | `""`                       |
 | `describedBy`   | `described-by`    | id of an outside HTML element pointed to by the actual input element's aria-describedby attribute. | `string`  | `""`                       |
 | `description`   | `description`     | Text description of what the input is or does                                                      | `string`  | `""`                       |

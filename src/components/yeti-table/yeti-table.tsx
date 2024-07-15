@@ -1322,7 +1322,7 @@ export class YetiTable {
 
       case "multiselect":
 
-        let multiselectOptions = [];
+        let yetiOptions = []; // An array of YetiDropdownOption objects
 
         // See if the multiselect options are supplied (they must be)
         if (cell.filtering.options && cell.filtering.options.length > 0) {
@@ -1331,21 +1331,17 @@ export class YetiTable {
 
             let optionId = `${filterId}_option${i}`;
             let optionLabel = cell.filtering.options[i];
-
             let optionIsSelected = (cell.filtering.value && cell.filtering.value.includes(optionLabel)) ? true : false;
 
-            let optionProperties = {
-              id: optionId,
-              key: optionId
-            }
+            let yetiOptionObject = {
+              selected: optionIsSelected,
+              label: optionLabel,
+              isVisible: true,
+              value: optionLabel,
+              id: optionId
+            };
 
-            if (optionIsSelected) {
-              optionProperties["selected"] = true;
-            }
-
-            multiselectOptions.push(
-              <yeti-dropdown-option {...optionProperties}>{optionLabel}</yeti-dropdown-option>
-            )
+            yetiOptions.push(yetiOptionObject);
 
           }
 
@@ -1364,8 +1360,8 @@ export class YetiTable {
           labelled-by={headingLabelId}
           id={filterId}
           key={filterId}
-          value={cell.filtering.value}>
-          {multiselectOptions}
+          value={cell.filtering.value}
+          options={yetiOptions}>
         </yeti-dropdown>
 
 

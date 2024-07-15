@@ -1,4 +1,4 @@
-import { r as registerInstance, a as createEvent, h, g as getElement } from './index-e3c92518.js';
+import { r as registerInstance, a as createEvent, h, g as getElement } from './index-a229effc.js';
 import { u as utils } from './utils-90cea6cb.js';
 
 const YetiTooltip = class {
@@ -82,10 +82,10 @@ const YetiTooltip = class {
         wrapperClass += (this.isLowContrast) ? ' yeti-notification-low_contrast' : '';
         // Set visibility
         wrapperClass += (this.isVisible) ? '' : ' yeti-notification__hidden';
-        return (h("div", { key: '0363c74bc222e6dbf5bb93b0b066de33224765ed', class: wrapperClass, id: this.notificationId, role: "status" }, h("div", { key: '20e012de3bf9d8e9ab0a6ee8cd7ed51ba8f5da03', class: "yeti-notification-icon" }, h("span", { key: '4c91f44c5598cc89f5c6b9f5a6a283cf9e8a99d8', class: "material-icons", "aria-hidden": "true" }, iconCode), h("span", { key: '31eec1430a42b684241dd4b48527106966897c85', class: "yeti-a11y-hidden" }, altText)), h("div", { key: 'd6b64118364d32d3b7275b63da6086b7d0cde293', class: "yeti-notification-content" }, (this.textTitle != "") ?
+        return (h("div", { key: '719da8c0a2b5684aef5700ce60e3d95654cb0723', class: wrapperClass, id: this.notificationId, role: "status" }, h("div", { key: '190a6bf38fd3bd6695803847b44b661bdfe800ee', class: "yeti-notification-icon" }, h("span", { key: '52c4f11ec07070db6be17c0d7ab072f0b5c6dec1', class: "material-icons", "aria-hidden": "true" }, iconCode), h("span", { key: 'a0f163cfd1cb5e97044ffe0c96192aaf3094170f', class: "yeti-a11y-hidden" }, altText)), h("div", { key: '13cc7add73646f1edb2a4c47f405b0b593cb3ff0', class: "yeti-notification-content" }, (this.textTitle != "") ?
             h("div", { class: "yeti-notification-content-title" }, this.textTitle)
             :
-                '', h("div", { key: '23c4ea59c48059418994c9677531239b8e0714e5', class: "yeti-notification-content-subtitle" }, h("slot", { key: 'cd0e45a8acf90e7ae96cef07df98d7960fe0e73b' }))), (this.actionLabel != "") ?
+                '', h("div", { key: '08e1a9495fe6056bc87ccf131f741133b09b1448', class: "yeti-notification-content-subtitle" }, h("slot", { key: '17bbe99a255f666d6b9b6c15b3961b7872975c11' }))), (this.actionLabel != "") ?
             h("button", { class: "yeti-notification-action", onClick: (e) => this.handleActionClick(e) }, this.actionLabel)
             :
                 "", (this.showCloseButton) ?

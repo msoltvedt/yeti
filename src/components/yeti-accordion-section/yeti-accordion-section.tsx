@@ -78,7 +78,7 @@ export class YetiAccordionSection {
   }) hasActions: boolean = false;
 
   /**
-   * The panel's status: can be "success", "error", or undefined (any other string).
+   * The panel's status: can be "success", "error", "reachable", or "undefined".
    */
   @Prop({
     mutable: true,
@@ -149,11 +149,14 @@ export class YetiAccordionSection {
 
 
   renderActions() {
+    // Render the action buttons for a section.
 
+    // Use the user's content if provided...
     if (this.hasActions) {
 
       return <slot name="actions"></slot>
 
+    // ...otherwise automatically create our own.
     } else {
 
       let actions = [];
@@ -244,25 +247,30 @@ export class YetiAccordionSection {
             {...(!this.isOpenable ? {"disabled": true, "tabIndex": -1} : {})}
           >
 
-            {(this.isOpen) ?
-            
-              <yeti-icon iconCode='expand_less' alt='' iconClass='yeti-accordion-section-heading-caret'></yeti-icon>
+            <div class='yeti-accordion-section-heading-contents'>
 
-            :
-
-              <yeti-icon iconCode='expand_more' alt='' iconClass='yeti-accordion-section-heading-caret'></yeti-icon>
-
-            }
-
-            
-            <div class="yeti-accordion-section-heading-actual">
-
-              {(this.isNumbered) ? (this.index + 1) : ""} {this.heading}
+              {(this.isOpen) ?
               
+                <yeti-icon iconCode='expand_less' alt='' iconClass='yeti-accordion-section-heading-caret'></yeti-icon>
+
+              :
+
+                <yeti-icon iconCode='expand_more' alt='' iconClass='yeti-accordion-section-heading-caret'></yeti-icon>
+
+              }
+
+              
+              <div class="yeti-accordion-section-heading-actual">
+
+                {(this.isNumbered) ? (this.index + 1) : ""} {this.heading}
+                
+              </div>
+
+
+              {this.renderStatusIcon()}
+
+
             </div>
-
-
-            {this.renderStatusIcon()}
 
           </button>
 

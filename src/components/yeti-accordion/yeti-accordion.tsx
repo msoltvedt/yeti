@@ -72,12 +72,10 @@ export class YetiAccordion {
   handleAccordionSectionHeaderClick(e) {
 
     // User clicked on a section heading, toggle this pane's state and set the others accordingly.
-    console.log(e.detail.sectionIndex);
+    let clickedSection = e.detail.section;
 
-    // First make sure it wasn't a section after this one while in wizard mode or the one that's already open
-    if (e.detail.sectionIndex > this.openIndex && this.isWizard
-        || e.detail.sectionIndex == this.openIndex
-    ) {
+    // First make sure it's openable
+    if (!clickedSection.isOpenable) {
       this.openSection(this.openIndex);
       return;
     }
@@ -106,7 +104,7 @@ export class YetiAccordion {
       }
 
       // Set the Openable state
-      section.setAttribute("is-openable", `${ (index <= suppliedIndex)  ||  !this.isWizard }`);
+      //section.setAttribute("is-openable", `${ (index <= suppliedIndex)  ||  !this.isWizard }`);
 
     });
 
@@ -136,7 +134,7 @@ export class YetiAccordion {
       section.setAttribute("is-open", `${(index == 0)}`);
       section.setAttribute("index", `${index}`);
       section.setAttribute("of", `${this.sectionElements.length}`);
-      section.setAttribute("is-openable", `${(index == 0)}`);
+      section.setAttribute("is-openable", `${section.hasAttribute("is-openable") ? section.getAttribute("is-openable") : (index == 0)}`);
       section.setAttribute("is-in-wizard", `${this.isWizard}`);
 
     });

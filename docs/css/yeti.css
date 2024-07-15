@@ -665,7 +665,7 @@ Styles for Accordion
     display: contents;
   }
   .yeti-accordion {
-    border: 2px solid #e0e0e0;
+    border: 1px solid #c6c6c6;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -699,16 +699,33 @@ Styles for Accordion
     cursor: pointer;
     letter-spacing: 0.16px;
     background-color: transparent;
+    padding: 0 1.5rem;
     text-align: left;
-    display: flex;
-    align-items: center;
-    padding: 1rem 2rem;
-    gap: 0.25rem;
+    color: #525252;
+    width: 100%;
   }
   .yeti-accordion-section-heading:focus {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
     outline-offset: 0;
+  }
+  .yeti-accordion-section-heading[disabled] {
+    cursor: default;
+  }
+  [status="undefined"] .yeti-accordion-section-heading {
+    color: #c6c6c6;
+  }
+  .yeti-accordion-section-heading-contents {
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .yeti-accordion-section__open :not(.yeti-accordion-section-heading:focus) .yeti-accordion-section-heading-contents {
+    border-bottom: 1px solid #c6c6c6;
+  }
+  .yeti-accordion-section__open .yeti-accordion-section-heading:focus .yeti-accordion-section-heading-contents {
+    border-bottom-color: transparent;
   }
   .yeti-accordion-section-heading-actual {
     flex: 1 1 max-content;
@@ -716,16 +733,16 @@ Styles for Accordion
     margin: 0;
     font-size: 1.25rem;
     font-style: normal;
-    font-weight: 400;
-    line-height: 1.75rem;
-    color: #161616;
+    font-weight: 600;
+    line-height: 1.4375rem;
+    letter-spacing: 0.01rem;
     overflow: hidden;
     text-overflow: ellipsis;
     padding-right: 1rem;
     max-height: 100%;
   }
   .yeti-accordion-section-heading-caret {
-    width: 1rem;
+    width: 0.875rem;
     display: inline-flex;
     justify-content: center;
   }
@@ -738,11 +755,11 @@ Styles for Accordion
   }
   /*** Content ***/
   .yeti-accordion-section-content {
-    margin: 0.25rem 2rem 0;
+    margin: 0.75rem 2.75rem 0;
   }
   /*** Actions ***/
   .yeti-accordion-section-actions {
-    margin: 2rem;
+    margin: 2.5rem 2.75rem 2.75rem;
   }
   .yeti-accordion-section-actions .yeti-button {
     gap: 0.25rem;
@@ -942,6 +959,9 @@ Styles for File Explorer
   }
   .yeti-form-tip-above {
     order: -1;
+  }
+  .yeti-form-field:has(.yeti-form-tip-above) .yeti-form-label {
+    order: -2;
   }
   /************************************** Field Error ***/
   .yeti-form-field-error {
@@ -1807,7 +1827,7 @@ Styles for Button
   /************************************** Grouping ***/
   .yeti-button-group {
     display: grid;
-    gap: 1rem;
+    gap: 0.75rem;
     grid-auto-columns: 1fr;
     grid-auto-flow: column;
     width: fit-content;
@@ -2265,6 +2285,9 @@ Styles for Dropdown
     max-height: calc(60vh - 2.5rem);
     overflow-y: auto;
   }
+  .yeti-dropdown-search-wrapper + .yeti-dropdown-options {
+    max-height: calc(60vh - 2.5rem - 4rem);
+  }
   .yeti-dropdown-option {
     -webkit-appearance: none;
     appearance: none;
@@ -2316,13 +2339,16 @@ Styles for Dropdown
     display: flex;
     padding: 0.75rem;
   }
+  .yeti-dropdown-search-wrapper .yeti-input-wrapper {
+    flex-grow: 1;
+  }
   .yeti-dropdown-search {
     flex: 1 0 auto;
     border: 1px solid #8D8D8D;
-    background-color: #F4F4F4;
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="%23525252"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>');
     background-repeat: no-repeat;
     background-position: 0.5rem 50%;
+    background-color: #F4F4F4;
     display: flex;
     align-items: center;
     min-height: 2rem;
