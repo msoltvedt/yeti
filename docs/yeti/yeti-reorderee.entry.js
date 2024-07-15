@@ -1,4 +1,4 @@
-import { r as registerInstance, a as createEvent, h, g as getElement } from './index-e3c92518.js';
+import { r as registerInstance, a as createEvent, h, g as getElement } from './index-a229effc.js';
 
 const YetiReorderee = class {
     constructor(hostRef) {
@@ -37,7 +37,7 @@ const YetiReorderee = class {
         if (this.wrapperClass != '') {
             wrapperClass += ` ${this.wrapperClass}`;
         }
-        return (h("li", { key: '39be3e2bcac4957d1bdf1e78a11096286d93d4c6', class: wrapperClass }, h("slot", { key: '5a5da9993db9161f25cfa5c5e3fd0e49cfadd8e4' })));
+        return (h("li", { key: '7186d0d2bc0674082d751de0e7d57773627abbf3', class: wrapperClass }, h("slot", { key: '5cbcc456cb6d072fd034a2f4221d396d7717e90f' })));
     }
     componentDidRender() {
         // Set disabled state for edge case triggers

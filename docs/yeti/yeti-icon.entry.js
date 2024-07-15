@@ -1,4 +1,4 @@
-import { r as registerInstance, h, g as getElement } from './index-e3c92518.js';
+import { r as registerInstance, h, g as getElement } from './index-a229effc.js';
 import { u as utils } from './utils-90cea6cb.js';
 
 const YetiIcon = class {
@@ -26,7 +26,7 @@ const YetiIcon = class {
         iconClass += styleModifier;
         iconClass += (this.iconClass != '') ? ` ${this.iconClass}` : '';
         return ([
-            h("span", Object.assign({ key: '6d626583aa77a91cf35c631805bc3cc6cadcc9fc', class: iconClass }, ((this.focusable) ? { "tabindex": "0" } : {}), ((this.alt != "") ? { "aria-hidden": 'true' } : {})), this.iconCode),
+            h("span", Object.assign({ key: 'e471f1506bf764bb58b6073d896134332fb93e64', class: iconClass }, ((this.focusable) ? { "tabindex": "0" } : {}), ((this.alt != "") ? { "aria-hidden": 'true' } : {})), this.iconCode),
             (this.alt != "") ? h("span", { class: "yeti-a11y-hidden" }, this.alt) : ""
         ]);
     }

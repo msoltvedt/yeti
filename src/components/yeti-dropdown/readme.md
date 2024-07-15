@@ -43,11 +43,13 @@
 
 ### Depends on
 
+- [yeti-input](../yeti-input)
 - [yeti-icon](../yeti-icon)
 
 ### Graph
 ```mermaid
 graph TD;
+  yeti-dropdown --> yeti-input
   yeti-dropdown --> yeti-icon
   yeti-table --> yeti-dropdown
   style yeti-dropdown fill:#f9f,stroke:#333,stroke-width:4px

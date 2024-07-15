@@ -21,6 +21,7 @@
 
 ### Used by
 
+ - [yeti-accordion-section](../yeti-accordion-section)
  - [yeti-combobox](../yeti-combobox)
  - [yeti-dropdown](../yeti-dropdown)
  - [yeti-file-explorer](../yeti-file-explorer)
@@ -31,6 +32,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  yeti-accordion-section --> yeti-icon
   yeti-combobox --> yeti-icon
   yeti-dropdown --> yeti-icon
   yeti-file-explorer --> yeti-icon

@@ -1,4 +1,4 @@
-import { r as registerInstance, h, g as getElement } from './index-e3c92518.js';
+import { r as registerInstance, h, g as getElement } from './index-a229effc.js';
 import { u as utils } from './utils-90cea6cb.js';
 
 const YetiField = class {
@@ -22,6 +22,7 @@ const YetiField = class {
         this.defaultValue = '';
         this.autovalidate = true;
         this.isInline = false;
+        this.wrapperClass = "";
         this.isDirty = false;
     }
     validateLabel(newValue) {
@@ -109,11 +110,11 @@ const YetiField = class {
     }
     render() {
         let cssClass = "yeti-form-field";
+        cssClass += (this.wrapperClass != "") ? ` ${this.wrapperClass}` : '';
         let tipClass = `yeti-form-tip`;
         tipClass += (this.tipPosition == "above") ? ` yeti-form-tip-above` : ``;
         let describedBy = (this.tip != "") ? `${this.tipId} ` : ``;
         describedBy += (this.errorMessage != "" && !this.isValid) ? `${this.errorId}` : ``;
-        console.log(`IsValid is ${this.isValid}`);
         if (this.isInline) {
             cssClass += " yeti-form-field-inline";
         }
@@ -121,7 +122,7 @@ const YetiField = class {
         if (this.fieldClass != "") {
             cssClass = "yeti-form-field " + this.fieldClass;
         }
-        return (h("div", { key: '3b757de5ce187070f22fecf996e189078348c85b', class: cssClass }, h("label", { key: '776e0e81ee5322bd1013ed2788806810d2fbf37b', htmlFor: this.inputId, class: "yeti-form-label" }, `${this.label} `, (this.required && this.hasSlottedRequired) ? h("slot", { name: "required" }) : null), (!this.hasSlottedField) ?
+        return (h("div", { key: '302ff897ce5f90e93a2b51344ef541e7ef6a474f', class: cssClass }, h("label", { key: '10388f26023c03f700e2ae5a443a56862f62a6eb', htmlFor: this.inputId, class: "yeti-form-label" }, `${this.label} `, (this.required && this.hasSlottedRequired) ? h("slot", { name: "required" }) : null), (!this.hasSlottedField) ?
             (this.type == "date") ?
                 h("yeti-date-picker", { "input-id": this.inputId, "input-name": this.inputName, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": describedBy })
                 :

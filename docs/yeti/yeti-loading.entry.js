@@ -1,4 +1,4 @@
-import { r as registerInstance, h, g as getElement } from './index-e3c92518.js';
+import { r as registerInstance, h, g as getElement } from './index-a229effc.js';
 import { u as utils } from './utils-90cea6cb.js';
 
 const YetiLoading = class {
@@ -57,11 +57,11 @@ const YetiLoading = class {
     }
     render() {
         let modalOverlayCSS = "yeti-modal-overlay yeti-modal-overlay-light";
-        let baseLoading = h("div", { key: 'b205910555acf1efe412a0d092e6f256932bc7b3', class: "yeti-loading", tabindex: "-1" }, h("div", { key: 'c0def941c7ca95d45bbab4290eae5e4651ccf428', class: "yeti-loading-icon" }, h("svg", { key: '12889cb875c3fd093a6533460fc526cf85156221', class: "yeti-loading-icon-svg", viewBox: "0 0 100 100", "aria-hidden": "true" }, h("circle", { key: '62ca9593a72e2089933a5c3d27346381c6ce48f2', class: "yeti-loading-icon-svg-circle", cx: "50%", cy: "50%", r: "44" }))), h("div", { key: '68f8937c2b91edbed13bad8fdf17d3e699763412', class: "yeti-loading-label" }, "Loading..."), (this.slottedContent == null && this.slottedContent != "<!---->") ?
+        let baseLoading = h("div", { key: '0a0f66bc16a69da76617d6200bbb4b22b3e5356c', class: "yeti-loading", tabindex: "-1" }, h("div", { key: '2740a87e184e859d3fdac34387e6bcfd44cff5e6', class: "yeti-loading-icon" }, h("svg", { key: '1c86557785e10598e5f4302f4919e65a26595856', class: "yeti-loading-icon-svg", viewBox: "0 0 100 100", "aria-hidden": "true" }, h("circle", { key: 'ec36565c5dafe7eb84b5e183c063122a8098698c', class: "yeti-loading-icon-svg-circle", cx: "50%", cy: "50%", r: "44" }))), h("div", { key: '373de8e71a45aa1edccc711df14f96f375526455', class: "yeti-loading-label" }, "Loading..."), (this.slottedContent == null && this.slottedContent != "<!---->") ?
             ""
             :
                 h("div", { class: "yeti-loading-content" }, h("slot", null)));
-        let inlineLoading = h("div", { key: 'cc5d3628cf1321b83bb03465d2fd7f4cfb4880e5', class: "yeti-loading_inline" }, h("div", { key: '2f502fde121b656a108ff94481fe8f99c7f9ac93', class: "yeti-loading_inline-icon" }, h("svg", { key: '75b12817c0ae4b993a781a85fa6b804c67f157ec', class: "yeti-loading_inline-icon-svg", viewBox: "0 0 100 100" }, h("circle", { key: '7eb6839d73567bdc7b0f6db62fc6b98d03cdac59', class: "yeti-loading_inline-icon-svg-background", cx: "50%", cy: "50%", r: "44" }), h("circle", { key: 'fd5aeb6351a9604e8d0a48229d69e78db87fec91', class: "yeti-loading_inline-icon-svg-stroke", cx: "50%", cy: "50%", r: "44" }))), h("div", { key: '0c649ac393c88dfb818a573d6044daeb8c4c1edd', class: "yeti-loading_inline-label" }, "Loading..."));
+        let inlineLoading = h("div", { key: '4747195e789a6a4b5204991fc71aab342e2f7e82', class: "yeti-loading_inline" }, h("div", { key: 'bddd49f55db259cf0f82d55068e08e0fd5e1f3db', class: "yeti-loading_inline-icon" }, h("svg", { key: '99cb19ea40b3adc4c76d084f2903e05b5aced96b', class: "yeti-loading_inline-icon-svg", viewBox: "0 0 100 100" }, h("circle", { key: '74b941046b29016847ad3acd4c6996981dad8781', class: "yeti-loading_inline-icon-svg-background", cx: "50%", cy: "50%", r: "44" }), h("circle", { key: '927da2ab6f51e239fc8fcf51aa5db5e61f9592bd', class: "yeti-loading_inline-icon-svg-stroke", cx: "50%", cy: "50%", r: "44" }))), h("div", { key: 'd93867bf412b3dd052da7280020c3d4735c2c7ff', class: "yeti-loading_inline-label" }, "Loading..."));
         modalOverlayCSS += (this.isActive) ? "" : " yeti-modal-overlay__inert";
         return ((this.isModal) ?
             h("div", { class: modalOverlayCSS }, h("div", { class: "yeti-modal yeti-modal-size-xs" }, baseLoading))

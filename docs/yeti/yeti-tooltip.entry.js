@@ -1,4 +1,4 @@
-import { r as registerInstance, h, g as getElement } from './index-e3c92518.js';
+import { r as registerInstance, h, g as getElement } from './index-a229effc.js';
 import { u as utils } from './utils-90cea6cb.js';
 
 const YetiTooltip = class {
@@ -103,7 +103,7 @@ const YetiTooltip = class {
                 break;
         }
         return ([
-            h("div", { key: 'ee9e181423cb5265887b548c451538ff1b689c52', class: wrapperClass }, h("div", Object.assign({ key: 'da62f2d2170db9ebb736db58cd786dc85a4df715', class: "yeti-tooltip-trigger", onClick: (e) => this.handleTriggerClick(e), onKeyPress: (e) => this.handleTriggerKeyPress(e) }, ((this.clickToOpen) ? { "tabindex": 0 } : {})), h("slot", { key: '9fa25618b5842df1269f57509562aba787f3c730' })), h("div", { key: '4be2c4a6ac9bfa06f6dd89520acc8563b78c6c0e', class: tipClass }, h("div", { key: '6955ec4bb80deee5c0346c88b935f7e5bb6414ff', class: "yeti-tooltip-content", id: this.tipId }, this.text), (this.clickToOpen && this.isClickedOpen) ?
+            h("div", { key: '503b65ae6389972a81840eea0740f242389c5524', class: wrapperClass }, h("div", Object.assign({ key: 'dd0998c563aeeef6c24d9c4343def8c588446d36', class: "yeti-tooltip-trigger", onClick: (e) => this.handleTriggerClick(e), onKeyPress: (e) => this.handleTriggerKeyPress(e) }, ((this.clickToOpen) ? { "tabindex": 0 } : {})), h("slot", { key: 'c06d7f003b4951a8997698ce7c33fc1ace731a79' })), h("div", { key: 'fc53e6ee6aab1bab1cc9e8e903cc080ef84ff867', class: tipClass }, h("div", { key: 'b97ce2a66b4ca35bf385c4c793bc24edc1da596d', class: "yeti-tooltip-content", id: this.tipId }, this.text), (this.clickToOpen && this.isClickedOpen) ?
                 h("button", { class: "yeti-tooltip-close", onClick: (e) => { this.handleCloseTooltipClick(e); } }, h("yeti-icon", { iconCode: "close", iconClass: 'yeti-color-white yeti-typo-size-5' }))
                 :
                     null))

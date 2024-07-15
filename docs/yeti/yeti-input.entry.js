@@ -1,4 +1,4 @@
-import { r as registerInstance, a as createEvent, h, g as getElement } from './index-e3c92518.js';
+import { r as registerInstance, a as createEvent, h, g as getElement } from './index-a229effc.js';
 import { u as utils } from './utils-90cea6cb.js';
 
 const YetiInput = class {
@@ -8,6 +8,8 @@ const YetiInput = class {
         this.readyToVerifyFast = createEvent(this, "readyToVerifyFast", 7);
         this.searchFieldClear = createEvent(this, "searchFieldClear", 7);
         this.inputClass = '';
+        this.wrapperClass = '';
+        this.autocomplete = '';
         this.inputId = utils.generateUniqueId();
         this.inputName = this.inputId;
         this.maxlength = 0;
@@ -15,10 +17,12 @@ const YetiInput = class {
         this.type = "text";
         this.isValid = undefined;
         this.value = '';
+        this.inputTabindex = '';
         this.labeledBy = "";
         this.describedBy = "";
         this.description = "";
         this.placeholder = "";
+        this.controls = "";
         this.isTouched = false;
     }
     handleKeyUp(ev) {
@@ -41,14 +45,18 @@ const YetiInput = class {
     }
     render() {
         let cssClasses = 'yeti-input';
+        let wrapperClasses = 'yeti-input-wrapper';
         let clearButtonClass = (this.value != "") ? 'yeti-input-clear' : 'yeti-input-clear yeti-input-clear__inert';
         if (this.inputClass != '') {
             cssClasses += ' ' + this.inputClass;
         }
+        if (this.wrapperClass != '') {
+            wrapperClasses += ' ' + this.wrapperClass;
+        }
         if (this.isValid == false) {
             cssClasses += ' yeti-input__error';
         }
-        return (h("div", { key: '95238068ef91e755bb8091d4b8937e913cf0bfa1', class: "yeti-input-wrapper" }, h("input", Object.assign({ key: 'fd118cb0cf108dcec2c252463a27c3fc1ab985ab', type: this.type, class: cssClasses, id: this.inputId, name: this.inputName, value: this.value, onKeyUp: (ev) => this.handleKeyUp(ev), onBlur: (ev) => this.handleFieldBlur(ev), "aria-invalid": !this.isValid }, ((this.labeledBy != "") ? { "aria-labelledby": this.labeledBy } : {}), ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {}), ((this.description != "") ? { "aria-description": this.description } : {}), ((this.placeholder != "") ? { "placeholder": this.placeholder } : {}), ((this.maxlength != 0) ? { "maxlength": this.maxlength } : {}))), h("button", { key: 'b518421e4ec040949963c321705e118d91c550c0', class: clearButtonClass, onClick: (ev) => this.handleClearClick(ev) }, h("span", { key: 'ad729a72ac8f118d325c99edb17f4352101b0f43', class: "material-icons yeti-size-4 yeti-typo-size-4", "aria-hidden": "true" }, "close"), h("span", { key: 'b7a15dc7b2378dfb06979a99bd02bfc4870074a5', class: "yeti-a11y-hidden" }, "Clear search input"))));
+        return (h("div", { key: '5246f7804105e3bdeb2ec73ff974103b9f2025cc', class: wrapperClasses }, h("input", Object.assign({ key: 'b73207ba8a491bb03db60364707844e756362897', type: this.type, class: cssClasses, id: this.inputId, name: this.inputName, value: this.value, onKeyUp: (ev) => this.handleKeyUp(ev), onBlur: (ev) => this.handleFieldBlur(ev), "aria-invalid": !this.isValid }, ((this.autocomplete != "") ? { "autocomplete": this.autocomplete } : {}), ((this.inputTabindex != "") ? { "tabindex": this.inputTabindex } : {}), ((this.labeledBy != "") ? { "aria-labelledby": this.labeledBy } : {}), ((this.controls != "") ? { "aria-controls": this.controls } : {}), ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {}), ((this.description != "") ? { "aria-description": this.description } : {}), ((this.placeholder != "") ? { "placeholder": this.placeholder } : {}), ((this.maxlength != 0) ? { "maxlength": this.maxlength } : {}))), h("button", { key: '9ca46dc379aa8d0d135b09af82a315831fddeeb4', class: clearButtonClass, onClick: (ev) => this.handleClearClick(ev) }, h("span", { key: '6f835ae6327197efd634e93ae4202c8c2afd093b', class: "material-icons yeti-size-4 yeti-typo-size-4", "aria-hidden": "true" }, "close"), h("span", { key: 'efd78357009119e03791851503984909208c4ac9', class: "yeti-a11y-hidden" }, "Clear search input"))));
     }
     get el() { return getElement(this); }
 };

@@ -1,4 +1,4 @@
-import { r as registerInstance, a as createEvent, h, g as getElement } from './index-e3c92518.js';
+import { r as registerInstance, a as createEvent, h, g as getElement } from './index-a229effc.js';
 import { u as utils } from './utils-90cea6cb.js';
 
 const YetiTable = class {
@@ -758,21 +758,21 @@ const YetiTable = class {
             case "date":
                 return h("yeti-date-picker", { "data-column": cell.columnIndex, "labelled-by": headingLabelId, value: cell.filtering.value, id: filterId, key: filterId, showErrorTooltip: true });
             case "multiselect":
-                let multiselectOptions = [];
+                let yetiOptions = []; // An array of YetiDropdownOption objects
                 // See if the multiselect options are supplied (they must be)
                 if (cell.filtering.options && cell.filtering.options.length > 0) {
                     for (let i = 0; i < cell.filtering.options.length; i++) {
                         let optionId = `${filterId}_option${i}`;
                         let optionLabel = cell.filtering.options[i];
                         let optionIsSelected = (cell.filtering.value && cell.filtering.value.includes(optionLabel)) ? true : false;
-                        let optionProperties = {
-                            id: optionId,
-                            key: optionId
+                        let yetiOptionObject = {
+                            selected: optionIsSelected,
+                            label: optionLabel,
+                            isVisible: true,
+                            value: optionLabel,
+                            id: optionId
                         };
-                        if (optionIsSelected) {
-                            optionProperties["selected"] = true;
-                        }
-                        multiselectOptions.push(h("yeti-dropdown-option", Object.assign({}, optionProperties), optionLabel));
+                        yetiOptions.push(yetiOptionObject);
                     }
                     // Contents doesn't have options specified, but they're required. Error out.
                 }
@@ -780,7 +780,7 @@ const YetiTable = class {
                     console.error("Error in table multiselect filter: no options supplied.");
                     return false;
                 }
-                return h("yeti-dropdown", { "is-multiple": true, placeholder: "- Any -", "data-column": cell.columnIndex, "labelled-by": headingLabelId, id: filterId, key: filterId, value: cell.filtering.value }, multiselectOptions);
+                return h("yeti-dropdown", { "is-multiselect": "true", placeholder: "- Any -", "data-column": cell.columnIndex, "labelled-by": headingLabelId, id: filterId, key: filterId, value: cell.filtering.value, options: yetiOptions });
             default:
                 console.error("Error rendering table filter: unexpected filtering type requested:", cell.filtering.type);
                 return "";
@@ -945,7 +945,7 @@ const YetiTable = class {
         if (this.tableClass != '') {
             cssClass += ' ' + this.tableClass;
         }
-        return (h("table", { key: 'faa803a60d036b1fbad3662bc1ac10ec5c9e40f8', class: cssClass }, (this.contents.head) ?
+        return (h("table", { key: '6b1a838ef9b1552b87bb614d604da9afa7187260', class: cssClass }, (this.contents.head) ?
             h("thead", { class: "yeti-table-head" }, h("tr", { class: "yeti-table-head-row" }, (this.contents.head && this.contents.head.rows && this.contents.head.rows.length > 0 && this.contents.head.rows[0].cells && this.contents.head.rows[0].cells.length > 0) ?
                 this.contents.head.rows.map((row) => {
                     return this.renderRow(row);
@@ -953,7 +953,7 @@ const YetiTable = class {
                 :
                     h("th", { class: "yeti-table-heading", scope: "col" }, "No data")))
             :
-                "", h("tbody", { key: 'f4dc72282ae95e0baf7048068887f42b7d84b913', class: "yeti-table-body" }, this.renderRows(this.firstRecordIndexToDisplay, this.numRecordsToDisplay))));
+                "", h("tbody", { key: 'fea6e847c548464ec2d550f1e61ab8531bde4ce5', class: "yeti-table-body" }, this.renderRows(this.firstRecordIndexToDisplay, this.numRecordsToDisplay))));
     }
     componentDidRender() {
         let paginationComponent = this.el.querySelector('yeti-table-pagination');
