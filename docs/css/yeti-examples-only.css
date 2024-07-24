@@ -69,6 +69,11 @@ pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5p
   margin: 2rem;
   padding-bottom: 2rem;
 }
+/************************************** Non-demo-block Code ***/
+code:not(.ydoc-code_sample code) {
+  background-color: #f4f4f4;
+  font-family: 'Courier New', Courier, monospace;
+}
 /************************************** Code Demo ***/
 .ydoc-code_sample {
   line-height: 1.5;

@@ -675,7 +675,6 @@ Styles for Accordion
   .yeti-accordion-section {
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid #e0e0e0;
   }
   yeti-accordion-section:last-child .yeti-accordion-section {
     border-bottom: none;
@@ -720,12 +719,16 @@ Styles for Accordion
     display: flex;
     align-items: center;
     gap: 0.25rem;
+    border-bottom: 1px solid #e0e0e0;
   }
   .yeti-accordion-section__open :not(.yeti-accordion-section-heading:focus) .yeti-accordion-section-heading-contents {
-    border-bottom: 1px solid #c6c6c6;
+    border-bottom: 1px solid transparent;
   }
   .yeti-accordion-section__open .yeti-accordion-section-heading:focus .yeti-accordion-section-heading-contents {
-    border-bottom-color: transparent;
+    border-bottom: 1px solid transparent;
+  }
+  yeti-accordion-section:last-of-type .yeti-accordion-section-heading-contents {
+    border-bottom: none;
   }
   .yeti-accordion-section-heading-actual {
     flex: 1 1 max-content;
@@ -3151,6 +3154,7 @@ Styles for Table
   .yeti-table-heading-filter-input-button {
     width: 2.5rem;
     flex: 0 0 2.5rem;
+    cursor: pointer;
   }
   .yeti-table-heading-filter :is(.yeti-input, .yeti-select, .yeti-dropdown, .yeti-date-button, .yeti-table-heading-filter-input-button):hover {
     background-color: #f4f4f4;

@@ -76,12 +76,16 @@ export class YetiAccordion {
 
     // First make sure it's openable
     if (!clickedSection.isOpenable) {
-      this.openSection(this.openIndex);
+      this.openSection(this.openIndex); // It wasn't, so just open whatever we previously had as the open section.
       return;
     }
 
     else {
-      this.openSection(e.detail.sectionIndex);
+      if (clickedSection.isOpen) {
+        clickedSection.isOpen = false;
+      } else {
+        this.openSection(e.detail.sectionIndex);
+      }
     }
 
   }
@@ -89,6 +93,7 @@ export class YetiAccordion {
 
 
   openSection(suppliedIndex: number = 0) {
+    // Opens the section at suppliedIndex while closing the other sections.
     this.sectionElements.forEach((sectionElements, index) => {
       let section = sectionElements as HTMLElement;
       let sectionHeader = section.querySelector(".yeti-accordion-section-heading") as HTMLElement;
@@ -131,10 +136,11 @@ export class YetiAccordion {
 
       let section = (sectionElement as HTMLElement);
 
-      section.setAttribute("is-open", `${(index == 0)}`);
+      section.setAttribute("is-open", `${(index == this.openIndex)}`);
       section.setAttribute("index", `${index}`);
       section.setAttribute("of", `${this.sectionElements.length}`);
-      section.setAttribute("is-openable", `${section.hasAttribute("is-openable") ? section.getAttribute("is-openable") : (index == 0)}`);
+      section.setAttribute("is-openable", `${section.hasAttribute("is-openable") ? section.getAttribute("is-openable") : (index <= this.openIndex)}`);
+      section.setAttribute("status", `${section.hasAttribute("status") ? section.getAttribute("status") : (index == this.openIndex) ? "reachable" : "undefined"}`)
       section.setAttribute("is-in-wizard", `${this.isWizard}`);
 
     });

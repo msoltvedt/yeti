@@ -21,27 +21,37 @@
 
         <yeti-page-contents ignore-within="ydoc-code_sample"></yeti-page-contents>
 
-        <h2 class="margin-bottom-3">Code Samples</h2>
+        <h2 class="margin-bottom-4">Code Samples</h2>
 
 
 
-        <h3 class="margin-bottom-2">Wizard</h3>
+        <h3 class="margin-bottom-3">Wizard</h3>
+
+        <h4 class="margin-bottom-2">Default</h4>
+
+        <p class="yeti-margin-bottom-2">
+            The Wizard variant of Accordion forces the user to move through the sections in order. Each <code>yeti-accordion-section</code>'s <code>status</code>, <code>is-openable</code>, <code>is-open</code>, and <code>heading</code> text properties can be programmatically set. The parent <code>yeti-accordion</code> component will also set and maintain some properties. See the property declarations for more information.
+        </p>
+
+        <p class="yeti-margin-bottom-2">
+            In the example below, the user has completed the first section successfully and advanced to the second section.
+        </p>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
  
-<yeti-accordion is-wizard="true">
+<yeti-accordion is-wizard="true" open-index="1">
 
-    <yeti-accordion-section heading="Size" status="success" is-openable="true">
+    <yeti-accordion-section heading="Size" status="success">
         <div slot="content">
             <p>(Your HTML for the Size section here.)</p>
         </div>
     </yeti-accordion-section>
 
 
-    <yeti-accordion-section heading="Crust" status="reachable" is-openable="true">
+    <yeti-accordion-section heading="Crust" status="reachable">
         <div slot="content">
-            <p>(Your HTML for the Size section here.)</p>
+            <p>(Your HTML for the Crust section here.)</p>
         </div>
     </yeti-accordion-section>
     
@@ -53,7 +63,69 @@
     </yeti-accordion-section>
     
 
-    <yeti-accordion-section heading="Review" is-openable="false">
+    <yeti-accordion-section heading="Review">
+        <div slot="content">
+            <p>(Your HTML for the Review section here.)</p>
+        </div>
+
+        <div slot="actions">
+            <ul class="yeti-button-group">
+                <li>
+                    <button class="yeti-button yeti-button-secondary yeti-button-size-s" accordion-action="previous">
+                        <yeti-icon type='navigate_before' alt="" icon-class='yeti-accordion-action-button-icon'></yeti-icon> Previous
+                    </button>
+                </li>
+                <li>
+                    <button class="yeti-button yeti-button-primary yeti-button-size-s" accordion-action="unicorn">Submit Order</button>
+                </li>
+                <li>
+                    <button class="yeti-button yeti-button-ghost yeti-button-size-s" accordion-action="cancel">Cancel</button>
+                </li>
+            </ul>
+        </div>
+    </yeti-accordion-section>
+
+</yeti-accordion>
+
+        </div><!-- /code_sample -->
+
+        <h4 class="margin-bottom-2">With Custom Actions</h4>
+
+        <p class="yeti-margin-bottom-2">
+            Yeti will automatically add buttons and adjust their states based on the states of each Section, or you can add your own as shown in the final Section in the demo code block below. If you do supply buttons yourself, wrap them in something with a <code>slot="actions"</code> attribute, and give each button an <code>accordion-action</code> attribute.
+        </p>
+
+        <p class="yeti-margin-bottom-2">
+            In the example below, the user has completed all Sections successfully and advanced to the final (review) section.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+ 
+<yeti-accordion is-wizard="true" open-index="3">
+
+    <yeti-accordion-section heading="Size" status="success">
+        <div slot="content">
+            <p>(Your HTML for the Size section here.)</p>
+        </div>
+    </yeti-accordion-section>
+
+
+    <yeti-accordion-section heading="Crust" status="success">
+        <div slot="content">
+            <p>(Your HTML for the Crust section here.)</p>
+        </div>
+    </yeti-accordion-section>
+    
+
+    <yeti-accordion-section heading="Toppings" status="success">
+        <div slot="content">
+            <p>(Your HTML for the Toppings section here.)</p>
+        </div>
+    </yeti-accordion-section>
+    
+
+    <yeti-accordion-section heading="Review">
         <div slot="content">
             <p>(Your HTML for the Review section here.)</p>
         </div>

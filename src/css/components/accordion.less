@@ -24,7 +24,6 @@ yeti-accordion-section { display: contents; }
 .yeti-accordion-section {
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid #e0e0e0;
 }
 yeti-accordion-section:last-child .yeti-accordion-section {
     border-bottom: none;
@@ -66,12 +65,16 @@ yeti-accordion-section:last-child .yeti-accordion-section {
     display: flex;
     align-items: center;
     gap: 0.25rem;
+    border-bottom: 1px solid #e0e0e0;
 }
 .yeti-accordion-section__open :not(.yeti-accordion-section-heading:focus) .yeti-accordion-section-heading-contents {
-    border-bottom: 1px solid #c6c6c6;
+    border-bottom: 1px solid transparent;
 }
 .yeti-accordion-section__open .yeti-accordion-section-heading:focus .yeti-accordion-section-heading-contents {
     border-bottom: 1px solid transparent;
+}
+yeti-accordion-section:last-of-type .yeti-accordion-section-heading-contents {
+    border-bottom: none;
 }
 
 .yeti-accordion-section-heading-actual {
