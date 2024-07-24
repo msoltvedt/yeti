@@ -1,0 +1,109 @@
+/************************************** checkbox.less ***************************************
+
+Styles for Checkbox
+
+*************************************** checkbox.less **************************************/
+
+
+
+/************************************** Credits ***/
+// Influenced by:
+// @link https://moderncss.dev/pure-css-custom-styled-checkbox-buttons/
+
+
+
+/************************************** Wrapper ***/
+yeti-checkbox {
+    display: contents;
+}
+
+
+.yeti-checkbox-wrapper {
+    font-size: unset;
+    color: unset;
+    display: grid;
+    grid-template-columns: 1.25rem 1fr;
+    grid-template-rows: max-content 1fr;
+    gap: 0.25rem 0.5rem;
+}
+
+
+
+/************************************** Actual ***/ 
+.yeti-checkbox {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    /* Remove most all native input styles */
+    appearance: none;
+    /* For iOS < 15 */
+    background-color: white;
+    /* Not removed via appearance */
+    margin: 0;
+    box-sizing: border-box;
+
+    font: inherit;
+    color: currentColor;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 0.125rem;
+    // border: 0.15rem solid currentColor;
+
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23161616"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>');
+}
+.yeti-checkbox:disabled {
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23c6c6c6"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>');
+}
+
+
+
+
+/*** States ***/
+.yeti-checkbox:checked {
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23161616"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>');
+}
+.yeti-checkbox:disabled:checked {
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23c6c6c6"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>');
+}
+
+.yeti-checkbox:focus-visible {
+    outline: max(2px, 0.125rem) solid #0f62fe;
+    outline-offset: max(0.5px, 0.03125rem);
+}
+
+
+
+/************************************** Label ***/
+
+.yeti-checkbox-wrapper .yeti-form-label {
+    grid-column: 2 / 3;
+    line-height: 1.125rem;
+    padding: 0.0625rem 0;
+    font-weight: 400;
+    letter-spacing: 0.01rem;
+    color: #161616;
+}
+
+.yeti-checkbox-wrapper .yeti-form-tip {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+.yeti-checkbox-wrapper:has(:disabled) :is(.yeti-form-label, .yeti-form-tip) {
+    color: #8d8d8d;
+}
+
+
+
+/************************************** Checkbox Fieldset ***/
+.yeti-checkbox-fieldset-legend {
+    color: #525252;
+    line-height: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.yeti-checkbox-checkboxs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
