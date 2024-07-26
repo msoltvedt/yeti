@@ -731,6 +731,44 @@ export namespace Components {
         "showOptions": boolean;
         "startIndex": number;
     }
+    interface YetiTitletip {
+        /**
+          * Whether the anchor should be forced to be a CSS display block style or left as is.
+         */
+        "blockAnchor": boolean;
+        /**
+          * Boolean value that sets whether the titletip opens on hover/focus (default) or on click.
+         */
+        "clickToOpen": boolean;
+        /**
+          * Whether the titletip should remain open permanently.
+         */
+        "forceOpen": boolean;
+        /**
+          * Token list to describe the titletip's position relative to its anchor: left | right and/or above | below.
+         */
+        "position": string;
+        /**
+          * id of the component's slot element.
+         */
+        "slotId": string;
+        /**
+          * Text value to display as the titletip's contents.
+         */
+        "text": string;
+        /**
+          * id of the component's actual element corresponding to the titletip. Will be auto-populated with a unique value if not provided.
+         */
+        "tipId": string;
+        /**
+          * CSS classlist to add to the actual titletip element.
+         */
+        "titletipClass": string;
+        /**
+          * CSS classlist to add to the element serving as the component's wrapper.
+         */
+        "wrapperClass": string;
+    }
     interface YetiTooltip {
         /**
           * Whether the anchor should be forced to be a CSS display block style or left as is.
@@ -1101,6 +1139,12 @@ declare global {
         prototype: HTMLYetiTablePaginationElement;
         new (): HTMLYetiTablePaginationElement;
     };
+    interface HTMLYetiTitletipElement extends Components.YetiTitletip, HTMLStencilElement {
+    }
+    var HTMLYetiTitletipElement: {
+        prototype: HTMLYetiTitletipElement;
+        new (): HTMLYetiTitletipElement;
+    };
     interface HTMLYetiTooltipElement extends Components.YetiTooltip, HTMLStencilElement {
     }
     var HTMLYetiTooltipElement: {
@@ -1135,6 +1179,7 @@ declare global {
         "yeti-table": HTMLYetiTableElement;
         "yeti-table-actions": HTMLYetiTableActionsElement;
         "yeti-table-pagination": HTMLYetiTablePaginationElement;
+        "yeti-titletip": HTMLYetiTitletipElement;
         "yeti-tooltip": HTMLYetiTooltipElement;
         "yeti-unsaved-changes": HTMLYetiUnsavedChangesElement;
     }
@@ -1935,6 +1980,44 @@ declare namespace LocalJSX {
         "showOptions"?: boolean;
         "startIndex"?: number;
     }
+    interface YetiTitletip {
+        /**
+          * Whether the anchor should be forced to be a CSS display block style or left as is.
+         */
+        "blockAnchor"?: boolean;
+        /**
+          * Boolean value that sets whether the titletip opens on hover/focus (default) or on click.
+         */
+        "clickToOpen"?: boolean;
+        /**
+          * Whether the titletip should remain open permanently.
+         */
+        "forceOpen"?: boolean;
+        /**
+          * Token list to describe the titletip's position relative to its anchor: left | right and/or above | below.
+         */
+        "position"?: string;
+        /**
+          * id of the component's slot element.
+         */
+        "slotId"?: string;
+        /**
+          * Text value to display as the titletip's contents.
+         */
+        "text"?: string;
+        /**
+          * id of the component's actual element corresponding to the titletip. Will be auto-populated with a unique value if not provided.
+         */
+        "tipId"?: string;
+        /**
+          * CSS classlist to add to the actual titletip element.
+         */
+        "titletipClass"?: string;
+        /**
+          * CSS classlist to add to the element serving as the component's wrapper.
+         */
+        "wrapperClass"?: string;
+    }
     interface YetiTooltip {
         /**
           * Whether the anchor should be forced to be a CSS display block style or left as is.
@@ -2009,6 +2092,7 @@ declare namespace LocalJSX {
         "yeti-table": YetiTable;
         "yeti-table-actions": YetiTableActions;
         "yeti-table-pagination": YetiTablePagination;
+        "yeti-titletip": YetiTitletip;
         "yeti-tooltip": YetiTooltip;
         "yeti-unsaved-changes": YetiUnsavedChanges;
     }
@@ -2038,6 +2122,7 @@ declare module "@stencil/core" {
             "yeti-table": LocalJSX.YetiTable & JSXBase.HTMLAttributes<HTMLYetiTableElement>;
             "yeti-table-actions": LocalJSX.YetiTableActions & JSXBase.HTMLAttributes<HTMLYetiTableActionsElement>;
             "yeti-table-pagination": LocalJSX.YetiTablePagination & JSXBase.HTMLAttributes<HTMLYetiTablePaginationElement>;
+            "yeti-titletip": LocalJSX.YetiTitletip & JSXBase.HTMLAttributes<HTMLYetiTitletipElement>;
             "yeti-tooltip": LocalJSX.YetiTooltip & JSXBase.HTMLAttributes<HTMLYetiTooltipElement>;
             "yeti-unsaved-changes": LocalJSX.YetiUnsavedChanges & JSXBase.HTMLAttributes<HTMLYetiUnsavedChangesElement>;
         }
