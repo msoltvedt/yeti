@@ -27,32 +27,6 @@ const YetiTitleTip = class {
       this.scrollTitletipIntoView();
     }
   }
-  handleDeFocusingClick() {
-    this.isClickedOpen = false;
-  }
-  handleClick(e) {
-    e.stopImmediatePropagation(); // Intercept the click event before it gets to the body-level handler
-  }
-  handleTriggerClick(e) {
-    if (this.clickToOpen && !this.justClickedClosed) {
-      e.stopImmediatePropagation();
-      e.preventDefault();
-      this.scrollTitletipIntoView();
-      this.isClickedOpen = !this.isClickedOpen;
-      return false;
-    }
-  }
-  handleTriggerKeyPress(e) {
-    if (this.clickToOpen && e.key == "Enter" && !this.justClickedClosed) {
-      this.handleTriggerClick(e);
-    }
-  }
-  handleCloseTitletipClick(e) {
-    this.justClickedClosed = true;
-    e.stopImmediatePropagation();
-    e.preventDefault();
-    this.isClickedOpen = false;
-  }
   scrollTitletipIntoView() {
     let actual = this.el.querySelector(".yeti-titletip");
     actual.scrollIntoView({
@@ -75,10 +49,6 @@ const YetiTitleTip = class {
     let tipClass = 'yeti-titletip';
     wrapperClass += (this.wrapperClass != '') ? ` ${this.wrapperClass}` : '';
     tipClass += (this.titletipClass != '') ? ` ${this.titletipClass}` : '';
-    tipClass += (this.isClickedOpen) ? ' yeti-titletip__clicked_open' : '';
-    tipClass += (this.forceOpen) ? ' yeti-titletip__forced_open' : '';
-    wrapperClass += (this.clickToOpen) ? ' yeti-titletip-wrapper-is_click_to_open' : '';
-    wrapperClass += (this.blockAnchor) ? ' yeti-titletip-wrapper-has_block_anchor' : '';
     switch (this.position) {
       case "right":
         tipClass += " yeti-titletip-right";
@@ -103,10 +73,7 @@ const YetiTitleTip = class {
         break;
     }
     return ([
-      h("div", { class: wrapperClass }, h("div", Object.assign({ class: "yeti-titletip-trigger", onClick: (e) => this.handleTriggerClick(e), onKeyPress: (e) => this.handleTriggerKeyPress(e) }, ((this.clickToOpen) ? { "tabindex": 0 } : {})), h("slot", null)), h("div", { class: tipClass }, h("div", { class: "yeti-titletip-content", id: this.tipId }, this.text), (this.clickToOpen && this.isClickedOpen) ?
-        h("button", { class: "yeti-titletip-close", onClick: (e) => { this.handleCloseTitletipClick(e); } }, h("yeti-icon", { iconCode: "close", iconClass: 'yeti-color-white yeti-typo-size-5' }))
-        :
-          null))
+      h("div", { class: wrapperClass }, h("div", null, h("slot", null)), h("div", { class: tipClass }, h("div", { class: "yeti-titletip-content", id: this.tipId }, this.text)))
     ]);
   }
   componentDidRender() {
@@ -115,7 +82,7 @@ const YetiTitleTip = class {
     //slot.setAttribute("tabindex", "0");
     slot.setAttribute("aria-describedby", this.tipId);
     if (this.justClickedClosed && trigger) {
-      // The user just clicked the titletip closed. Restore focus to the trigger.
+      // The user just clicked the tooltip closed. Restore focus to the trigger.
       this.justClickedClosed = false;
       trigger.focus();
     }
