@@ -3285,6 +3285,187 @@ Styles for Table
   .yeti-table-body-row-child_row__hidden {
     display: none;
   }
+  /************************************** titletip.less ***************************************
+
+Styles for Titletip
+
+*************************************** titletip.less **************************************/
+  /************************************** Wrapper ***/
+  yeti-titletip {
+    display: contents;
+  }
+  .yeti-titletip-wrapper {
+    position: relative;
+    cursor: default;
+  }
+  .yeti-titletip-wrapper:not(.yeti-titletip-wrapper-has_block_anchor) {
+    display: inline-flex;
+  }
+  .yeti-titletip-wrapper:is(.yeti-titletip-wrapper-has_block_anchor) {
+    display: block;
+  }
+  /************************************** Actual ***/
+  .yeti-titletip {
+    min-width: min-content;
+    max-width: max-content;
+    width: max-content;
+    min-height: min-content;
+    height: max-content;
+    background-color: #e5e5e5;
+    color: black;
+    position: absolute;
+    display: block;
+    padding: 0.313rem;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.15);
+    font-size: 0.688rem;
+    font-weight: 400;
+    letter-spacing: 0.01rem;
+    line-height: 1.42857;
+    z-index: 2;
+  }
+  :not(.yeti-titletip-auto_height) .yeti-titletip {
+    max-height: 7rem;
+  }
+  .yeti-titletip-wrapper:not(:is(:focus-within, *:hover)) .yeti-titletip:not(.yeti-titletip__clicked_open, .yeti-titletip__forced_open) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    max-width: 1px;
+    max-height: 1px;
+    min-width: 1px;
+    min-height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .yeti-titletip-wrapper.yeti-titletip-wrapper-is_click_to_open:not(*.yeti-titletip__clicked_open) .yeti-titletip:not(.yeti-titletip__clicked_open, .yeti-titletip__forced_open) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    max-width: 1px;
+    max-height: 1px;
+    min-width: 1px;
+    min-height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  /*** Trigger ***/
+  .yeti-titletip-trigger {
+    display: inline-flex;
+  }
+  .yeti-titletip-wrapper-is_click_to_open .yeti-titletip-trigger {
+    cursor: pointer;
+  }
+  /*** Content ***/
+  .yeti-titletip-content {
+    position: relative;
+    text-align: left;
+  }
+  :not(.yeti-titletip-auto_height) .yeti-titletip-content {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .yeti-titletip-content:has(+ .yeti-titletip-close) {
+    padding-right: 3rem;
+  }
+  /************************************** Positioning */
+  /*** Above or Below ***/
+  .yeti-titletip:not(.yeti-titletip-left, .yeti-titletip-right, .yeti-titletip-below-left, .yeti-titletip-below-right, .yeti-titletip-above-left, .yeti-titletip-above-right) {
+    left: 50%;
+    translate: -50%;
+  }
+  .yeti-titletip:not(.yeti-titletip-left, .yeti-titletip-right, .yeti-titletip-below-left, .yeti-titletip-below-right, .yeti-titletip-above-left, .yeti-titletip-above-right)::after {
+    left: 50%;
+  }
+  /* Above */
+  .yeti-titletip:not(.yeti-titletip-left, .yeti-titletip-right, .yeti-titletip-below, .yeti-titletip-below-left, .yeti-titletip-below-right, .yeti-titletip-above-left, .yeti-titletip-above-right) {
+    bottom: calc(100% + 0.5rem);
+  }
+  .yeti-titletip:not(.yeti-titletip-left, .yeti-titletip-right, .yeti-titletip-below, .yeti-titletip-below-left, .yeti-titletip-below-right, .yeti-titletip-above-left, .yeti-titletip-above-right)::after {
+    top: 100%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  /* Below */
+  .yeti-titletip-below,
+  .yeti-titletip-below-left,
+  .yeti-titletip-below-right {
+    top: calc(100% + 0.5rem);
+  }
+  .yeti-titletip-below::after,
+  .yeti-titletip-below-left::after,
+  .yeti-titletip-below-right::after {
+    bottom: 100%;
+    transform: translate(-50%, 50%) rotate(45deg);
+  }
+  /*** Left or Right ***/
+  .yeti-titletip:is(.yeti-titletip-left, .yeti-titletip-right) {
+    top: 50%;
+    translate: 0 -50%;
+  }
+  .yeti-titletip:is(.yeti-titletip-left, .yeti-titletip-right)::after {
+    top: 50%;
+  }
+  /* Left */
+  .yeti-titletip-left {
+    right: calc(100% + 0.5rem);
+  }
+  .yeti-titletip-left::after {
+    left: 100%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  /* Right */
+  .yeti-titletip-right {
+    left: calc(100% + 0.5rem);
+  }
+  .yeti-titletip-right::after {
+    right: 100%;
+    transform: translate(50%, -50%) rotate(45deg);
+  }
+  /*** Combo Platter (above/below and left/right) ***/
+  /* Below Right */
+  .yeti-titletip-below-right {
+    left: 50%;
+    translate: -1rem;
+    /* Center the caret, not the left edge. */
+  }
+  /* Below Left */
+  .yeti-titletip-below-left {
+    right: 50%;
+    translate: 1rem;
+  }
+  .yeti-titletip-below-left::after {
+    left: 100%;
+    translate: -1rem;
+  }
+  /* Above Left */
+  .yeti-titletip-above-left {
+    right: 50%;
+    bottom: calc(100% + 0.5rem);
+    translate: 1rem;
+  }
+  .yeti-titletip-above-left::after {
+    left: 100%;
+    transform: translate(-1.25rem, 0.75rem) rotate(45deg);
+  }
+  /* Above Right */
+  .yeti-titletip-above-right {
+    left: 50%;
+    bottom: calc(100% + 0.5rem);
+    translate: -1rem;
+  }
+  .yeti-titletip-above-right::after {
+    right: 100%;
+    transform: translate(1.25rem, 0.75rem) rotate(45deg);
+  }
   /************************************** tooltip.less ***************************************
 
 Styles for Tooltip
