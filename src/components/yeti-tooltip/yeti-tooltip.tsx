@@ -70,6 +70,11 @@ export class YetiTooltip {
    */
   @State() isClickedOpen: boolean = false;
 
+  /**
+   * Whether the tooltip has rich content (i.e. html rather than just a string of text) or not.
+   */
+  @State() hasRichContent: boolean = false;
+
   justClickedClosed: boolean = false;
 
 
@@ -155,8 +160,22 @@ export class YetiTooltip {
       this.el.setAttribute("id", componentId);
     }
 
+    if (this.el.querySelector('[slot="content"]')) {
+      this.hasRichContent = true;
+    }
+
     this.tipId = (this.tipId != "") ? this.tipId : `${componentId}_tip`;
     this.slotId = (this.slotId != "") ? this.slotId : `${componentId}_slot`;
+  }
+
+
+
+  renderContent() {
+    if (this.hasRichContent) {
+      return <slot name="content"></slot>
+    } else {
+      return this.text;
+    }
   }
 
 
@@ -231,7 +250,7 @@ export class YetiTooltip {
 
         <div class={tipClass}>
 
-          <div class="yeti-tooltip-content" id={this.tipId}>{this.text}</div>
+          <div class="yeti-tooltip-content" id={this.tipId}>{this.renderContent()}</div>
 
           {
             (this.clickToOpen && this.isClickedOpen) ?

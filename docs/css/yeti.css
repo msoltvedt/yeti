@@ -719,16 +719,14 @@ Styles for Accordion
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    border-bottom: 1px solid #e0e0e0;
+    border-top: 1px solid #e0e0e0;
   }
-  .yeti-accordion-section__open :not(.yeti-accordion-section-heading:focus) .yeti-accordion-section-heading-contents {
-    border-bottom: 1px solid transparent;
+  .yeti-accordion-section__open .yeti-accordion-section-heading:focus .yeti-accordion-section-heading-contents,
+  yeti-accordion-section:has(.yeti-accordion-section-heading:focus) + yeti-accordion-section .yeti-accordion-section-heading-contents {
+    border-top: 1px solid transparent;
   }
-  .yeti-accordion-section__open .yeti-accordion-section-heading:focus .yeti-accordion-section-heading-contents {
-    border-bottom: 1px solid transparent;
-  }
-  yeti-accordion-section:last-of-type .yeti-accordion-section-heading-contents {
-    border-bottom: none;
+  yeti-accordion-section:first-of-type .yeti-accordion-section-heading-contents {
+    border-top: none;
   }
   .yeti-accordion-section-heading-actual {
     flex: 1 1 max-content;
@@ -743,6 +741,9 @@ Styles for Accordion
     text-overflow: ellipsis;
     padding-right: 1rem;
     max-height: 100%;
+  }
+  .yeti-accordion-section-heading:hover .yeti-accordion-section-heading-actual {
+    text-decoration: underline;
   }
   .yeti-accordion-section-heading-caret {
     width: 0.875rem;
@@ -1191,6 +1192,84 @@ Styles for Icon
     background-position: top 50% right 1rem;
     background-repeat: no-repeat;
     padding-right: 3rem;
+  }
+  /************************************** checkbox.less ***************************************
+
+Styles for Checkbox
+
+*************************************** checkbox.less **************************************/
+  /************************************** Credits ***/
+  /************************************** Wrapper ***/
+  yeti-checkbox {
+    display: contents;
+  }
+  .yeti-checkbox-wrapper {
+    font-size: unset;
+    color: unset;
+    display: grid;
+    grid-template-columns: 1.25rem 1fr;
+    grid-template-rows: max-content 1fr;
+    gap: 0.25rem 0.5rem;
+  }
+  /************************************** Actual ***/
+  .yeti-checkbox {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    /* Remove most all native input styles */
+    appearance: none;
+    /* For iOS < 15 */
+    background-color: white;
+    /* Not removed via appearance */
+    margin: 0;
+    box-sizing: border-box;
+    font: inherit;
+    color: currentColor;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 0.125rem;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23161616"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>');
+  }
+  .yeti-checkbox:disabled {
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23c6c6c6"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>');
+  }
+  /*** States ***/
+  .yeti-checkbox:checked {
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23161616"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>');
+  }
+  .yeti-checkbox:disabled:checked {
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23c6c6c6"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>');
+  }
+  .yeti-checkbox:focus-visible {
+    outline: max(2px, 0.125rem) solid #0f62fe;
+    outline-offset: max(0.5px, 0.03125rem);
+  }
+  /************************************** Label ***/
+  .yeti-checkbox-wrapper .yeti-form-label {
+    grid-column: 2 / 3;
+    line-height: 1.125rem;
+    padding: 0.0625rem 0;
+    font-weight: 400;
+    letter-spacing: 0.01rem;
+    color: #161616;
+  }
+  .yeti-checkbox-wrapper .yeti-form-tip {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+  }
+  .yeti-checkbox-wrapper:has(:disabled) :is(.yeti-form-label, .yeti-form-tip) {
+    color: #8d8d8d;
+  }
+  /************************************** Checkbox Fieldset ***/
+  .yeti-checkbox-fieldset-legend {
+    color: #525252;
+    line-height: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .yeti-checkbox-checkboxs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
   /************************************** date-picker.less ***************************************
 
@@ -2631,7 +2710,7 @@ Styles for Radio
   .yeti-radio:disabled:checked {
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c6c6c6'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z'/%3E%3C/svg%3E");
   }
-  .yeti-radio:focus {
+  .yeti-radio:focus-visible {
     outline: max(2px, 0.125rem) solid #0f62fe;
     outline-offset: max(0.5px, 0.03125rem);
   }

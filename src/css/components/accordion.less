@@ -65,16 +65,14 @@ yeti-accordion-section:last-child .yeti-accordion-section {
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    border-bottom: 1px solid #e0e0e0;
+    border-top: 1px solid #e0e0e0;
 }
-.yeti-accordion-section__open :not(.yeti-accordion-section-heading:focus) .yeti-accordion-section-heading-contents {
-    border-bottom: 1px solid transparent;
+.yeti-accordion-section__open .yeti-accordion-section-heading:focus .yeti-accordion-section-heading-contents,
+yeti-accordion-section:has(.yeti-accordion-section-heading:focus) + yeti-accordion-section .yeti-accordion-section-heading-contents {
+    border-top: 1px solid transparent;
 }
-.yeti-accordion-section__open .yeti-accordion-section-heading:focus .yeti-accordion-section-heading-contents {
-    border-bottom: 1px solid transparent;
-}
-yeti-accordion-section:last-of-type .yeti-accordion-section-heading-contents {
-    border-bottom: none;
+yeti-accordion-section:first-of-type .yeti-accordion-section-heading-contents {
+    border-top: none;
 }
 
 .yeti-accordion-section-heading-actual {
@@ -91,6 +89,7 @@ yeti-accordion-section:last-of-type .yeti-accordion-section-heading-contents {
     padding-right: 1rem;
     max-height: 100%;
 }
+.yeti-accordion-section-heading:hover .yeti-accordion-section-heading-actual { text-decoration: underline; }
 
 .yeti-accordion-section-heading-caret {
     width: 0.875rem; // Trim the fat

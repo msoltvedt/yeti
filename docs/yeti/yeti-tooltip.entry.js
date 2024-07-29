@@ -16,7 +16,6 @@ const YetiTooltip = class {
     this.forceOpen = false;
     this.iLoveJSX = false;
     this.isClickedOpen = false;
-    this.hasRichContent = false;
   }
   handleSlotHover() {
     if (!this.clickToOpen) {
@@ -68,19 +67,8 @@ const YetiTooltip = class {
       componentId = utils.generateUniqueId();
       this.el.setAttribute("id", componentId);
     }
-    if (this.el.querySelector('[slot="content"]')) {
-      this.hasRichContent = true;
-    }
     this.tipId = (this.tipId != "") ? this.tipId : `${componentId}_tip`;
     this.slotId = (this.slotId != "") ? this.slotId : `${componentId}_slot`;
-  }
-  renderContent() {
-    if (this.hasRichContent) {
-      return h("slot", { name: "content" });
-    }
-    else {
-      return this.text;
-    }
   }
   render() {
     let wrapperClass = 'yeti-tooltip-wrapper';
@@ -115,7 +103,7 @@ const YetiTooltip = class {
         break;
     }
     return ([
-      h("div", { class: wrapperClass }, h("div", Object.assign({ class: "yeti-tooltip-trigger", onClick: (e) => this.handleTriggerClick(e), onKeyPress: (e) => this.handleTriggerKeyPress(e) }, ((this.clickToOpen) ? { "tabindex": 0 } : {})), h("slot", null)), h("div", { class: tipClass }, h("div", { class: "yeti-tooltip-content", id: this.tipId }, this.renderContent()), (this.clickToOpen && this.isClickedOpen) ?
+      h("div", { class: wrapperClass }, h("div", Object.assign({ class: "yeti-tooltip-trigger", onClick: (e) => this.handleTriggerClick(e), onKeyPress: (e) => this.handleTriggerKeyPress(e) }, ((this.clickToOpen) ? { "tabindex": 0 } : {})), h("slot", null)), h("div", { class: tipClass }, h("div", { class: "yeti-tooltip-content", id: this.tipId }, this.text), (this.clickToOpen && this.isClickedOpen) ?
         h("button", { class: "yeti-tooltip-close", onClick: (e) => { this.handleCloseTooltipClick(e); } }, h("yeti-icon", { iconCode: "close", iconClass: 'yeti-color-white yeti-typo-size-5' }))
         :
           null))
