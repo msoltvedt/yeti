@@ -59,6 +59,11 @@ export class YetiField {
   @Prop() tip: string = "";
 
   /**
+  * Value for the optional input tip that appears at the bottom of the field.
+  */
+  @Prop() text: string = "";
+
+  /**
    * Position of the input tip relative to the rest of the field's contents. Defaults to "below", can also be "above".
    */
   @Prop() tipPosition?: string = "below";
@@ -230,6 +235,8 @@ export class YetiField {
     let cssClass = "yeti-form-field";
     cssClass += (this.wrapperClass != "") ? ` ${this.wrapperClass}` : '';
 
+    let textClass = "yeti-typo-weight-normal";
+
     let tipClass = `yeti-form-tip`;
     tipClass += (this.tipPosition == "above") ? ` yeti-form-tip-above` : ``;
 
@@ -250,9 +257,8 @@ export class YetiField {
     return (
       <div class={cssClass}>
 
-        <label htmlFor={this.inputId} class="yeti-form-label">{`${this.label} `}
-          {(this.required && this.hasSlottedRequired) ? <slot name="required"></slot> : null}
-        </label>
+        <label htmlFor={this.inputId} class="yeti-form-label">{`${this.label}`}
+          {(this.required && this.hasSlottedRequired) ? <slot name="required"></slot> : null}<span class={textClass}> {this.text}</span></label>
 
         {(!this.hasSlottedField) ?
 
