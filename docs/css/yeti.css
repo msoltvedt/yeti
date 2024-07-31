@@ -4168,6 +4168,7 @@ Styles for notification
   .yeti-layout-2_up {
     display: inline-flex;
     align-items: center;
+    vertical-align: middle;
   }
   /*** Row ***/
   .yeti-layout-row {
@@ -4193,15 +4194,64 @@ Styles for notification
   .yeti-layout-inflexible {
     flex: 0 0 auto;
   }
+  /************************************** Layout Adjustments ***/
+  /*** Justification ***/
+  .yeti-layout-space_between {
+    justify-content: space-between;
+  }
+  /*** Alignment ***/
+  /* Main Axis */
+  .yeti-layout-main_axis-center {
+    align-items: center;
+  }
+  .yeti-layout-main_axis-start {
+    align-items: flex-start;
+  }
+  .yeti-layout-main_axis-end {
+    align-items: flex-end;
+  }
+  .yeti-layout-main_axis-stretch {
+    align-items: stretch;
+  }
+  /* Cross Axis */
+  .yeti-layout-cross_axis-center {
+    justify-content: center;
+  }
+  .yeti-layout-cross_axis-start {
+    justify-content: flex-start;
+  }
+  .yeti-layout-cross_axis-end {
+    justify-content: flex-end;
+  }
+  .yeti-layout-cross_axis-space {
+    justify-content: space-evenly;
+  }
+  .yeti-layout-cross_axis-spread {
+    justify-content: space-between;
+  }
+  .yeti-layout-cross_axis-scrunch {
+    justify-content: space-around;
+  }
   /************************************** Grow/Shrink ***/
+  .yeti-layout-grow-no,
+  .yeti-layout-grow-0 {
+    flex-grow: 0;
+  }
   .yeti-layout-grow,
   .yeti-layout-grow-1 {
     flex-grow: 1;
+  }
+  .yeti-layout-grow-2 {
+    flex-grow: 2;
+  }
+  .yeti-layout-grow-3 {
+    flex-grow: 3;
   }
   .yeti-layout-shrink-no,
   .yeti-layout-shrink-0 {
     flex-shrink: 0;
   }
+  .yeti-layout-shrink,
   .yeti-layout-shrink-1 {
     flex-shrink: 1;
   }
