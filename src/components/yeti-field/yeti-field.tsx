@@ -59,9 +59,9 @@ export class YetiField {
   @Prop() tip: string = "";
 
   /**
-  * Value for the optional input tip that appears at the bottom of the field.
+  * Value for HTML added to the label.
   */
-  @Prop() text: string = "";
+  @Prop() labelhtml: string;
 
   /**
    * Position of the input tip relative to the rest of the field's contents. Defaults to "below", can also be "above".
@@ -258,7 +258,11 @@ export class YetiField {
       <div class={cssClass}>
 
         <label htmlFor={this.inputId} class="yeti-form-label">{`${this.label}`}
-          {(this.required && this.hasSlottedRequired) ? <slot name="required"></slot> : null}<span class={textClass}> {this.text}</span></label>
+          {(this.required && this.hasSlottedRequired) ? <slot name="required"></slot> : null}
+          {this.labelhtml && this.labelhtml.trim() !== '' ? (
+          <slot name="labelhtml"> <span innerHTML={this.labelhtml}></span></slot>
+          ) : null}
+          </label>
 
         {(!this.hasSlottedField) ?
 
