@@ -296,6 +296,10 @@ export namespace Components {
         /**
           * Value for the optional input tip that appears at the bottom of the field.
          */
+        "text": string;
+        /**
+          * Value for the optional input tip that appears at the bottom of the field.
+         */
         "tip": string;
         /**
           * Position of the input tip relative to the rest of the field's contents. Defaults to "below", can also be "above".
@@ -1492,6 +1496,10 @@ declare namespace LocalJSX {
           * Whether the field is required to have a valid value by the greater form.
          */
         "required"?: boolean;
+        /**
+          * Value for the optional input tip that appears at the bottom of the field.
+         */
+        "text"?: string;
         /**
           * Value for the optional input tip that appears at the bottom of the field.
          */
