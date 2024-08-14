@@ -1537,7 +1537,7 @@ declare namespace LocalJSX {
         /**
           * Mandatory value for the label of the field.
          */
-        "label": string;
+        "label"?: string;
         /**
           * Whether the field is required to have a valid value by the greater form.
          */
