@@ -5,6 +5,7 @@ import { utils } from '../../utils/utils';
   tag: 'yeti-field',
   shadow: false,
 })
+
 export class YetiField {
 
   @Element() el: HTMLElement;
@@ -59,9 +60,9 @@ export class YetiField {
   @Prop() tip: string = "";
 
   /**
-  * Value for HTML added to the label.
+  * Whether optional HTML has been added.
   */
-  @Prop() labelhtml: string;
+  @Prop() labelHtml: boolean = false;
 
   /**
    * Position of the input tip relative to the rest of the field's contents. Defaults to "below", can also be "above".
@@ -87,6 +88,7 @@ export class YetiField {
   }) isValid: boolean = true;
   @Watch('isValid')
   updateSlottedContentForErrorState(newValue: string) {
+
     if (!this.hasSlottedField) {
       return; // We don't need to do anything here unless the form element comes via slotted content.
     }
@@ -141,6 +143,7 @@ export class YetiField {
       return;
     }
 
+   
     if (this.required) {
 
       // Autoverification is on, this field is required, and the child component just notified us that it's ready for verification.
@@ -177,6 +180,7 @@ export class YetiField {
   errorId = utils.generateUniqueId();
   hasSlottedField: boolean = false;
   hasSlottedRequired: boolean = false;
+  hasSlottedHTML: boolean = false;
 
 
 
@@ -184,6 +188,7 @@ export class YetiField {
     
     let potentiallySlottedElement = this.el.querySelector('[slot="element"]');
     let potentiallySlottedRequired = this.el.querySelector('[slot="required"]');
+    let potentiallySlottedHTML = this.el.querySelector('[slot="labelHtml"]');
     let describedBy = (this.tip != "") ? `${this.tipId} ` : ``;
     describedBy += (this.errorMessage != "" && !this.isValid) ? `${this.errorId}` : ``;
 
@@ -191,6 +196,13 @@ export class YetiField {
     if (potentiallySlottedRequired) {
 
       this.hasSlottedRequired = true;
+
+    }
+
+     // Handle labelHtml
+     if (potentiallySlottedHTML) {
+
+      this.hasSlottedHTML = true;
 
     }
 
@@ -235,7 +247,6 @@ export class YetiField {
     let cssClass = "yeti-form-field";
     cssClass += (this.wrapperClass != "") ? ` ${this.wrapperClass}` : '';
 
-    let textClass = "yeti-typo-weight-normal";
 
     let tipClass = `yeti-form-tip`;
     tipClass += (this.tipPosition == "above") ? ` yeti-form-tip-above` : ``;
@@ -259,9 +270,7 @@ export class YetiField {
 
         <label htmlFor={this.inputId} class="yeti-form-label">{`${this.label}`}
           {(this.required && this.hasSlottedRequired) ? <slot name="required"></slot> : null}
-          {this.labelhtml && this.labelhtml.trim() !== '' ? (
-          <slot name="labelhtml"> <span innerHTML={this.labelhtml}></span></slot>
-          ) : null}
+          {(this.labelHtml && this.hasSlottedHTML) ? <slot name="labelHtml"></slot> : null}
           </label>
 
         {(!this.hasSlottedField) ?
@@ -284,6 +293,7 @@ export class YetiField {
                 input-class={!this.isValid ? 'yeti-input__error' : null} 
                 value={this.defaultValue} 
                 required={this.required}
+                labelHtml={this.labelHtml}
                 is-valid={this.isValid}
                 described-by={describedBy}
                 {...((this.inputMaxlength != 0) ? {"input-maxlength": this.inputMaxlength} : {})}
