@@ -290,10 +290,6 @@ export namespace Components {
          */
         "label": string;
         /**
-          * Whether optional HTML has been added.
-         */
-        "labelHtml": boolean;
-        /**
           * Whether the field is required to have a valid value by the greater form.
          */
         "required": boolean;
@@ -1491,11 +1487,7 @@ declare namespace LocalJSX {
         /**
           * Mandatory value for the label of the field.
          */
-        "label": string;
-        /**
-          * Whether optional HTML has been added.
-         */
-        "labelHtml"?: boolean;
+        "label"?: string;
         /**
           * Whether the field is required to have a valid value by the greater form.
          */
