@@ -232,6 +232,8 @@ export class YetiAccordionSection {
   render() {
 
     let wrapperCSS = 'yeti-accordion-section';
+
+    wrapperCSS += (this.isOpenable) ? ' yeti-accordion-section-openable' : '';
     wrapperCSS += (this.isOpen) ? ' yeti-accordion-section__open' : '';
 
     return (

@@ -12,17 +12,17 @@ export class YetiInput {
   /**
    * Event that fires when the user leaves (blurs) the input field.
    */
-  @Event({ bubbles: true }) readyToVerifySlow: EventEmitter<CustomEvent>;
+  @Event({ bubbles: true }) readyToVerifySlow: EventEmitter;
 
   /**
    * Event that fires when the user enters or changes the contents of the input field.
    */
-  @Event({ bubbles: true }) readyToVerifyFast: EventEmitter<CustomEvent>;
+  @Event({ bubbles: true }) readyToVerifyFast: EventEmitter;
 
   /**
    * Event that fires when the field is a search field and the user hits the clear button within it.
    */
-  @Event({ bubbles: true }) searchFieldClear: EventEmitter<CustomEvent>;
+  @Event({ bubbles: true }) searchFieldClear: EventEmitter;
 
   /**
    * CSS classlist applied to the actual HTML input element.
@@ -70,7 +70,7 @@ export class YetiInput {
   @Prop({
     mutable: true,
     reflect: true
-  }) isValid: boolean;
+  }) isValid: boolean = true;
 
   /**
    * The actual value of the input field.
@@ -123,7 +123,11 @@ export class YetiInput {
   handleKeyUp(ev) {
     this.isTouched = true;
     this.value = ev.target.value;
-    this.readyToVerifyFast.emit(ev);
+    this.readyToVerifyFast.emit({
+      "originalEvent": ev,
+      "yetiInput": this.el,
+      "value": ev.target.value
+    });
   }
 
 
@@ -132,7 +136,11 @@ export class YetiInput {
     this.value = "";
     (this.el.querySelector(".yeti-input") as HTMLInputElement).focus();
     ev.preventDefault();
-    this.searchFieldClear.emit(ev);
+    this.searchFieldClear.emit({
+      "originalEvent": ev,
+      "yetiInput": this.el,
+      "value": ev.target.value
+    });
     return false;
   }
 
@@ -142,7 +150,11 @@ export class YetiInput {
     ev.stopImmediatePropagation();
     this.isTouched = true;
     this.value = ev.target.value;
-    this.readyToVerifySlow.emit(ev);
+    this.readyToVerifySlow.emit({
+      "originalEvent": ev,
+      "yetiInput": this.el,
+      "value": ev.target.value
+    });
   }
 
 

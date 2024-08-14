@@ -109,16 +109,43 @@
 
 
 
-        <h4 class="margin-bottom-2">Validation and Required Fields</h4>
+        <h4 class="margin-bottom-3">Validation and Required Fields</h4>
 
-        <p class="margin-bottom-2">
-            Fields marked required (<code>required="true"</code>) auto-validate themselves by default (they check to see if the field is empty).
+
+
+        <h5 class="margin-bottom-2">Required</h5>
+
+        <p class="margin-bottom-4">
+            The required status of a field comes in two parts: programmatically and visually.
+        </p>
+
+
+
+        <h6 class="yeti-margin-bottom-1">Programmatically</h6>
+
+        <p>
+            Set the <code>required</code> attribute to <em>programmatically</em> define the field as required. This is used for auto-validation (see below) and assistive technology. See the <a href="#indicateRequired">next section</a> to <em>visually</em> indicate the field as required.
         </p>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
 
-<yeti-field label="You Must Enter Something Here" required="true"></yeti-field>
+<yeti-field label="Example label" required="true"></yeti-field>
+
+        </div><!-- /code_sample -->
+
+        
+
+        <h6 class="yeti-margin-bottom-1" id="indicateRequired">Visually</h6>
+
+        <p>
+            Set the <code>indicate-required</code> attribute to <em>visually</em> define the field as required. This is used to show an indicator to the user (a <a href="form.html#requiredSymbol">Required Symbol</a> by default).
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<yeti-field label="Example label" required="true" indicate-required="true"></yeti-field>
 
         </div><!-- /code_sample -->
 
@@ -134,6 +161,21 @@
         <div class="ydoc-code_sample">
 
 <yeti-field label="Example label" is-valid="false" tip="Helpful tip" error-message="Invalid value" required="true"></yeti-field>
+
+        </div><!-- /code_sample -->
+
+
+
+        <h5 class="yeti-margin-bottom-2">Automatic Validation</h5>
+
+        <p class="margin-bottom-2">
+            Fields marked required (<code>required="true"</code>) auto-validate themselves by default (they check to see if the field is empty).
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<yeti-field label="You Must Enter Something Here" required="true"></yeti-field>
 
         </div><!-- /code_sample -->
 

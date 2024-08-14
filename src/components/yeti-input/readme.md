@@ -17,7 +17,7 @@
 | `inputId`       | `input-id`        | id applied to the actual HTML input element.                                                       | `string`  | `utils.generateUniqueId()` |
 | `inputName`     | `input-name`      | name applied to the actual HTML input element. Defaults to match id.                               | `string`  | `this.inputId`             |
 | `inputTabindex` | `input-tabindex`  | The tabindex of the input field.                                                                   | `string`  | `''`                       |
-| `isValid`       | `is-valid`        | Tracks whether the input's current value is valid or not.                                          | `boolean` | `undefined`                |
+| `isValid`       | `is-valid`        | Tracks whether the input's current value is valid or not.                                          | `boolean` | `true`                     |
 | `labeledBy`     | `labeled-by`      | id of an outside HTML element pointed to by the actual input element's aria-labeledby attribute.   | `string`  | `""`                       |
 | `maxlength`     | `input-maxlength` | Optional attribute to set the maxlength of the field                                               | `number`  | `0`                        |
 | `placeholder`   | `placeholder`     | Standard old-school input placeholder                                                              | `string`  | `""`                       |
@@ -29,11 +29,11 @@
 
 ## Events
 
-| Event               | Description                                                                                     | Type                            |
-| ------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------- |
-| `readyToVerifyFast` | Event that fires when the user enters or changes the contents of the input field.               | `CustomEvent<CustomEvent<any>>` |
-| `readyToVerifySlow` | Event that fires when the user leaves (blurs) the input field.                                  | `CustomEvent<CustomEvent<any>>` |
-| `searchFieldClear`  | Event that fires when the field is a search field and the user hits the clear button within it. | `CustomEvent<CustomEvent<any>>` |
+| Event               | Description                                                                                     | Type               |
+| ------------------- | ----------------------------------------------------------------------------------------------- | ------------------ |
+| `readyToVerifyFast` | Event that fires when the user enters or changes the contents of the input field.               | `CustomEvent<any>` |
+| `readyToVerifySlow` | Event that fires when the user leaves (blurs) the input field.                                  | `CustomEvent<any>` |
+| `searchFieldClear`  | Event that fires when the field is a search field and the user hits the clear button within it. | `CustomEvent<any>` |
 
 
 ## Dependencies

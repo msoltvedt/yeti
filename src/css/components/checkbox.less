@@ -23,8 +23,11 @@ yeti-checkbox {
     color: unset;
     display: grid;
     grid-template-columns: 1.25rem 1fr;
-    grid-template-rows: max-content 1fr;
+    grid-template-rows: max-content;
     gap: 0.25rem 0.5rem;
+}
+.yeti-checkbox-wrapper:has(.yeti-form-tip) {
+    grid-template-rows: max-content 1fr;
 }
 
 

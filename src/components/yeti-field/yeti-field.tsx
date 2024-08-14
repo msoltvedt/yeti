@@ -31,11 +31,6 @@ export class YetiField {
   @Prop() type: string = "text";
 
   /**
-   * CSS classlist that will be assigned to the containing field element (probably a div).
-   */
-  @Prop() fieldClass: string = "";
-
-  /**
    * maximum length for the field.
    */
   @Prop() inputMaxlength?: number = 0;
@@ -66,7 +61,12 @@ export class YetiField {
   /**
    * Whether the field is required to have a valid value by the greater form.
    */
-  @Prop() required: boolean = false;
+  @Prop() required?: boolean = false;
+
+  /**
+   * Whether to indicate the field is required by showing a default icon.
+   */
+  @Prop() indicateRequired?: boolean = false;
 
   /**
    * Error message that appears when the field is invalid. Can be updated at any time.
@@ -121,6 +121,16 @@ export class YetiField {
    * Additional user-supplied CSS classes to apply to the Field's wrapper.
    */
   @Prop() wrapperClass?: string = "";
+
+  /**
+   * Additional user-supplied CSS classes to apply to the input.
+   */
+  @Prop() inputClass?: string = "";
+
+  /**
+   * Additional user-supplied CSS classes to apply to the input's wrapper.
+   */
+  @Prop() inputWrapperClass?: string = "";
 
   /**
    * Tracks whether the field's input has been focused and then blurred (i.e. if the user has interacted with it yet).
@@ -225,6 +235,33 @@ export class YetiField {
 
 
 
+  renderRequiredIndicator() {
+
+    if (!this.required) {
+      return null;
+    }
+    
+
+    if (this.required && this.indicateRequired) {
+
+      // Use the slotted required content if it exists
+      if (this.hasSlottedRequired) {
+        return <slot name="required"></slot>;
+      }
+
+      // Otherwise use the Yeti Required Symbol
+      else {
+        return <span class="yeti-form-label-required-wrapper">
+          <yeti-required-symbol></yeti-required-symbol>
+        </span>;
+      }
+
+    }
+
+  }
+
+
+
   render() {
 
     let cssClass = "yeti-form-field";
@@ -236,22 +273,18 @@ export class YetiField {
     let describedBy = (this.tip != "") ? `${this.tipId} ` : ``;
     describedBy += (this.errorMessage != "" && !this.isValid) ? `${this.errorId}` : ``;
 
-
     if (this.isInline) {
       cssClass += " yeti-form-field-inline";
     }
 
     this.validateLabel(this.label);
 
-    if (this.fieldClass != "") {
-      cssClass = "yeti-form-field " + this.fieldClass;
-    }
-
     return (
       <div class={cssClass}>
 
-        <label htmlFor={this.inputId} class="yeti-form-label">{`${this.label} `}
-          {(this.required && this.hasSlottedRequired) ? <slot name="required"></slot> : null}
+        <label htmlFor={this.inputId} class="yeti-form-label">
+          {`${this.label} `}
+          {this.renderRequiredIndicator()}
         </label>
 
         {(!this.hasSlottedField) ?
@@ -270,12 +303,14 @@ export class YetiField {
             :
           
               <yeti-input 
-                input-id={this.inputId} 
-                input-class={!this.isValid ? 'yeti-input__error' : null} 
+                inputId={this.inputId} 
+                // input-class={!this.isValid ? 'yeti-input__error' : null}
                 value={this.defaultValue} 
                 required={this.required}
-                is-valid={this.isValid}
-                described-by={describedBy}
+                isValid={this.isValid}
+                describedBy={describedBy}
+                {...((this.inputClass != "") ? {"input-class": this.inputClass} : {})}
+                {...((this.inputWrapperClass != "") ? {"wrapper-class": this.inputWrapperClass} : {})}
                 {...((this.inputMaxlength != 0) ? {"input-maxlength": this.inputMaxlength} : {})}
               ></yeti-input>
 

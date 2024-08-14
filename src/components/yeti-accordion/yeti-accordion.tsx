@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Element, Listen } from '@stencil/core';
+import { Component, Prop, h, State, Element, Watch, Listen } from '@stencil/core';
 import { utils } from '../../utils/utils';
 
 @Component({
@@ -16,6 +16,11 @@ export class YetiAccordion {
     mutable: true,
     reflect: true
   }) openIndex: number = 0;
+ 
+  @Watch("openIndex")
+  handleOpenIndexChange(newSectionIndex: number) {
+    this.openSection(newSectionIndex);
+  }
 
   /**
    * The total number of sections the Accordion has.
@@ -97,8 +102,11 @@ export class YetiAccordion {
     this.sectionElements.forEach((sectionElements, index) => {
       let section = sectionElements as HTMLElement;
       let sectionHeader = section.querySelector(".yeti-accordion-section-heading") as HTMLElement;
+      let sectionStatus = section.getAttribute("status");
 
       if (index == suppliedIndex) {
+        section.setAttribute("is-openable", "true");
+        section.setAttribute("status", (sectionStatus == "undefined" ? "reachable" : sectionStatus));
         section.setAttribute("is-open", "true");
         this.openIndex = index;
         setTimeout(() => { 
