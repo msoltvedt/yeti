@@ -290,13 +290,13 @@ export namespace Components {
          */
         "label": string;
         /**
+          * Whether optional HTML has been added.
+         */
+        "labelHtml": boolean;
+        /**
           * Whether the field is required to have a valid value by the greater form.
          */
         "required": boolean;
-        /**
-          * Value for the optional input tip that appears at the bottom of the field.
-         */
-        "text": string;
         /**
           * Value for the optional input tip that appears at the bottom of the field.
          */
@@ -1493,13 +1493,13 @@ declare namespace LocalJSX {
          */
         "label": string;
         /**
+          * Whether optional HTML has been added.
+         */
+        "labelHtml"?: boolean;
+        /**
           * Whether the field is required to have a valid value by the greater form.
          */
         "required"?: boolean;
-        /**
-          * Value for the optional input tip that appears at the bottom of the field.
-         */
-        "text"?: string;
         /**
           * Value for the optional input tip that appears at the bottom of the field.
          */
