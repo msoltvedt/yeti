@@ -67,7 +67,7 @@ const YetiReorderer = class {
         if (this.wrapperClass != '') {
             wrapperClass += ` ${this.wrapperClass}`;
         }
-        return (h("ul", { key: '1b3bea2b2979244dffd3baeaea0a39b4142f8042', class: wrapperClass }, h("slot", { key: 'f80d852a10ec7682901e02b51e1c387d5362b8a5' })));
+        return (h("ul", { key: '1ed804dd00cd68cc774200c11d6d41bac14467f7', class: wrapperClass }, h("slot", { key: 'a730c97dd188ad35c779ebe6089878de67f4cd09' })));
     }
     get el() { return getElement(this); }
 };

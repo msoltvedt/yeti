@@ -10,6 +10,9 @@ const YetiAccordion = class {
         this.isWizard = false;
         this.iLoveJSX = false;
     }
+    handleOpenIndexChange(newSectionIndex) {
+        this.openSection(newSectionIndex);
+    }
     handleAccordionActionClicked(e) {
         switch (e.detail.actionType) {
             case "previous": {
@@ -48,7 +51,10 @@ const YetiAccordion = class {
         this.sectionElements.forEach((sectionElements, index) => {
             let section = sectionElements;
             let sectionHeader = section.querySelector(".yeti-accordion-section-heading");
+            let sectionStatus = section.getAttribute("status");
             if (index == suppliedIndex) {
+                section.setAttribute("is-openable", "true");
+                section.setAttribute("status", (sectionStatus == "undefined" ? "reachable" : sectionStatus));
                 section.setAttribute("is-open", "true");
                 this.openIndex = index;
                 setTimeout(() => {
@@ -85,9 +91,12 @@ const YetiAccordion = class {
         });
     }
     render() {
-        return (h("div", { key: '8a3cb414850374cb760541f0baf1c613ab9b243d', class: "yeti-accordion" }, h("slot", { key: '733744b4681a852ccbafe207f44e85807cc0bb7c' })));
+        return (h("div", { key: 'd0a6454c97acd3850b0334250105ebd97abdc6cc', class: "yeti-accordion" }, h("slot", { key: '0b844628b0c20435d23e2ffdef7abf309756c26b' })));
     }
     get el() { return getElement(this); }
+    static get watchers() { return {
+        "openIndex": ["handleOpenIndexChange"]
+    }; }
 };
 
 export { YetiAccordion as yeti_accordion };

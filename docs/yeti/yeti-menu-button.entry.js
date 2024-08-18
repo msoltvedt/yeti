@@ -310,7 +310,7 @@ const YetiMenuButton = class {
         buttonClass += (this.buttonClass && this.buttonClass != "") ? " " + this.buttonClass : "";
         menuClass += (this.menuClass && this.menuClass != "") ? " " + this.menuClass : "";
         return ([
-            h("div", { key: 'd6ef2092fc8cd2730acec7ec55350ae552a7a87d', class: wrapperClass }, (this.hasTooltip) ?
+            h("div", { key: '2b7fc8da10807e59eda5701a20c5283b8bc2b959', class: wrapperClass }, (this.hasTooltip) ?
                 h("yeti-tooltip", { text: this.tooltipText, id: tooltipId, slotId: this.buttonId, tipId: `${this.buttonId}_tooltip` }, this.renderButton(buttonClass))
                 :
                     this.renderButton(buttonClass), h("ul", { class: menuClass, role: "menu", id: this.menuId, "aria-labelledby": this.buttonId, key: this.menuId }, this.renderMenuItems()))

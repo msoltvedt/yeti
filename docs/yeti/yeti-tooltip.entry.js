@@ -115,7 +115,7 @@ const YetiTooltip = class {
                 break;
         }
         return ([
-            h("div", { key: '8062700e579dc1120dbca145e08068cec35d19bd', class: wrapperClass }, h("div", Object.assign({ key: '9b748489ff428486bcc64b3dda00b2df5d7af24c', class: "yeti-tooltip-trigger", onClick: (e) => this.handleTriggerClick(e), onKeyPress: (e) => this.handleTriggerKeyPress(e) }, ((this.clickToOpen) ? { "tabindex": 0 } : {})), h("slot", { key: '63f530ee849fd029cb1768010b361767a370ddd8' })), h("div", { key: '4fcb8078bfc5fa2a42bf7bfe5eb1cb5af019551d', class: tipClass }, h("div", { key: '3988630e9440aca5a1ae86462166bd7466bd16de', class: "yeti-tooltip-content", id: this.tipId }, this.renderContent()), (this.clickToOpen && this.isClickedOpen) ?
+            h("div", { key: 'f32418d737af5aa967700aee334ae9f11561a9f3', class: wrapperClass }, h("div", Object.assign({ key: '54c8de4169ff0000f4b85c5e183c4ec7a4e1c4fb', class: "yeti-tooltip-trigger", onClick: (e) => this.handleTriggerClick(e), onKeyPress: (e) => this.handleTriggerKeyPress(e) }, ((this.clickToOpen) ? { "tabindex": 0 } : {})), h("slot", { key: '07d0b196fdb6168d65d7775131fcd7f9b2b54f21' })), h("div", { key: 'e2e2bcd8908fd0a2db6d102aef310764302e6045', class: tipClass }, h("div", { key: '4e389d1cd14a3207ee0f1e3555f62b8e07358358', class: "yeti-tooltip-content", id: this.tipId }, this.renderContent()), (this.clickToOpen && this.isClickedOpen) ?
                 h("button", { class: "yeti-tooltip-close", onClick: (e) => { this.handleCloseTooltipClick(e); } }, h("yeti-icon", { iconCode: "close", iconClass: 'yeti-color-white yeti-typo-size-5' }))
                 :
                     null))

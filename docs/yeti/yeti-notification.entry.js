@@ -82,10 +82,10 @@ const YetiTooltip = class {
         wrapperClass += (this.isLowContrast) ? ' yeti-notification-low_contrast' : '';
         // Set visibility
         wrapperClass += (this.isVisible) ? '' : ' yeti-notification__hidden';
-        return (h("div", { key: '8cc741019792617d3d7abd0d348874fa35c18774', class: wrapperClass, id: this.notificationId, role: "status" }, h("div", { key: 'd05059c6457ca1324b3e2aacfdcbbea493ce5c02', class: "yeti-notification-icon" }, h("span", { key: 'f5a886f09ad150978fc9ccec4f58975619a1b048', class: "material-icons", "aria-hidden": "true" }, iconCode), h("span", { key: 'a9c9e65db0a28e9f20844cff92285eb9f74c4d24', class: "yeti-a11y-hidden" }, altText)), h("div", { key: 'deb524d38bcc2dc65705777fd00509c0c1a11010', class: "yeti-notification-content" }, (this.textTitle != "") ?
+        return (h("div", { key: '222e1dd98b56a58a31f2705983678bf2a196ad69', class: wrapperClass, id: this.notificationId, role: "status" }, h("div", { key: '969b919cfedfac214b3057dc5a3175c82d0f81b5', class: "yeti-notification-icon" }, h("span", { key: '50bfa10eb33fc756ceae83aa147a0f0b75c73541', class: "material-icons", "aria-hidden": "true" }, iconCode), h("span", { key: '817164c5b9fc4c3f4cb45ca92232860bfdbc584f', class: "yeti-a11y-hidden" }, altText)), h("div", { key: '2b7216fc8c7739a75e2eeeb287a191996e8e7b4a', class: "yeti-notification-content" }, (this.textTitle != "") ?
             h("div", { class: "yeti-notification-content-title" }, this.textTitle)
             :
-                '', h("div", { key: 'af63c428b3779257525e92274b8db8b544ed2248', class: "yeti-notification-content-subtitle" }, h("slot", { key: '049fe497dfa35c22b109d752b9ff65861160ee0b' }))), (this.actionLabel != "") ?
+                '', h("div", { key: '17602834937f4cb976ef9b719aad1d52976818e6', class: "yeti-notification-content-subtitle" }, h("slot", { key: 'ea67e06b5946601b38a30b48d991c06a8b6a372b' }))), (this.actionLabel != "") ?
             h("button", { class: "yeti-notification-action", onClick: (e) => this.handleActionClick(e) }, this.actionLabel)
             :
                 "", (this.showCloseButton) ?

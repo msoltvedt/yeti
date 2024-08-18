@@ -98,6 +98,10 @@ yeti-checkbox {
 
 
 /************************************** Checkbox Fieldset ***/
+.yeti-checkbox-fieldset {
+    width: fit-content;
+}
+
 .yeti-checkbox-fieldset-legend {
     color: #525252;
     line-height: 1rem;
@@ -105,8 +109,35 @@ yeti-checkbox {
     margin-bottom: 0.5rem;
 }
 
-.yeti-checkbox-checkboxs {
+.yeti-checkbox-checkboxes {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    padding-right: 0.25rem;
+}
+
+/*** With Error ***/
+.yeti-checkbox-fieldset__error .yeti-checkbox-checkboxes {
+    border: 2px solid #DA1E28;
+}
+
+.yeti-checkbox-error {
+    color: #DA1E28;
+    padding-top: 0.5rem;
+    display: inline-flex;
+    gap: 0.25rem;
+    align-items: flex-start;
+}
+.yeti-checkbox-fieldset:not(.yeti-checkbox-fieldset__error) .yeti-checkbox-error {
+    display: none;
+}
+
+.yeti-checkbox-error-icon {
+    font-size: 1rem;
+}
+
+.yeti-checkbox-error-message {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    letter-spacing: 0.02rem;
 }

@@ -283,8 +283,6 @@ export class YetiField {
       cssClass += " yeti-form-field-inline";
     }
 
-    this.validateLabel(this.label);
-
     return (
       <div class={cssClass}>
 
@@ -315,6 +313,7 @@ export class YetiField {
                 required={this.required}
                 isValid={this.isValid}
                 describedBy={describedBy}
+                inputName={this.inputName}
                 {...((this.inputClass != "") ? {"input-class": this.inputClass} : {})}
                 {...((this.inputWrapperClass != "") ? {"wrapper-class": this.inputWrapperClass} : {})}
                 {...((this.inputMaxlength != 0) ? {"input-maxlength": this.inputMaxlength} : {})}

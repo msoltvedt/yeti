@@ -66,14 +66,14 @@ const YetiPageContents = class {
         if (!this.isExpanded) {
             wrapperCSS += " yeti-page_contents__collapsed";
         }
-        return (h("div", { key: 'e4aa5faa49f4f8de0ca40a0f4924cd087f01c156', class: wrapperCSS, id: this.wrapperId }, (!this.isExpanded) ?
+        return (h("div", { key: 'c617c88ff319adc0abe2bba87ff52796176483cc', class: wrapperCSS, id: this.wrapperId }, (!this.isExpanded) ?
             h("button", { class: "yeti-page_contents-minmax", title: 'Expand page contents', onClick: (e) => {
                     e.preventDefault();
                     e.stopImmediatePropagation();
                     this.isExpanded = true;
                 } }, h("yeti-icon", { iconCode: 'toc' }))
             :
-                "", h("ul", { key: 'e271e3a2da252c3ecf753981afa9b1fa8e7bb58e', class: "yeti-page_contents-headings" }, this.headings.map((heading, index) => {
+                "", h("ul", { key: '323383c5cdc847685745f951ed6bf58f57b7a190', class: "yeti-page_contents-headings" }, this.headings.map((heading, index) => {
             let css = `yeti-page_contents-heading yeti-page_contents-heading-level-${heading.level}`;
             let href = `#${heading.id}`;
             let myId = `${heading.id}_entry`;
@@ -93,25 +93,25 @@ const YetiPageContents = class {
                     e.stopImmediatePropagation();
                     document.getElementById(heading.id).scrollIntoView({ behavior: "smooth", inline: "start" });
                 } }, label, (index == 0) ? minimize : ''));
-        }), h("li", { key: 'acbdabac4f55a785d6e11b5a8b3e9ac536966f45', class: 'yeti-page_contents-heading-actions' }, h("a", { key: 'c5ff09f98f9f1e345e84fdf8a832e4353a0a5f77', href: '', title: "Back to top", onClick: (e) => {
+        }), h("li", { key: 'c7090de0b8c14ed18d9672d9912a1c8f8c434176', class: 'yeti-page_contents-heading-actions' }, h("a", { key: '58dc5e1c17b8dab61097048d1605d24cd6c809ca', href: '', title: "Back to top", onClick: (e) => {
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 document.body.scrollIntoView({ behavior: "smooth", inline: "start" });
-            }, class: 'yeti-page_contents-heading-action' }, h("yeti-icon", { key: '06a0d915a42e1e3e6cc0142db21624fedc6e484e', iconCode: 'vertical_align_top' })), h("a", { key: '4fa9b9111ac895c3ce6f061dc064fb4cb8512533', href: '', title: "Collapse all code blocks", onClick: (e) => {
+            }, class: 'yeti-page_contents-heading-action' }, h("yeti-icon", { key: '91709fa48685a27aebe2da5f2cc096113fa20a87', iconCode: 'vertical_align_top' })), h("a", { key: 'e236be2ace7dc9fcfafb9658d17f649143ea0591', href: '', title: "Collapse all code blocks", onClick: (e) => {
                 let demoes = document.getElementsByClassName("ydoc-code_sample");
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 for (let i = 0; i < demoes.length; i++) {
                     demoes[i].classList.remove("ydoc-demo__code_expanded");
                 }
-            }, class: 'yeti-page_contents-heading-action' }, h("yeti-icon", { key: '1ecb88a0ff7b11d6af3f52a57e21f35772c60bbb', iconCode: 'unfold_less_double' })), h("a", { key: 'f62a7e8ef6bc8156dff84b88368c147f2e6b4467', href: '', title: "Expand all code blocks", onClick: (e) => {
+            }, class: 'yeti-page_contents-heading-action' }, h("yeti-icon", { key: '1a9ed61f0c8d3d9f6b446332ebd1fb2515c43b3c', iconCode: 'unfold_less_double' })), h("a", { key: '83cb0044604b6034e3f4280ceaf917e3f2cc3624', href: '', title: "Expand all code blocks", onClick: (e) => {
                 let demoes = document.getElementsByClassName("ydoc-code_sample");
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 for (let i = 0; i < demoes.length; i++) {
                     demoes[i].classList.add("ydoc-demo__code_expanded");
                 }
-            }, class: 'yeti-page_contents-heading-action' }, h("yeti-icon", { key: '48956549ecbd703b072c2e687d12978b2bf11779', iconCode: 'unfold_more_double' }))))));
+            }, class: 'yeti-page_contents-heading-action' }, h("yeti-icon", { key: 'ec0f0d2f5fdc28beef50e2fae5cf5fd48abb1817', iconCode: 'unfold_more_double' }))))));
     }
     componentDidLoad() {
         // Set up the Intersection Observer stuff (so we can style the list item whose heading is in view)

@@ -8,6 +8,30 @@
 
 
 
+/************************************** Page Templates ***/
+.app-page-wizard {
+    min-width: min-content;
+    width: min(100%, 62.375rem);
+    margin: 3rem auto;
+    padding: 3rem;
+}
+
+body:has(.app-page-wizard)::after {
+    content: '';
+    width: 1px;
+    height: 1px;
+    display: block;
+}
+
+
+
+/************************************** Typography ***/
+.app-typo-line_height-default {
+    line-height: 1.125rem;
+}
+
+
+
 /************************************** Header ***/
 .app-nav-wrapper {
     display: flex;
@@ -59,4 +83,21 @@
 
 .app-insert_token-menu-key {
     font-weight: bold;
+}
+
+
+
+/************************************** Summary Definition List ***/
+.app-summary_list {
+    display: grid;
+    grid-template-columns: minmax(min-content, max-content) 1fr;
+    line-height: 1.25rem;
+}
+
+.app-summary_list-term {
+    font-weight: 700;
+}
+.app-summary_list-term,
+.app-summary_list-definition {
+    padding: 0.25rem 1rem 0.25rem 0;
 }

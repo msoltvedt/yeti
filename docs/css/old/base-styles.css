@@ -509,8 +509,20 @@ label {
   font-weight:bold
 }
 
+.go-to-links{
+  font-weight:bold;
+  font-size:16px;
+  margin-left:16px;
+}
 
-
+.go-to-links-icon{
+  color:blue;
+  font-size:1rem !important;
+  text-align:center;
+  margin-left:0.313rem;
+  text-decoration:none;
+  cursor:pointer;
+}
 
 .header-links {
   padding-top: 0.875rem;
@@ -1985,7 +1997,7 @@ span.username-trunc {
   gap: 2rem;
   align-items: flex-start;
   flex-wrap: wrap;
-  margin: 2rem 0;
+  margin-bottom: 1rem;
 }
 
 .batch_header-property {
@@ -2072,11 +2084,21 @@ line-height:1.5
 }
 
 .nbv-select_material_spec-selection__inert {
-  color: rgba(22, 22, 22, 0.25);
+  color: #8d8d8d;
+}
+
+.nbv-select_material_spec-selection-property {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .nbv-select_material_spec-selection-property-name {
   font-weight: 600;
   line-height: 1rem;
+}
+
+.nbv-select_material_spec-selection-property-value {
+  line-height: 1.125rem;
 }
 

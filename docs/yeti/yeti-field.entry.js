@@ -8,11 +8,12 @@ const YetiField = class {
         this.errorId = utils.generateUniqueId();
         this.hasSlottedField = false;
         this.hasSlottedRequired = false;
+        this.hasSlottedLabel = false;
         this.inputId = utils.generateUniqueId();
         this.inputName = this.inputId;
         this.type = "text";
         this.inputMaxlength = 0;
-        this.label = undefined;
+        this.label = "";
         this.tip = "";
         this.tipPosition = "below";
         this.required = false;
@@ -24,14 +25,8 @@ const YetiField = class {
         this.isInline = false;
         this.wrapperClass = "";
         this.inputClass = "";
+        this.inputWrapperClass = "";
         this.isDirty = false;
-    }
-    validateLabel(newValue) {
-        // Label must have a non-empty value.
-        const isInvalid = typeof newValue !== 'string' || newValue === '';
-        if (isInvalid) {
-            throw new Error('yeti-field must have a non-empty label attribute');
-        }
     }
     updateSlottedContentForErrorState(newValue) {
         if (!this.hasSlottedField) {
@@ -75,11 +70,16 @@ const YetiField = class {
     componentWillLoad() {
         let potentiallySlottedElement = this.el.querySelector('[slot="element"]');
         let potentiallySlottedRequired = this.el.querySelector('[slot="required"]');
+        let potentiallySlottedLabel = this.el.querySelector('[slot="label"]');
         let describedBy = (this.tip != "") ? `${this.tipId} ` : ``;
         describedBy += (this.errorMessage != "" && !this.isValid) ? `${this.errorId}` : ``;
         // Handle Required
         if (potentiallySlottedRequired) {
             this.hasSlottedRequired = true;
+        }
+        // Handle label
+        if (potentiallySlottedLabel) {
+            this.hasSlottedLabel = true;
         }
         // Handle Element
         if (potentiallySlottedElement) {
@@ -134,14 +134,13 @@ const YetiField = class {
         if (this.isInline) {
             cssClass += " yeti-form-field-inline";
         }
-        this.validateLabel(this.label);
-        return (h("div", { key: 'f7a27279afbaef2404979b2400701bd302a707aa', class: cssClass }, h("label", { key: '38853e76bb8ff5afbde96c77019d8f3e01aac052', htmlFor: this.inputId, class: "yeti-form-label" }, `${this.label} `, this.renderRequiredIndicator()), (!this.hasSlottedField) ?
+        return (h("div", { key: '8037954addce9453d0f16039d562d176f5ca7338', class: cssClass }, h("label", { key: 'cc33a6c55243ae85dee2a41f5a52a91b155866b6', htmlFor: this.inputId, class: "yeti-form-label" }, (this.hasSlottedLabel) ? h("slot", { name: "label" }) : `${this.label}`, (this.required && this.hasSlottedRequired) ? h("slot", { name: "required" }) : null), (!this.hasSlottedField) ?
             (this.type == "date") ?
                 h("yeti-date-picker", { "input-id": this.inputId, "input-name": this.inputName, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": describedBy })
                 :
                     h("yeti-input", Object.assign({ inputId: this.inputId,
                         // input-class={!this.isValid ? 'yeti-input__error' : null}
-                        value: this.defaultValue, required: this.required, isValid: this.isValid, describedBy: describedBy }, ((this.inputClass != "") ? { "input-class": this.inputClass } : {}), ((this.inputMaxlength != 0) ? { "input-maxlength": this.inputMaxlength } : {})))
+                        value: this.defaultValue, required: this.required, isValid: this.isValid, describedBy: describedBy }, ((this.inputClass != "") ? { "input-class": this.inputClass } : {}), ((this.inputWrapperClass != "") ? { "wrapper-class": this.inputWrapperClass } : {}), ((this.inputMaxlength != 0) ? { "input-maxlength": this.inputMaxlength } : {})))
             :
                 h("slot", { name: "element" }), (this.tip != "") ?
             h("span", { class: tipClass, "aria-live": "polite", id: this.tipId }, this.tip)
@@ -153,7 +152,6 @@ const YetiField = class {
     }
     get el() { return getElement(this); }
     static get watchers() { return {
-        "label": ["validateLabel"],
         "isValid": ["updateSlottedContentForErrorState"]
     }; }
 };

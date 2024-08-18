@@ -28,20 +28,32 @@ const YetiInput = class {
     handleKeyUp(ev) {
         this.isTouched = true;
         this.value = ev.target.value;
-        this.readyToVerifyFast.emit(ev);
+        this.readyToVerifyFast.emit({
+            "originalEvent": ev,
+            "yetiInput": this.el,
+            "value": ev.target.value
+        });
     }
     handleClearClick(ev) {
         this.value = "";
         this.el.querySelector(".yeti-input").focus();
         ev.preventDefault();
-        this.searchFieldClear.emit(ev);
+        this.searchFieldClear.emit({
+            "originalEvent": ev,
+            "yetiInput": this.el,
+            "value": ev.target.value
+        });
         return false;
     }
     handleFieldBlur(ev) {
         ev.stopImmediatePropagation();
         this.isTouched = true;
         this.value = ev.target.value;
-        this.readyToVerifySlow.emit(ev);
+        this.readyToVerifySlow.emit({
+            "originalEvent": ev,
+            "yetiInput": this.el,
+            "value": ev.target.value
+        });
     }
     render() {
         let cssClasses = 'yeti-input';
@@ -56,7 +68,7 @@ const YetiInput = class {
         if (this.isValid == false) {
             cssClasses += ' yeti-input__error';
         }
-        return (h("div", { key: '396bca163275e1acfaf0ac5152080e144c3de19d', class: wrapperClasses }, h("input", Object.assign({ key: '843910c78934b4dedcc1354b60eb8235a106f93f', type: this.type, class: cssClasses, id: this.inputId, name: this.inputName, value: this.value, onKeyUp: (ev) => this.handleKeyUp(ev), onBlur: (ev) => this.handleFieldBlur(ev), "aria-invalid": !this.isValid }, ((this.autocomplete != "") ? { "autocomplete": this.autocomplete } : {}), ((this.inputTabindex != "") ? { "tabindex": this.inputTabindex } : {}), ((this.labeledBy != "") ? { "aria-labelledby": this.labeledBy } : {}), ((this.controls != "") ? { "aria-controls": this.controls } : {}), ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {}), ((this.description != "") ? { "aria-description": this.description } : {}), ((this.placeholder != "") ? { "placeholder": this.placeholder } : {}), ((this.maxlength != 0) ? { "maxlength": this.maxlength } : {}))), h("button", { key: '64180edb8dbb4519e151083489337f5a00122eec', class: clearButtonClass, onClick: (ev) => this.handleClearClick(ev) }, h("span", { key: '42956ad80e035ef035e2b76abf2ae5ba692ba433', class: "material-icons yeti-size-4 yeti-typo-size-4", "aria-hidden": "true" }, "close"), h("span", { key: 'f2696b676cae76b96da42a63febc3ac94f1e7c41', class: "yeti-a11y-hidden" }, "Clear search input"))));
+        return (h("div", { key: 'a53c299518b77ad07616b46648df9d3ecf6d40ad', class: wrapperClasses }, h("input", Object.assign({ key: 'abf134205afe6a339ab9fd6e3901b5210999c349', type: this.type, class: cssClasses, id: this.inputId, name: this.inputName, value: this.value, onKeyUp: (ev) => this.handleKeyUp(ev), onBlur: (ev) => this.handleFieldBlur(ev), "aria-invalid": !this.isValid }, ((this.autocomplete != "") ? { "autocomplete": this.autocomplete } : {}), ((this.inputTabindex != "") ? { "tabindex": this.inputTabindex } : {}), ((this.labeledBy != "") ? { "aria-labelledby": this.labeledBy } : {}), ((this.controls != "") ? { "aria-controls": this.controls } : {}), ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {}), ((this.description != "") ? { "aria-description": this.description } : {}), ((this.placeholder != "") ? { "placeholder": this.placeholder } : {}), ((this.maxlength != 0) ? { "maxlength": this.maxlength } : {}))), h("button", { key: '2ab74313effe7f5b288e8696bbd5897e573d123e', class: clearButtonClass, onClick: (ev) => this.handleClearClick(ev) }, h("span", { key: 'fbc5aa8cd42ac57a1bf14923b6c2fdcd00fa5c86', class: "material-icons yeti-size-4 yeti-typo-size-4", "aria-hidden": "true" }, "close"), h("span", { key: 'af873ef55180dbcf8eb7d747d12927257ff2c385', class: "yeti-a11y-hidden" }, "Clear search input"))));
     }
     get el() { return getElement(this); }
 };
