@@ -262,9 +262,13 @@ export namespace Components {
          */
         "errorMessage": string;
         /**
-          * CSS classlist that will be assigned to the containing field element (probably a div).
+          * Whether to indicate the field is required by showing a default icon.
          */
-        "fieldClass": string;
+        "indicateRequired"?: boolean;
+        /**
+          * Additional user-supplied CSS classes to apply to the input.
+         */
+        "inputClass"?: string;
         /**
           * id that will be assigned to the actual input element. A unique one will be assigned if one is not provided.
          */
@@ -277,6 +281,10 @@ export namespace Components {
           * name that will be assigned to the actual input element. id will be assigned if one is not provided.
          */
         "inputName": string;
+        /**
+          * Additional user-supplied CSS classes to apply to the input's wrapper.
+         */
+        "inputWrapperClass"?: string;
         /**
           * Determines whether the field uses block (default) or inline labels.
          */
@@ -292,7 +300,7 @@ export namespace Components {
         /**
           * Whether the field is required to have a valid value by the greater form.
          */
-        "required": boolean;
+        "required"?: boolean;
         /**
           * Value for the optional input tip that appears at the bottom of the field.
          */
@@ -654,6 +662,26 @@ export namespace Components {
          */
         "wrapperClass": string;
     }
+    interface YetiRequiredKey {
+        /**
+          * Whether all fields are required (default) or not.
+         */
+        "allFieldsRequired": boolean;
+        /**
+          * CSS classlist applied to the wrapper element.
+         */
+        "cssClass"?: string;
+    }
+    interface YetiRequiredSymbol {
+        /**
+          * Alternative text announced by screen-readers; set to an empty string to announce nothing.
+         */
+        "alt"?: string;
+        /**
+          * CSS classlist applied to the element.
+         */
+        "cssClass"?: string;
+    }
     interface YetiTable {
         /**
           * Unique type that captures the table's contents and configurable state information. See utils.ts for details.
@@ -984,9 +1012,9 @@ declare global {
         new (): HTMLYetiIconElement;
     };
     interface HTMLYetiInputElementEventMap {
-        "readyToVerifySlow": CustomEvent;
-        "readyToVerifyFast": CustomEvent;
-        "searchFieldClear": CustomEvent;
+        "readyToVerifySlow": any;
+        "readyToVerifyFast": any;
+        "searchFieldClear": any;
     }
     interface HTMLYetiInputElement extends Components.YetiInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLYetiInputElementEventMap>(type: K, listener: (this: HTMLYetiInputElement, ev: YetiInputCustomEvent<HTMLYetiInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1095,6 +1123,18 @@ declare global {
         prototype: HTMLYetiReordererElement;
         new (): HTMLYetiReordererElement;
     };
+    interface HTMLYetiRequiredKeyElement extends Components.YetiRequiredKey, HTMLStencilElement {
+    }
+    var HTMLYetiRequiredKeyElement: {
+        prototype: HTMLYetiRequiredKeyElement;
+        new (): HTMLYetiRequiredKeyElement;
+    };
+    interface HTMLYetiRequiredSymbolElement extends Components.YetiRequiredSymbol, HTMLStencilElement {
+    }
+    var HTMLYetiRequiredSymbolElement: {
+        prototype: HTMLYetiRequiredSymbolElement;
+        new (): HTMLYetiRequiredSymbolElement;
+    };
     interface HTMLYetiTableElementEventMap {
         "rowActionClick": any;
         "cellRadioChange": any;
@@ -1176,6 +1216,8 @@ declare global {
         "yeti-progress-bar": HTMLYetiProgressBarElement;
         "yeti-reorderee": HTMLYetiReordereeElement;
         "yeti-reorderer": HTMLYetiReordererElement;
+        "yeti-required-key": HTMLYetiRequiredKeyElement;
+        "yeti-required-symbol": HTMLYetiRequiredSymbolElement;
         "yeti-table": HTMLYetiTableElement;
         "yeti-table-actions": HTMLYetiTableActionsElement;
         "yeti-table-pagination": HTMLYetiTablePaginationElement;
@@ -1461,9 +1503,13 @@ declare namespace LocalJSX {
          */
         "errorMessage"?: string;
         /**
-          * CSS classlist that will be assigned to the containing field element (probably a div).
+          * Whether to indicate the field is required by showing a default icon.
          */
-        "fieldClass"?: string;
+        "indicateRequired"?: boolean;
+        /**
+          * Additional user-supplied CSS classes to apply to the input.
+         */
+        "inputClass"?: string;
         /**
           * id that will be assigned to the actual input element. A unique one will be assigned if one is not provided.
          */
@@ -1476,6 +1522,10 @@ declare namespace LocalJSX {
           * name that will be assigned to the actual input element. id will be assigned if one is not provided.
          */
         "inputName"?: string;
+        /**
+          * Additional user-supplied CSS classes to apply to the input's wrapper.
+         */
+        "inputWrapperClass"?: string;
         /**
           * Determines whether the field uses block (default) or inline labels.
          */
@@ -1605,15 +1655,15 @@ declare namespace LocalJSX {
         /**
           * Event that fires when the user enters or changes the contents of the input field.
          */
-        "onReadyToVerifyFast"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
+        "onReadyToVerifyFast"?: (event: YetiInputCustomEvent<any>) => void;
         /**
           * Event that fires when the user leaves (blurs) the input field.
          */
-        "onReadyToVerifySlow"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
+        "onReadyToVerifySlow"?: (event: YetiInputCustomEvent<any>) => void;
         /**
           * Event that fires when the field is a search field and the user hits the clear button within it.
          */
-        "onSearchFieldClear"?: (event: YetiInputCustomEvent<CustomEvent>) => void;
+        "onSearchFieldClear"?: (event: YetiInputCustomEvent<any>) => void;
         /**
           * Standard old-school input placeholder
          */
@@ -1882,6 +1932,26 @@ declare namespace LocalJSX {
          */
         "wrapperClass"?: string;
     }
+    interface YetiRequiredKey {
+        /**
+          * Whether all fields are required (default) or not.
+         */
+        "allFieldsRequired"?: boolean;
+        /**
+          * CSS classlist applied to the wrapper element.
+         */
+        "cssClass"?: string;
+    }
+    interface YetiRequiredSymbol {
+        /**
+          * Alternative text announced by screen-readers; set to an empty string to announce nothing.
+         */
+        "alt"?: string;
+        /**
+          * CSS classlist applied to the element.
+         */
+        "cssClass"?: string;
+    }
     interface YetiTable {
         /**
           * Unique type that captures the table's contents and configurable state information. See utils.ts for details.
@@ -2089,6 +2159,8 @@ declare namespace LocalJSX {
         "yeti-progress-bar": YetiProgressBar;
         "yeti-reorderee": YetiReorderee;
         "yeti-reorderer": YetiReorderer;
+        "yeti-required-key": YetiRequiredKey;
+        "yeti-required-symbol": YetiRequiredSymbol;
         "yeti-table": YetiTable;
         "yeti-table-actions": YetiTableActions;
         "yeti-table-pagination": YetiTablePagination;
@@ -2119,6 +2191,8 @@ declare module "@stencil/core" {
             "yeti-progress-bar": LocalJSX.YetiProgressBar & JSXBase.HTMLAttributes<HTMLYetiProgressBarElement>;
             "yeti-reorderee": LocalJSX.YetiReorderee & JSXBase.HTMLAttributes<HTMLYetiReordereeElement>;
             "yeti-reorderer": LocalJSX.YetiReorderer & JSXBase.HTMLAttributes<HTMLYetiReordererElement>;
+            "yeti-required-key": LocalJSX.YetiRequiredKey & JSXBase.HTMLAttributes<HTMLYetiRequiredKeyElement>;
+            "yeti-required-symbol": LocalJSX.YetiRequiredSymbol & JSXBase.HTMLAttributes<HTMLYetiRequiredSymbolElement>;
             "yeti-table": LocalJSX.YetiTable & JSXBase.HTMLAttributes<HTMLYetiTableElement>;
             "yeti-table-actions": LocalJSX.YetiTableActions & JSXBase.HTMLAttributes<HTMLYetiTableActionsElement>;
             "yeti-table-pagination": LocalJSX.YetiTablePagination & JSXBase.HTMLAttributes<HTMLYetiTablePaginationElement>;

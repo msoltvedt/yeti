@@ -58,7 +58,7 @@
 
     <legend class="yeti-checkbox-fieldset-legend">Toppings:</legend>
 
-    <ul class="yeti-checkbox-checkboxs">
+    <ul class="yeti-checkbox-checkboxes">
             
         <li class="yeti-checkbox-wrapper">
             <input type="checkbox" class="yeti-checkbox" name="checkbox-demo-toppings" id="checkbox-demo-toppings-pepperoni">
@@ -84,6 +84,52 @@
         </li>
 
     </ul>
+
+</fieldset>
+
+        </div><!-- /code_sample -->
+
+
+        <h3 class="margin-bottom-2">Error State</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+
+<fieldset class="yeti-checkbox-fieldset yeti-checkbox-fieldset__error">
+
+    <legend class="yeti-checkbox-fieldset-legend">Toppings:</legend>
+
+    <ul class="yeti-checkbox-checkboxes">
+            
+        <li class="yeti-checkbox-wrapper">
+            <input type="checkbox" class="yeti-checkbox" name="checkbox-demo-toppings" id="checkbox-demo-toppings-pepperoni">
+            <label class="yeti-form-label" for="checkbox-demo-toppings-pepperoni">Pepperoni</label>
+            <span class="yeti-form-tip">Old school</span>
+        </li>
+            
+        <li class="yeti-checkbox-wrapper">
+            <input type="checkbox" class="yeti-checkbox" name="checkbox-demo-toppings" id="checkbox-demo-toppings-sausage">
+            <label class="yeti-form-label" for="checkbox-demo-toppings-sausage">Sausage</label>
+            <span class="yeti-form-tip">Spicy!</span>
+        </li>
+            
+        <li class="yeti-checkbox-wrapper">
+            <input type="checkbox" class="yeti-checkbox" name="checkbox-demo-toppings" id="checkbox-demo-toppings-cheese">
+            <label class="yeti-form-label" for="checkbox-demo-toppings-cheese">Extra Cheese</label>
+        </li>
+            
+        <li class="yeti-checkbox-wrapper">
+            <input type="checkbox" class="yeti-checkbox" name="checkbox-demo-toppings" id="checkbox-demo-toppings-pineapple" disabled>
+            <label class="yeti-form-label" for="checkbox-demo-toppings-pineapple">Pineapple</label>
+            <span class="yeti-form-tip">Unacceptable</span>
+        </li>
+
+    </ul>
+
+    <div class="yeti-checkbox-error" aria-live="polite">
+      <yeti-icon type="error" icon-class="yeti-checkbox-error-icon"></yeti-icon>
+      <span class="yeti-checkbox-error-message">I'm an error message.</span>
+    </div>
 
 </fieldset>
 
