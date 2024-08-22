@@ -162,13 +162,22 @@ header .logo {
 .side-nav-active {
     background-color: #e5e5e5;
     border-left: solid 0.25rem #f89922;
-    
-    
+}
+
+.side-nav-disabled {
+	background-color: #fafafa;
+	pointer-events: none;
 }
 
 .side-nav-active-text {
     color: #161616;
     font-weight: 600;
+}
+
+.side-nav-disabled span {
+    color: #c1c1c1;
+    padding: 0.688rem 0rem 0.688rem 1rem;
+    display:block;
 }
 
 .side-nav-inactive-text {
@@ -186,7 +195,6 @@ header .logo {
 .side-nav-item:hover {
     background-color: #e5e5e5;
 }
-
 
 .want-to-dropdown-button {
     width: 8.063rem;

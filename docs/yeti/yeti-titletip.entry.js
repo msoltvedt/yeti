@@ -73,7 +73,7 @@ const YetiTitleTip = class {
                 break;
         }
         return ([
-            h("div", { key: '1f2e00399ad3dc9f58d8564fc87b2c3ad76a77e7', class: wrapperClass }, h("div", { key: '6c2d755c8ab561a4e4a22bad30aff397e9ab6f50' }, h("slot", { key: 'c0ed4474930d6207d194ee817aa2de2ae9c34815' })), h("div", { key: '65e611741ebdaadc484fa236be3a12c9798bfa5f', class: tipClass }, h("div", { key: 'bb4bb75bf9c5b31c4bc09b9c61b544c5397d09ca', class: "yeti-titletip-content", id: this.tipId }, this.text)))
+            h("div", { key: '193a498ae46b0a54fec4870bd18995b18465a1c1', class: wrapperClass }, h("div", { key: '6b2994d02461a53d5ed2a56a84f2b1b9736b7989' }, h("slot", { key: 'e8077bb02d34e3ae71fd592abb9ecda74dab7108' })), h("div", { key: '7f078d5fcd781b9763765594dd44ddbda20207c9', class: tipClass }, h("div", { key: '250af0d6fb26eb509cc7c0b4fe84d9aa97bbac36', class: "yeti-titletip-content", id: this.tipId }, this.text)))
         ]);
     }
     componentDidRender() {

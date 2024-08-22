@@ -9,7 +9,7 @@ const YetiRequiredKey = class {
     render() {
         let wrapperClass = 'yeti-form-required-key';
         wrapperClass += (this.cssClass) ? ` ${this.cssClass}` : ``;
-        return (h("div", { key: '7181a7dc1787c434a34dff72a4ca3ae5fa8b2078', class: wrapperClass }, (!this.allFieldsRequired) ?
+        return (h("div", { key: '3869f820aa1f092ee72f60254bd8fd9106c3ff87', class: wrapperClass }, (!this.allFieldsRequired) ?
             [
                 h("yeti-required-symbol", null),
                 h("span", { class: "yeti-form-required-key-label" }, "Indicates required field")

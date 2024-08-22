@@ -270,7 +270,9 @@ export interface YetiTableRow {
   rowActionsJustChanged?: boolean,
   detail?: object,
   isSelected?: boolean,
+  isExpandable?: boolean,
   isExpanded?: boolean,
+  isSummary?: boolean,
   childRows?: YetiTableRow[],
   parentRow?: YetiTableRow
 }
@@ -291,7 +293,8 @@ export interface YetiTableCell {
   detail?: object,
   isRadio?: boolean,
   colspan?: number,
-  rowspan?: number
+  rowspan?: number,
+  headers?: string
 }
 
 export interface YetiTableFilterObject {

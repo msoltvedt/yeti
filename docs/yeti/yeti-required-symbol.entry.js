@@ -9,7 +9,7 @@ const YetiRequiredSymbol = class {
     render() {
         let wrapperClass = 'yeti-form-required-symbol';
         wrapperClass += (this.cssClass) ? ` ${this.cssClass}` : ``;
-        return (h("span", { key: '09a7856170f36f09554d841d9e858fe2b7a5f278', class: wrapperClass }, (this.alt) ? h("span", { class: 'yeti-a11y-hidden' }, this.alt) : ''));
+        return (h("span", { key: '02f930ff04514ee61c74dfe9184b07e7b5250fdb', class: wrapperClass }, (this.alt) ? h("span", { class: 'yeti-a11y-hidden' }, this.alt) : ''));
     }
     get el() { return getElement(this); }
 };

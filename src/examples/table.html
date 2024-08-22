@@ -1132,7 +1132,7 @@
             <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
             <div class="ydoc-code_sample">
 
-<yeti-table id="expandableRowsTable" table-class="yeti-table__fixed" has-expandable-rows="true"></yeti-table>
+<yeti-table id="expandableRowsTable" table-class="yeti-table__fixed"></yeti-table>
 
 <script type="module">
     const expandableRowsTable = document.getElementById( 'expandableRowsTable' );
@@ -1165,6 +1165,7 @@
         "body": {
             "rows": [
                 {
+                    "isExpandable": true,
                     "cells": [
                         {
                             "value": "New York",
@@ -1201,6 +1202,7 @@
                     ]
                 },
                 {
+                    "isExpandable": true,
                     "cells": [
                         {
                             "value": "Minnesota",
@@ -1234,6 +1236,168 @@
                                 }
                             ]
                         },
+                    ]
+                },
+            ]
+        }
+    };
+</script>
+
+            </div><!-- /code_sample -->
+
+
+
+            <h3 class="margin-bottom-2">With Summary Rows</h3>
+
+            <p class="margin-bottom-2">
+                Note that the child rows are in an array of their own on the rows object.
+            </p>
+
+            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+            <div class="ydoc-code_sample">
+
+<yeti-table id="summaryRowsTable" table-class="yeti-table__fixed"></yeti-table>
+
+<script type="module">
+    const summaryRowsTable = document.getElementById( 'summaryRowsTable' );
+
+    summaryRowsTable.contents = {
+        "head": {
+            "cssClass": "yeti-position-sticky",
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Group/Name",
+                            "cssClass": "yeti-table-grid-6"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Touchdowns",
+                            "cssClass": "yeti-table-grid-5 yeti-table-numeric"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Interceptions",
+                            "cssClass": "yeti-table-grid-5 yeti-table-numeric"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "isSummary": "true",
+                    "cells": [
+                        {
+                            "value": "Good Guys"
+                        },
+                        {
+                            "value": "60",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "0",
+                            "cssClass": "yeti-table-numeric"
+                        }
+                    ],
+                    "childRows": [
+                        {
+                            "cells": [
+                                {
+                                    "value": "Sam Darnold"
+                                },
+                                {
+                                    "value": "30",
+                                    "cssClass": "yeti-table-numeric"
+                                },
+                                {
+                                    "value": "0",
+                                    "cssClass": "yeti-table-numeric"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Future J.J. McCarthy"
+                                },
+                                {
+                                    "value": "30",
+                                    "cssClass": "yeti-table-numeric"
+                                },
+                                {
+                                    "value": "0",
+                                    "cssClass": "yeti-table-numeric"
+                                }
+                            ]
+                        },
+                    ]
+                },
+                {
+                    "isSummary": "true",
+                    "cells": [
+                        {
+                            "value": "Bad Guys"
+                        },
+                        {
+                            "value": "0",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "90",
+                            "cssClass": "yeti-table-numeric"
+                        }
+                    ],
+                    "childRows": [
+                        {
+                            "cells": [
+                                {
+                                    "value": "Daniel Jones",
+                                },
+                                {
+                                    "value": "0",
+                                    "cssClass": "yeti-table-numeric"
+                                },
+                                {
+                                    "value": "30",
+                                    "cssClass": "yeti-table-numeric"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Baker Mayfield"
+                                },
+                                {
+                                    "value": "0",
+                                    "cssClass": "yeti-table-numeric"
+                                },
+                                {
+                                    "value": "30",
+                                    "cssClass": "yeti-table-numeric"
+                                }
+                            ]
+                        },
+                        {
+                            "cells": [
+                                {
+                                    "value": "Russell Wilson"
+                                },
+                                {
+                                    "value": "0",
+                                    "cssClass": "yeti-table-numeric"
+                                },
+                                {
+                                    "value": "30",
+                                    "cssClass": "yeti-table-numeric"
+                                }
+                            ]
+                        }
                     ]
                 },
             ]

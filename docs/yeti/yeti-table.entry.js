@@ -10,6 +10,7 @@ const YetiTable = class {
         this.tableFilter = createEvent(this, "tableFilter", 7);
         this.tablePaginate = createEvent(this, "tablePaginate", 7);
         this.tableHasFilters = false;
+        this.hasExpandableRows = false;
         this.rowsThatPassFiltering = 0;
         this.tableClass = '';
         this.tableId = utils.generateUniqueId();
@@ -27,7 +28,6 @@ const YetiTable = class {
         this.sortSelf = true;
         this.filterSelf = true;
         this.paginateSelf = true;
-        this.hasExpandableRows = false;
         this.placeholderText = "";
         this.iLoveJSX = true;
         this.firstRecordIndexToDisplay = 0;
@@ -36,6 +36,7 @@ const YetiTable = class {
         this.filtersAreActive = false;
     }
     watchContentsHandler(newValue, oldValue) {
+        var _a;
         if (!newValue.body) {
             console.error('Supplied data has no table body.');
             return false;
@@ -43,6 +44,14 @@ const YetiTable = class {
         else if (!newValue.body.rows) {
             console.error('Supplied data must have rows in table body.');
             return false;
+        }
+        // Set hasExpandableRows
+        this.hasExpandableRows = false;
+        for (let r = 0; r < ((_a = newValue.body.rows) === null || _a === void 0 ? void 0 : _a.length); r++) {
+            if (newValue.body.rows[r].isExpandable) {
+                this.hasExpandableRows = true;
+                break;
+            }
         }
         this.markRowsWithChangedRowActions(oldValue);
         // See if the headings changed
@@ -787,27 +796,29 @@ const YetiTable = class {
         }
     }
     renderRow(row) {
+        var _a;
         let cells = [];
-        // Check to see if this row has child rows so we can tell renderCell to add the expand/collapse button.
-        let isAnExpandableRow = (row.childRows && row.childRows.length && row.childRows.length > 0) ? true : false;
+        // Handle expandable rows
         if (this.hasExpandableRows) {
             // Need to add a cell to the start of the row.
             let expandoCellId = `${row.id}_expando`;
             // Determine if this is a header row or a body row.
-            if (row.cells && row.cells[0] && row.cells[0].isHeading) {
+            if ((_a = row.cells[0]) === null || _a === void 0 ? void 0 : _a.isHeading) {
                 // It's a header row.
                 cells.push(h("th", { class: "yeti-table-heading yeti-table-heading-expando", scope: "col", id: expandoCellId, key: expandoCellId }));
             }
             else {
                 // It's a body row.
                 // See if it's a child row or a parent row.
-                if (isAnExpandableRow) {
+                if (row.isExpandable) {
                     // It is, add the expando button control.
                     cells.push(h("td", { class: "yeti-table-cell yeti-table-cell-expando", id: expandoCellId, key: expandoCellId }, this.renderExpandoButton(row)));
                 }
                 else {
-                    // It isn't, just add an empty cell.
-                    cells.push(h("td", { class: "yeti-table-cell yeti-table-cell-expando", id: expandoCellId, key: expandoCellId }));
+                    if (this.hasExpandableRows) {
+                        // This is a child row in a table that has expandable rows, so we need to add an empty cell at the start.
+                        cells.push(h("td", { class: "yeti-table-cell yeti-table-cell-expando", id: expandoCellId, key: expandoCellId }));
+                    }
                 }
             }
         }
@@ -834,6 +845,8 @@ const YetiTable = class {
             let childRowCSS;
             rowCSS += (row.isSelected) ? " yeti-table-body-row__selected" : "";
             childRowCSS = rowCSS + " yeti-table-body-row-child_row";
+            rowCSS += (row.isSummary) ? " yeti-table-body-row-summary" : "";
+            rowCSS += (row.cssClass) ? ` ${row.cssClass}` : '';
             if (this.doesRowPassFiltering(row)) {
                 rowsThatPassFiltering.push(row);
                 // row passes filtering. If...
@@ -852,8 +865,11 @@ const YetiTable = class {
                         if (row.isExpanded == undefined) {
                             row.isExpanded = false; // Default to expandable rows being hidden.
                         }
-                        if (!row.isExpanded) {
+                        if (row.isExpandable && !row.isExpanded) {
                             childRowCSS += " yeti-table-body-row-child_row__hidden";
+                        }
+                        if (row.isSummary) {
+                            childRowCSS += " yeti-table-body-row-child_row-has_summary_parent";
                         }
                         for (let c = 0; c < row.childRows.length; c++) {
                             let childRowId = row.childRows[c].id = `${row.id}_child_${c}`;
@@ -941,19 +957,22 @@ const YetiTable = class {
         }
     }
     render() {
+        var _a;
         let cssClass = 'yeti-table';
+        let headerCss = 'yeti-table-head';
+        headerCss += ((_a = this.contents.head) === null || _a === void 0 ? void 0 : _a.cssClass) ? ` ${this.contents.head.cssClass}` : '';
         if (this.tableClass != '') {
             cssClass += ' ' + this.tableClass;
         }
-        return (h("table", { key: '48a3e1c6b1d3e4dd810226ca9c8da4689968a277', class: cssClass }, (this.contents.head) ?
-            h("thead", { class: "yeti-table-head" }, h("tr", { class: "yeti-table-head-row" }, (this.contents.head && this.contents.head.rows && this.contents.head.rows.length > 0 && this.contents.head.rows[0].cells && this.contents.head.rows[0].cells.length > 0) ?
+        return (h("table", { key: '3a34353387e3517959b3c67ed3b7795950ba53cc', class: cssClass }, (this.contents.head) ?
+            h("thead", { class: headerCss }, h("tr", { class: "yeti-table-head-row" }, (this.contents.head && this.contents.head.rows && this.contents.head.rows.length > 0 && this.contents.head.rows[0].cells && this.contents.head.rows[0].cells.length > 0) ?
                 this.contents.head.rows.map((row) => {
                     return this.renderRow(row);
                 })
                 :
                     h("th", { class: "yeti-table-heading", scope: "col" }, "No data")))
             :
-                "", h("tbody", { key: 'd49adeea0c6c34e0d23c8643bb88c1b3e0f04cef', class: "yeti-table-body" }, this.renderRows(this.firstRecordIndexToDisplay, this.numRecordsToDisplay))));
+                "", h("tbody", { key: 'd9308dcb73d0b35a8bd8df1c34314fa5663839e6', class: "yeti-table-body" }, this.renderRows(this.firstRecordIndexToDisplay, this.numRecordsToDisplay))));
     }
     componentDidRender() {
         let paginationComponent = this.el.querySelector('yeti-table-pagination');
