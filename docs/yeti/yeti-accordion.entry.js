@@ -91,7 +91,7 @@ const YetiAccordion = class {
         });
     }
     render() {
-        return (h("div", { key: 'd0a6454c97acd3850b0334250105ebd97abdc6cc', class: "yeti-accordion" }, h("slot", { key: '0b844628b0c20435d23e2ffdef7abf309756c26b' })));
+        return (h("div", { key: 'aab4717aa5c63ed9b6b8a95dff81bfef27f556be', class: "yeti-accordion" }, h("slot", { key: '57f3f2c9e91857eb4f34b7bf5d9ed2a58d4917b1' })));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

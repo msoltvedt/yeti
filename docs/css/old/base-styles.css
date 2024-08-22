@@ -900,6 +900,16 @@ pre {
   background-color:#E8E8E8;
   border-top-color: #6e6e6e;
 }
+
+.virtuoso-step-current-skipped {
+  background-color:#E8E8E8;
+  border-top-color: #6e6e6e;
+}
+
+.virtuoso-step-current-skipped {
+  color: #6e6e6e;
+}
+
 /*** End New ***/
 
 .virtuoso-current-icon{

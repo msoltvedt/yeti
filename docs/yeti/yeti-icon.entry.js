@@ -26,7 +26,7 @@ const YetiIcon = class {
         iconClass += styleModifier;
         iconClass += (this.iconClass != '') ? ` ${this.iconClass}` : '';
         return ([
-            h("span", Object.assign({ key: '5796f99af914d25612b9dd95db0c8f2f967ac017', class: iconClass }, ((this.focusable) ? { "tabindex": "0" } : {}), ((this.alt != "") ? { "aria-hidden": 'true' } : {})), this.iconCode),
+            h("span", Object.assign({ key: 'd102fe708e7c3b11c62b43e9e0ba7de75450e007', class: iconClass }, ((this.focusable) ? { "tabindex": "0" } : {}), ((this.alt != "") ? { "aria-hidden": 'true' } : {})), this.iconCode),
             (this.alt != "") ? h("span", { class: "yeti-a11y-hidden" }, this.alt) : ""
         ]);
     }

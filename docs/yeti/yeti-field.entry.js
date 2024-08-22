@@ -134,13 +134,13 @@ const YetiField = class {
         if (this.isInline) {
             cssClass += " yeti-form-field-inline";
         }
-        return (h("div", { key: '8037954addce9453d0f16039d562d176f5ca7338', class: cssClass }, h("label", { key: 'cc33a6c55243ae85dee2a41f5a52a91b155866b6', htmlFor: this.inputId, class: "yeti-form-label" }, (this.hasSlottedLabel) ? h("slot", { name: "label" }) : `${this.label}`, (this.required && this.hasSlottedRequired) ? h("slot", { name: "required" }) : null), (!this.hasSlottedField) ?
+        return (h("div", { key: '01cfdb70552c647cb06dbf6e68b09b9983a11d1e', class: cssClass }, h("label", { key: 'd41621d5012624fd513315da777c694987552d67', htmlFor: this.inputId, class: "yeti-form-label" }, (this.hasSlottedLabel) ? h("slot", { name: "label" }) : `${this.label}`, (this.required && this.hasSlottedRequired) ? h("slot", { name: "required" }) : null), (!this.hasSlottedField) ?
             (this.type == "date") ?
                 h("yeti-date-picker", { "input-id": this.inputId, "input-name": this.inputName, value: this.defaultValue, required: this.required, "is-valid": this.isValid, "described-by": describedBy })
                 :
                     h("yeti-input", Object.assign({ inputId: this.inputId,
                         // input-class={!this.isValid ? 'yeti-input__error' : null}
-                        value: this.defaultValue, required: this.required, isValid: this.isValid, describedBy: describedBy }, ((this.inputClass != "") ? { "input-class": this.inputClass } : {}), ((this.inputWrapperClass != "") ? { "wrapper-class": this.inputWrapperClass } : {}), ((this.inputMaxlength != 0) ? { "input-maxlength": this.inputMaxlength } : {})))
+                        value: this.defaultValue, required: this.required, isValid: this.isValid, describedBy: describedBy, inputName: this.inputName }, ((this.inputClass != "") ? { "input-class": this.inputClass } : {}), ((this.inputWrapperClass != "") ? { "wrapper-class": this.inputWrapperClass } : {}), ((this.inputMaxlength != 0) ? { "input-maxlength": this.inputMaxlength } : {})))
             :
                 h("slot", { name: "element" }), (this.tip != "") ?
             h("span", { class: tipClass, "aria-live": "polite", id: this.tipId }, this.tip)

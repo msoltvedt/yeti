@@ -86,6 +86,15 @@ export class YetiTable {
       return false;
     }
 
+    // Set hasExpandableRows
+    this.hasExpandableRows = false;
+    for (let r = 0; r < newValue.body.rows?.length; r++) {
+      if (newValue.body.rows[r].isExpandable) {
+        this.hasExpandableRows = true;
+        break;
+      }
+    }
+
     this.markRowsWithChangedRowActions(oldValue);
 
     // See if the headings changed
@@ -118,11 +127,6 @@ export class YetiTable {
   @Prop() paginateSelf: boolean = true;
 
   /**
-   * Determines whether this table has rows that can expand and collapse.
-   */
-  @Prop() hasExpandableRows: boolean = false;
-
-  /**
    * Text that will be displayed in the table body when contents.body is empty.
    */
   @Prop() placeholderText: string = "";
@@ -153,6 +157,7 @@ export class YetiTable {
   @State() filtersAreActive: boolean = false;
 
   private tableHasFilters: boolean = false;
+  private hasExpandableRows: boolean = false;
 
   private rowsThatPassFiltering: number = 0;
 
@@ -1378,16 +1383,14 @@ export class YetiTable {
 
     let cells = [];
 
-    // Check to see if this row has child rows so we can tell renderCell to add the expand/collapse button.
-    let isAnExpandableRow = (row.childRows && row.childRows.length && row.childRows.length > 0) ? true : false;
-
+    // Handle expandable rows
     if (this.hasExpandableRows) {
 
       // Need to add a cell to the start of the row.
       let expandoCellId = `${row.id}_expando`;
 
       // Determine if this is a header row or a body row.
-      if (row.cells && row.cells[0] && row.cells[0].isHeading) {
+      if (row.cells[0]?.isHeading) {
         
         // It's a header row.
         cells.push(
@@ -1399,7 +1402,7 @@ export class YetiTable {
         // It's a body row.
         
         // See if it's a child row or a parent row.
-        if (isAnExpandableRow) {
+        if (row.isExpandable) {
           
           // It is, add the expando button control.
           cells.push(
@@ -1408,10 +1411,14 @@ export class YetiTable {
 
         } else {
 
-          // It isn't, just add an empty cell.
-          cells.push(
-            <td class="yeti-table-cell yeti-table-cell-expando" id={expandoCellId} key={expandoCellId}></td>
-          )
+          if (this.hasExpandableRows) {
+
+            // This is a child row in a table that has expandable rows, so we need to add an empty cell at the start.
+            cells.push(
+              <td class="yeti-table-cell yeti-table-cell-expando" id={expandoCellId} key={expandoCellId}></td>
+            )
+
+          }
 
         }
 
@@ -1423,7 +1430,7 @@ export class YetiTable {
     row.cells.forEach((cell: YetiTableCell) => {
       //let needsAnExpandCollapseButton = (isAnExpandableRow && index == 0) ? true : false; // Only the first cell in an expandable row needs an expando button.
       cells.push(this.renderCell(cell));
-    })
+    });
 
     return cells;
 
@@ -1456,6 +1463,8 @@ export class YetiTable {
       let childRowCSS;
       rowCSS += (row.isSelected) ? " yeti-table-body-row__selected" : "";
       childRowCSS = rowCSS + " yeti-table-body-row-child_row";
+      rowCSS += (row.isSummary) ? " yeti-table-body-row-summary" : "";
+      rowCSS += (row.cssClass) ? ` ${row.cssClass}` : '';
 
       if (this.doesRowPassFiltering(row)) {
 
@@ -1485,8 +1494,12 @@ export class YetiTable {
               row.isExpanded = false; // Default to expandable rows being hidden.
             }
 
-            if (!row.isExpanded) {
+            if (row.isExpandable && !row.isExpanded) {
               childRowCSS += " yeti-table-body-row-child_row__hidden";
+            }
+
+            if (row.isSummary) {
+              childRowCSS += " yeti-table-body-row-child_row-has_summary_parent";
             }
 
             for (let c = 0; c < row.childRows.length; c++) {
@@ -1628,6 +1641,8 @@ export class YetiTable {
   render() {
 
     let cssClass = 'yeti-table';
+    let headerCss = 'yeti-table-head';
+    headerCss += (this.contents.head?.cssClass) ? ` ${this.contents.head.cssClass}` : '';
 
     if (this.tableClass != '') {
       cssClass += ' ' + this.tableClass;
@@ -1639,7 +1654,7 @@ export class YetiTable {
 
         {(this.contents.head) ?
 
-          <thead class="yeti-table-head">
+          <thead class={headerCss}>
 
             <tr class="yeti-table-head-row">
 

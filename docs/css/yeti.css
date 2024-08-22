@@ -2960,6 +2960,10 @@ Styles for Table
     border-top: 1px solid #f4f4f4;
     border-bottom: 1px solid #e0e0e0;
   }
+  .yeti-table-body-row-summary {
+    background-color: #fafafa;
+    font-weight: 700;
+  }
   .yeti-table-body-row:hover {
     background-color: #e5e5e5;
     border-bottom-color: #e5e5e5;
@@ -3353,6 +3357,12 @@ Styles for Table
   }
   .yeti-table-body-row-child_row__hidden {
     display: none;
+  }
+  .yeti-table-body-row-child_row-has_summary_parent:is(.yeti-table-body-row-child_row) {
+    background-color: unset;
+  }
+  .yeti-table-body-row-child_row-has_summary_parent .yeti-table-cell:first-child {
+    padding-left: 3.5rem;
   }
   /************************************** titletip.less ***************************************
 
@@ -4453,6 +4463,11 @@ Styles for notification
   }
   .yeti-layout-gap-vertical-12 {
     row-gap: 3rem;
+  }
+  /************************************** Positioning ***/
+  .yeti-position-sticky {
+    position: sticky;
+    top: 0;
   }
   /************************************** margin-and-padding.less ***
  *

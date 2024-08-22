@@ -692,10 +692,6 @@ export namespace Components {
          */
         "filterSelf": boolean;
         /**
-          * Determines whether this table has rows that can expand and collapse.
-         */
-        "hasExpandableRows": boolean;
-        /**
           * Placeholder text when filtering returns no matching records.
          */
         "noMatchesText": string;
@@ -1961,10 +1957,6 @@ declare namespace LocalJSX {
           * Determines whether to handle filtering (true) or just note the user requested it (false).
          */
         "filterSelf"?: boolean;
-        /**
-          * Determines whether this table has rows that can expand and collapse.
-         */
-        "hasExpandableRows"?: boolean;
         /**
           * Placeholder text when filtering returns no matching records.
          */
