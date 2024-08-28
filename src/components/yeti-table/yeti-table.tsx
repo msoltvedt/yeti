@@ -1232,6 +1232,7 @@ export class YetiTable {
     // Returns the JSX for the appropriate filter object (text, select, date picker, or multiselect)
 
     let filterId = `${cell.id}_filter`;
+    let filterPlaceholderLabel = (cell.filtering?.placeholder) ? cell.filtering.placeholder : "-Any-";
 
     switch (cell.filtering.type) {
 
@@ -1308,7 +1309,7 @@ export class YetiTable {
             this.handleSelectFilterChange(ev.target as HTMLSelectElement, cell.columnIndex);
           }}
           aria-labelledby={headingLabelId}>
-          <option value="" id={`${filterId}_defaultOption`} key={`${filterId}_defaultOption`}>- Any -</option>
+          <option value="" id={`${filterId}_defaultOption`} key={`${filterId}_defaultOption`}>{filterPlaceholderLabel}</option>
           {selectOptions}
         </select>;
 
@@ -1360,7 +1361,7 @@ export class YetiTable {
 
         return <yeti-dropdown
           is-multiselect="true"
-          placeholder="- Any -"
+          placeholder={filterPlaceholderLabel}
           data-column={cell.columnIndex}
           labelled-by={headingLabelId}
           id={filterId}

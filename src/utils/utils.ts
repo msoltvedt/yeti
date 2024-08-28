@@ -300,7 +300,8 @@ export interface YetiTableCell {
 export interface YetiTableFilterObject {
   isFilterable: boolean,
   isClearCell: boolean,
-  type?: string, // "text" | "date" | "select" | "multiselect"
+  type?: string, // "text" | "date" | "select" | "multiselect",
+  placeholder?: string,
   options?: string[],
   value?: string
 }
