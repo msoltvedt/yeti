@@ -419,6 +419,7 @@ export class YetiMenuButton {
         linkOrButtonElement = <button 
           class="yeti-menu_button-menu-item-button" 
           role="menuitem" 
+          type="button"
           tabindex="-1"
           data-option-index={i}
           onClick={(ev) => { this.handleOptionClick(i, ev) }}>
@@ -475,6 +476,7 @@ export class YetiMenuButton {
   renderButton(buttonClass: string) {
     return <button 
       class={buttonClass}
+      type="button"
       aria-haspopup="true"
       {...((this.isOpen) ? {"aria-expanded": "true"} : {})}
       aria-controls={this.menuId} 
