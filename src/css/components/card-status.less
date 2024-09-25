@@ -1,0 +1,58 @@
+/************************************** card-status.less ***************************************
+
+Styles for Status Card
+
+*************************************** card-status.less **************************************/
+
+
+
+/************************************** Wrapper ***/
+.yeti-status_cards {
+    display: flex;
+    gap: 1.5rem;
+}
+
+
+
+/************************************** Card ***/
+.yeti-status_card {
+    padding: 1.5rem;
+    border-top: 4px solid #8d8d8d;
+    flex: 0 1 auto;
+    min-width: min-content;
+    width: 25rem;
+}
+
+
+/*** Heading ***/
+:is(h1, h2, h3, h4, h5, h6).yeti-status_card-heading {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.4375rem;
+    letter-spacing: 0.01rem;
+    color: #525252;
+    margin: 0;
+}
+
+
+/*** Content ***/
+.yeti-status_card-content {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    letter-spacing: 0.00475rem;
+}
+
+
+/*** States ***/
+.yeti-status_card__normal {
+    border-top-color: #0f62fe;
+}
+
+.yeti-status_card__success {
+    border-top-color: #24a148;
+}
+
+.yeti-status_card__error {
+    border-top-color: #da1e28;
+}
