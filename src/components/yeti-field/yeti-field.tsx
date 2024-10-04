@@ -288,7 +288,9 @@ export class YetiField {
 
         <label htmlFor={this.inputId} class="yeti-form-label">
           {(this.hasSlottedLabel) ? <slot name="label"></slot> : `${this.label}`}
-          {(this.required && this.hasSlottedRequired) ? <slot name="required"></slot> : null}
+          {(this.indicateRequired) ? 
+           (this.hasSlottedRequired ? <slot name="required"></slot> : <yeti-required-symbol></yeti-required-symbol>)
+           : null}
         </label>
 
         {(!this.hasSlottedField) ?
