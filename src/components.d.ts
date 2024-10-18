@@ -841,6 +841,10 @@ export namespace Components {
          */
         "formId": string;
         /**
+          * whether or not the component will prompt the user before they leave the page
+         */
+        "isEnabled": boolean;
+        /**
           * whether or not the Unsaved Changes modal is currently open
          */
         "isOpen": boolean;
@@ -2127,6 +2131,10 @@ declare namespace LocalJSX {
           * id of the form element we're watching
          */
         "formId"?: string;
+        /**
+          * whether or not the component will prompt the user before they leave the page
+         */
+        "isEnabled"?: boolean;
         /**
           * whether or not the Unsaved Changes modal is currently open
          */

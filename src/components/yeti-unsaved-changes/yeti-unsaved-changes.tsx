@@ -7,7 +7,15 @@ import { Component, Host, Prop, Element, h } from '@stencil/core';
 })
 export class YetiUnsavedChanges {
 
-  @Element() el: HTMLElement;  
+  @Element() el: HTMLElement;
+
+  /**
+   * whether or not the component will prompt the user before they leave the page
+   */
+  @Prop({ 
+    mutable: true,
+    reflect: true 
+  }) isEnabled: boolean = true;
 
   /**
    * id of the form element we're watching
@@ -45,6 +53,10 @@ export class YetiUnsavedChanges {
   handleBeforeUnload = (e) => {
     // Asks user to confirm they want to abandon their changes to the form and leave/reload the page. This is a fallback for cases
     // where the user would lose data but we can't trigger the Unsaved Changes modal.
+
+    if (!this.isEnabled) {
+      return; // The component was manually disabled, do not prompt the user.
+    }
 
     if (!this.weGotThis) {
 
