@@ -1,0 +1,49 @@
+/************************************** tabs_items.less ***************************************
+
+Styles for Tabs Items
+
+*************************************** tabs_items.less **************************************/
+
+
+
+/************************************** Wrapper ***/
+.yeti-tabs_items {
+    display: inline-flex;
+}
+
+
+
+/************************************** Items ***/
+.yeti-tabs_item {
+    display: flex;
+    padding: 0 1rem;
+    color: #161616;
+    font-size: 1.25rem;
+    font-style: normal;
+    line-height: 1.125rem; /* 90% */
+    letter-spacing: 0.01rem;
+}
+.yeti-tabs_item:first-child,
+.yeti-tabs_item:first-child a {
+    padding-left: 0;
+}
+.yeti-tabs_item:has(a) {
+    padding: 0;
+}
+
+.yeti-tabs_item:not(:last-child) {
+    border-right: 1px solid #999;
+}
+
+
+/*** Current ***/
+.yeti-tabs_item__current {
+    font-weight: 600;
+}
+
+/*** Link ***/
+.yeti-tabs_item a {
+    display: block;
+    color: #0f62fe;
+    padding: 0 1rem;
+}
