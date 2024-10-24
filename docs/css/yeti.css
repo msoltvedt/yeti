@@ -2728,24 +2728,24 @@ Styles for Panel
     cursor: pointer;
     letter-spacing: 0.16px;
     background-color: transparent;
-    padding: 0 1.5rem;
+    padding: 1rem 1.5rem;
     text-align: left;
     color: #525252;
     width: 100%;
+    cursor: unset;
   }
-  .yeti-panel-header:focus {
+  .yeti-panel-header:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
     outline-offset: 0;
   }
-  .yeti-panel-header[disabled] {
-    cursor: default;
+  .yeti-panel-expandable .yeti-panel-header {
+    cursor: pointer;
   }
   [status="undefined"] .yeti-panel-header {
     color: #c6c6c6;
   }
   .yeti-panel-header-contents {
-    padding: 1rem 0;
     display: flex;
     align-items: center;
     gap: 0.25rem;
@@ -2780,16 +2780,9 @@ Styles for Panel
     display: inline-flex;
     justify-content: center;
   }
-  /* Status Icon */
-  .yeti-panel-status_icon-success {
-    color: #24a148;
-  }
-  .yeti-panel-status_icon-error {
-    color: #da1e28;
-  }
   /************************************** Content ***/
   .yeti-panel-content {
-    margin: 2rem;
+    padding: 0 1.5rem 1.5rem;
   }
   .yeti-panel-expandable:not(.yeti-panel__expanded) .yeti-panel-content {
     display: none;

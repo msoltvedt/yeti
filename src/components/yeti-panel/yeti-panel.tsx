@@ -113,7 +113,6 @@ export class YetiPanel {
                   <yeti-icon iconCode='expand_more' alt='' iconClass='yeti-panel-header-caret'></yeti-icon>
 
                 }
-
                 
                 <div class="yeti-panel-header-actual">
 
