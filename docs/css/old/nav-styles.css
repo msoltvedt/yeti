@@ -90,7 +90,6 @@ header .logo {
 .nav-item:hover {
     border-top: solid 0.25rem #f89922;
     background-color: #161616;
-    font-weight: 600;
     margin:0rem;
 }
 

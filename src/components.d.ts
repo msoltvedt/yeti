@@ -588,6 +588,28 @@ export namespace Components {
          */
         "wrapperId": string;
     }
+    interface YetiPanel {
+        /**
+          * The id of the HTML element representing the panel's content container
+         */
+        "contentId": string;
+        /**
+          * The id of the HTML element representing the panel header
+         */
+        "headerId": string;
+        /**
+          * The descriptive text that appears in the heading bar above the content.
+         */
+        "heading": string;
+        /**
+          * Whether or not this panel can expand or collapse
+         */
+        "isExpandable": boolean;
+        /**
+          * Whether or not this panel is currently expanded.
+         */
+        "isExpanded": boolean;
+    }
     interface YetiProgressBar {
         /**
           * CSS classlist to add to the element representing the component's progress bar.
@@ -1083,6 +1105,12 @@ declare global {
         prototype: HTMLYetiPageContentsElement;
         new (): HTMLYetiPageContentsElement;
     };
+    interface HTMLYetiPanelElement extends Components.YetiPanel, HTMLStencilElement {
+    }
+    var HTMLYetiPanelElement: {
+        prototype: HTMLYetiPanelElement;
+        new (): HTMLYetiPanelElement;
+    };
     interface HTMLYetiProgressBarElement extends Components.YetiProgressBar, HTMLStencilElement {
     }
     var HTMLYetiProgressBarElement: {
@@ -1213,6 +1241,7 @@ declare global {
         "yeti-modal": HTMLYetiModalElement;
         "yeti-notification": HTMLYetiNotificationElement;
         "yeti-page-contents": HTMLYetiPageContentsElement;
+        "yeti-panel": HTMLYetiPanelElement;
         "yeti-progress-bar": HTMLYetiProgressBarElement;
         "yeti-reorderee": HTMLYetiReordereeElement;
         "yeti-reorderer": HTMLYetiReordererElement;
@@ -1856,6 +1885,28 @@ declare namespace LocalJSX {
          */
         "wrapperId"?: string;
     }
+    interface YetiPanel {
+        /**
+          * The id of the HTML element representing the panel's content container
+         */
+        "contentId"?: string;
+        /**
+          * The id of the HTML element representing the panel header
+         */
+        "headerId"?: string;
+        /**
+          * The descriptive text that appears in the heading bar above the content.
+         */
+        "heading"?: string;
+        /**
+          * Whether or not this panel can expand or collapse
+         */
+        "isExpandable"?: boolean;
+        /**
+          * Whether or not this panel is currently expanded.
+         */
+        "isExpanded"?: boolean;
+    }
     interface YetiProgressBar {
         /**
           * CSS classlist to add to the element representing the component's progress bar.
@@ -2156,6 +2207,7 @@ declare namespace LocalJSX {
         "yeti-modal": YetiModal;
         "yeti-notification": YetiNotification;
         "yeti-page-contents": YetiPageContents;
+        "yeti-panel": YetiPanel;
         "yeti-progress-bar": YetiProgressBar;
         "yeti-reorderee": YetiReorderee;
         "yeti-reorderer": YetiReorderer;
@@ -2188,6 +2240,7 @@ declare module "@stencil/core" {
             "yeti-modal": LocalJSX.YetiModal & JSXBase.HTMLAttributes<HTMLYetiModalElement>;
             "yeti-notification": LocalJSX.YetiNotification & JSXBase.HTMLAttributes<HTMLYetiNotificationElement>;
             "yeti-page-contents": LocalJSX.YetiPageContents & JSXBase.HTMLAttributes<HTMLYetiPageContentsElement>;
+            "yeti-panel": LocalJSX.YetiPanel & JSXBase.HTMLAttributes<HTMLYetiPanelElement>;
             "yeti-progress-bar": LocalJSX.YetiProgressBar & JSXBase.HTMLAttributes<HTMLYetiProgressBarElement>;
             "yeti-reorderee": LocalJSX.YetiReorderee & JSXBase.HTMLAttributes<HTMLYetiReordereeElement>;
             "yeti-reorderer": LocalJSX.YetiReorderer & JSXBase.HTMLAttributes<HTMLYetiReordererElement>;
