@@ -1,0 +1,89 @@
+/************************************** panel.less ***************************************
+
+Styles for Panel
+
+*************************************** panel.less **************************************/
+
+
+
+/************************************** Wrapper ***/
+yeti-panel { display: contents; }
+
+.yeti-panel {
+    border: 1px solid #c6c6c6;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.25rem;
+}
+
+
+
+/************************************** Header ***/
+.yeti-panel-header {
+    .yeti-mixin-button-vanilla();
+    background-color: transparent;
+    padding: 1rem 1.5rem;
+    text-align: left;
+    color: #525252;
+    width: 100%;
+    cursor: unset;
+}
+.yeti-panel-header:focus-visible {
+    .yeti-mixin-focus-default();
+    outline-offset: 0;
+}
+.yeti-panel-expandable .yeti-panel-header {
+    cursor: pointer;
+}
+
+[status="undefined"] .yeti-panel-header {
+    color: #c6c6c6;
+}
+
+.yeti-panel-header-contents {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    border-top: 1px solid #e0e0e0;
+}
+.yeti-panel__open .yeti-panel-header:focus .yeti-panel-header-contents,
+yeti-panel:has(.yeti-panel-header:focus) + yeti-panel .yeti-panel-header-contents {
+    border-top: 1px solid transparent;
+}
+yeti-panel:first-of-type .yeti-panel-header-contents {
+    border-top: none;
+}
+
+.yeti-panel-header-actual {
+    flex: 1 1 max-content;
+    min-width: min-content;
+    margin: 0;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.4375rem;
+    letter-spacing: 0.01rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 1rem;
+    max-height: 100%;
+}
+.yeti-panel-expandable .yeti-panel-header:hover .yeti-panel-header-actual { text-decoration: underline; }
+
+.yeti-panel-header-caret {
+    width: 0.875rem; // Trim the fat
+    display: inline-flex;
+    justify-content: center;
+}
+
+
+
+/************************************** Content ***/
+.yeti-panel-content {
+    padding: 0 1.5rem 1.5rem;
+}
+
+.yeti-panel-expandable:not(.yeti-panel__expanded) .yeti-panel-content {
+    display: none;
+}

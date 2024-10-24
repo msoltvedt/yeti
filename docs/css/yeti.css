@@ -1273,6 +1273,7 @@ Styles for Checkbox
   }
   .yeti-checkbox:disabled {
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23c6c6c6"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>');
+    cursor: unset;
   }
   /*** States ***/
   .yeti-checkbox:checked {
@@ -2074,6 +2075,50 @@ Styles for Loading Indicator
   .yeti-loading-content {
     margin-top: 1rem;
   }
+  /************************************** card-status.less ***************************************
+
+Styles for Status Card
+
+*************************************** card-status.less **************************************/
+  /************************************** Wrapper ***/
+  .yeti-status_cards {
+    display: flex;
+    gap: 1.5rem;
+  }
+  /************************************** Card ***/
+  .yeti-status_card {
+    padding: 1.5rem;
+    border-top: 4px solid #8d8d8d;
+    flex: 0 1 auto;
+    min-width: min-content;
+    width: 25rem;
+  }
+  /*** Heading ***/
+  :is(h1, h2, h3, h4, h5, h6).yeti-status_card-heading {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.4375rem;
+    letter-spacing: 0.01rem;
+    color: #525252;
+    margin: 0;
+  }
+  /*** Content ***/
+  .yeti-status_card-content {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    letter-spacing: 0.00475rem;
+  }
+  /*** States ***/
+  .yeti-status_card__normal {
+    border-top-color: #0f62fe;
+  }
+  .yeti-status_card__success {
+    border-top-color: #24a148;
+  }
+  .yeti-status_card__error {
+    border-top-color: #da1e28;
+  }
   /************************************** combobox.less ***************************************
 
 Styles for Combobox
@@ -2655,6 +2700,100 @@ Styles for Page Contents
     background-color: #e0e0e0;
     color: #161616;
   }
+  /************************************** panel.less ***************************************
+
+Styles for Panel
+
+*************************************** panel.less **************************************/
+  /************************************** Wrapper ***/
+  yeti-panel {
+    display: contents;
+  }
+  .yeti-panel {
+    border: 1px solid #c6c6c6;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.25rem;
+  }
+  /************************************** Header ***/
+  .yeti-panel-header {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    background-color: #e0e0e0;
+    border: 0;
+    box-sizing: border-box;
+    color: #161616;
+    cursor: pointer;
+    letter-spacing: 0.16px;
+    background-color: transparent;
+    padding: 0 1.5rem;
+    text-align: left;
+    color: #525252;
+    width: 100%;
+  }
+  .yeti-panel-header:focus {
+    outline: 2px solid #0f62fe;
+    outline-offset: -2px;
+    outline-offset: 0;
+  }
+  .yeti-panel-header[disabled] {
+    cursor: default;
+  }
+  [status="undefined"] .yeti-panel-header {
+    color: #c6c6c6;
+  }
+  .yeti-panel-header-contents {
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    border-top: 1px solid #e0e0e0;
+  }
+  .yeti-panel__open .yeti-panel-header:focus .yeti-panel-header-contents,
+  yeti-panel:has(.yeti-panel-header:focus) + yeti-panel .yeti-panel-header-contents {
+    border-top: 1px solid transparent;
+  }
+  yeti-panel:first-of-type .yeti-panel-header-contents {
+    border-top: none;
+  }
+  .yeti-panel-header-actual {
+    flex: 1 1 max-content;
+    min-width: min-content;
+    margin: 0;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.4375rem;
+    letter-spacing: 0.01rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 1rem;
+    max-height: 100%;
+  }
+  .yeti-panel-expandable .yeti-panel-header:hover .yeti-panel-header-actual {
+    text-decoration: underline;
+  }
+  .yeti-panel-header-caret {
+    width: 0.875rem;
+    display: inline-flex;
+    justify-content: center;
+  }
+  /* Status Icon */
+  .yeti-panel-status_icon-success {
+    color: #24a148;
+  }
+  .yeti-panel-status_icon-error {
+    color: #da1e28;
+  }
+  /************************************** Content ***/
+  .yeti-panel-content {
+    margin: 2rem;
+  }
+  .yeti-panel-expandable:not(.yeti-panel__expanded) .yeti-panel-content {
+    display: none;
+  }
   /************************************** progress_bar.less ***************************************
 
 Styles for Progress Bar
@@ -2928,6 +3067,7 @@ Styles for Table
     font-size: 0.875rem;
     letter-spacing: 0.01rem;
     line-height: 1.42857;
+    text-wrap: balance;
   }
   .yeti-table__has_sticky_header .yeti-table-head {
     position: sticky;
@@ -3363,6 +3503,92 @@ Styles for Table
   }
   .yeti-table-body-row-child_row-has_summary_parent .yeti-table-cell:first-child {
     padding-left: 3.5rem;
+  }
+  /************************************** tabs.less ***************************************
+
+Styles for Tabs
+
+*************************************** tabs.less **************************************/
+  /************************************** Wrapper ***/
+  .yeti-tabs {
+    display: inline-flex;
+    gap: 0.0625rem;
+  }
+  /************************************** Items ***/
+  .yeti-tab {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    background-color: #e0e0e0;
+    border: 0;
+    box-sizing: border-box;
+    color: #161616;
+    cursor: pointer;
+    letter-spacing: 0.16px;
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 2px solid #c6c6c6;
+    background-color: white;
+    color: #525252;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.125rem;
+    /* 100% */
+    letter-spacing: 0.01rem;
+  }
+  /*** Current ***/
+  .yeti-tab[aria-selected="true"] {
+    font-weight: 600;
+    border-bottom-color: #F89922;
+  }
+  /*** Link ***/
+  .yeti-tabs_item a {
+    display: block;
+    color: #0f62fe;
+    padding: 0 1rem;
+  }
+  /************************************** tabs_items.less ***************************************
+
+Styles for Tabs Items
+
+*************************************** tabs_items.less **************************************/
+  /************************************** Wrapper ***/
+  .yeti-tabs_items {
+    display: inline-flex;
+  }
+  /************************************** Items ***/
+  .yeti-tabs_item {
+    display: flex;
+    padding: 0 1rem;
+    color: #161616;
+    font-size: 1.25rem;
+    font-style: normal;
+    line-height: 1.125rem;
+    /* 90% */
+    letter-spacing: 0.01rem;
+  }
+  .yeti-tabs_item:first-child,
+  .yeti-tabs_item:first-child a {
+    padding-left: 0;
+  }
+  .yeti-tabs_item:has(a) {
+    padding: 0;
+  }
+  .yeti-tabs_item:not(:last-child) {
+    border-right: 1px solid #999;
+  }
+  /*** Current ***/
+  .yeti-tabs_item__current {
+    font-weight: 600;
+  }
+  /*** Link ***/
+  .yeti-tabs_item a {
+    display: block;
+    color: #0f62fe;
+    padding: 0 1rem;
   }
   /************************************** titletip.less ***************************************
 
@@ -4468,6 +4694,7 @@ Styles for notification
   .yeti-position-sticky {
     position: sticky;
     top: 0;
+    z-index: 1;
   }
   /************************************** margin-and-padding.less ***
  *
@@ -5147,6 +5374,93 @@ Styles for notification
   .yeti-padding-left-30 {
     padding-left: 7.5rem;
   }
+  .yeti-padding-left-31 {
+    padding-left: 7.75rem;
+  }
+  .yeti-padding-left-32 {
+    padding-left: 8rem;
+  }
+  .yeti-padding-left-33 {
+    padding-left: 8.25rem;
+  }
+  .yeti-padding-left-34 {
+    padding-left: 8.5rem;
+  }
+  .yeti-padding-left-35 {
+    padding-left: 8.75rem;
+  }
+  .yeti-padding-left-36 {
+    padding-left: 9rem;
+  }
+  .yeti-padding-left-37 {
+    padding-left: 9.25rem;
+  }
+  .yeti-padding-left-38 {
+    padding-left: 9.5rem;
+  }
+  .yeti-padding-left-39 {
+    padding-left: 9.75rem;
+  }
+  .yeti-padding-left-40 {
+    padding-left: 10rem;
+  }
+  .yeti-padding-left-41 {
+    padding-left: 10.25rem;
+  }
+  .yeti-padding-left-42 {
+    padding-left: 10.5rem;
+  }
+  .yeti-padding-left-43 {
+    padding-left: 10.75rem;
+  }
+  .yeti-padding-left-44 {
+    padding-left: 11rem;
+  }
+  .yeti-padding-left-45 {
+    padding-left: 11.25rem;
+  }
+  .yeti-padding-left-46 {
+    padding-left: 11.5rem;
+  }
+  .yeti-padding-left-47 {
+    padding-left: 11.75rem;
+  }
+  .yeti-padding-left-48 {
+    padding-left: 12rem;
+  }
+  .yeti-padding-left-49 {
+    padding-left: 12.25rem;
+  }
+  .yeti-padding-left-50 {
+    padding-left: 12.5rem;
+  }
+  .yeti-padding-left-51 {
+    padding-left: 12.75rem;
+  }
+  .yeti-padding-left-52 {
+    padding-left: 13rem;
+  }
+  .yeti-padding-left-53 {
+    padding-left: 13.25rem;
+  }
+  .yeti-padding-left-54 {
+    padding-left: 13.5rem;
+  }
+  .yeti-padding-left-55 {
+    padding-left: 13.75rem;
+  }
+  .yeti-padding-left-56 {
+    padding-left: 14rem;
+  }
+  .yeti-padding-left-57 {
+    padding-left: 14.25rem;
+  }
+  .yeti-padding-left-58 {
+    padding-left: 14.5rem;
+  }
+  .yeti-padding-left-59 {
+    padding-left: 14.75rem;
+  }
   /*** Right ***/
   .yeti-padding-right-none,
   .yeti-padding-right-0 {
@@ -5249,8 +5563,17 @@ Styles for notification
     width: 100%;
   }
   /*** Max Width ***/
+  .yeti-width-max-6 {
+    max-width: 1.5rem;
+  }
+  .yeti-width-max-96 {
+    max-width: 24rem;
+  }
   .yeti-width-max-108 {
     max-width: 27rem;
+  }
+  .yeti-width-max-50v {
+    max-width: 50vw;
   }
   /************************************** Height ***/
   .yeti-height-0 {
@@ -5294,6 +5617,10 @@ Styles for notification
   }
   .yeti-height-full {
     height: 100%;
+  }
+  /*** Max Height ***/
+  .yeti-height-max-125 {
+    max-height: 31.25rem;
   }
   /************************************** Both ***/
   .yeti-size-0 {

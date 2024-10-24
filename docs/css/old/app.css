@@ -16,11 +16,20 @@
     padding: 3rem;
 }
 
+.app-page-wizard-pane {
+    border: 1px solid #c6c6c6;
+}
+
 body:has(.app-page-wizard)::after {
     content: '';
     width: 1px;
     height: 1px;
     display: block;
+}
+
+.app-page-conductor {
+    margin: 2rem auto;
+    padding: 0 2rem;
 }
 
 
@@ -100,4 +109,26 @@ body:has(.app-page-wizard)::after {
 .app-summary_list-term,
 .app-summary_list-definition {
     padding: 0.25rem 1rem 0.25rem 0;
+}
+
+
+
+/************************************** Random Component Variants ***/
+.app-tooltip-file_path {
+    max-width: 67vw;
+    overflow-wrap: anywhere;
+}
+
+
+
+/************************************** Icon Buttons ***/
+.app-button_icon,
+.app-button_icon:hover,
+.app-button_icon:focus {
+    padding: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: unset;
+    text-decoration: none;
 }

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+
+    <title>Yeti Design System - Panel Component</title>
+
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/yeti-examples-only.css">
+
+  </head>
+  <body>
+
+    <div class="ydoc-wrapper">
+
+      <div role="main">
+    
+        <h1 class="margin-top-none">Panel</h1>
+
+        <yeti-page-contents ignore-within="ydoc-code_sample"></yeti-page-contents>
+
+        <h2 class="margin-bottom-4">Code Samples</h2>
+
+
+
+        <h3 class="margin-bottom-3">Default</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+ 
+<yeti-panel heading="I'm a Panel">
+    I'm some content inside a panel!
+</yeti-panel>
+
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-3">Expandable</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+ 
+<yeti-panel heading="I Can Expand and Collapse" is-expandable="true">
+    Expandable panels default to expanded. Set the <code>is-expanded</code> attribute to false to programmatically collapse it.
+</yeti-panel>
+
+        </div><!-- /code_sample -->
+
+        
+
+        <h3 class="margin-bottom-3">With Subheader</h3>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+ 
+<yeti-panel heading="I Have a Subheader" is-expandable="true">
+    <div slot="subheader">Perhaps some status</div>
+    Wrap your subheader content in something with a slot attribute of "subheader".
+</yeti-panel>
+
+        </div><!-- /code_sample -->
+
+
+
+        <!-- <h2 class="margin-bottom-3">Technical Notes</h2>
+
+        <ul class="yeti-list-bulleted">
+          <li>The last item should always be read-only.</li>
+        </ul> -->
+
+      </div><!-- /main -->
+    
+    </div><!-- /wrapper -->
+
+    <script type="module" src="./js/docs-scripts.mjs" defer="true"></script>
+
+    <script type="module" src="./yeti/yeti.esm.js"></script>
+    
+  </body>
+</html>
