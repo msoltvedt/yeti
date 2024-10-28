@@ -609,6 +609,10 @@ export namespace Components {
           * Whether or not this panel is currently expanded.
          */
         "isExpanded": boolean;
+        /**
+          * A string of CSS space-separated CSS classes to add to the HTML element that represents the panel's outer wrapper
+         */
+        "wrapperClass": string;
     }
     interface YetiProgressBar {
         /**
@@ -1906,6 +1910,10 @@ declare namespace LocalJSX {
           * Whether or not this panel is currently expanded.
          */
         "isExpanded"?: boolean;
+        /**
+          * A string of CSS space-separated CSS classes to add to the HTML element that represents the panel's outer wrapper
+         */
+        "wrapperClass"?: string;
     }
     interface YetiProgressBar {
         /**

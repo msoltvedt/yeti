@@ -50,6 +50,14 @@ export class YetiPanel {
   }) contentId: string = utils.generateUniqueId();
 
   /**
+   * A string of CSS space-separated CSS classes to add to the HTML element that represents the panel's outer wrapper
+   */
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) wrapperClass: string = '';
+
+  /**
    * Used to toggle a re-render of the icon.
    */
   @State() iLoveJSX: boolean = false;
@@ -82,6 +90,8 @@ export class YetiPanel {
   render() {
 
     let wrapperCSS = 'yeti-panel';
+
+    wrapperCSS += (this.wrapperClass) ? ` ${this.wrapperClass}` : '';
 
     wrapperCSS += (this.isExpandable) ? ' yeti-panel-expandable' : '';
     wrapperCSS += (this.isExpandable && this.isExpanded) ? ' yeti-panel__expanded' : '';

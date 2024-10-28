@@ -2742,9 +2742,6 @@ Styles for Panel
   .yeti-panel-expandable .yeti-panel-header {
     cursor: pointer;
   }
-  [status="undefined"] .yeti-panel-header {
-    color: #c6c6c6;
-  }
   .yeti-panel-header-contents {
     display: flex;
     align-items: center;
@@ -3004,6 +3001,11 @@ Styles for Select
   .yeti-select-option {
     background-color: #e8e8e8;
     color: #161616;
+  }
+  /************************************** Compact ***/
+  .yeti-select-compact {
+    padding: 0 1.5rem 0 0.5rem;
+    background-position: right 0.5rem center;
   }
   /************************************** table.css ***************************************
 
@@ -5555,6 +5557,9 @@ Styles for notification
   .yeti-width-full {
     width: 100%;
   }
+  .yeti-width-auto {
+    width: auto;
+  }
   /*** Max Width ***/
   .yeti-width-max-6 {
     max-width: 1.5rem;
@@ -5567,6 +5572,10 @@ Styles for notification
   }
   .yeti-width-max-50v {
     max-width: 50vw;
+  }
+  /*** Min Width ***/
+  .yeti-width-min-unset {
+    min-width: unset;
   }
   /************************************** Height ***/
   .yeti-height-0 {
