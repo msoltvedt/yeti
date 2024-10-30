@@ -132,3 +132,30 @@ body:has(.app-page-wizard)::after {
     color: unset;
     text-decoration: none;
 }
+
+
+
+/************************************** (Conductor) Status Summary ***/
+/*** Divided List ***/
+.app-status_summary-divided_list {
+    display: inline-flex;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.4375rem; /* 127.778% */
+    color: #161616;
+}
+
+/* Items */
+.app-status_summary-divided_list-item {
+    height: 0.875rem;
+    display: flex;
+    align-items: center;
+}
+.app-status_summary-divided_list-item:not(:last-child) {
+    padding-right: 0.5rem;
+}
+.app-status_summary-divided_list-item:not(:first-child) {
+    border-left: 1px solid #a8a8a8;
+    padding-left: 0.5rem;
+}

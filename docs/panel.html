@@ -47,6 +47,48 @@
 
         </div><!-- /code_sample -->
 
+
+
+        <h4 class="margin-bottom-3">Panel Events</h4>
+
+        <p>
+          Yeti Panel will fire a <code>panelExpanded</code> event when the panel is expanded, and a <code>panelCollapsed</code> event when the panel is collapsed.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+ 
+<yeti-panel heading="I Can Expand and Collapse" is-expandable="true" id="demoPanel_events">
+    Expandable panels default to expanded. Set the <code>is-expanded</code> attribute to false to programmatically collapse it.
+</yeti-panel>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    
+    let panel = document.getElementById("demoPanel_events");
+
+    panel.addEventListener("panelExpansionChanged", (e) => {
+
+      /*
+        e.detail.yetiPanel:  the actual YetiPanel object that emitted the event
+        e.detail.isExpanded: the boolean value indicating whether the panel is now expanded or not
+      */
+      
+      if (e.detail.isExpanded) {
+        panel.heading = "I just expanded. Buy some bigger shirts."
+      }
+
+      else {
+        panel.heading = "I just collapsed. Not that kind; I'm fine.";
+      }
+
+    });
+
+  });
+</script>
+
+        </div><!-- /code_sample -->
+
         
 
         <h3 class="margin-bottom-3">With Subheader</h3>

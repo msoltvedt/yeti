@@ -908,6 +908,10 @@ export interface YetiNotificationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLYetiNotificationElement;
 }
+export interface YetiPanelCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLYetiPanelElement;
+}
 export interface YetiReordereeCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLYetiReordereeElement;
@@ -1109,7 +1113,18 @@ declare global {
         prototype: HTMLYetiPageContentsElement;
         new (): HTMLYetiPageContentsElement;
     };
+    interface HTMLYetiPanelElementEventMap {
+        "panelExpansionChanged": any;
+    }
     interface HTMLYetiPanelElement extends Components.YetiPanel, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLYetiPanelElementEventMap>(type: K, listener: (this: HTMLYetiPanelElement, ev: YetiPanelCustomEvent<HTMLYetiPanelElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLYetiPanelElementEventMap>(type: K, listener: (this: HTMLYetiPanelElement, ev: YetiPanelCustomEvent<HTMLYetiPanelElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLYetiPanelElement: {
         prototype: HTMLYetiPanelElement;
@@ -1910,6 +1925,10 @@ declare namespace LocalJSX {
           * Whether or not this panel is currently expanded.
          */
         "isExpanded"?: boolean;
+        /**
+          * Event that fires when the panel's isExpanded state changes to expanded.
+         */
+        "onPanelExpansionChanged"?: (event: YetiPanelCustomEvent<any>) => void;
         /**
           * A string of CSS space-separated CSS classes to add to the HTML element that represents the panel's outer wrapper
          */

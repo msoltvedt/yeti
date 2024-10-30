@@ -718,7 +718,7 @@ Styles for Accordion
     padding: 1rem 0;
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.5rem;
     border-top: 1px solid #e0e0e0;
   }
   .yeti-accordion-section__open .yeti-accordion-section-heading:focus .yeti-accordion-section-heading-contents,
@@ -746,9 +746,10 @@ Styles for Accordion
     text-decoration: underline;
   }
   .yeti-accordion-section-heading-caret {
-    width: 0.875rem;
+    width: 1rem;
     display: inline-flex;
     justify-content: center;
+    font-size: 2rem;
   }
   /* Status Icon */
   .yeti-accordion-section-status_icon-success {
@@ -2745,7 +2746,7 @@ Styles for Panel
   .yeti-panel-header-contents {
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.5rem;
     border-top: 1px solid #e0e0e0;
   }
   .yeti-panel__open .yeti-panel-header:focus .yeti-panel-header-contents,
@@ -2773,9 +2774,10 @@ Styles for Panel
     text-decoration: underline;
   }
   .yeti-panel-header-caret {
-    width: 0.875rem;
+    width: 1rem;
     display: inline-flex;
     justify-content: center;
+    font-size: 2rem;
   }
   /************************************** Content ***/
   .yeti-panel-content {

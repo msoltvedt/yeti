@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Element } from '@stencil/core';
+import { Component, Prop, h, State, Element, Event, EventEmitter, Watch } from '@stencil/core';
 import { utils } from '../../utils/utils';
 
 @Component({
@@ -8,6 +8,11 @@ import { utils } from '../../utils/utils';
 export class YetiPanel {
 
   @Element() el: HTMLElement;
+
+  /**
+   * Event that fires when the panel's isExpanded state changes to expanded.
+   */
+  @Event({ bubbles: true }) panelExpansionChanged: EventEmitter;
 
   /**
    * The descriptive text that appears in the heading bar above the content.
@@ -32,6 +37,15 @@ export class YetiPanel {
     mutable: true,
     reflect: true
   }) isExpanded: boolean = true;
+  @Watch('isExpanded')
+  watchIsExpandedHandler(newValue: boolean) {
+    
+    this.panelExpansionChanged.emit({
+      "yetiPanel": this.el,
+      "isExpanded": newValue
+    });
+
+  }
 
   /**
    * The id of the HTML element representing the panel header

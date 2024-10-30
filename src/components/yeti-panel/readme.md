@@ -17,6 +17,13 @@
 | `wrapperClass` | `wrapper-class` | A string of CSS space-separated CSS classes to add to the HTML element that represents the panel's outer wrapper | `string`  | `''`                       |
 
 
+## Events
+
+| Event                   | Description                                                             | Type               |
+| ----------------------- | ----------------------------------------------------------------------- | ------------------ |
+| `panelExpansionChanged` | Event that fires when the panel's isExpanded state changes to expanded. | `CustomEvent<any>` |
+
+
 ## Dependencies
 
 ### Depends on
