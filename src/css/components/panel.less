@@ -41,14 +41,6 @@ yeti-panel { display: contents; }
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    border-top: 1px solid #e0e0e0;
-}
-.yeti-panel__open .yeti-panel-header:focus .yeti-panel-header-contents,
-yeti-panel:has(.yeti-panel-header:focus) + yeti-panel .yeti-panel-header-contents {
-    border-top: 1px solid transparent;
-}
-yeti-panel:first-of-type .yeti-panel-header-contents {
-    border-top: none;
 }
 
 .yeti-panel-header-actual {

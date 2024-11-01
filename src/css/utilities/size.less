@@ -6,24 +6,13 @@
 
 
 /************************************** Width ***/
-.yeti-width-1   { width: @u * 1; }
-.yeti-width-2   { width: @u * 2; }
-.yeti-width-3   { width: @u * 3; }
-.yeti-width-4   { width: @u * 4; }
-.yeti-width-5   { width: @u * 5; }
-.yeti-width-6   { width: @u * 6; }
-.yeti-width-7   { width: @u * 7; }
-.yeti-width-8   { width: @u * 8; }
-.yeti-width-9   { width: @u * 9; }
-.yeti-width-10  { width: @u * 10; }
-.yeti-width-11  { width: @u * 11; }
-.yeti-width-12  { width: @u * 12; }
-.yeti-width-30  { width: @u * 30; }
-.yeti-width-40  { width: @u * 40; }
-.yeti-width-107 { width: @u * 107; }
-.yeti-width-108 { width: @u * 108; }
-.yeti-width-128 { width: @u * 128; }
-.yeti-width-180 { width: @u * 180; }
+
+// The function below generates 256 classes that look like .yeti-width-20 { width: 5rem; }
+each(range(256), {
+    .yeti-width-@{value} {
+        width: (@value * @u);
+    }
+});
 .yeti-width-full { width: 100%; }
 .yeti-width-auto { width: auto; }
 
