@@ -4045,7 +4045,7 @@ Styles for notification
   }
   .yeti-notification-low_contrast.yeti-notification-warning,
   .yeti-notification-low_contrast.yeti-notification-warning_alt {
-    --color-background: #fdf6dd;
+    --color-background: #E69900;
     --color-accent: #f1c21b;
   }
   /************************************** Wrapper ***/
