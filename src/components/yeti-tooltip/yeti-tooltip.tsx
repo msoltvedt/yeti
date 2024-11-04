@@ -8,6 +8,12 @@ import { utils } from '../../utils/utils';
 export class YetiTooltip {
 
   @Element() el: HTMLElement;
+  
+  /**
+   * Track the current state if there is an open tooltip already
+   */
+  
+  private static activeToolTip: YetiTooltip| null = null;
 
   /**
    * CSS classlist to add to the element serving as the component's wrapper.
@@ -70,6 +76,11 @@ export class YetiTooltip {
    */
   @State() isClickedOpen: boolean = false;
 
+    /**
+   * Whether the tooltip has been clicked open or not.
+   */
+     @State() activeInstance: boolean = false;
+
   /**
    * Whether the tooltip has rich content (i.e. html rather than just a string of text) or not.
    */
@@ -112,16 +123,22 @@ export class YetiTooltip {
 
   
 
-  handleTriggerClick(e) {
-    if (this.clickToOpen && !this.justClickedClosed) {
+  handleTriggerClick(e: Event) {
+    if (this.clickToOpen) {
+      // If there's an active instance and it isn't the current instance then close it
+      if (YetiTooltip.activeToolTip && YetiTooltip.activeToolTip !== this) {
+        YetiTooltip.activeToolTip.isClickedOpen = false;
+      }
+
       e.stopImmediatePropagation();
       e.preventDefault();
       this.scrollTooltipIntoView();
       this.isClickedOpen = !this.isClickedOpen;
-      return false;
+
+      // Update the active instance
+      YetiTooltip.activeToolTip = this.isClickedOpen ? this : null;
     }
   }
-
   
 
   handleTriggerKeyPress(e) {
