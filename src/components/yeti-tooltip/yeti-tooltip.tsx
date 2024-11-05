@@ -61,14 +61,17 @@ export class YetiTooltip {
   @Prop() forceOpen: boolean = false;
 
   /**
+   * Whether the tooltip has been clicked open or not.
+   */
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) isClickedOpen: boolean = false;
+
+  /**
    * Toggle to force a re-render of the whole component.
    */
   @State() iLoveJSX: boolean = false;
-
-  /**
-   * Whether the tooltip has been clicked open or not.
-   */
-  @State() isClickedOpen: boolean = false;
 
   /**
    * Whether the tooltip has rich content (i.e. html rather than just a string of text) or not.
@@ -114,6 +117,7 @@ export class YetiTooltip {
 
   handleTriggerClick(e) {
     if (this.clickToOpen && !this.justClickedClosed) {
+      this.closeOtherTooltips();
       e.stopImmediatePropagation();
       e.preventDefault();
       this.scrollTooltipIntoView();
@@ -137,6 +141,19 @@ export class YetiTooltip {
     e.stopImmediatePropagation();
     e.preventDefault();
     this.isClickedOpen = false;
+  }
+
+
+
+  closeOtherTooltips() {
+    let allTooltips = document.querySelectorAll("yeti-tooltip");
+
+    for (let i = 0; i < allTooltips.length; i++) {
+      let someTooltip = allTooltips[i];
+      if (someTooltip.clickToOpen && someTooltip.isClickedOpen && someTooltip.id != this.el.getAttribute("id")) {
+        someTooltip.isClickedOpen = false;
+      }
+    }
   }
 
 

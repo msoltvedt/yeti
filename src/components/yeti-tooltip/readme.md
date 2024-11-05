@@ -7,17 +7,18 @@
 
 ## Properties
 
-| Property       | Attribute       | Description                                                                                                                    | Type      | Default                    |
-| -------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------ | --------- | -------------------------- |
-| `blockAnchor`  | `block-anchor`  | Whether the anchor should be forced to be a CSS display block style or left as is.                                             | `boolean` | `false`                    |
-| `clickToOpen`  | `click-to-open` | Boolean value that sets whether the tooltip opens on hover/focus (default) or on click.                                        | `boolean` | `false`                    |
-| `forceOpen`    | `force-open`    | Whether the tooltip should remain open permanently.                                                                            | `boolean` | `false`                    |
-| `position`     | `position`      | Token list to describe the tooltip's position relative to its anchor: left \| right and/or above \| below.                     | `string`  | `"above"`                  |
-| `slotId`       | `slot-id`       | id of the component's slot element.                                                                                            | `string`  | `""`                       |
-| `text`         | `text`          | Text value to display as the tooltip's contents.                                                                               | `string`  | `"I'm a helpful tooltip."` |
-| `tipId`        | `tip-id`        | id of the component's actual element corresponding to the tooltip. Will be auto-populated with a unique value if not provided. | `string`  | `""`                       |
-| `tooltipClass` | `tooltip-class` | CSS classlist to add to the actual tooltip element.                                                                            | `string`  | `''`                       |
-| `wrapperClass` | `wrapper-class` | CSS classlist to add to the element serving as the component's wrapper.                                                        | `string`  | `''`                       |
+| Property        | Attribute         | Description                                                                                                                    | Type      | Default                    |
+| --------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------ | --------- | -------------------------- |
+| `blockAnchor`   | `block-anchor`    | Whether the anchor should be forced to be a CSS display block style or left as is.                                             | `boolean` | `false`                    |
+| `clickToOpen`   | `click-to-open`   | Boolean value that sets whether the tooltip opens on hover/focus (default) or on click.                                        | `boolean` | `false`                    |
+| `forceOpen`     | `force-open`      | Whether the tooltip should remain open permanently.                                                                            | `boolean` | `false`                    |
+| `isClickedOpen` | `is-clicked-open` | Whether the tooltip has been clicked open or not.                                                                              | `boolean` | `false`                    |
+| `position`      | `position`        | Token list to describe the tooltip's position relative to its anchor: left \| right and/or above \| below.                     | `string`  | `"above"`                  |
+| `slotId`        | `slot-id`         | id of the component's slot element.                                                                                            | `string`  | `""`                       |
+| `text`          | `text`            | Text value to display as the tooltip's contents.                                                                               | `string`  | `"I'm a helpful tooltip."` |
+| `tipId`         | `tip-id`          | id of the component's actual element corresponding to the tooltip. Will be auto-populated with a unique value if not provided. | `string`  | `""`                       |
+| `tooltipClass`  | `tooltip-class`   | CSS classlist to add to the actual tooltip element.                                                                            | `string`  | `''`                       |
+| `wrapperClass`  | `wrapper-class`   | CSS classlist to add to the element serving as the component's wrapper.                                                        | `string`  | `''`                       |
 
 
 ## Dependencies
