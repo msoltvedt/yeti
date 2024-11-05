@@ -833,6 +833,10 @@ export namespace Components {
          */
         "forceOpen": boolean;
         /**
+          * Whether the tooltip has been clicked open or not.
+         */
+        "isClickedOpen": boolean;
+        /**
           * Token list to describe the tooltip's position relative to its anchor: left | right and/or above | below.
          */
         "position": string;
@@ -2175,6 +2179,10 @@ declare namespace LocalJSX {
           * Whether the tooltip should remain open permanently.
          */
         "forceOpen"?: boolean;
+        /**
+          * Whether the tooltip has been clicked open or not.
+         */
+        "isClickedOpen"?: boolean;
         /**
           * Token list to describe the tooltip's position relative to its anchor: left | right and/or above | below.
          */
