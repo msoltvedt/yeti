@@ -468,7 +468,7 @@ export class YetiDropdown {
         if (option.hasAttribute("value")) {
           optionValue = option.getAttribute("value");
         } else {
-          optionValue = option.innerHTML;
+          optionValue = option.textContent;
         }
 
 
@@ -484,7 +484,7 @@ export class YetiDropdown {
 
         this.options.push({
           selected: selectedState,
-          label: option.innerHTML,
+          label: option.textContent,
           id: optionId,
           value: optionValue,
           isVisible: true
@@ -492,7 +492,7 @@ export class YetiDropdown {
 
         if (selectedState) {
           ++this.numSelections;
-          runningInitialValueArray.push(option.innerHTML);
+          runningInitialValueArray.push(optionValue);
         }
 
       }
@@ -548,7 +548,7 @@ export class YetiDropdown {
       if (this.isMultiselect) {
         
         if (this.options[j].selected) {
-          newValue.push(this.options[j].label);
+          newValue.push(this.options[j].value);
         }
 
       // Single-select

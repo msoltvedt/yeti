@@ -29,7 +29,7 @@ body:has(.app-page-wizard)::after {
 
 .app-page-conductor {
     margin: 2rem auto;
-    padding: 0 2rem;
+    padding: 0 2rem 2rem;
 }
 
 
