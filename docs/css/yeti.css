@@ -2747,14 +2747,6 @@ Styles for Panel
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    border-top: 1px solid #e0e0e0;
-  }
-  .yeti-panel__open .yeti-panel-header:focus .yeti-panel-header-contents,
-  yeti-panel:has(.yeti-panel-header:focus) + yeti-panel .yeti-panel-header-contents {
-    border-top: 1px solid transparent;
-  }
-  yeti-panel:first-of-type .yeti-panel-header-contents {
-    border-top: none;
   }
   .yeti-panel-header-actual {
     flex: 1 1 max-content;
@@ -4045,7 +4037,7 @@ Styles for notification
   }
   .yeti-notification-low_contrast.yeti-notification-warning,
   .yeti-notification-low_contrast.yeti-notification-warning_alt {
-    --color-background: #E69900;
+    --color-background: #fdf6dd;
     --color-accent: #f1c21b;
   }
   /************************************** Wrapper ***/
@@ -5538,11 +5530,287 @@ Styles for notification
   .yeti-width-12 {
     width: 3rem;
   }
+  .yeti-width-13 {
+    width: 3.25rem;
+  }
+  .yeti-width-14 {
+    width: 3.5rem;
+  }
+  .yeti-width-15 {
+    width: 3.75rem;
+  }
+  .yeti-width-16 {
+    width: 4rem;
+  }
+  .yeti-width-17 {
+    width: 4.25rem;
+  }
+  .yeti-width-18 {
+    width: 4.5rem;
+  }
+  .yeti-width-19 {
+    width: 4.75rem;
+  }
+  .yeti-width-20 {
+    width: 5rem;
+  }
+  .yeti-width-21 {
+    width: 5.25rem;
+  }
+  .yeti-width-22 {
+    width: 5.5rem;
+  }
+  .yeti-width-23 {
+    width: 5.75rem;
+  }
+  .yeti-width-24 {
+    width: 6rem;
+  }
+  .yeti-width-25 {
+    width: 6.25rem;
+  }
+  .yeti-width-26 {
+    width: 6.5rem;
+  }
+  .yeti-width-27 {
+    width: 6.75rem;
+  }
+  .yeti-width-28 {
+    width: 7rem;
+  }
+  .yeti-width-29 {
+    width: 7.25rem;
+  }
   .yeti-width-30 {
     width: 7.5rem;
   }
+  .yeti-width-31 {
+    width: 7.75rem;
+  }
+  .yeti-width-32 {
+    width: 8rem;
+  }
+  .yeti-width-33 {
+    width: 8.25rem;
+  }
+  .yeti-width-34 {
+    width: 8.5rem;
+  }
+  .yeti-width-35 {
+    width: 8.75rem;
+  }
+  .yeti-width-36 {
+    width: 9rem;
+  }
+  .yeti-width-37 {
+    width: 9.25rem;
+  }
+  .yeti-width-38 {
+    width: 9.5rem;
+  }
+  .yeti-width-39 {
+    width: 9.75rem;
+  }
   .yeti-width-40 {
     width: 10rem;
+  }
+  .yeti-width-41 {
+    width: 10.25rem;
+  }
+  .yeti-width-42 {
+    width: 10.5rem;
+  }
+  .yeti-width-43 {
+    width: 10.75rem;
+  }
+  .yeti-width-44 {
+    width: 11rem;
+  }
+  .yeti-width-45 {
+    width: 11.25rem;
+  }
+  .yeti-width-46 {
+    width: 11.5rem;
+  }
+  .yeti-width-47 {
+    width: 11.75rem;
+  }
+  .yeti-width-48 {
+    width: 12rem;
+  }
+  .yeti-width-49 {
+    width: 12.25rem;
+  }
+  .yeti-width-50 {
+    width: 12.5rem;
+  }
+  .yeti-width-51 {
+    width: 12.75rem;
+  }
+  .yeti-width-52 {
+    width: 13rem;
+  }
+  .yeti-width-53 {
+    width: 13.25rem;
+  }
+  .yeti-width-54 {
+    width: 13.5rem;
+  }
+  .yeti-width-55 {
+    width: 13.75rem;
+  }
+  .yeti-width-56 {
+    width: 14rem;
+  }
+  .yeti-width-57 {
+    width: 14.25rem;
+  }
+  .yeti-width-58 {
+    width: 14.5rem;
+  }
+  .yeti-width-59 {
+    width: 14.75rem;
+  }
+  .yeti-width-60 {
+    width: 15rem;
+  }
+  .yeti-width-61 {
+    width: 15.25rem;
+  }
+  .yeti-width-62 {
+    width: 15.5rem;
+  }
+  .yeti-width-63 {
+    width: 15.75rem;
+  }
+  .yeti-width-64 {
+    width: 16rem;
+  }
+  .yeti-width-65 {
+    width: 16.25rem;
+  }
+  .yeti-width-66 {
+    width: 16.5rem;
+  }
+  .yeti-width-67 {
+    width: 16.75rem;
+  }
+  .yeti-width-68 {
+    width: 17rem;
+  }
+  .yeti-width-69 {
+    width: 17.25rem;
+  }
+  .yeti-width-70 {
+    width: 17.5rem;
+  }
+  .yeti-width-71 {
+    width: 17.75rem;
+  }
+  .yeti-width-72 {
+    width: 18rem;
+  }
+  .yeti-width-73 {
+    width: 18.25rem;
+  }
+  .yeti-width-74 {
+    width: 18.5rem;
+  }
+  .yeti-width-75 {
+    width: 18.75rem;
+  }
+  .yeti-width-76 {
+    width: 19rem;
+  }
+  .yeti-width-77 {
+    width: 19.25rem;
+  }
+  .yeti-width-78 {
+    width: 19.5rem;
+  }
+  .yeti-width-79 {
+    width: 19.75rem;
+  }
+  .yeti-width-80 {
+    width: 20rem;
+  }
+  .yeti-width-81 {
+    width: 20.25rem;
+  }
+  .yeti-width-82 {
+    width: 20.5rem;
+  }
+  .yeti-width-83 {
+    width: 20.75rem;
+  }
+  .yeti-width-84 {
+    width: 21rem;
+  }
+  .yeti-width-85 {
+    width: 21.25rem;
+  }
+  .yeti-width-86 {
+    width: 21.5rem;
+  }
+  .yeti-width-87 {
+    width: 21.75rem;
+  }
+  .yeti-width-88 {
+    width: 22rem;
+  }
+  .yeti-width-89 {
+    width: 22.25rem;
+  }
+  .yeti-width-90 {
+    width: 22.5rem;
+  }
+  .yeti-width-91 {
+    width: 22.75rem;
+  }
+  .yeti-width-92 {
+    width: 23rem;
+  }
+  .yeti-width-93 {
+    width: 23.25rem;
+  }
+  .yeti-width-94 {
+    width: 23.5rem;
+  }
+  .yeti-width-95 {
+    width: 23.75rem;
+  }
+  .yeti-width-96 {
+    width: 24rem;
+  }
+  .yeti-width-97 {
+    width: 24.25rem;
+  }
+  .yeti-width-98 {
+    width: 24.5rem;
+  }
+  .yeti-width-99 {
+    width: 24.75rem;
+  }
+  .yeti-width-100 {
+    width: 25rem;
+  }
+  .yeti-width-101 {
+    width: 25.25rem;
+  }
+  .yeti-width-102 {
+    width: 25.5rem;
+  }
+  .yeti-width-103 {
+    width: 25.75rem;
+  }
+  .yeti-width-104 {
+    width: 26rem;
+  }
+  .yeti-width-105 {
+    width: 26.25rem;
+  }
+  .yeti-width-106 {
+    width: 26.5rem;
   }
   .yeti-width-107 {
     width: 26.75rem;
@@ -5550,11 +5818,449 @@ Styles for notification
   .yeti-width-108 {
     width: 27rem;
   }
+  .yeti-width-109 {
+    width: 27.25rem;
+  }
+  .yeti-width-110 {
+    width: 27.5rem;
+  }
+  .yeti-width-111 {
+    width: 27.75rem;
+  }
+  .yeti-width-112 {
+    width: 28rem;
+  }
+  .yeti-width-113 {
+    width: 28.25rem;
+  }
+  .yeti-width-114 {
+    width: 28.5rem;
+  }
+  .yeti-width-115 {
+    width: 28.75rem;
+  }
+  .yeti-width-116 {
+    width: 29rem;
+  }
+  .yeti-width-117 {
+    width: 29.25rem;
+  }
+  .yeti-width-118 {
+    width: 29.5rem;
+  }
+  .yeti-width-119 {
+    width: 29.75rem;
+  }
+  .yeti-width-120 {
+    width: 30rem;
+  }
+  .yeti-width-121 {
+    width: 30.25rem;
+  }
+  .yeti-width-122 {
+    width: 30.5rem;
+  }
+  .yeti-width-123 {
+    width: 30.75rem;
+  }
+  .yeti-width-124 {
+    width: 31rem;
+  }
+  .yeti-width-125 {
+    width: 31.25rem;
+  }
+  .yeti-width-126 {
+    width: 31.5rem;
+  }
+  .yeti-width-127 {
+    width: 31.75rem;
+  }
   .yeti-width-128 {
     width: 32rem;
   }
+  .yeti-width-129 {
+    width: 32.25rem;
+  }
+  .yeti-width-130 {
+    width: 32.5rem;
+  }
+  .yeti-width-131 {
+    width: 32.75rem;
+  }
+  .yeti-width-132 {
+    width: 33rem;
+  }
+  .yeti-width-133 {
+    width: 33.25rem;
+  }
+  .yeti-width-134 {
+    width: 33.5rem;
+  }
+  .yeti-width-135 {
+    width: 33.75rem;
+  }
+  .yeti-width-136 {
+    width: 34rem;
+  }
+  .yeti-width-137 {
+    width: 34.25rem;
+  }
+  .yeti-width-138 {
+    width: 34.5rem;
+  }
+  .yeti-width-139 {
+    width: 34.75rem;
+  }
+  .yeti-width-140 {
+    width: 35rem;
+  }
+  .yeti-width-141 {
+    width: 35.25rem;
+  }
+  .yeti-width-142 {
+    width: 35.5rem;
+  }
+  .yeti-width-143 {
+    width: 35.75rem;
+  }
+  .yeti-width-144 {
+    width: 36rem;
+  }
+  .yeti-width-145 {
+    width: 36.25rem;
+  }
+  .yeti-width-146 {
+    width: 36.5rem;
+  }
+  .yeti-width-147 {
+    width: 36.75rem;
+  }
+  .yeti-width-148 {
+    width: 37rem;
+  }
+  .yeti-width-149 {
+    width: 37.25rem;
+  }
+  .yeti-width-150 {
+    width: 37.5rem;
+  }
+  .yeti-width-151 {
+    width: 37.75rem;
+  }
+  .yeti-width-152 {
+    width: 38rem;
+  }
+  .yeti-width-153 {
+    width: 38.25rem;
+  }
+  .yeti-width-154 {
+    width: 38.5rem;
+  }
+  .yeti-width-155 {
+    width: 38.75rem;
+  }
+  .yeti-width-156 {
+    width: 39rem;
+  }
+  .yeti-width-157 {
+    width: 39.25rem;
+  }
+  .yeti-width-158 {
+    width: 39.5rem;
+  }
+  .yeti-width-159 {
+    width: 39.75rem;
+  }
+  .yeti-width-160 {
+    width: 40rem;
+  }
+  .yeti-width-161 {
+    width: 40.25rem;
+  }
+  .yeti-width-162 {
+    width: 40.5rem;
+  }
+  .yeti-width-163 {
+    width: 40.75rem;
+  }
+  .yeti-width-164 {
+    width: 41rem;
+  }
+  .yeti-width-165 {
+    width: 41.25rem;
+  }
+  .yeti-width-166 {
+    width: 41.5rem;
+  }
+  .yeti-width-167 {
+    width: 41.75rem;
+  }
+  .yeti-width-168 {
+    width: 42rem;
+  }
+  .yeti-width-169 {
+    width: 42.25rem;
+  }
+  .yeti-width-170 {
+    width: 42.5rem;
+  }
+  .yeti-width-171 {
+    width: 42.75rem;
+  }
+  .yeti-width-172 {
+    width: 43rem;
+  }
+  .yeti-width-173 {
+    width: 43.25rem;
+  }
+  .yeti-width-174 {
+    width: 43.5rem;
+  }
+  .yeti-width-175 {
+    width: 43.75rem;
+  }
+  .yeti-width-176 {
+    width: 44rem;
+  }
+  .yeti-width-177 {
+    width: 44.25rem;
+  }
+  .yeti-width-178 {
+    width: 44.5rem;
+  }
+  .yeti-width-179 {
+    width: 44.75rem;
+  }
   .yeti-width-180 {
     width: 45rem;
+  }
+  .yeti-width-181 {
+    width: 45.25rem;
+  }
+  .yeti-width-182 {
+    width: 45.5rem;
+  }
+  .yeti-width-183 {
+    width: 45.75rem;
+  }
+  .yeti-width-184 {
+    width: 46rem;
+  }
+  .yeti-width-185 {
+    width: 46.25rem;
+  }
+  .yeti-width-186 {
+    width: 46.5rem;
+  }
+  .yeti-width-187 {
+    width: 46.75rem;
+  }
+  .yeti-width-188 {
+    width: 47rem;
+  }
+  .yeti-width-189 {
+    width: 47.25rem;
+  }
+  .yeti-width-190 {
+    width: 47.5rem;
+  }
+  .yeti-width-191 {
+    width: 47.75rem;
+  }
+  .yeti-width-192 {
+    width: 48rem;
+  }
+  .yeti-width-193 {
+    width: 48.25rem;
+  }
+  .yeti-width-194 {
+    width: 48.5rem;
+  }
+  .yeti-width-195 {
+    width: 48.75rem;
+  }
+  .yeti-width-196 {
+    width: 49rem;
+  }
+  .yeti-width-197 {
+    width: 49.25rem;
+  }
+  .yeti-width-198 {
+    width: 49.5rem;
+  }
+  .yeti-width-199 {
+    width: 49.75rem;
+  }
+  .yeti-width-200 {
+    width: 50rem;
+  }
+  .yeti-width-201 {
+    width: 50.25rem;
+  }
+  .yeti-width-202 {
+    width: 50.5rem;
+  }
+  .yeti-width-203 {
+    width: 50.75rem;
+  }
+  .yeti-width-204 {
+    width: 51rem;
+  }
+  .yeti-width-205 {
+    width: 51.25rem;
+  }
+  .yeti-width-206 {
+    width: 51.5rem;
+  }
+  .yeti-width-207 {
+    width: 51.75rem;
+  }
+  .yeti-width-208 {
+    width: 52rem;
+  }
+  .yeti-width-209 {
+    width: 52.25rem;
+  }
+  .yeti-width-210 {
+    width: 52.5rem;
+  }
+  .yeti-width-211 {
+    width: 52.75rem;
+  }
+  .yeti-width-212 {
+    width: 53rem;
+  }
+  .yeti-width-213 {
+    width: 53.25rem;
+  }
+  .yeti-width-214 {
+    width: 53.5rem;
+  }
+  .yeti-width-215 {
+    width: 53.75rem;
+  }
+  .yeti-width-216 {
+    width: 54rem;
+  }
+  .yeti-width-217 {
+    width: 54.25rem;
+  }
+  .yeti-width-218 {
+    width: 54.5rem;
+  }
+  .yeti-width-219 {
+    width: 54.75rem;
+  }
+  .yeti-width-220 {
+    width: 55rem;
+  }
+  .yeti-width-221 {
+    width: 55.25rem;
+  }
+  .yeti-width-222 {
+    width: 55.5rem;
+  }
+  .yeti-width-223 {
+    width: 55.75rem;
+  }
+  .yeti-width-224 {
+    width: 56rem;
+  }
+  .yeti-width-225 {
+    width: 56.25rem;
+  }
+  .yeti-width-226 {
+    width: 56.5rem;
+  }
+  .yeti-width-227 {
+    width: 56.75rem;
+  }
+  .yeti-width-228 {
+    width: 57rem;
+  }
+  .yeti-width-229 {
+    width: 57.25rem;
+  }
+  .yeti-width-230 {
+    width: 57.5rem;
+  }
+  .yeti-width-231 {
+    width: 57.75rem;
+  }
+  .yeti-width-232 {
+    width: 58rem;
+  }
+  .yeti-width-233 {
+    width: 58.25rem;
+  }
+  .yeti-width-234 {
+    width: 58.5rem;
+  }
+  .yeti-width-235 {
+    width: 58.75rem;
+  }
+  .yeti-width-236 {
+    width: 59rem;
+  }
+  .yeti-width-237 {
+    width: 59.25rem;
+  }
+  .yeti-width-238 {
+    width: 59.5rem;
+  }
+  .yeti-width-239 {
+    width: 59.75rem;
+  }
+  .yeti-width-240 {
+    width: 60rem;
+  }
+  .yeti-width-241 {
+    width: 60.25rem;
+  }
+  .yeti-width-242 {
+    width: 60.5rem;
+  }
+  .yeti-width-243 {
+    width: 60.75rem;
+  }
+  .yeti-width-244 {
+    width: 61rem;
+  }
+  .yeti-width-245 {
+    width: 61.25rem;
+  }
+  .yeti-width-246 {
+    width: 61.5rem;
+  }
+  .yeti-width-247 {
+    width: 61.75rem;
+  }
+  .yeti-width-248 {
+    width: 62rem;
+  }
+  .yeti-width-249 {
+    width: 62.25rem;
+  }
+  .yeti-width-250 {
+    width: 62.5rem;
+  }
+  .yeti-width-251 {
+    width: 62.75rem;
+  }
+  .yeti-width-252 {
+    width: 63rem;
+  }
+  .yeti-width-253 {
+    width: 63.25rem;
+  }
+  .yeti-width-254 {
+    width: 63.5rem;
+  }
+  .yeti-width-255 {
+    width: 63.75rem;
+  }
+  .yeti-width-256 {
+    width: 64rem;
   }
   .yeti-width-full {
     width: 100%;
