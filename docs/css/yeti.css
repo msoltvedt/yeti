@@ -4016,7 +4016,7 @@ Styles for notification
   }
   .yeti-notification-warning,
   .yeti-notification-warning_alt {
-    --color-accent: #f1c21b;
+    --color-accent: #E69900;
   }
   /*** Low contrast ***/
   .yeti-notification.yeti-notification-low_contrast {
@@ -4038,7 +4038,7 @@ Styles for notification
   .yeti-notification-low_contrast.yeti-notification-warning,
   .yeti-notification-low_contrast.yeti-notification-warning_alt {
     --color-background: #fdf6dd;
-    --color-accent: #f1c21b;
+    --color-accent: #E69900;
   }
   /************************************** Wrapper ***/
   yeti-notification {
