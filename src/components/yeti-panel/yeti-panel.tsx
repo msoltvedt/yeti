@@ -130,6 +130,7 @@ export class YetiPanel {
                 onClick={() => { this.handleHeaderClick(); }}
                 aria-expanded={this.isExpanded}
                 aria-controls={this.contentId}
+                type="button"
               >
 
                 <div class='yeti-panel-header-contents'>
@@ -184,7 +185,9 @@ export class YetiPanel {
               </div>
           
           :
+            
             ''
+          
           }
           
 
