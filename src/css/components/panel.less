@@ -70,7 +70,10 @@ yeti-panel { display: contents; }
 
 /************************************** Content ***/
 .yeti-panel-content {
-    padding: 0 1.5rem 1.5rem;
+    padding: 1.5rem;
+}
+.yeti-panel:has(.yeti-panel-header) .yeti-panel-content {
+    padding-top: 0;
 }
 
 .yeti-panel-expandable:not(.yeti-panel__expanded) .yeti-panel-content {

@@ -2773,7 +2773,10 @@ Styles for Panel
   }
   /************************************** Content ***/
   .yeti-panel-content {
-    padding: 0 1.5rem 1.5rem;
+    padding: 1.5rem;
+  }
+  .yeti-panel:has(.yeti-panel-header) .yeti-panel-content {
+    padding-top: 0;
   }
   .yeti-panel-expandable:not(.yeti-panel__expanded) .yeti-panel-content {
     display: none;
@@ -6269,14 +6272,773 @@ Styles for notification
     width: auto;
   }
   /*** Max Width ***/
+  .yeti-width-max-1 {
+    max-width: 0.25rem;
+  }
+  .yeti-width-max-2 {
+    max-width: 0.5rem;
+  }
+  .yeti-width-max-3 {
+    max-width: 0.75rem;
+  }
+  .yeti-width-max-4 {
+    max-width: 1rem;
+  }
+  .yeti-width-max-5 {
+    max-width: 1.25rem;
+  }
   .yeti-width-max-6 {
     max-width: 1.5rem;
+  }
+  .yeti-width-max-7 {
+    max-width: 1.75rem;
+  }
+  .yeti-width-max-8 {
+    max-width: 2rem;
+  }
+  .yeti-width-max-9 {
+    max-width: 2.25rem;
+  }
+  .yeti-width-max-10 {
+    max-width: 2.5rem;
+  }
+  .yeti-width-max-11 {
+    max-width: 2.75rem;
+  }
+  .yeti-width-max-12 {
+    max-width: 3rem;
+  }
+  .yeti-width-max-13 {
+    max-width: 3.25rem;
+  }
+  .yeti-width-max-14 {
+    max-width: 3.5rem;
+  }
+  .yeti-width-max-15 {
+    max-width: 3.75rem;
+  }
+  .yeti-width-max-16 {
+    max-width: 4rem;
+  }
+  .yeti-width-max-17 {
+    max-width: 4.25rem;
+  }
+  .yeti-width-max-18 {
+    max-width: 4.5rem;
+  }
+  .yeti-width-max-19 {
+    max-width: 4.75rem;
+  }
+  .yeti-width-max-20 {
+    max-width: 5rem;
+  }
+  .yeti-width-max-21 {
+    max-width: 5.25rem;
+  }
+  .yeti-width-max-22 {
+    max-width: 5.5rem;
+  }
+  .yeti-width-max-23 {
+    max-width: 5.75rem;
+  }
+  .yeti-width-max-24 {
+    max-width: 6rem;
+  }
+  .yeti-width-max-25 {
+    max-width: 6.25rem;
+  }
+  .yeti-width-max-26 {
+    max-width: 6.5rem;
+  }
+  .yeti-width-max-27 {
+    max-width: 6.75rem;
+  }
+  .yeti-width-max-28 {
+    max-width: 7rem;
+  }
+  .yeti-width-max-29 {
+    max-width: 7.25rem;
+  }
+  .yeti-width-max-30 {
+    max-width: 7.5rem;
+  }
+  .yeti-width-max-31 {
+    max-width: 7.75rem;
+  }
+  .yeti-width-max-32 {
+    max-width: 8rem;
+  }
+  .yeti-width-max-33 {
+    max-width: 8.25rem;
+  }
+  .yeti-width-max-34 {
+    max-width: 8.5rem;
+  }
+  .yeti-width-max-35 {
+    max-width: 8.75rem;
+  }
+  .yeti-width-max-36 {
+    max-width: 9rem;
+  }
+  .yeti-width-max-37 {
+    max-width: 9.25rem;
+  }
+  .yeti-width-max-38 {
+    max-width: 9.5rem;
+  }
+  .yeti-width-max-39 {
+    max-width: 9.75rem;
+  }
+  .yeti-width-max-40 {
+    max-width: 10rem;
+  }
+  .yeti-width-max-41 {
+    max-width: 10.25rem;
+  }
+  .yeti-width-max-42 {
+    max-width: 10.5rem;
+  }
+  .yeti-width-max-43 {
+    max-width: 10.75rem;
+  }
+  .yeti-width-max-44 {
+    max-width: 11rem;
+  }
+  .yeti-width-max-45 {
+    max-width: 11.25rem;
+  }
+  .yeti-width-max-46 {
+    max-width: 11.5rem;
+  }
+  .yeti-width-max-47 {
+    max-width: 11.75rem;
+  }
+  .yeti-width-max-48 {
+    max-width: 12rem;
+  }
+  .yeti-width-max-49 {
+    max-width: 12.25rem;
+  }
+  .yeti-width-max-50 {
+    max-width: 12.5rem;
+  }
+  .yeti-width-max-51 {
+    max-width: 12.75rem;
+  }
+  .yeti-width-max-52 {
+    max-width: 13rem;
+  }
+  .yeti-width-max-53 {
+    max-width: 13.25rem;
+  }
+  .yeti-width-max-54 {
+    max-width: 13.5rem;
+  }
+  .yeti-width-max-55 {
+    max-width: 13.75rem;
+  }
+  .yeti-width-max-56 {
+    max-width: 14rem;
+  }
+  .yeti-width-max-57 {
+    max-width: 14.25rem;
+  }
+  .yeti-width-max-58 {
+    max-width: 14.5rem;
+  }
+  .yeti-width-max-59 {
+    max-width: 14.75rem;
+  }
+  .yeti-width-max-60 {
+    max-width: 15rem;
+  }
+  .yeti-width-max-61 {
+    max-width: 15.25rem;
+  }
+  .yeti-width-max-62 {
+    max-width: 15.5rem;
+  }
+  .yeti-width-max-63 {
+    max-width: 15.75rem;
+  }
+  .yeti-width-max-64 {
+    max-width: 16rem;
+  }
+  .yeti-width-max-65 {
+    max-width: 16.25rem;
+  }
+  .yeti-width-max-66 {
+    max-width: 16.5rem;
+  }
+  .yeti-width-max-67 {
+    max-width: 16.75rem;
+  }
+  .yeti-width-max-68 {
+    max-width: 17rem;
+  }
+  .yeti-width-max-69 {
+    max-width: 17.25rem;
+  }
+  .yeti-width-max-70 {
+    max-width: 17.5rem;
+  }
+  .yeti-width-max-71 {
+    max-width: 17.75rem;
+  }
+  .yeti-width-max-72 {
+    max-width: 18rem;
+  }
+  .yeti-width-max-73 {
+    max-width: 18.25rem;
+  }
+  .yeti-width-max-74 {
+    max-width: 18.5rem;
+  }
+  .yeti-width-max-75 {
+    max-width: 18.75rem;
+  }
+  .yeti-width-max-76 {
+    max-width: 19rem;
+  }
+  .yeti-width-max-77 {
+    max-width: 19.25rem;
+  }
+  .yeti-width-max-78 {
+    max-width: 19.5rem;
+  }
+  .yeti-width-max-79 {
+    max-width: 19.75rem;
+  }
+  .yeti-width-max-80 {
+    max-width: 20rem;
+  }
+  .yeti-width-max-81 {
+    max-width: 20.25rem;
+  }
+  .yeti-width-max-82 {
+    max-width: 20.5rem;
+  }
+  .yeti-width-max-83 {
+    max-width: 20.75rem;
+  }
+  .yeti-width-max-84 {
+    max-width: 21rem;
+  }
+  .yeti-width-max-85 {
+    max-width: 21.25rem;
+  }
+  .yeti-width-max-86 {
+    max-width: 21.5rem;
+  }
+  .yeti-width-max-87 {
+    max-width: 21.75rem;
+  }
+  .yeti-width-max-88 {
+    max-width: 22rem;
+  }
+  .yeti-width-max-89 {
+    max-width: 22.25rem;
+  }
+  .yeti-width-max-90 {
+    max-width: 22.5rem;
+  }
+  .yeti-width-max-91 {
+    max-width: 22.75rem;
+  }
+  .yeti-width-max-92 {
+    max-width: 23rem;
+  }
+  .yeti-width-max-93 {
+    max-width: 23.25rem;
+  }
+  .yeti-width-max-94 {
+    max-width: 23.5rem;
+  }
+  .yeti-width-max-95 {
+    max-width: 23.75rem;
   }
   .yeti-width-max-96 {
     max-width: 24rem;
   }
+  .yeti-width-max-97 {
+    max-width: 24.25rem;
+  }
+  .yeti-width-max-98 {
+    max-width: 24.5rem;
+  }
+  .yeti-width-max-99 {
+    max-width: 24.75rem;
+  }
+  .yeti-width-max-100 {
+    max-width: 25rem;
+  }
+  .yeti-width-max-101 {
+    max-width: 25.25rem;
+  }
+  .yeti-width-max-102 {
+    max-width: 25.5rem;
+  }
+  .yeti-width-max-103 {
+    max-width: 25.75rem;
+  }
+  .yeti-width-max-104 {
+    max-width: 26rem;
+  }
+  .yeti-width-max-105 {
+    max-width: 26.25rem;
+  }
+  .yeti-width-max-106 {
+    max-width: 26.5rem;
+  }
+  .yeti-width-max-107 {
+    max-width: 26.75rem;
+  }
   .yeti-width-max-108 {
     max-width: 27rem;
+  }
+  .yeti-width-max-109 {
+    max-width: 27.25rem;
+  }
+  .yeti-width-max-110 {
+    max-width: 27.5rem;
+  }
+  .yeti-width-max-111 {
+    max-width: 27.75rem;
+  }
+  .yeti-width-max-112 {
+    max-width: 28rem;
+  }
+  .yeti-width-max-113 {
+    max-width: 28.25rem;
+  }
+  .yeti-width-max-114 {
+    max-width: 28.5rem;
+  }
+  .yeti-width-max-115 {
+    max-width: 28.75rem;
+  }
+  .yeti-width-max-116 {
+    max-width: 29rem;
+  }
+  .yeti-width-max-117 {
+    max-width: 29.25rem;
+  }
+  .yeti-width-max-118 {
+    max-width: 29.5rem;
+  }
+  .yeti-width-max-119 {
+    max-width: 29.75rem;
+  }
+  .yeti-width-max-120 {
+    max-width: 30rem;
+  }
+  .yeti-width-max-121 {
+    max-width: 30.25rem;
+  }
+  .yeti-width-max-122 {
+    max-width: 30.5rem;
+  }
+  .yeti-width-max-123 {
+    max-width: 30.75rem;
+  }
+  .yeti-width-max-124 {
+    max-width: 31rem;
+  }
+  .yeti-width-max-125 {
+    max-width: 31.25rem;
+  }
+  .yeti-width-max-126 {
+    max-width: 31.5rem;
+  }
+  .yeti-width-max-127 {
+    max-width: 31.75rem;
+  }
+  .yeti-width-max-128 {
+    max-width: 32rem;
+  }
+  .yeti-width-max-129 {
+    max-width: 32.25rem;
+  }
+  .yeti-width-max-130 {
+    max-width: 32.5rem;
+  }
+  .yeti-width-max-131 {
+    max-width: 32.75rem;
+  }
+  .yeti-width-max-132 {
+    max-width: 33rem;
+  }
+  .yeti-width-max-133 {
+    max-width: 33.25rem;
+  }
+  .yeti-width-max-134 {
+    max-width: 33.5rem;
+  }
+  .yeti-width-max-135 {
+    max-width: 33.75rem;
+  }
+  .yeti-width-max-136 {
+    max-width: 34rem;
+  }
+  .yeti-width-max-137 {
+    max-width: 34.25rem;
+  }
+  .yeti-width-max-138 {
+    max-width: 34.5rem;
+  }
+  .yeti-width-max-139 {
+    max-width: 34.75rem;
+  }
+  .yeti-width-max-140 {
+    max-width: 35rem;
+  }
+  .yeti-width-max-141 {
+    max-width: 35.25rem;
+  }
+  .yeti-width-max-142 {
+    max-width: 35.5rem;
+  }
+  .yeti-width-max-143 {
+    max-width: 35.75rem;
+  }
+  .yeti-width-max-144 {
+    max-width: 36rem;
+  }
+  .yeti-width-max-145 {
+    max-width: 36.25rem;
+  }
+  .yeti-width-max-146 {
+    max-width: 36.5rem;
+  }
+  .yeti-width-max-147 {
+    max-width: 36.75rem;
+  }
+  .yeti-width-max-148 {
+    max-width: 37rem;
+  }
+  .yeti-width-max-149 {
+    max-width: 37.25rem;
+  }
+  .yeti-width-max-150 {
+    max-width: 37.5rem;
+  }
+  .yeti-width-max-151 {
+    max-width: 37.75rem;
+  }
+  .yeti-width-max-152 {
+    max-width: 38rem;
+  }
+  .yeti-width-max-153 {
+    max-width: 38.25rem;
+  }
+  .yeti-width-max-154 {
+    max-width: 38.5rem;
+  }
+  .yeti-width-max-155 {
+    max-width: 38.75rem;
+  }
+  .yeti-width-max-156 {
+    max-width: 39rem;
+  }
+  .yeti-width-max-157 {
+    max-width: 39.25rem;
+  }
+  .yeti-width-max-158 {
+    max-width: 39.5rem;
+  }
+  .yeti-width-max-159 {
+    max-width: 39.75rem;
+  }
+  .yeti-width-max-160 {
+    max-width: 40rem;
+  }
+  .yeti-width-max-161 {
+    max-width: 40.25rem;
+  }
+  .yeti-width-max-162 {
+    max-width: 40.5rem;
+  }
+  .yeti-width-max-163 {
+    max-width: 40.75rem;
+  }
+  .yeti-width-max-164 {
+    max-width: 41rem;
+  }
+  .yeti-width-max-165 {
+    max-width: 41.25rem;
+  }
+  .yeti-width-max-166 {
+    max-width: 41.5rem;
+  }
+  .yeti-width-max-167 {
+    max-width: 41.75rem;
+  }
+  .yeti-width-max-168 {
+    max-width: 42rem;
+  }
+  .yeti-width-max-169 {
+    max-width: 42.25rem;
+  }
+  .yeti-width-max-170 {
+    max-width: 42.5rem;
+  }
+  .yeti-width-max-171 {
+    max-width: 42.75rem;
+  }
+  .yeti-width-max-172 {
+    max-width: 43rem;
+  }
+  .yeti-width-max-173 {
+    max-width: 43.25rem;
+  }
+  .yeti-width-max-174 {
+    max-width: 43.5rem;
+  }
+  .yeti-width-max-175 {
+    max-width: 43.75rem;
+  }
+  .yeti-width-max-176 {
+    max-width: 44rem;
+  }
+  .yeti-width-max-177 {
+    max-width: 44.25rem;
+  }
+  .yeti-width-max-178 {
+    max-width: 44.5rem;
+  }
+  .yeti-width-max-179 {
+    max-width: 44.75rem;
+  }
+  .yeti-width-max-180 {
+    max-width: 45rem;
+  }
+  .yeti-width-max-181 {
+    max-width: 45.25rem;
+  }
+  .yeti-width-max-182 {
+    max-width: 45.5rem;
+  }
+  .yeti-width-max-183 {
+    max-width: 45.75rem;
+  }
+  .yeti-width-max-184 {
+    max-width: 46rem;
+  }
+  .yeti-width-max-185 {
+    max-width: 46.25rem;
+  }
+  .yeti-width-max-186 {
+    max-width: 46.5rem;
+  }
+  .yeti-width-max-187 {
+    max-width: 46.75rem;
+  }
+  .yeti-width-max-188 {
+    max-width: 47rem;
+  }
+  .yeti-width-max-189 {
+    max-width: 47.25rem;
+  }
+  .yeti-width-max-190 {
+    max-width: 47.5rem;
+  }
+  .yeti-width-max-191 {
+    max-width: 47.75rem;
+  }
+  .yeti-width-max-192 {
+    max-width: 48rem;
+  }
+  .yeti-width-max-193 {
+    max-width: 48.25rem;
+  }
+  .yeti-width-max-194 {
+    max-width: 48.5rem;
+  }
+  .yeti-width-max-195 {
+    max-width: 48.75rem;
+  }
+  .yeti-width-max-196 {
+    max-width: 49rem;
+  }
+  .yeti-width-max-197 {
+    max-width: 49.25rem;
+  }
+  .yeti-width-max-198 {
+    max-width: 49.5rem;
+  }
+  .yeti-width-max-199 {
+    max-width: 49.75rem;
+  }
+  .yeti-width-max-200 {
+    max-width: 50rem;
+  }
+  .yeti-width-max-201 {
+    max-width: 50.25rem;
+  }
+  .yeti-width-max-202 {
+    max-width: 50.5rem;
+  }
+  .yeti-width-max-203 {
+    max-width: 50.75rem;
+  }
+  .yeti-width-max-204 {
+    max-width: 51rem;
+  }
+  .yeti-width-max-205 {
+    max-width: 51.25rem;
+  }
+  .yeti-width-max-206 {
+    max-width: 51.5rem;
+  }
+  .yeti-width-max-207 {
+    max-width: 51.75rem;
+  }
+  .yeti-width-max-208 {
+    max-width: 52rem;
+  }
+  .yeti-width-max-209 {
+    max-width: 52.25rem;
+  }
+  .yeti-width-max-210 {
+    max-width: 52.5rem;
+  }
+  .yeti-width-max-211 {
+    max-width: 52.75rem;
+  }
+  .yeti-width-max-212 {
+    max-width: 53rem;
+  }
+  .yeti-width-max-213 {
+    max-width: 53.25rem;
+  }
+  .yeti-width-max-214 {
+    max-width: 53.5rem;
+  }
+  .yeti-width-max-215 {
+    max-width: 53.75rem;
+  }
+  .yeti-width-max-216 {
+    max-width: 54rem;
+  }
+  .yeti-width-max-217 {
+    max-width: 54.25rem;
+  }
+  .yeti-width-max-218 {
+    max-width: 54.5rem;
+  }
+  .yeti-width-max-219 {
+    max-width: 54.75rem;
+  }
+  .yeti-width-max-220 {
+    max-width: 55rem;
+  }
+  .yeti-width-max-221 {
+    max-width: 55.25rem;
+  }
+  .yeti-width-max-222 {
+    max-width: 55.5rem;
+  }
+  .yeti-width-max-223 {
+    max-width: 55.75rem;
+  }
+  .yeti-width-max-224 {
+    max-width: 56rem;
+  }
+  .yeti-width-max-225 {
+    max-width: 56.25rem;
+  }
+  .yeti-width-max-226 {
+    max-width: 56.5rem;
+  }
+  .yeti-width-max-227 {
+    max-width: 56.75rem;
+  }
+  .yeti-width-max-228 {
+    max-width: 57rem;
+  }
+  .yeti-width-max-229 {
+    max-width: 57.25rem;
+  }
+  .yeti-width-max-230 {
+    max-width: 57.5rem;
+  }
+  .yeti-width-max-231 {
+    max-width: 57.75rem;
+  }
+  .yeti-width-max-232 {
+    max-width: 58rem;
+  }
+  .yeti-width-max-233 {
+    max-width: 58.25rem;
+  }
+  .yeti-width-max-234 {
+    max-width: 58.5rem;
+  }
+  .yeti-width-max-235 {
+    max-width: 58.75rem;
+  }
+  .yeti-width-max-236 {
+    max-width: 59rem;
+  }
+  .yeti-width-max-237 {
+    max-width: 59.25rem;
+  }
+  .yeti-width-max-238 {
+    max-width: 59.5rem;
+  }
+  .yeti-width-max-239 {
+    max-width: 59.75rem;
+  }
+  .yeti-width-max-240 {
+    max-width: 60rem;
+  }
+  .yeti-width-max-241 {
+    max-width: 60.25rem;
+  }
+  .yeti-width-max-242 {
+    max-width: 60.5rem;
+  }
+  .yeti-width-max-243 {
+    max-width: 60.75rem;
+  }
+  .yeti-width-max-244 {
+    max-width: 61rem;
+  }
+  .yeti-width-max-245 {
+    max-width: 61.25rem;
+  }
+  .yeti-width-max-246 {
+    max-width: 61.5rem;
+  }
+  .yeti-width-max-247 {
+    max-width: 61.75rem;
+  }
+  .yeti-width-max-248 {
+    max-width: 62rem;
+  }
+  .yeti-width-max-249 {
+    max-width: 62.25rem;
+  }
+  .yeti-width-max-250 {
+    max-width: 62.5rem;
+  }
+  .yeti-width-max-251 {
+    max-width: 62.75rem;
+  }
+  .yeti-width-max-252 {
+    max-width: 63rem;
+  }
+  .yeti-width-max-253 {
+    max-width: 63.25rem;
+  }
+  .yeti-width-max-254 {
+    max-width: 63.5rem;
+  }
+  .yeti-width-max-255 {
+    max-width: 63.75rem;
+  }
+  .yeti-width-max-256 {
+    max-width: 64rem;
   }
   .yeti-width-max-50v {
     max-width: 50vw;

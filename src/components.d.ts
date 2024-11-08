@@ -594,6 +594,10 @@ export namespace Components {
          */
         "contentId": string;
         /**
+          * Whether or not this panel has a header (it will have by default)
+         */
+        "hasHeader": boolean;
+        /**
           * The id of the HTML element representing the panel header
          */
         "headerId": string;
@@ -1913,6 +1917,10 @@ declare namespace LocalJSX {
           * The id of the HTML element representing the panel's content container
          */
         "contentId"?: string;
+        /**
+          * Whether or not this panel has a header (it will have by default)
+         */
+        "hasHeader"?: boolean;
         /**
           * The id of the HTML element representing the panel header
          */

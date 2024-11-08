@@ -10,6 +10,7 @@
 | Property       | Attribute       | Description                                                                                                      | Type      | Default                    |
 | -------------- | --------------- | ---------------------------------------------------------------------------------------------------------------- | --------- | -------------------------- |
 | `contentId`    | `content-id`    | The id of the HTML element representing the panel's content container                                            | `string`  | `utils.generateUniqueId()` |
+| `hasHeader`    | `has-header`    | Whether or not this panel has a header (it will have by default)                                                 | `boolean` | `true`                     |
 | `headerId`     | `header-id`     | The id of the HTML element representing the panel header                                                         | `string`  | `utils.generateUniqueId()` |
 | `heading`      | `heading`       | The descriptive text that appears in the heading bar above the content.                                          | `string`  | `'Heading'`                |
 | `isExpandable` | `is-expandable` | Whether or not this panel can expand or collapse                                                                 | `boolean` | `false`                    |
