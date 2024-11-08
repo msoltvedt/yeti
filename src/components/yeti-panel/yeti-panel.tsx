@@ -31,6 +31,11 @@ export class YetiPanel {
   }) isExpandable: boolean = false;
 
   /**
+   * Whether or not this panel has a header (it will have by default)
+   */
+  @Prop() hasHeader: boolean = true;
+
+  /**
    * Whether or not this panel is currently expanded.
    */
   @Prop({
@@ -115,68 +120,71 @@ export class YetiPanel {
         <div class={wrapperCSS}>
 
           {/* Header */}
-          {(this.isExpandable) ? 
-          
-            // It's expandable, use a button for the header.
-            <button 
-              id={this.headerId}
-              class="yeti-panel-header"
-              onClick={() => { this.handleHeaderClick(); }}
-              aria-expanded={this.isExpanded}
-              aria-controls={this.contentId}
-            >
+          {(this.hasHeader) ?
+            (this.isExpandable) ? 
+            
+              // It's expandable, use a button for the header.
+              <button 
+                id={this.headerId}
+                class="yeti-panel-header"
+                onClick={() => { this.handleHeaderClick(); }}
+                aria-expanded={this.isExpanded}
+                aria-controls={this.contentId}
+              >
 
-              <div class='yeti-panel-header-contents'>
+                <div class='yeti-panel-header-contents'>
 
-                {(this.isExpanded) ?
-                
-                  <yeti-icon iconCode='expand_less' alt='' iconClass='yeti-panel-header-caret'></yeti-icon>
-
-                :
-
-                  <yeti-icon iconCode='expand_more' alt='' iconClass='yeti-panel-header-caret'></yeti-icon>
-
-                }
-                
-                <div class="yeti-panel-header-actual">
-
-                  {this.heading}
+                  {(this.isExpanded) ?
                   
+                    <yeti-icon iconCode='expand_less' alt='' iconClass='yeti-panel-header-caret'></yeti-icon>
+
+                  :
+
+                    <yeti-icon iconCode='expand_more' alt='' iconClass='yeti-panel-header-caret'></yeti-icon>
+
+                  }
+                  
+                  <div class="yeti-panel-header-actual">
+
+                    {this.heading}
+                    
+                  </div>
+
+
+                  <slot name="subheader" />
+
+
                 </div>
 
+              </button>
 
-                <slot name="subheader" />
+            :
 
+              // It's not expandable, just use a div for the header.
+              <div 
+                id={this.headerId}
+                class="yeti-panel-header"
+              >
+
+                <div class='yeti-panel-header-contents'>
+
+                  
+                  <div class="yeti-panel-header-actual">
+
+                    {this.heading}
+                    
+                  </div>
+
+
+                  <slot name="subheader" />
+
+
+                </div>
 
               </div>
-
-            </button>
-
+          
           :
-
-            // It's not expandable, just use a div for the header.
-            <div 
-              id={this.headerId}
-              class="yeti-panel-header"
-            >
-
-              <div class='yeti-panel-header-contents'>
-
-                
-                <div class="yeti-panel-header-actual">
-
-                  {this.heading}
-                  
-                </div>
-
-
-                <slot name="subheader" />
-
-
-              </div>
-
-            </div>
-          
+            ''
           }
           
 

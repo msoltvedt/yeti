@@ -13,14 +13,17 @@ each(range(256), {
         width: (@value * @u);
     }
 });
+
 .yeti-width-full { width: 100%; }
 .yeti-width-auto { width: auto; }
 
 
 /*** Max Width ***/
-.yeti-width-max-6   { max-width: @u * 6; }
-.yeti-width-max-96  { max-width: @u * 96; }
-.yeti-width-max-108 { max-width: @u * 108; }
+each(range(256), {
+    .yeti-width-max-@{value} {
+        max-width: (@value * @u);
+    }
+});
 
 .yeti-width-max-50v { max-width: 50vw; }
 
