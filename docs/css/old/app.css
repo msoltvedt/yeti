@@ -27,10 +27,14 @@ body:has(.app-page-wizard)::after {
     display: block;
 }
 
+.app-page-conductor-wide,
 .app-page-conductor {
     margin: 3rem auto 0;
-    max-width: min(100vw, 90rem);
     padding: 0 3rem 3rem;
+}
+
+.app-page-conductor {
+    max-width: min(100vw, 90rem);
 }
 
 
@@ -159,4 +163,79 @@ body:has(.app-page-wizard)::after {
 .app-status_summary-divided_list-item:not(:first-child) {
     border-left: 1px solid #a8a8a8;
     padding-left: 0.5rem;
+}
+
+
+
+/************************************** (Conductor) Jobs Table ***/
+#jobTable .errored { background-color: #fee2e2; }
+#jobTable .running { background-color: #EFF7E2; }
+
+
+
+/************************************** Conductor Custom Job Arguments Grid ***/
+.app-conductor-custom_job_grid {
+    margin-bottom: 2rem;
+}
+
+.app-conductor-custom_job_grid-row {
+    display: flex;
+    border-bottom: 1px solid #c6c6c6;
+}
+
+.app-conductor-custom_job_grid-row-item {
+    padding: 1rem 0.5rem;
+}
+
+
+
+/************************************** Conductor Job Shared Components ***/
+/*** Job Actions ***/
+.app-conductor-job_actions {
+    border: 1px solid #c6c6c6;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+
+/*** Shared Job Template Header ***/
+.app-conductor-job_template-shared_header {
+    border: 1px solid #c6c6c6;
+    background-color: #fafafa;
+    padding: 1.25rem 1.5rem;
+    display: grid;
+    grid-template-columns: min-content 22.75rem min-content;
+    grid-template-rows: min-content min-content;
+    gap: 1rem;
+}
+
+.app-conductor-job_template-shared_header > * {
+    display: flex;
+    align-items: center;
+}
+
+/* Individual grid cells */
+.app-conductor-job_template-shared_header-label .yeti-form-label {
+    white-space: nowrap;
+}
+
+.app-conductor-job_template-shared_header .yeti-button {
+    width: 100%;
+}
+
+/************************************** Conductor PDF Creator ***/
+
+.app-conductor-checkbox-input-gridmod{
+    grid-template-columns: 1.25rem 5rem auto
+
+}
+
+.app-conductor-checkbox-input-gridmod-2{
+    grid-template-columns: 1.25rem 10.15rem auto
+
+}
+
+.app-conductor-checkbox-input-gridmod-3{
+    grid-template-columns: 1.25rem 12.25rem auto
+
 }
