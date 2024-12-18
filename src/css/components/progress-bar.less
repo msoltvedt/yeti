@@ -23,7 +23,7 @@ yeti-progress-bar {
     flex-direction: column;
 }
 
-.yeti-progress_bar:focus,
+.yeti-progress_bar:focus-visible,
 .yeti-progress_bar:focus-within {
     .yeti-mixin-focus-default();
     outline-offset: 2px;
@@ -44,7 +44,7 @@ yeti-progress-bar {
     min-width: 3rem;
 }
 
-.yeti-progress_bar-label:focus {
+.yeti-progress_bar-label:focus-visible {
     outline: none; // Will be covered by the wrapper.
 }
 

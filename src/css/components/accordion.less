@@ -48,7 +48,7 @@ yeti-accordion-section:last-child .yeti-accordion-section {
     color: #525252;
     width: 100%;
 }
-.yeti-accordion-section-heading:focus {
+.yeti-accordion-section-heading:focus-visible {
     .yeti-mixin-focus-default();
     outline-offset: 0;
 }
@@ -67,7 +67,7 @@ yeti-accordion-section:last-child .yeti-accordion-section {
     gap: 0.5rem;
     border-top: 1px solid #e0e0e0;
 }
-.yeti-accordion-section__open .yeti-accordion-section-heading:focus .yeti-accordion-section-heading-contents,
+.yeti-accordion-section__open .yeti-accordion-section-heading:focus-visible .yeti-accordion-section-heading-contents,
 yeti-accordion-section:has(.yeti-accordion-section-heading:focus) + yeti-accordion-section .yeti-accordion-section-heading-contents {
     border-top: 1px solid transparent;
 }

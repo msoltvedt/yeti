@@ -55,7 +55,7 @@ yeti-date-picker {
 .yeti-date-button:hover {
     background-color: #e8e8e8;
 }
-.yeti-date-button:focus {
+.yeti-date-button:focus-visible {
     .yeti-mixin-focus-default();
 }
 
@@ -134,7 +134,7 @@ yeti-date-picker {
 .yeti-date-picker-action-button:is(:hover, :focus) {
     background-color: #e8e8e8;
 }
-.yeti-date-picker-action-button:focus {
+.yeti-date-picker-action-button:focus-visible {
     .yeti-mixin-focus-default();
 }
 
@@ -175,7 +175,7 @@ yeti-date-picker {
     background-color: #0f62fe;
     color: white;
 }
-.yeti-date-calendar-day-selected:focus {
+.yeti-date-calendar-day-selected:focus-visible {
     outline: .0625rem solid #f4f4f4;
     outline-offset: -0.1875rem;
 }
@@ -196,6 +196,6 @@ yeti-date-picker {
     transform: translateX(-50%);
     width: 0.25rem;
 }
-.yeti-date-calendar-day:not(.yeti-date-calendar-day-selected):focus {
+.yeti-date-calendar-day:not(.yeti-date-calendar-day-selected):focus-visible {
     .yeti-mixin-focus-default();
 }
