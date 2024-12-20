@@ -43,6 +43,7 @@ export class YetiPageContents {
     let elsGrandparent;
     let headingElements;
     let pageWrapper = document.createElement("div");
+    let headingIds = [];
     pageWrapper.classList.add("yeti-page_contents-wrapper");
 
     // Hide this whole component from screen-readers (since they have a better version built in)
@@ -83,19 +84,24 @@ export class YetiPageContents {
     for (let i = 0; i < headingElements.length; i++) {
       
       let heading = headingElements[i]; // Actual heading HTMLElement
+      let candidateId; // Potential id for the heading element.
       let newHeading: YetiPageContentsHeader = {
         label: "",
         id: "",
         level: 1
       };
 
-      heading.id = (heading.id && heading.id != '') ? heading.id : utils.generateUniqueId(); // If the id doesn't have an id then give it one.
+      candidateId = (heading.id && heading.id != '') ? heading.id : heading.innerText.replaceAll(' ', ''); // If the id doesn't have an id then give it one.
+
+      candidateId = (headingIds.includes(candidateId)) ? utils.generateUniqueId() : candidateId; // Base the id on the heading text if it would be unique, otherwise generate a unique id.
 
       newHeading.label = heading.innerText;
-      newHeading.id = heading.id;
+      newHeading.id = candidateId;
       newHeading.level = parseInt((heading.nodeName).substring(1)); // Get the "n" in Hn (e.g. 2 in H2)
       
       this.headings.push(newHeading);
+      headingIds.push(candidateId);
+      heading.id = candidateId;
     }
 
   }
