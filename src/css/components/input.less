@@ -79,6 +79,8 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
     outline-offset: -2px;
 }
 
+
+
 /************************************** Error State ***/
 .yeti-input__error {
     outline: 2px solid @color-red-error;
@@ -88,4 +90,15 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
     background-position: top 50% right 1rem;
     background-repeat: no-repeat;
     padding-right: 3rem;
+}
+
+
+
+/************************************** Disabled ***/
+.yeti-input__disabled,
+.yeti-input:disabled {
+    background-color: @color-creekside-gray-lighter;
+    border-bottom-color: transparent;
+    color: @color-gray-60;
+    cursor: not-allowed;
 }

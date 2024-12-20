@@ -35,6 +35,11 @@ export class YetiInput {
   @Prop() wrapperClass: string = '';
 
   /**
+   * Whether or not the input is disabled.
+   */
+  @Prop() isDisabled: boolean = false;
+
+  /**
    * Passthrough to the input's autocomplete attribute.
    */
   @Prop() autocomplete: string = '';
@@ -163,7 +168,7 @@ export class YetiInput {
 
     let cssClasses = 'yeti-input';
     let wrapperClasses = 'yeti-input-wrapper';
-    let clearButtonClass = (this.value != "") ? 'yeti-input-clear' : 'yeti-input-clear yeti-input-clear__inert';
+    let clearButtonClass = (this.value != "" && !this.isDisabled) ? 'yeti-input-clear' : 'yeti-input-clear yeti-input-clear__inert';
 
     if (this.inputClass != '') {
       cssClasses += ' ' + this.inputClass;
@@ -189,6 +194,7 @@ export class YetiInput {
           onKeyUp={(ev) => this.handleKeyUp(ev)}
           onBlur={(ev) => this.handleFieldBlur(ev)}
           aria-invalid={!this.isValid}
+          {...((this.isDisabled) ? {"disabled": this.isDisabled} : {})}
           {...((this.autocomplete != "") ? {"autocomplete": this.autocomplete} : {})}
           {...((this.inputTabindex != "") ? {"tabindex": this.inputTabindex} : {})}
           {...((this.labeledBy != "") ? {"aria-labelledby": this.labeledBy} : {})}

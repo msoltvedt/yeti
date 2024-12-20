@@ -397,6 +397,10 @@ export namespace Components {
          */
         "inputTabindex": string;
         /**
+          * Whether or not the input is disabled.
+         */
+        "isDisabled": boolean;
+        /**
           * Tracks whether the input's current value is valid or not.
          */
         "isValid": boolean;
@@ -1696,6 +1700,10 @@ declare namespace LocalJSX {
           * The tabindex of the input field.
          */
         "inputTabindex"?: string;
+        /**
+          * Whether or not the input is disabled.
+         */
+        "isDisabled"?: boolean;
         /**
           * Tracks whether the input's current value is valid or not.
          */

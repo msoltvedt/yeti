@@ -17,6 +17,7 @@
 | `inputId`       | `input-id`        | id applied to the actual HTML input element.                                                       | `string`  | `utils.generateUniqueId()` |
 | `inputName`     | `input-name`      | name applied to the actual HTML input element. Defaults to match id.                               | `string`  | `this.inputId`             |
 | `inputTabindex` | `input-tabindex`  | The tabindex of the input field.                                                                   | `string`  | `''`                       |
+| `isDisabled`    | `is-disabled`     | Whether or not the input is disabled.                                                              | `boolean` | `false`                    |
 | `isValid`       | `is-valid`        | Tracks whether the input's current value is valid or not.                                          | `boolean` | `true`                     |
 | `labeledBy`     | `labeled-by`      | id of an outside HTML element pointed to by the actual input element's aria-labeledby attribute.   | `string`  | `""`                       |
 | `maxlength`     | `input-maxlength` | Optional attribute to set the maxlength of the field                                               | `number`  | `0`                        |

@@ -19,6 +19,18 @@
 ****************************************************/
 /************************************** Base Unit ***/
 /************************************** Grid ***/
+/************************************** Colors ***/
+/*** Creekside ***/
+/*** Gray ***/
+/*** Red ***/
+/*** Green ***/
+/*** Blue ***/
+/*** Magenta ***/
+/*** Cyan ***/
+/*** Purple ***/
+/*** Teal ***/
+/*** Orange ***/
+/*** Yellow ***/
 /************************************** mixins.less ***
  *
  * Yeti-wide mixins
@@ -550,7 +562,7 @@ Styles for Modal
   .yeti-button-ghost.yeti-modal-header-close:hover {
     color: #161616;
   }
-  .yeti-button-ghost.yeti-modal-header-close:focus {
+  .yeti-button-ghost.yeti-modal-header-close:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
   }
@@ -580,7 +592,7 @@ Styles for Modal
     max-height: unset;
     flex: 0 1 100%;
   }
-  .yeti-modal-content:focus {
+  .yeti-modal-content:focus-visible {
     outline: none;
   }
   :not(.yeti-modal_ss).yeti-modal-size-xs .yeti-modal-content {
@@ -703,7 +715,7 @@ Styles for Accordion
     color: #525252;
     width: 100%;
   }
-  .yeti-accordion-section-heading:focus {
+  .yeti-accordion-section-heading:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
     outline-offset: 0;
@@ -721,7 +733,7 @@ Styles for Accordion
     gap: 0.5rem;
     border-top: 1px solid #e0e0e0;
   }
-  .yeti-accordion-section__open .yeti-accordion-section-heading:focus .yeti-accordion-section-heading-contents,
+  .yeti-accordion-section__open .yeti-accordion-section-heading:focus-visible .yeti-accordion-section-heading-contents,
   yeti-accordion-section:has(.yeti-accordion-section-heading:focus) + yeti-accordion-section .yeti-accordion-section-heading-contents {
     border-top: 1px solid transparent;
   }
@@ -802,7 +814,7 @@ Styles for Breadcrumb
     background-repeat: no-repeat;
   }
   /************************************** Links ***/
-  .yeti-breadcrumb a:focus {
+  .yeti-breadcrumb a:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
     outline-offset: 0.25rem;
@@ -926,7 +938,7 @@ Styles for File Explorer
   .yeti-file_explorer-folder-item-wrapper:not(.yeti-file_explorer-folder-item-wrapper__selected):hover {
     background-color: #e8e8e8;
   }
-  .yeti-file_explorer-folder-item-wrapper:focus {
+  .yeti-file_explorer-folder-item-wrapper:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
   }
@@ -1138,7 +1150,7 @@ Styles for Icon
   yeti-icon {
     display: contents;
   }
-  yeti-icon:focus {
+  yeti-icon:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
     outline-offset: 0.125rem;
@@ -1194,7 +1206,7 @@ Styles for Icon
   .yeti-input-clear__inert {
     display: none;
   }
-  .yeti-input-clear:focus {
+  .yeti-input-clear:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
   }
@@ -1232,6 +1244,13 @@ Styles for Icon
     background-position: top 50% right 1rem;
     background-repeat: no-repeat;
     padding-right: 3rem;
+  }
+  /************************************** Disabled ***/
+  .yeti-input__disabled,
+  .yeti-input:disabled {
+    background-color: #fafafa;
+    border-bottom-color: transparent;
+    color: #6f6f6f;
   }
   /************************************** checkbox.less ***************************************
 
@@ -1301,7 +1320,7 @@ Styles for Checkbox
     grid-column: 2 / 3;
     grid-row: 2 / 3;
   }
-  .yeti-checkbox-wrapper:has(:disabled) :is(.yeti-form-label, .yeti-form-tip) {
+  .yeti-checkbox-wrapper:has(.yeti-checkbox:disabled) :is(.yeti-form-label, .yeti-form-tip) {
     color: #8d8d8d;
   }
   /************************************** Checkbox Fieldset ***/
@@ -1322,10 +1341,10 @@ Styles for Checkbox
   }
   /*** With Error ***/
   .yeti-checkbox-fieldset__error .yeti-checkbox-checkboxes {
-    border: 2px solid #DA1E28;
+    border: 2px solid #da1e28;
   }
   .yeti-checkbox-error {
-    color: #DA1E28;
+    color: #da1e28;
     padding-top: 0.5rem;
     display: inline-flex;
     gap: 0.25rem;
@@ -1391,7 +1410,7 @@ A control that helps the user choose a date.
   .yeti-date-button:hover {
     background-color: #e8e8e8;
   }
-  .yeti-date-button:focus {
+  .yeti-date-button:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
   }
@@ -1462,7 +1481,7 @@ A control that helps the user choose a date.
   .yeti-date-picker-action-button:is(:hover, :focus) {
     background-color: #e8e8e8;
   }
-  .yeti-date-picker-action-button:focus {
+  .yeti-date-picker-action-button:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
   }
@@ -1499,7 +1518,7 @@ A control that helps the user choose a date.
     background-color: #0f62fe;
     color: white;
   }
-  .yeti-date-calendar-day-selected:focus {
+  .yeti-date-calendar-day-selected:focus-visible {
     outline: 0.0625rem solid #f4f4f4;
     outline-offset: -0.1875rem;
   }
@@ -1519,7 +1538,7 @@ A control that helps the user choose a date.
     transform: translateX(-50%);
     width: 0.25rem;
   }
-  .yeti-date-calendar-day:not(.yeti-date-calendar-day-selected):focus {
+  .yeti-date-calendar-day:not(.yeti-date-calendar-day-selected):focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
   }
@@ -1618,7 +1637,7 @@ Styles for Menu Button
   .yeti-menu_button-button:hover {
     background-color: #8d8d8d1f;
   }
-  .yeti-menu_button-button:focus {
+  .yeti-menu_button-button:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
   }
@@ -1663,7 +1682,7 @@ Styles for Menu Button
   .yeti-menu_button-button-primary:active {
     background-color: #f28907;
   }
-  .yeti-menu_button-button-primary:focus {
+  .yeti-menu_button-button-primary:focus-visible {
     border-color: #0f62fe;
     box-shadow: inset 0 0 0 1px #0f62fe, inset 0 0 0 2px #fff;
   }
@@ -1679,7 +1698,7 @@ Styles for Menu Button
   .yeti-menu_button-button-secondary:active {
     background-color: #6f6f6f;
   }
-  .yeti-menu_button-button-secondary:focus {
+  .yeti-menu_button-button-secondary:focus-visible {
     border-color: #0f62fe;
     box-shadow: inset 0 0 0 1px #0f62fe, inset 0 0 0 2px #f4f4f4;
   }
@@ -1698,7 +1717,7 @@ Styles for Menu Button
     border-color: transparent;
     color: #fff;
   }
-  .yeti-menu_button-button-tertiary:focus {
+  .yeti-menu_button-button-tertiary:focus-visible {
     background-color: #0f62fe;
     color: #fff;
     border-color: #0f62fe;
@@ -1772,8 +1791,8 @@ Styles for Menu Button
   .yeti-menu_button-menu-item:hover {
     background-color: #e5e5e5;
   }
-  .yeti-menu_button-menu-item-link:focus,
-  .yeti-menu_button-menu-item-button:focus {
+  .yeti-menu_button-menu-item-link:focus-visible,
+  .yeti-menu_button-menu-item-button:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
   }
@@ -1831,9 +1850,9 @@ Styles for Button
   .yeti-button:not(.yeti-button-secondary, .yeti-button-tertiary, .yeti-button-danger, .yeti-button-ghost):active {
     background-color: #f28907;
   }
-  .yeti-button-primary:focus,
+  .yeti-button-primary:focus-visible,
   .yeti-button-primary__focus,
-  .yeti-button:not(.yeti-button-secondary, .yeti-button-tertiary, .yeti-button-danger, .yeti-button-ghost):focus {
+  .yeti-button:not(.yeti-button-secondary, .yeti-button-tertiary, .yeti-button-danger, .yeti-button-ghost):focus-visible {
     border-color: #0f62fe;
     box-shadow: inset 0 0 0 1px #0f62fe, inset 0 0 0 2px #fff;
   }
@@ -1852,7 +1871,7 @@ Styles for Button
   .yeti-button-secondary__active {
     background-color: #6f6f6f;
   }
-  .yeti-button-secondary:focus,
+  .yeti-button-secondary:focus-visible,
   .yeti-button-secondary__focus {
     border-color: #0f62fe;
     box-shadow: inset 0 0 0 1px #0f62fe, inset 0 0 0 2px #f4f4f4;
@@ -1875,7 +1894,7 @@ Styles for Button
     border-color: transparent;
     color: #fff;
   }
-  .yeti-button-tertiary:focus,
+  .yeti-button-tertiary:focus-visible,
   .yeti-button-tertiary__focus {
     background-color: #0f62fe;
     color: #fff;
@@ -1898,7 +1917,7 @@ Styles for Button
   .yeti-button-danger__active {
     background-color: #750e13;
   }
-  .yeti-button-danger:focus,
+  .yeti-button-danger:focus-visible,
   .yeti-button-danger__focus {
     border-color: #0f62fe;
     box-shadow: inset 0 0 0 1px #0f62fe, inset 0 0 0 2px #f4f4f4;
@@ -1922,7 +1941,7 @@ Styles for Button
     background-color: hsla(0, 0%, 55%, 0.5);
     color: #0043ce;
   }
-  .yeti-button-ghost:focus,
+  .yeti-button-ghost:focus-visible,
   .yeti-button-ghost__focus {
     border-color: #0f62fe;
     box-shadow: inset 0 0 0 1px #0f62fe, inset 0 0 0 2px #f4f4f4;
@@ -2006,7 +2025,7 @@ Styles for Loading Indicator
   .yeti-loading {
     flex-direction: column;
   }
-  .yeti-loading:focus {
+  .yeti-loading:focus-visible {
     outline: none;
   }
   /************************************** Icon ***/
@@ -2192,7 +2211,7 @@ Styles for Combobox
   }
   .yeti-combobox-wrapper:focus-within .yeti-combobox-input,
   .yeti-combobox__error:focus-within .yeti-combobox-input,
-  .yeti-combobox-input:focus {
+  .yeti-combobox-input:focus-visible {
     color: #161616;
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
@@ -2221,7 +2240,7 @@ Styles for Combobox
     top: 50%;
     translate: 0 -50%;
   }
-  .yeti-combobox-button:focus {
+  .yeti-combobox-button:focus-visible {
     outline: none;
   }
   .yeti-combobox-button .material-icons {
@@ -2250,7 +2269,7 @@ Styles for Combobox
     width: 1.5rem;
     height: 1.5rem;
   }
-  .yeti-combobox-clear:focus {
+  .yeti-combobox-clear:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
   }
@@ -2390,7 +2409,7 @@ Styles for Dropdown
     background-repeat: no-repeat;
     width: 100%;
   }
-  .yeti-dropdown:focus {
+  .yeti-dropdown:focus-visible {
     color: #161616;
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
@@ -2442,7 +2461,7 @@ Styles for Dropdown
   .yeti-dropdown-puck:hover {
     color: #474747;
   }
-  .yeti-dropdown-puck:focus {
+  .yeti-dropdown-puck:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
     outline-offset: 0px;
@@ -2537,11 +2556,11 @@ Styles for Dropdown
   }
   .yeti-dropdown-search {
     flex: 1 0 auto;
-    border: 1px solid #8D8D8D;
+    border: 1px solid #8d8d8d;
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="%23525252"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>');
     background-repeat: no-repeat;
     background-position: 0.5rem 50%;
-    background-color: #F4F4F4;
+    background-color: #f4f4f4;
     display: flex;
     align-items: center;
     min-height: 2rem;
@@ -2552,14 +2571,14 @@ Styles for Dropdown
     letter-spacing: 0.01rem;
   }
   .yeti-dropdown-search::placeholder {
-    color: #A8A8A8;
+    color: #a8a8a8;
     line-height: 1.125rem;
     /* 128.571% */
     letter-spacing: 0.01rem;
   }
-  .yeti-dropdown-search:focus {
-    border-color: #0F62FE;
-    outline: 1px solid #0F62FE;
+  .yeti-dropdown-search:focus-visible {
+    border-color: #0f62fe;
+    outline: 1px solid #0f62fe;
     outline-offset: -2px;
   }
   /************************************** page-contents.css ***************************************
@@ -2792,7 +2811,7 @@ Styles for Progress Bar
     display: flex;
     flex-direction: column;
   }
-  .yeti-progress_bar:focus,
+  .yeti-progress_bar:focus-visible,
   .yeti-progress_bar:focus-within {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
@@ -2810,7 +2829,7 @@ Styles for Progress Bar
     margin-bottom: 0.5rem;
     min-width: 3rem;
   }
-  .yeti-progress_bar-label:focus {
+  .yeti-progress_bar-label:focus-visible {
     outline: none;
   }
   .yeti-progress_bar-state-icon {
@@ -2983,7 +3002,7 @@ Styles for Select
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .yeti-select:focus {
+  .yeti-select:focus-visible {
     color: #161616;
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
@@ -2997,7 +3016,7 @@ Styles for Select
   }
   /************************************** Disabled ***/
   .yeti-select:disabled {
-    background-color: #FAFAFA;
+    background-color: #fafafa;
     color: #6f6f6f;
     background-image: url("data:image/svg+xml,%3Csvg preserveAspectRatio='xMidYMid meet' xmlns='http://www.w3.org/2000/svg' fill='%23c6c6c6' width='16' height='16' viewBox='0 0 16 16' %3E%3Cpath d='M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z'%3E%3C/path%3E%3C/svg%3E");
     border-bottom: 1px solid #fff;
@@ -3141,7 +3160,7 @@ Styles for Table
     width: 100%;
     overflow-x: auto;
   }
-  .yeti-table__scrollable:focus {
+  .yeti-table__scrollable:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
   }
@@ -3223,7 +3242,7 @@ Styles for Table
   .yeti-table-actions-links-item:not(:last-child) {
     border-right: 1px solid #8d8d8d;
   }
-  .yeti-table-actions-link:focus {
+  .yeti-table-actions-link:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
     outline-offset: 0.6875rem;
@@ -3301,7 +3320,7 @@ Styles for Table
   .yeti-table-pagination-pages-buttons-button:hover:not(:disabled) {
     background-color: #e8e8e8;
   }
-  .yeti-table-pagination-pages-buttons-button:focus {
+  .yeti-table-pagination-pages-buttons-button:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
   }
@@ -3337,7 +3356,7 @@ Styles for Table
     width: 100%;
     padding-top: 0.5rem;
   }
-  .yeti-table-heading-button:focus {
+  .yeti-table-heading-button:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
   }
@@ -3424,7 +3443,7 @@ Styles for Table
     min-width: 2.5rem;
     height: 2.5rem;
   }
-  .yeti-table-filter-clear-button:focus {
+  .yeti-table-filter-clear-button:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
   }
@@ -3483,7 +3502,7 @@ Styles for Table
     height: 2.5rem;
     padding: 0.25rem;
   }
-  .yeti-table-expando_button:focus {
+  .yeti-table-expando_button:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
   }
@@ -3537,7 +3556,7 @@ Styles for Tabs
   /*** Current ***/
   .yeti-tab[aria-selected="true"] {
     font-weight: 600;
-    border-bottom-color: #F89922;
+    border-bottom-color: #f89922;
   }
   /*** Link ***/
   .yeti-tabs_item a {
@@ -3792,7 +3811,7 @@ Styles for Tooltip
   .yeti-tooltip-wrapper-has_block_anchor .yeti-tooltip-trigger {
     display: block;
   }
-  .yeti-tooltip-trigger:focus {
+  .yeti-tooltip-trigger:focus-visible {
     outline: 2px solid #0f62fe;
     outline-offset: -2px;
     outline-offset: 0px;
@@ -4022,7 +4041,7 @@ Styles for notification
   }
   .yeti-notification-warning,
   .yeti-notification-warning_alt {
-    --color-accent: #E69900;
+    --color-accent: #e69900;
   }
   /*** Low contrast ***/
   .yeti-notification.yeti-notification-low_contrast {
@@ -4044,7 +4063,7 @@ Styles for notification
   .yeti-notification-low_contrast.yeti-notification-warning,
   .yeti-notification-low_contrast.yeti-notification-warning_alt {
     --color-background: #fdf6dd;
-    --color-accent: #E69900;
+    --color-accent: #e69900;
   }
   /************************************** Wrapper ***/
   yeti-notification {
@@ -4127,13 +4146,13 @@ Styles for notification
   .yeti-notification-low_contrast .yeti-notification-action:active {
     background-color: #0043ce;
   }
-  .yeti-notification-action:focus {
+  .yeti-notification-action:focus-visible {
     border-color: #0000;
     box-shadow: none;
     outline: 2px solid #ffffff;
     outline-offset: -2px;
   }
-  .yeti-notification-low_contrast .yeti-notification-action:focus {
+  .yeti-notification-low_contrast .yeti-notification-action:focus-visible {
     outline-color: #0f62fe;
   }
   .yeti-notification-action:hover {
@@ -4166,11 +4185,11 @@ Styles for notification
     border: 0;
     box-shadow: none;
   }
-  .yeti-notification-close:focus {
+  .yeti-notification-close:focus-visible {
     outline: 2px solid #ffffff;
     outline-offset: -1px;
   }
-  .yeti-notification-low_contrast .yeti-notification-close:focus {
+  .yeti-notification-low_contrast .yeti-notification-close:focus-visible {
     outline-color: #0f62fe;
   }
   .yeti-notification-close .material-icons {
