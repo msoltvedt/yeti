@@ -24,11 +24,11 @@ yeti-file-explorer {
 /************************************** Actual ***/
 .yeti-file_explorer {
     --file_explorer-scrollbar-foreground: #c1c1c1;
-    --file_explorer-scrollbar-background: #fafafa;
+    --file_explorer-scrollbar-background: @color-creekside-gray-lighter;
     scrollbar-color: var(--file_explorer-scrollbar-foreground), var(--file_explorer-scrollbar-background);
-    background-color: #fafafa;
+    background-color: @color-creekside-gray-lighter;
     flex: 1 1 auto;
-    border: 1px solid #c6c6c6;
+    border: 1px solid @color-gray-30;
     width: 100%;
     min-height: 4rem;
     max-height: 100%;
@@ -61,13 +61,13 @@ yeti-file-explorer {
     // grid-template-columns: repeat(auto-fill, max(1fr, min-content));
     grid-auto-columns: minmax(min-content, calc(100% / 3));
     grid-auto-flow: column;
-    border-bottom: 1px solid #c6c6c6;
+    border-bottom: 1px solid @color-gray-30;
     min-width: fit-content;
 }
 
 .yeti-file_explorer-folder {
     border-width: 0 1px 0 0;
-    border-color: #c6c6c6;
+    border-color: @color-gray-30;
     border-style: solid;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -83,7 +83,7 @@ yeti-file-explorer {
     flex-direction: column;
     flex: 1 0 auto;
     min-height: 100%;
-    box-shadow: inset #c6c6c6 -1px 0;
+    box-shadow: inset @color-gray-30 -1px 0;
     margin-bottom: -1px;
     min-width: max(min-content, 7rem);
 }
@@ -93,7 +93,7 @@ yeti-file-explorer {
 /************************************** Item ***/
 .yeti-file_explorer-folder-item {
     border-width: 0 1px 1px 0;
-    border-color: #c6c6c6;
+    border-color: @color-gray-30;
     border-style: solid;
 }
 .yeti-file_explorer-folder-item:last-child {
@@ -128,13 +128,13 @@ yeti-file-explorer {
 }
 
 .yeti-file_explorer-folder-item-wrapper:not(.yeti-file_explorer-folder-item-wrapper__selected):hover {
-    background-color: #e8e8e8;
+    background-color: @color-creekside-gray-light;
 }
 .yeti-file_explorer-folder-item-wrapper:focus-visible {
     .yeti-mixin-focus-default();
 }
 
 .yeti-file_explorer-folder-item-wrapper__selected {
-    background-color: #393939;
+    background-color: @color-gray-80;
     color: white;
 }

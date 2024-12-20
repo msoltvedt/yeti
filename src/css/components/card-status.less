@@ -17,7 +17,7 @@ Styles for Status Card
 /************************************** Card ***/
 .yeti-status_card {
     padding: 1.5rem;
-    border-top: 4px solid #8d8d8d;
+    border-top: 4px solid @color-gray-50;
     flex: 0 1 auto;
     min-width: min-content;
     width: 25rem;
@@ -30,7 +30,7 @@ Styles for Status Card
     font-weight: 600;
     line-height: 1.4375rem;
     letter-spacing: 0.01rem;
-    color: #525252;
+    color: @color-gray-70;
     margin: 0;
 }
 
@@ -46,13 +46,13 @@ Styles for Status Card
 
 /*** States ***/
 .yeti-status_card__normal {
-    border-top-color: #0f62fe;
+    border-top-color: @color-blue-primary;
 }
 
 .yeti-status_card__success {
-    border-top-color: #24a148;
+    border-top-color: @color-green-success;
 }
 
 .yeti-status_card__error {
-    border-top-color: #da1e28;
+    border-top-color: @color-red-error;
 }

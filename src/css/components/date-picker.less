@@ -34,26 +34,26 @@ yeti-date-picker {
     padding-right: 2.25rem;
 }
 .yeti-date-field::placeholder {
-    color: #161616;
+    color: @color-gray-100;
 }
 
 .yeti-date-button {
     appearance: none;
     padding: 0; // Shouldn't matter.
     border: none;
-    color: #161616;
+    color: @color-gray-100;
     width: 2.5rem;
     height: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     flex: 0 0 auto;
-    background-color: #f4f4f4;
-    border-bottom: 1px solid #8d8d8d;
+    background-color: @color-gray-10;
+    border-bottom: 1px solid @color-gray-50;
     cursor: pointer;
 }
 .yeti-date-button:hover {
-    background-color: #e8e8e8;
+    background-color: @color-creekside-gray-light;
 }
 .yeti-date-button:focus-visible {
     .yeti-mixin-focus-default();
@@ -94,7 +94,7 @@ yeti-date-picker {
     font-weight: 600;
     text-align: center;
     margin: 0;
-    color: #161616;
+    color: @color-gray-100;
     margin-bottom: -2.5rem;
     display: flex;
     align-items: center;
@@ -124,7 +124,7 @@ yeti-date-picker {
     padding: 0;
     background: none;
     border: none;
-    color: #161616;
+    color: @color-gray-100;
     width: 2.5rem;
     display: flex;
     align-items: center;
@@ -132,7 +132,7 @@ yeti-date-picker {
     cursor: pointer;
 }
 .yeti-date-picker-action-button:is(:hover, :focus) {
-    background-color: #e8e8e8;
+    background-color: @color-creekside-gray-light;
 }
 .yeti-date-picker-action-button:focus-visible {
     .yeti-mixin-focus-default();
@@ -168,25 +168,25 @@ yeti-date-picker {
     cursor: unset;
 }
 .yeti-date-calendar-day:not(.yeti-date-calendar-day-selected, .yeti-date-calendar-day-not_this_month):hover {
-    background-color: #e8e8e8;
+    background-color: @color-creekside-gray-light;
 }
 
 .yeti-date-calendar-day-selected {
-    background-color: #0f62fe;
+    background-color: @color-blue-primary;
     color: white;
 }
 .yeti-date-calendar-day-selected:focus-visible {
-    outline: .0625rem solid #f4f4f4;
+    outline: .0625rem solid @color-gray-10;
     outline-offset: -0.1875rem;
 }
 
 .yeti-date-calendar-day-today:not(.yeti-date-calendar-day-selected) {
     font-weight: 600;
-    color: #0f62fe;
+    color: @color-blue-primary;
     position: relative;
 }
 .yeti-date-calendar-day-today:not(.yeti-date-calendar-day-selected)::after {
-    background-color: #0f62fe;
+    background-color: @color-blue-primary;
     bottom: 0.4375rem;
     content: "";
     display: block;

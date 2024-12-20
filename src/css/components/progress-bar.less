@@ -7,8 +7,8 @@ Styles for Progress Bar
 
 
 /************************************** Variables ***/
-@progress_bar-color-complete: #24a148;
-@progress_bar-color-error: #da1e28;
+@progress_bar-color-complete: @color-green-success;
+@progress_bar-color-error: @color-red-error;
 
 
 
@@ -33,7 +33,7 @@ yeti-progress-bar {
 
 /************************************** Header (label + state icon) ***/
 .yeti-progress_bar-header {
-    color: #161616;
+    color: @color-gray-100;
     display: flex;
     font-size: .875rem;
     font-weight: 400;
@@ -64,7 +64,7 @@ yeti-progress-bar {
 
 /************************************** Bar ***/
 .yeti-progress_bar-bar {
-    background-color: #f4f4f4;
+    background-color: @color-gray-10;
     //border: 1px solid darkgray;
 }
 
@@ -78,7 +78,7 @@ yeti-progress-bar {
 }
 
 :not(.yeti-progress_bar__complete, .yeti-progress_bar__error) .yeti-progress_bar-bar-actual {
-    background-color: #0f62fe;
+    background-color: @color-blue-primary;
 }
 .yeti-progress_bar__complete .yeti-progress_bar-bar-actual {
     background-color: @progress_bar-color-complete;
@@ -96,7 +96,7 @@ yeti-progress-bar {
 }
 
 :not(.yeti-progress_bar__error) .yeti-progress_bar-tip {
-    color: #525252;
+    color: @color-gray-70;
 }
 
 .yeti-progress_bar__error .yeti-progress_bar-tip {

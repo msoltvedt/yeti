@@ -29,7 +29,7 @@ yeti-menu-button {
     content: '';
     width: 100%;
     height: 0.25rem;
-    background-color: #f4f4f4;
+    background-color: @color-gray-10;
     z-index: 3;
     position: absolute;
     bottom: 0;
@@ -39,10 +39,10 @@ yeti-menu-button {
     display: none;
 }
 .yeti-menu_button__open:has(.yeti-menu_button-button:hover)::after {
-    background-color: #e8e8e8;
+    background-color: @color-creekside-gray-light;
 }
 .yeti-menu_button__open:has(.yeti-menu_button-button:focus)::after {
-    background-color: #0f62fe;
+    background-color: @color-blue-primary;
     height: 0.125rem;
 }
 
@@ -69,12 +69,12 @@ yeti-menu-button {
 }
 
 .yeti-menu_button-button:focus-visible {
-    outline: 2px solid #0f62fe;
+    outline: 2px solid @color-blue-primary;
     outline-offset: -2px;
 }
 
 .yeti-menu_button__open .yeti-menu_button-button:not(.yeti-menu_button-button-mimic) {
-    background-color: #f4f4f4;
+    background-color: @color-gray-10;
     box-shadow: 0 2px 6px #0000004d;
 }
 
@@ -136,7 +136,7 @@ yeti-menu-button {
     position: absolute;
     top: 100%;
     z-index: 2;
-    background-color: #f4f4f4;
+    background-color: @color-gray-10;
     box-shadow: 0 2px 6px #0000004d;
     left: 0;
     list-style: none;
@@ -197,7 +197,7 @@ yeti-menu-button {
     display: block;
     font-size: 0.875rem;
     line-height: 1.28572;
-    color: #161616;
+    color: @color-gray-100;
 }
 
 .yeti-menu_button-menu-item:hover {
@@ -206,6 +206,6 @@ yeti-menu-button {
 
 .yeti-menu_button-menu-item-link:focus-visible,
 .yeti-menu_button-menu-item-button:focus-visible {
-    outline: 2px solid #0f62fe;
+    outline: 2px solid @color-blue-primary;
     outline-offset: -2px;
 }

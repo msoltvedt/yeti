@@ -11,7 +11,7 @@ yeti-accordion,
 yeti-accordion-section { display: contents; }
 
 .yeti-accordion {
-    border: 1px solid #c6c6c6;
+    border: 1px solid @color-gray-30;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -45,7 +45,7 @@ yeti-accordion-section:last-child .yeti-accordion-section {
     background-color: transparent;
     padding: 0 1.5rem;
     text-align: left;
-    color: #525252;
+    color: @color-gray-70;
     width: 100%;
 }
 .yeti-accordion-section-heading:focus-visible {
@@ -57,7 +57,7 @@ yeti-accordion-section:last-child .yeti-accordion-section {
 }
 
 [status="undefined"] .yeti-accordion-section-heading {
-    color: #c6c6c6;
+    color: @color-gray-30;
 }
 
 .yeti-accordion-section-heading-contents {
@@ -65,7 +65,7 @@ yeti-accordion-section:last-child .yeti-accordion-section {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid @color-gray-20;
 }
 .yeti-accordion-section__open .yeti-accordion-section-heading:focus-visible .yeti-accordion-section-heading-contents,
 yeti-accordion-section:has(.yeti-accordion-section-heading:focus) + yeti-accordion-section .yeti-accordion-section-heading-contents {
@@ -99,8 +99,8 @@ yeti-accordion-section:first-of-type .yeti-accordion-section-heading-contents {
 }
 
 /* Status Icon */
-.yeti-accordion-section-status_icon-success { color: #24a148; }
-.yeti-accordion-section-status_icon-error   { color: #da1e28; }
+.yeti-accordion-section-status_icon-success { color: @color-green-success; }
+.yeti-accordion-section-status_icon-error   { color: @color-red-error; }
 
 
 /*** Content ***/

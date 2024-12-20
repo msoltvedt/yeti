@@ -70,7 +70,7 @@ yeti-checkbox {
 }
 
 .yeti-checkbox:focus-visible {
-    outline: max(2px, 0.125rem) solid #0f62fe;
+    outline: max(2px, 0.125rem) solid @color-blue-primary;
     outline-offset: max(0.5px, 0.03125rem);
 }
 
@@ -84,7 +84,7 @@ yeti-checkbox {
     padding: 0.0625rem 0;
     font-weight: 400;
     letter-spacing: 0.01rem;
-    color: #161616;
+    color: @color-gray-100;
     cursor: pointer;
 }
 
@@ -94,7 +94,7 @@ yeti-checkbox {
 }
 
 .yeti-checkbox-wrapper:has(.yeti-checkbox:disabled) :is(.yeti-form-label, .yeti-form-tip) {
-    color: #8d8d8d;
+    color: @color-gray-50;
 }
 
 
@@ -105,7 +105,7 @@ yeti-checkbox {
 }
 
 .yeti-checkbox-fieldset-legend {
-    color: #525252;
+    color: @color-gray-70;
     line-height: 1rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
@@ -120,11 +120,11 @@ yeti-checkbox {
 
 /*** With Error ***/
 .yeti-checkbox-fieldset__error .yeti-checkbox-checkboxes {
-    border: 2px solid #DA1E28;
+    border: 2px solid @color-red-error;
 }
 
 .yeti-checkbox-error {
-    color: #DA1E28;
+    color: @color-red-error;
     padding-top: 0.5rem;
     display: inline-flex;
     gap: 0.25rem;

@@ -31,8 +31,8 @@ yeti-page-contents {
     position: sticky;
     top: 0;
     flex: 0 0 auto;
-    background-color: #f4f4f4;
-    color: #525252;
+    background-color: @color-gray-10;
+    color: @color-gray-70;
     letter-spacing: 0.16px;
     line-height: 1rem;
     transition: all 3000ms;
@@ -72,7 +72,7 @@ yeti-page-contents {
 }
 
 .yeti-page_contents-heading-level-2 {
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid @color-gray-20;
     padding-top: 0.125rem;
 }
 
@@ -88,8 +88,8 @@ yeti-page-contents {
 
 .yeti-page_contents-heading a:hover,
 .yeti-page_contents-heading-action:hover {
-    background-color: #e8e8e8;
-    color: #161616;
+    background-color: @color-creekside-gray-light;
+    color: @color-gray-100;
 }
 
 .yeti-page_contents-heading__visible:not(:is(.yeti-page_contents-heading__visible ~ .yeti-page_contents-heading__visible, .yeti-page_contents-heading-level-1)) { font-style: italic; }
@@ -105,7 +105,7 @@ yeti-page-contents {
     padding: 0.625rem 1rem 0.5rem;
     display: flex;
     gap: 0.5rem;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid @color-gray-20;
 }
 
 .yeti-page_contents-heading-action {
@@ -135,9 +135,9 @@ yeti-page-contents {
     align-items: center;
     justify-content: center;
     background-color: transparent;
-    color: #525252;
+    color: @color-gray-70;
 }
 .yeti-page_contents-minmax:hover {
-    background-color: #e0e0e0;
-    color: #161616;
+    background-color: @color-gray-20;
+    color: @color-gray-100;
 }

@@ -60,7 +60,7 @@ yeti-table {
 
 /*** Headings ***/
 .yeti-table-head {
-    background-color: #e0e0e0;
+    background-color: @color-gray-20;
     font-size: 0.875rem;
     letter-spacing: 0.01rem;
     line-height: 1.42857;
@@ -97,17 +97,17 @@ yeti-table {
 
 /*** Body Cells ***/
 .yeti-table-body {
-    background-color: #f4f4f4;
+    background-color: @color-gray-10;
 }
 
 .yeti-table-body-row {
     color: #525252;
-    border-top: 1px solid #f4f4f4;
-    border-bottom: 1px solid #e0e0e0;
+    border-top: 1px solid @color-gray-10;
+    border-bottom: 1px solid @color-gray-20;
 }
 
 .yeti-table-body-row-summary {
-    background-color: #fafafa;
+    background-color: @color-creekside-gray-lighter;
     font-weight: 700;
 }
 
@@ -115,7 +115,7 @@ yeti-table {
     background-color: #e5e5e5;
     border-bottom-color: #e5e5e5;
     border-top-color: #e5e5e5;
-    color: #161616;
+    color: @color-gray-100;
 }
 
 .yeti-table-cell {
@@ -130,7 +130,7 @@ yeti-table {
 }
 
 .yeti-table-body-row:has(.yeti-radio:checked) {
-    background-color: #e0e0e0;
+    background-color: @color-gray-20;
 }
 
 .yeti-table-body-row:has(.yeti-radio:checked):hover {
@@ -207,8 +207,8 @@ yeti-table {
 /************************************** Table Actions ***/
 .yeti-table-actions {
     min-height: 2.5rem;
-    background-color: #f4f4f4;
-    border-top: 1px solid #e0e0e0;
+    background-color: @color-gray-10;
+    border-top: 1px solid @color-gray-20;
 }
 
 yeti-table-actions[use-grid] yeti-table-action {
@@ -265,7 +265,7 @@ yeti-table-actions[use-grid] yeti-table-action {
 .yeti-table-pagination-items_per_page-select,
 .yeti-table-pagination-pages-select {
     min-height: 100%;
-    background-color: #f4f4f4;
+    background-color: @color-gray-10;
     border: 0;
     padding-right: 2.25rem;
     width: auto;
@@ -277,7 +277,7 @@ yeti-table-actions[use-grid] yeti-table-action {
 }
 
 .yeti-table-pagination-items_per_page-count {
-    border-left: 1px solid #e0e0e0;
+    border-left: 1px solid @color-gray-20;
     min-height: 100%;
     display: flex;
     align-items: center;
@@ -291,7 +291,7 @@ yeti-table-actions[use-grid] yeti-table-action {
 .yeti-table-pagination-pages {
     display: flex;
     align-items: center;
-    border-left: 1px solid #e0e0e0;
+    border-left: 1px solid @color-gray-20;
 }
 
 .yeti-table-pagination-pages-of_pages {
@@ -305,27 +305,27 @@ yeti-table-actions[use-grid] yeti-table-action {
     display: flex;
     min-height: 100%;
     padding-left: 1px;
-    background-color: #e0e0e0;
+    background-color: @color-gray-20;
     gap: 1px;
 }
 
 .yeti-table-pagination-pages-buttons-button {
-    background-color: #f4f4f4;
+    background-color: @color-gray-10;
     height: 100%;
     border: 0;
     display: flex;
     align-items: center;
     cursor: pointer;
     width: 2.5rem;
-    color: #161616;
+    color: @color-gray-100;
 }
 
 .yeti-table-pagination-pages-buttons-button:hover:not(:disabled) {
-    background-color: #e8e8e8;
+    background-color: @color-creekside-gray-light;
 }
 
 .yeti-table-pagination-pages-buttons-button:focus-visible {
-    outline: 2px solid #0f62fe;
+    outline: 2px solid @color-blue-primary;
     outline-offset: -2px;
 }
 
@@ -351,10 +351,10 @@ yeti-table-actions[use-grid] yeti-table-action {
     -webkit-appearance: none;
     appearance: none;
     background: none;
-    background-color: #e0e0e0;
+    background-color: @color-gray-20;
     border: 0;
     box-sizing: border-box;
-    color: #161616;
+    color: @color-gray-100;
     cursor: pointer;
     font-family: inherit;
     font-size: 100%;
@@ -494,7 +494,7 @@ yeti-table-actions[use-grid] yeti-table-action {
 }
 
 .yeti-table-heading-filter :is(.yeti-input, .yeti-select, .yeti-dropdown, .yeti-date-button, .yeti-table-heading-filter-input-button):hover {
-    background-color: #f4f4f4;
+    background-color: @color-gray-10;
 }
 
 

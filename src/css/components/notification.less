@@ -9,43 +9,43 @@ Styles for notification
 /************************************** Settings ***/
 // .yeti-notification:not(),
 .yeti-notification:not(.yeti-notification-low_contrast) {
-    --color-background: #393939;
+    --color-background: @color-gray-80;
     --color-foreground: white;
 }
 
 .yeti-notification:not(.yeti-notification-info, .yeti-notification-success, .yeti-notification-warning, .yeti-notification-warning_alt),
-.yeti-notification-error        { --color-accent: #fa4d56; }
-.yeti-notification-info         { --color-accent: #4589ff; }
+.yeti-notification-error        { --color-accent: @color-red-50; }
+.yeti-notification-info         { --color-accent: @color-blue-50; }
 .yeti-notification-success      { --color-accent: #42be65; }
 .yeti-notification-warning,
-.yeti-notification-warning_alt  { --color-accent: #E69900; }
+.yeti-notification-warning_alt  { --color-accent: @color-creekside-yellow-dark; }
 
 
 /*** Low contrast ***/
 .yeti-notification.yeti-notification-low_contrast {
-    --color-foreground: #161616;
+    --color-foreground: @color-gray-100;
 }
 
 .yeti-notification.yeti-notification-low_contrast:not(.yeti-notification-info, .yeti-notification-success, .yeti-notification-warning, .yeti-notification-warning_alt),
 .yeti-notification-low_contrast.yeti-notification-error {
-    --color-background: #fff1f1;
-    --color-accent: #da1e28;
+    --color-background: @color-red-10;
+    --color-accent: @color-red-error;
 }
 
 .yeti-notification-low_contrast.yeti-notification-info { 
-    --color-background: #edf5ff;
-    --color-accent: #0043ce;
+    --color-background: @color-blue-10;
+    --color-accent: @color-blue-70;
 }
 
 .yeti-notification-low_contrast.yeti-notification-success { 
     --color-background: #defbe6;
-    --color-accent: #24a148;
+    --color-accent: @color-green-success;
 }
 
 .yeti-notification-low_contrast.yeti-notification-warning,
 .yeti-notification-low_contrast.yeti-notification-warning_alt  {
     --color-background: #fdf6dd;
-    --color-accent: #E69900;
+    --color-accent: @color-creekside-yellow-dark;
 }
 
 
@@ -122,7 +122,7 @@ yeti-notification {
     flex: 0 0 auto;
     .yeti-mixin-button-vanilla();
     background-color: transparent;
-    color: #78a9ff;
+    color: @color-blue-40;
     height: 2rem;
     margin-top: 0.5rem;
     padding: 0.4375rem 0.75rem;
@@ -133,11 +133,11 @@ yeti-notification {
     box-shadow: none;
 }
 .yeti-notification-low_contrast .yeti-notification-action {
-    color: #0f62fe;
+    color: @color-blue-primary;
 }
 
 .yeti-notification-action:active {  background-color: #4c4c4c; }
-.yeti-notification-low_contrast .yeti-notification-action:active { background-color: #0043ce; }
+.yeti-notification-low_contrast .yeti-notification-action:active { background-color: @color-blue-70; }
 
 .yeti-notification-action:focus-visible {
     border-color: #0000;
@@ -146,15 +146,15 @@ yeti-notification {
     outline-offset: -2px;
 }
 .yeti-notification-low_contrast .yeti-notification-action:focus-visible {
-    outline-color: #0f62fe;
+    outline-color: @color-blue-primary;
 }
 
 .yeti-notification-action:hover {
     background-color: #4c4c4c;
-    color: #78a9ff;
+    color: @color-blue-40;
 }
 .yeti-notification-low_contrast .yeti-notification-action:hover {
-    color: #0043ce;
+    color: @color-blue-70;
     background-color: #fff;
 }
 
@@ -181,7 +181,7 @@ yeti-notification {
     outline-offset: -1px;
 }
 .yeti-notification-low_contrast .yeti-notification-close:focus-visible {
-    outline-color: #0f62fe;
+    outline-color: @color-blue-primary;
 }
 
 .yeti-notification-close .material-icons {

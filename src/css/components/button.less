@@ -44,8 +44,8 @@ Styles for Button
 
 /************************************** Primary ***/
 .yeti-button-primary {
-    background-color: #f89922;
-    border: 1px solid #525252;
+    background-color: @color-creekside-orange-action;
+    border: 1px solid @color-gray-70;
 }
 
 /*** States ***/
@@ -58,21 +58,21 @@ Styles for Button
 .yeti-button-primary:active,
 .yeti-button-primary__active,
 .yeti-button:not(.yeti-button-secondary, .yeti-button-tertiary, .yeti-button-danger, .yeti-button-ghost):active {
-    background-color: #f28907;
+    background-color: @color-creekside-orange-dark;
 }
 
 .yeti-button-primary:focus-visible,
 .yeti-button-primary__focus,
 .yeti-button:not(.yeti-button-secondary, .yeti-button-tertiary, .yeti-button-danger, .yeti-button-ghost):focus-visible {
-    border-color: #0f62fe;
-    box-shadow: inset 0 0 0 1px #0f62fe, inset 0 0 0 2px #fff;
+    border-color: @color-blue-primary;
+    box-shadow: inset 0 0 0 1px @color-blue-primary, inset 0 0 0 2px #fff;
 }
 
 
 
 /************************************** Secondary ***/
 .yeti-button-secondary {
-    background-color: #393939;
+    background-color: @color-gray-80;
     border: 1px solid transparent;
     color: #fff;
 }
@@ -85,13 +85,13 @@ Styles for Button
 
 .yeti-button-secondary:active,
 .yeti-button-secondary__active {
-    background-color: #6f6f6f;
+    background-color: @color-gray-60;
 }
 
 .yeti-button-secondary:focus-visible,
 .yeti-button-secondary__focus {
-    border-color: #0f62fe;
-    box-shadow: inset 0 0 0 1px #0f62fe,inset 0 0 0 2px #f4f4f4;
+    border-color: @color-blue-primary;
+    box-shadow: inset 0 0 0 1px @color-blue-primary,inset 0 0 0 2px @color-gray-10;
 }
 
 
@@ -99,8 +99,8 @@ Styles for Button
 /************************************** Tertiary ***/
 .yeti-button-tertiary {
     background-color: transparent;
-    border: 1px solid #0f62fe;
-    color: #0f62fe;
+    border: 1px solid @color-blue-primary;
+    color: @color-blue-primary;
 }
 
 /*** States ***/
@@ -112,24 +112,24 @@ Styles for Button
 
 .yeti-button-tertiary:active,
 .yeti-button-tertiary__active {
-    background-color: #002d9c;
+    background-color: @color-blue-80;
     border-color: transparent;
     color: #fff;
 }
 
 .yeti-button-tertiary:focus-visible,
 .yeti-button-tertiary__focus {
-    background-color: #0f62fe;
+    background-color: @color-blue-primary;
     color: #fff;
-    border-color: #0f62fe;
-    box-shadow: inset 0 0 0 1px #0f62fe,inset 0 0 0 2px #f4f4f4;
+    border-color: @color-blue-primary;
+    box-shadow: inset 0 0 0 1px @color-blue-primary,inset 0 0 0 2px @color-gray-10;
 }
 
 
 
 /************************************** Danger ***/
 .yeti-button-danger {
-    background-color: #da1e28;
+    background-color: @color-red-error;
     border: 1px solid transparent;
     color: #fff;
 }
@@ -143,13 +143,13 @@ Styles for Button
 
 .yeti-button-danger:active,
 .yeti-button-danger__active {
-    background-color: #750e13;
+    background-color: @color-red-80;
 }
 
 .yeti-button-danger:focus-visible,
 .yeti-button-danger__focus {
-    border-color: #0f62fe;
-    box-shadow: inset 0 0 0 1px #0f62fe,inset 0 0 0 2px #f4f4f4;
+    border-color: @color-blue-primary;
+    box-shadow: inset 0 0 0 1px @color-blue-primary,inset 0 0 0 2px @color-gray-10;
 }
 
 
@@ -158,28 +158,28 @@ Styles for Button
 .yeti-button-ghost {
     background-color: transparent;
     border: 1px solid transparent;
-    color: #0f62fe;
+    color: @color-blue-primary;
     padding: calc(0.5rem - 3px) 1rem;
 }
 
 /*** States ***/
 .yeti-button-ghost:hover,
 .yeti-button-ghost__hover {
-    background-color: #e8e8e8;
-    color: #0043ce;
+    background-color: @color-creekside-gray-light;
+    color: @color-blue-70;
 }
 
 .yeti-button-ghost:active,
 .yeti-button-ghost__active {
-    background-color: #c6c6c6;
+    background-color: @color-gray-30;
     background-color: hsla(0,0%,55%,.5);
-    color: #0043ce;
+    color: @color-blue-70;
 }
 
 .yeti-button-ghost:focus-visible,
 .yeti-button-ghost__focus {
-    border-color: #0f62fe;
-    box-shadow: inset 0 0 0 1px #0f62fe,inset 0 0 0 2px #f4f4f4;
+    border-color: @color-blue-primary;
+    box-shadow: inset 0 0 0 1px @color-blue-primary,inset 0 0 0 2px @color-gray-10;
 }
 
 
@@ -192,10 +192,10 @@ Styles for Button
 .yeti-button-danger[disabled],
 .yeti-button[disabled]:not(.yeti-button-tertiary, .yeti-button-ghost),
 .yeti-button[disabled]:not(.yeti-button-tertiary, .yeti-button-ghost):hover {
-    background-color: #c6c6c6;
-    border-color: #c6c6c6;
+    background-color: @color-gray-30;
+    border-color: @color-gray-30;
     box-shadow: none;
-    color: #8d8d8d;
+    color: @color-gray-50;
     cursor: not-allowed;
 }
 
@@ -204,9 +204,9 @@ Styles for Button
 .yeti-button-tertiary[disabled],
 .yeti-button-tertiary[disabled]:hover {
     background-color: transparent;
-    border-color: #c6c6c6;
+    border-color: @color-gray-30;
     box-shadow: none;
-    color: #8d8d8d;
+    color: @color-gray-50;
     cursor: not-allowed;
 }
 
@@ -217,7 +217,7 @@ Styles for Button
     background-color: transparent;
     border-color: transparent;
     box-shadow: none;
-    color: #8d8d8d;
+    color: @color-gray-50;
     cursor: not-allowed;
 }
 
