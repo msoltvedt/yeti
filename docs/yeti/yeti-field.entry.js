@@ -1,4 +1,4 @@
-import { r as registerInstance, h, g as getElement } from './index-a229effc.js';
+import { r as registerInstance, h, g as getElement } from './index-81029423.js';
 import { u as utils } from './utils-90cea6cb.js';
 
 const YetiField = class {
@@ -134,7 +134,7 @@ const YetiField = class {
         if (this.isInline) {
             cssClass += " yeti-form-field-inline";
         }
-        return (h("div", { key: '3e84e86629250290c1c7eacd3b38e36275b025cb', class: cssClass }, h("label", { key: 'b25dca77cc6a4552ff33af83d8005aaa992dceae', htmlFor: this.inputId, class: "yeti-form-label" }, (this.hasSlottedLabel) ? h("slot", { name: "label" }) : `${this.label}`, (this.indicateRequired) ?
+        return (h("div", { key: '16d03f6a3517eb2b3cdfc0c6f8e29d57d333566f', class: cssClass }, h("label", { key: 'fe0010edf5cafd184b98687718148f330c890f23', htmlFor: this.inputId, class: "yeti-form-label" }, (this.hasSlottedLabel) ? h("slot", { name: "label" }) : `${this.label}`, (this.indicateRequired) ?
             (this.hasSlottedRequired ? h("slot", { name: "required" }) : h("yeti-required-symbol", null))
             : null), (!this.hasSlottedField) ?
             (this.type == "date") ?

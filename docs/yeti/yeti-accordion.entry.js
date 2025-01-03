@@ -1,4 +1,4 @@
-import { r as registerInstance, h, g as getElement } from './index-a229effc.js';
+import { r as registerInstance, h, g as getElement } from './index-81029423.js';
 import { u as utils } from './utils-90cea6cb.js';
 
 const YetiAccordion = class {
@@ -91,7 +91,7 @@ const YetiAccordion = class {
         });
     }
     render() {
-        return (h("div", { key: '7ff2b2881b990f2d48f3d649acd18b48748c799a', class: "yeti-accordion" }, h("slot", { key: '12070b0a4a9d191ee8809b0af5f8c1165e6c3104' })));
+        return (h("div", { key: 'af5f98036950bdf24a9908c4f1df49e56fabc7ee', class: "yeti-accordion" }, h("slot", { key: '1e383eee2cd929a019dd53cb6b2b0c62861df1f0' })));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

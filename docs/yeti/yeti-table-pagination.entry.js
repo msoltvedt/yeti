@@ -1,4 +1,4 @@
-import { r as registerInstance, a as createEvent, h, g as getElement } from './index-a229effc.js';
+import { r as registerInstance, a as createEvent, h, g as getElement } from './index-81029423.js';
 import { u as utils } from './utils-90cea6cb.js';
 
 const YetiTablePagination = class {
@@ -134,14 +134,14 @@ const YetiTablePagination = class {
         if (this.cssClass != '') {
             cssClasses += ' ' + this.cssClass;
         }
-        return (h("nav", { key: '465047c0f06214e7b1b66f605818ca3ba4a6d40a', class: cssClasses, "aria-label": "Table Pagination" }, h("div", { key: '1c4742c0b386650dbbd06ee46b89dcee491306cd', class: "yeti-table-pagination-items_per_page" }, (this.showOptions) ?
+        return (h("nav", { key: 'ac60c8644edbdb1ffa4a89b6c68768f5c056e5f7', class: cssClasses, "aria-label": "Table Pagination" }, h("div", { key: '53865484d77a9f5ba2cd0c861c61ad94741f9fe5', class: "yeti-table-pagination-items_per_page" }, (this.showOptions) ?
             [h("label", { htmlFor: "demo-items_per_page", class: "yeti-table-pagination-items_per_page-label" }, this.recordAliasPlural, " per page:"), h("select", { id: "demo-items_per_page", class: "yeti-select yeti-table-pagination-items_per_page-select", onChange: (e) => {
                         this.handleItemsPerPageChange(e);
                     } }, this.itemsPerPageOptions.map((option, index) => {
                     return h("option", { value: option, selected: (index == this.selectedItemsPerPageOptionIndex), class: "yeti-table-pagination-items_per_page-select-option" }, option);
                 }))]
             :
-                "", h("span", { key: 'aec7064e28eda789fc3c08156ecd21cd7496225e', class: "yeti-table-pagination-items_per_page-count" }, this.getItemsPerPageOption() == "All" || this.records == 0 ?
+                "", h("span", { key: '757f0f19c3ce11640b01243cc61cab8b67e9691a', class: "yeti-table-pagination-items_per_page-count" }, this.getItemsPerPageOption() == "All" || this.records == 0 ?
             ""
             : (this.startIndex + 1) + ' to ' + (this.startIndex + this.recordsDisplayed) /*(this.endIndex + 1)*/ + ' of ', this.records, " ", this.records == 1 ? this.recordAliasSingular : this.recordAliasPlural)), (this.records > 0) ?
             h("div", { class: "yeti-table-pagination-pages" }, h("label", { htmlFor: "demo-pages", class: "yeti-a11y-hidden" }, "Page number, of ", this.pages, " page", this.pages == 1 ? '' : 's'), h("select", { id: "demo-pages", class: "yeti-select yeti-table-pagination-pages-select", onChange: (e) => {

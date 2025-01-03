@@ -106,12 +106,12 @@ function pasteCSSToCrm() {
 }
 
 function pasteFontsToOrchestrator() {
-    return src(`src/css/fonts/**/*`)
+    return src(`src/css/fonts/**/*`, { encoding: false })
         .pipe( dest(`${settings.orchestratorCSSDirectory}/fonts`) );
 }
 
 function pasteFontsToCrm() {
-    return src(`src/css/fonts/**/*`)
+    return src(`src/css/fonts/**/*`, { encoding: false })
         .pipe( dest(`${settings.crmCSSDirectory}/fonts`) );
 }
 
@@ -230,6 +230,6 @@ function pushToDocs(cb) {
 }
 
 function pasteFontsToWWW(cb) {
-    return gulp.src('src/css/fonts/**/*')
+    return gulp.src('src/css/fonts/**/*', { encoding: false })
         .pipe(gulp.dest('www/examples/css/fonts'));
 }

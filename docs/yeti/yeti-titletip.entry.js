@@ -1,4 +1,4 @@
-import { r as registerInstance, h, g as getElement } from './index-a229effc.js';
+import { r as registerInstance, h, g as getElement } from './index-81029423.js';
 import { u as utils } from './utils-90cea6cb.js';
 
 const YetiTitleTip = class {
@@ -73,7 +73,7 @@ const YetiTitleTip = class {
                 break;
         }
         return ([
-            h("div", { key: '02a67e7e3edfdd94e8a6ca71049c89fffab0ffc6', class: wrapperClass }, h("div", { key: '518fb65333c8905a2566ed981f345e4581e896e0' }, h("slot", { key: '00d1b8808822925fabd56c689c3c7ee60660f626' })), h("div", { key: 'a1fe58740dfd0bd83af42970aa64ad1cc9150a26', class: tipClass }, h("div", { key: '96348e80a82c81c0378011d425e586f29a5e2b7f', class: "yeti-titletip-content", id: this.tipId }, this.text)))
+            h("div", { key: '8ee2d1a7c8767cc28c7c69ceba82de8073d38fab', class: wrapperClass }, h("div", { key: 'f81531437bd511e892726f792c41cc34b1232b06' }, h("slot", { key: '841dfd953b28de7823818391d183921f107403b7' })), h("div", { key: 'e16eb34053e1d7521905f41ced13e22b9206fa0a', class: tipClass }, h("div", { key: 'f404a2c6c9ce05b17a88ef3e22714b71d0559c74', class: "yeti-titletip-content", id: this.tipId }, this.text)))
         ]);
     }
     componentDidRender() {
