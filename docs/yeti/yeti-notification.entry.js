@@ -1,7 +1,7 @@
-import { r as registerInstance, a as createEvent, h, g as getElement } from './index-a229effc.js';
+import { r as registerInstance, a as createEvent, h, g as getElement } from './index-81029423.js';
 import { u as utils } from './utils-90cea6cb.js';
 
-const YetiTooltip = class {
+const YetiNotification = class {
     constructor(hostRef) {
         registerInstance(this, hostRef);
         this.notificationActionClick = createEvent(this, "notificationActionClick", 7);
@@ -82,10 +82,10 @@ const YetiTooltip = class {
         wrapperClass += (this.isLowContrast) ? ' yeti-notification-low_contrast' : '';
         // Set visibility
         wrapperClass += (this.isVisible) ? '' : ' yeti-notification__hidden';
-        return (h("div", { key: '13c785d595a00e941a7de7f601f3d4f139c26550', class: wrapperClass, id: this.notificationId, role: "status" }, h("div", { key: 'd16a78ea6c1697380d4903cfa8b79eb84949f055', class: "yeti-notification-icon" }, h("span", { key: '7f7af08cae565d4143195ff60d346b55a3f51797', class: "material-icons", "aria-hidden": "true" }, iconCode), h("span", { key: '489dd330ba1d60a7a9439dbf874ade46027b5721', class: "yeti-a11y-hidden" }, altText)), h("div", { key: '93c1ad62534384ad313319009f133e442227a7a6', class: "yeti-notification-content" }, (this.textTitle != "") ?
+        return (h("div", { key: 'ab54ae8c7b77890fb03f886a2e916d10e890229d', class: wrapperClass, id: this.notificationId, role: "status" }, h("div", { key: '0e74e220075dfb92683bf6bc9123d1a7c42360f3', class: "yeti-notification-icon" }, h("span", { key: 'ef89f599a0a738b8a559d97b81b4211f342cf804', class: "material-icons", "aria-hidden": "true" }, iconCode), h("span", { key: '3e8149f1521ec233ae24f2fb705519b1e55ea33d', class: "yeti-a11y-hidden" }, altText)), h("div", { key: '2a0b0cc4a440029f9ac9cda67ee9bb5f787ca147', class: "yeti-notification-content" }, (this.textTitle != "") ?
             h("div", { class: "yeti-notification-content-title" }, this.textTitle)
             :
-                '', h("div", { key: 'd49652147523aae7761c52d44c512bf9c0f275a2', class: "yeti-notification-content-subtitle" }, h("slot", { key: '448d5147ae1b157cea4721c7e5b2c92784e7e43c' }))), (this.actionLabel != "") ?
+                '', h("div", { key: '92b7f3b9bdeca80a17a6a86301d4dc7d397d86e4', class: "yeti-notification-content-subtitle" }, h("slot", { key: 'ccb99449e0d12b7483893de22ef43d49f88c9bec' }))), (this.actionLabel != "") ?
             h("button", { class: "yeti-notification-action", onClick: (e) => this.handleActionClick(e) }, this.actionLabel)
             :
                 "", (this.showCloseButton) ?
@@ -96,6 +96,6 @@ const YetiTooltip = class {
     get el() { return getElement(this); }
 };
 
-export { YetiTooltip as yeti_notification };
+export { YetiNotification as yeti_notification };
 
 //# sourceMappingURL=yeti-notification.entry.js.map

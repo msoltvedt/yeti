@@ -1,4 +1,4 @@
-import { r as registerInstance, a as createEvent, h, g as getElement } from './index-a229effc.js';
+import { r as registerInstance, a as createEvent, h, g as getElement } from './index-81029423.js';
 import { u as utils } from './utils-90cea6cb.js';
 
 const YetiDropdown = class {
@@ -394,20 +394,20 @@ const YetiDropdown = class {
             flyoutClass += ' yeti-dropdown-flyout-align-right';
         }
         return ([
-            h("div", { key: '762fe0ae04c6749bff40d432b26c4cdbbcd48c09', class: "yeti-dropdown-wrapper" }, h("div", Object.assign({ key: '12c7f872e6dbfd64efefa2db8902ff5f01b423b8', tabIndex: 0, class: comboboxClasses, onClick: () => {
+            h("div", { key: '59891720534071e80cd8a836e00edcf688ea7aab', class: "yeti-dropdown-wrapper" }, h("div", Object.assign({ key: 'e31a9ce4d129df68ae8bafcc774fb06418e5ca91', tabIndex: 0, class: comboboxClasses, onClick: () => {
                     this.isOpen = !this.isOpen;
                 }, onFocus: () => {
                     this.isTouched = true;
-                }, role: "combobox" }, ((!this.isValid) ? { "aria-invalid": 'true' } : {}), ((this.labelledBy != "") ? { "aria-labeledby": this.labelledBy } : {}), ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {}), { "aria-controls": this.flyoutId, "aria-expanded": this.isOpen, "aria-haspopup": "listbox" }, ((this.isOpen && this.cursorPosition >= 0) ? { "aria-activedescendant": this.options[this.cursorPosition].id } : {}), { id: this.comboboxId }, ((this.isSearchable) ? { "aria-description": "searchable" } : {})), h("span", { key: '27dc2ee35b713bee75f1f8b450d2d3d3da2c6bb1', class: "yeti-dropdown-placeholder", title: this.getPlaceholderDisplay() }, this.getPlaceholderDisplay(), (this.numSelections > 1) ?
+                }, role: "combobox" }, ((!this.isValid) ? { "aria-invalid": 'true' } : {}), ((this.labelledBy != "") ? { "aria-labeledby": this.labelledBy } : {}), ((this.describedBy != "") ? { "aria-describedby": this.describedBy } : {}), { "aria-controls": this.flyoutId, "aria-expanded": this.isOpen, "aria-haspopup": "listbox" }, ((this.isOpen && this.cursorPosition >= 0) ? { "aria-activedescendant": this.options[this.cursorPosition].id } : {}), { id: this.comboboxId }, ((this.isSearchable) ? { "aria-description": "searchable" } : {})), h("span", { key: 'e14d87c7737c912539ed0639a8fe72f1b8805523', class: "yeti-dropdown-placeholder", title: this.getPlaceholderDisplay() }, this.getPlaceholderDisplay(), (this.numSelections > 1) ?
                 h("span", { class: "yeti-a11y-hidden" }, this.value)
                 :
                     ""), ( /*this.isMultiselect && */this.showClear && this.numSelections > 0) ? // Clear puck
                 (h("button", { class: "yeti-dropdown-puck", title: "Clear all selections", onClick: (ev) => { this.handleClearSelections(ev); ev.preventDefault(); } }, h("span", { class: "yeti-a11y-hidden" }, "Clear all selections"), h("span", { class: "material-icons yeti-dropdown-puck-icon", "aria-hidden": "true" }, "cancel")))
                 :
-                    ""), h("div", { key: 'b51abed99f71513821ab8b4202b073a47c587010', class: flyoutClass }, /*Search field */ (this.isSearchable) ?
+                    ""), h("div", { key: '6f88a3519ac99cbefe8de35332c7ba259f9da815', class: flyoutClass }, /*Search field */ (this.isSearchable) ?
                 h("div", { class: "yeti-dropdown-search-wrapper" }, h("yeti-input", Object.assign({ "input-class": "yeti-dropdown-search", placeholder: 'Type to search', onKeyUp: (e) => { this.handleSearchKeyUp(e); }, "aria-controls": this.flyoutId, inputId: this.searchId, value: this.searchString, autocomplete: "off" }, (!this.isOpen ? { "input-tabindex": "-1" } : {}))))
                 :
-                    "", h("ul", Object.assign({ key: '7bbbab61f496686297944635f786b4e2aa0cb97e', class: "yeti-dropdown-options", id: this.flyoutId, role: "listbox", "aria-multiselectable": "true" }, ((this.labelledBy != "") ? { "aria-labeledby": this.labelledBy } : {}), ((this.isOpen && this.cursorPosition >= 0) ? { "aria-activedescendant": this.options[this.cursorPosition].id } : {})), this.options.map((option, i) => {
+                    "", h("ul", Object.assign({ key: '011c02ef9f2de794dc42ceaeece233921156af95', class: "yeti-dropdown-options", id: this.flyoutId, role: "listbox", "aria-multiselectable": "true" }, ((this.labelledBy != "") ? { "aria-labeledby": this.labelledBy } : {}), ((this.isOpen && this.cursorPosition >= 0) ? { "aria-activedescendant": this.options[this.cursorPosition].id } : {})), this.options.map((option, i) => {
                 let optionClass = (this.cursorPosition == i) ? "yeti-dropdown-option yeti-dropdown-option__hover" : "yeti-dropdown-option";
                 return ((option.isVisible) ?
                     h("li", { id: option.id, key: option.id, role: "option", "aria-selected": `${option.selected}` }, h("button", { class: optionClass, tabIndex: -1, onClick: (ev) => { this.handleOptionClick(i); ev.preventDefault(); } }, (this.isMultiselect) ?

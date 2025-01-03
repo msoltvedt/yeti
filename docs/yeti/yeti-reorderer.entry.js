@@ -1,4 +1,4 @@
-import { r as registerInstance, a as createEvent, h, g as getElement } from './index-a229effc.js';
+import { r as registerInstance, a as createEvent, h, g as getElement } from './index-81029423.js';
 import { u as utils } from './utils-90cea6cb.js';
 
 const YetiReorderer = class {
@@ -67,7 +67,7 @@ const YetiReorderer = class {
         if (this.wrapperClass != '') {
             wrapperClass += ` ${this.wrapperClass}`;
         }
-        return (h("ul", { key: '70ebdcf5f1c9d4b04d1009f30e8299cc47fffd98', class: wrapperClass }, h("slot", { key: 'c6e7e4d8666145e0389618ad8247846e17f78af6' })));
+        return (h("ul", { key: '0a1d5fb65cd2cb5ff9807512dfcab3c2f03a7af4', class: wrapperClass }, h("slot", { key: 'a940f9ce918eeb818e48c87673bbef8eef29530e' })));
     }
     get el() { return getElement(this); }
 };

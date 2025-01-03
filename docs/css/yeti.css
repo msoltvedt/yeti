@@ -1251,6 +1251,7 @@ Styles for Icon
     background-color: #fafafa;
     border-bottom-color: transparent;
     color: #6f6f6f;
+    cursor: not-allowed;
   }
   /************************************** checkbox.less ***************************************
 
@@ -3785,6 +3786,208 @@ Styles for Titletip
     right: 100%;
     transform: translate(1.25rem, 0.75rem) rotate(45deg);
   }
+  /************************************** toast.less ***************************************
+
+Styles for toast
+
+*************************************** toast.less **************************************/
+  /************************************** Settings ***/
+  .yeti-toast:not(.yeti-toast-low_contrast) {
+    --color-background: #393939;
+    --color-foreground: white;
+  }
+  .yeti-toast:not(.yeti-toast-info, .yeti-toast-success, .yeti-toast-warning, .yeti-toast-warning_alt),
+  .yeti-toast-error {
+    --color-accent: #fa4d56;
+  }
+  .yeti-toast-info {
+    --color-accent: #4589ff;
+  }
+  .yeti-toast-success {
+    --color-accent: #42be6f;
+  }
+  .yeti-toast-warning,
+  .yeti-toast-warning_alt {
+    --color-accent: #e69900;
+  }
+  /*** Low contrast ***/
+  .yeti-toast.yeti-toast-low_contrast {
+    --color-foreground: #161616;
+  }
+  .yeti-toast.yeti-toast-low_contrast:not(.yeti-toast-info, .yeti-toast-success, .yeti-toast-warning, .yeti-toast-warning_alt),
+  .yeti-toast-low_contrast.yeti-toast-error {
+    --color-background: #fff1f1;
+    --color-accent: #da1e28;
+  }
+  .yeti-toast-low_contrast.yeti-toast-info {
+    --color-background: #edf5ff;
+    --color-accent: #0043ce;
+  }
+  .yeti-toast-low_contrast.yeti-toast-success {
+    --color-background: #defbe6;
+    --color-accent: #24a148;
+  }
+  .yeti-toast-low_contrast.yeti-toast-warning,
+  .yeti-toast-low_contrast.yeti-toast-warning_alt {
+    --color-background: #fdf6dd;
+    --color-accent: #e69900;
+  }
+  /************************************** Wrapper ***/
+  yeti-toast {
+    display: contents;
+  }
+  .yeti-toast {
+    background-color: var(--color-background);
+    width: 18rem;
+    min-height: 3rem;
+    color: var(--color-foreground);
+    border-left: 3px solid var(--color-accent);
+    padding-left: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 6px;
+    font-size: 0.875rem;
+    letter-spacing: 0.01rem;
+    line-height: 1.42857;
+    display: flex;
+  }
+  .yeti-toast:not(:has(.yeti-toast-close)) {
+    padding-right: 1rem;
+  }
+  .yeti-toast.yeti-toast-low_contrast {
+    border: 1px solid var(--color-accent);
+    border-left-width: 3px;
+  }
+  /************************************** Icon ***/
+  .yeti-toast-icon {
+    flex: 0 0 1.25rem;
+    padding-top: 1rem;
+    padding-right: 1rem;
+    color: var(--color-accent);
+  }
+  .yeti-toast-icon .material-icons {
+    font-size: 1.25rem;
+  }
+  /************************************** Content ***/
+  .yeti-toast-content {
+    flex: 1 1 auto;
+    padding: 1rem 1rem 1rem 0;
+    line-height: 1.28572;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .yeti-toast-content-title {
+    font-weight: 600;
+  }
+  .yeti-toast-content-subtitle {
+    word-break: break-word;
+  }
+  /************************************** Actions ***/
+  .yeti-toast-action {
+    flex: 0 0 auto;
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    background-color: #e0e0e0;
+    box-sizing: border-box;
+    color: #161616;
+    cursor: pointer;
+    letter-spacing: 0.16px;
+    background-color: transparent;
+    color: #78a9ff;
+    height: 2rem;
+    margin-top: 0.5rem;
+    padding: 0.4375rem 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    box-shadow: none;
+  }
+  .yeti-toast-low_contrast .yeti-toast-action {
+    color: #0f62fe;
+  }
+  .yeti-toast-action:active {
+    background-color: #4c4c4c;
+  }
+  .yeti-toast-low_contrast .yeti-toast-action:active {
+    background-color: #0043ce;
+  }
+  .yeti-toast-action:focus-visible {
+    border-color: #0000;
+    box-shadow: none;
+    outline: 2px solid #ffffff;
+    outline-offset: -2px;
+  }
+  .yeti-toast-low_contrast .yeti-toast-action:focus-visible {
+    outline-color: #0f62fe;
+  }
+  .yeti-toast-action:hover {
+    background-color: #4c4c4c;
+    color: #78a9ff;
+  }
+  .yeti-toast-low_contrast .yeti-toast-action:hover {
+    color: #0043ce;
+    background-color: #fff;
+  }
+  /************************************** Close ***/
+  .yeti-toast-close {
+    flex: 0 0 auto;
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    background-color: #e0e0e0;
+    box-sizing: border-box;
+    color: #161616;
+    cursor: pointer;
+    letter-spacing: 0.16px;
+    background-color: transparent;
+    color: var(--color-foreground);
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    box-shadow: none;
+  }
+  .yeti-toast-close:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: -1px;
+  }
+  .yeti-toast-low_contrast .yeti-toast-close:focus-visible {
+    outline-color: #0f62fe;
+  }
+  .yeti-toast-close .material-icons {
+    font-size: 1rem;
+  }
+  /************************************** Visibility ***/
+  .yeti-toast__hidden {
+    display: none;
+  }
+  /************************************** Sizing ***/
+  .yeti-toast_full {
+    max-width: unset;
+    width: unset;
+  }
+  .yeti-toast_full .yeti-toast-content {
+    display: unset;
+  }
+  /************************************** Stacks ***/
+  .yeti-toast-stack {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+  }
+  .yeti-toast-stack__stuck {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 100;
+  }
+  .yeti-toast-stack__inert {
+    display: none;
+  }
   /************************************** tooltip.less ***************************************
 
 Styles for Tooltip
@@ -4037,7 +4240,7 @@ Styles for notification
     --color-accent: #4589ff;
   }
   .yeti-notification-success {
-    --color-accent: #42be65;
+    --color-accent: #42be6f;
   }
   .yeti-notification-warning,
   .yeti-notification-warning_alt {

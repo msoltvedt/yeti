@@ -27,16 +27,16 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "^4.19.2"
+    "@stencil/core": "^4.23.0"
   },
   "devDependencies": {
     "@types/jest": "^27.0.3",
     "del": "^7.0.0",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.0",
     "gulp-less": "^5.0.0",
     "jest": "^27.4.5",
     "jest-cli": "^27.4.5",
-    "puppeteer": "^10.0.0"
+    "puppeteer": "^23.11.1"
   },
   "license": "MIT"
 }

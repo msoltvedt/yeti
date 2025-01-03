@@ -827,6 +827,60 @@ export namespace Components {
          */
         "wrapperClass": string;
     }
+    interface YetiToast {
+        /**
+          * Text label for the action button.
+         */
+        "actionLabel": string;
+        /**
+          * Time in ms before the Toast closes itself. Values of less than 1 will be ignored.
+         */
+        "closesSelfAfter": number;
+        /**
+          * The alt text for the icon.
+         */
+        "iconAltText": string;
+        /**
+          * Which icon to use (see Google Material Icons).
+         */
+        "iconCode": string;
+        /**
+          * Whether to use the low-contrast variant or not.
+         */
+        "isLowContrast": boolean;
+        /**
+          * Whether the toast is visible or not.
+         */
+        "isVisible": boolean;
+        /**
+          * Whether to show the close button or not.
+         */
+        "showCloseButton": boolean;
+        /**
+          * Optionally set a size (currently only supports default and "full")
+         */
+        "size": string;
+        /**
+          * id of the component's slot element.
+         */
+        "slotId": string;
+        /**
+          * Text value to display as the toast's title.
+         */
+        "textTitle": string;
+        /**
+          * id of the component's actual element corresponding to the tooltip. Will be auto-populated with a unique value if not provided.
+         */
+        "toastId": string;
+        /**
+          * The type of toast: error (default) | info | success | warning | warningAlt.
+         */
+        "toastType": string;
+        /**
+          * CSS classlist to add to the element serving as the component's wrapper.
+         */
+        "wrapperClass": string;
+    }
     interface YetiTooltip {
         /**
           * Whether the anchor should be forced to be a CSS display block style or left as is.
@@ -939,6 +993,10 @@ export interface YetiTableCustomEvent<T> extends CustomEvent<T> {
 export interface YetiTablePaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLYetiTablePaginationElement;
+}
+export interface YetiToastCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLYetiToastElement;
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -1244,6 +1302,23 @@ declare global {
         prototype: HTMLYetiTitletipElement;
         new (): HTMLYetiTitletipElement;
     };
+    interface HTMLYetiToastElementEventMap {
+        "toastActionClick": any;
+    }
+    interface HTMLYetiToastElement extends Components.YetiToast, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLYetiToastElementEventMap>(type: K, listener: (this: HTMLYetiToastElement, ev: YetiToastCustomEvent<HTMLYetiToastElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLYetiToastElementEventMap>(type: K, listener: (this: HTMLYetiToastElement, ev: YetiToastCustomEvent<HTMLYetiToastElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLYetiToastElement: {
+        prototype: HTMLYetiToastElement;
+        new (): HTMLYetiToastElement;
+    };
     interface HTMLYetiTooltipElement extends Components.YetiTooltip, HTMLStencilElement {
     }
     var HTMLYetiTooltipElement: {
@@ -1282,6 +1357,7 @@ declare global {
         "yeti-table-actions": HTMLYetiTableActionsElement;
         "yeti-table-pagination": HTMLYetiTablePaginationElement;
         "yeti-titletip": HTMLYetiTitletipElement;
+        "yeti-toast": HTMLYetiToastElement;
         "yeti-tooltip": HTMLYetiTooltipElement;
         "yeti-unsaved-changes": HTMLYetiUnsavedChangesElement;
     }
@@ -2182,6 +2258,64 @@ declare namespace LocalJSX {
          */
         "wrapperClass"?: string;
     }
+    interface YetiToast {
+        /**
+          * Text label for the action button.
+         */
+        "actionLabel"?: string;
+        /**
+          * Time in ms before the Toast closes itself. Values of less than 1 will be ignored.
+         */
+        "closesSelfAfter"?: number;
+        /**
+          * The alt text for the icon.
+         */
+        "iconAltText"?: string;
+        /**
+          * Which icon to use (see Google Material Icons).
+         */
+        "iconCode"?: string;
+        /**
+          * Whether to use the low-contrast variant or not.
+         */
+        "isLowContrast"?: boolean;
+        /**
+          * Whether the toast is visible or not.
+         */
+        "isVisible"?: boolean;
+        /**
+          * Fires when the user clicks the action button.
+         */
+        "onToastActionClick"?: (event: YetiToastCustomEvent<any>) => void;
+        /**
+          * Whether to show the close button or not.
+         */
+        "showCloseButton"?: boolean;
+        /**
+          * Optionally set a size (currently only supports default and "full")
+         */
+        "size"?: string;
+        /**
+          * id of the component's slot element.
+         */
+        "slotId"?: string;
+        /**
+          * Text value to display as the toast's title.
+         */
+        "textTitle"?: string;
+        /**
+          * id of the component's actual element corresponding to the tooltip. Will be auto-populated with a unique value if not provided.
+         */
+        "toastId"?: string;
+        /**
+          * The type of toast: error (default) | info | success | warning | warningAlt.
+         */
+        "toastType"?: string;
+        /**
+          * CSS classlist to add to the element serving as the component's wrapper.
+         */
+        "wrapperClass"?: string;
+    }
     interface YetiTooltip {
         /**
           * Whether the anchor should be forced to be a CSS display block style or left as is.
@@ -2268,6 +2402,7 @@ declare namespace LocalJSX {
         "yeti-table-actions": YetiTableActions;
         "yeti-table-pagination": YetiTablePagination;
         "yeti-titletip": YetiTitletip;
+        "yeti-toast": YetiToast;
         "yeti-tooltip": YetiTooltip;
         "yeti-unsaved-changes": YetiUnsavedChanges;
     }
@@ -2301,6 +2436,7 @@ declare module "@stencil/core" {
             "yeti-table-actions": LocalJSX.YetiTableActions & JSXBase.HTMLAttributes<HTMLYetiTableActionsElement>;
             "yeti-table-pagination": LocalJSX.YetiTablePagination & JSXBase.HTMLAttributes<HTMLYetiTablePaginationElement>;
             "yeti-titletip": LocalJSX.YetiTitletip & JSXBase.HTMLAttributes<HTMLYetiTitletipElement>;
+            "yeti-toast": LocalJSX.YetiToast & JSXBase.HTMLAttributes<HTMLYetiToastElement>;
             "yeti-tooltip": LocalJSX.YetiTooltip & JSXBase.HTMLAttributes<HTMLYetiTooltipElement>;
             "yeti-unsaved-changes": LocalJSX.YetiUnsavedChanges & JSXBase.HTMLAttributes<HTMLYetiUnsavedChangesElement>;
         }

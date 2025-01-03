@@ -1,4 +1,4 @@
-import { r as registerInstance, h, g as getElement } from './index-a229effc.js';
+import { r as registerInstance, h, g as getElement } from './index-81029423.js';
 import { u as utils } from './utils-90cea6cb.js';
 
 const YetiTableActions = class {
@@ -62,7 +62,7 @@ const YetiTableActions = class {
         if (this.cssClass != '') {
             cssClasses += ' ' + this.cssClass;
         }
-        return (h("div", { key: 'a1f7c623af44166c8cde859ae78bb6f54f0f0085', class: cssClasses, id: this.htmlId }, h("slot", { key: '414910c789b67dc798841a0d6c233f9c3b1822c3' })));
+        return (h("div", { key: '7ac179a253971da68c85b1772333f841737a498a', class: cssClasses, id: this.htmlId }, h("slot", { key: '920256214dbb0ba4ae61d61ca14ec41e3536193d' })));
     }
     get el() { return getElement(this); }
 };

@@ -5,7 +5,7 @@ import { utils } from '../../utils/utils';
   tag: 'yeti-notification',
   shadow: false,
 })
-export class YetiTooltip {
+export class YetiNotification {
 
   @Element() el: HTMLElement;
 
@@ -75,8 +75,6 @@ export class YetiTooltip {
     mutable: true,
     reflect: true
   }) notificationId: string = ""; // Set on load
-
-  
 
   /**
    * Toggle to force a re-render of the whole component.

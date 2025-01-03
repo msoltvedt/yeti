@@ -1,4 +1,4 @@
-import { r as registerInstance, a as createEvent, h, g as getElement } from './index-a229effc.js';
+import { r as registerInstance, a as createEvent, h, g as getElement } from './index-81029423.js';
 import { u as utils } from './utils-90cea6cb.js';
 
 const YetiMenuButton = class {
@@ -310,7 +310,7 @@ const YetiMenuButton = class {
         buttonClass += (this.buttonClass && this.buttonClass != "") ? " " + this.buttonClass : "";
         menuClass += (this.menuClass && this.menuClass != "") ? " " + this.menuClass : "";
         return ([
-            h("div", { key: 'd599ebf475427403c3e9ba7806d1258bde613c51', class: wrapperClass }, (this.hasTooltip) ?
+            h("div", { key: '1dd85801cbaef5d0229eb9accfd010d3d96a22f4', class: wrapperClass }, (this.hasTooltip) ?
                 h("yeti-tooltip", { text: this.tooltipText, id: tooltipId, slotId: this.buttonId, tipId: `${this.buttonId}_tooltip` }, this.renderButton(buttonClass))
                 :
                     this.renderButton(buttonClass), h("ul", { class: menuClass, role: "menu", id: this.menuId, "aria-labelledby": this.buttonId, key: this.menuId }, this.renderMenuItems()))

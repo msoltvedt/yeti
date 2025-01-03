@@ -1,4 +1,4 @@
-import { r as registerInstance, h, g as getElement } from './index-a229effc.js';
+import { r as registerInstance, h, g as getElement } from './index-81029423.js';
 
 const YetiRequiredSymbol = class {
     constructor(hostRef) {
@@ -9,7 +9,7 @@ const YetiRequiredSymbol = class {
     render() {
         let wrapperClass = 'yeti-form-required-symbol';
         wrapperClass += (this.cssClass) ? ` ${this.cssClass}` : ``;
-        return (h("span", { key: '7ef61ea1ff0fee0987af116e8a3d041336fb5070', class: wrapperClass }, (this.alt) ? h("span", { class: 'yeti-a11y-hidden' }, this.alt) : ''));
+        return (h("span", { key: '6493e02a9ccff8dc92063aa904faf35b44c96edc', class: wrapperClass }, (this.alt) ? h("span", { class: 'yeti-a11y-hidden' }, this.alt) : ''));
     }
     get el() { return getElement(this); }
 };
