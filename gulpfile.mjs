@@ -51,6 +51,9 @@ task('default').description = 'The default task is watcher'
 task('watch', watcher);
 task('watch').description = 'Watches for any changes to the non-JS source code, updates any necessary files, and publishes them to the www directory'
 
+task('pushToDocs', pushToDocs);
+task('pushToDocs').description = 'Manually update the Docs folder.';
+
 task(cleanWWW);
 cleanWWW.description = 'Remove all Yeti stuff from WWW directory (leaving Stencil stuff)';
 
@@ -225,7 +228,7 @@ function publishExamplesJS(cb) {
 }
 
 function pushToDocs(cb) {
-    return gulp.src( ['www/examples/**/*'] )
+    return gulp.src( ['www/examples/**/*'], { encoding: false })
         .pipe(gulp.dest('docs/'));
 }
 
