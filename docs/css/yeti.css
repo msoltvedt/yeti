@@ -1339,6 +1339,7 @@ Styles for Checkbox
     flex-direction: column;
     gap: 0.5rem;
     padding-right: 0.25rem;
+    width: fit-content;
   }
   /*** With Error ***/
   .yeti-checkbox-fieldset__error .yeti-checkbox-checkboxes {
@@ -2889,6 +2890,7 @@ Styles for Radio
     font-size: unset;
     color: unset;
     display: grid;
+    max-width: fit-content;
     grid-template-columns: 1.25rem 1fr;
     grid-template-rows: max-content 1fr;
     gap: 0.25rem 0.5rem;
@@ -2933,6 +2935,7 @@ Styles for Radio
     font-weight: 400;
     letter-spacing: 0.01rem;
     color: #161616;
+    cursor: pointer;
   }
   .yeti-radio-wrapper .yeti-form-tip {
     grid-column: 2 / 3;
@@ -2952,6 +2955,7 @@ Styles for Radio
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    width: fit-content;
   }
   /************************************** reorderer.less ***************************************
 
