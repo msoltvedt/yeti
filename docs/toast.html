@@ -31,7 +31,24 @@
         <div class="ydoc-code_sample">
 <yeti-toast text-title="Basic Bob">
   
-  Content will be inline if possible and can be HTML like <a href="">links</a> or whatever.
+  Content can be HTML like <a href="">links</a> or whatever.
+
+</yeti-toast>
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-2">Setting a Toast Type</h3>
+
+        <p>
+          Set the type via the optional <code>toast-type</code> attribute. Possible values are <code>error</code> (default), <code>info</code>, <code>success</code>, <code>warning</code>, and <code>warningAlt</code>.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-toast text-title="Successful Sam" toast-type="success">
+  
+  Great achievement. Very excite.
 
 </yeti-toast>
         </div><!-- /code_sample -->
@@ -51,30 +68,13 @@
 
 
 
-        <h3 class="margin-bottom-2">Setting a Toast Type</h3>
-
-        <p>
-          Set the type via the optional <code>toast-type</code> attribute. Possible values are <code>error</code> (default), <code>info</code>, <code>success</code>, <code>warning</code>, and <code>warningAlt</code>.
-        </p>
+        <h3 class="margin-bottom-2">High-contrast Mode</h3>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-<yeti-toast text-title="Warning Warren" toast-type="warningAlt">
+<yeti-toast text-title="Note" is-high-contrast="true">
   
-  Be forewarned and whatnot.
-
-</yeti-toast>
-        </div><!-- /code_sample -->
-
-
-
-        <h3 class="margin-bottom-2">Low-contrast Mode</h3>
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <div class="ydoc-code_sample">
-<yeti-toast text-title="Error Erin" is-low-contrast="true">
-  
-  Welp, that didn't work.
+  Duly.
 
 </yeti-toast>
         </div><!-- /code_sample -->
@@ -85,11 +85,43 @@
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-<yeti-toast text-title="Error Erin" show-close-button="false">
+<yeti-toast text-title="Basic Bob" show-close-button="false">
   
-  Welp, that didn't work.
+  Your informative content here.
 
 </yeti-toast>
+        </div><!-- /code_sample -->
+
+
+
+        <h3 class="margin-bottom-2">With Action Button</h3>
+
+        <p>
+          If you give the <code>action-label</code> attribute a value then Yeti will add an action button. Yeti will fire a <code>notificationActionClick</code> custom event whenever someone clicks on that button.
+        </p>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-toast text-title="Basic Bob" action-label="Action!" id="demo-toast">
+  
+  Bob demands action. Here's a <a href="">link</a>.
+
+</yeti-toast>
+
+<p class="yeti-margin-top-2">
+  You have clicked the action button in the notification above <span id="demo-count">0</span> time(s).
+</p>
+
+<script>
+  const toast = document.getElementById("demo-toast");
+  const countLabel = document.getElementById("demo-count");
+  let timesClicked = 0;
+
+  toast.addEventListener("toastActionClick", () => {
+    ++timesClicked;
+    countLabel.innerHTML = timesClicked;
+  });
+</script>
         </div><!-- /code_sample -->
 
 
@@ -99,7 +131,7 @@
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
 
-<div class="yeti-toast-stack">
+<div class="yeti-toast-stack" aria-live="polite">
 
   <yeti-toast text-title="One Thing" toast-type="status">
     
@@ -132,7 +164,7 @@
 
 <a href="" id="demo_sticker">Open a stuck stack.</a>
 
-<div class="yeti-toast-stack yeti-toast-stack__stuck yeti-toast-stack__inert" id="demo_stuckStack">
+<div class="yeti-toast-stack yeti-toast-stack__stuck yeti-toast-stack__inert" id="demo_stuckStack" aria-live="polite">
 
   <yeti-toast text-title="One Thing" toast-type="status">
     
@@ -172,41 +204,11 @@
 
 
 
-        <!-- <h3 class="margin-bottom-2">With Action Button</h3>
-
-        <p>
-          If you give the <code>action-label</code> attribute a value then Yeti will add an action button. Yeti will fire a <code>toastActionClick</code> custom event whenever someone clicks on that button.
-        </p> -->
-
-        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-        <!-- <div class="ydoc-code_sample">
-<yeti-toast text-title="Error Erin" action-label="Action!" id="demo-toast">
-  
-  That didn't work either.
-
-</yeti-toast>
-
-You have clicked the action button in the toast above <span id="demo-count">0</span> time(s).
-
-<script>
-  const toast = document.getElementById("demo-toast");
-  const countLabel = document.getElementById("demo-count");
-  let timesClicked = 0;
-
-  toast.addEventListener("toastActionClick", () => {
-    ++timesClicked;
-    countLabel.innerHTML = timesClicked;
-  });
-</script>
-        </div>--><!-- /code_sample -->
-
-
-
-        <!-- <h2 class="margin-bottom-3">Technical Notes</h2>
+        <h2 class="margin-bottom-3">Technical Notes</h2>
 
         <ul class="yeti-list-bulleted">
-          <li>Nothing to see here.</li>
-        </ul> -->
+          <li><a href="https://github.com/msoltvedt/yeti/blob/main/src/components/yeti-toast/readme.md">AutoDocs</a></li>
+        </ul>
 
       </div><!-- /main -->
     

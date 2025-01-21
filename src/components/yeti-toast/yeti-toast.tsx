@@ -18,7 +18,7 @@ export class YetiToast {
   /**
    * CSS classlist to add to the element serving as the component's wrapper.
    */
-  @Prop() wrapperClass: string = '';
+  @Prop() actualClass: string = '';
 
   /**
    * The type of toast: error (default) | info | success | warning | warningAlt.
@@ -26,9 +26,9 @@ export class YetiToast {
   @Prop() toastType: string = "";
 
   /**
-   * Whether to use the low-contrast variant or not.
+   * Whether to use the high-contrast variant or not.
    */
-  @Prop() isLowContrast: boolean = false;
+  @Prop() isHighContrast: boolean = false;
 
   /**
    * Whether to show the close button or not.
@@ -87,16 +87,18 @@ export class YetiToast {
   @State() iLoveJSX: boolean = false;
 
   /**
-   * Whether the toast is visible or not.
+   * Whether the toast is closed or not.
    */
-  @Prop() isVisible: boolean = true;
+  @Prop() isClosed: boolean = false;
 
 
 
   handleCloseClick(e) {
-    this.isVisible = false;
+
     e.stopImmediatePropagation();
     e.preventDefault();
+    this.isClosed = true;
+
   }
 
 
@@ -123,9 +125,10 @@ export class YetiToast {
 
     if (this.closesSelfAfter > 0) {
       setTimeout(() => {
-        this.isVisible = false;
+        this.isClosed = true;
       }, this.closesSelfAfter);
     }
+
   }
 
 
@@ -133,44 +136,47 @@ export class YetiToast {
 
     let altText = this.iconAltText;
     let iconCode = this.iconCode;
-    let wrapperClass = 'yeti-toast';
-    wrapperClass += (this.size == 'full') ? ' yeti-toast_full' : '';
-    wrapperClass += (this.wrapperClass !== '') ? ` ${this.wrapperClass}` : ``;
+    let wrapperClass = 'yeti-toast-wrapper';
+    let actualClass = 'yeti-toast';
+    actualClass += (this.size == 'full') ? ' yeti-toast_full' : '';
+    actualClass += (this.actualClass !== '') ? ` ${this.actualClass}` : ``;
+
+    wrapperClass += (this.isClosed) ? ' yeti-toast-wrapper__closed' : '';
 
     // Set type-based CSS class
     switch (this.toastType) {
 
       case "error":
 
-        wrapperClass += ' yeti-toast-error';
+        actualClass += ' yeti-toast-error';
         altText = (altText != '') ? altText : 'Error';
         iconCode = (iconCode != '') ? iconCode : 'error';
         break;
 
       case "info":
 
-        wrapperClass += ' yeti-toast-info';
+        actualClass += ' yeti-toast-info';
         altText = (altText != '') ? altText : 'Information';
         iconCode = (iconCode != '') ? iconCode : 'info';
         break;
 
       case "success":
 
-        wrapperClass += ' yeti-toast-success';
+        actualClass += ' yeti-toast-success';
         altText = (altText != '') ? altText : 'Success';
         iconCode = (iconCode != '') ? iconCode : 'check_circle';
         break;
 
       case "warning":
 
-        wrapperClass += ' yeti-toast-warning';
+        actualClass += ' yeti-toast-warning';
         altText = (altText != '') ? altText : 'Warning';
         iconCode = (iconCode != '') ? iconCode : 'error';
         break;
 
       case "warningAlt":
 
-        wrapperClass += ' yeti-toast-warning_alt';
+        actualClass += ' yeti-toast-warning_alt';
         altText = (altText != '') ? altText : 'Warning';
         iconCode = (iconCode != '') ? iconCode : 'warning';
         break;
@@ -185,59 +191,64 @@ export class YetiToast {
     
 
     // Set low-contrast mode
-    wrapperClass += (this.isLowContrast) ? ' yeti-toast-low_contrast' : '';
-
-
-    // Set visibility
-    wrapperClass += (this.isVisible) ? '' : ' yeti-toast__hidden';
+    actualClass += (this.isHighContrast) ? ' yeti-toast-high_contrast' : '';
   
 
     return (
-      <div class={wrapperClass} id={this.toastId} role="status">
+      <div class={wrapperClass}>
 
-        <div class="yeti-toast-icon">
-          
-          <span class="material-icons" aria-hidden="true">{iconCode}</span>
-          <span class="yeti-a11y-hidden">{altText}</span>
+        <div class={actualClass} id={this.toastId} role="status">
 
-        </div>
-
-
-        <div class="yeti-toast-content">
-        
-          {
-            (this.textTitle != "") ?
-              <div class="yeti-toast-content-title">{this.textTitle}</div>
-            :
-              ''
-          }
-          <div class="yeti-toast-content-subtitle">
-
-            <slot />
+          <div class="yeti-toast-icon">
+            
+            <span class="material-icons" aria-hidden="true">{iconCode}</span>
+            <span class="yeti-a11y-hidden">{altText}</span>
 
           </div>
 
+
+          <div class="yeti-toast-content">
+
+            <div class="yeti-toast-content-text">
+          
+              {
+                (this.textTitle != "") ?
+                  <div class="yeti-toast-content-text-title">{this.textTitle}</div>
+                :
+                  ''
+              }
+              <div class="yeti-toast-content-text-copy">
+
+                <slot />
+
+              </div>
+
+            </div>
+
+
+            {
+              (this.actionLabel != "") ?
+
+                <button class="yeti-toast-action yeti-button yeti-button-tertiary yeti-button-size-xs" onClick={(e) => this.handleActionClick(e)}>
+                  {this.actionLabel}
+                </button>
+              :
+                ""
+            }
+
+          </div>
+
+          {
+            (this.showCloseButton) ?
+
+              <button class="yeti-toast-close" onClick={(e) => this.handleCloseClick(e)}>
+                <span class="material-icons">close</span>
+              </button>
+            :
+              ""
+          }
+
         </div>
-
-        {
-          (this.actionLabel != "") ?
-
-            <button class="yeti-toast-action" onClick={(e) => this.handleActionClick(e)}>
-              {this.actionLabel}
-            </button>
-          :
-            ""
-        }
-
-        {
-          (this.showCloseButton) ?
-
-            <button class="yeti-toast-close" onClick={(e) => this.handleCloseClick(e)}>
-              <span class="material-icons">close</span>
-            </button>
-          :
-            ""
-        }
 
       </div>
     );

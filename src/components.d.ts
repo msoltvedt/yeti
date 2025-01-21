@@ -833,6 +833,10 @@ export namespace Components {
          */
         "actionLabel": string;
         /**
+          * CSS classlist to add to the element serving as the component's wrapper.
+         */
+        "actualClass": string;
+        /**
           * Time in ms before the Toast closes itself. Values of less than 1 will be ignored.
          */
         "closesSelfAfter": number;
@@ -845,13 +849,13 @@ export namespace Components {
          */
         "iconCode": string;
         /**
-          * Whether to use the low-contrast variant or not.
+          * Whether the toast is closed or not.
          */
-        "isLowContrast": boolean;
+        "isClosed": boolean;
         /**
-          * Whether the toast is visible or not.
+          * Whether to use the high-contrast variant or not.
          */
-        "isVisible": boolean;
+        "isHighContrast": boolean;
         /**
           * Whether to show the close button or not.
          */
@@ -876,10 +880,6 @@ export namespace Components {
           * The type of toast: error (default) | info | success | warning | warningAlt.
          */
         "toastType": string;
-        /**
-          * CSS classlist to add to the element serving as the component's wrapper.
-         */
-        "wrapperClass": string;
     }
     interface YetiTooltip {
         /**
@@ -2264,6 +2264,10 @@ declare namespace LocalJSX {
          */
         "actionLabel"?: string;
         /**
+          * CSS classlist to add to the element serving as the component's wrapper.
+         */
+        "actualClass"?: string;
+        /**
           * Time in ms before the Toast closes itself. Values of less than 1 will be ignored.
          */
         "closesSelfAfter"?: number;
@@ -2276,13 +2280,13 @@ declare namespace LocalJSX {
          */
         "iconCode"?: string;
         /**
-          * Whether to use the low-contrast variant or not.
+          * Whether the toast is closed or not.
          */
-        "isLowContrast"?: boolean;
+        "isClosed"?: boolean;
         /**
-          * Whether the toast is visible or not.
+          * Whether to use the high-contrast variant or not.
          */
-        "isVisible"?: boolean;
+        "isHighContrast"?: boolean;
         /**
           * Fires when the user clicks the action button.
          */
@@ -2311,10 +2315,6 @@ declare namespace LocalJSX {
           * The type of toast: error (default) | info | success | warning | warningAlt.
          */
         "toastType"?: string;
-        /**
-          * CSS classlist to add to the element serving as the component's wrapper.
-         */
-        "wrapperClass"?: string;
     }
     interface YetiTooltip {
         /**

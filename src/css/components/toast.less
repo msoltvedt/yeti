@@ -8,50 +8,71 @@ Styles for toast
 
 /************************************** Settings ***/
 
-// .yeti-toast:not(),
-.yeti-toast:not(.yeti-toast-low_contrast) {
-    --color-background: @color-gray-80;
-    --color-foreground: white;
-}
-
-.yeti-toast:not(.yeti-toast-info, .yeti-toast-success, .yeti-toast-warning, .yeti-toast-warning_alt),
-.yeti-toast-error        { --color-accent: @color-red-50; }
-.yeti-toast-info         { --color-accent: @color-blue-50; }
-.yeti-toast-success      { --color-accent: @color-green-40; }
-.yeti-toast-warning,
-.yeti-toast-warning_alt  { --color-accent: @color-creekside-yellow-dark; }
-
-
-/*** Low contrast ***/
-.yeti-toast.yeti-toast-low_contrast {
-    --color-foreground: @color-gray-100;
-}
-
-.yeti-toast.yeti-toast-low_contrast:not(.yeti-toast-info, .yeti-toast-success, .yeti-toast-warning, .yeti-toast-warning_alt),
-.yeti-toast-low_contrast.yeti-toast-error {
-    --color-background: @color-red-10;
-    --color-accent: @color-red-error;
-}
-
-.yeti-toast-low_contrast.yeti-toast-info { 
+.yeti-toast:not(.yeti-toast-error, .yeti-toast-success, .yeti-toast-warning, .yeti-toast-warning_alt, .yeti-toast-high_contrast),
+.yeti-toast-info { 
     --color-background: @color-blue-10;
     --color-accent: @color-blue-70;
 }
 
-.yeti-toast-low_contrast.yeti-toast-success { 
+.yeti-toast-error {
+    --color-background: @color-red-10;
+    --color-accent: @color-red-error;
+}
+
+.yeti-toast-success { 
     --color-background: #defbe6;
     --color-accent: @color-green-success;
 }
 
-.yeti-toast-low_contrast.yeti-toast-warning,
-.yeti-toast-low_contrast.yeti-toast-warning_alt  {
+.yeti-toast-warning,
+.yeti-toast-warning_alt  {
     --color-background: #fdf6dd;
     --color-accent: @color-creekside-yellow-dark;
 }
 
 
+/*** High contrast ***/
+.yeti-toast-high_contrast {
+    --color-background: @color-gray-80;
+    --color-foreground: white;
+}
+
+.yeti-toast.yeti-toast-high_contrast:not(.yeti-toast-error, .yeti-toast-success, .yeti-toast-warning, .yeti-toast-warning_alt),
+.yeti-toast-info.yeti-toast-high_contrast        { --color-accent: @color-blue-50; }
+.yeti-toast-error.yeti-toast-high_contrast       { --color-accent: @color-red-50; }
+.yeti-toast-success.yeti-toast-high_contrast     { --color-accent: @color-green-40; }
+.yeti-toast-warning.yeti-toast-high_contrast,
+.yeti-toast-warning_alt.yeti-toast-high_contrast { --color-accent: @color-creekside-yellow-dark; }
+
+
 
 /************************************** Wrapper ***/
+.yeti-toast-wrapper {
+    display: block;
+    transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out allow-discrete,
+                opacity 0.1s linear allow-discrete;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: fit-content;
+    height: calc-size(auto, size);
+}
+
+.yeti-toast-wrapper.yeti-toast-wrapper__closed,
+.yeti-toast-stack .yeti-toast-wrapper.yeti-toast-wrapper__closed {
+    height: 0;
+    min-height: 0;
+    opacity: 0;
+    display: none;
+    margin-bottom: 0;
+}
+
+.yeti-toast-wrapper__closed .yeti-toast {
+    min-height: 0;
+}
+
+
+
+/************************************** Actual ***/
 yeti-toast {
     display: contents;
 }
@@ -59,11 +80,12 @@ yeti-toast {
 .yeti-toast {
     background-color: var(--color-background);
     width: 18rem;
+    min-width: 18rem;
     min-height: 3rem;
     color: var(--color-foreground);
     border-left: 3px solid var(--color-accent);
     padding-left: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 6px;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
 
     font-size: .875rem;
     letter-spacing: 0.01rem;
@@ -75,9 +97,13 @@ yeti-toast {
     padding-right: 1rem;
 }
 
-.yeti-toast.yeti-toast-low_contrast {
+.yeti-toast:not(.yeti-toast-high_contrast) {
     border: 1px solid var(--color-accent);
     border-left-width: 3px;
+}
+
+.yeti-toast-high_contrast a {
+    color: @color-blue-40;
 }
 
 
@@ -85,8 +111,8 @@ yeti-toast {
 /************************************** Icon ***/
 .yeti-toast-icon {
     flex: 0 0 1.25rem;
-    padding-top: 1rem;
-    padding-right: 1rem;
+    padding-top: 0.88rem;
+    padding-right: 0.5rem;
     color: var(--color-accent);
 }
 
@@ -97,65 +123,33 @@ yeti-toast {
 
 
 /************************************** Content ***/
-
 .yeti-toast-content {
     flex: 1 1 auto;
-    padding: 1rem 1rem 1rem 0;
-    line-height: 1.28572;
+    padding: 0.9375rem 1rem 1.25rem 0;
+    gap: 1.25rem 0;
+
+    line-height: 1.125rem;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    align-items: flex-start;
 }
 
-.yeti-toast-content-title {
+.yeti-toast-content-text-title {
     font-weight: 600;
+    margin-bottom: 0.5rem;
 }
 
-.yeti-toast-content-subtitle {
+.yeti-toast-content-text-subtitle {
     word-break: break-word;
 }
 
 
 
 /************************************** Actions ***/
-.yeti-toast-action {
-    flex: 0 0 auto;
-    .yeti-mixin-button-vanilla();
-    background-color: transparent;
+.yeti-toast-high_contrast .yeti-toast-action:not(:hover, :focus, :focus-visible, :active) {
+    border-color: @color-blue-40;
     color: @color-blue-40;
-    height: 2rem;
-    margin-top: 0.5rem;
-    padding: 0.4375rem 0.75rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 0;
-    box-shadow: none;
-}
-.yeti-toast-low_contrast .yeti-toast-action {
-    color: @color-blue-primary;
-}
-
-.yeti-toast-action:active {  background-color: #4c4c4c; }
-.yeti-toast-low_contrast .yeti-toast-action:active { background-color: @color-blue-70; }
-
-.yeti-toast-action:focus-visible {
-    border-color: #0000;
-    box-shadow: none;
-    outline: 2px solid #ffffff;
-    outline-offset: -2px;
-}
-.yeti-toast-low_contrast .yeti-toast-action:focus-visible {
-    outline-color: @color-blue-primary;
-}
-
-.yeti-toast-action:hover {
-    background-color: #4c4c4c;
-    color: @color-blue-40;
-}
-.yeti-toast-low_contrast .yeti-toast-action:hover {
-    color: @color-blue-70;
-    background-color: #fff;
 }
 
 
@@ -211,14 +205,16 @@ yeti-toast {
 
 /************************************** Stacks ***/
 .yeti-toast-stack {
-    display: flex;
-    gap: 1rem;
-    flex-direction: column;
+    width: min-content;
+}
+
+.yeti-toast-stack .yeti-toast-wrapper {
+    margin-bottom: 1rem;
 }
 
 .yeti-toast-stack__stuck {
     position: fixed;
-    top: 2rem;
+    top: 6rem;
     right: 2rem;
     z-index: 100;
 }
