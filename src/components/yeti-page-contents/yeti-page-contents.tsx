@@ -46,9 +46,6 @@ export class YetiPageContents {
     let headingIds = [];
     pageWrapper.classList.add("yeti-page_contents-wrapper");
 
-    // Hide this whole component from screen-readers (since they have a better version built in)
-    this.el.setAttribute("aria-hidden", "true");
-
     // Set up ids
     if (!elId) {
       elId = utils.generateUniqueId();
