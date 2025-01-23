@@ -41,14 +41,56 @@
         <h3 class="margin-bottom-2">Setting a Toast Type</h3>
 
         <p>
-          Set the type via the optional <code>toast-type</code> attribute. Possible values are <code>error</code> (default), <code>info</code>, <code>success</code>, <code>warning</code>, and <code>warningAlt</code>.
+          Set the type via the optional <code>toast-type</code> attribute. Possible values are <code>error</code>, <code>info</code> (default), <code>success</code>, and <code>warning</code>.
         </p>
+
+
+        <h4 class="margin-bottom-2">Success</h4>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
 <yeti-toast text-title="Successful Sam" toast-type="success">
   
   Great achievement. Very excite.
+
+</yeti-toast>
+        </div><!-- /code_sample -->
+
+
+
+        <h4 class="margin-bottom-2">Error</h4>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-toast text-title="Error Erin" toast-type="error">
+  
+  Uh oh.
+
+</yeti-toast>
+        </div><!-- /code_sample -->
+
+
+
+        <h4 class="margin-bottom-2">Info</h4>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-toast text-title="Informative Ian" toast-type="info">
+  
+  Did you know...
+
+</yeti-toast>
+        </div><!-- /code_sample -->
+
+
+
+        <h4 class="margin-bottom-2">Warning</h4>
+
+        <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+        <div class="ydoc-code_sample">
+<yeti-toast text-title="Warning Warren" toast-type="warning">
+  
+  Cuidado.
 
 </yeti-toast>
         </div><!-- /code_sample -->
@@ -97,7 +139,7 @@
         <h3 class="margin-bottom-2">With Action Button</h3>
 
         <p>
-          If you give the <code>action-label</code> attribute a value then Yeti will add an action button. Yeti will fire a <code>notificationActionClick</code> custom event whenever someone clicks on that button.
+          If you give the <code>action-label</code> attribute a value then Yeti will add an action button. Yeti will fire a <code>toastActionClick</code> custom event whenever someone clicks on that button.
         </p>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
@@ -133,21 +175,21 @@
 
 <div class="yeti-toast-stack" aria-live="polite">
 
-  <yeti-toast text-title="One Thing" toast-type="status">
+  <yeti-toast text-title="One Thing">
     
     After another.
 
   </yeti-toast>
 
 
-  <yeti-toast text-title="After Another" toast-type="status">
+  <yeti-toast text-title="After Another">
     
     And another?
 
   </yeti-toast>
 
 
-  <yeti-toast text-title="Yes, Another" toast-type="status">
+  <yeti-toast text-title="Yes, Another">
     
     But that's it.
 
@@ -166,21 +208,21 @@
 
 <div class="yeti-toast-stack yeti-toast-stack__stuck yeti-toast-stack__inert" id="demo_stuckStack" aria-live="polite">
 
-  <yeti-toast text-title="One Thing" toast-type="status">
+  <yeti-toast text-title="One Thing">
     
     After another.
 
   </yeti-toast>
 
 
-  <yeti-toast text-title="After Another" toast-type="status">
+  <yeti-toast text-title="After Another">
     
     And another?
 
   </yeti-toast>
 
 
-  <yeti-toast text-title="Yes, Another" toast-type="status">
+  <yeti-toast text-title="Yes, Another">
     
     But that's it.
 
