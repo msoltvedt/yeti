@@ -153,13 +153,6 @@ export class YetiToast {
         iconCode = (iconCode != '') ? iconCode : 'error';
         break;
 
-      case "info":
-
-        actualClass += ' yeti-toast-info';
-        altText = (altText != '') ? altText : 'Information';
-        iconCode = (iconCode != '') ? iconCode : 'info';
-        break;
-
       case "success":
 
         actualClass += ' yeti-toast-success';
@@ -171,20 +164,16 @@ export class YetiToast {
 
         actualClass += ' yeti-toast-warning';
         altText = (altText != '') ? altText : 'Warning';
-        iconCode = (iconCode != '') ? iconCode : 'error';
-        break;
-
-      case "warningAlt":
-
-        actualClass += ' yeti-toast-warning_alt';
-        altText = (altText != '') ? altText : 'Warning';
         iconCode = (iconCode != '') ? iconCode : 'warning';
         break;
 
       case "":
+      case "info":
       default:
-        altText = (altText != '') ? altText : 'Error';
-        iconCode = (iconCode != '') ? iconCode : 'error';
+
+        actualClass += ' yeti-toast-info';
+        altText = (altText != '') ? altText : 'Information';
+        iconCode = (iconCode != '') ? iconCode : 'info';
         break;
 
     }
