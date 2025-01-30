@@ -16,6 +16,7 @@
 | `isMultiselect` | `is-multiselect` | Whether the component is a Multiselect variant or not (defaults to not).                                                              | `boolean`              | `false`        |
 | `isSearchable`  | `is-searchable`  | Whether or not the user can filter the options by searching for a specific string.                                                    | `boolean`              | `false`        |
 | `isValid`       | `is-valid`       | Whether the component has a valid value.                                                                                              | `boolean`              | `true`         |
+| `label`         | `label`          | A label (en lieu of an associated outside label element).                                                                             | `string`               | `""`           |
 | `labelledBy`    | `labelled-by`    | id of an external HTML element that the component's actual drop-down element references in aria-labelledby.                           | `string`               | `""`           |
 | `menuAlignment` | `menu-alignment` | Token list of left \| right and/or above \| below that describes the drop-down's visual position relative to the closed state anchor. | `string`               | `""`           |
 | `options`       | --               | Array of YetiDropdownOptions that describes the component's internal representation of its options. See utils.js for more detail.     | `YetiDropdownOption[]` | `[]`           |

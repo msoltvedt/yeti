@@ -92,6 +92,11 @@ export class YetiDropdown {
   @Prop() labelledBy: string = "";
 
   /**
+   * A label (en lieu of an associated outside label element).
+   */
+  @Prop() label: string = "";
+
+  /**
    * id of an external HTML element that the component's actual drop-down element references in aria-describedby.
    */
   @Prop() describedBy: string = "";
@@ -661,6 +666,16 @@ export class YetiDropdown {
     this.flyoutId = (this.flyoutId != "") ? this.flyoutId : `${componentId}_flyout`;
 
 
+    // Handle labels
+    if (this.label == "" && this.labelledBy == "") {
+
+      console.error("Dropdown components require a label. Use the 'labelled-by' attribute to provide the id of a label element or the 'label' attribute to provide one directly.");
+
+    }
+
+
+
+
     // Look for and handle any <yeti-dropdown-option> elements.
     if (optionElements.length > 0) {
       
@@ -727,10 +742,11 @@ export class YetiDropdown {
           }}
           role="combobox"
           {...((!this.isValid) ? {"aria-invalid": 'true'} : {})}
-          {...((this.labelledBy != "") ? {"aria-labeledby": this.labelledBy} : {})}
+          {...((this.labelledBy != "") ? {"aria-labelledby": this.labelledBy} : {})}
+          {...((this.label != "") ? {"aria-label": this.label} : {})}
           {...((this.describedBy != "") ? {"aria-describedby": this.describedBy} : {})}
           aria-controls={this.flyoutId}
-          aria-expanded={this.isOpen}
+          aria-expanded={`${this.isOpen}`}
           aria-haspopup="listbox"
           {...((this.isOpen && this.cursorPosition >= 0) ? { "aria-activedescendant": this.options[this.cursorPosition].id } : {})}
           id={this.comboboxId}
@@ -809,7 +825,7 @@ export class YetiDropdown {
             id={this.flyoutId}
             role="listbox"
             aria-multiselectable="true"
-            {...((this.labelledBy != "") ? {"aria-labeledby": this.labelledBy} : {})}
+            {...((this.labelledBy != "") ? {"aria-labelledby": this.labelledBy} : {})}
             {...((this.isOpen && this.cursorPosition >= 0) ? { "aria-activedescendant": this.options[this.cursorPosition].id } : {})}
           >
 
@@ -826,38 +842,38 @@ export class YetiDropdown {
                       key={option.id}
                       role="option"
                       aria-selected={`${option.selected}`}
+                      tabIndex={-1}
+                      class={optionClass} 
+                      onClick={(ev) => { this.handleOptionClick(i); ev.preventDefault(); }}
                     >
-                      <button class={optionClass} tabIndex={-1} onClick={(ev) => { this.handleOptionClick(i); ev.preventDefault(); }}>
+
+                      {
+                        (this.isMultiselect) ?
+                      
+                          <span class="yeti-dropdown-option-checkbox">
+                            <span class="material-icons" aria-hidden="true">{(option.selected) ? "check_box" : "check_box_outline_blank"}</span>
+                          </span>
+
+                        :
+
+                          ""
+                      }
+
+                      
+                      <span class="yeti-dropdown-option-label">{option.label}</span>
 
 
-                        {
-                          (this.isMultiselect) ?
-                        
-                            <span class="yeti-dropdown-option-checkbox">
-                              <span class="material-icons" aria-hidden="true">{(option.selected) ? "check_box" : "check_box_outline_blank"}</span>
-                            </span>
+                      {
+                        (!this.isMultiselect && option.selected) ?
 
-                          :
+                          <yeti-icon iconCode="check" aria-hidden="true" iconClass='yeti-typo-size-4'></yeti-icon>
 
-                            ""
-                        }
+                        :
 
-                        
-                        <span class="yeti-dropdown-option-label">{option.label}</span>
+                          ""
+                      }
 
 
-                        {
-                          (!this.isMultiselect && option.selected) ?
-
-                            <yeti-icon iconCode="check" aria-hidden="true" iconClass='yeti-typo-size-4'></yeti-icon>
-
-                          :
-
-                            ""
-                        }
-
-
-                      </button>
                     </li>
 
                   :

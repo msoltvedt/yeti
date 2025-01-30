@@ -212,6 +212,10 @@ export namespace Components {
          */
         "isValid": boolean;
         /**
+          * A label (en lieu of an associated outside label element).
+         */
+        "label": string;
+        /**
           * id of an external HTML element that the component's actual drop-down element references in aria-labelledby.
          */
         "labelledBy": string;
@@ -1580,6 +1584,10 @@ declare namespace LocalJSX {
           * Whether the component has a valid value.
          */
         "isValid"?: boolean;
+        /**
+          * A label (en lieu of an associated outside label element).
+         */
+        "label"?: string;
         /**
           * id of an external HTML element that the component's actual drop-down element references in aria-labelledby.
          */

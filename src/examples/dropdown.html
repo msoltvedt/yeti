@@ -35,7 +35,7 @@
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-<yeti-dropdown>
+<yeti-dropdown label="Toppings">
   <yeti-dropdown-option selected>Pepperoni</yeti-dropdown-option>
   <yeti-dropdown-option>Extra Cheese</yeti-dropdown-option>
   <yeti-dropdown-option selected>Sausage</yeti-dropdown-option>
@@ -50,7 +50,7 @@
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-<yeti-dropdown is-searchable="true">
+<yeti-dropdown label="Toppings" is-searchable="true">
   <yeti-dropdown-option selected>Pepperoni</yeti-dropdown-option>
   <yeti-dropdown-option>Extra Cheese</yeti-dropdown-option>
   <yeti-dropdown-option selected>Sausage</yeti-dropdown-option>
@@ -65,7 +65,7 @@
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-<yeti-dropdown is-multiselect="true">
+<yeti-dropdown label="Toppings" is-multiselect="true">
   <yeti-dropdown-option selected>Pepperoni</yeti-dropdown-option>
   <yeti-dropdown-option>Extra Cheese</yeti-dropdown-option>
   <yeti-dropdown-option selected>Sausage</yeti-dropdown-option>
@@ -80,7 +80,7 @@
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-<yeti-dropdown is-multiselect="true" is-searchable="true">
+<yeti-dropdown label="Toppings" is-multiselect="true" is-searchable="true">
   <yeti-dropdown-option selected>Pepperoni</yeti-dropdown-option>
   <yeti-dropdown-option>Extra Cheese</yeti-dropdown-option>
   <yeti-dropdown-option selected>Sausage</yeti-dropdown-option>
@@ -92,19 +92,19 @@
 
 
 
-        <h3 class="margin-bottom-2">With Label</h3>
+        <h3 class="margin-bottom-2">With External Label</h3>
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-<label for="toppings" class="yeti-form-label">Toppings</label>
-<yeti-dropdown is-multiselect="true" html-id="toppings">
+<label class="yeti-form-label" id="label_toppings">Toppings</label>
+
+<yeti-dropdown is-multiselect="true" labelled-by="label_toppings">
   <yeti-dropdown-option selected>Pepperoni</yeti-dropdown-option>
   <yeti-dropdown-option>Extra Cheese</yeti-dropdown-option>
   <yeti-dropdown-option selected>Sausage</yeti-dropdown-option>
   <yeti-dropdown-option>Hamburger</yeti-dropdown-option>
   <yeti-dropdown-option>Olives</yeti-dropdown-option>
 </yeti-dropdown>
-
         </div><!-- /code_sample -->
 
 
@@ -113,7 +113,7 @@
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-<yeti-dropdown is-multiselect="true" id="withValues">
+<yeti-dropdown is-multiselect="true" id="withValues" label="Toppings">
   <yeti-dropdown-option selected value="pep">Pepperoni</yeti-dropdown-option>
   <yeti-dropdown-option value="xch">Extra Cheese</yeti-dropdown-option>
   <yeti-dropdown-option selected value="sau">Sausage</yeti-dropdown-option>
@@ -129,7 +129,7 @@
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-<yeti-dropdown is-multiselect="true" placeholder="Choose toppings">
+<yeti-dropdown is-multiselect="true" placeholder="Choose toppings" label="Toppings">
   <yeti-dropdown-option>Pepperoni</yeti-dropdown-option>
   <yeti-dropdown-option>Extra Cheese</yeti-dropdown-option>
   <yeti-dropdown-option>Sausage</yeti-dropdown-option>
@@ -145,7 +145,7 @@
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-<yeti-dropdown is-multiselect="true" show-clear="false">
+<yeti-dropdown is-multiselect="true" show-clear="false" label="Toppings">
   <yeti-dropdown-option selected>Pepperoni</yeti-dropdown-option>
   <yeti-dropdown-option>Extra Cheese</yeti-dropdown-option>
   <yeti-dropdown-option selected>Sausage</yeti-dropdown-option>
@@ -161,7 +161,7 @@
 
         <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
         <div class="ydoc-code_sample">
-<yeti-dropdown is-multiselect="true" is-valid="false">
+<yeti-dropdown is-multiselect="true" is-valid="false" label="Toppings">
   <yeti-dropdown-option selected>Pepperoni</yeti-dropdown-option>
   <yeti-dropdown-option>Extra Cheese</yeti-dropdown-option>
   <yeti-dropdown-option selected>Sausage</yeti-dropdown-option>
