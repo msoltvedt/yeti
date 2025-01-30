@@ -153,7 +153,7 @@ function watcher(cb) {
 
     // Optionally update Orchestrator and CRM as well.
     // watch(`dist/yeti/**/*`, series(cleanOrchestratorJS, pasteJSToOrchestrator, cleanCrmJS, pasteJSToCrm));
-    watch([`src/css/yeti.css`, 'src/css/main.css'], parallel(pasteCSSToOrchestrator, pasteCSSToCrm));
+    // watch([`src/css/yeti.css`, 'src/css/main.css'], parallel(pasteCSSToOrchestrator, pasteCSSToCrm));
     // watch(`src/css/fonts/**/*`, series(cleanOrchestratorFonts, cleanCRMFonts, pasteFontsToOrchestrator, pasteFontsToCrm));
     cb();
 }

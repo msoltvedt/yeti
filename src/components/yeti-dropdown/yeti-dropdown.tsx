@@ -213,8 +213,8 @@ export class YetiDropdown {
 
 
 
-  @Listen("keyup")
-  handleKeyup(ev: KeyboardEvent) {
+  @Listen("keydown")
+  handleKeyDown(ev: KeyboardEvent) {
 
     let key = ev.key.toString().toLowerCase();
     let dropdownElement = this.el.querySelector(".yeti-dropdown") as HTMLElement;
@@ -312,24 +312,45 @@ export class YetiDropdown {
       case " ": {
 
         // Check to see if this happened while selecting something.
-        ev.preventDefault();
         let target = ev.target as HTMLElement;
+        let key = ev.key.toLowerCase();
 
         // First check if a clear option has focus
         if (target.classList.contains("yeti-dropdown-puck") || target.classList.contains("yeti-input-clear")) {
+          ev.preventDefault(); // Don't scroll the page or submit the form when clearing.
           target.click();
           break;
         } else {
-        // Next check if the cursor is on a selection
-        
-          if (this.cursorPosition >= 0) {
-            // Toggle selection on the option at this cursor position.
-            this.handleOptionClick(this.cursorPosition);
-          } else {
 
-        // User isn't selecting or activating clear puck, so just toggle the flyout open/close state.
-            this.toggleFlyout();
+          // Next check if the cursor is in a search field
+          if (dropdownElement != document.activeElement) {
+
+            if (key == "enter") {
+              // We want to let the space through to handleSearchKeyUp, but since the search results update as the user types (i.e. not on enter)
+              // we just ignore the enter key. However, we don't want it to submit the form, which is why we swallow the event.
+              ev.preventDefault();
+            }
+            
           }
+        
+          // Next check if the cursor is on a selection (it better be!)
+          else {
+
+              ev.preventDefault(); // We don't want the page to scroll or the form to submit.
+            
+              if (this.cursorPosition >= 0) {
+
+              // Toggle selection on the option at this cursor position.
+              this.handleOptionClick(this.cursorPosition);
+            
+            } else {
+
+              // User isn't selecting or activating clear puck, so just toggle the flyout open/close state.
+              this.toggleFlyout();
+            }
+
+          }
+
         }
 
         break;
@@ -595,13 +616,16 @@ export class YetiDropdown {
   handleSearchKeyUp(ev: KeyboardEvent) {
     let searchField = this.el.querySelector(".yeti-dropdown-search") as HTMLInputElement;
     let searchString = searchField.value;
+    let key = ev.key.toString().toLowerCase();
 
     if (!this.isSearchable) {
       return;
     }
 
-    if (ev.key == " ") {
-      ev.stopImmediatePropagation();
+    if (key == "enter") {
+      // Enter doesn't do anything in this context, so just prevent it from submitting the form.
+      ev.preventDefault();
+      return;
     }
 
     for (let option of this.options) {
@@ -749,7 +773,7 @@ export class YetiDropdown {
             (this.isSearchable) ?
 
               <div class="yeti-dropdown-search-wrapper">
-                {/* <input 
+                <input 
                   type="search" 
                   class="yeti-dropdown-search" 
                   placeholder='Type to search' 
@@ -759,9 +783,9 @@ export class YetiDropdown {
                   id={this.searchId}
                   value={this.searchString}
                   {...(!this.isOpen ? {"tabindex": "-1"} : {})}
-                /> */}
+                />
                 
-                <yeti-input
+                {/* <yeti-input
                   input-class="yeti-dropdown-search"
                   placeholder='Type to search' 
                   onKeyUp={(e) => { this.handleSearchKeyUp(e); }}
@@ -770,7 +794,7 @@ export class YetiDropdown {
                   value={this.searchString}
                   autocomplete="off"
                   {...(!this.isOpen ? {"input-tabindex": "-1"} : {})}
-                />
+                /> */}
               </div>
 
             :

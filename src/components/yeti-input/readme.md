@@ -41,14 +41,12 @@
 
 ### Used by
 
- - [yeti-dropdown](../yeti-dropdown)
  - [yeti-field](../yeti-field)
  - [yeti-table](../yeti-table)
 
 ### Graph
 ```mermaid
 graph TD;
-  yeti-dropdown --> yeti-input
   yeti-field --> yeti-input
   yeti-table --> yeti-input
   style yeti-input fill:#f9f,stroke:#333,stroke-width:4px
