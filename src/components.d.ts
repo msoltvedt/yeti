@@ -546,9 +546,9 @@ export namespace Components {
          */
         "iconCode": string;
         /**
-          * Whether to use the low-contrast variant or not.
+          * Whether to use the high-contrast variant or not.
          */
-        "isLowContrast": boolean;
+        "isHighContrast": boolean;
         /**
           * Whether the notification is visible or not.
          */
@@ -1950,9 +1950,9 @@ declare namespace LocalJSX {
          */
         "iconCode"?: string;
         /**
-          * Whether to use the low-contrast variant or not.
+          * Whether to use the high-contrast variant or not.
          */
-        "isLowContrast"?: boolean;
+        "isHighContrast"?: boolean;
         /**
           * Whether the notification is visible or not.
          */

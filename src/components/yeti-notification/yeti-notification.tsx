@@ -26,9 +26,9 @@ export class YetiNotification {
   @Prop() notificationType: string = "";
 
   /**
-   * Whether to use the low-contrast variant or not.
+   * Whether to use the high-contrast variant or not.
    */
-  @Prop() isLowContrast: boolean = false;
+  @Prop() isHighContrast: boolean = false;
 
   /**
    * Whether to show the close button or not.
@@ -173,8 +173,8 @@ export class YetiNotification {
     }
     
 
-    // Set low-contrast mode
-    wrapperClass += (this.isLowContrast) ? ' yeti-notification-low_contrast' : '';
+    // Set high-contrast mode
+    wrapperClass += (this.isHighContrast) ? ' yeti-notification-high_contrast' : '';
 
 
     // Set visibility

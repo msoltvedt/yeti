@@ -292,6 +292,8 @@ export interface YetiTableCell {
   template?: any, // HTML
   detail?: object,
   isRadio?: boolean,
+  controlLabel: string, // A label for the radio button
+  controlLabelledBy: string, // The id of a labeling element for the radio button
   colspan?: number,
   rowspan?: number,
   headers?: string

@@ -12,7 +12,7 @@
 | `actionLabel`      | `action-label`      | Text label for the action button.                                                                                              | `string`  | `""`            |
 | `iconAltText`      | `icon-alt-text`     | The alt text for the icon.                                                                                                     | `string`  | `""`            |
 | `iconCode`         | `icon-code`         | Which icon to use (see Google Material Icons).                                                                                 | `string`  | `""`            |
-| `isLowContrast`    | `is-low-contrast`   | Whether to use the low-contrast variant or not.                                                                                | `boolean` | `false`         |
+| `isHighContrast`   | `is-high-contrast`  | Whether to use the high-contrast variant or not.                                                                               | `boolean` | `false`         |
 | `isVisible`        | `is-visible`        | Whether the notification is visible or not.                                                                                    | `boolean` | `true`          |
 | `notificationId`   | `notification-id`   | id of the component's actual element corresponding to the tooltip. Will be auto-populated with a unique value if not provided. | `string`  | `""`            |
 | `notificationType` | `notification-type` | The type of notification: error (default) \| info \| success \| warning \| warningAlt.                                         | `string`  | `""`            |

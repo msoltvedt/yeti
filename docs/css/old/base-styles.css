@@ -904,10 +904,7 @@ pre {
 .virtuoso-step-current-skipped {
   background-color:#E8E8E8;
   border-top-color: #6e6e6e;
-}
-
-.virtuoso-step-current-skipped {
-  color: #6e6e6e;
+  color: #525252;
 }
 
 /*** End New ***/

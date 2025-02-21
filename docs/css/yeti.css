@@ -1293,7 +1293,7 @@ Styles for Checkbox
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23161616"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>');
   }
   .yeti-checkbox:disabled {
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23c6c6c6"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>');
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236f6f6f"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>');
     cursor: unset;
   }
   /*** States ***/
@@ -1301,7 +1301,7 @@ Styles for Checkbox
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23161616"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>');
   }
   .yeti-checkbox:disabled:checked {
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23c6c6c6"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>');
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236f6f6f"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>');
   }
   .yeti-checkbox:focus-visible {
     outline: max(2px, 0.125rem) solid #0f62fe;
@@ -1322,7 +1322,11 @@ Styles for Checkbox
     grid-row: 2 / 3;
   }
   .yeti-checkbox-wrapper:has(.yeti-checkbox:disabled) :is(.yeti-form-label, .yeti-form-tip) {
-    color: #8d8d8d;
+    color: #6f6f6f;
+    cursor: not-allowed;
+  }
+  .yeti-checkbox-wrapper:has(.yeti-checkbox:disabled) {
+    cursor: not-allowed;
   }
   /************************************** Checkbox Fieldset ***/
   .yeti-checkbox-fieldset {
@@ -2520,6 +2524,7 @@ Styles for Dropdown
     height: 2.5rem;
     gap: 0.25rem;
     border-bottom: 1px solid #e8e8e8;
+    flex-shrink: 0;
   }
   .yeti-dropdown-option:hover,
   .yeti-dropdown-option__hover {
@@ -2539,6 +2544,7 @@ Styles for Dropdown
     text-overflow: ellipsis;
     text-align: left;
     white-space: nowrap;
+    line-height: 1rem;
   }
   /************************************** Actual ***/
   .yeti-dropdown-actual {
@@ -2914,14 +2920,14 @@ Styles for Radio
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23161616'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z'/%3E%3C/svg%3E");
   }
   .yeti-radio:disabled {
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c6c6c6'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z'/%3E%3C/svg%3E");
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236f6f6f'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z'/%3E%3C/svg%3E");
   }
   /*** States ***/
   .yeti-radio:checked {
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23161616'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z'/%3E%3C/svg%3E");
   }
   .yeti-radio:disabled:checked {
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c6c6c6'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z'/%3E%3C/svg%3E");
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236f6f6f'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z'/%3E%3C/svg%3E");
   }
   .yeti-radio:focus-visible {
     outline: max(2px, 0.125rem) solid #0f62fe;
@@ -2941,8 +2947,12 @@ Styles for Radio
     grid-column: 2 / 3;
     grid-row: 2 / 3;
   }
-  .yeti-radio-wrapper:has(:disabled) :is(.yeti-form-label, .yeti-form-tip) {
-    color: #8d8d8d;
+  .yeti-radio-wrapper:has(:disabled) :is(.yeti-form-label, .yeti-form-tip, .yeti-radio) {
+    color: #6f6f6f;
+    cursor: not-allowed;
+  }
+  .yeti-radio-wrapper:has(:disabled) {
+    cursor: not-allowed;
   }
   /************************************** Radio Fieldset ***/
   .yeti-radio-fieldset-legend {
@@ -3465,6 +3475,9 @@ Styles for Table
   .yeti-table-heading-filter-input-button {
     width: 2.5rem;
     flex: 0 0 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
   }
   .yeti-table-heading-filter :is(.yeti-input, .yeti-select, .yeti-dropdown, .yeti-date-button, .yeti-table-heading-filter-input-button):hover {
@@ -3968,7 +3981,7 @@ Styles for toast
   .yeti-toast-stack__stuck {
     position: fixed;
     top: 6rem;
-    right: 2rem;
+    right: 1.5rem;
     z-index: 100;
   }
   .yeti-toast-stack__inert {
@@ -4214,44 +4227,42 @@ Styles for notification
 
 *************************************** notification.less **************************************/
   /************************************** Settings ***/
-  .yeti-notification:not(.yeti-notification-low_contrast) {
-    --color-background: #393939;
-    --color-foreground: white;
-  }
-  .yeti-notification:not(.yeti-notification-info, .yeti-notification-success, .yeti-notification-warning, .yeti-notification-warning_alt),
+  /************************************** Settings ***/
+  .yeti-notification:not(.yeti-notification-info, .yeti-notification-success, .yeti-notification-warning, .yeti-notification-warning_alt, .yeti-notification-high_contrast),
   .yeti-notification-error {
-    --color-accent: #fa4d56;
-  }
-  .yeti-notification-info {
-    --color-accent: #4589ff;
-  }
-  .yeti-notification-success {
-    --color-accent: #42be6f;
-  }
-  .yeti-notification-warning,
-  .yeti-notification-warning_alt {
-    --color-accent: #e69900;
-  }
-  /*** Low contrast ***/
-  .yeti-notification.yeti-notification-low_contrast {
-    --color-foreground: #161616;
-  }
-  .yeti-notification.yeti-notification-low_contrast:not(.yeti-notification-info, .yeti-notification-success, .yeti-notification-warning, .yeti-notification-warning_alt),
-  .yeti-notification-low_contrast.yeti-notification-error {
     --color-background: #fff1f1;
     --color-accent: #da1e28;
   }
-  .yeti-notification-low_contrast.yeti-notification-info {
+  .yeti-notification-info {
     --color-background: #edf5ff;
     --color-accent: #0043ce;
   }
-  .yeti-notification-low_contrast.yeti-notification-success {
+  .yeti-notification-success {
     --color-background: #defbe6;
     --color-accent: #24a148;
   }
-  .yeti-notification-low_contrast.yeti-notification-warning,
-  .yeti-notification-low_contrast.yeti-notification-warning_alt {
+  .yeti-notification-warning,
+  .yeti-notification-warning_alt {
     --color-background: #fdf6dd;
+    --color-accent: #e69900;
+  }
+  /*** High contrast ***/
+  .yeti-notification.yeti-notification-high_contrast {
+    --color-background: #393939;
+    --color-foreground: white;
+  }
+  .yeti-notification.yeti-notification-high_contrast:not(.yeti-notification-info, .yeti-notification-success, .yeti-notification-warning, .yeti-notification-warning_alt),
+  .yeti-notification-high_contrast.yeti-notification-error {
+    --color-accent: #fa4d56;
+  }
+  .yeti-notification-high_contrast.yeti-notification-info {
+    --color-accent: #4589ff;
+  }
+  .yeti-notification-high_contrast.yeti-notification-success {
+    --color-accent: #42be6f;
+  }
+  .yeti-notification-high_contrast.yeti-notification-warning,
+  .yeti-notification-high_contrast.yeti-notification-warning_alt {
     --color-accent: #e69900;
   }
   /************************************** Wrapper ***/
@@ -4260,9 +4271,9 @@ Styles for notification
   }
   .yeti-notification {
     background-color: var(--color-background);
-    min-width: min(18rem, 100%);
-    max-width: min(67vw, 100%);
-    width: fit-content;
+    min-width: min(67rem, 100%);
+    max-width: min(67rem, 100%);
+    width: min(67rem, 100%);
     min-height: 3rem;
     color: var(--color-foreground);
     border-left: 3px solid var(--color-accent);
@@ -4275,7 +4286,7 @@ Styles for notification
   .yeti-notification:not(:has(.yeti-notification-close)) {
     padding-right: 1rem;
   }
-  .yeti-notification.yeti-notification-low_contrast {
+  .yeti-notification:not(.yeti-notification-high_contrast) {
     border: 1px solid var(--color-accent);
     border-left-width: 3px;
   }
@@ -4283,7 +4294,7 @@ Styles for notification
   .yeti-notification-icon {
     flex: 0 0 1.25rem;
     padding-top: 0.875rem;
-    padding-right: 1rem;
+    padding-right: 0.5rem;
     color: var(--color-accent);
   }
   .yeti-notification-icon .material-icons {
@@ -4296,7 +4307,10 @@ Styles for notification
     line-height: 1.28572;
     display: flex;
     flex-wrap: wrap;
-    gap: 0 0.25rem;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.25rem;
   }
   .yeti-notification-content-title {
     font-weight: 600;
@@ -4318,7 +4332,7 @@ Styles for notification
     background-color: transparent;
     color: #78a9ff;
     height: 2rem;
-    margin-top: 0.5rem;
+    align-self: center;
     padding: 0.4375rem 0.75rem;
     display: inline-flex;
     align-items: center;
@@ -4326,31 +4340,35 @@ Styles for notification
     border: 0;
     box-shadow: none;
   }
-  .yeti-notification-low_contrast .yeti-notification-action {
+  .yeti-notification:not(.yeti-notification-high_contrast) .yeti-notification-action {
     color: #0f62fe;
+    border: 1px solid #4589ff;
   }
-  .yeti-notification-action:active {
-    background-color: #4c4c4c;
-  }
-  .yeti-notification-low_contrast .yeti-notification-action:active {
-    background-color: #0043ce;
-  }
-  .yeti-notification-action:focus-visible {
+  .yeti-notification-high_contrast .yeti-notification-action:focus-visible {
     border-color: #0000;
     box-shadow: none;
     outline: 2px solid #ffffff;
     outline-offset: -2px;
   }
-  .yeti-notification-low_contrast .yeti-notification-action:focus-visible {
+  .yeti-notification:not(.yeti-notification-high_contrast) .yeti-notification-action:focus-visible {
     outline-color: #0f62fe;
+    border-color: #0f62fe;
+    border-radius: 0;
+    outline: none;
+    box-shadow: inset 0 0 0 1px #0f62fe;
   }
-  .yeti-notification-action:hover {
-    background-color: #4c4c4c;
+  .yeti-notification-high_contrast .yeti-notification-action:hover {
+    background-color: #474747;
     color: #78a9ff;
   }
-  .yeti-notification-low_contrast .yeti-notification-action:hover {
-    color: #0043ce;
-    background-color: #fff;
+  .yeti-notification:not(.yeti-notification-high_contrast) .yeti-notification-action:hover {
+    background-color: rgba(141, 141, 141, 0.12);
+  }
+  .yeti-notification-high_contrast .yeti-notification-action:active {
+    background-color: #6f6f6f;
+  }
+  .yeti-notification:not(.yeti-notification-high_contrast) .yeti-notification-action:active {
+    background-color: rgba(141, 141, 141, 0.2);
   }
   /************************************** Close ***/
   .yeti-notification-close {
@@ -4374,11 +4392,11 @@ Styles for notification
     border: 0;
     box-shadow: none;
   }
-  .yeti-notification-close:focus-visible {
+  .yeti-notification-high_contrast .yeti-notification-close:focus-visible {
     outline: 2px solid #ffffff;
     outline-offset: -1px;
   }
-  .yeti-notification-low_contrast .yeti-notification-close:focus-visible {
+  .yeti-notification:not(.yeti-notification-high_contrast) .yeti-notification-close:focus-visible {
     outline-color: #0f62fe;
   }
   .yeti-notification-close .material-icons {

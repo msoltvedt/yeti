@@ -1057,6 +1057,8 @@ export class YetiTable {
     let radioValue = `${radioName}_${cell.rowIndex}`;
     let row = this.contents.body.rows[cell.rowIndex];
     let isRowChecked = (row.isSelected) ? true : false;
+    let hasLabel = (cell.controlLabel) ? true : false;
+    let labelledBy = (cell.controlLabelledBy) ? true : false;
 
     let control = <input
       type="radio"
@@ -1068,6 +1070,8 @@ export class YetiTable {
         this.handleCellRadioChange(cell);
       }}
       {...(isRowChecked ? { "checked": true } : {})}
+      {...(hasLabel) ? { "aria-label": `${cell.controlLabel}` } : {}}
+      {...(labelledBy) ? { "aria-labelledby": `${cell.controlLabelledBy}` } : {}}
     />;
 
     return <td class={`yeti-table-cell yeti-table-control ${css}`} id={cell.id} key={cell.id}>{control}</td>
@@ -1268,7 +1272,7 @@ export class YetiTable {
           <button class="yeti-table-heading-filter-input-button" onClick={(ev) => {
             ev.preventDefault();
             this.handleTextFilterButtonClick(ev, this.el.querySelector(`#${inputIdString}`), cell.columnIndex);
-          }}><span class="material-icons" aria-hidden="true">search</span></button>
+          }}><yeti-icon iconCode='search' alt='filter'></yeti-icon></button>
 
         </div>
 
