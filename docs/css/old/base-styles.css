@@ -1430,6 +1430,12 @@ text-align:center;
   color: #161616;
 }
 
+.heading-section-b a {
+  color: #0043ce;
+}
+.heading-section-b a:hover {
+  color: #002d9c;
+}
 
 /************************************** Button Menu ***/
 
@@ -2100,7 +2106,7 @@ line-height:1.5
 }
 
 .nbv-select_material_spec-selection__inert {
-  color: #8d8d8d;
+  color: #727272;
 }
 
 .nbv-select_material_spec-selection-property {

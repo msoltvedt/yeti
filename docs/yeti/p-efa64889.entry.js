@@ -1,2 +1,0 @@
-import{r as s,h as e,g as t}from"./p-39d3f65a.js";const r=class{constructor(e){s(this,e);this.alt="Required";this.cssClass=""}render(){let s="yeti-form-required-symbol";s+=this.cssClass?` ${this.cssClass}`:``;return e("span",{key:"117aea2535ece036ba3c62bab021fdc6404f0ca2",class:s},this.alt?e("span",{class:"yeti-a11y-hidden"},this.alt):"")}get el(){return t(this)}};export{r as yeti_required_symbol};
-//# sourceMappingURL=p-efa64889.entry.js.map
