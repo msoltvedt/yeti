@@ -302,6 +302,10 @@ export namespace Components {
          */
         "label": string;
         /**
+          * name that will be assigned to the actual input element. id will be assigned if one is not provided.
+         */
+        "placeholder": string;
+        /**
           * Whether the field is required to have a valid value by the greater form.
          */
         "required"?: boolean;
@@ -1682,6 +1686,10 @@ declare namespace LocalJSX {
           * Mandatory value for the label of the field.
          */
         "label"?: string;
+        /**
+          * name that will be assigned to the actual input element. id will be assigned if one is not provided.
+         */
+        "placeholder"?: string;
         /**
           * Whether the field is required to have a valid value by the greater form.
          */

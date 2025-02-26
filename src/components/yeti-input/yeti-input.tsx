@@ -205,10 +205,17 @@ export class YetiInput {
           {...((this.maxlength != 0) ? {"maxlength": this.maxlength} : {})}
         />
 
-        <button class={clearButtonClass} onClick={(ev) => this.handleClearClick(ev)}>
-          <span class="material-icons yeti-size-4 yeti-typo-size-4" aria-hidden="true">close</span>
-          <span class="yeti-a11y-hidden">Clear search input</span>
-        </button>
+
+        {(this.type == "search") ?
+            
+            <button class={clearButtonClass} onClick={(ev) => this.handleClearClick(ev)}>
+              <span class="material-icons yeti-size-4 yeti-typo-size-4" aria-hidden="true">close</span>
+              <span class="yeti-a11y-hidden">Clear search input</span>
+            </button>
+            
+          :
+            ""
+        }
         
 
       </div>

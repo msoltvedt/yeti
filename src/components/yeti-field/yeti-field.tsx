@@ -27,6 +27,14 @@ export class YetiField {
   }) inputName: string = this.inputId;
 
   /**
+   * name that will be assigned to the actual input element. id will be assigned if one is not provided.
+   */
+  @Prop({
+    mutable: true,
+    reflect: true
+  }) placeholder: string = "";
+
+  /**
    * type that will be assigned to the actual input element.
    */
   @Prop() type: string = "text";
@@ -319,6 +327,7 @@ export class YetiField {
                 {...((this.inputClass != "") ? {"input-class": this.inputClass} : {})}
                 {...((this.inputWrapperClass != "") ? {"wrapper-class": this.inputWrapperClass} : {})}
                 {...((this.inputMaxlength != 0) ? {"input-maxlength": this.inputMaxlength} : {})}
+                {...((this.placeholder != "") ? {"placeholder": this.placeholder} : {})}
               ></yeti-input>
 
         :
