@@ -249,7 +249,7 @@ export class YetiModal {
 
                     {(this.showClose) ?
 
-                      <button class="yeti-modal-header-close yeti-button-ghost" onClick={() => { this.isActive = false }}>
+                      <button class="yeti-modal-header-close yeti-button-ghost" onClick={(e) => { e.preventDefault(); this.isActive = false }}>
                       <span class="material-icons">close</span>
                       </button>
 
