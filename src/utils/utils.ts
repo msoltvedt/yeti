@@ -273,6 +273,7 @@ export interface YetiTableRow {
   isExpandable?: boolean,
   isExpanded?: boolean,
   isSummary?: boolean,
+  nestedTables?: YetiTableContents[],
   childRows?: YetiTableRow[],
   parentRow?: YetiTableRow
 }
@@ -342,6 +343,8 @@ export interface YetiMenuButtonOption {
 }
 
 let uniqueId = 0;
+
+
 
 /*** File Explorer types ***/
 export interface YetiFileSystemItem {

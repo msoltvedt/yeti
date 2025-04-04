@@ -34,6 +34,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [yeti-table](.)
+
 ### Depends on
 
 - [yeti-icon](../yeti-icon)
@@ -42,16 +46,12 @@
 - [yeti-input](../yeti-input)
 - [yeti-date-picker](../yeti-date-picker)
 - [yeti-dropdown](../yeti-dropdown)
+- [yeti-table](.)
 
 ### Graph
 ```mermaid
 graph TD;
-  yeti-table --> yeti-icon
-  yeti-table --> yeti-menu-button
-  yeti-table --> yeti-tooltip
-  yeti-table --> yeti-input
-  yeti-table --> yeti-date-picker
-  yeti-table --> yeti-dropdown
+  yeti-table --> yeti-table
   yeti-menu-button --> yeti-tooltip
   yeti-tooltip --> yeti-icon
   yeti-date-picker --> yeti-tooltip

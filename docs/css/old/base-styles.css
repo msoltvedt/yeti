@@ -2124,3 +2124,18 @@ line-height:1.5
   line-height: 1.125rem;
 }
 
+
+
+
+/************************************** Containers ***/
+.container-settings {
+  border: 1px solid #c6c6c6;
+  padding: 3rem;
+  width: min(61rem, (100vw - 4rem));
+  min-height: 31.5rem;
+  margin: 0 auto;
+}
+
+body:has(.container-settings) {
+  padding-bottom: 3rem;
+}

@@ -1492,6 +1492,7 @@ export class YetiTable {
             <tr class={rowCSS} id={row.id} key={row.id}>{this.renderRow(row)}</tr>
           );
 
+
           // Check to see if this row has child rows, and if so, add them as well.
           if (row.childRows && row.childRows.length && row.childRows.length > 0) {
 
@@ -1517,6 +1518,32 @@ export class YetiTable {
               );
 
             }
+
+          }
+
+
+          // Check to see if this row has (a) nested table(s). If so, render it as well.
+          if (row.nestedTables?.length && row.nestedTables.length > 0) {
+
+            let nestedTables = [];
+
+            for (let i = 0; i < row.nestedTables.length; i++) {
+
+              let nestedTable = <yeti-table tableClass='yeti-table__fixed yeti-table-nested' contents={row.nestedTables[i]}></yeti-table>;
+
+              nestedTables.push(nestedTable);
+
+            }
+
+            tbodyContents.push(
+              <tr class="yeti-table-body-row yeti-table-body-row-nested_table_wrapper">
+                <td colSpan={this.contents.head.rows[0]?.cells?.length} class='yeti-table-cell yeti-table-cell-nested_table_wrapper'>
+                  <div class='yeti-table-nested_table_stacker'>
+                    {nestedTables}
+                  </div>
+                </td>
+              </tr>
+            );
 
           }
 

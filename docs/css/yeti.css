@@ -3594,6 +3594,76 @@ Styles for Table
   .yeti-table-body-row-child_row-has_summary_parent .yeti-table-cell:first-child {
     padding-left: 3.5rem;
   }
+  /************************************** Nested Tables ***/
+  .yeti-table-row__sticky {
+    position: sticky;
+    top: 0;
+  }
+  .yeti-table-body-row.yeti-table-body-row-nested_table_wrapper {
+    border-bottom-color: #c6c6c6;
+  }
+  .yeti-table-cell.yeti-table-cell-nested_table_wrapper {
+    padding: 1rem;
+    background-color: #fcf4d6;
+  }
+  .yeti-table-nested_table_stacker {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .yeti-table-nested .yeti-table-body {
+    background-color: white;
+  }
+  /*** Grid adjustments when within a nested table ***/
+  .yeti-table__fixed .yeti-table-nested .yeti-table-grid-16 {
+    width: calc((100% + (1rem*2)) / 16 * 16);
+  }
+  .yeti-table__fixed .yeti-table-nested .yeti-table-grid-15 {
+    width: calc((100% + (1rem*2)) / 16 * 15);
+  }
+  .yeti-table__fixed .yeti-table-nested .yeti-table-grid-14 {
+    width: calc((100% + (1rem*2)) / 16 * 14);
+  }
+  .yeti-table__fixed .yeti-table-nested .yeti-table-grid-13 {
+    width: calc((100% + (1rem*2)) / 16 * 13);
+  }
+  .yeti-table__fixed .yeti-table-nested .yeti-table-grid-12 {
+    width: calc((100% + (1rem*2)) / 16 * 12);
+  }
+  .yeti-table__fixed .yeti-table-nested .yeti-table-grid-11 {
+    width: calc((100% + (1rem*2)) / 16 * 11);
+  }
+  .yeti-table__fixed .yeti-table-nested .yeti-table-grid-10 {
+    width: calc((100% + (1rem*2)) / 16 * 10);
+  }
+  .yeti-table__fixed .yeti-table-nested .yeti-table-grid-9 {
+    width: calc((100% + (1rem*2)) / 16 * 9);
+  }
+  .yeti-table__fixed .yeti-table-nested .yeti-table-grid-8 {
+    width: calc((100% + (1rem*2)) / 16 * 8);
+  }
+  .yeti-table__fixed .yeti-table-nested .yeti-table-grid-7 {
+    width: calc((100% + (1rem*2)) / 16 * 7);
+  }
+  .yeti-table__fixed .yeti-table-nested .yeti-table-grid-6 {
+    width: calc((100% + (1rem*2)) / 16 * 6);
+  }
+  .yeti-table__fixed .yeti-table-nested .yeti-table-grid-5 {
+    width: calc((100% + (1rem*2)) / 16 * 5);
+  }
+  .yeti-table__fixed .yeti-table-nested .yeti-table-grid-4 {
+    width: calc((100% + (1rem*2)) / 16 * 4);
+  }
+  .yeti-table__fixed .yeti-table-nested .yeti-table-grid-3 {
+    width: calc((100% + (1rem*2)) / 16 * 3);
+  }
+  .yeti-table__fixed .yeti-table-nested .yeti-table-grid-2 {
+    width: calc((100% + (1rem*2)) / 16 * 2);
+  }
+  .yeti-table__fixed .yeti-table-nested .yeti-table-grid-1 {
+    width: calc((100% + (1rem*2)) / 16 * 1);
+  }
+  /* First and last column */
   /************************************** tabs.less ***************************************
 
 Styles for Tabs
@@ -4489,6 +4559,14 @@ Styles for notification
  * Utilities > Typography
  *
 ****************************************************/
+  /************************************** Canned Styles ***/
+  .yeti-typo-body-1 {
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem;
+    letter-spacing: 0.01rem;
+  }
   /************************************** Size ***/
   .yeti-typo-size-2 {
     font-size: 0.5rem;
@@ -5286,6 +5364,10 @@ Styles for notification
   .yeti-margin-vertical-10 {
     margin-top: 2.5rem;
     margin-bottom: 2.5rem;
+  }
+  .yeti-margin-vertical-11 {
+    margin-top: 2.75rem;
+    margin-bottom: 2.75rem;
   }
   .yeti-margin-vertical-12 {
     margin-top: 3rem;

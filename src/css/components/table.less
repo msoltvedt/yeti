@@ -557,3 +557,56 @@ yeti-table-actions[use-grid] yeti-table-action {
 .yeti-table-body-row-child_row-has_summary_parent .yeti-table-cell:first-child {
     padding-left: 3.5rem;
 }
+
+
+
+/************************************** Nested Tables ***/
+@yeti-table-nested-wrapping_cell_padding: @u * 4;
+.yeti-table-row__sticky {
+    position: sticky;
+    top: 0;
+}
+.yeti-table-body-row.yeti-table-body-row-nested_table_wrapper {
+    border-bottom-color: @color-gray-30;
+}
+
+.yeti-table-cell.yeti-table-cell-nested_table_wrapper {
+    // padding: @yeti-table-nested-wrapping_cell_padding; // Note: it'll look like this is here, but we're faking it. See Grid adjustments note below.
+    padding: 1rem 0;
+    background-color: @color-yellow-10;
+}
+
+.yeti-table-nested_table_stacker {
+    display: flex;
+    flex-direction: column;
+    gap: @yeti-table-nested-wrapping_cell_padding;
+}
+
+.yeti-table-nested .yeti-table-body {
+    background-color: white;
+}
+
+
+/*** Grid adjustments when within a nested table ***/
+/*
+ *  Note: because the grid system is percentage-based, each column is a percentage of the total width of the table.
+ *  In the case of nested tables, where the nested table is narrower than its parent (due to padding on the parent's
+ *  containing cell), the column widths will be *different than the parent's*, which means the grid system no longer
+ *  aligns. The following hacks are to work around this issue.
+*/
+
+.yeti-table-nested :is(td, th):first-child {
+    // Shift the entire first column of cells in nested tables over to the right, and add right padding so their 
+    // content won't collide with column 2.
+    position: relative;
+    left: @yeti-table-nested-wrapping_cell_padding;
+    padding-right: calc(0.75rem + @yeti-table-nested-wrapping_cell_padding);
+}
+
+.yeti-table-nested :is(td, th):last-child {
+    // Shift the entire last column of cells in nested tables over to the left, and add left padding so their 
+    // content won't collide with column n-1.
+    position: relative;
+    right: @yeti-table-nested-wrapping_cell_padding;
+    padding-left: calc(0.75rem + @yeti-table-nested-wrapping_cell_padding);
+}

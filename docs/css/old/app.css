@@ -230,7 +230,7 @@ body:has(.app-page-wizard)::after {
     white-space: nowrap;
 }
 
-.app-conductor-job_template-shared_header .yeti-button {
+.app-conductor-job_template-shared_header-button .yeti-button {
     width: 100%;
 }
 
