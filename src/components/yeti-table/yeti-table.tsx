@@ -939,8 +939,7 @@ export class YetiTable {
     }
 
     // First, get the ids of all the childRows, assigning new ids if necessary.
-
-    containingRow.childRows.forEach((childRow, index) => {
+    containingRow.childRows?.forEach((childRow, index) => {
 
       childRow.id = (!childRow.id || childRow.id == "") ? `${containingRow.id}_child_${index}` : childRow.id;
       childRowIds.push(childRow.id);
@@ -1418,6 +1417,9 @@ export class YetiTable {
 
           if (this.hasExpandableRows) {
 
+            // This row is in a table that has expandable rows. It may be a child row, or it may be an expandable content row.
+            console.log("Got here.", row);
+
             // This is a child row in a table that has expandable rows, so we need to add an empty cell at the start.
             cells.push(
               <td class="yeti-table-cell yeti-table-cell-expando" id={expandoCellId} key={expandoCellId}></td>
@@ -1433,7 +1435,6 @@ export class YetiTable {
     
     // Handle the rest of the cells.
     row.cells.forEach((cell: YetiTableCell) => {
-      //let needsAnExpandCollapseButton = (isAnExpandableRow && index == 0) ? true : false; // Only the first cell in an expandable row needs an expando button.
       cells.push(this.renderCell(cell));
     });
 
@@ -1510,8 +1511,7 @@ export class YetiTable {
 
             for (let c = 0; c < row.childRows.length; c++) {
 
-              let childRowId = 
-                  row.childRows[c].id = `${row.id}_child_${c}`;
+              let childRowId = row.childRows[c].id = `${row.id}_child_${c}`;
 
               tbodyContents.push(
                 <tr class={childRowCSS} id={childRowId} key={childRowId}>{this.renderRow(row.childRows[c])}</tr>
@@ -1526,6 +1526,11 @@ export class YetiTable {
           if (row.nestedTables?.length && row.nestedTables.length > 0) {
 
             let nestedTables = [];
+            let wrapperRowCSS = "yeti-table-body-row yeti-table-body-row-nested_table_wrapper";
+            let colSpan = this.contents.head.rows[0]?.cells?.length; // We want to span all table columns.
+            colSpan += (row.isExpandable) ? 1 : 0; // renderRow will add an extra column for the expand/collapse control that we need to account for here.
+
+            wrapperRowCSS += (row.isExpanded) ? "" : " yeti-table-body-row-nested_table_wrapper__inert";
 
             for (let i = 0; i < row.nestedTables.length; i++) {
 
@@ -1536,8 +1541,8 @@ export class YetiTable {
             }
 
             tbodyContents.push(
-              <tr class="yeti-table-body-row yeti-table-body-row-nested_table_wrapper">
-                <td colSpan={this.contents.head.rows[0]?.cells?.length} class='yeti-table-cell yeti-table-cell-nested_table_wrapper'>
+              <tr class={wrapperRowCSS}>
+                <td colSpan={colSpan} class='yeti-table-cell yeti-table-cell-nested_table_wrapper'>
                   <div class='yeti-table-nested_table_stacker'>
                     {nestedTables}
                   </div>

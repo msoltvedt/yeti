@@ -13,7 +13,7 @@ yeti-table {
 
 .yeti-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate; // Not collapse in order to achieve the nested table indent effect.
     border-spacing: 0;
     height: 1px;
     /* Tables are still weird. Needed to make yeti-table-heading-compound fill full cell height? */
@@ -47,6 +47,20 @@ yeti-table {
 .yeti-table-heading:first-child .yeti-table-heading-filter,
 .yeti-table-cell:first-child {
     padding-left: 1rem;
+}
+
+.yeti-table:has(.yeti-table-nested) > .yeti-table-head > tr {
+    
+    .yeti-table-heading:first-child:not(:has(.yeti-table-heading-compound)),
+    .yeti-table-heading:first-child .yeti-table-heading-button,
+    .yeti-table-heading:first-child .yeti-table-heading-compound-actual,
+    .yeti-table-heading:first-child .yeti-table-heading-filter {
+        padding-left: 2rem;
+    }
+
+}
+.yeti-table:has(.yeti-table-nested) > .yeti-table-body > tr > .yeti-table-cell:not(.yeti-table-cell-nested_table_wrapper, .yeti-table-cell-expando):first-child {
+        padding-left: 2rem;
 }
 
 .yeti-table-heading:last-child:not(:has(.yeti-table-heading-compound)),
@@ -100,22 +114,29 @@ yeti-table {
     background-color: @color-gray-10;
 }
 
-.yeti-table-body-row {
+.yeti-table-body-row:not(.yeti-table-body-row.yeti-table-body-row-nested_table_wrapper) {
     color: #525252;
-    border-top: 1px solid @color-gray-10;
+}
+
+.yeti-table-body-row :is(.yeti-table-cell, .yeti-table-heading) {
     border-bottom: 1px solid @color-gray-20;
 }
+
+// .yeti-table-body-row:first-child .yeti-table-cell {
+//     border-top: 1px solid @color-gray-10;
+// }
 
 .yeti-table-body-row-summary {
     background-color: @color-creekside-gray-lighter;
     font-weight: 700;
 }
 
-.yeti-table-body-row:hover {
+.yeti-table-body-row:not(.yeti-table-body-row-nested_table_wrapper):hover > :is(.yeti-table-cell, .yeti-table-heading) {
     background-color: #e5e5e5;
-    border-bottom-color: #e5e5e5;
-    border-top-color: #e5e5e5;
     color: @color-gray-100;
+}
+.yeti-table-body-row:hover .yeti-table-cell {
+    border-bottom-color: #e5e5e5;
 }
 
 .yeti-table-cell {
@@ -135,7 +156,9 @@ yeti-table {
 
 .yeti-table-body-row:has(.yeti-radio:checked):hover {
     background-color: #d1d1d1;
-    border-top-color: #d1d1d1;
+}
+
+.yeti-table-body-row:has(.yeti-radio:checked):hover .yeti-table-cell {
     border-bottom-color: #d1d1d1;
 }
 
@@ -562,17 +585,33 @@ yeti-table-actions[use-grid] yeti-table-action {
 
 /************************************** Nested Tables ***/
 @yeti-table-nested-wrapping_cell_padding: @u * 4;
-.yeti-table-row__sticky {
-    position: sticky;
-    top: 0;
+
+.yeti-table-body-row-nested_table_wrapper {
+    display: none;
+    
+    transition: height 0.2s ease-in-out;
+    transition-behavior: allow-discrete;
+
+    height: 0;
+    @starting-style {
+        height: 0;
+    }
+
+    &.yeti-table-body-row-nested_table_wrapper__inert {
+        height: calc-size(auto, size);
+    }
 }
-.yeti-table-body-row.yeti-table-body-row-nested_table_wrapper {
+
+// .yeti-table-body-row-nested_table_wrapper__inert { display: none; }
+
+
+.yeti-table-body-row.yeti-table-body-row-nested_table_wrapper > .yeti-table-cell {
     border-bottom-color: @color-gray-30;
 }
 
 .yeti-table-cell.yeti-table-cell-nested_table_wrapper {
     // padding: @yeti-table-nested-wrapping_cell_padding; // Note: it'll look like this is here, but we're faking it. See Grid adjustments note below.
-    padding: 1rem 0;
+    padding: @yeti-table-nested-wrapping_cell_padding 0;
     background-color: @color-yellow-10;
 }
 
