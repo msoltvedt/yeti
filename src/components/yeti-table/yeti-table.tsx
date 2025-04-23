@@ -1418,7 +1418,6 @@ export class YetiTable {
           if (this.hasExpandableRows) {
 
             // This row is in a table that has expandable rows. It may be a child row, or it may be an expandable content row.
-            console.log("Got here.", row);
 
             // This is a child row in a table that has expandable rows, so we need to add an empty cell at the start.
             cells.push(
@@ -1471,6 +1470,7 @@ export class YetiTable {
       childRowCSS = rowCSS + " yeti-table-body-row-child_row";
       rowCSS += (row.isSummary) ? " yeti-table-body-row-summary" : "";
       rowCSS += (row.cssClass) ? ` ${row.cssClass}` : '';
+      rowCSS += (row.isExpandable) ? " yeti-table-body-row__expandable" : "";
 
       if (this.doesRowPassFiltering(row)) {
 
@@ -1530,11 +1530,13 @@ export class YetiTable {
             let colSpan = this.contents.head.rows[0]?.cells?.length; // We want to span all table columns.
             colSpan += (row.isExpandable) ? 1 : 0; // renderRow will add an extra column for the expand/collapse control that we need to account for here.
 
-            wrapperRowCSS += (row.isExpanded) ? "" : " yeti-table-body-row-nested_table_wrapper__inert";
+            wrapperRowCSS += (row.isExpandable) ? " yeti-table-body-row-nested_table_wrapper__has_expandable_parent_row" : "";
+
+            wrapperRowCSS += (row.isExpandable && !row.isExpanded) ? " yeti-table-body-row-nested_table_wrapper__inert" : "";
 
             for (let i = 0; i < row.nestedTables.length; i++) {
 
-              let nestedTable = <yeti-table tableClass='yeti-table__fixed yeti-table-nested' contents={row.nestedTables[i]}></yeti-table>;
+              let nestedTable = <yeti-table tableClass='yeti-table__fixed yeti-table__nested' contents={row.nestedTables[i]}></yeti-table>;
 
               nestedTables.push(nestedTable);
 
@@ -1543,7 +1545,7 @@ export class YetiTable {
             tbodyContents.push(
               <tr class={wrapperRowCSS}>
                 <td colSpan={colSpan} class='yeti-table-cell yeti-table-cell-nested_table_wrapper'>
-                  <div class='yeti-table-nested_table_stacker'>
+                  <div class='yeti-table__nested_table_stacker'>
                     {nestedTables}
                   </div>
                 </td>

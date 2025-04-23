@@ -9,7 +9,7 @@
 
 | Property          | Attribute          | Description                                                                                                  | Type                | Default                                                                    |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------- | -------------------------------------------------------------------------- |
-| `contents`        | --                 | Unique type that captures the table's contents and configurable state information. See utils.ts for details. | `YetiTableContents` | `{     head: {       rows: []     },     body: {       rows: []     }   }` |
+| `contents`        | `contents`         | Unique type that captures the table's contents and configurable state information. See utils.ts for details. | `YetiTableContents` | `{     head: {       rows: []     },     body: {       rows: []     }   }` |
 | `filterSelf`      | `filter-self`      | Determines whether to handle filtering (true) or just note the user requested it (false).                    | `boolean`           | `true`                                                                     |
 | `noMatchesText`   | `no-matches-text`  | Placeholder text when filtering returns no matching records.                                                 | `string`            | `"No records found matching your filter criteria"`                         |
 | `noRecordsText`   | `no-records-text`  | Placeholder text when filtering returns no matching records.                                                 | `string`            | `"No records"`                                                             |

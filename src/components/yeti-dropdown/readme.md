@@ -19,7 +19,7 @@
 | `label`         | `label`          | A label (en lieu of an associated outside label element).                                                                             | `string`               | `""`           |
 | `labelledBy`    | `labelled-by`    | id of an external HTML element that the component's actual drop-down element references in aria-labelledby.                           | `string`               | `""`           |
 | `menuAlignment` | `menu-alignment` | Token list of left \| right and/or above \| below that describes the drop-down's visual position relative to the closed state anchor. | `string`               | `""`           |
-| `options`       | --               | Array of YetiDropdownOptions that describes the component's internal representation of its options. See utils.js for more detail.     | `YetiDropdownOption[]` | `[]`           |
+| `options`       | `options`        | Array of YetiDropdownOptions that describes the component's internal representation of its options. See utils.js for more detail.     | `YetiDropdownOption[]` | `[]`           |
 | `placeholder`   | `placeholder`    | Text that appears in the closed state/anchor when there are no selections.                                                            | `string`               | `"- Select -"` |
 | `required`      | `required`       | Whether the component requires a valid value.                                                                                         | `boolean`              | `false`        |
 | `searchString`  | `search-string`  | A string to filter options against. Empty doesn't filter anything.                                                                    | `string`               | `""`           |
