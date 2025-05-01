@@ -3118,6 +3118,15 @@ Styles for Table
     /* Table-related custom properties */
     --table-expando_column_width: 3.25rem;
   }
+  .yeti-table__nested {
+    --table-expando_column_width: 4.25rem;
+  }
+  .yeti-table__nested .yeti-table__nested {
+    --table-expando_column_width: 5.25rem;
+  }
+  .yeti-table:has(.yeti-table__nested) {
+    --table-expando_column_width: 4.25rem;
+  }
   .yeti-table-heading:not(.yeti-table-numeric, .yeti-table-control),
   .yeti-table-cell:not(.yeti-table-numeric, .yeti-table-control) {
     text-align: left;
@@ -3136,35 +3145,6 @@ Styles for Table
     padding-left: 0.75rem;
     padding-right: 0.75rem;
     line-height: 1.28572;
-  }
-  .yeti-table-heading:first-child:not(:has(.yeti-table-heading-compound)),
-  .yeti-table-heading:first-child .yeti-table-heading-button,
-  .yeti-table-heading:first-child .yeti-table-heading-compound-actual,
-  .yeti-table-heading:first-child .yeti-table-heading-filter,
-  .yeti-table-cell:not(.yeti-table-cell-nested_table_wrapper):first-child {
-    padding-left: 1rem;
-  }
-  .yeti-table:has(.yeti-table__nested) .yeti-table-heading:first-child:not(:has(.yeti-table-heading-compound)),
-  .yeti-table:has(.yeti-table__nested) .yeti-table-heading:first-child .yeti-table-heading-button,
-  .yeti-table:has(.yeti-table__nested) .yeti-table-heading:first-child .yeti-table-heading-compound-actual,
-  .yeti-table:has(.yeti-table__nested) .yeti-table-heading:first-child .yeti-table-heading-filter {
-    padding-left: 1.75rem;
-  }
-  .yeti-table:has(.yeti-table__nested) .yeti-table-cell:not(.yeti-table-cell-nested_table_wrapper, .yeti-table-cell-expando):first-child {
-    padding-left: 1.75rem;
-  }
-  .yeti-table:has(.yeti-table__nested .yeti-table__nested) > .yeti-table-head > tr .yeti-table-heading:first-child:not(:has(.yeti-table-heading-compound)),
-  .yeti-table:has(.yeti-table__nested .yeti-table__nested) > .yeti-table-head > tr .yeti-table-heading:first-child .yeti-table-heading-button,
-  .yeti-table:has(.yeti-table__nested .yeti-table__nested) > .yeti-table-head > tr .yeti-table-heading:first-child .yeti-table-heading-compound-actual,
-  .yeti-table:has(.yeti-table__nested .yeti-table__nested) > .yeti-table-head > tr .yeti-table-heading:first-child .yeti-table-heading-filter {
-    padding-left: 2.75rem;
-  }
-  .yeti-table:has(.yeti-table__nested .yeti-table__nested) > .yeti-table-body > tr > .yeti-table-cell:not(.yeti-table-cell-nested_table_wrapper, .yeti-table-cell-expando):first-child {
-    padding-left: 2.75rem;
-  }
-  .yeti-table__nested :is(.yeti-table-heading, .yeti-table-cell):first-child,
-  .yeti-table__nested .yeti-table__nested :is(.yeti-table-head, .yeti-table-body) :is(.yeti-table-heading, .yeti-table-cell):first-child {
-    padding-left: 0.75rem;
   }
   .yeti-table-heading:last-child:not(:has(.yeti-table-heading-compound)),
   .yeti-table-heading:last-child .yeti-table-heading-button,
@@ -3620,9 +3600,6 @@ Styles for Table
   .yeti-table-body-row-child_row-has_summary_parent:is(.yeti-table-body-row-child_row) {
     background-color: unset;
   }
-  .yeti-table-body-row-child_row-has_summary_parent .yeti-table-cell:first-child {
-    padding-left: 3.5rem;
-  }
   /************************************** Nested Tables ***/
   .yeti-table {
     --yeti-table__nested-wrapping_cell_padding-top: 1rem;
@@ -3643,11 +3620,9 @@ Styles for Table
   }
   tr:not(.yeti-table-body-row-nested_table_wrapper__has_expandable_parent_row) .yeti-table-cell.yeti-table-cell-nested_table_wrapper {
     padding-right: 0;
-    padding-left: 0;
   }
   tr.yeti-table-body-row-nested_table_wrapper__has_expandable_parent_row .yeti-table-cell.yeti-table-cell-nested_table_wrapper {
     padding-right: 0;
-    padding-left: calc(var(--table-expando_column_width) - 0.25rem);
   }
   .yeti-table__nested_table_stacker {
     display: flex;
@@ -3664,12 +3639,22 @@ Styles for Table
  *  containing cell), the column widths will be *different than the parent's*, which means the grid system no longer
  *  aligns. The following hacks are to work around this issue.
 */
-  tr:not(.yeti-table-body-row-nested_table_wrapper__has_expandable_parent_row) .yeti-table__nested :is(td, th):first-child {
+  .yeti-table__nested {
+    --table-shifting_compensation-padding-right: 0.75rem;
+  }
+  :is(.yeti-table-heading-expando, .yeti-table-cell-expando) {
+    --table-shifting_compensation-padding-right: 0rem;
+  }
+  /*
+.yeti-table__has_a_descendant_with_expandable_rows
+.yeti-table__has_expandable_rows
+*/
+  .yeti-table__nested:not(.yeti-table__nested .yeti-table__nested) > :is(thead, tbody) > tr > :is(td, th):not(.yeti-table-cell-nested_table_wrapper):first-child {
     position: relative;
     left: var(--yeti-table__nested-wrapping_cell_padding-left);
-    padding-right: calc(0.75rem + var(--yeti-table__nested-wrapping_cell_padding-left));
+    padding-right: calc(var(--table-shifting_compensation-padding-right) + var(--yeti-table__nested-wrapping_cell_padding-left));
   }
-  .yeti-table__nested :is(td, th):last-child {
+  .yeti-table__nested :is(td, th):not(.yeti-table-cell-nested_table_wrapper):last-child {
     position: relative;
     right: var(--yeti-table__nested-wrapping_cell_padding-right);
     padding-left: calc(0.75rem + var(--yeti-table__nested-wrapping_cell_padding-right));
@@ -3682,20 +3667,86 @@ Styles for Table
   .yeti-table__nested tr:has(.yeti-table-cell-nested_table_wrapper) + tr > :is(td, th) {
     border-top: 1px solid #c6c6c6;
   }
-  tr:not(.yeti-table-body-row-nested_table_wrapper__has_expandable_parent_row) .yeti-table__nested .yeti-table__nested :is(td, th):first-child {
+  .yeti-table__nested .yeti-table__nested:not(.yeti-table__has_a_descendant_with_expandable_rows .yeti-table__nested) > :is(thead, tbody) :is(td, th):not(.yeti-table-cell-nested_table_wrapper):first-child {
     position: relative;
     left: calc(2 * var(--yeti-table__nested-wrapping_cell_padding-left));
     padding-right: calc(0.75rem + (2 * var(--yeti-table__nested-wrapping_cell_padding-left)));
   }
-  .yeti-table__nested .yeti-table__nested :is(td, th):last-child {
+  .yeti-table__nested .yeti-table__nested :is(td, th):not(.yeti-table-cell-nested_table_wrapper):last-child {
     position: relative;
     right: calc(2 * var(--yeti-table__nested-wrapping_cell_padding-right));
     padding-left: calc(0.75rem + (2 * var(--yeti-table__nested-wrapping_cell_padding-right)));
   }
   .yeti-table__nested .yeti-table-cell.yeti-table-cell-nested_table_wrapper:first-child {
     position: unset;
-    padding-left: 0;
     padding-right: 0;
+  }
+  /********************* Table Cell Left Padding ***/
+  /* 
+    The value for the left padding of the first cell in a table row depends on multiple variables, each of which is shown below
+    and prefixed with @table-fcpla- (fcpla = first-cell padding-left adjustment). The final value is the sum of all the various
+    adjustments.
+*/
+  .yeti-table {
+    --table-fcpla-default: 1rem;
+    --table-fcpla-summary_row: 0rem;
+    --table-fcpla-table_nesting: 0rem;
+    --table-fcpla-ancestor_table_nesting: 0rem;
+    --table-fcpla-expando: 0rem;
+  }
+  .yeti-table__nested {
+    --table-fcpla-default: 0.75rem;
+  }
+  .yeti-table-body-row-summary {
+    --table-fcpla-summary_row: 3.5rem;
+  }
+  .yeti-table:has(.yeti-table__nested) {
+    --table-fcpla-default: 0.75rem;
+    --table-fcpla-table_nesting: 1rem;
+  }
+  .yeti-table:has(.yeti-table__nested .yeti-table__nested) {
+    --table-fcpla-table_nesting: 2rem;
+  }
+  .yeti-table:has(.yeti-table__nested .yeti-table__nested) .yeti-table__nested {
+    --table-fcpla-table_nesting: 1rem;
+  }
+  .yeti-table:has(.yeti-table__nested .yeti-table__nested) .yeti-table__nested .yeti-table__nested {
+    --table-fcpla-table_nesting: 0rem;
+  }
+  .yeti-table__has_a_descendant_with_expandable_rows:not(.yeti-table__has_expandable_rows) {
+    --table-fcpla-expando: 2.25rem;
+  }
+  .yeti-table__has_a_descendant_with_expandable_rows .yeti-table-cell-nested_table_wrapper:is(.yeti-table__nested .yeti-table-cell-nested_table_wrapper) {
+    --table-fcpla-expando: 4.25rem;
+  }
+  .yeti-table__has_a_descendant_with_expandable_rows.yeti-table__has_expandable_rows {
+    --table-fcpla-expando: 1rem;
+  }
+  .yeti-table-cell-nested_table_wrapper {
+    --table-fcpla-default: 0rem;
+    --table-fcpla-summary_row: 0rem;
+    --table-fcpla-table_nesting: 0rem;
+    --table-fcpla-expando: 0rem;
+  }
+  .yeti-table__has_a_descendant_with_expandable_rows .yeti-table-cell-nested_table_wrapper:not(:has(.yeti-table__has_expandable_rows)) {
+    --table-fcpla-expando: 2.25rem;
+  }
+  :is(td, th) {
+    background: linear-gradient(to right, black, black 1px, rgba(0, 0, 0, 0.1) 1px, rgba(0, 0, 0, 0.1) 100%);
+  }
+  .yeti-table-cell-expando,
+  .yeti-table-heading-expando {
+    --table-fcpla-table_nesting: 0rem;
+    --table-fcpla-default: 0.75rem;
+    --table-fcpla-summary_row: 0rem;
+    width: calc(var(--table-expando_column_width));
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .yeti-table-expando_button {
+    background-color: pink;
+  }
+  :is(.yeti-table-heading, .yeti-table-cell):first-child {
+    padding-left: calc(var(--table-fcpla-default) + var(--table-fcpla-summary_row) + var(--table-fcpla-table_nesting) + var(--table-fcpla-expando));
   }
   /************************************** tabs.less ***************************************
 

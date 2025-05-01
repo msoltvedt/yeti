@@ -39,6 +39,13 @@ export class YetiTable {
   @Event({ bubbles: true }) tablePaginate: EventEmitter;
 
   /**
+   * Fires when content change watcher detects an expandable row. This is used to warn any parent tables that they should put in an expando
+   * cell column, even if they themself don't have any expandable rows. That placeholder column is necessary for aligning parent and child
+   * columns visually.
+   */
+  @Event({ bubbles: true }) tableHasExpandableRows: EventEmitter;
+
+  /**
    * CSS classlist that will be added to the actual html table element.
    */
   @Prop() tableClass: string = '';
@@ -88,11 +95,17 @@ export class YetiTable {
 
     // Set hasExpandableRows
     this.hasExpandableRows = false;
+
     for (let r = 0; r < newValue.body.rows?.length; r++) {
-      if (newValue.body.rows[r].isExpandable) {
+
+      let row = newValue.body.rows[r];
+
+      if (row.isExpandable) {
         this.hasExpandableRows = true;
+        this.notifyAncestorsIHaveAnExpandableRow(row);
         break;
       }
+
     }
 
     this.markRowsWithChangedRowActions(oldValue);
@@ -158,6 +171,7 @@ export class YetiTable {
 
   private tableHasFilters: boolean = false;
   private hasExpandableRows: boolean = false;
+  private hasADescendantWithExpandableRows: boolean = false;
 
   private rowsThatPassFiltering: number = 0;
 
@@ -221,6 +235,26 @@ export class YetiTable {
       "parentRowIndex": parentRowIndex,
       "actionLabel": newValue
     });
+
+  }
+
+
+  @Listen('tableHasExpandableRows')
+  handleTableHasExpandableRows(ev) {
+  // If, while parsing its contents, a table detects an expandable row, then it fires this event so that its ancestors will know
+  // to adjust themselves accordingly (add any empty expando column cells, set CSS classes, etc.).
+
+    let tableWithExpandableRows = ev.detail.tableWithExpandableRow;
+    
+    // See if the table with expandable rows is indeed a descendant and not this table.
+    if (tableWithExpandableRows.tableId !== this.tableId) {
+
+      console.log(`A table with id of ${ev.detail.tableWithExpandableRow?.tableId} has expandable rows. My id is ${this.tableId}.`);
+
+      this.hasADescendantWithExpandableRows = true;
+      this.iLoveJSX = !this.iLoveJSX;
+
+    }
 
   }
 
@@ -1388,7 +1422,7 @@ export class YetiTable {
     let cells = [];
 
     // Handle expandable rows
-    if (this.hasExpandableRows) {
+    if (this.hasExpandableRows || this.hasADescendantWithExpandableRows) {
 
       // Need to add a cell to the start of the row.
       let expandoCellId = `${row.id}_expando`;
@@ -1415,16 +1449,10 @@ export class YetiTable {
 
         } else {
 
-          if (this.hasExpandableRows) {
-
-            // This row is in a table that has expandable rows. It may be a child row, or it may be an expandable content row.
-
-            // This is a child row in a table that has expandable rows, so we need to add an empty cell at the start.
-            cells.push(
-              <td class="yeti-table-cell yeti-table-cell-expando" id={expandoCellId} key={expandoCellId}></td>
-            )
-
-          }
+          // This is a row in a table that has expandable rows (or an ancestor that does), so we need to add an empty cell at the start.
+          cells.push(
+            <td class="yeti-table-cell yeti-table-cell-expando" id={expandoCellId} key={expandoCellId}></td>
+          )
 
         }
 
@@ -1528,7 +1556,7 @@ export class YetiTable {
             let nestedTables = [];
             let wrapperRowCSS = "yeti-table-body-row yeti-table-body-row-nested_table_wrapper";
             let colSpan = this.contents.head.rows[0]?.cells?.length; // We want to span all table columns.
-            colSpan += (row.isExpandable) ? 1 : 0; // renderRow will add an extra column for the expand/collapse control that we need to account for here.
+            colSpan += (this.hasExpandableRows || this.hasADescendantWithExpandableRows) ? 1 : 0; // renderRow will add an extra column for the expand/collapse control that we need to account for here.
 
             wrapperRowCSS += (row.isExpandable) ? " yeti-table-body-row-nested_table_wrapper__has_expandable_parent_row" : "";
 
@@ -1573,6 +1601,15 @@ export class YetiTable {
     return <tr class={"yeti-table-body-row"}>
       <td class="yeti-table-cell" colSpan={this.contents.head.rows[0].cells.length}>{this.noMatchesText}</td>
     </tr>;
+  }
+
+
+
+  notifyAncestorsIHaveAnExpandableRow(row: YetiTableRow) {
+    this.tableHasExpandableRows.emit({
+      "tableWithExpandableRow": this,
+      "expandableRow": row
+    });
   }
 
 
@@ -1681,6 +1718,10 @@ export class YetiTable {
 
     let cssClass = 'yeti-table';
     let headerCss = 'yeti-table-head';
+
+    cssClass += (this.hasExpandableRows) ? ` yeti-table__has_expandable_rows` : ``;
+    cssClass += (this.hasADescendantWithExpandableRows) ? ` yeti-table__has_a_descendant_with_expandable_rows` : ``;
+
     headerCss += (this.contents.head?.cssClass) ? ` ${this.contents.head.cssClass}` : '';
 
     if (this.tableClass != '') {

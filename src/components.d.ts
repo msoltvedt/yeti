@@ -1266,6 +1266,7 @@ declare global {
         "tableSort": any;
         "tableFilter": any;
         "tablePaginate": any;
+        "tableHasExpandableRows": any;
     }
     interface HTMLYetiTableElement extends Components.YetiTable, HTMLStencilElement {
         addEventListener<K extends keyof HTMLYetiTableElementEventMap>(type: K, listener: (this: HTMLYetiTableElement, ev: YetiTableCustomEvent<HTMLYetiTableElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -2171,6 +2172,10 @@ declare namespace LocalJSX {
           * Fires when user updates a column filter. This only fires when filterSelf is false (i.e. some logic outside the component will handle filtering and presumably update the table's contents).
          */
         "onTableFilter"?: (event: YetiTableCustomEvent<any>) => void;
+        /**
+          * Fires when content change watcher detects an expandable row. This is used to warn any parent tables that they should put in an expando cell column, even if they themself don't have any expandable rows. That placeholder column is necessary for aligning parent and child columns visually.
+         */
+        "onTableHasExpandableRows"?: (event: YetiTableCustomEvent<any>) => void;
         /**
           * Fires when user chooses a different page of data. This only fires when paginateSelf is false (i.e. some logic outside the component will handle pagination and presumably update the table's contents).
          */

@@ -22,6 +22,17 @@ yeti-table {
     --table-expando_column_width: 3.25rem;
 }
 
+.yeti-table__nested {
+    --table-expando_column_width: 4.25rem;
+}
+.yeti-table__nested .yeti-table__nested {
+    --table-expando_column_width: 5.25rem;
+}
+
+.yeti-table:has(.yeti-table__nested) {
+    --table-expando_column_width: 4.25rem;
+}
+
 .yeti-table-heading:not(.yeti-table-numeric, .yeti-table-control),
 .yeti-table-cell:not(.yeti-table-numeric, .yeti-table-control) {
     text-align: left;
@@ -39,52 +50,9 @@ yeti-table {
 .yeti-table-heading-compound-actual,
 .yeti-table-heading-filter,
 .yeti-table-cell {
-    padding-left: 0.75rem;
+    padding-left: 0.75rem; // This is a default, but it gets complicated. See the Table Cell Left Padding section below.
     padding-right: 0.75rem;
     line-height: 1.28572;
-}
-
-.yeti-table-heading:first-child:not(:has(.yeti-table-heading-compound)),
-.yeti-table-heading:first-child .yeti-table-heading-button,
-.yeti-table-heading:first-child .yeti-table-heading-compound-actual,
-.yeti-table-heading:first-child .yeti-table-heading-filter,
-.yeti-table-cell:not(.yeti-table-cell-nested_table_wrapper):first-child {
-    padding-left: 1rem;
-}
-
-.yeti-table:has(.yeti-table__nested) {
-// .yeti-table:has(.yeti-table__nested) > .yeti-table-head > tr {
-    
-    .yeti-table-heading:first-child:not(:has(.yeti-table-heading-compound)),
-    .yeti-table-heading:first-child .yeti-table-heading-button,
-    .yeti-table-heading:first-child .yeti-table-heading-compound-actual,
-    .yeti-table-heading:first-child .yeti-table-heading-filter {
-        padding-left: 1.75rem; // If the table has a child table, we need to bump the first column over to align it with child's first column.
-    }
-
-}
-.yeti-table:has(.yeti-table__nested) .yeti-table-cell:not(.yeti-table-cell-nested_table_wrapper, .yeti-table-cell-expando):first-child {
-        padding-left: 1.75rem; // If the table has a child table, we need to bump the first column over to align it with child's first column.
-}
-
-// .yeti-table:has(.yeti-table__nested .yeti-table__nested) {
-.yeti-table:has(.yeti-table__nested .yeti-table__nested) > .yeti-table-head > tr {
-
-    .yeti-table-heading:first-child:not(:has(.yeti-table-heading-compound)),
-    .yeti-table-heading:first-child .yeti-table-heading-button,
-    .yeti-table-heading:first-child .yeti-table-heading-compound-actual,
-    .yeti-table-heading:first-child .yeti-table-heading-filter {
-        padding-left: 2.75rem; // If the table has a grandchild table, we need to bump the first column way over to align it with child and grandchild columns.
-    }
-
-}
-.yeti-table:has(.yeti-table__nested .yeti-table__nested) > .yeti-table-body > tr > .yeti-table-cell:not(.yeti-table-cell-nested_table_wrapper, .yeti-table-cell-expando):first-child {
-        padding-left: 2.75rem; // If the table has a grandchild table, we need to bump the first column way over to align it with child and grandchild columns.
-}
-
-.yeti-table__nested :is(.yeti-table-heading, .yeti-table-cell):first-child,
-.yeti-table__nested .yeti-table__nested :is(.yeti-table-head, .yeti-table-body) :is(.yeti-table-heading, .yeti-table-cell):first-child { // Specificity has to be enough to override the 1.75rem setting above.
-    padding-left: 0.75rem; // We need the (grand)child left cell-padding as a match for the parent so fixed grid columns are all using the same baseline.
 }
 
 .yeti-table-heading:last-child:not(:has(.yeti-table-heading-compound)),
@@ -146,10 +114,6 @@ yeti-table {
 .yeti-table-body-row :is(.yeti-table-cell, .yeti-table-heading) {
     border-bottom: 1px solid @color-gray-20;
 }
-
-// .yeti-table-body-row:first-child .yeti-table-cell {
-//     border-top: 1px solid @color-gray-10;
-// }
 
 .yeti-table-body-row-summary {
     background-color: @color-creekside-gray-lighter;
@@ -602,9 +566,6 @@ yeti-table-actions[use-grid] yeti-table-action {
 .yeti-table-body-row-child_row-has_summary_parent:is(.yeti-table-body-row-child_row) {
     background-color: unset;
 }
-.yeti-table-body-row-child_row-has_summary_parent .yeti-table-cell:first-child {
-    padding-left: 3.5rem;
-}
 
 
 
@@ -631,11 +592,9 @@ yeti-table-actions[use-grid] yeti-table-action {
 
 tr:not(.yeti-table-body-row-nested_table_wrapper__has_expandable_parent_row) .yeti-table-cell.yeti-table-cell-nested_table_wrapper {
     padding-right:  0; //var(--yeti-table__nested-wrapping_cell_padding-right);
-    padding-left:   0; //var(--yeti-table__nested-wrapping_cell_padding-left);
 }
 tr.yeti-table-body-row-nested_table_wrapper__has_expandable_parent_row .yeti-table-cell.yeti-table-cell-nested_table_wrapper {
     padding-right:  0; //var(--yeti-table__nested-wrapping_cell_padding-right);
-    padding-left:   calc(var(--table-expando_column_width) - 0.25rem); // Align the text of our first column with the text of parent's second
 }
 
 .yeti-table__nested_table_stacker {
@@ -656,17 +615,28 @@ tr.yeti-table-body-row-nested_table_wrapper__has_expandable_parent_row .yeti-tab
  *  containing cell), the column widths will be *different than the parent's*, which means the grid system no longer
  *  aligns. The following hacks are to work around this issue.
 */
+.yeti-table__nested {
+    --table-shifting_compensation-padding-right: 0.75rem; // After we shift the first column's cells over, we need to compensate for the newly created overlap with the second column's cell by adding padding to the right of column 1's cell. Since the cell usually* (see expando override below) has a padding-right of 0.75rem, that'll be our initial starting point for the first column's right padding.
+}
 
-tr:not(.yeti-table-body-row-nested_table_wrapper__has_expandable_parent_row) .yeti-table__nested :is(td, th):first-child {
+:is(.yeti-table-heading-expando, .yeti-table-cell-expando) {
+    --table-shifting_compensation-padding-right: 0rem; // Cells in a column containing an expando button control are different in that they have no right padding.
+}
+
+/*
+.yeti-table__has_a_descendant_with_expandable_rows
+.yeti-table__has_expandable_rows
+*/
+.yeti-table__nested:not(.yeti-table__nested .yeti-table__nested) > :is(thead, tbody) > tr > :is(td, th):not(.yeti-table-cell-nested_table_wrapper):first-child {
     // Shift the entire first column of cells in nested tables over to the right, and add right padding so their 
     // content won't collide with column 2. Note that we don't need to do this for nested tables whose parents
     // have expandable rows, since we're just using padding on the wrapper cell to mimic the parent's expando column.
     position: relative;
     left: var(--yeti-table__nested-wrapping_cell_padding-left);
-    padding-right: calc(0.75rem + var(--yeti-table__nested-wrapping_cell_padding-left));
+    padding-right: calc( var(--table-shifting_compensation-padding-right) + var(--yeti-table__nested-wrapping_cell_padding-left));
 }
 
-.yeti-table__nested :is(td, th):last-child {
+.yeti-table__nested :is(td, th):not(.yeti-table-cell-nested_table_wrapper):last-child {
     // Shift the entire last column of cells in nested tables over to the left, and add left padding so their 
     // content won't collide with column n-1.
     position: relative;
@@ -685,7 +655,7 @@ tr:not(.yeti-table-body-row-nested_table_wrapper__has_expandable_parent_row) .ye
     border-top: 1px solid @color-gray-30;
 }
 
-tr:not(.yeti-table-body-row-nested_table_wrapper__has_expandable_parent_row) .yeti-table__nested .yeti-table__nested :is(td, th):first-child {
+.yeti-table__nested .yeti-table__nested:not(.yeti-table__has_a_descendant_with_expandable_rows .yeti-table__nested) > :is(thead, tbody) :is(td, th):not(.yeti-table-cell-nested_table_wrapper):first-child {
     // Shift the entire first column of cells in nested tables over to the right, and add right padding so their 
     // content won't collide with column 2. Note that we don't need to do this for nested tables whose parents
     // have expandable rows, since we're just using padding on the wrapper cell to mimic the parent's expando column.
@@ -694,9 +664,9 @@ tr:not(.yeti-table-body-row-nested_table_wrapper__has_expandable_parent_row) .ye
     padding-right: calc(0.75rem + (2 * var(--yeti-table__nested-wrapping_cell_padding-left)));
 }
 
-.yeti-table__nested .yeti-table__nested :is(td, th):last-child {
+.yeti-table__nested .yeti-table__nested :is(td, th):not(.yeti-table-cell-nested_table_wrapper):last-child {
     // Shift the entire last column of cells in nested tables over to the left, and add left padding so their 
-    // content won't collide with column n-1.
+    // content won't collide with column n-1. Ignore this rule for cells that wrap a nested table.
     position: relative;
     right: calc(2 * var(--yeti-table__nested-wrapping_cell_padding-right));
     padding-left: calc(0.75rem + (2 * var(--yeti-table__nested-wrapping_cell_padding-right)));
@@ -704,6 +674,114 @@ tr:not(.yeti-table-body-row-nested_table_wrapper__has_expandable_parent_row) .ye
 
 .yeti-table__nested .yeti-table-cell.yeti-table-cell-nested_table_wrapper:first-child {
     position: unset;
-    padding-left: 0;
     padding-right: 0;
+}
+
+
+
+
+/********************* Table Cell Left Padding ***/
+
+/* 
+    The value for the left padding of the first cell in a table row depends on multiple variables, each of which is shown below
+    and prefixed with @table-fcpla- (fcpla = first-cell padding-left adjustment). The final value is the sum of all the various
+    adjustments.
+*/
+.yeti-table {
+    --table-fcpla-default: 1rem; // Only for top-level tables (i.e. nested tables use the smaller value shown below)
+    --table-fcpla-summary_row: 0rem; // Must use units, even for 0, or the calc function will give up.
+    --table-fcpla-table_nesting: 0rem;
+    --table-fcpla-ancestor_table_nesting: 0rem;
+    --table-fcpla-expando: 0rem;
+}
+
+// Nested
+.yeti-table__nested {
+    --table-fcpla-default: 0.75rem;
+}
+
+// Summary Row
+.yeti-table-body-row-summary {
+    --table-fcpla-summary_row: 3.5rem;
+}
+
+// Parent
+.yeti-table:has(.yeti-table__nested) {
+    --table-fcpla-default: 0.75rem;
+    --table-fcpla-table_nesting: 1rem;
+}
+
+// Grandparent
+.yeti-table:has(.yeti-table__nested .yeti-table__nested) {
+    --table-fcpla-table_nesting: 2.0rem;
+}
+
+// If you're a nested table within a grandparent
+.yeti-table:has(.yeti-table__nested .yeti-table__nested) .yeti-table__nested {
+    --table-fcpla-table_nesting: 1rem;
+}
+
+// If you're a nested, nested table within a grandparent
+.yeti-table:has(.yeti-table__nested .yeti-table__nested) .yeti-table__nested .yeti-table__nested {
+    --table-fcpla-table_nesting: 0rem;
+}
+
+// If your child table contains an expandable row, but you don't
+.yeti-table__has_a_descendant_with_expandable_rows:not(.yeti-table__has_expandable_rows) {
+    --table-fcpla-expando: 2.25rem; // Original width of the expando column before we compensate for the extra padding we had to add when shifting
+}
+
+// If you wrap a nested, nested table within a grandparent or parent that has expandable rows
+.yeti-table__has_a_descendant_with_expandable_rows .yeti-table-cell-nested_table_wrapper:is(.yeti-table__nested .yeti-table-cell-nested_table_wrapper) {
+    --table-fcpla-expando: 4.25rem;
+}
+
+// If both you and your child have expandable rows
+.yeti-table__has_a_descendant_with_expandable_rows.yeti-table__has_expandable_rows {
+    --table-fcpla-expando: 1rem;
+}
+
+// Wrapper Cell: Reset everything to 0.
+.yeti-table-cell-nested_table_wrapper {
+    --table-fcpla-default: 0rem;
+    --table-fcpla-summary_row: 0rem;
+    --table-fcpla-table_nesting: 0rem;
+    --table-fcpla-expando: 0rem;
+}
+
+// Ancestor has expando column, but you don't
+.yeti-table__has_a_descendant_with_expandable_rows .yeti-table-cell-nested_table_wrapper:not(:has(.yeti-table__has_expandable_rows)) {
+    --table-fcpla-expando: 2.25rem;
+}
+
+:is(td, th) {
+    background: linear-gradient(to right, black, black 1px, rgba(0, 0, 0, 0.1) 1px, rgba(0, 0, 0, 0.1) 100%);
+}
+
+.yeti-table-cell-expando,
+.yeti-table-heading-expando {
+
+    --table-fcpla-table_nesting: 0rem;
+    --table-fcpla-default: 0.75rem;
+    --table-fcpla-summary_row: 0rem;
+
+    width: calc(
+          var(--table-expando_column_width)
+    );
+
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.yeti-table-expando_button {
+    background-color: pink;
+}
+
+// Final Calculation
+:is(.yeti-table-heading, .yeti-table-cell):first-child {
+    padding-left: calc(
+          var(--table-fcpla-default) 
+        + var(--table-fcpla-summary_row)
+        + var(--table-fcpla-table_nesting)
+        + var(--table-fcpla-expando)
+    );
 }
