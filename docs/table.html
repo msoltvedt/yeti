@@ -29,13 +29,13 @@
 
 
 
-            <h3 class="margin-bottom-2">HTML Syntax</h3>
+            <!-- <h3 class="margin-bottom-2">HTML Syntax</h3>
 
             <p class="margin-bottom-2">
                 You can also specify a Table's contents as HTML. Note that this will only define the initial render; any modifications after that will have to be done via JS.
             </p>
 
-            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible
             <div class="ydoc-code_sample">
 
 <yeti-table>
@@ -46,983 +46,7 @@
     </yeti-thead>
 </yeti-table>
 
-            </div><!-- /code_sample -->
-
-
-
-            <h3 class="margin-bottom-2">Nested Tables</h3>
-
-            <h4 class="margin-bottom-2">Expandable</h4>
-
-            <p class="margin-bottom-2">
-                Note that the nested tables are in an array of their own on the rows object.
-            </p>
-
-            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-            <div class="ydoc-code_sample">
-
-<yeti-table id="expandableNestedTablesTable" table-class="yeti-table__fixed"></yeti-table>
-
-<script type="module">
-    const expandableNestedTablesTable = document.getElementById( 'expandableNestedTablesTable' );
-    let vikingsPlayersExpandable, bucsPlayersExpandable;
-    
-    // Note that the nested tables' contents (as represented by the 4 objects below) must be enumerated before the parent table is.
-    vikingsPlayersExpandable = {
-        "head": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "isHeading": "true",
-                            "value": "Name",
-                            "cssClass": "yeti-table-grid-6"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Number",
-                            "cssClass": "yeti-table-grid-2 yeti-table-numeric"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Position",
-                            "cssClass": "yeti-table-grid-2"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Conference",
-                            "cssClass": "yeti-table-grid-6"
-                        }
-                    ]
-                }
-            ]
-        },
-
-        "body": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "value": "J.J. McCarthy"
-                        },
-                        {
-                            "value": "9",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "QB"
-                        },
-                        {
-                            "value": "Big 10"
-                        }
-                    ]
-                },
-                {
-                    "cells": [
-                        {
-                            "value": "Justin Jefferson"
-                        },
-                        {
-                            "value": "18",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "WR"
-                        },
-                        {
-                            "value": "SEC"
-                        }
-                    ]
-                }
-            ]
-        }
-    };
-
-
-    bucsPlayersExpandable = {
-        "head": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "isHeading": "true",
-                            "value": "Name",
-                            "cssClass": "yeti-table-grid-6"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Number",
-                            "cssClass": "yeti-table-grid-2 yeti-table-numeric"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Position",
-                            "cssClass": "yeti-table-grid-2"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Conference",
-                            "cssClass": "yeti-table-grid-6"
-                        }
-                    ]
-                }
-            ]
-        },
-
-        "body": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "value": "Baker Mayfield"
-                        },
-                        {
-                            "value": "6",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "QB"
-                        },
-                        {
-                            "value": "Oklahoma"
-                        }
-                    ]
-                },
-                {
-                    "cells": [
-                        {
-                            "value": "Mike Evans"
-                        },
-                        {
-                            "value": "13",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "WR"
-                        },
-                        {
-                            "value": "Texas A&M"
-                        }
-                    ]
-                }
-            ]
-        }
-    };
-
-
-    expandableNestedTablesTable.contents = {
-        "head": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "isHeading": "true",
-                            "value": "Location",
-                            "cssClass": "yeti-table-grid-5"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Nickname",
-                            "cssClass": "yeti-table-grid-5"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Conference",
-                            "cssClass": "yeti-table-grid-6"
-                        }
-                    ]
-                }
-            ]
-        },
-
-        "body": {
-            "rows": [
-                {
-                    "isExpandable": true,
-                    "isExpanded": true,
-                    "cells": [
-                        {
-                            "value": "Minnesota"
-                        },
-                        {
-                            "value": "Vikings"
-                        },
-                        {
-                            "value": "NFC"
-                        }
-                    ],
-                    "nestedTables": [ vikingsPlayersExpandable ]
-                },
-                {
-                    "isExpandable": true,
-                    "cells": [
-                        {
-                            "value": "Tampa Bay"
-                        },
-                        {
-                            "value": "Buccaneers"
-                        },
-                        {
-                            "value": "NFC"
-                        }
-                    ],
-                    "nestedTables": [ bucsPlayersExpandable ]
-                }
-            ]
-        }
-    };
-</script>
-
-            </div><!-- /code_sample -->
-
-
-
-            <h5 class="margin-bottom-2">Nested Nested Expandable Tables</h5>
-
-            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-            <div class="ydoc-code_sample">
-
-<yeti-table id="nestedNestedTablesTable" table-class="yeti-table__fixed"></yeti-table>
-
-<script type="module">
-    const nestedNestedTablesTable = document.getElementById( 'nestedNestedTablesTable' );
-    let mccarthyStatsNNE, jeffersonStatsNNE, mayfieldStatsNNE, evansStatsNNE, vikingsPlayersNNE, bucsPlayersNNE;
-    
-    // Note that the nested tables' contents (as represented by the 4 objects below) must be enumerated before the parent table is.
-    mccarthyStatsNNE = {
-        "head": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "isHeading": "true",
-                            "value": "Season",
-                            "cssClass": "yeti-table-grid-4"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "TD",
-                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "INT",
-                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Drafted",
-                            "cssClass": "yeti-table-grid-6"
-                        }
-                    ]
-                }
-            ]
-        },
-
-        "body": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "value": "2023"
-                        },
-                        {
-                            "value": "22",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "4",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "Round 1, Pick 10",
-                            "id": "round1"
-                        }
-                    ]
-                }
-            ]
-        }
-    };
-
-
-    jeffersonStatsNNE = {
-        "head": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "isHeading": "true",
-                            "value": "Season",
-                            "cssClass": "yeti-table-grid-4"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Yards",
-                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "TD",
-                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Drafted",
-                            "cssClass": "yeti-table-grid-6"
-                        }
-                    ]
-                }
-            ]
-        },
-
-        "body": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "value": "2024"
-                        },
-                        {
-                            "value": "1533",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "10",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "Round 1, Pick 22"
-                        }
-                    ]
-                }
-            ]
-        }
-    };
-    
-    mayfieldStatsNNE = {
-        "head": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "isHeading": "true",
-                            "value": "Season",
-                            "cssClass": "yeti-table-grid-4"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "TD",
-                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "INT",
-                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Drafted",
-                            "cssClass": "yeti-table-grid-6"
-                        }
-                    ]
-                }
-            ]
-        },
-
-        "body": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "value": "2023"
-                        },
-                        {
-                            "value": "1",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "400",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "Round 1, Pick 1"
-                        }
-                    ]
-                }
-            ]
-        }
-    };
-
-
-    evansStatsNNE = {
-        "head": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "isHeading": "true",
-                            "value": "Season",
-                            "cssClass": "yeti-table-grid-4"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Yards",
-                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "TD",
-                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Drafted",
-                            "cssClass": "yeti-table-grid-6"
-                        }
-                    ]
-                }
-            ]
-        },
-
-        "body": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "value": "2024"
-                        },
-                        {
-                            "value": "1004",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "11",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "Round 1, Pick 7"
-                        }
-                    ]
-                }
-            ]
-        }
-    };
-
-
-    vikingsPlayersNNE = {
-        "head": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "isHeading": "true",
-                            "value": "Name",
-                            "cssClass": "yeti-table-grid-6"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Number",
-                            "cssClass": "yeti-table-grid-2 yeti-table-numeric"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Position",
-                            "cssClass": "yeti-table-grid-2"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Conference",
-                            "cssClass": "yeti-table-grid-6"
-                        }
-                    ]
-                }
-            ]
-        },
-
-        "body": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "value": "J.J. McCarthy"
-                        },
-                        {
-                            "value": "9",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "QB"
-                        },
-                        {
-                            "value": "Big 10"
-                        }
-                    ],
-                    "isExpandable": true,
-                    "isExpanded": true,
-                    "nestedTables": [ mccarthyStatsNNE ]
-                },
-                {
-                    "cells": [
-                        {
-                            "value": "Justin Jefferson"
-                        },
-                        {
-                            "value": "18",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "WR"
-                        },
-                        {
-                            "value": "SEC",
-                            "id": "sec"
-                        }
-                    ],
-                    "isExpandable": true,
-                    "isExpanded": true,
-                    "nestedTables": [ jeffersonStatsNNE ]
-                }
-            ]
-        }
-    };
-
-
-    bucsPlayersNNE = {
-        "head": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "isHeading": "true",
-                            "value": "Name",
-                            "cssClass": "yeti-table-grid-6"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Number",
-                            "cssClass": "yeti-table-grid-2 yeti-table-numeric"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Position",
-                            "cssClass": "yeti-table-grid-2"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Conference",
-                            "cssClass": "yeti-table-grid-6"
-                        }
-                    ]
-                }
-            ]
-        },
-
-        "body": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "value": "Baker Mayfield"
-                        },
-                        {
-                            "value": "6",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "QB"
-                        },
-                        {
-                            "value": "Oklahoma"
-                        }
-                    ],
-                    "isExpandable": true,
-                    "isExpanded": false,
-                    "nestedTables": [ mayfieldStatsNNE ]
-                },
-                {
-                    "cells": [
-                        {
-                            "value": "Mike Evans"
-                        },
-                        {
-                            "value": "13",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "WR"
-                        },
-                        {
-                            "value": "Texas A&M",
-                            "id": "texasAM"
-                        }
-                    ],
-                    "isExpandable": true,
-                    "isExpanded": false,
-                    "nestedTables": [ evansStatsNNE ]
-                }
-            ]
-        }
-    };
-
-
-    nestedNestedTablesTable.contents = {
-        "head": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "isHeading": "true",
-                            "value": "Location",
-                            "cssClass": "yeti-table-grid-5"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Nickname",
-                            "cssClass": "yeti-table-grid-5"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Conference",
-                            "cssClass": "yeti-table-grid-6"
-                        }
-                    ]
-                }
-            ]
-        },
-
-        "body": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "value": "Minnesota"
-                        },
-                        {
-                            "value": "Vikings"
-                        },
-                        {
-                            "value": "NFC"
-                        }
-                    ],
-                    "isExpandable": true,
-                    "isExpanded": true,
-                    "nestedTables": [ vikingsPlayersNNE ]
-                },
-                {
-                    "cells": [
-                        {
-                            "value": "Tampa Bay"
-                        },
-                        {
-                            "value": "Buccaneers"
-                        },
-                        {
-                            "value": "NFC",
-                            "id": "nfc"
-                        }
-                    ],
-                    "isExpandable": true,
-                    "isExpanded": true,
-                    "nestedTables": [ bucsPlayersNNE ]
-                }
-            ]
-        }
-    };
-
-
-    window.addEventListener("appload", () => {
-        let texas = document.getElementById("texasAM");
-        let sec = document.getElementById("sec");
-        let round1 = document.getElementById("round1");
-        let nfc = document.getElementById("nfc");
-
-        console.log('');
-        console.log(`${texas.textContent}: ${texas.getBoundingClientRect().x}`);
-        console.log(`${sec.textContent}: ${sec.getBoundingClientRect().x}`);
-        console.log(`${round1.textContent}: ${round1.getBoundingClientRect().x}`);
-        console.log(`${nfc.textContent}: ${nfc.getBoundingClientRect().x}`);
-    });
-</script>
-
-            </div><!-- /code_sample -->
-
-
-
-            <h4 class="margin-bottom-2">Static</h4>
-
-            <p class="margin-bottom-2">
-                Note that the nested tables are in an array of their own on the rows object.
-            </p>
-
-            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
-            <div class="ydoc-code_sample">
-
-<yeti-table id="nestedTablesTable" table-class="yeti-table__fixed"></yeti-table>
-
-<script type="module">
-    const nestedTablesTable = document.getElementById( 'nestedTablesTable' );
-    let mccarthyStats, vikingsPlayers, bucsPlayers;
-    
-    // Note that the nested tables' contents (as represented by the 4 objects below) must be enumerated before the parent table is.
-    mccarthyStats = {
-        "head": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "isHeading": "true",
-                            "value": "Season",
-                            "cssClass": "yeti-table-grid-4"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "TD",
-                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "INT",
-                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Drafted",
-                            "cssClass": "yeti-table-grid-6"
-                        }
-                    ]
-                }
-            ]
-        },
-
-        "body": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "value": "2023"
-                        },
-                        {
-                            "value": "22",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "4",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "Round 1, Pick 10"
-                        }
-                    ]
-                }
-            ]
-        }
-    };
-
-
-    vikingsPlayers = {
-        "head": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "isHeading": "true",
-                            "value": "Name",
-                            "cssClass": "yeti-table-grid-6"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Number",
-                            "cssClass": "yeti-table-grid-2 yeti-table-numeric"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Position",
-                            "cssClass": "yeti-table-grid-2"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Conference",
-                            "cssClass": "yeti-table-grid-6"
-                        }
-                    ]
-                }
-            ]
-        },
-
-        "body": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "value": "J.J. McCarthy"
-                        },
-                        {
-                            "value": "9",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "QB"
-                        },
-                        {
-                            "value": "Big 10"
-                        }
-                    ],
-                    "nestedTables": [ mccarthyStats ]
-                },
-                {
-                    "cells": [
-                        {
-                            "value": "Justin Jefferson"
-                        },
-                        {
-                            "value": "18",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "WR"
-                        },
-                        {
-                            "value": "SEC"
-                        }
-                    ]
-                }
-            ]
-        }
-    };
-
-
-    bucsPlayers = {
-        "head": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "isHeading": "true",
-                            "value": "Name",
-                            "cssClass": "yeti-table-grid-6"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Number",
-                            "cssClass": "yeti-table-grid-2 yeti-table-numeric"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Position",
-                            "cssClass": "yeti-table-grid-2"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Conference",
-                            "cssClass": "yeti-table-grid-6"
-                        }
-                    ]
-                }
-            ]
-        },
-
-        "body": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "value": "Baker Mayfield"
-                        },
-                        {
-                            "value": "6",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "QB"
-                        },
-                        {
-                            "value": "Oklahoma"
-                        }
-                    ]
-                },
-                {
-                    "cells": [
-                        {
-                            "value": "Mike Evans"
-                        },
-                        {
-                            "value": "13",
-                            "cssClass": "yeti-table-numeric"
-                        },
-                        {
-                            "value": "WR"
-                        },
-                        {
-                            "value": "Texas A&M"
-                        }
-                    ]
-                }
-            ]
-        }
-    };
-
-
-    nestedTablesTable.contents = {
-        "head": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "isHeading": "true",
-                            "value": "Location",
-                            "cssClass": "yeti-table-grid-5"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Nickname",
-                            "cssClass": "yeti-table-grid-5"
-                        },
-                        {
-                            "isHeading": "true",
-                            "value": "Conference",
-                            "cssClass": "yeti-table-grid-6"
-                        }
-                    ]
-                }
-            ]
-        },
-
-        "body": {
-            "rows": [
-                {
-                    "cells": [
-                        {
-                            "value": "Minnesota"
-                        },
-                        {
-                            "value": "Vikings"
-                        },
-                        {
-                            "value": "NFC"
-                        }
-                    ],
-                    "nestedTables": [ vikingsPlayers ]
-                },
-                {
-                    "cells": [
-                        {
-                            "value": "Tampa Bay"
-                        },
-                        {
-                            "value": "Buccaneers"
-                        },
-                        {
-                            "value": "NFC"
-                        }
-                    ],
-                    "nestedTables": [ bucsPlayers ]
-                }
-            ]
-        }
-    };
-</script>
-
-            </div><!-- /code_sample -->
+            </div>/code_sample -->
 
 
 
@@ -2397,6 +1421,983 @@
             ]
         }
     };
+</script>
+
+            </div><!-- /code_sample -->
+
+
+
+            <h3 class="margin-bottom-2">Nested Tables</h3>
+
+
+            <h4 class="margin-bottom-2">Static</h4>
+
+            <p class="margin-bottom-2">
+                Note that the nested tables are in an array of their own on the rows object.
+            </p>
+
+            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+            <div class="ydoc-code_sample">
+
+<yeti-table id="nestedTablesTable" table-class="yeti-table__fixed"></yeti-table>
+
+<script type="module">
+    const nestedTablesTable = document.getElementById( 'nestedTablesTable' );
+    let mccarthyStats, vikingsPlayers, bucsPlayers;
+    
+    // Note that the nested tables' contents (as represented by the 4 objects below) must be enumerated before the parent table is.
+    mccarthyStats = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Season",
+                            "cssClass": "yeti-table-grid-4"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "TD",
+                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "INT",
+                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Drafted",
+                            "cssClass": "yeti-table-grid-6"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "2023"
+                        },
+                        {
+                            "value": "22",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "4",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "Round 1, Pick 10"
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+
+
+    vikingsPlayers = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Name",
+                            "cssClass": "yeti-table-grid-6"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Number",
+                            "cssClass": "yeti-table-grid-2 yeti-table-numeric"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Position",
+                            "cssClass": "yeti-table-grid-2"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Conference",
+                            "cssClass": "yeti-table-grid-6"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "J.J. McCarthy"
+                        },
+                        {
+                            "value": "9",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "QB"
+                        },
+                        {
+                            "value": "Big 10"
+                        }
+                    ],
+                    "nestedTables": [ mccarthyStats ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Justin Jefferson"
+                        },
+                        {
+                            "value": "18",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "WR"
+                        },
+                        {
+                            "value": "SEC"
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+
+
+    bucsPlayers = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Name",
+                            "cssClass": "yeti-table-grid-6"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Number",
+                            "cssClass": "yeti-table-grid-2 yeti-table-numeric"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Position",
+                            "cssClass": "yeti-table-grid-2"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Conference",
+                            "cssClass": "yeti-table-grid-6"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "Baker Mayfield"
+                        },
+                        {
+                            "value": "6",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "QB"
+                        },
+                        {
+                            "value": "Oklahoma"
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Mike Evans"
+                        },
+                        {
+                            "value": "13",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "WR"
+                        },
+                        {
+                            "value": "Texas A&M"
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+
+
+    nestedTablesTable.contents = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Location",
+                            "cssClass": "yeti-table-grid-5"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Nickname",
+                            "cssClass": "yeti-table-grid-5"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Conference",
+                            "cssClass": "yeti-table-grid-6"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "Minnesota"
+                        },
+                        {
+                            "value": "Vikings"
+                        },
+                        {
+                            "value": "NFC"
+                        }
+                    ],
+                    "nestedTables": [ vikingsPlayers ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Tampa Bay"
+                        },
+                        {
+                            "value": "Buccaneers"
+                        },
+                        {
+                            "value": "NFC"
+                        }
+                    ],
+                    "nestedTables": [ bucsPlayers ]
+                }
+            ]
+        }
+    };
+</script>
+
+            </div><!-- /code_sample -->
+
+            
+
+            <h4 class="margin-bottom-2">Expandable</h4>
+
+            <p class="margin-bottom-2">
+                Note that the nested tables are in an array of their own on the rows object.
+            </p>
+
+            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+            <div class="ydoc-code_sample">
+
+<yeti-table id="expandableNestedTablesTable" table-class="yeti-table__fixed"></yeti-table>
+
+<script type="module">
+    const expandableNestedTablesTable = document.getElementById( 'expandableNestedTablesTable' );
+    let vikingsPlayersExpandable, bucsPlayersExpandable;
+    
+    // Note that the nested tables' contents (as represented by the 4 objects below) must be enumerated before the parent table is.
+    vikingsPlayersExpandable = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Name",
+                            "cssClass": "yeti-table-grid-6"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Number",
+                            "cssClass": "yeti-table-grid-2 yeti-table-numeric"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Position",
+                            "cssClass": "yeti-table-grid-2"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Conference",
+                            "cssClass": "yeti-table-grid-6"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "J.J. McCarthy"
+                        },
+                        {
+                            "value": "9",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "QB"
+                        },
+                        {
+                            "value": "Big 10"
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Justin Jefferson"
+                        },
+                        {
+                            "value": "18",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "WR"
+                        },
+                        {
+                            "value": "SEC"
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+
+
+    bucsPlayersExpandable = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Name",
+                            "cssClass": "yeti-table-grid-6"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Number",
+                            "cssClass": "yeti-table-grid-2 yeti-table-numeric"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Position",
+                            "cssClass": "yeti-table-grid-2"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Conference",
+                            "cssClass": "yeti-table-grid-6"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "Baker Mayfield"
+                        },
+                        {
+                            "value": "6",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "QB"
+                        },
+                        {
+                            "value": "Oklahoma"
+                        }
+                    ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Mike Evans"
+                        },
+                        {
+                            "value": "13",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "WR"
+                        },
+                        {
+                            "value": "Texas A&M"
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+
+
+    expandableNestedTablesTable.contents = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Location",
+                            "cssClass": "yeti-table-grid-5"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Nickname",
+                            "cssClass": "yeti-table-grid-5"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Conference",
+                            "cssClass": "yeti-table-grid-6"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "isExpandable": true,
+                    "isExpanded": true,
+                    "cells": [
+                        {
+                            "value": "Minnesota"
+                        },
+                        {
+                            "value": "Vikings"
+                        },
+                        {
+                            "value": "NFC"
+                        }
+                    ],
+                    "nestedTables": [ vikingsPlayersExpandable ]
+                },
+                {
+                    "isExpandable": true,
+                    "cells": [
+                        {
+                            "value": "Tampa Bay"
+                        },
+                        {
+                            "value": "Buccaneers"
+                        },
+                        {
+                            "value": "NFC"
+                        }
+                    ],
+                    "nestedTables": [ bucsPlayersExpandable ]
+                }
+            ]
+        }
+    };
+</script>
+
+            </div><!-- /code_sample -->
+
+
+
+            <h5 class="margin-bottom-2">Nested Nested Expandable Tables</h5>
+
+            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+            <div class="ydoc-code_sample">
+
+<yeti-table id="nestedNestedTablesTable" table-class="yeti-table__fixed"></yeti-table>
+
+<script type="module">
+    const nestedNestedTablesTable = document.getElementById( 'nestedNestedTablesTable' );
+    let mccarthyStatsNNE, jeffersonStatsNNE, mayfieldStatsNNE, evansStatsNNE, vikingsPlayersNNE, bucsPlayersNNE;
+    
+    // Note that the nested tables' contents (as represented by the 4 objects below) must be enumerated before the parent table is.
+    mccarthyStatsNNE = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Season",
+                            "cssClass": "yeti-table-grid-4"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "TD",
+                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "INT",
+                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Drafted",
+                            "cssClass": "yeti-table-grid-6"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "2023"
+                        },
+                        {
+                            "value": "22",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "4",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "Round 1, Pick 10",
+                            "id": "round1"
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+
+
+    jeffersonStatsNNE = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Season",
+                            "cssClass": "yeti-table-grid-4"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Yards",
+                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "TD",
+                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Drafted",
+                            "cssClass": "yeti-table-grid-6"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "2024"
+                        },
+                        {
+                            "value": "1533",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "10",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "Round 1, Pick 22"
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+    
+    mayfieldStatsNNE = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Season",
+                            "cssClass": "yeti-table-grid-4"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "TD",
+                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "INT",
+                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Drafted",
+                            "cssClass": "yeti-table-grid-6"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "2023"
+                        },
+                        {
+                            "value": "1",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "400",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "Round 1, Pick 1"
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+
+
+    evansStatsNNE = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Season",
+                            "cssClass": "yeti-table-grid-4"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Yards",
+                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "TD",
+                            "cssClass": "yeti-table-grid-3 yeti-table-numeric"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Drafted",
+                            "cssClass": "yeti-table-grid-6"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "2024"
+                        },
+                        {
+                            "value": "1004",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "11",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "Round 1, Pick 7"
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+
+
+    vikingsPlayersNNE = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Name",
+                            "cssClass": "yeti-table-grid-6"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Number",
+                            "cssClass": "yeti-table-grid-2 yeti-table-numeric"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Position",
+                            "cssClass": "yeti-table-grid-2"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Conference",
+                            "cssClass": "yeti-table-grid-6"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "J.J. McCarthy"
+                        },
+                        {
+                            "value": "9",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "QB"
+                        },
+                        {
+                            "value": "Big 10"
+                        }
+                    ],
+                    "isExpandable": true,
+                    "isExpanded": true,
+                    "nestedTables": [ mccarthyStatsNNE ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Justin Jefferson"
+                        },
+                        {
+                            "value": "18",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "WR"
+                        },
+                        {
+                            "value": "SEC",
+                            "id": "sec"
+                        }
+                    ],
+                    "isExpandable": true,
+                    "isExpanded": true,
+                    "nestedTables": [ jeffersonStatsNNE ]
+                }
+            ]
+        }
+    };
+
+
+    bucsPlayersNNE = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Name",
+                            "cssClass": "yeti-table-grid-6"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Number",
+                            "cssClass": "yeti-table-grid-2 yeti-table-numeric"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Position",
+                            "cssClass": "yeti-table-grid-2"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Conference",
+                            "cssClass": "yeti-table-grid-6"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "Baker Mayfield"
+                        },
+                        {
+                            "value": "6",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "QB"
+                        },
+                        {
+                            "value": "Oklahoma"
+                        }
+                    ],
+                    "isExpandable": true,
+                    "isExpanded": false,
+                    "nestedTables": [ mayfieldStatsNNE ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Mike Evans"
+                        },
+                        {
+                            "value": "13",
+                            "cssClass": "yeti-table-numeric"
+                        },
+                        {
+                            "value": "WR"
+                        },
+                        {
+                            "value": "Texas A&M",
+                            "id": "texasAM"
+                        }
+                    ],
+                    "isExpandable": true,
+                    "isExpanded": false,
+                    "nestedTables": [ evansStatsNNE ]
+                }
+            ]
+        }
+    };
+
+
+    nestedNestedTablesTable.contents = {
+        "head": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "isHeading": "true",
+                            "value": "Location",
+                            "cssClass": "yeti-table-grid-5"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Nickname",
+                            "cssClass": "yeti-table-grid-5"
+                        },
+                        {
+                            "isHeading": "true",
+                            "value": "Conference",
+                            "cssClass": "yeti-table-grid-6"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "body": {
+            "rows": [
+                {
+                    "cells": [
+                        {
+                            "value": "Minnesota"
+                        },
+                        {
+                            "value": "Vikings"
+                        },
+                        {
+                            "value": "NFC"
+                        }
+                    ],
+                    "isExpandable": true,
+                    "isExpanded": true,
+                    "nestedTables": [ vikingsPlayersNNE ]
+                },
+                {
+                    "cells": [
+                        {
+                            "value": "Tampa Bay"
+                        },
+                        {
+                            "value": "Buccaneers"
+                        },
+                        {
+                            "value": "NFC",
+                            "id": "nfc"
+                        }
+                    ],
+                    "isExpandable": true,
+                    "isExpanded": true,
+                    "nestedTables": [ bucsPlayersNNE ]
+                }
+            ]
+        }
+    };
+
+
+    window.addEventListener("appload", () => {
+        let texas = document.getElementById("texasAM");
+        let sec = document.getElementById("sec");
+        let round1 = document.getElementById("round1");
+        let nfc = document.getElementById("nfc");
+
+        console.log('');
+        console.log(`${texas.textContent}: ${texas.getBoundingClientRect().x}`);
+        console.log(`${sec.textContent}: ${sec.getBoundingClientRect().x}`);
+        console.log(`${round1.textContent}: ${round1.getBoundingClientRect().x}`);
+        console.log(`${nfc.textContent}: ${nfc.getBoundingClientRect().x}`);
+    });
 </script>
 
             </div><!-- /code_sample -->
