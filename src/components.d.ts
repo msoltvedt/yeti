@@ -783,6 +783,7 @@ export namespace Components {
     interface YetiTablePagination {
         "cssClass": string;
         "htmlId": string;
+        "pages": number;
         /**
           * Descriptor of multiple records (e.g. "22 items")
          */
@@ -2227,6 +2228,7 @@ declare namespace LocalJSX {
         "cssClass"?: string;
         "htmlId"?: string;
         "onPaginationUpdated"?: (event: YetiTablePaginationCustomEvent<any>) => void;
+        "pages"?: number;
         /**
           * Descriptor of multiple records (e.g. "22 items")
          */

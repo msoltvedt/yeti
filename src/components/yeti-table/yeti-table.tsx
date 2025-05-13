@@ -249,8 +249,6 @@ export class YetiTable {
     // See if the table with expandable rows is indeed a descendant and not this table.
     if (tableWithExpandableRows.tableId !== this.tableId) {
 
-      console.log(`A table with id of ${ev.detail.tableWithExpandableRow?.tableId} has expandable rows. My id is ${this.tableId}.`);
-
       this.hasADescendantWithExpandableRows = true;
       this.iLoveJSX = !this.iLoveJSX;
 

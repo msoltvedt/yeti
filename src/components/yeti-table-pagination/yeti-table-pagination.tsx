@@ -59,7 +59,10 @@ export class YetiTablePagination {
     mutable: true
   }) selectedPage: number = 1;
 
-  @State() pages: number = 1;
+  @Prop({
+    reflect: true,
+    mutable: true
+  }) pages: number = 1;
 
 
 
