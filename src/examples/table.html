@@ -721,6 +721,75 @@
 
 
 
+            <h4 class="margin-bottom-2">With Static Table</h4>
+
+            <p class="margin-bottom-2">
+                Table Pagination is its own component, so you can also use it with simple HTML tables. In this scenario, you'll have to 
+                initialize it by setting its properties as shown below, and then respond to it when it fires its paginationUpdated event.
+            </p>
+
+
+            <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
+            <div class="ydoc-code_sample">
+
+<yeti-table-actions>
+
+    <yeti-table-pagination 
+        records="20" 
+        records-displayed="2" 
+        start-index="2" 
+        selected-page="2" 
+        pages="10">
+        
+        <yeti-table-pagination-option>1</yeti-table-pagination-option>
+        <yeti-table-pagination-option selected="true">2</yeti-table-pagination-option>
+        <yeti-table-pagination-option>3</yeti-table-pagination-option>
+        <yeti-table-pagination-option>I'm ignored.</yeti-table-pagination-option>
+        <yeti-table-pagination-option>4</yeti-table-pagination-option>
+        <yeti-table-pagination-option all>Any value here is also
+            ignored.</yeti-table-pagination-option>
+
+    </yeti-table-pagination>
+
+</yeti-table-actions>
+
+<table class="yeti-table">
+    <thead class="yeti-table-head">
+        <tr class="yeti-table-head-row">
+            <th class="yeti-table-heading" scope="col">Heading 1</th>
+            <th class="yeti-table-heading" scope="col">Heading 2</th>
+            <th class="yeti-table-heading" scope="col">Heading 3</th>
+            <th class="yeti-table-heading yeti-table-numeric" scope="col">A Number</th>
+        </tr>
+    </thead>
+    <tbody class="yeti-table-body">
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">Cell 1</td>
+            <td class="yeti-table-cell">Cell 2</td>
+            <td class="yeti-table-cell">Cell 3</td>
+            <td class="yeti-table-cell yeti-table-numeric">22</td>
+        </tr>
+        <tr class="yeti-table-body-row">
+            <td class="yeti-table-cell">Cell 2-1</td>
+            <td class="yeti-table-cell">Cell 2-2</td>
+            <td class="yeti-table-cell">Cell 2-3</td>
+            <td class="yeti-table-cell yeti-table-numeric">42</td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    document.addEventListener("paginationUpdated", (e) => {
+        console.log("pagination updated!", e.detail);
+
+        /* This is where you'd presumably reload the page with new data. */
+    })
+</script>
+
+            </div><!-- /code_sample -->
+
+
+
             <h3 class="margin-bottom-2">Sorting</h3>
 
             <p class="margin-bottom-2">
@@ -1933,7 +2002,7 @@
 
 
 
-            <h5 class="margin-bottom-2">Nested Nested Expandable Tables</h5>
+            <h5 class="margin-bottom-2">Nested Nested Tables</h5>
 
             <!-- Note, align the actual code all the way left (i.e. remove all indenting tabs) if possible -->
             <div class="ydoc-code_sample">
@@ -2384,20 +2453,6 @@
             ]
         }
     };
-
-
-    window.addEventListener("appload", () => {
-        let texas = document.getElementById("texasAM");
-        let sec = document.getElementById("sec");
-        let round1 = document.getElementById("round1");
-        let nfc = document.getElementById("nfc");
-
-        console.log('');
-        console.log(`${texas.textContent}: ${texas.getBoundingClientRect().x}`);
-        console.log(`${sec.textContent}: ${sec.getBoundingClientRect().x}`);
-        console.log(`${round1.textContent}: ${round1.getBoundingClientRect().x}`);
-        console.log(`${nfc.textContent}: ${nfc.getBoundingClientRect().x}`);
-    });
 </script>
 
             </div><!-- /code_sample -->

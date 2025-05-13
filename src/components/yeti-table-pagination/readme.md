@@ -11,6 +11,7 @@
 | --------------------- | ----------------------- | ------------------------------------------------ | --------- | -------------------------- |
 | `cssClass`            | `css-class`             |                                                  | `string`  | `''`                       |
 | `htmlId`              | `html-id`               |                                                  | `string`  | `utils.generateUniqueId()` |
+| `pages`               | `pages`                 |                                                  | `number`  | `1`                        |
 | `recordAliasPlural`   | `record-alias-plural`   | Descriptor of multiple records (e.g. "22 items") | `string`  | `"items"`                  |
 | `recordAliasSingular` | `record-alias-singular` | Descriptor of one record (e.g. "1 item")         | `string`  | `"item"`                   |
 | `records`             | `records`               |                                                  | `number`  | `0`                        |
