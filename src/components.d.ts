@@ -798,6 +798,68 @@ export namespace Components {
         "showOptions": boolean;
         "startIndex": number;
     }
+    interface YetiTextarea {
+        /**
+          * Passthrough to the textarea's autocomplete attribute.
+         */
+        "autocomplete": string;
+        /**
+          * Id of an HTML element that represents the character counter
+         */
+        "characterCounterId"?: string;
+        /**
+          * id of an outside HTML element pointed to by the actual textarea element's aria-describedby attribute.
+         */
+        "describedBy"?: string;
+        /**
+          * Text description of what the textarea is or does
+         */
+        "description"?: string;
+        /**
+          * Whether or not the textarea is disabled.
+         */
+        "isDisabled": boolean;
+        /**
+          * Tracks whether the textarea's current value is valid or not.
+         */
+        "isValid": boolean;
+        /**
+          * id of an outside HTML element pointed to by the actual textarea element's aria-labeledby attribute.
+         */
+        "labeledBy"?: string;
+        /**
+          * Optional attribute to set the maxlength of the field
+         */
+        "maxlength"?: number;
+        /**
+          * Whether the field is required to have a valid value or not.
+         */
+        "required": boolean;
+        /**
+          * CSS classlist applied to the actual HTML textarea element.
+         */
+        "textareaClass": string;
+        /**
+          * id applied to the actual HTML textarea element.
+         */
+        "textareaId": string;
+        /**
+          * name applied to the actual HTML textarea element. Defaults to match id.
+         */
+        "textareaName": string;
+        /**
+          * The tabindex of the textarea field.
+         */
+        "textareaTabindex": string;
+        /**
+          * The actual value of the textarea field.
+         */
+        "value": string;
+        /**
+          * CSS classlist applied to the HTML wrapper around the element and associated elements.
+         */
+        "wrapperClass": string;
+    }
     interface YetiTitletip {
         /**
           * Whether the anchor should be forced to be a CSS display block style or left as is.
@@ -1002,6 +1064,10 @@ export interface YetiTableCustomEvent<T> extends CustomEvent<T> {
 export interface YetiTablePaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLYetiTablePaginationElement;
+}
+export interface YetiTextareaCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLYetiTextareaElement;
 }
 export interface YetiToastCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1306,6 +1372,24 @@ declare global {
         prototype: HTMLYetiTablePaginationElement;
         new (): HTMLYetiTablePaginationElement;
     };
+    interface HTMLYetiTextareaElementEventMap {
+        "readyToVerifySlow": any;
+        "readyToVerifyFast": any;
+    }
+    interface HTMLYetiTextareaElement extends Components.YetiTextarea, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLYetiTextareaElementEventMap>(type: K, listener: (this: HTMLYetiTextareaElement, ev: YetiTextareaCustomEvent<HTMLYetiTextareaElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLYetiTextareaElementEventMap>(type: K, listener: (this: HTMLYetiTextareaElement, ev: YetiTextareaCustomEvent<HTMLYetiTextareaElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLYetiTextareaElement: {
+        prototype: HTMLYetiTextareaElement;
+        new (): HTMLYetiTextareaElement;
+    };
     interface HTMLYetiTitletipElement extends Components.YetiTitletip, HTMLStencilElement {
     }
     var HTMLYetiTitletipElement: {
@@ -1366,6 +1450,7 @@ declare global {
         "yeti-table": HTMLYetiTableElement;
         "yeti-table-actions": HTMLYetiTableActionsElement;
         "yeti-table-pagination": HTMLYetiTablePaginationElement;
+        "yeti-textarea": HTMLYetiTextareaElement;
         "yeti-titletip": HTMLYetiTitletipElement;
         "yeti-toast": HTMLYetiToastElement;
         "yeti-tooltip": HTMLYetiTooltipElement;
@@ -2243,6 +2328,76 @@ declare namespace LocalJSX {
         "showOptions"?: boolean;
         "startIndex"?: number;
     }
+    interface YetiTextarea {
+        /**
+          * Passthrough to the textarea's autocomplete attribute.
+         */
+        "autocomplete"?: string;
+        /**
+          * Id of an HTML element that represents the character counter
+         */
+        "characterCounterId"?: string;
+        /**
+          * id of an outside HTML element pointed to by the actual textarea element's aria-describedby attribute.
+         */
+        "describedBy"?: string;
+        /**
+          * Text description of what the textarea is or does
+         */
+        "description"?: string;
+        /**
+          * Whether or not the textarea is disabled.
+         */
+        "isDisabled"?: boolean;
+        /**
+          * Tracks whether the textarea's current value is valid or not.
+         */
+        "isValid"?: boolean;
+        /**
+          * id of an outside HTML element pointed to by the actual textarea element's aria-labeledby attribute.
+         */
+        "labeledBy"?: string;
+        /**
+          * Optional attribute to set the maxlength of the field
+         */
+        "maxlength"?: number;
+        /**
+          * Event that fires when the user enters or changes the contents of the input field.
+         */
+        "onReadyToVerifyFast"?: (event: YetiTextareaCustomEvent<any>) => void;
+        /**
+          * Event that fires when the user leaves (blurs) the input field.
+         */
+        "onReadyToVerifySlow"?: (event: YetiTextareaCustomEvent<any>) => void;
+        /**
+          * Whether the field is required to have a valid value or not.
+         */
+        "required"?: boolean;
+        /**
+          * CSS classlist applied to the actual HTML textarea element.
+         */
+        "textareaClass"?: string;
+        /**
+          * id applied to the actual HTML textarea element.
+         */
+        "textareaId"?: string;
+        /**
+          * name applied to the actual HTML textarea element. Defaults to match id.
+         */
+        "textareaName"?: string;
+        /**
+          * The tabindex of the textarea field.
+         */
+        "textareaTabindex"?: string;
+        /**
+          * The actual value of the textarea field.
+         */
+        "value"?: string;
+        /**
+          * CSS classlist applied to the HTML wrapper around the element and associated elements.
+         */
+        "wrapperClass"?: string;
+    }
     interface YetiTitletip {
         /**
           * Whether the anchor should be forced to be a CSS display block style or left as is.
@@ -2424,6 +2579,7 @@ declare namespace LocalJSX {
         "yeti-table": YetiTable;
         "yeti-table-actions": YetiTableActions;
         "yeti-table-pagination": YetiTablePagination;
+        "yeti-textarea": YetiTextarea;
         "yeti-titletip": YetiTitletip;
         "yeti-toast": YetiToast;
         "yeti-tooltip": YetiTooltip;
@@ -2458,6 +2614,7 @@ declare module "@stencil/core" {
             "yeti-table": LocalJSX.YetiTable & JSXBase.HTMLAttributes<HTMLYetiTableElement>;
             "yeti-table-actions": LocalJSX.YetiTableActions & JSXBase.HTMLAttributes<HTMLYetiTableActionsElement>;
             "yeti-table-pagination": LocalJSX.YetiTablePagination & JSXBase.HTMLAttributes<HTMLYetiTablePaginationElement>;
+            "yeti-textarea": LocalJSX.YetiTextarea & JSXBase.HTMLAttributes<HTMLYetiTextareaElement>;
             "yeti-titletip": LocalJSX.YetiTitletip & JSXBase.HTMLAttributes<HTMLYetiTitletipElement>;
             "yeti-toast": LocalJSX.YetiToast & JSXBase.HTMLAttributes<HTMLYetiToastElement>;
             "yeti-tooltip": LocalJSX.YetiTooltip & JSXBase.HTMLAttributes<HTMLYetiTooltipElement>;
