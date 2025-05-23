@@ -374,6 +374,23 @@ body:has(.app-page-wizard)::after {
 
 
 
+/************************************** Conductor JP2 Job Output Options Grid ***/
+.app-conductor-jobs-jp2-output_options_grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(10.25rem, 22rem));
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2rem;
+    justify-content: space-between;
+    grid-auto-flow: column;
+    margin-bottom: 2rem;
+}
+
+.app-conductor-jobs-jp2-output_options_grid-quality_layers {
+    grid-area: 1 / 3 / 3 / 4;
+}
+
+
+
 /************************************** Temporary Styles for Conductor (REMOVE ASAP) ***/
 .app-temp-updated .yeti-input[type="text"]:disabled {
     border-bottom-color: transparent;
